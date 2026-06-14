@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg"/><link rel="icon" href="../favicon.svg"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>How to Read a Correlogram. Sample ACF, Ljung-Box and Model Selection | Dr Nicky Grant</title>
+<meta name="description" content="A practical guide to reading the correlogram in time series analysis. Covers the sample ACF, 95% confidence bands, Ljung-Box portmanteau test, AIC, BIC, and model selection, with a worked GDP example. By Dr Nicky Grant, Cambridge PhD."/>
+<link rel="canonical" href="https://www.drnickygrant.com/blog/reading-the-correlogram.html"/>
+<meta property="og:type" content="article"/>
+<meta name="last-modified" content="2026-06-14"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"Article","headline":"How to Read a Correlogram. Sample ACF, Ljung-Box and Model Selection","url":"https://www.drnickygrant.com/blog/reading-the-correlogram.html","datePublished":"2026-06-14","dateModified":"2026-06-14","author":{"@id":"https://www.drnickygrant.com/#person"},"publisher":{"@type":"Person","name":"Dr Nicky Grant","url":"https://www.drnickygrant.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.drnickygrant.com/blog/reading-the-correlogram.html"},"description":"A practical guide to the correlogram, sample ACF, Ljung-Box portmanteau test, and information criteria for ARMA model selection.","keywords":["correlogram","sample ACF","Ljung-Box test","AIC","BIC","model selection","ARMA","time series econometrics"],"wordCount":2400,"articleSection":"Time Series Econometrics"},
+  {"@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.drnickygrant.com/"},
+    {"@type":"ListItem","position":2,"name":"Resources","item":"https://www.drnickygrant.com/blog.html"},
+    {"@type":"ListItem","position":3,"name":"Reading the Correlogram","item":"https://www.drnickygrant.com/blog/reading-the-correlogram.html"}
+  ]}
+]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap"/>
+<link rel="stylesheet" href="../css/main.css"/>
+<link rel="stylesheet" href="../css/polish.css"/>
+<style>
+.art{max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) clamp(3rem,8vw,6rem)}
+.art-hero{padding:clamp(6rem,14vw,9rem) clamp(1rem,4vw,2.5rem) clamp(2rem,5vw,3.5rem);border-bottom:1px solid rgba(248,242,232,.085)}
+.eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.75rem;display:block}
+.art-hero h1{font-family:var(--fd);font-size:clamp(2.1rem,5vw,3.4rem);font-weight:500;line-height:1.02;letter-spacing:-.04em;color:var(--ivory,#F8F2E8);margin-bottom:1rem}
+.art-hero .lede{font-size:clamp(1rem,1.8vw,1.15rem);font-weight:300;color:rgba(248,242,232,.72);line-height:1.78;max-width:660px}
+.art-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.25rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(248,242,232,.42)}
+h2{font-family:var(--fd);font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:500;letter-spacing:-.03em;color:var(--ivory,#F8F2E8);margin:2.5rem 0 .75rem;line-height:1.05}
+h3{font-family:var(--fd);font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:500;letter-spacing:-.02em;color:var(--ivory,#F8F2E8);margin:2rem 0 .6rem}
+p{font-size:clamp(.93rem,1.6vw,1rem);font-weight:300;color:rgba(248,242,232,.78);line-height:1.85;margin-bottom:1.1rem}
+.def{background:linear-gradient(180deg,rgba(211,163,91,.07),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-left:3px solid #D3A35B;padding:1.1rem 1.4rem;margin:1.5rem 0;border-radius:0 8px 8px 0}
+.def .def-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:#D3A35B;margin-bottom:.45rem;display:block}
+.def p{font-size:.92rem;margin:0;color:rgba(248,242,232,.88)}
+.math-block{background:rgba(248,242,232,.04);border:1px solid rgba(248,242,232,.09);border-radius:8px;padding:1rem 1.4rem;margin:1.1rem 0;font-family:'KaTeX_Math','STIX Two Math','Latin Modern Math',Georgia,serif;font-size:.93rem;color:var(--ivory,#F8F2E8);overflow-x:auto;line-height:1.7}
+.fig-wrap{margin:2rem 0;border:1px solid rgba(248,242,232,.08);border-radius:12px;overflow:hidden;background:rgba(248,242,232,.015)}
+.fig-caption{font-size:.72rem;font-weight:300;color:rgba(248,242,232,.42);padding:.65rem 1.1rem;border-top:1px solid rgba(248,242,232,.07);line-height:1.55}
+.fig-label{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:#D3A35B;padding:.7rem 1.1rem .25rem;display:block}
+.note{background:rgba(248,242,232,.03);border-left:2px solid rgba(248,242,232,.2);padding:.75rem 1.2rem;margin:1.2rem 0;border-radius:0 6px 6px 0}
+.note p{font-size:.88rem;margin:0;color:rgba(248,242,232,.62)}
+.step-list{counter-reset:steps;list-style:none;padding:0;margin:1.2rem 0}
+.step-list li{counter-increment:steps;padding:.65rem .8rem .65rem 2.8rem;position:relative;border-bottom:1px solid rgba(248,242,232,.06);color:rgba(248,242,232,.72);font-weight:300;font-size:.94rem;line-height:1.75}
+.step-list li:last-child{border-bottom:none}
+.step-list li::before{content:counter(steps);position:absolute;left:.7rem;top:.72rem;width:1.4rem;height:1.4rem;border-radius:50%;background:rgba(211,163,91,.1);border:1px solid rgba(211,163,91,.22);display:grid;place-items:center;font-size:.68rem;color:#D3A35B;font-weight:500;font-family:var(--fd)}
+
+/* Math block: use serif for better mathematical readability */
+.math-block{font-family:'Georgia','Times New Roman',serif;font-size:.91rem;letter-spacing:.01em;}
+code{font-family:'KaTeX_Math','STIX Two Math','Latin Modern Math',Georgia,serif;}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"/>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<nav id="nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">Dr Nicky <span>Grant</span></a>
+    <ul class="nav-links" role="list">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../services.html">Subjects</a></li>
+      <li><a href="../oxbridge-economics-tutor.html">Applications</a></li>
+      <li><a href="../blog.html" class="on" aria-current="page">Resources</a></li>
+      <li><a href="../credentials.html">Credentials</a></li>
+      <li><a href="../pricing.html">Pricing</a></li>
+    </ul>
+    <a href="../index.html#contact" class="nav-cta">Book consultation</a>
+    <button class="nav-burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobNav" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mob-nav" id="mobNav"><a href="../index.html">Home</a><a href="../services.html">Subjects</a><a href="../oxbridge-economics-tutor.html">Applications</a><a href="../blog.html" class="on">Resources</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+</nav>
+
+<div class="art-hero">
+  <div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
+    <span class="eyebrow">Time series · Estimation and model selection</span>
+    <h1>How to read a correlogram:<br/><em>sample ACF, Ljung-Box and AIC</em></h1>
+    <p class="lede">Once you understand what AR and ARMA processes are in theory, the practical question is: given real data, how do you identify which model applies? The correlogram, the plot of the sample ACF, is the starting point. This article explains what to look for and how to use it.</p>
+    <div class="art-meta"><span>Dr Nicky Grant · Cambridge PhD</span><span>Time Series Econometrics</span><span>ECON30401, Manchester</span><span>~2,400 words</span></div>
+  </div>
+</div>
+
+<main id="main" class="art">
+
+<div class="answer-capsule" role="note"><p>The correlogram is a plot of the sample autocorrelation function (sample ACF) against lag. Each bar shows the estimated correlation between Y_t and Y_{t-k}. Bars outside the 95% confidence bands (±1.96/√T) are statistically significant. The shape of the correlogram identifies the model: a cut-off suggests MA, exponential decay suggests AR, neither cutting off suggests ARMA. The Ljung-Box Q statistic tests all correlations up to lag m jointly. AIC and BIC then select the final model order.</p></div>
+
+<h2>From theory to data</h2>
+
+<p>The previous article established what AR and ARMA processes look like in theory, their mean, variance, and autocorrelation function (ACF). The bridge from theory to data is the <em>sample</em> ACF: the estimated autocorrelations computed from an observed time series {y₁, y₂, …, y<sub>T</sub>}.</p>
+
+<p>The process generating the data is unknown. What we observe is one realisation. Our aim is to use that realisation, through the correlogram and tests, to infer which ARMA model describes the process.</p>
+
+<h2>The sample autocorrelation function</h2>
+
+<div class="def">
+  <span class="def-label">Definition. Sample ACF</span>
+  <p>ρ̂(k) = [ Σₜ₌ₖ₊₁ᵀ (yₜ − ȳ)(yₜ₋ₖ − ȳ) ] / [ Σₜ₌₁ᵀ (yₜ − ȳ)² ]</p>
+</div>
+
+<p>This is the sample analogue of the population autocorrelation ρ(k) = γ(k)/γ(0). It measures how strongly the series at time t co-moves with itself k periods earlier, estimated from the data. The correlogram plots ρ̂(k) for k = 1, 2, 3, … against k.</p>
+
+<h3>Are the sample autocorrelations statistically significant?</h3>
+
+<p>Under the null hypothesis that the true ρ(k) = 0 (no autocorrelation at lag k), the sample autocorrelation ρ̂(k) is approximately normally distributed with mean 0 and standard deviation 1/√T:</p>
+
+<div class="math-block">√T · ρ̂(k)  →  N(0, 1)  as T → ∞,  under H₀: ρ(k) = 0</div>
+
+<p>This gives 95% confidence bands at ±1.96/√T. Any bar in the correlogram that lies outside these bands is statistically significantly different from zero at the 5% level. In EViews, these bands are drawn automatically as horizontal dashed lines. For T = 100, the bands are ±0.196. For T = 250, they are ±0.124, narrower because a larger sample detects weaker dependence.</p>
+
+<div class="note"><p><strong>Important:</strong> These bands are only valid for testing one specific ρ(k) at a time. When looking at the full correlogram and checking 20 lags simultaneously, we expect approximately 20 × 0.05 = 1 bar to lie outside the bands by chance even if the process is truly white noise. This is why we also use a joint test, the Ljung-Box statistic.</p></div>
+
+<!-- Simulated correlogram of AR(1) with φ=0.6 -->
+<div class="fig-wrap">
+  <span class="fig-label">Sample correlogram. AR(1) process, φ₁ = 0.6, T = 200</span>
+  <svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sample correlogram of AR(1) process with phi=0.6">
+    <rect width="600" height="160" fill="none"/>
+    <line x1="46" y1="15" x2="46" y2="120" stroke="rgba(248,242,232,.2)" stroke-width="0.8"/>
+    <line x1="46" y1="68" x2="590" y2="68" stroke="rgba(248,242,232,.2)" stroke-width="0.8"/>
+    <!-- 95% bands: ±1.96/√200 = ±0.139, scale: 50px per unit, so ±7px -->
+    <line x1="46" y1="61" x2="590" y2="61" stroke="rgba(211,163,91,.4)" stroke-width="0.8" stroke-dasharray="4,3"/>
+    <line x1="46" y1="75" x2="590" y2="75" stroke="rgba(211,163,91,.4)" stroke-width="0.8" stroke-dasharray="4,3"/>
+    <!-- Y labels -->
+    <text x="42" y="17" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">1.0</text>
+    <text x="42" y="70" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">0.0</text>
+    <text x="42" y="121" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">-1.0</text>
+    <!-- ACF bars: ρ̂(k) ≈ 0.6^k with small random noise, y = 68 - ρ*52 -->
+    <!-- k=1: 0.6→y=37 | k=2: 0.36→y=49 | k=3: 0.22→y=57 | k=4: 0.13→y=61 | k=5: 0.08→y=64 | k=6-20: near zero with noise -->
+    <line x1="68" y1="68" x2="68" y2="37" stroke="rgba(211,163,91,.9)" stroke-width="5.5"/><circle cx="68" cy="37" r="2.5" fill="#D3A35B"/>
+    <line x1="94" y1="68" x2="94" y2="49" stroke="rgba(211,163,91,.85)" stroke-width="5.5"/><circle cx="94" cy="49" r="2.5" fill="#D3A35B"/>
+    <line x1="120" y1="68" x2="120" y2="57" stroke="rgba(211,163,91,.8)" stroke-width="5.5"/><circle cx="120" cy="57" r="2.5" fill="#D3A35B"/>
+    <line x1="146" y1="68" x2="146" y2="62" stroke="rgba(211,163,91,.7)" stroke-width="5.5"/><circle cx="146" cy="62" r="2.5" fill="#D3A35B"/>
+    <line x1="172" y1="68" x2="172" y2="65" stroke="rgba(211,163,91,.55)" stroke-width="5.5"/>
+    <line x1="198" y1="68" x2="198" y2="66" stroke="rgba(211,163,91,.4)" stroke-width="5"/>
+    <!-- Remaining bars: small, within or near bands, some noise -->
+    <line x1="224" y1="68" x2="224" y2="67" stroke="rgba(248,242,232,.35)" stroke-width="4"/>
+    <line x1="250" y1="68" x2="250" y2="70" stroke="rgba(248,242,232,.3)" stroke-width="4"/>
+    <line x1="276" y1="68" x2="276" y2="66" stroke="rgba(248,242,232,.28)" stroke-width="4"/>
+    <line x1="302" y1="68" x2="302" y2="69" stroke="rgba(248,242,232,.26)" stroke-width="4"/>
+    <line x1="328" y1="68" x2="328" y2="67" stroke="rgba(248,242,232,.24)" stroke-width="4"/>
+    <line x1="354" y1="68" x2="354" y2="70" stroke="rgba(248,242,232,.22)" stroke-width="4"/>
+    <line x1="380" y1="68" x2="380" y2="67" stroke="rgba(248,242,232,.20)" stroke-width="4"/>
+    <line x1="406" y1="68" x2="406" y2="68" stroke="rgba(248,242,232,.18)" stroke-width="4"/>
+    <line x1="432" y1="68" x2="432" y2="69" stroke="rgba(248,242,232,.16)" stroke-width="4"/>
+    <line x1="458" y1="68" x2="458" y2="67" stroke="rgba(248,242,232,.14)" stroke-width="4"/>
+    <line x1="484" y1="68" x2="484" y2="68" stroke="rgba(248,242,232,.12)" stroke-width="4"/>
+    <line x1="510" y1="68" x2="510" y2="70" stroke="rgba(248,242,232,.11)" stroke-width="4"/>
+    <line x1="536" y1="68" x2="536" y2="67" stroke="rgba(248,242,232,.10)" stroke-width="4"/>
+    <line x1="562" y1="68" x2="562" y2="68" stroke="rgba(248,242,232,.09)" stroke-width="4"/>
+    <!-- X axis labels -->
+    <text x="68" y="133" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="7" font-family="Courier New">1</text>
+    <text x="94" y="133" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="7" font-family="Courier New">2</text>
+    <text x="120" y="133" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="7" font-family="Courier New">3</text>
+    <text x="146" y="133" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="7" font-family="Courier New">4</text>
+    <text x="172" y="133" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="7" font-family="Courier New">5</text>
+    <text x="302" y="133" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="7" font-family="Courier New">10</text>
+    <text x="562" y="133" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="7" font-family="Courier New">20</text>
+    <text x="315" y="148" text-anchor="middle" fill="rgba(248,242,232,.2)" font-size="7" font-family="sans-serif">lag k</text>
+    <!-- Annotation -->
+    <text x="68" y="30" fill="rgba(211,163,91,.75)" font-size="7.5" font-family="sans-serif">Significant bars</text>
+    <text x="68" y="40" fill="rgba(211,163,91,.6)" font-size="7" font-family="sans-serif">at lags 1–4</text>
+    <text x="230" y="57" fill="rgba(248,242,232,.4)" font-size="7" font-family="sans-serif">All within bands</text>
+    <text x="62" y="58" fill="rgba(211,163,91,.5)" font-size="6.5" font-family="Courier New">+0.139</text>
+    <text x="62" y="78" fill="rgba(211,163,91,.5)" font-size="6.5" font-family="Courier New">−0.139</text>
+  </svg>
+  <div class="fig-caption">Simulated sample correlogram from an AR(1) with φ₁ = 0.6 and T = 200. Bars at lags 1–4 exceed the 95% confidence bands (dashed). Bars at lags 5+ are within the bands, consistent with AR(1) structure. The pattern of significant early lags with exponential decay is the AR(1) signature.</div>
+</div>
+
+<h2>Reading the shape: what are you looking for?</h2>
+
+<p>Three patterns matter when reading a correlogram:</p>
+
+<p><strong>Significant bars that cut off sharply.</strong> If bars are significant up to lag q and then all bars at higher lags lie within the confidence bands, this is consistent with an MA(q) process. The cut-off is the diagnostic, it is the defining theoretical property of the MA ACF.</p>
+
+<p><strong>Bars that decay gradually.</strong> Significant bars at low lags that decrease in size with each successive lag, eventually falling within the bands, is consistent with an AR process. The rate of decay reflects the AR coefficient: fast decay means a small |φ<sub>1</sub>|, slow decay means |φ<sub>1</sub>| close to 1.</p>
+
+<p><strong>Neither cuts off nor decays simply.</strong> Both the ACF and PACF tail off without a clean cut-off, this is the ARMA signature. You need both tools to identify an ARMA model, and often also information criteria.</p>
+
+<h2>The Ljung-Box portmanteau test</h2>
+
+<p>Rather than testing each lag individually, the Ljung-Box test asks whether the first m autocorrelations are jointly zero:</p>
+
+<div class="def">
+  <span class="def-label">Ljung-Box Q statistic</span>
+  <p>Q(m) = T(T+2) · Σₖ₌₁ᵐ ρ̂(k)² / (T−k)</p>
+</div>
+
+<p>Under H₀: ρ(1) = ρ(2) = … = ρ(m) = 0, the Q(m) statistic follows a chi-squared distribution with m degrees of freedom. We reject H₀ at significance level α if Q(m) &gt; χ²<sub>m,α</sub>.</p>
+
+<p>In practice: run the test for several values of m (m = 5, 10, 15 are common). If Q(m) is significant at all values of m, there is strong evidence of serial dependence in the data. If Q(m) applied to the <em>residuals</em> of an estimated ARMA model is not significant, the model has adequately captured the serial correlation in the data.</p>
+
+<div class="note"><p><strong>Common misuse:</strong> the Ljung-Box test is valid for testing the raw series for white noise, but when applied to residuals of an estimated ARMA(p,q) model, the degrees of freedom must be adjusted to m − p − q. Failure to do this leads to undersized tests, you reject white noise less often than you should.</p></div>
+
+<h2>Estimating ARMA models</h2>
+
+<p>Once the correlogram has suggested candidate model orders, we need to estimate the parameters.</p>
+
+<p><strong>AR models</strong> can be estimated by OLS, an AR(p) is just a linear regression of Y<sub>t</sub> on its own p lagged values. OLS is consistent and asymptotically normal under stationarity. This is why AR models are computationally straightforward to estimate and to understand.</p>
+
+<p><strong>MA and ARMA models</strong> require maximum likelihood estimation (MLE) because the lagged error terms ε<sub>t-1</sub>, ε<sub>t-2</sub>, … are not directly observed. EViews, Stata and R all implement this. The log-likelihood for the Gaussian case is:</p>
+
+<div class="math-block">ℓ(θ) = −(T/2)·log(2πσ²) − (1/2σ²)·Σₜ εₜ²</div>
+
+<p>where the ε<sub>t</sub> are the model residuals, computed recursively from the data and estimated parameters. In practice, software handles this for you, but it is important to know that ARMA estimation is iterative and can sometimes converge to local maxima, so starting values matter.</p>
+
+<h2>Model selection: AIC and BIC</h2>
+
+<p>Having estimated several candidate ARMA models, we need a principled way to choose between them. Adding more AR or MA terms always improves fit (in-sample), but a more complex model may simply be fitting noise, not genuine structure. Information criteria penalise complexity.</p>
+
+<div class="def">
+  <span class="def-label">Information Criteria</span>
+  <p>AIC = −2·log L̂ + 2K</p>
+  <p style="margin-top:.5rem">BIC = −2·log L̂ + K·log(T)</p>
+  <p style="margin-top:.5rem;font-size:.82rem;color:rgba(248,242,232,.65)">where L̂ is the maximised likelihood and K = p + q + 1 is the number of estimated parameters.</p>
+</div>
+
+<p>Both criteria reward a better fit (smaller −2 log L̂) and penalise complexity (larger K). The BIC penalty (K·log T) grows with the sample size, making it more conservative, it selects simpler models in large samples. The AIC penalty (2K) is fixed regardless of T, so it tends to select slightly larger models.</p>
+
+<p>The rule: estimate all ARMA(p,q) models for p = 0, 1, …, p<sub>max</sub> and q = 0, 1, …, q<sub>max</sub>. Pick the model with the lowest AIC (or BIC). If the two criteria disagree, the preferred model depends on whether parsimony or predictive fit is the primary goal. BIC for parsimony, AIC for prediction.</p>
+
+<h3>Worked example: UK quarterly real GDP growth</h3>
+
+<p>UK quarterly real GDP growth from 1955Q1 to 2013Q2 (T = 234) provides a canonical example used in the ECON30401 PC Lab. The correlogram of GDP growth shows:</p>
+
+<ul style="color:rgba(248,242,232,.72);font-weight:300;font-size:.94rem;line-height:2;padding-left:1.5rem;margin-bottom:1rem">
+  <li>A significant bar at lag 1 (ρ̂(1) ≈ 0.3, above the band ≈ ±0.13)</li>
+  <li>A bar at lag 2 that is marginal (close to the band)</li>
+  <li>All bars at lags 3+ within the confidence bands</li>
+  <li>The Ljung-Box Q(5) statistic is significant (the first few autocorrelations are jointly non-zero)</li>
+</ul>
+
+<p>This pattern is consistent with AR(1) or AR(2). Estimating both and comparing AIC values typically selects AR(1), the lag 2 bar is not significant enough to justify the extra parameter.</p>
+
+<p>The estimated AR(1) model for UK GDP growth: ŷ<sub>t</sub> = 0.48 + 0.31·y<sub>t-1</sub>. The coefficient 0.31 is statistically significant (t-statistic around 5). Applied to the residuals, Q(10) is not significant, the AR(1) has adequately removed the serial correlation.</p>
+
+<h2>The step-by-step procedure</h2>
+
+<ol class="step-list">
+  <li><strong>Plot the data.</strong> Look for obvious non-stationarity (trending mean or variance), seasonality, or structural breaks. If non-stationary, difference or detrend before proceeding.</li>
+  <li><strong>Plot the correlogram.</strong> Note which lags are significant. Does the ACF cut off (MA) or decay (AR)? Also plot the PACF, does it cut off (AR) or decay (MA)?</li>
+  <li><strong>Run the Ljung-Box test</strong> for several values of m. If Q(m) is not significant, the series may be white noise.</li>
+  <li><strong>Estimate candidate ARMA(p,q) models.</strong> Try p = 0, 1, 2 and q = 0, 1, 2. Use MLE for MA or ARMA components.</li>
+  <li><strong>Compare AIC and BIC.</strong> Select the model with the lowest information criterion. Prefer smaller models when AIC and BIC disagree.</li>
+  <li><strong>Check the residuals.</strong> Apply the Ljung-Box test to the residuals of the selected model. If significant serial correlation remains, increase p or q.</li>
+</ol>
+
+<hr style="border:none;border-top:1px solid rgba(248,242,232,.08);margin:2.5rem 0"/>
+
+<div style="background:linear-gradient(180deg,rgba(211,163,91,.07),rgba(211,163,91,.025));border:1px solid rgba(211,163,91,.18);border-radius:12px;padding:1.5rem 1.75rem;margin:2rem 0">
+  <p style="font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#D3A35B;margin-bottom:.5rem">Related articles</p>
+  <p style="margin:0 0 .5rem;font-size:.95rem;color:rgba(248,242,232,.8)"><a href="ar-arma-processes-explained.html" style="color:#D3A35B">← AR and ARMA processes explained</a>, the theoretical background this article builds on.</p>
+  <p style="margin:0 0 .5rem;font-size:.95rem;color:rgba(248,242,232,.8)"><a href="time-series-forecasting-ar-models.html" style="color:#D3A35B">Time series forecasting with AR models →</a>, what to do with an estimated model.</p>
+</div>
+
+</main>
+
+<footer role="contentinfo" style="border-top:1px solid rgba(248,242,232,.08);padding:2.5rem clamp(1rem,4vw,2.5rem);background:linear-gradient(180deg,rgba(248,242,232,.02),rgba(0,0,0,.18))">
+  <div style="max-width:740px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.72rem;color:rgba(248,242,232,.4);font-weight:300">
+    <span>© <span id="yr"></span> Dr Nicky Grant · <a href="../index.html" style="color:rgba(248,242,232,.4)">drnickygrant.com</a></span>
+    <span><a href="../blog.html" style="color:rgba(248,242,232,.4)">← All resources</a></span>
+  </div>
+</footer>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+nav.classList.toggle('solid',scrollY>40);
+function toggleNav(btn){const m=document.getElementById('mobNav');const o=m.classList.toggle('open');btn.setAttribute('aria-expanded',String(o));}
+document.addEventListener('click',function(e){const m=document.getElementById('mobNav');const b=document.getElementById('burgerBtn');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&b&&!b.contains(e.target)){m.classList.remove('open');b.setAttribute('aria-expanded','false');}});
+</script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg"/><link rel="icon" href="../favicon.svg"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Time Series Econometrics: A Complete Guide | Dr Nicky Grant</title>
+<meta content="A clear, practical guide to time series econometrics: stationarity, unit roots, ARIMA, autocorrelation, cointegration and spurious regression. Written to accompany the economaths YouTube video series." name="description"/>
+<link href="https://www.drnickygrant.com/blog/time-series-econometrics-guide.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="Time Series Econometrics: A Complete Guide | Dr Nicky Grant" property="og:title"/>
+<meta content="Clear explanations of stationarity, unit roots, ARIMA, autocorrelation, cointegration and spurious regression, with video lectures." property="og:description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../css/main.css" rel="stylesheet"/>
+<style>
+.video-embed{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border:1px solid var(--hr2);margin:2rem 0}
+.video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.video-label{font-size:0.65rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;display:block}
+.pull-quote{border-left:2px solid var(--gold);padding:1.25rem 1.75rem;margin:2.5rem 0;background:var(--s1)}
+.pull-quote p{font-family:var(--fd);font-size:1.25rem;font-weight:300;font-style:italic;color:var(--t1);line-height:1.5;margin:0}
+.concept-box{background:var(--s1);border:1px solid var(--hr);padding:1.5rem 2rem;margin:2rem 0}
+.concept-box h4{font-family:var(--fd);font-size:1.1rem;font-weight:400;color:var(--gold);margin-bottom:0.75rem}
+.concept-box p,.concept-box ul{font-size:0.88rem;color:var(--t2);line-height:1.8;font-weight:300}
+.concept-box ul{margin-left:1.25rem;margin-top:0.5rem}
+.concept-box li{margin-bottom:0.3rem}
+.math{font-family:'KaTeX_Math','STIX Two Math','Latin Modern Math',Georgia,serif;font-size:0.9rem;color:var(--t1);background:rgba(255,255,255,0.05);padding:0.2rem 0.5rem;border-radius:2px}
+.faq-section{border-top:1px solid var(--hr);padding-top:1.5rem;margin-top:2.5rem}
+.faq-section h3{font-family:var(--fd);font-size:1.2rem;font-weight:400;color:var(--t1);margin-bottom:0.6rem}
+.faq-section p{font-size:0.88rem;color:var(--t2);line-height:1.8;font-weight:300;margin-bottom:1.5rem}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"Article",
+      "headline":{"@value":"Time Series Econometrics Guide"},
+      "url":"https://www.drnickygrant.com/blog/time-series-econometrics-guide.html",
+      "datePublished":"2025-08-01",
+      "dateModified":"2026-06-14",
+      "author":{"@id":"https://www.drnickygrant.com/#person"},
+      "publisher":{"@type":"Person","name":"Dr Nicky Grant","url":"https://www.drnickygrant.com"},
+      "mainEntityOfPage":{"@type":"WebPage","@id":"https://www.drnickygrant.com/blog/time-series-econometrics-guide.html"},
+      "description":"time series econometrics guide by Dr Nicky Grant, Cambridge PhD economist.",
+      "keywords":["time series econometrics","unit root tests","cointegration","ARIMA","stationarity"],
+      "wordCount":2200,
+      "articleSection":"Econometrics"
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://www.drnickygrant.com/"},
+        {"@type":"ListItem","position":2,"name":"Resources","item":"https://www.drnickygrant.com/blog.html"},
+        {"@type":"ListItem","position":3,"name":"Time Series Econometrics Guide","item":"https://www.drnickygrant.com/blog/time-series-econometrics-guide.html"}
+      ]
+    }
+  ]
+}
+</script>
+<meta content="2026-06-14" name="last-modified"/>
+<link href="../css/polish.css" rel="stylesheet"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"/>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a class="nav-logo" href="../index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list"><li><a href="../index.html">Home</a></li><li><a href="../services.html">Subjects</a></li><li><a href="../oxbridge-economics-tutor.html">Applications</a></li><li><a aria-current="page" class="on" href="../blog.html">Resources</a></li><li><a href="../credentials.html">Credentials</a></li><li><a href="../pricing.html">Pricing</a></li></ul>
+<a class="nav-cta" href="../index.html#contact">Book consultation</a>
+<button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)">
+<span></span><span></span><span></span>
+</button>
+</div>
+<div class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../services.html">Subjects</a><a href="../oxbridge-economics-tutor.html">Applications</a><a aria-current="page" class="on" href="../blog.html">Resources</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+</nav>
+<div class="article-hero">
+<div style="max-width:var(--max);margin:0 auto">
+<p class="eyebrow" style="color:var(--gold)">Time Series · Complete guide</p>
+<h1 style="font-size:clamp(2rem,4.5vw,3.2rem)">Time Series Econometrics:<br/>A Complete Guide</h1>
+<p class="article-meta">
+      By Dr Nicky Grant · Cambridge PhD in Economics · Companion to the <em>economaths</em> video series · 25 min read
+    </p>
+</div>
+</div>
+<main id="main">
+<section class="section">
+<div class="inner">
+<!-- Video embed at top -->
+<div style="max-width:760px;margin:0 auto 3rem">
+<span class="video-label">Watch the video series · economaths · YouTube</span>
+<div class="video-embed">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/videoseries?list=PLdlEREV7OXveBEfmeZeXOBV9oEh9gR20F&amp;rel=0&amp;modestbranding=1" title="Time Series Econometrics, economaths YouTube playlist">
+</iframe>
+</div>
+<p style="font-size:0.78rem;color:var(--t3);font-weight:300;margin-top:0.75rem">5 videos · watch free on YouTube · subscribe to <a href="https://www.youtube.com/@economaths" rel="noopener" style="color:var(--gold)" target="_blank">@economaths</a> for new content</p>
+</div>
+<div class="article-body-wrap">
+<div class="article-body">
+<p>Most economics data is time series data. GDP, inflation, interest rates, exchange rates, stock prices, all of these unfold over time, and the order in which observations arrive matters enormously. The tools you use for cross-sectional data (where you observe many individuals at a single point in time) often fail completely when applied to time series. This guide explains why, and what to do about it.</p>
+<p>The explanations here are written in the same style as the <em>economaths</em> video series: start with the intuition, then build the formal machinery. If something here is unclear, the videos are the best place to go next.</p>
+<div class="pull-quote">
+<p>The single biggest mistake students make with time series data is treating it like cross-sectional data and running OLS without checking whether their series are stationary.</p>
+</div>
+<h2>1. What makes time series data different?</h2>
+<p>In a cross-sectional dataset, you might have wages and education levels for 1,000 workers sampled randomly from the population. The key assumption that makes OLS work is that these observations are <em>independent</em>, knowing one person's wage tells you nothing about another's.</p>
+<p>Time series data violates this immediately. If UK GDP was high last quarter, it is very likely to be high this quarter too. Economic variables have <em>momentum</em>, they tend to persist. This dependence across time is not a nuisance to be dismissed; it is the defining feature of time series, and understanding it is the whole challenge.</p>
+<div class="concept-box">
+<h4>Key concept: the data generating process</h4>
+<p>We model a time series <span class="math">y_t</span> as a sequence of random variables indexed by time <span class="math">t = 1, 2, ..., T</span>. The joint distribution of all these random variables, how they depend on each other across time, is called the data generating process (DGP). The goal of time series econometrics is to estimate the DGP from observed data and use it to make inference and forecasts.</p>
+</div>
+<h2>2. Stationarity, the most important concept in time series</h2>
+<p>A time series is <em>stationary</em> if its statistical properties do not change over time. More precisely, a series is <em>covariance stationary</em> (also called weakly stationary) if three conditions hold:</p>
+<ul>
+<li>The mean is constant: <span class="math">E[y_t] = μ</span> for all <span class="math">t</span></li>
+<li>The variance is constant: <span class="math">Var(y_t) = σ²</span> for all <span class="math">t</span></li>
+<li>The covariance between <span class="math">y_t</span> and <span class="math">y_{t-k}</span> depends only on the lag <span class="math">k</span>, not on <span class="math">t</span></li>
+</ul>
+<p>Stationarity matters for a simple reason: if the properties of a series change over time, any statistical summary you compute from the data (a mean, a regression coefficient) is only meaningful for the period you observe, not in general. You can't learn anything stable about the DGP from a non-stationary series without first transforming it.</p>
+<p>Think about UK house prices. Between 1990 and 2025, average house prices rose from roughly £60,000 to over £280,000. The mean is not constant, it trends upwards. The variance is not constant, price swings are much larger in absolute terms in 2025 than in 1990. If you regressed anything on house prices without accounting for this, your results would be meaningless.</p>
+<div class="concept-box">
+<h4>Stationary vs non-stationary: a quick test</h4>
+<p>Plot the series and look at it. A stationary series should:</p>
+<ul>
+<li>Appear to fluctuate around a fixed level</li>
+<li>Have roughly constant spread (variance) throughout</li>
+<li>Not show any long-run upward or downward drift</li>
+</ul>
+<p>Non-stationary series typically show a trend, explosive growth, or permanent shifts in level. Many economic variables, prices, GDP, stock indices, are non-stationary in levels but become stationary when you take first differences.</p>
+</div>
+<h2>3. Autoregressive processes and the AR(1)</h2>
+<p>The simplest model for a time series that captures persistence is the autoregressive model of order one, the AR(1):</p>
+<p style="text-align:center;font-family:'KaTeX_Math','STIX Two Math','Latin Modern Math',Georgia,serif;font-size:1rem;color:var(--t1);padding:1rem;background:rgba(255,255,255,0.04);border:1px solid var(--hr);margin:1.5rem 0">
+          y_t = ρ · y_{t-1} + ε_t
+        </p>
+<p>where <span class="math">ε_t</span> is white noise, uncorrelated across time, mean zero, constant variance. The parameter <span class="math">ρ</span> controls how strongly the past feeds into the present.</p>
+<p>The key result: the AR(1) is stationary if and only if <span class="math">|ρ| &lt; 1</span>. When this holds, the effect of any shock dies away over time, the series keeps returning towards its mean. The autocovariances decline geometrically as the lag increases.</p>
+<p>When <span class="math">ρ = 1</span>, you have a <em>random walk</em>, and the series is non-stationary. Shocks are permanent: once the series is pushed up, it stays up. The variance grows without bound over time.</p>
+<h2>4. Unit roots, when ρ = 1</h2>
+<p>A series with <span class="math">ρ = 1</span> in its AR representation is said to have a <em>unit root</em>. The term comes from the characteristic equation of the autoregressive model, the value <span class="math">ρ = 1</span> corresponds to a root of exactly one.</p>
+<p>Unit root processes have some deeply counterintuitive properties:</p>
+<ul>
+<li>The variance grows over time, so the series wanders ever further from its starting point</li>
+<li>Shocks are permanent, there is no tendency to revert to any long-run level</li>
+<li>The autocorrelations decline very slowly, barely at all for modest lags</li>
+<li>Standard OLS inference is invalid, t-statistics do not follow a t-distribution</li>
+</ul>
+<p>Many economic variables appear to be unit root processes in levels: GDP, prices, exchange rates, interest rates, stock prices. Taking a first difference, computing <span class="math">Δy_t = y_t − y_{t-1}</span>, often produces a stationary series. If <span class="math">y_t</span> needs to be differenced once to achieve stationarity, it is called <em>integrated of order one</em>, written <span class="math">I(1)</span>.</p>
+<div class="concept-box">
+<h4>Testing for unit roots: the Augmented Dickey-Fuller test</h4>
+<p>You cannot simply inspect the autocorrelation function to determine whether a series has a unit root, you need a formal test. The Augmented Dickey-Fuller (ADF) test runs a regression of the form:</p>
+<p style="font-family:'KaTeX_Math','STIX Two Math','Latin Modern Math',Georgia,serif;font-size:0.85rem;color:var(--t1);background:rgba(255,255,255,0.04);padding:0.75rem 1rem;margin:0.75rem 0">Δy_t = α + δy_{t-1} + Σβ_j Δy_{t-j} + ε_t</p>
+<p>and tests <span class="math">H₀: δ = 0</span> (unit root) against <span class="math">H₁: δ &lt; 0</span> (stationarity). The critical values are non-standard, you cannot use the usual t-distribution tables. Under the null of a unit root, the t-statistic for δ has a Dickey-Fuller distribution, which is shifted to the left relative to a normal distribution.</p>
+<p>Practical note: the augmentation lags (the <span class="math">Δy_{t-j}</span> terms) are included to absorb serial correlation in the residuals. The number of lags is usually chosen by an information criterion such as AIC or BIC.</p>
+</div>
+<h2>5. Spurious regression, why non-stationarity is dangerous</h2>
+<p>Here is one of the most important, and most counterintuitive, results in econometrics. If you regress one non-stationary <span class="math">I(1)</span> series on another that is <em>completely unrelated</em>, you will typically find a statistically significant relationship. The R² will be high, the t-statistic will be large, and everything will look convincing. But the relationship is entirely spurious, an artifact of the shared trending behaviour, not evidence of any genuine connection.</p>
+<p>This was documented formally by Granger and Newbold (1974), who ran simulations showing regressions of one random walk on another giving apparently significant coefficients far more often than they should. They called these <em>spurious regressions</em>.</p>
+<div class="pull-quote">
+<p>Two series can appear to move together simply because they both trend over time. This is not a relationship, it is a statistical illusion.</p>
+</div>
+<p>The standard diagnostic for spurious regression is the Durbin-Watson statistic. A value close to zero on the residuals of a regression suggests very high autocorrelation, a warning sign that the regression is spurious. More formally, you should test your variables for unit roots before running any regression. If they are I(1), running OLS on levels is invalid unless they are cointegrated (more on that below).</p>
+<h2>6. ARIMA models, modelling non-stationary series</h2>
+<p>Once you have established that a series needs differencing to achieve stationarity, you can model the differenced series using autoregressive moving average (ARMA) methods. An ARMA(p, q) model for a stationary series has the form:</p>
+<p style="font-family:'KaTeX_Math','STIX Two Math','Latin Modern Math',Georgia,serif;font-size:0.85rem;color:var(--t1);background:rgba(255,255,255,0.04);padding:0.75rem 1rem;margin:1.5rem 0">
+          y_t = φ₁y_{t-1} + ... + φ_p y_{t-p} + ε_t + θ₁ε_{t-1} + ... + θ_q ε_{t-q}
+        </p>
+<p>The AR part (lags of <span class="math">y</span>) captures the persistence of the series. The MA part (lags of <span class="math">ε</span>) captures how shocks propagate across time.</p>
+<p>When the series needs to be differenced <span class="math">d</span> times before applying an ARMA model, we call the full model ARIMA(p, d, q). Autoregressive Integrated Moving Average. In practice, most economic series require at most one difference (<span class="math">d = 1</span>), and the orders p and q are usually small (0, 1, or 2).</p>
+<div class="concept-box">
+<h4>Selecting ARMA orders: the Box-Jenkins approach</h4>
+<p>Box and Jenkins proposed a systematic procedure for identifying the correct ARMA specification:</p>
+<ul>
+<li><strong>Identification:</strong> inspect the autocorrelation function (ACF) and partial autocorrelation function (PACF). A pure AR(p) has a PACF that cuts off after lag p. A pure MA(q) has an ACF that cuts off after lag q. Mixed ARMA processes show gradual decay in both.</li>
+<li><strong>Estimation:</strong> estimate the chosen model by maximum likelihood or conditional least squares.</li>
+<li><strong>Diagnostic checking:</strong> test whether the residuals are white noise (using the Ljung-Box test). If not, the model is misspecified and you need to revisit the identification step.</li>
+</ul>
+<p>In practice, model selection criteria (AIC, BIC) are now commonly used alongside the ACF/PACF approach, particularly for automated selection.</p>
+</div>
+<h2>7. Autocorrelation, when OLS residuals are correlated</h2>
+<p>Even when working with stationary series, the error terms in a regression may be correlated across time. This is called <em>autocorrelation</em> (or serial correlation), and it violates one of the Gauss-Markov conditions that guarantees OLS is efficient.</p>
+<p>The consequences of ignoring autocorrelation depend on what you are trying to do:</p>
+<ul>
+<li>OLS coefficient estimates remain <em>unbiased</em> (assuming the right regressors are included), but they are no longer the minimum variance linear unbiased estimator</li>
+<li>The OLS standard errors are <em>wrong</em>, they will typically understate the true uncertainty, making t-statistics look more significant than they are</li>
+<li>This means hypothesis tests and confidence intervals are invalid</li>
+</ul>
+<p>The classic test for autocorrelation in OLS residuals is the Durbin-Watson test (for first-order autocorrelation) or the Breusch-Godfrey test (for higher orders). The practical fix is to use <em>Newey-West standard errors</em>, these are heteroskedasticity and autocorrelation consistent (HAC) standard errors that remain valid in the presence of both heteroskedasticity and serial correlation up to some specified lag.</p>
+<h2>8. Cointegration, when non-stationary series move together</h2>
+<p>Here is something remarkable. Two I(1) series, both non-stationary, can share a common stochastic trend, so that some linear combination of them is stationary. When this happens, the series are said to be <em>cointegrated</em>.</p>
+<p>The economic intuition is that cointegrated series are tied together in the long run, even though they can diverge in the short run. Think about short-term and long-term interest rates: both trend over time (they are I(1)), but they tend to move together because of arbitrage, if they diverged too far, investors would shift between them. They are cointegrated.</p>
+<p>Other classic examples of cointegration:</p>
+<ul>
+<li>Prices of a commodity in different markets (linked by trade)</li>
+<li>Wages and prices (linked by real wage determination)</li>
+<li>Household income and consumption (linked by the permanent income hypothesis)</li>
+</ul>
+<p>When series are cointegrated, OLS on the levels is actually <em>consistent</em>, the spurious regression problem does not apply. There is a genuine long-run relationship to estimate. But you still need to model the short-run dynamics separately, typically using an <em>error correction model</em> (ECM).</p>
+<div class="concept-box">
+<h4>Testing for cointegration: Engle-Granger</h4>
+<p>The simplest cointegration test is the Engle-Granger two-step procedure:</p>
+<ul>
+<li><strong>Step 1:</strong> Regress <span class="math">y_t</span> on <span class="math">x_t</span> using OLS. Save the residuals <span class="math">û_t</span>.</li>
+<li><strong>Step 2:</strong> Test whether <span class="math">û_t</span> is stationary using an ADF test.</li>
+</ul>
+<p>If the residuals are stationary (reject the null of a unit root), the series are cointegrated. The critical values for the ADF test in Step 2 are non-standard, you must use the special Engle-Granger tables, not the usual Dickey-Fuller tables, because the residuals are estimated rather than observed.</p>
+<p>For more than two series, the Johansen test is typically used, which can also determine how many cointegrating relationships exist.</p>
+</div>
+<h2>9. Regression assumptions for time series data</h2>
+<p>The Gauss-Markov assumptions need revisiting for time series. The key modifications are:</p>
+<ul>
+<li><strong>No strict exogeneity:</strong> in time series, it is common to include lagged dependent variables as regressors. This means the regressors cannot be strictly exogenous (uncorrelated with all past, present and future errors), but OLS may still be consistent under the weaker condition of <em>contemporaneous exogeneity</em>.</li>
+<li><strong>Stationarity and weak dependence:</strong> instead of assuming i.i.d. errors, we need the series to be stationary and the autocorrelations to die away fast enough (weak dependence) for the law of large numbers and central limit theorem to apply.</li>
+<li><strong>No unit roots:</strong> as discussed, non-stationary regressors invalidate standard OLS inference. Always check for unit roots first.</li>
+</ul>
+<div class="faq-section">
+<h3>FAQ: What is a random walk?</h3>
+<p>A random walk is a process where each value is the previous value plus a random shock: <span class="math">y_t = y_{t-1} + ε_t</span>. It is the simplest unit root process. It has no tendency to revert to any level, shocks are permanent. Many financial asset prices (particularly in efficient markets) are modelled as random walks, which is the statistical content of the "efficient market hypothesis".</p>
+<h3>FAQ: What is the difference between AR and ARMA?</h3>
+<p>An autoregressive (AR) model explains the current value using only past values of the same variable. A moving average (MA) model uses past values of the error term. An ARMA model combines both. In practice, many time series can be approximated well by a low-order ARMA process, and the Box-Jenkins methodology provides a systematic way to identify which specification fits best.</p>
+<h3>FAQ: How do I know if I need to difference my data?</h3>
+<p>Start by plotting the series. If it trends clearly, it is almost certainly non-stationary. Then run formal unit root tests (ADF or Phillips-Perron). If you reject the null of stationarity, difference the series and test again. Most economic series in levels need one difference; very few need two.</p>
+<h3>FAQ: What are Newey-West standard errors?</h3>
+<p>Newey-West standard errors (also called HAC standard errors, heteroskedasticity and autocorrelation consistent) are robust standard errors that remain valid when OLS residuals are autocorrelated or heteroskedastic. They use a weighted average of sample autocovariances to estimate the true variance of the OLS estimator. Most econometrics software computes them with a single option.</p>
+<h3>FAQ: What is an error correction model?</h3>
+<p>An error correction model (ECM) is a way of modelling series that are cointegrated. It decomposes the relationship into a long-run component (the cointegrating relationship) and short-run dynamics. The "error correction" term is the deviation from the long-run equilibrium, when series drift apart, the ECM shows how quickly they return. The Granger representation theorem states that any cointegrated system has an ECM representation.</p>
+</div>
+<h2>Watch the videos</h2>
+<p>The <em>economaths</em> time series playlist covers these topics through worked video lectures. Each video is concise and focused on building understanding, not just mechanical computation.</p>
+<div style="margin:2rem 0;border:1px solid var(--hr);padding:1.5rem;background:var(--s1)">
+<span class="video-label">Time Series Econometrics · 5 videos</span>
+<p style="font-size:0.88rem;color:var(--t2);line-height:1.75;margin:0.5rem 0">Topics covered: stationarity, unit roots, the ADF test, spurious regression, ARIMA models, autocorrelation, Newey-West standard errors, cointegration.</p>
+<a href="https://www.youtube.com/playlist?list=PLdlEREV7OXveBEfmeZeXOBV9oEh9gR20F" rel="noopener" style="display:inline-block;margin-top:0.75rem;font-size:0.65rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,144,96,0.3);padding:0.55rem 1rem" target="_blank">
+            Watch on YouTube →
+          </a>
+</div>
+<div class="article-cta">
+<h3>Struggling with time series econometrics?</h3>
+<p>Unit roots, cointegration and ARIMA models are topics where a single tutorial session can save weeks of confusion. I offer 1-1 online tuition at every level, from introductory courses through to PhD-level time series.</p>
+<a class="btn btn-fill" href="../index.html#contact" style="display:inline-block">Book a free consultation</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer>
+<div class="foot-cols">
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Cambridge PhD economist. Expert tuition in economics, econometrics, statistics and maths from GCSE to PhD level.</p></div>
+<div class="fc"><h4>Pages</h4><a href="../index.html">Home</a><a href="../services.html">Services</a><a href="../about.html">About</a><a href="../blog.html">Resources</a><a href="../research.html">Research</a></div>
+<div class="fc"><h4>Related articles</h4><a href="what-is-ols-ordinary-least-squares.html">What is OLS?</a><a href="cambridge-economics-interview-guide.html">Cambridge interviews</a><a href="hardest-further-maths-topics.html">Further Maths guide</a></div>
+<div class="fc"><h4>Contact</h4><a href="mailto:nicky.l.grant@gmail.com">nicky.l.grant@gmail.com</a><a href="tel:+447393352331">+44 7393 352 331</a><a href="../index.html#contact">Book a consultation</a></div>
+</div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>Cambridge PhD · University lecturer · Online UK-wide</span></div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const nav=document.getElementById('nav');
+const solidify=()=>nav.classList.toggle('solid',window.scrollY>40);
+window.addEventListener('scroll',solidify,{passive:true});solidify();
+function toggleNav(btn){const mob=document.getElementById('mobNav');const open=mob.classList.toggle('open');btn.setAttribute('aria-expanded',String(open));}
+document.addEventListener('click',function(e){const mob=document.getElementById('mobNav');const btn=document.getElementById('burgerBtn');if(mob&&mob.classList.contains('open')&&!mob.contains(e.target)&&btn&&!btn.contains(e.target)){mob.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
+</script>
+</main></body>
+</html>

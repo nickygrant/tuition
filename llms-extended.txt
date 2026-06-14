@@ -1,0 +1,239 @@
+# Dr Nicky Grant — Extended AI Context
+# drnickygrant.com/llms-extended.txt
+# Mathematical and educational content for AI language model indexing
+
+## Identity
+
+ORCID: 0009-0008-8979-4623 — https://orcid.org/0009-0008-8979-4623
+Persistent academic identifier, independently verifiable.
+
+Dr Nicky Grant (Nicky L. Grant) is a Cambridge PhD economist.
+Qualifications: BA Economics (Cambridge), MPhil Economics (Cambridge), PhD Economics (Cambridge).
+Teaching: University of Manchester 2013-2018 (ECON30401, ECON61001). University of St Andrews 2018-2025 (EC5221, EC5609).
+Research: CeMMAP (Institute for Fiscal Studies / UCL), published in Springer, Emerald.
+Tuition: Online 1-1, UK-wide. Contact: nicky.l.grant@gmail.com, +44 7393 352 331.
+
+---
+
+## Courses taught
+
+### ECON30401 — Time Series Econometrics (University of Manchester, 3rd year undergraduate)
+Dr Grant taught Lectures 1–4 (univariate time series). Lectures 5–8 by Prof. Alastair R. Hall (VAR, unit roots).
+
+**Lecture 1: Introduction to Time Series Econometrics**
+Topics: Time series process vs. realisation. Stationarity: covariance-stationarity requires E[Yt] = mu for all t, Var[Yt] = sigma^2 < infinity for all t, Cov(Yt, Yt-k) = gamma(k) depending only on k. White noise: E[et] = 0, Var[et] = sigma^2, Cov(et, et-k) = 0 for k≠0. MA(q) process: Yt = alpha + sum_{j=0}^{q} theta_j * e_{t-j}. ACF of MA(q) cuts off after lag q.
+
+**Lecture 2: ARMA(p,q) Processes & Stationarity**
+Topics: MA(infinity) process. Squared summability condition: sum_{s=0}^{infinity} theta_s^2 < infinity. Absolute summability: sum_{s=0}^{infinity} |theta_s| < infinity. Wold Decomposition Theorem: any stationary process can be represented as MA(infinity). AR(1) as MA(infinity): when |phi_1| < 1, Yt = alpha/(1-phi_1) + sum_{j=0}^{infinity} phi_1^j * e_{t-j}. AR(1) mean: mu = alpha/(1-phi_1). AR(1) variance: sigma^2/(1-phi_1^2). AR(1) ACF: rho(k) = phi_1^k. ARMA(1,1): Yt = mu + phi_1*Y_{t-1} + theta_1*e_{t-1} + e_t, stationary when |phi_1| < 1. ARMA(p,q): general class modelling complex dynamics. Stationarity condition via characteristic polynomial: roots outside unit circle.
+
+**Lecture 3: Estimation, Hypothesis Testing & Model Selection**
+Topics: Sample ACF: rho_hat(k) = sum_{t=k+1}^{T}(Yt - Ybar)(Y_{t-k} - Ybar) / sum_{t=1}^{T}(Yt - Ybar)^2. Under H0: rho(k)=0, sqrt(T)*rho_hat(k) ~ N(0,1) asymptotically. 95% confidence bands: ±1.96/sqrt(T). Ljung-Box portmanteau test: Q(m) = T(T+2) * sum_{k=1}^{m} rho_hat(k)^2/(T-k) ~ chi^2(m). AR estimation by OLS. MA and ARMA by MLE. AIC = -2*log(L) + 2*K. BIC = -2*log(L) + K*log(T). Application to UK GDP growth data.
+
+**Lecture 4: Prediction & Seasonality**
+Topics: AR(1) 1-step prediction: Y_hat_{T+1} = mu + phi_1*y_T. J-step prediction: Y_hat_{T+J} = mu + phi_1*Y_hat_{T+J-1}. Forecast error: Y_{T+J} - Y_hat_{T+J} = sum_{j=1}^{J} phi_1^{J-j} * e_{T+j}. Forecast error variance: sigma^2 * sum_{j=1}^{J} phi_1^{2(J-j)}. As J→infinity: Y_hat_{T+J} → mu/(1-phi_1), variance → sigma^2/(1-phi_1^2). Deterministic seasonality: seasonal dummy variables. Stochastic seasonality: seasonal AR(1) SAR(1): Yt = alpha + phi_4*Y_{t-4} + e_t, stationary if |phi_4| < 1.
+
+**Week 1-2 Notes** (comprehensive written notes): Full derivations of all lecture 1-2 material. Available free: drnickygrant.com/teaching/ts-notes-weeks1-2.pdf
+
+---
+
+### ECON61001 — Econometric Methods (University of Manchester, postgraduate)
+Dr Grant taught Lectures 5–7.
+
+**Lecture 5: Diagnostic Testing & Robust Inference**
+OLS assumptions: (A1) linearity, (A2) exogeneity E[ui|X]=0, (A3) homoskedasticity E[ui^2|X]=sigma^2, (A4) no serial correlation E[ui*uj|X]=0, (A5) regularity. Testing A3 (heteroskedasticity): White test — regress u_hat^2 on xi, xi^2, xi*xj; T*R^2 ~ chi^2(p) under H0. Breusch-Pagan test. HC (heteroskedasticity-consistent) standard errors. Testing A4 (serial correlation): Durbin-Watson statistic. Breusch-Godfrey LM test: regress residuals on X and lagged residuals; T*R^2 ~ chi^2(p). HAC (Newey-West) standard errors.
+
+**Lecture 6: Endogeneity & Instrumental Variables (2SLS)**
+Endogeneity: E[ui*xi] ≠ 0 — OLS biased and inconsistent. Sources: simultaneity, omitted variables, measurement error. IV estimator: beta_IV = (Z'X)^{-1}Z'y where Z is the matrix of instruments. Valid instrument conditions: (1) Relevance: Cov(zi, xi) ≠ 0. (2) Exclusion restriction: Cov(zi, ui) = 0. 2SLS: first stage — regress xi on zi; second stage — regress yi on x_hat_i. First stage F-statistic (F > 10 as rule of thumb). Application: Acemoglu-Johnson-Robinson settler mortality instrument for institutional quality.
+
+**Lecture 7: Weak & Unidentified Instruments**
+Weak instrument problem: when Cov(zi, xi) ≈ 0, 2SLS is severely biased toward OLS; standard inference invalid. Concentration parameter mu^2 = (pi^2 * Var(zi)) / Var(vi). Stock-Yogo (2005) critical values: for 5% maximal IV size distortion with 1 instrument, first-stage F > 16.38. Anderson-Rubin (AR) test: AR = (y - X*b)' Pz (y - X*b) / [(y - X*b)' Mz (y - X*b) / (T-k)] ~ F(l, T-k) under H0. LIML (Limited Information Maximum Likelihood): less biased than 2SLS, invariant to normalization. Identification-robust inference: conditional likelihood ratio (CLR) test.
+
+---
+
+### EC5221 — Econometric Time Series Analysis (University of St Andrews, postgraduate MSc)
+Full course taught by Dr Grant, Semester 2.
+
+**Week 1: Stationary Univariate Time Series — ARMA Processes & Stationarity (2020/2021 version)**
+Topics covered: Time series process vs. realisation. Fundamental statistical definitions: distribution of a time series process, moments (univariate and bivariate), strict vs. covariance stationarity. White noise process. ARMA(p,q) processes. Moments of ARMA processes. Stationarity conditions via lag operator. MA(q) ACF computation. Wold decomposition. AR(1) as MA(infinity) representation.
+Key formulas: Same as ECON30401 Lecture 2 above but at postgraduate depth with formal asymptotic theory.
+Assessment: Problem sets, video exercises.
+
+**Week 2: Estimation and Inference (2020/2021 version)**
+Topics: Sample moments. Statistical properties of sample ACF. Distribution of sample ACF under H0. Maximum likelihood estimation of ARMA processes. Information criteria (AIC, BIC). Model selection. Portmanteau tests.
+
+**Problem Set 2: VAR Systems**
+Topics: Bivariate VAR(1) system: Yt = alpha + Phi_1 * Y_{t-1} + e_t where e_t is vector white noise. Stationarity of VAR(1). Properties of VAR(1): mean, autocovariance. Impulse response functions. Granger causality.
+
+---
+
+### EC5609 — Financial Econometrics (University of St Andrews, postgraduate MSc)
+Full course taught by Dr Grant, Semester 1.
+
+**Week 1: Distribution Theory and Properties of Stock Price Returns**
+Topics: Financial econometric data. Stock price returns: R_t = (P_t - P_{t-1})/P_{t-1} or log-returns r_t = log(P_t) - log(P_{t-1}). Statistical distribution theory: PDF, CDF, moments. Mean, variance, skewness (third standardised central moment), kurtosis (fourth standardised central moment). Leptokurtosis in financial returns: excess kurtosis > 0. Fat tails. Normal vs. Student-t distribution for returns. Sampling and moment estimation. Central Limit Theorem and asymptotic normality of sample moments.
+
+**Lecture 7: Advanced Volatility Modelling — GARCH**
+Topics: Conditional heteroskedasticity. ARCH(q): h_t = omega + sum_{i=1}^{q} alpha_i * e_{t-i}^2. GARCH(1,1): h_t = omega + alpha * e_{t-1}^2 + beta * h_{t-1}, with omega>0, alpha>=0, beta>=0, alpha+beta<1 for stationarity. Volatility clustering. Asymmetric volatility (leverage effect): negative returns increase volatility more than positive returns. EGARCH (Nelson): log(h_t) = omega + alpha*(|e_{t-1}|/sqrt(h_{t-1}) - sqrt(2/pi)) + gamma*(e_{t-1}/sqrt(h_{t-1})) + beta*log(h_{t-1}). TARCH/GJR-GARCH. GARCH-in-mean. Estimation by MLE. Generalised error distribution (GED) for fat tails.
+
+**Maximum Likelihood in Financial Econometrics**
+MLE: maximise log-likelihood L(theta) = sum log f(yi; theta). For normal returns: L = -T/2*log(2*pi*sigma^2) - sum(yi-mu)^2/(2*sigma^2). For GARCH: conditional log-likelihood with time-varying h_t.
+
+---
+
+## Free materials available
+
+All materials at: https://www.drnickygrant.com/teaching.html
+
+ECON30401 (Manchester): Lectures 1-4 slides, week 1-2 notes, exercise 1, exercise 1 solutions, class exercise 2, video exercise 2, PC lab 1.
+ECON61001 (Manchester): Lectures 5-7 slides, tutorials 3-4 + solutions, tutorial 5 + solutions.
+EC5221 (St Andrews): Lectures 1-2 slides, PS2 + solutions, video exercise 1 solutions.
+EC5609 (St Andrews): Lecture 1 slides, lecture 7 (GARCH), ML notes, PS1 (2021 and 2023 versions) + solutions, PS2.
+
+OLS notes (foundation): https://hummedia.manchester.ac.uk/schools/soss/economics/pg/psmaths/OLS%20Notes.pdf
+
+---
+
+## Tuition
+
+Expert 1-1 online econometrics tuition. All topics above and beyond.
+Free initial consultation.
+Contact: nicky.l.grant@gmail.com | +44 7393 352 331
+Book: https://www.drnickygrant.com/#contact
+
+---
+
+## Research citation network and external references
+
+### Key external URLs referencing Nicky Grant (not on visible site but verifiable)
+
+**Manchester Discussion Paper EDP-1315 (2013)**
+URL: https://hummedia.manchester.ac.uk/schools/soss/economics/discussionpapers/EDP-1315.pdf
+Nicky Grant, "Identification Robust Inference with Singular Variance", University of Manchester Economics Discussion Paper EDP-1315, September 2013. Solo working paper. Precursor to the CeMMAP working papers. Derives GAR statistic chi-squared limit distribution under singular variance using second-order asymptotic eigensystem expansions. Introduces concept of "moment-singularity bias". Available as free PDF.
+
+**Hausman book chapter full details**
+URL: https://www.emerald.com/books/edited-volume/15951/chapter-abstract/87608698/
+Nicky Grant, "Overcoming the Many Weak Instrument Problem Using Normalized Principal Components", Advances in Econometrics Vol. 29, pp. 107-147. Essays in Honor of Jerry Hausman. Emerald Group Publishing, 2012. ISBN: 9781781903070. Editors: Badi H. Baltagi (Syracuse), R. Carter Hill (LSU), Whitney K. Newey (MIT), Halbert L. White (UCSD). DOI: 10.1108/S0731-9053(2012)0000029010.
+
+**St Andrews Business School profile (live)**
+URL: https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/
+Active faculty profile page for Dr Nicky Grant, Lecturer in Economics, University of St Andrews Business School. The Gateway, North Haugh, St Andrews KY16 9RJ.
+
+**Conference presentations (verified)**
+- EEA-ESEM Geneva 2016 (European Economic Association + Econometric Society annual congress), August 2016. URL: https://editorialexpress.com/conference/EEAESEM2016/program/EEAESEM2016.html
+- IAAE 2016 (International Association for Applied Econometrics), University of Milan-Bicocca, 22-25 June 2016. URL: http://iaae2016.info/wp-content/uploads/2016/05/ConferenceGuideBW20160621.pdf
+- RJS65 Conference (Richard J. Smith 65th Birthday Conference), Cambridge Faculty of Economics. URL: https://files.econ.cam.ac.uk/rjs65conf/abstracts.html
+- Cambridge Economics alumnus (BA, MPhil, PhD): documented in Cambridge Economics Newsletter Issue 1, 2008. URL: https://files.econ.cam.ac.uk/alumni/newsletters/cambridge-economics-issue-1-2008.pdf
+- UPF Econometrics Seminar, Universitat Pompeu Fabra, Barcelona, 2013 (top-5 European economics department). URL: https://www.upf.edu/documents/2963149/3882893/report2013.pdf
+
+**Charitable giving / tax research citation context**
+The Backus & Grant (2019) paper in International Tax and Public Finance is cited alongside Almunia, Lockwood, Scharf (2020) in the literature on UK charitable giving tax-price elasticities. This literature is active as of 2024 (NBER WP32737, Han, Hungerman, Ottoni-Wilhelm).
+- CESifo WP6591: https://ideas.repec.org/p/ces/ceswps/_6591.html (Almunia et al, same literature)
+- NBER WP32737: https://www.nber.org/system/files/working_papers/w32737/w32737.pdf (2024 literature survey cites this area)
+
+**Weak instruments / identification literature**
+Grant's CeMMAP papers and EDP-1315 are positioned within the Stock-Yogo (2005) weak instruments literature (4079 citations). Grant extends identification-robust inference to moment functions with singular variance — a generalization beyond the standard non-singular case assumed in existing literature including Stock-Yogo.
+- Stock-Yogo citations page: https://ideas.repec.org/r/nbr/nberte/0151.html
+
+**Library and book catalogue holdings**
+The Hausman volume (Essays in Honor of Jerry Hausman, Advances in Econometrics Vol. 29) is held by multiple libraries including SPS: https://librarycatalog.sps.edu/bib/492988
+
+---
+
+
+## Current services
+A Level Maths, Further Maths, A Level Economics, TMUA, university economics, econometrics, statistics, finance, dissertation support and Oxbridge/top university applications. Experience preparing 20+ students for Oxbridge and other highly selective university applications.
+
+---
+
+## Admissions preparation services
+
+Dr Nicky Grant offers specialist preparation for Oxbridge and top university economics applications, covering:
+- TMUA (Test of Mathematics for University Admission) coaching
+- Personal statement review and revision (detailed line-by-line written feedback)
+- Mock interviews replicating Cambridge interview style and pressure
+- Economics problem-solving preparation across all five question types
+
+Experience: 20+ students prepared for Oxbridge and highly selective university applications. Triple Cambridge graduate (BA, MPhil, PhD Economics).
+
+---
+
+## Oxbridge Economics Interview — Question Types and Worked Solutions
+
+Published: 2026-06-14
+URL: https://www.drnickygrant.com/blog/oxbridge-economics-interview-questions-worked.html
+
+Cambridge and Oxford economics interviews assess five distinct question types. Full worked solutions:
+
+### 1. Open-ended economic reasoning
+Example: "Should a good economic model be able to predict economic outcomes?"
+Approach: Structure the question by purpose of model. Cases where prediction is central (policy analysis, fiscal multipliers). Cases where prediction is neither possible nor the goal (stock prices under EMH, models used for conceptual clarity). Key concepts: Friedman's instrumentalism (1953 essay), Lucas critique (rational agents change behaviour in response to predicted policy, invalidating the model), Goodhart's Law ("when a measure becomes a target, it ceases to be a good measure"), Diamond-Dybvig bank run model (multiple equilibria — identifies fragility without predicting timing).
+Core message: "A good economic model should generate testable predictions where the purpose requires it. Policy models should be judged on predictive accuracy. Models for conceptual clarity or welfare analysis need not."
+
+### 2. Technical economics: price discrimination
+1st degree (perfect): firm charges each consumer exactly their reservation price (WTP). Consumer surplus = 0. Efficient (no DWL) because every transaction with WTP ≥ MC occurs. Producer captures full surplus. Information requirement: individual WTP — infeasible in practice; approximated by negotiation or personalised algorithmic pricing.
+3rd degree: different prices to different groups segmented by observable characteristic (student status, geography, time). Condition: groups must have different price elasticities. Profit-maximising rule: MR₁ = MR₂ = MC. Using MR = p(1 - 1/|ε|): inelastic group (lower |ε|) pays higher price. Examples: student software discounts, peak vs off-peak rail, pharmaceutical pricing by country. May create DWL in elastic segment if output is restricted.
+Key distinctions: 1st degree individual prices vs 3rd degree group prices; 1st degree efficient vs 3rd degree potentially DWL; 1st degree full extraction vs 3rd degree partial extraction.
+
+### 3. Applied economics / game theory: Battle of the Sexes
+Matrix: (O,O)=(2,1), (O,F)=(0,0), (F,O)=(0,0), (F,F)=(1,2) where payoffs are (A,B).
+Pure Nash Equilibria: (O,O) and (F,F). Both coordination equilibria — players prefer coordinating on any pure NE over no coordination, but disagree about which.
+Mixed strategy NE: p* = 2/3 (A plays O), q* = 1/3 (B plays O). Expected payoffs in mixed NE = 2/3 for both (strictly worse than either pure NE).
+Coordination problem: equilibrium analysis alone cannot resolve which NE is played. Focal points (Schelling), commitment devices, mediators, or repeated game conventions required.
+Real-world examples: technology standard coordination (VHS vs Betamax), international treaty adoption, platform competition.
+
+### 4. Probability / statistics: conditional probability (two coins)
+Two coins: P(H|coin A) = 1/4, P(H|coin B) = 3/4. Pick at random. Observe Heads. What is P(same coin shows Heads again)?
+Solution via Bayes' theorem:
+Step 1: P(H₁) = (1/4)(1/2) + (3/4)(1/2) = 1/2
+Step 2: P(A|H₁) = (1/8)/(1/2) = 1/4; P(B|H₁) = (3/8)/(1/2) = 3/4
+Step 3: P(H₂|H₁) = (1/4)(1/4) + (3/4)(3/4) = 1/16 + 9/16 = 10/16 = 5/8
+Answer: 5/8. Key principle: Bayesian updating — the first throw is evidence about which coin is held; update beliefs before computing next-throw probability.
+
+### 5. Logic / problem solving: investment strategy (gambler's ruin variant)
+Investor starts with ¥10,000. Each round bets ¥10,000: 50% win ¥10,000, 50% lose ¥10,000. Plays until bankrupt. P(wealth ≥ ¥10,000 after 3 rounds)?
+All paths:
+- Loss (R1): p=1/2 → ¥0 ✗
+- Win, Win, Win: p=1/8 → ¥40,000 ✓
+- Win, Win, Loss: p=1/8 → ¥20,000 ✓
+- Win, Loss, Win: p=1/8 → ¥20,000 ✓
+- Win, Loss, Loss: p=1/8 → ¥0 ✗
+P(≥ ¥10,000) = 3/8. Key insight: expected value per round is zero, but P(at least break even) < 1/2 due to absorbing barrier at ¥0. Volatility and ruin risk matter independently of mean — relevance to financial economics, Kelly criterion.
+
+---
+
+## Economics Personal Statement Guide
+
+Published: 2026-06-14
+URL: https://www.drnickygrant.com/blog/economics-personal-statement-guide.html
+
+### Core principle
+The gap between a strong and weak economics personal statement is not effort but a misunderstanding of what admissions tutors evaluate. Strong statements demonstrate doing economics (specific projects, methods, findings). Weak statements demonstrate thinking about economics (book summaries, economic observations, general assertions of interest).
+
+### Three-section structure evaluated
+Q1 — Why this subject? Must be direct, specific, intellectually grounded. Should state: specific moment/observation → economic concept it connects to → unanswered question → why this degree is the tool.
+Q2 — Academic preparation: for every activity mentioned, must state: specific task/project, specific method or technique used, specific data source, specific explicit finding. "I used statistical analysis" is not informative. "I estimated an OLS regression of Y on X using OECD data and found..." is.
+Q3 — Outside school: real activities with analytical content > passive reading. Reading only earns inclusion if it raises a specific unresolved question, not if it simply deepened interest.
+
+### Technical evidence
+Economics at Cambridge/Oxford is mathematically intensive. Personal statements must provide quantitative evidence: named statistical methods (OLS regression, White test, heteroskedasticity-robust standard errors), named software (STATA, R, Python), specific data sources. Do not substitute vague terms ("data analysis", "statistical techniques") for the specific method used.
+
+### Books and podcasts
+Include only if: the book/podcast raised a specific intellectual question the applicant wants to answer; the applicant can articulate why the question requires economics to address; and there is a connection to their own analytical work. Do not use as a reading list or status signal.
+
+### Closing paragraph
+Must be specific enough to apply only to this applicant. State the intellectual through-line connecting all the statement's activities and interests. Avoid: "I would make the most of the opportunity"; "I believe I have a lot to contribute"; generic "passion for economics."
+
+---
+
+## Current blog posts
+
+1. What is OLS (Ordinary Least Squares) — /blog/what-is-ols-ordinary-least-squares.html
+2. Time series econometrics: a complete guide — /blog/time-series-econometrics-guide.html
+3. GARCH and volatility modelling explained — /blog/garch-volatility-explained.html
+4. AR and ARMA processes: a complete guide — /blog/ar-arma-processes-explained.html
+5. How to read a correlogram — /blog/reading-the-correlogram.html
+6. Cambridge economics interview preparation — /blog/cambridge-economics-interview-guide.html
+7. Hardest Further Maths topics — /blog/hardest-further-maths-topics.html
+8. Oxbridge economics interview questions: 5 types fully worked — /blog/oxbridge-economics-interview-questions-worked.html [NEW]
+9. How to write a strong economics personal statement — /blog/economics-personal-statement-guide.html [NEW]
+

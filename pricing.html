@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/><link rel="icon" href="favicon.svg"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Pricing &amp; How Sessions Work | Dr Nicky Grant | Economics Tutor</title>
+<meta content="How tuition with Dr Nicky Grant works: free initial consultation, session structure, typical programmes. Rates for A Level, undergraduate and PhD." name="description"/>
+<link href="https://www.drnickygrant.com/pricing.html" rel="canonical"/>
+<meta content="Pricing &amp; How Sessions Work | Dr Nicky Grant" property="og:title"/>
+<meta content="Free initial consultation. Sessions tailored to level and goal. Discounts for regular bookings. Online UK-wide." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="2026-06-14" name="last-modified"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"Service",
+      "name":"Economics and Maths Tuition by Dr Nicky Grant",
+      "provider":{"@id":"https://www.drnickygrant.com/#person"},
+      "url":"https://www.drnickygrant.com/pricing.html",
+      "description":"Online 1-1 tuition in economics, econometrics, mathematics and statistics from GCSE through to PhD level. Free initial consultation. Sessions priced by level and frequency.",
+      "areaServed":{"@type":"Country","name":"United Kingdom"},
+      "hasOfferCatalog":{
+        "@type":"OfferCatalog",
+        "name":"Tuition programmes",
+        "itemListElement":[
+          {"@type":"Offer","name":"GCSE / A Level programme","description":"Weekly or fortnightly sessions for GCSE or A Level Maths, Further Maths, and Economics. OCR and Edexcel.","priceCurrency":"GBP","eligibleCustomerType":"Student"},
+          {"@type":"Offer","name":"Undergraduate econometrics sessions","description":"1-1 sessions targeting specific topics, problem sets or exam preparation for undergraduate econometrics modules.","priceCurrency":"GBP","eligibleCustomerType":"Student"},
+          {"@type":"Offer","name":"Postgraduate and PhD sessions","description":"Advanced sessions in GMM, GEL, time series, panel data, identification, and dissertation methodology.","priceCurrency":"GBP","eligibleCustomerType":"Student"},
+          {"@type":"Offer","name":"Oxbridge preparation programme","description":"Mock interviews, TMUA preparation, and personal statement review for Cambridge, Oxford, and LSE economics applicants.","priceCurrency":"GBP","eligibleCustomerType":"Student"}
+        ]
+      }
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"How much does economics tutoring with Dr Nicky Grant cost?","acceptedAnswer":{"@type":"Answer","text":"Rates depend on the level of study, session frequency, and programme type. GCSE and A Level sessions are priced lower than postgraduate or PhD sessions. Discounts are available for students committing to regular weekly or fortnightly sessions. The free initial consultation clarifies pricing before any commitment."}},
+        {"@type":"Question","name":"Is there a minimum number of sessions?","acceptedAnswer":{"@type":"Answer","text":"No. Some students book a single session for a specific problem. Others book a long-term programme. There is no minimum commitment, and the free consultation is genuinely free with no obligation to continue."}},
+        {"@type":"Question","name":"How does the free consultation work?","acceptedAnswer":{"@type":"Answer","text":"The initial consultation is a 30-45 minute video call. Dr Grant asks about your course, your current level, your goals, and how you learn. At the end he proposes a session plan. There is no charge and no obligation to book sessions afterwards."}},
+        {"@type":"Question","name":"What platform are sessions delivered on?","acceptedAnswer":{"@type":"Answer","text":"Sessions are delivered via video call (Zoom, Teams, or Google Meet, whichever you prefer) with a shared digital whiteboard. This is ideal for mathematical subjects where working through equations together is essential. Sessions can be recorded for review if both parties agree."}},
+        {"@type":"Question","name":"Do you offer discounts for regular bookings?","acceptedAnswer":{"@type":"Answer","text":"Yes. Students committing to weekly or fortnightly sessions receive a discounted rate. This is the most cost-effective way to engage, and it tends to produce the best outcomes because consistency matters in quantitative subjects."}}
+      ]
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://www.drnickygrant.com/"},
+        {"@type":"ListItem","position":2,"name":"Pricing & How Sessions Work","item":"https://www.drnickygrant.com/pricing.html"}
+      ]
+    }
+  ]
+}
+</script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="preload"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/main.css" rel="stylesheet"/>
+<style>
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border: 1px solid var(--hr);
+  margin-top: var(--sp-md);
+}
+@media (min-width: 700px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.pricing-card {
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  border-bottom: 1px solid var(--hr);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: background 0.25s;
+}
+.pricing-card:hover { background: var(--s2); }
+@media (min-width: 700px) {
+  .pricing-card:nth-child(odd) { border-right: 1px solid var(--hr); }
+  .pricing-card:nth-last-child(-n+2) { border-bottom: none; }
+}
+.pricing-card:last-child { border-bottom: none; }
+
+.pricing-level {
+  font-size: var(--t-xs); letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold); font-weight: 400;
+}
+.pricing-name {
+  font-family: var(--fd); font-size: var(--t-xl);
+  font-weight: 500; color: var(--t1); line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.pricing-who {
+  font-size: var(--t-sm); color: var(--t2); font-weight: 300; line-height: 1.75;
+}
+.pricing-includes {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0.35rem;
+  margin-top: 0.25rem;
+}
+.pricing-includes li {
+  font-size: var(--t-sm); color: var(--t2); font-weight: 300;
+  padding-left: 1rem; position: relative;
+}
+.pricing-includes li::before {
+  content: '→';
+  position: absolute; left: 0;
+  color: var(--gold); font-size: var(--t-xs);
+  top: 0.1rem;
+}
+
+.process-step {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1.25rem;
+  padding: var(--sp-sm) 0;
+  border-bottom: 1px solid var(--hr);
+  align-items: start;
+}
+.process-step:last-child { border-bottom: none; }
+.process-step-num {
+  font-family: var(--fd); font-size: var(--t-2xl);
+  font-weight: 500; color: rgba(184,144,96,0.3);
+  line-height: 1; padding-top: 0.1rem;
+}
+.process-step-h {
+  font-family: var(--fd); font-size: var(--t-xl);
+  font-weight: 500; color: var(--t1); margin-bottom: 0.35rem;
+}
+.process-step-p {
+  font-size: var(--t-sm); color: var(--t2); font-weight: 300; line-height: 1.8;
+}
+</style>
+<link href="css/polish.css" rel="stylesheet"/></head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a class="nav-logo" href="index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list"><li><a href="index.html">Home</a></li><li><a href="services.html">Subjects</a></li><li><a href="oxbridge-economics-tutor.html">Applications</a></li><li><a href="blog.html">Resources</a></li><li><a href="credentials.html">Credentials</a></li><li><a aria-current="page" class="on" href="pricing.html">Pricing</a></li></ul>
+<a class="nav-cta" href="index.html#contact">Book consultation</a>
+<button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)">
+<span></span><span></span><span></span>
+</button>
+</div>
+<div class="mob-nav" id="mobNav"><a href="index.html">Home</a><a href="services.html">Subjects</a><a href="oxbridge-economics-tutor.html">Applications</a><a href="blog.html">Resources</a><a href="credentials.html">Credentials</a><a aria-current="page" class="on" href="pricing.html">Pricing</a><a href="index.html#contact">Book consultation</a></div>
+</nav>
+<main id="main">
+<header class="page-hero">
+<div class="wrap">
+<p class="s-eye gsap-up">How it works · Pricing</p>
+<h1 class="h2 gsap-up" style="font-size:var(--t-4xl);margin-bottom:var(--sp-sm)">Sessions, programmes<br/><em>&amp; pricing</em></h1>
+<div class="answer-capsule gsap-up" role="note">
+<p>All tuition starts with a free 30–45 minute consultation, no charge, no commitment. Sessions are online via video call, priced by level, and discounted for regular weekly or fortnightly bookings. Every programme is built specifically for you after the initial call.</p>
+</div>
+<p class="lp-intro gsap-up">There is no one-size-fits-all programme. A student preparing for an A Level exam needs something completely different from a PhD student working through an identification strategy. The consultation is where that gets worked out.</p>
+</div>
+</header>
+<!-- HOW IT WORKS -->
+<section aria-labelledby="how-h" class="section" style="border-bottom:1px solid var(--hr)">
+<div class="wrap" style="max-width:720px">
+<p class="s-eye gsap-up">The process</p>
+<h2 class="h2 gsap-up" id="how-h">How it works,<br/><em>step by step</em></h2>
+<div style="border-top:1px solid var(--hr);margin-top:var(--sp-md)">
+<div class="process-step gsap-up">
+<span class="process-step-num">1</span>
+<div>
+<p class="process-step-h">Free initial consultation, 30–45 minutes</p>
+<p class="process-step-p">A video call to understand where you are, what you're working towards, your exam board if relevant, and how you learn best. I ask diagnostic questions. At the end I propose a plan, topics, session frequency, likely duration. No charge. No commitment to continue.</p>
+</div>
+</div>
+<div class="process-step gsap-up">
+<span class="process-step-num">2</span>
+<div>
+<p class="process-step-h">Agree a plan and schedule sessions</p>
+<p class="process-step-p">If the consultation goes well and you'd like to proceed, we agree the session plan and schedule. Regular sessions (weekly or fortnightly) get a discounted rate. Ad hoc single sessions are also possible for specific needs.</p>
+</div>
+</div>
+<div class="process-step gsap-up">
+<span class="process-step-num">3</span>
+<div>
+<p class="process-step-h">Sessions via video call with shared whiteboard</p>
+<p class="process-step-p">Each session is conducted on Zoom, Teams, or Google Meet, your choice, with a shared digital whiteboard for working through mathematics, proofs, and code. This format is excellent for quantitative subjects. Sessions can be recorded if both parties agree.</p>
+</div>
+</div>
+<div class="process-step gsap-up">
+<span class="process-step-num">4</span>
+<div>
+<p class="process-step-h">Adjust at any point</p>
+<p class="process-step-p">There is no minimum commitment. If you need to pause, change frequency, or shift topics entirely, that is always fine. The programme adapts to your schedule and to what is working.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PROGRAMMES -->
+<section aria-labelledby="prog-h" class="section alt">
+<div class="wrap">
+<p class="s-eye gsap-up">Typical programmes</p>
+<h2 class="h2 gsap-up" id="prog-h">What students<br/><em>typically book</em></h2>
+<p class="s-lead gsap-up">These are illustrative programme outlines. Every plan is agreed during the free initial consultation based on your specific situation.</p>
+<div class="pricing-grid">
+<div class="pricing-card gsap-up">
+<p class="pricing-level">GCSE &amp; A Level</p>
+<p class="pricing-name">School-level Maths &amp; Economics</p>
+<p class="pricing-who">For students working towards GCSE or A Level exams in Maths, Further Maths, and Economics across OCR, Edexcel, and AQA.</p>
+<ul class="pricing-includes">
+<li>Weekly or fortnightly sessions during term</li>
+<li>Syllabus tracking and past paper practice</li>
+<li>Exam technique and mark scheme analysis</li>
+<li>Resit preparation available</li>
+</ul>
+</div>
+<div class="pricing-card gsap-up">
+<p class="pricing-level">Undergraduate</p>
+<p class="pricing-name">University Econometrics &amp; Maths</p>
+<p class="pricing-who">For undergraduate students at any UK university studying economics, econometrics, statistics, or finance, from first-year through to final-year dissertation.</p>
+<ul class="pricing-includes">
+<li>OLS, IV, GMM, time series, panel data</li>
+<li>Problem set and coursework support</li>
+<li>Exam preparation and past papers</li>
+<li>Dissertation methodology review</li>
+</ul>
+</div>
+<div class="pricing-card gsap-up">
+<p class="pricing-level">Postgraduate &amp; PhD</p>
+<p class="pricing-name">Advanced Econometrics</p>
+<p class="pricing-who">For MSc and PhD students working through advanced estimation methods, identification strategy, or dissertation chapters in econometrics.</p>
+<ul class="pricing-includes">
+<li>GEL, GMM, partial identification</li>
+<li>Time series: cointegration, VAR, ARIMA</li>
+<li>PhD chapter methodology and results</li>
+<li>Software: R, Stata, EViews, Python</li>
+</ul>
+</div>
+<div class="pricing-card gsap-up">
+<p class="pricing-level">Oxbridge &amp; TMUA</p>
+<p class="pricing-name">Admissions Preparation</p>
+<p class="pricing-who">For Year 13 students applying to Cambridge, Oxford, or LSE for economics, typically September through December of application year.</p>
+<ul class="pricing-includes">
+<li>4–6 mock interviews with written feedback</li>
+<li>TMUA Paper 1 &amp; Paper 2 preparation</li>
+<li>Personal statement review</li>
+<li>Economics beyond A Level (micro, macro)</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- PRICING NOTE -->
+<section aria-labelledby="rates-h" class="section">
+<div class="wrap" style="max-width:680px">
+<p class="s-eye gsap-up">Rates</p>
+<h2 class="h2 gsap-up" id="rates-h">Transparent about<br/><em>cost</em></h2>
+<p class="s-lead gsap-up" style="margin-bottom:var(--sp-md)">Rates are discussed during the free initial consultation once the level, frequency, and programme structure are clear.</p>
+<div style="border-top:1px solid var(--hr)">
+<div class="gsap-up" style="padding:var(--sp-sm) 0;border-bottom:1px solid var(--hr);display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:baseline">
+<p style="font-family:var(--fd);font-size:var(--t-lg);font-weight:500;color:var(--t1)">GCSE &amp; A Level sessions</p>
+<p style="font-size:var(--t-sm);color:var(--t2);font-weight:300">Lower rate · discounted for regular bookings</p>
+</div>
+<div class="gsap-up" style="padding:var(--sp-sm) 0;border-bottom:1px solid var(--hr);display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:baseline">
+<p style="font-family:var(--fd);font-size:var(--t-lg);font-weight:500;color:var(--t1)">Undergraduate sessions</p>
+<p style="font-size:var(--t-sm);color:var(--t2);font-weight:300">Mid rate · discounted for regular bookings</p>
+</div>
+<div class="gsap-up" style="padding:var(--sp-sm) 0;border-bottom:1px solid var(--hr);display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:baseline">
+<p style="font-family:var(--fd);font-size:var(--t-lg);font-weight:500;color:var(--t1)">Postgraduate &amp; PhD sessions</p>
+<p style="font-size:var(--t-sm);color:var(--t2);font-weight:300">Higher rate · reflects depth of content</p>
+</div>
+<div class="gsap-up" style="padding:var(--sp-sm) 0;display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:baseline">
+<p style="font-family:var(--fd);font-size:var(--t-lg);font-weight:500;color:var(--t1)">Initial consultation</p>
+<p style="font-size:var(--t-sm);color:var(--gold);font-weight:400">Free, no obligation</p>
+</div>
+</div>
+<div class="answer-capsule gsap-up" style="margin-top:var(--sp-md)">
+<p>All rates are discussed transparently after the free consultation. If cost is a concern, please mention it. I can often suggest a session structure that works within a given budget.</p>
+</div>
+</div>
+</section>
+<!-- FAQ -->
+<section aria-labelledby="faq-h" class="section alt">
+<div class="wrap" style="max-width:700px">
+<p class="s-eye gsap-up">Questions</p>
+<h2 class="h2 gsap-up" id="faq-h">Pricing &amp; sessions FAQ</h2>
+<div class="faq-list gsap-up" itemscope="" itemtype="https://schema.org/FAQPage">
+<div class="faq-item" itemprop="mainEntity" itemscope="" itemtype="https://schema.org/Question">
+<button aria-expanded="false" class="faq-q" onclick="toggleFaq(this)">
+<span itemprop="name">Is there a minimum number of sessions?</span><span aria-hidden="true" class="faq-ico">+</span>
+</button>
+<div class="faq-a" itemprop="acceptedAnswer" itemscope="" itemtype="https://schema.org/Answer">
+<p itemprop="text">No minimum. Some students book one session to get unstuck on a specific topic. Others book a full-year programme. The consultation establishes what makes sense for your situation, there's no pressure in either direction.</p>
+</div>
+</div>
+<div class="faq-item" itemprop="mainEntity" itemscope="" itemtype="https://schema.org/Question">
+<button aria-expanded="false" class="faq-q" onclick="toggleFaq(this)">
+<span itemprop="name">Do you offer sibling or group discounts?</span><span aria-hidden="true" class="faq-ico">+</span>
+</button>
+<div class="faq-a" itemprop="acceptedAnswer" itemscope="" itemtype="https://schema.org/Answer">
+<p itemprop="text">Small group sessions (2–3 students at the same level) can be arranged and are more cost-effective per student. Please mention this in the initial consultation and we can discuss whether the format would work for the material.</p>
+</div>
+</div>
+<div class="faq-item" itemprop="mainEntity" itemscope="" itemtype="https://schema.org/Question">
+<button aria-expanded="false" class="faq-q" onclick="toggleFaq(this)">
+<span itemprop="name">What happens if I need to cancel a session?</span><span aria-hidden="true" class="faq-ico">+</span>
+</button>
+<div class="faq-a" itemprop="acceptedAnswer" itemscope="" itemtype="https://schema.org/Answer">
+<p itemprop="text">48 hours' notice is requested for cancellations. This allows sessions to be rescheduled rather than lost. Life gets in the way, this is handled pragmatically, not rigidly.</p>
+</div>
+</div>
+<div class="faq-item" itemprop="mainEntity" itemscope="" itemtype="https://schema.org/Question">
+<button aria-expanded="false" class="faq-q" onclick="toggleFaq(this)">
+<span itemprop="name">How do I pay?</span><span aria-hidden="true" class="faq-ico">+</span>
+</button>
+<div class="faq-a" itemprop="acceptedAnswer" itemscope="" itemtype="https://schema.org/Answer">
+<p itemprop="text">Bank transfer. An invoice or confirmation is provided per session or block of sessions, whichever you prefer.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="section" style="text-align:center">
+<div class="wrap" style="max-width:500px">
+<h2 class="h2 gsap-up" style="margin-bottom:0.75rem">Start with a free<br/><em>consultation</em></h2>
+<p class="gsap-up" style="font-size:var(--t-base);color:var(--t2);line-height:1.85;font-weight:300;margin:var(--sp-sm) 0 var(--sp-md)">30–45 minutes. No charge. No commitment. I respond to all enquiries within one business day.</p>
+<div class="gsap-up" style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center">
+<a class="btn btn-fill" href="index.html#contact">Book the free consultation</a>
+<a class="btn btn-line" href="mailto:nicky.l.grant@gmail.com">Email directly</a>
+</div>
+</div>
+</section>
+</main>
+<div class="trust" role="contentinfo">
+<div class="trust-inner">
+<span class="ti">Free initial consultation</span>
+<span class="ti">No minimum commitment</span>
+<span class="ti">Discounts for regular bookings</span>
+<span class="ti">Online UK-wide</span>
+<span class="ti">Enhanced DBS Nov 2025</span>
+</div>
+</div>
+<footer role="contentinfo">
+<div class="foot-cols">
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Cambridge PhD. Expert online tuition. All sessions start with a free consultation, no obligation.</p></div>
+<div class="fc"><h4>Services</h4><a href="econometrics-tutor.html">Econometrics tutor</a><a href="economics-statistics-tutor.html">Economics &amp; statistics</a>
+<a href="a-level-maths-tutor.html">A Level Maths tutor</a><a href="oxbridge-economics-tutor.html">Oxbridge preparation</a><a href="tmua-preparation.html">TMUA preparation</a></div>
+<div class="fc"><h4>Information</h4><a href="about.html">About Dr Grant</a><a aria-current="page" href="pricing.html">Pricing &amp; how it works</a><a href="teaching.html">Free lecture notes</a>
+<a href="community.html">Ask a question</a>
+<a href="research.html">Research &amp; videos</a><a href="blog.html">Free resources</a></div>
+<div class="fc"><h4>Contact</h4><a href="mailto:nicky.l.grant@gmail.com">nicky.l.grant@gmail.com</a><a href="tel:+447393352331">+44 7393 352 331</a><a href="index.html#contact">Book a consultation</a></div>
+</div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>Cambridge PhD · Free initial consultation · Online UK-wide</span></div>
+</footer>
+<script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('solid',window.scrollY>40);
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+function toggleNav(btn){const mob=document.getElementById('mobNav');const open=mob.classList.toggle('open');btn.setAttribute('aria-expanded',String(open));}
+function toggleFaq(btn){const a=btn.nextElementSibling;const ic=btn.querySelector('.faq-ico');const open=a.classList.toggle('open');ic.classList.toggle('open',open);btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',String(open));}
+document.addEventListener('click',function(e){const mob=document.getElementById('mobNav');const btn=document.getElementById('burgerBtn');if(mob&&mob.classList.contains('open')&&!mob.contains(e.target)&&btn&&!btn.contains(e.target)){mob.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
+window.addEventListener('load',function(){if(typeof gsap==='undefined')return;gsap.registerPlugin(ScrollTrigger);if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;gsap.utils.toArray('.gsap-up').forEach((el,i)=>{gsap.from(el,{opacity:0,y:20,duration:0.7,ease:'power2.out',delay:(i%3)*0.05,scrollTrigger:{trigger:el,start:'top 90%',once:true}});});});
+</script>
+</body>
+</html>

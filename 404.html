@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/><link rel="icon" href="favicon.svg"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Page not found | Dr Nicky Grant</title>
+<meta content="noindex" name="robots"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/main.css" rel="stylesheet"/>
+<style>.qlink:hover{background:var(--s2)}.qlink{transition:background 0.2s;display:block;text-decoration:none}</style>
+<link href="css/polish.css" rel="stylesheet"/></head>
+<body>
+<nav aria-label="Main navigation" class="solid" id="nav">
+<div class="nav-inner">
+<a class="nav-logo" href="index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list"><li><a href="index.html">Home</a></li><li><a href="services.html">Subjects</a></li><li><a href="oxbridge-economics-tutor.html">Applications</a></li><li><a href="blog.html">Resources</a></li><li><a href="credentials.html">Credentials</a></li><li><a href="pricing.html">Pricing</a></li></ul>
+<a class="nav-cta" href="index.html#contact">Book consultation</a>
+<button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" onclick="toggleNav(this)">
+<span></span><span></span><span></span>
+</button>
+</div>
+<div class="mob-nav" id="mobNav"><a href="index.html">Home</a><a href="services.html">Subjects</a><a href="oxbridge-economics-tutor.html">Applications</a><a href="blog.html">Resources</a><a href="credentials.html">Credentials</a><a href="pricing.html">Pricing</a><a href="index.html#contact">Book consultation</a></div>
+</nav>
+<main id="main" style="min-height:80vh;display:flex;align-items:center">
+<div class="wrap" style="text-align:center;padding:var(--sp-2xl) clamp(1rem,5vw,2.5rem)">
+<p style="font-family:var(--fd);font-size:clamp(4rem,12vw,8rem);font-weight:500;color:rgba(184,144,96,0.25);line-height:1;margin-bottom:1.5rem">404</p>
+<h1 style="font-family:var(--fd);font-size:var(--t-3xl);font-weight:500;color:var(--t1);margin-bottom:1rem">Page not found</h1>
+<p style="font-size:var(--t-base);color:var(--t2);font-weight:300;max-width:480px;margin:0 auto 2.5rem;line-height:1.8">The page you're looking for has moved or doesn't exist. Try one of the links below, or go back to the home page.</p>
+<div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;margin-bottom:3rem">
+<a class="btn btn-fill" href="index.html">Go to home page</a>
+<a class="btn btn-line" href="index.html#contact">Book a consultation</a>
+</div>
+<nav aria-label="Helpful links" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;border:1px solid var(--hr);max-width:680px;margin:0 auto">
+<a class="qlink" href="econometrics-tutor.html" style="padding:1.25rem;border-right:1px solid var(--hr);border-bottom:1px solid var(--hr);text-align:left;display:block;text-decoration:none;transition:background 0.2s">
+<p style="font-size:var(--t-xs);letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem">Tuition</p>
+<p style="font-size:var(--t-sm);color:var(--t1);font-weight:400">Econometrics tutor</p>
+</a>
+<a class="qlink" href="a-level-maths-tutor.html" style="padding:1.25rem;border-bottom:1px solid var(--hr);text-align:left;display:block;text-decoration:none;transition:background 0.2s">
+<p style="font-size:var(--t-xs);letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem">Tuition</p>
+<p style="font-size:var(--t-sm);color:var(--t1);font-weight:400">A Level Maths tutor</p>
+</a>
+<a class="qlink" href="oxbridge-economics-tutor.html" style="padding:1.25rem;border-right:1px solid var(--hr);text-align:left;display:block;text-decoration:none;transition:background 0.2s">
+<p style="font-size:var(--t-xs);letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem">Preparation</p>
+<p style="font-size:var(--t-sm);color:var(--t1);font-weight:400">Oxbridge &amp; TMUA</p>
+</a>
+<a class="qlink" href="about.html" style="padding:1.25rem;text-align:left;display:block;text-decoration:none;transition:background 0.2s">
+<p style="font-size:var(--t-xs);letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem">Background</p>
+<p style="font-size:var(--t-sm);color:var(--t1);font-weight:400">About &amp; research</p>
+</a>
+</nav>
+</div>
+</main>
+<footer role="contentinfo" style="border-top:1px solid var(--hr);padding:2rem clamp(1rem,4vw,2.5rem);background:var(--s1)">
+<div style="max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:var(--t-xs);color:var(--t3)">
+<span>© <span id="yr"></span> Dr Nicky Grant</span>
+<a href="index.html" style="color:var(--gold)">Return to home →</a>
+</div>
+</footer>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+function toggleNav(b){const m=document.getElementById('mobNav');const o=m.classList.toggle('open');b.setAttribute('aria-expanded',o);}
+</script>
+</body>
+</html>

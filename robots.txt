@@ -1,0 +1,33 @@
+User-agent: *
+Allow: /
+
+# AI crawlers — all allowed, including context files
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: GoogleExtended
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: cohere-ai
+Allow: /
+User-agent: Omgilibot
+Allow: /
+
+# AI context files explicitly allowed
+Allow: /ai-context/
+Allow: /llms.txt
+Allow: /llms-extended.txt
+
+Sitemap: https://www.drnickygrant.com/sitemap.xml
+
+# AI/search discovery crawlers for public pages
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /

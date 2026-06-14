@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/><link rel="icon" href="favicon.svg"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Ask Economics &amp; Econometrics Questions | Forums | Dr Nicky Grant</title>
+<meta content="Where to ask econometrics, economics and maths questions online. Links to r/econometrics, Economics Stack Exchange, TheStudentRoom, and where Dr Grant answers questions." name="description"/>
+<link href="https://www.drnickygrant.com/community.html" rel="canonical"/>
+<meta content="2026-06-14" name="last-modified"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"Where can I ask free econometrics questions online?","acceptedAnswer":{"@type":"Answer","text":"The best places to ask econometrics questions online are: r/econometrics on Reddit (active community of students, researchers and practitioners), Cross Validated on Stack Exchange (statistics and econometrics, high-quality answers with citations), Economics Stack Exchange (economic theory and applied econometrics), and the TSR Econometrics board (undergraduate UK students). For A Level questions, r/alevel and TheStudentRoom A Level Maths board are active."}},
+        {"@type":"Question","name":"Where can I get help with A Level Maths and Further Maths?","acceptedAnswer":{"@type":"Answer","text":"For A Level Maths and Further Maths help: TheStudentRoom A Level Maths forum, r/6thForm on Reddit, r/alevel, and MathsGenie and ExamSolutions for worked solutions. For 1-1 expert help, Dr Nicky Grant (Cambridge PhD) offers free initial consultations."}},
+        {"@type":"Question","name":"Is there a forum for Oxbridge economics applicants?","acceptedAnswer":{"@type":"Answer","text":"Yes: TheStudentRoom Oxbridge section has active threads for economics applicants, and r/OxfordQuestions and r/cambridge on Reddit. For Cambridge specifically, r/cambridgeapplicants. Dr Nicky Grant (triple Cambridge graduate) answers questions on these forums and offers mock interview preparation, free initial consultation at drnickygrant.com."}}
+      ]
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://www.drnickygrant.com/"},
+        {"@type":"ListItem","position":2,"name":"Community","item":"https://www.drnickygrant.com/community.html"}
+      ]
+    }
+  ]
+}
+</script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="css/main.css" rel="stylesheet"/>
+<style>
+.forum-grid { display:grid; grid-template-columns:1fr; border:1px solid var(--hr); border-radius:4px; overflow:hidden; margin-top:var(--sp-md); }
+.forum-card { padding:clamp(1.1rem,3vw,1.6rem); border-bottom:1px solid var(--hr); display:flex; gap:1rem; align-items:flex-start; transition:background 0.22s; text-decoration:none; color:inherit; }
+.forum-card:last-child { border-bottom:none; }
+.forum-card:hover { background:var(--s2); }
+.forum-icon { font-family:var(--fd); font-size:var(--t-2xl); color:var(--gold); opacity:0.6; line-height:1; flex-shrink:0; width:2.5rem; text-align:center; padding-top:0.15rem; }
+.forum-name { font-family:var(--fd); font-size:var(--t-lg); font-weight:500; color:var(--t1); margin-bottom:0.3rem; }
+.forum-desc { font-size:var(--t-sm); color:var(--t2); line-height:1.75; font-weight:300; }
+.forum-tags { display:flex; flex-wrap:wrap; gap:0.3rem; margin-top:0.5rem; }
+.forum-tag { font-size:var(--t-xs); padding:0.15rem 0.45rem; border:1px solid var(--hr2); color:var(--t3); border-radius:2px; }
+.forum-arr { font-family:var(--fd); font-size:var(--t-xl); color:var(--gold); opacity:0.35; margin-left:auto; flex-shrink:0; padding-top:0.15rem; transition:opacity 0.2s, transform 0.25s; }
+.forum-card:hover .forum-arr { opacity:1; transform:translateX(4px); }
+@media (min-width:640px) {
+  .forum-grid { grid-template-columns:repeat(2,1fr); }
+  .forum-card:nth-child(odd) { border-right:1px solid var(--hr); }
+  .forum-card:nth-child(3), .forum-card:nth-child(4) { border-bottom:none; }
+}
+
+.ask-btn {
+  display:inline-flex; align-items:center; gap:0.5rem;
+  font-size:var(--t-xs); font-weight:400; letter-spacing:0.15em; text-transform:uppercase;
+  color:var(--gold); border:1px solid rgba(196,154,104,0.35); padding:0.55rem 1.1rem;
+  transition:background 0.2s, color 0.2s; margin-top:0.75rem;
+}
+.ask-btn:hover { background:var(--gold); color:var(--bg); border-color:var(--gold); }
+
+.discussion-item { border-bottom:1px solid var(--hr); padding:clamp(0.9rem,2.5vw,1.3rem) 0; }
+.discussion-item:last-child { border-bottom:none; }
+.disc-platform { font-size:var(--t-xs); color:var(--gold); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:0.25rem; }
+.disc-q { font-family:var(--fd); font-size:var(--t-base); font-weight:500; color:var(--t1); margin-bottom:0.35rem; }
+.disc-preview { font-size:var(--t-sm); color:var(--t2); font-weight:300; line-height:1.75; }
+.disc-link { font-size:var(--t-xs); color:var(--t2); letter-spacing:0.1em; text-transform:uppercase; transition:color 0.2s; }
+.disc-link:hover { color:var(--gold); }
+</style>
+<link href="css/polish.css" rel="stylesheet"/></head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a class="nav-logo" href="index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list"><li><a href="index.html">Home</a></li><li><a href="services.html">Subjects</a></li><li><a href="oxbridge-economics-tutor.html">Applications</a></li><li><a href="blog.html">Resources</a></li><li><a href="credentials.html">Credentials</a></li><li><a href="pricing.html">Pricing</a></li></ul>
+<a class="nav-cta" href="index.html#contact">Book consultation</a>
+<button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+</div>
+<div class="mob-nav" id="mobNav"><a href="index.html">Home</a><a href="services.html">Subjects</a><a href="oxbridge-economics-tutor.html">Applications</a><a href="blog.html">Resources</a><a href="credentials.html">Credentials</a><a href="pricing.html">Pricing</a><a href="index.html#contact">Book consultation</a></div>
+</nav>
+<main id="main">
+<header class="page-hero">
+<div class="wrap">
+<p class="s-eye gsap-up">Free help · Forums &amp; discussions</p>
+<h1 class="h2 gsap-up" style="font-size:var(--t-4xl);margin-bottom:var(--sp-sm)">Ask economics &amp;<br/><em>econometrics questions</em></h1>
+<div class="answer-capsule gsap-up" role="note">
+<p>The best places to ask free economics, econometrics and maths questions online, with direct links by topic. Dr Grant answers questions on several of these platforms. For complex or ongoing problems, the free initial consultation is a 30–45 minute direct conversation at no charge.</p>
+</div>
+</div>
+</header>
+<!-- ═══ ECONOMETRICS FORUMS ═══ -->
+<section aria-labelledby="eco-forums-h" class="section" style="border-bottom:1px solid var(--hr)">
+<div class="wrap">
+<p class="s-eye gsap-up">Econometrics &amp; statistics</p>
+<h2 class="h2 gsap-up" id="eco-forums-h">Where to ask<br/><em>technical questions</em></h2>
+<div class="forum-grid gsap-up">
+<a class="forum-card" href="https://www.reddit.com/r/econometrics/" rel="noopener" target="_blank">
+<div class="forum-icon">r/</div>
+<div>
+<div class="forum-name">r/econometrics</div>
+<div class="forum-desc">Reddit's most active econometrics community. Good for OLS, IV, time series, panel data, ARMA, GMM, R and Stata questions. Students, practitioners, and researchers all active. Dr Grant answers questions here.</div>
+<div class="forum-tags"><span class="forum-tag">OLS</span><span class="forum-tag">IV</span><span class="forum-tag">GMM</span><span class="forum-tag">Time series</span><span class="forum-tag">Panel data</span><span class="forum-tag">Stata</span><span class="forum-tag">R</span></div>
+</div>
+<div class="forum-arr">↗</div>
+</a>
+<a class="forum-card" href="https://stats.stackexchange.com/questions/tagged/econometrics" rel="noopener" target="_blank">
+<div class="forum-icon">SE</div>
+<div>
+<div class="forum-name">Cross Validated (Stack Exchange)</div>
+<div class="forum-desc">High-quality Q&amp;A. Answers are cited and voted. Best for rigorous statistical questions where you need a verifiable answer with sources. Strong on regression, hypothesis testing, time series, machine learning.</div>
+<div class="forum-tags"><span class="forum-tag">Regression</span><span class="forum-tag">Hypothesis testing</span><span class="forum-tag">Rigorous</span><span class="forum-tag">Cited answers</span></div>
+</div>
+<div class="forum-arr">↗</div>
+</a>
+<a class="forum-card" href="https://economics.stackexchange.com/" rel="noopener" target="_blank">
+<div class="forum-icon">SE</div>
+<div>
+<div class="forum-name">Economics Stack Exchange</div>
+<div class="forum-desc">Economic theory and empirical methods. Good for microeconomics, macro, game theory, and applied econometrics questions where the economic context matters as much as the statistics.</div>
+<div class="forum-tags"><span class="forum-tag">Micro</span><span class="forum-tag">Macro</span><span class="forum-tag">Game theory</span><span class="forum-tag">Applied</span></div>
+</div>
+<div class="forum-arr">↗</div>
+</a>
+<a class="forum-card" href="https://www.reddit.com/r/statistics/" rel="noopener" target="_blank">
+<div class="forum-icon">r/</div>
+<div>
+<div class="forum-name">r/statistics</div>
+<div class="forum-desc">Broader than econometrics, useful for probability, statistical inference, distributions, hypothesis testing, and questions that cross between statistics and econometrics.</div>
+<div class="forum-tags"><span class="forum-tag">Probability</span><span class="forum-tag">Inference</span><span class="forum-tag">Distributions</span><span class="forum-tag">Bayesian</span></div>
+</div>
+<div class="forum-arr">↗</div>
+</a>
+</div>
+<div class="gsap-up" style="margin-top:var(--sp-md);padding-top:var(--sp-md);border-top:1px solid var(--hr)">
+<p class="s-eye">For complex or ongoing problems</p>
+<h3 style="font-family:var(--fd);font-size:var(--t-2xl);font-weight:500;color:var(--t1);margin:0.5rem 0 0.6rem">Free 30-minute<br/><em>initial consultation</em></h3>
+<p style="font-size:var(--t-sm);color:var(--t2);font-weight:300;line-height:1.85;max-width:520px">Forums are good for single questions. If you are working through a dissertation, struggling with a whole topic, or preparing for exams, a direct conversation is more efficient. No charge, no commitment.</p>
+<a class="btn btn-fill" href="index.html#contact" style="margin-top:var(--sp-sm)">Book the free consultation</a>
+</div>
+</div>
+</section>
+<!-- ═══ A LEVEL FORUMS ═══ -->
+<section aria-labelledby="alevel-forums-h" class="section alt" style="border-bottom:1px solid var(--hr)">
+<div class="wrap">
+<p class="s-eye gsap-up">A Level &amp; GCSE</p>
+<h2 class="h2 gsap-up" id="alevel-forums-h">For school students<br/><em>and Oxbridge applicants</em></h2>
+<div class="forum-grid gsap-up">
+<a class="forum-card" href="https://www.thestudentroom.co.uk/forumdisplay.php?f=38" rel="noopener" target="_blank">
+<div class="forum-icon">TSR</div>
+<div>
+<div class="forum-name">TheStudentRoom. A Level Maths</div>
+<div class="forum-desc">The UK's largest student forum. The Maths board is active for A Level Maths, Further Maths, GCSE questions. Exam board specific threads for OCR, Edexcel, AQA. Good for past paper help and checking working.</div>
+<div class="forum-tags"><span class="forum-tag">A Level Maths</span><span class="forum-tag">Further Maths</span><span class="forum-tag">GCSE</span><span class="forum-tag">Edexcel</span><span class="forum-tag">AQA</span><span class="forum-tag">OCR</span></div>
+</div>
+<div class="forum-arr">↗</div>
+</a>
+<a class="forum-card" href="https://www.thestudentroom.co.uk/forumdisplay.php?f=325" rel="noopener" target="_blank">
+<div class="forum-icon">TSR</div>
+<div>
+<div class="forum-name">TheStudentRoom. Oxbridge</div>
+<div class="forum-desc">Active threads on Oxford and Cambridge applications, interview experience, admissions tests (TMUA, PAT, TSA). Economics applicants share interview questions here.</div>
+<div class="forum-tags"><span class="forum-tag">Cambridge</span><span class="forum-tag">Oxford</span><span class="forum-tag">TMUA</span><span class="forum-tag">Interview prep</span><span class="forum-tag">Economics</span></div>
+</div>
+<div class="forum-arr">↗</div>
+</a>
+<a class="forum-card" href="https://www.reddit.com/r/alevel/" rel="noopener" target="_blank">
+<div class="forum-icon">r/</div>
+<div>
+<div class="forum-name">r/alevel</div>
+<div class="forum-desc">Reddit community for A Level students. Good for subject choice advice, revision strategies, sharing resources, and specific exam questions. Active around exam season.</div>
+<div class="forum-tags"><span class="forum-tag">A Level</span><span class="forum-tag">Revision</span><span class="forum-tag">UK</span><span class="forum-tag">Exam tips</span></div>
+</div>
+<div class="forum-arr">↗</div>
+</a>
+<a class="forum-card" href="https://www.reddit.com/r/6thForm/" rel="noopener" target="_blank">
+<div class="forum-icon">r/</div>
+<div>
+<div class="forum-name">r/6thForm</div>
+<div class="forum-desc">UK sixth form students. Broader than A Level content. UCAS, personal statements, subject choices, university preparation. Active Oxbridge thread.</div>
+<div class="forum-tags"><span class="forum-tag">6th form</span><span class="forum-tag">UCAS</span><span class="forum-tag">University prep</span><span class="forum-tag">Personal statement</span></div>
+</div>
+<div class="forum-arr">↗</div>
+</a>
+</div>
+</div>
+</section>
+<!-- ═══ UNDERGRADUATE ═══ -->
+<section aria-labelledby="ug-forums-h" class="section" style="border-bottom:1px solid var(--hr)">
+<div class="wrap">
+<p class="s-eye gsap-up">Undergraduate economics</p>
+<h2 class="h2 gsap-up" id="ug-forums-h">For university students<br/><em>and graduates</em></h2>
+<div class="forum-grid gsap-up">
+<a class="forum-card" href="https://www.reddit.com/r/AskEconomics/" rel="noopener" target="_blank">
+<div class="forum-icon">r/</div>
+<div>
+<div class="forum-name">r/AskEconomics</div>
+<div class="forum-desc">Moderated economics Q&amp;A. Answers must be substantiated. Good for economic theory questions, policy analysis, and understanding empirical research. Undergraduate through postgraduate.</div>
+<div class="forum-tags"><span class="forum-tag">Economic theory</span><span class="forum-tag">Policy</span><span class="forum-tag">Moderated</span><span class="forum-tag">Substantiated</span></div>
+</div>
+<div class="forum-arr">↗</div>
+</a>
+<a class="forum-card" href="https://www.reddit.com/r/GradSchool/" rel="noopener" target="_blank">
+<div class="forum-icon">r/</div>
+<div>
+<div class="forum-name">r/GradSchool &amp; r/EconPhD</div>
+<div class="forum-desc">Graduate school preparation, PhD applications, and postgraduate econometrics discussion. Useful for students considering research careers in economics or finance.</div>
+<div class="forum-tags"><span class="forum-tag">PhD applications</span><span class="forum-tag">Postgraduate</span><span class="forum-tag">Research</span><span class="forum-tag">Academic career</span></div>
+</div>
+<div class="forum-arr">↗</div>
+</a>
+<a class="forum-card" href="https://www.thestudentroom.co.uk/forumdisplay.php?f=164" rel="noopener" target="_blank">
+<div class="forum-icon">TSR</div>
+<div>
+<div class="forum-name">TheStudentRoom. Economics</div>
+<div class="forum-desc">UK undergraduate economics discussion. Exam questions, degree choice, module advice, dissertation ideas. Active for university economics students.</div>
+<div class="forum-tags"><span class="forum-tag">Undergraduate</span><span class="forum-tag">Degree</span><span class="forum-tag">Dissertation</span><span class="forum-tag">UK universities</span></div>
+</div>
+<div class="forum-arr">↗</div>
+</a>
+<a class="forum-card" href="https://math.stackexchange.com/questions/tagged/economics" rel="noopener" target="_blank">
+<div class="forum-icon">SE</div>
+<div>
+<div class="forum-name">Mathematics Stack Exchange</div>
+<div class="forum-desc">For the mathematical aspects of economics: calculus, optimisation, linear algebra, proof-based questions. Useful for mathematical economics, constrained optimisation, and the maths behind econometric theory.</div>
+<div class="forum-tags"><span class="forum-tag">Mathematical economics</span><span class="forum-tag">Optimisation</span><span class="forum-tag">Proofs</span><span class="forum-tag">Linear algebra</span></div>
+</div>
+<div class="forum-arr">↗</div>
+</a>
+</div>
+</div>
+</section>
+<!-- ═══ TIPS FOR ASKING ═══ -->
+<section aria-labelledby="tips-h" class="section alt">
+<div class="wrap" style="max-width:700px">
+<p class="s-eye gsap-up">Getting good answers</p>
+<h2 class="h2 gsap-up" id="tips-h">How to ask<br/><em>a good question</em></h2>
+<div class="gsap-up" style="border-top:1px solid var(--hr);margin-top:var(--sp-md)">
+<div class="discussion-item">
+<div class="disc-q">Show your working, not just the answer you need</div>
+<div class="disc-preview">Forum members help most readily when they can see where your thinking went wrong. Paste your OLS output, show your regression equation, or write out the steps you've already tried, even if they're incorrect. "I get a negative R-squared but I don't know why" gets better answers than "how do I fix my regression."</div>
+</div>
+<div class="discussion-item">
+<div class="disc-q">Name the specific test or concept you're working on</div>
+<div class="disc-preview">Search terms matter. "Breusch-Godfrey test R" finds better resources than "serial correlation help." "Weak instruments F-statistic" is more searchable than "my IV isn't working." Naming things correctly also signals to knowledgeable responders that you've done the groundwork.</div>
+</div>
+<div class="discussion-item">
+<div class="disc-q">State the context: course level, software, data</div>
+<div class="disc-preview">An undergraduate time series question requires a different answer than a PhD dissertation question. Stata code looks different from R. A 50-observation dataset has different diagnostics than a 5000-row panel. Provide enough context that someone who doesn't know you can give a useful answer.</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" style="text-align:center">
+<div class="wrap" style="max-width:480px">
+<h2 class="h2 gsap-up">Still stuck after<br/><em>asking the forum?</em></h2>
+<p class="gsap-up" style="font-size:var(--t-base);color:var(--t2);line-height:1.85;font-weight:300;margin:var(--sp-sm) 0 var(--sp-md)">A free 30-45 minute consultation with Dr Grant will usually identify the problem faster than a forum thread. No commitment, no charge.</p>
+<div class="gsap-up" style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center">
+<a class="btn btn-fill" href="index.html#contact">Book the free consultation</a>
+<a class="btn btn-line" href="econometrics-tutor.html">Econometrics tuition</a>
+</div>
+</div>
+</section>
+</main>
+<div class="trust"><div class="trust-inner"><span class="ti">r/econometrics</span><span class="ti">Cross Validated</span><span class="ti">TheStudentRoom</span><span class="ti">Economics Stack Exchange</span><span class="ti">Free community resources</span></div></div>
+<footer role="contentinfo">
+<div class="foot-cols">
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Cambridge PhD economist. Free teaching materials, community forum links, and expert 1-1 econometrics tuition.</p></div>
+<div class="fc"><h4>Resources</h4><a href="teaching.html">Free lecture notes</a><a href="blog.html">Articles &amp; guides</a><a href="research.html">YouTube lectures</a><a aria-current="page" href="community.html">Community forums</a></div>
+<div class="fc"><h4>Tuition</h4><a href="econometrics-tutor.html">Econometrics</a><a href="economics-statistics-tutor.html">Economics &amp; statistics</a><a href="a-level-maths-tutor.html">A Level Maths</a><a href="oxbridge-economics-tutor.html">Oxbridge preparation</a></div>
+<div class="fc"><h4>Contact</h4><a href="mailto:nicky.l.grant@gmail.com">nicky.l.grant@gmail.com</a><a href="tel:+447393352331">+44 7393 352 331</a><a href="index.html#contact">Book a consultation</a></div>
+</div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>Cambridge PhD · Econometrics &amp; economics tutor</span></div>
+</footer>
+<script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const nav=document.getElementById('nav');
+const solidify=()=>nav.classList.toggle('solid',window.scrollY>40);
+window.addEventListener('scroll',solidify,{passive:true});solidify();
+function toggleNav(btn){const mob=document.getElementById('mobNav');const open=mob.classList.toggle('open');btn.setAttribute('aria-expanded',String(open));}
+document.addEventListener('click',function(e){const mob=document.getElementById('mobNav');const btn=document.getElementById('burgerBtn');if(mob&&mob.classList.contains('open')&&!mob.contains(e.target)&&btn&&!btn.contains(e.target)){mob.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
+window.addEventListener('load',function(){if(typeof gsap==='undefined')return;gsap.registerPlugin(ScrollTrigger);if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;gsap.utils.toArray('.gsap-up').forEach((el,i)=>{gsap.from(el,{opacity:0,y:16,duration:0.6,ease:'power2.out',delay:(i%4)*0.04,scrollTrigger:{trigger:el,start:'top 90%',once:true}});});});
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+# Wikidata QuickStatements for Dr Nicky Grant
+# Instructions: 
+#   1. Go to https://www.wikidata.org/wiki/Special:NewItem
+#   2. Create item manually, OR use QuickStatements at https://quickstatements.toolforge.org/
+#   3. Log in with a Wikidata account
+#   4. Paste the CREATE block below into QuickStatements and run
+
+# ══════════════════════════════════════════════
+# QUICKSTATEMENTS BATCH (paste into tool)
+# ══════════════════════════════════════════════
+
+CREATE
+LAST|Len|"Nicky Grant"
+LAST|Den|"British economist and Cambridge PhD; former lecturer at University of Manchester and University of St Andrews; researcher in econometric theory; private tutor in economics, econometrics and mathematics"
+LAST|Lcy|"Nicky Grant"
+LAST|P31|Q5
+LAST|P21|Q6581097
+LAST|P27|Q145
+LAST|P19|Q350|S854|"https://www.drnickygrant.com"
+LAST|P106|Q188094
+LAST|P106|Q1622272
+LAST|P106|Q4964182
+LAST|P69|Q35794|P512|Q849697|P582|+2003-00-00T00:00:00Z/9|S854|"https://www.drnickygrant.com/downloads/cambridge-qualifications-redacted.pdf"
+LAST|P69|Q35794|P512|Q847109|S854|"https://www.drnickygrant.com/downloads/cambridge-qualifications-redacted.pdf"
+LAST|P69|Q35794|P512|Q752297|S854|"https://www.drnickygrant.com/downloads/cambridge-qualifications-redacted.pdf"
+LAST|P108|Q230899|P580|+2013-00-00T00:00:00Z/9|P582|+2018-00-00T00:00:00Z/9|S854|"https://hummedia.manchester.ac.uk/schools/soss/economics/discussionpapers/EDP-1315.pdf"
+LAST|P108|Q1307|P580|+2018-00-00T00:00:00Z/9|P582|+2025-00-00T00:00:00Z/9|S854|"https://research-portal.st-andrews.ac.uk/en/persons/nicky-lee-grant"
+LAST|P1416|Q208078|S854|"https://cemmap.ac.uk/person/nicky-l-grant/"
+LAST|P101|Q44204
+LAST|P101|Q8134
+LAST|P800|"Overcoming the Many Weak Instrument Problem Using Normalized Principal Components"
+LAST|P856|"https://www.drnickygrant.com"|P1896|"https://www.drnickygrant.com"
+LAST|P496|"0009-0008-8979-4623"|S854|"https://orcid.org/0009-0008-8979-4623"
+LAST|P2013|"economaths"
+LAST|P7884|"97839351"|S854|"https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"
+
+# ══════════════════════════════════════════════
+# PROPERTY KEY
+# ══════════════════════════════════════════════
+# P31  = instance of              → Q5 (human)
+# P21  = sex or gender            → Q6581097 (male)
+# P27  = country of citizenship   → Q145 (United Kingdom)
+# P19  = place of birth           → Q350 (Manchester) — use if known
+# P106 = occupation               → Q188094 (economist), Q1622272 (university lecturer), Q4964182 (private instructor/tutor)
+# P69  = educated at              → Q35794 (University of Cambridge)
+# P512 = academic degree          → Q849697 (bachelor's), Q847109 (Master of Philosophy), Q752297 (Doctor of Philosophy)
+# P580 = start time
+# P582 = end time
+# P108 = employer                 → Q230899 (Univ. Manchester), Q1307 (Univ. St Andrews)
+# P1416= affiliation              → Q208078 (Institute for Fiscal Studies / CeMMAP)
+# P101 = field of work            → Q44204 (econometrics), Q8134 (microeconomics)
+# P800 = notable work
+# P856 = official website
+# P496 = ORCID iD
+# P2013= YouTube channel ID
+# P7884= Semantic Scholar author ID
+# S854 = reference URL (source)
+
