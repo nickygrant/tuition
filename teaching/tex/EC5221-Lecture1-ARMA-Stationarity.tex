@@ -1,0 +1,1095 @@
+
+
+\documentclass{beamer}						
+\usetheme{metropolis}
+\usefonttheme{professionalfonts}
+
+\setbeamertemplate{itemize item}{\color{titlepagecolor}$\hookrightarrow$}
+\definecolor{whitesmoke}{rgb}{0.96, 0.96, 0.96}
+\setbeamercolor{background canvas}{bg=whitesmoke}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{mwe}
+\usepackage{amsmath}
+\everymath{\displaystyle}
+\usepackage{subfig}
+\newcommand{\subsubfloat}[2]{%
+	\begin{tabular}{@{}c@{}}#1\\#2\end{tabular}%
+}
+\usepackage{media9}	
+\usepackage{mdframed}
+
+\makeatletter
+\newsavebox\zb@x
+\newcounter{z@@m}
+\usepackage{calc}
+\newdimen\B@r\newdimen\P@r
+\newdimen\@zw\newdimen\@zh\newdimen\@zd
+
+\newcommand{\zoombox}[2][0]{%
+	\leavevmode%
+	\sbox\zb@x{#2}%
+	\setlength\B@r{1pt*\ratio{\wd\zb@x}{\ht\zb@x+\dp\zb@x}}%
+	\setlength\P@r{1pt*\ratio{\paperwidth}{\paperheight}}%
+	\ifdim\B@r>\P@r\relax%
+	\setlength\@zw{\wd\zb@x}\setlength\@zh{\@zw*\ratio{\paperheight}{\paperwidth}}%
+	\setlength\@zd{(\@zh-\ht\zb@x-\dp\zb@x)*\real{0.5}+\dp\zb@x}%
+	\setlength\@zh{\@zh-\@zd}%
+	\else%
+	\setlength\@zh{\ht\zb@x+\dp\zb@x}%
+	\setlength\@zw{\@zh*\ratio{\paperwidth}{\paperheight}}%
+	\setlength\@zh{\ht\zb@x}\setlength\@zd{\dp\zb@x}%
+	\fi%
+	\makebox[0pt][l]{\makebox[\wd\zb@x][c]{\makebox[\@zw][l]{%
+				\pdfdest name {zbfs\thez@@m} fitr
+				width  \@zw\space
+				height \@zh\space
+				depth  \@zd\space
+			}}}%
+			\pdfdest name {zb\thez@@m} fitr
+			width  \wd\zb@x\space
+			height \ht\zb@x\space
+			depth  \dp\zb@x\space
+			\immediate\pdfannot
+			width  \wd\zb@x\space
+			height \ht\zb@x\space
+			depth  \dp\zb@x\space
+			{%
+				/Subtype/Link/H/N
+				/Border [0 0 #1 [1 2]]
+				/A <<
+				/S/JavaScript
+				/JS (
+				if(typeof(zoomed)=='undefined'||!zoomed){
+					var lastView=this.viewState;
+					if(app.fs.isFullScreen) this.gotoNamedDest('zbfs\thez@@m');
+					else this.gotoNamedDest('zb\thez@@m');
+					zoomed=true;
+				}else{
+				this.viewState=lastView;
+				zoomed=false;
+			}
+			)
+			>>
+		}%
+		\usebox{\zb@x}%
+		\stepcounter{z@@m}%
+	}
+	\makeatother
+	
+	\makeatother
+	\makeatletter
+	\newcommand\HUGE{\@setfontsize\Huge{40}{33}}
+	\makeatother
+	\usepackage[orientation=landscape,size=custom,width=16.7,height=10.5,scale=0.5,debug]{beamerposter}
+	\definecolor{ikb}{rgb}{0.0, 0.18, 0.65}
+	\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+	\definecolor{blue}{rgb}{0., 0.2, 0.75}
+	\setbeamercolor{frametitle}{fg=white,bg=ikb}           % Use metropolis theme
+	\setbeamercolor{title}{fg=white,bg=white}
+	\setbeamercolor{date}{fg=white,bg=white}
+	\usepackage{pdfpages}
+	\setbeamersize{text margin left=5pt,text margin right=15pt}
+	\title{\HUGE{Econometric Time Series Analysis$|$EC5221}}\subtitle{\vspace{4.5cm}\Large \textbf{Wk1: Stationary Univariate Time Series -\\ \textit{ARMA Processes and Stationarity} }}
+	\date{\large \textbf{Nicky Grant} (Semester 2, 2020/2021)}
+	
+	\usepackage{hyperref}
+	\usepackage{tcolorbox}
+	\tcbuselibrary{theorems}
+	\definecolor{beaublue}{rgb}{0.74, 0.83, 0.9}
+	\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+	\definecolor{lightyellow}{rgb}{0, 0, 0.88}
+	\newtcbtheorem[number within=section]{mydef}{Definition}%
+	{colback=aliceblue,colframe=blue,fonttitle=\bfseries}{th}
+	\newtcbtheorem[number within=section]{myex}{Example}%
+	{colback=white,colframe=blue,fonttitle=\bfseries}{th}
+	\newtcbtheorem[number within=section]{myexx}{Definition}%
+	{colback=aliceblue ,colframe=blue,fonttitle=\bfseries}{th}
+		\newtcbtheorem[number within=section]{mytheo}{Theorem}%
+	{colback=beaublue,colframe=titlepagecolor,fonttitle=\bfseries}{th}
+	
+	
+	
+	\setbeamerfont{section title}{size=\Huge, series=\bfseries}
+	\hypersetup{pdfstartview=Fit, pdfpagemode=UseNone}
+	\definecolor{yg}{rgb}{0.3, 0.73, 0.09}
+	\definecolor{back}{rgb}{1, 0.6,0.4}
+	
+		\definecolor{lightgoldenrodyellow}{rgb}{0.98, 0.98, 0.82}
+	
+	\newtcbtheorem[number within=section]{mydefyel}{Definition}%
+	{colback=lightgoldenrodyellow,colframe=aliceblue,fonttitle=\bfseries}{th}
+
+	\definecolor{mycolor}{rgb}{0, 0, 205}% Rule colour
+	\makeatletter
+	\newcommand{\mybox}[1]{%
+		\setbox0=\hbox{#1}%
+		\setlength{\@tempdima}{\dimexpr\wd0+13pt}%
+		\begin{tcolorbox}[colframe=ikb, colback=aliceblue ,boxrule=0.5pt,arc=4pt,
+			left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,width=\@tempdima]
+			#1
+		\end{tcolorbox}
+	}
+	\newcommand{\myboxx}[1]{%
+		\setbox0=\hbox{#1}%
+		\setlength{\@tempdima}{\dimexpr\wd0+13pt}%
+		\begin{tcolorbox}[colframe=beaublue, colback=ikb ,boxrule=0.5pt,arc=4pt,
+			left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,width=\@tempdima]
+			#1
+		\end{tcolorbox}
+	}
+
+		\newcommand{\myboxxx}[1]{%
+	\setbox0=\hbox{#1}%
+	\setlength{\@tempdima}{\dimexpr\wd0+13pt}%
+	\begin{tcolorbox}[colback=lightgoldenrodyellow, colframe=aliceblue, boxrule=0.5pt,arc=4pt,
+		left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,width=\@tempdima]
+		#1
+	\end{tcolorbox}
+}
+
+	\makeatother
+	
+	\hypersetup{
+		colorlinks,
+		citecolor=yellow,
+		filecolor=yg,
+		linkcolor=ikb,
+		urlcolor=red
+	}
+	
+	\hypersetup{pdfnewwindow}
+	\begin{document}
+		\begin{center}\setbeamercolor{background canvas}{bg=ikb}\maketitle \end{center}
+		\setbeamercolor{background canvas}{bg=white} \small
+		\begin{frame}{Table of contents}\small
+			\setbeamertemplate{section in toc}[sections numbered]
+			\tableofcontents[hideallsubsections]
+		\end{frame}
+		\section{Course Details}
+		
+		
+		\begin{frame}%
+			\frametitle{Module Information}
+			
+			
+			
+			\begin{itemize}
+				\large
+				\item[] \textbf{Time series econometrics}- tool to analyse economic time series data
+				
+				\pause
+				
+				\vspace{10pt}
+				\item[] Challenges faced broadly distinct to those with cross sectional data
+				\pause
+				
+				\vspace{10pt}
+				\item[] Focus on time series \textbf{theory} (+ some empirical applications)
+				
+				\pause
+				
+				
+				\vspace{20pt}
+				\item[] \href{mailto:nlg1@st-andrews.ac.uk}{Dr Nicky Grant} (\textbf{Lect. 1-5}) - \href{mailto:rm1@st-andrews.ac.uk}{Prof. Roderick McCrorie} (\textbf{Lect. 6-11})
+				
+				\vspace{10pt}
+				
+				\item[] \textbf{5 tutorials } (wk 3,5,7,9,11)
+				\vspace{20pt}
+				\pause
+				\item[]\textbf{Office Hours}:
+				\item[]\hspace{3.1cm} \textbf{Nicky}:Thu 1-3pm (or by appointment) [F14]\\
+			
+				
+				
+				
+			\end{itemize}
+			
+			
+		\end{frame}
+		
+		
+		\begin{frame}
+			
+			\frametitle{Lecture Topics}
+			\normalsize
+			
+			
+			\begin{enumerate}
+				\item[\textbf{1}] {Stationary Univariate Time Series - \textbf{ARMA Processes and Stationarity} }
+				
+				\item[\textbf{2}] {Stationary Univariate Time Series - \textbf{Estimation and Inference}}
+				\pause
+				\item[\textbf{3}] {Stationary Multivariate Time Series -\textbf{Vector Autoregressions I}}
+				
+				\item[\textbf{4}] {Stationary Multivariate Time Series - \textbf{Vector Autoregressions II}}
+				
+				\item[\textbf{5}] {Stationary Multivariate Time Series - \textbf{Estimation \& Impulse Response Functions}}
+				
+				\pause
+				\hspace{15pt}
+				\hrule
+				\hspace{15pt}
+				
+				\item[\textbf{6}]  Univariate Non-stationary Time Series
+				
+				\item[\textbf{7}]  Multivariate Time Series: Unit roots and Co-integration
+				
+				
+				
+				\item[\textbf{8}] Time Series Models of Heteroskedasticity
+				
+				\item[\textbf{9}]  Introduction to Continuous Time Econometric Models
+				
+				\item[\textbf{10}]Likelihood methods for estimating continuous time models with discrete data
+				
+				\item[\textbf{11}]Estimating volatility in the presence of microstructure noise
+				
+				
+			\end{enumerate}
+			
+			
+		\end{frame}
+		
+		
+		
+		
+		
+		
+		\begin{frame}
+			\frametitle{Assessment and Reading}
+			\large
+			
+			
+			\begin{itemize}
+				\item[]\mybox{ 25\% Continuous Assessment}
+				
+				\item[] Class tests \textbf{wk7} and \textbf{wk11}
+				\vspace{5pt}
+				\pause
+				\item[] \mybox{75\% Final Examination in May}
+				
+				
+				\item[] 3 hours to answer \textit{3 out of 5 questions}\medskip
+				\pause
+				\item[] \textbf{Main Textbook:}\\
+				 \textbf{Hamilton} (1994) \textit{Time Series Analysis} (\textbf{H})\\
+				\textbf{Lutkepohl} (2005)\textit{ New Introduction to Multiple Time Series} (\textbf{L})
+				\pause
+				\vspace{10pt}
+				\item[] Lecture notes accompany some of the  course
+				\item[] See Course Outline and lecture materials for core/further reading
+				
+				
+			\end{itemize}
+			
+			
+		\end{frame}
+		
+		\section{Introduction to Time Series}
+		
+		
+		\begin{frame}
+			
+			\frametitle{Motivation}
+			
+			\begin{itemize}
+				
+				\item[] \mybox{How to infer/conceptualise statistical properties of data observed over time?  }
+				
+				\vspace{5pt}
+				\item[] e.g interest rates, unemployment, stock prices.
+				\vspace{25pt}
+				
+				\pause
+				
+				\item[] Model properties of time series  \textbf{esp. dependence over time}
+				\begin{itemize} \footnotesize
+					\item[]  e.g. future interest rates on past interest rates (\textbf{univariate})
+					\item[] e.g. future inflation on past interest rates (\textbf{multivariate})
+					
+				\end{itemize}
+				\pause
+				\vspace{25pt}
+				\item[]
+				Broad differences with cross section data:
+				\begin{itemize} \footnotesize
+					\item[]  Temporal ordering
+					\item[] Likely dependence  between observations (esp. with most economic time series data)
+					\pause
+				\end{itemize}
+				\vspace{25pt}
+				\item[] Focus on \textbf{discrete} time series in first half of course
+				
+				
+				
+			\end{itemize}
+			
+			
+		\end{frame}
+		
+		
+		\begin{frame}
+			
+			\frametitle{Time Series Process vs. Realisation}
+			
+			\begin{itemize}
+				\normalsize		
+				\item[]\textbf{Time Series Process: } \{$Y_t$: $t\in \mathcal{T}\}$ for some set $\mathcal{T}$
+				\pause
+				\vspace{10pt}
+				\item[] \hspace{25pt} Unless stated otherwise assume $\mathcal{T}=\{\cdots -2,-1,0,1,2,\cdots\}$
+				\item[] \hspace{25pt} Let $\{Y_t\}$ denote $\{Y_t: t\in \mathcal{T}\}$
+				\pause
+				\vspace{25pt}
+				\item[]   $\{Y_t\}$ is multivariate r.v with a joint distribution fn.	\pause
+				\item[] \hspace{25pt} e.g. $Y_t$ is  independently distributed $N(0,1)$ for all $t\in \mathcal{T}$
+				
+				\pause
+				\vspace{25pt}
+				\item[] \textbf{Realisation:} $\{y_t^s: t\in \mathcal{T}\}$ in \textit{state} $s$ 	 drawn from  $\{Y_t\}$ 
+				\vspace{25pt}
+				\pause
+				\item[] \textbf{Sample Data:} $(y_1,\cdots,y_T)'$  realisation of sample size T from  $\{Y_t\}$ 
+				\pause
+				
+				
+			\end{itemize}
+		\end{frame}
+		
+		\begin{frame}
+			\begin{itemize}
+				
+				
+				\vspace{-0.5cm}
+				\item[] \hspace{-0.5cm}
+				\includemedia[
+				label=ar1,
+				activate=onclick,
+				deactivate=pageclose,
+				height=0pt,
+				width=0pt,
+				playbutton=none,
+				addresource=ar14.mp4,
+				windowed=1000x600@c,
+				keepaspectratio,
+				flashvars={%
+					source=ar14.mp4
+				}]{}{VPlayer.swf}
+				\mediabutton[ mediacommand=ar1:playPause, overface=\color{blue}{\myboxx{{\color{white}CLICK}}},
+				downface=\color{red}{\myboxx{{\color{white}PLAY}}}
+				]{\myboxx{\includegraphics[scale=0.12]{click}    \large{\color{white}  \textbf{Realisations of first order autogressive [AR(1)] process}}}}
+				\pause
+				\vspace{20pt}
+				\item[]  \begin{myex*}[width=3.4in]{An AR(1) process} 	$Y_t=0.5Y_{t-1} +\varepsilon_t $ where $\varepsilon_t\overset{i.i.d}{\sim} N(0,1)$ \end{myex*}
+				
+				\pause
+				\vspace{10pt}
+				\item[] \textbf{Generate sample } \{$y_t^s$ : $t=1,\cdots,T$\} \textbf{in states} $s=1,2,3,4$
+				\vspace{10pt}\pause
+				\item[]  $(\varepsilon_1^s,..,\varepsilon_T^s)'$ each element drawn independently from	 N(0,1) distn   \textbf{($s=1,2,3,4$)}
+				\vspace{10pt}
+				
+				\pause
+				\item[]\hspace{0.25\textwidth} $y_1^s=0.5y_0^s+\varepsilon_1^s\quad$  (\textbf{assume} $y_0^s=0$)	
+				\pause
+				\item[]\hspace{0.25\textwidth} $y_2^s=0.5y_1^s+\varepsilon_2^s$
+				\pause
+				\item[]\hspace{0.25\textwidth} $\vdots$
+					\item[]\hspace{0.25\textwidth} $y_{T-1}^s	=0.5y_{T-2	}^s+\varepsilon_{T-1}^s$
+				\item[]\hspace{0.25\textwidth} $y_T^s	=0.5y_{T-1}^s+\varepsilon_T^s$
+				
+				
+			\end{itemize}
+			
+		\end{frame}
+		
+		
+		
+		
+		
+		
+		\begin{frame}
+			
+			
+			\begin{center}
+				\begin{figure}
+					
+					\includemedia[
+					label=ibm,
+					activate=onclick,
+					deactivate=pageclose,
+					height=0pt,
+					width=0pt,
+					playbutton=none,
+					addresource=GDP.mp4,
+					windowed=1000x600@c,
+					keepaspectratio,
+					flashvars={%
+						source=GDP.mp4
+					}]{}{VPlayer.swf}
+					\mediabutton[ mediacommand=ibm:playPause, overface=\color{blue}{\myboxx{{\color{white}CLICK}}},
+					downface=\color{red}{\myboxx{{\color{white}PLAY}}}
+					]{\myboxx{\includegraphics[scale=0.12]{click}   {\color{white} \LARGE\textbf{US Quarterly GDP 1980-2020 (\$bn)}}}}
+					\caption{Source: \url{https://fred.stlouisfed.org/series/GDP}}
+					
+				\end{figure}
+				
+			\end{center}
+			
+		\end{frame}
+		
+		\begin{frame}
+			
+			
+			\begin{center}
+				\begin{figure}
+					
+					\includemedia[
+					label=ibm1,
+					activate=onclick,
+					deactivate=pageclose,
+					height=0pt,
+					width=0pt,
+					playbutton=none,
+					addresource=FTSE100.mp4,
+					windowed=1000x600@c,
+					keepaspectratio,
+					flashvars={%
+						source=FTSE100.mp4
+					}]{}{VPlayer.swf}
+					\mediabutton[ mediacommand=ibm1:playPause, overface=\color{blue}{\myboxx{{\color{white}CLICK}}},
+					downface=\color{red}{\myboxx{{\color{white}PLAY}}}
+					]{\myboxx{\includegraphics[scale=0.12]{click} \Large \hspace{5pt} {\color{white} \textbf{FTSE100 Stock Return 1994-2020  (Monthly)}}}}
+					\caption{Source: \url{https://finance.yahoo.com/quote/\%5EFTSE}}
+				\end{figure}
+			\end{center}
+			
+		\end{frame}
+		
+		\begin{frame}
+			
+			
+			\begin{center}
+				\begin{figure}
+					
+					\includemedia[
+					label=ibm2,
+					activate=onclick,
+					deactivate=pageclose,
+					height=0pt,
+					width=0pt,
+					playbutton=none,
+					addresource=GDPGR.mp4,
+					windowed=1000x600,
+					keepaspectratio,
+					flashvars={%
+						source=GDPGR.mp4
+					}]{}{VPlayer.swf}
+					\mediabutton[ mediacommand=ibm2:playPause, overface=\color{blue}{\myboxx{{\color{white}CLICK}}},
+					downface=\color{red}{\myboxx{{\color{white}PLAY}}}
+					]{\myboxx{\includegraphics[scale=0.12]{click}   \LARGE {\color{white} \textbf{US GDP Growth 1980-2020 (Quarterly)}}}}
+					\caption{Source: \url{https://fred.stlouisfed.org/series/GDP}}
+				\end{figure}
+			\end{center}
+			
+		\end{frame}
+		
+		
+		
+		
+		
+		
+		\begin{frame}
+			
+			
+			\begin{center}
+				\begin{figure}
+					
+					\includemedia[
+					label=ibm3,
+					activate=onclick,
+					deactivate=pageclose,
+					height=0pt,
+					width=0pt,
+					playbutton=none,
+					addresource=CPI3.mp4,
+					windowed=1000x600,
+					keepaspectratio,
+					flashvars={%
+						source=CPI3.mp4
+					}]{}{VPlayer.swf}
+					\mediabutton[ mediacommand=ibm3:playPause, overface=\color{blue}{\myboxx{{\color{white}CLICK}}},
+					downface=\color{red}{\myboxx{{\color{white}PLAY}}}
+					]{\myboxx{\includegraphics[scale=0.1]{click} \large  {\color{white} \textbf{UK/GER Consumer Price Inflation 1990-2020 (Quarterly)}}}}
+					\caption{Source: \url{https://fred.stlouisfed.org/series/GBRCPIALLMINMEI}}
+					
+				\end{figure}
+				
+			\end{center}
+			
+		\end{frame}
+		
+		
+		\section{Fundamental Statistical Definitions}
+		
+		\begin{frame}
+			\frametitle{Distribution of a Time Series Process}
+			\begin{itemize}
+				
+				\item[] \normalsize  \hspace{-5pt}\textbf{ \large Process generating sample data} $\large \{Y_{t} : t \in \mathcal{T}\} $ for $\large\mathcal{T}=\{1,\hdots, T\}$	
+				\pause
+				\vspace{20pt}
+				\item[]\hspace{15pt}{\makebox[4cm]{\large$f_{\mathcal{T}}(y_1,\cdots,y_T)$\hfill} \textbf{Joint density function} of $\{Y_{t} : t \in \mathcal{T}\}$
+				}
+				
+				\pause
+				\vspace{20pt}
+				
+				\item[]\hspace{15pt}{\makebox[4cm]{\large$f_{t}(y_t)$\hfill} \textbf{Marginal density function} of $Y_t$ (for  $t \in \mathcal{T}$)  }
+				
+				\pause
+				\vspace{30pt}
+				\large
+				\item[]  $(y_1^s,\cdots,y_T^s)'$ in state \textit{s} drawn from  joint distn. of $\{Y_{t} : t \in \mathcal{T}\}$
+				\pause
+				\vspace{12pt}
+				\item[] $y_t^s$ in state s drawn from marginal distn. of $Y_t$
+				\vspace{18pt}
+				\pause
+				\item[] We observe \textbf{one realisation}, the sample data  $(y_1,\cdots, y_T)'$
+			\end{itemize}
+			
+			
+			
+		\end{frame}
+		
+		
+		
+		
+		\begin{frame}
+			\frametitle{Moments of Time Series Process (univariate)}
+			\begin{itemize}
+				
+				\large
+				
+				\item[]\begin{myexx*}[width=5.4in]{Population Moments of $Y_t$} For any function $g(\cdot)$
+					\begin{equation*}\mathbb{E}[g(Y_t)] := \int_{-\infty}^{\infty} g(y) f_t(y)dy  \end{equation*}
+				\end{myexx*}
+				\pause
+				\item[] The \textbf{average in the population of} $g(Y_t)$
+				\vspace{12pt}\pause
+				
+				\item[]\hspace{12pt} {\makebox[3cm]{\textbf{Mean} of $Y_t$\hfill}} {\makebox[5cm]{$\mathbb{E}[Y_t]$\hfill}} \hspace{-8pt} {\makebox[6cm]{$\mu_t:= \int_{-\infty}^{\infty} y f_t(y)dy $\hfill}} 
+				\vspace{18pt}\pause
+				\item[]\hspace{12pt} {\makebox[3cm]{\textbf{Var} of $Y_t$\hfill}} {\makebox[5cm]{$\mathbb{E}[(Y_t-\mu_t)^2]$\hfill}} \hspace{-8pt} {\makebox[6cm]{Var($Y_t$):$= \int_{-\infty}^{\infty} (y-\mu_t)^2 f_t(y)dy $}} 
+			
+			\end{itemize}
+		\end{frame}
+		
+		\begin{frame}
+			\frametitle{Moments of Time Series Process (bivariate)}
+			\begin{itemize}
+				
+				\large
+				\item[] Consider $\mathcal{T}=\{t_1,t_2\}$ where $t_1\neq t_2 \in \mathcal{T}$ 	\vspace{8pt}
+				
+				\item[]\begin{myexx*}[width=5.4in]{Population Moments of $(Y_{t_1},Y_{t_2})$}
+					\begin{equation*}\mathbb{E}[g(Y_{t_1},Y_{t_2})] := \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} g(y_{t_1},y_{t_2}) f_{\mathcal{T}}(y_{t_1},y_{t_2})dy_{t_1}dy_{t_2}  \end{equation*}
+				\end{myexx*}
+				\pause
+				\item[] The \textbf{average in the population of} $g(Y_{t_1}, Y_{t_2})$
+					\vspace{10pt}
+			
+				
+			
+				\vspace{15pt}
+				
+				\pause
+				\item[]\hspace{29pt} Cov$(Y_{t_1},Y_{t_2}):=\mathbb{E}[(Y_{t_1}-\mu_{t_1})(Y_{t_2}-\mu_{t_2})]$ \hspace{10pt} \textbf{Covariance}  $Y_{t_1},Y_{t_2}$
+				\vspace{10pt}\pause
+				\item[]$\hspace{81.2pt} = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} (y_{t_1}-\mu_{t_1})(y_{t_2}-\mu_{t_2}) f_{\mathcal{T}}(y_{t_1},y_{t_2})dy_{t_1}dy_{t_2} $
+				
+				
+			\end{itemize}
+		\end{frame}
+		
+		
+		
+		
+		
+		
+		
+		
+		\begin{frame}
+			
+			\frametitle{Stationarity}
+			\large
+			\begin{itemize}
+				\item[]\begin{mydef*}[width=5.5in]{Weakly Stationary Process}  A process $\{Z_t\}$   is \textbf{weakly stationary} if
+					\vspace{4pt}
+					\begin{enumerate}\large
+							
+						\item[] \makebox[6.23cm]{ $\mathbb{E}[Z_t] =\mu $ \hfill} for all $t\in\mathcal{T}$,\medskip
+						
+						\item[] \makebox[6.23cm]{ Var($Z_t$)$ =\sigma^2<\infty$\hfill}  for all $t\in\mathcal{T}$,
+						\medskip
+						
+						\item[] \makebox[6.23cm]{ Cov($Z_{t_1}, Z_{t_2}$) $=\gamma(|t_1-t_2|)$\hfill} for all  $t_1,t_2\in\mathcal{T}$.
+					\end{enumerate}
+				\end{mydef*}
+				
+				\pause
+				\vspace{25pt}
+				
+					\item[]\begin{mydef*}[width=5.5in]{Strictly Stationary Process}  A process $\{Z_t\}$   is \textbf{strictly stationary} if for all $t_1,\cdots t_k \in \mathcal{T}$ (for any positive integer k) the joint density of $(Z_{t_1+\tau},...,Z_{t_k+\tau})'$ is \textbf{invariant} to $\tau$.
+						
+			
+					\end{mydef*}	
+				
+				
+				\end{itemize}
+			\end{frame}
+		
+				
+				\begin{frame}
+					
+					\frametitle{Stationarity}
+					\normalsize
+				\begin{itemize}
+				\item[] \textbf{Strict stationarity} is a stronger condition than weak stationarity
+				\vspace{18pt}\pause
+				\item[] We refer to weak stationarity as stationarity (unless stated otherwise)
+				\vspace{18pt}\pause
+				
+				\item[]\textbf{Process generating sample data may not be stationary, e.g.}
+				\pause\vspace{5pt}
+				\begin{enumerate}\normalsize
+					\item[]\hspace{10pt} Mean	 and/or (co-) variance of $Z_t$ is not constant over time
+					\pause\hspace{10pt} 
+					\item[]\hspace{10pt}  $Z_t$ has a unit root (e.g. a random walk)
+					
+				\end{enumerate}
+				\end{itemize}
+
+			
+			
+		\end{frame}
+		
+		\begin{frame}
+			\frametitle{White Noise Process}
+			\large
+			
+			\begin{itemize}
+				\item[]\large \begin{mydef*}[width=5in]{White Noise} A process $\{Z_t\}$   is \textbf{white noise} if
+					\medskip
+					\begin{enumerate}\large
+						\item[] \makebox[4cm]{ $\mathbb{E}[Z_{t}]=0$ \hfill} for all $t\in\mathcal{T}, \medskip $
+						
+						
+						\item[] \makebox[4cm]{\noindent $\mathbb{E}[Z_{t}^{2}]=\sigma ^{2}<\infty$} for all $t\in\mathcal{T}, $\medskip
+						
+						\item[] \makebox[4cm]{ $\mathbb{E}[Z_{t_1}Z_{t_2}]=0$ \hfill} for all $t_1\neq t_2 \in \mathcal{T}$.\medskip
+					\end{enumerate}
+				\end{mydef*}
+				
+				\item[] i.e. \textbf{zero mean, constant variance and no correlation across time}
+				\pause
+				
+				\vspace{10pt}
+				\item[] WN($\sigma^2$) \hspace{10pt} notation for a \textit{white noise process with variance} $\sigma^2$
+				\vspace{10pt}
+				\pause
+				\item[] \textbf{Note:} white noise $\Rrightarrow$  weak stationarity (not  the reverse)
+			\end{itemize}
+			
+		\end{frame}
+		
+\begin{frame}
+	\frametitle{Auto-covariance \& Autocorrelation Function}
+	\normalsize
+	
+	\begin{itemize}
+		\item[]  $\{Y_t\}$ assumed stationary (unless stated otherwise)
+		\pause \vspace{10pt}
+		\item[]	\begin{mydef*}[width=4.9in]{Autocovariance Function of $\{Y_t\}$}
+			\makebox[7cm]{$\gamma(k):=$Cov$(Y_t,Y_{t-k})$\hfill} $\forall \; k \in \mathcal{T}$
+		\end{mydef*}
+		\vspace{8pt}\pause
+		\item[]	\begin{mydef*}[width=4.9in]{Autocorrelation Function of $\{Y_t\}$}
+			\makebox[7cm]{$\rho(k):=\frac{\gamma(k)}{\gamma(0)}$\hfill} $\forall \;  k \in \mathcal{T}$
+		\end{mydef*}
+		\pause
+		\vspace{14pt}
+		\item[] \hspace{15pt} $\rho(k)$ \textbf{correlation} between $Y_t$ and $Y_{t-k}$ 
+		\pause
+		\vspace{8pt}
+		\item[]\hspace{15pt} Correlations a function of 'gap' k, not time (stationarity)
+		
+		\pause 	\vspace{5pt}\pause
+		\item[]  \hspace{15pt}  Correlations in sample  data should reflect the correlation in $\{Y_t\}$ (for large T)
+
+	\end{itemize}
+\end{frame}
+
+
+
+\section{ARMA(p,q) Processes}	
+		\begin{frame}
+			\frametitle{Moving Average Process}
+			\large
+			\begin{itemize}
+				\item[] $Y_t$ is subject to  stochastic '\textbf{shock}' $\varepsilon_t$  
+				\vspace{3pt} \pause
+				\item[] \hspace{25pt}  $\varepsilon_t$ is \textbf{unobserved} 
+						\vspace{2pt} \pause
+				\item[]\hspace{25pt} Assume $\{\varepsilon_t: t\in\mathcal{T}\}$ is WN($\sigma^2$)
+					\vspace{8pt} \pause
+				\item[] \textit{Suppose} 
+				 $Y_t=\theta_1\varepsilon_{t-1}+\varepsilon_t$
+					\vspace{2pt} \pause
+				
+				\item[]   \hspace{25pt} $Y_t$ is weighted moving average of shocks at $t,t-1$
+					\vspace{3pt} \pause
+				\item[] \hspace{25pt}  Known as \textit{moving average process (order 1)}
+					\vspace{5pt} \pause
+				\item[] Assume $\varepsilon_0=0$
+					\vspace{2pt} \pause
+				\item[]  \hspace{25pt} $Y_1=\varepsilon_1$
+				\pause
+				\item[]  \hspace{25pt}  $Y_2=\theta_1\varepsilon_1+ \varepsilon_2$\pause
+				\item[]  \hspace{25pt}  $\vdots$
+				\item[]  \hspace{25pt} $Y_T=\theta_1\varepsilon_{T-1}+ \varepsilon_{T}$
+				
+		
+				
+				
+			\end{itemize}
+			
+		\end{frame}
+
+
+		\begin{frame}
+			\frametitle{Autoregressive Moving Average Processes}
+			\begin{itemize}
+				\item[] \begin{mydef*}[width=12.5cm]{Autoregressive process order p}
+		\makebox[2.2cm]{\textbf{AR(p)}\hfill}	$
+					Y_{t}=\alpha +\phi _{1}Y_{t-1}+\cdots+\phi _{p}Y_{t-p}+\varepsilon _{t} $ \end{mydef*}
+				\vspace{13pt}\pause
+						\item[] \begin{mydef*}[width=12.5cm]{Moving average process of order q }
+									\makebox[2.2cm]{\textbf{MA(q)\hfill}} $
+						 Y_{t}=\alpha +\theta _{1}\varepsilon_{t-1}+\cdots+\theta_q \varepsilon_{t-q}+\varepsilon _{t}$ 
+						 \end{mydef*}
+						\vspace{13pt} \pause
+				\item[]	\begin{mydef*}[width=12.5cm]{Autoregressive moving average process order (p,q)}
+				
+							\makebox[2.2cm]{\textbf{ARMA(p,q)}\hfill} $Y_{t}=\alpha+\phi_{1}Y_{t-1}+\cdots+\phi_{p}Y_{t-p} +\theta_1\varepsilon_{t-1}+\cdots+\theta_{q}\varepsilon_{t-q} +\varepsilon_t$
+				\end{mydef*}
+				\vspace{7pt}\pause
+				\begin{itemize}
+					\item[] \begin{figure}
+							\subfloat{\mybox{$p=0$ is \textbf{MA(q)}}}\qquad\qquad\subfloat{\mybox{$q=0$ is \textbf{AR(p)}}}
+					\end{figure}
+				\vspace{4pt}\pause
+						
+							\normalsize
+						\item[] ARMA(p,q) processes allow very general correlation patterns through time
+							\pause
+							\vspace{3pt}
+						
+							\item[] \textbf{Lecture 1-5 focus on processes} $\{Y_t\}$ \textbf{stationary}
+				\end{itemize}
+				
+			\end{itemize}
+			
+		\end{frame}
+	
+	
+	
+	
+	\begin{frame}
+		\begin{itemize}
+		\frametitle{MA($\infty$) Process}
+	\item[]	\begin{figure} \normalsize
+			\subfloat{	\begin{mydef*}[width=2.8in]{MA($\infty$) Process}$Y_t=\alpha +\sum_{s=0}^\infty\theta_s\varepsilon_{t-s} \qquad \theta_0=1 $ \end{mydef*}} \pause   \end{figure}
+		
+\pause
+\vspace{5pt}  First and second moments of $Y_t$  not a function of $t$
+		\pause
+			\vspace{10pt}
+			\item[] If $Var(Y_t)<\infty$ then MA($\infty$) is \textbf{stationary}
+			\vspace{2pt}
+		
+			\pause
+			\item[] \begin{figure} 	\subfloat{	\begin{mydef*}[width=2.9in]{Squared Summability[SS]} \begin{equation*}\sum_{s=0}^{\infty}\theta_s^2<\infty \end{equation*}\end{mydef*}}  \subfloat{ \begin{mydef*}[width=2.95in]{Absolute Summability [AS]} \begin{equation*}\sum_{s=0}^{\infty}|\theta_s|<\infty \end{equation*} \end{mydef*}} \end{figure}
+			
+			\pause
+			
+			\vspace{0pt}\begin{center}
+				\item[] \mybox{\Large Stationary if  MA$(\infty$) coefficients squared summable}\end{center}
+			
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		
+		\frametitle{Importance of MA($\infty)$: Wold Decomposition}
+		
+		\begin{itemize}
+			\item[] \begin{mytheo*}{Wold Decomposition}
+				Any  stationary process can be
+				represented as $MA(\infty ):$
+				\begin{equation*}
+				Y_{t}=\alpha +\sum_{s=0}^{\infty }\theta _{s}\varepsilon _{t-s},\quad \theta
+				_{0}=1 \qquad \varepsilon_t \sim WN(\sigma^2)
+				\end{equation*}%
+				for some coefficients $\theta_1,..,\theta_{\infty}$ satisfying \textbf{square summability} \end{mytheo*}
+			
+			\pause
+			
+			\vspace{20pt}
+			\item[]  Can derive mean, variance and covariances of a stationary process by finding its MA($\infty$) form and using general formulas for mean, variance and covariance of an MA($\infty$)
+			
+			
+			\vspace{20pt}
+			\item[] We use this method for the stationary AR(1) process (see \textbf{Lecture Notes 1})
+		\end{itemize}
+		
+	\end{frame}
+		
+
+			
+			
+		
+
+		
+			
+			
+			
+			
+			\section{Moments ARMA Processes and Stationarity Conditions}
+			
+			
+			\begin{frame}
+				
+				\frametitle{Moments of MA(1) Process}
+				\begin{itemize}
+		      \item[] Unless stated otherwise  $\mathcal{T}=\{\cdots,-1,0,1,\cdots\}$ and $\{\varepsilon _{t} : t \in \mathcal{T}\}$ is WN($\sigma^{2})$
+		      	\vspace{17pt}\pause
+		\item[]		\mybox{\textbf{MA(1):} \hspace{9pt}$
+				Y_t=\alpha +\varepsilon _{t}+\theta_{1}\varepsilon
+				_{t-1}$}
+				\vspace{17pt}\pause
+			\item[]\hspace{10pt} \makebox[2cm]{$\mathbb{E}[Y_t]=\alpha$\hfill} $\forall$ $ t \in \mathcal{T}$
+				\vspace{27pt}
+		\pause
+		\item[]\hspace{10pt}	$\gamma(k)=\left\{
+			\begin{array}{lr}
+			\sigma^{2}(1+\theta_1^2)   &  k =0\\
+			\sigma^2\theta_1 &  |k|=1		\\
+			0 & \textrm{otherwise}
+			\end{array}\right.$
+				\pause \hspace{10pt}	$\Rrightarrow \qquad\rho(k)=\left\{
+				\begin{array}{lr}
+				1  &  k =0\\
+				\theta_1/(1+\theta_1^2) &  |k|=1		\\
+				0 & \textrm{otherwise}
+				\end{array}\right.$
+				
+				
+				
+				
+		
+					\end{itemize}
+			\end{frame}
+
+
+
+
+\begin{frame}
+	\frametitle{Moments of AR(1) Process}
+	\begin{itemize}
+		
+		\item[]    \mybox{\textbf{AR(1):} \hspace{9pt} $Y_t=\alpha+ \phi_1Y_{t-1}+\varepsilon_t$}
+		
+			\vspace{5pt}
+		\pause 	
+		\item[] \hspace{13pt} $Y_t$ has \textbf{recursive} structure 
+			\vspace{10pt}
+		\pause 	
+		\item[] \hspace{13pt} $Y_t=\alpha(1+\phi_1+\cdots+ \phi_1^{j})+ \phi_1^{j+1}Y_{t-(j+1)}+\phi_1^j\varepsilon_{t-j}+ \phi_1^{j-1}\varepsilon_{t-j+1}+\cdots+\varepsilon_t $
+			\vspace{25pt}
+		\pause 	
+		\item[] $|\phi_1|\geq 1$ $\Rrightarrow$ $Y_t$ has unbounded variance and  $\{Y_t\}$  is \textbf{non-stationary}
+		
+			\vspace{10pt}
+		\pause 	
+		\item[] $|\phi_1|< 1$ $\Rrightarrow$  $\{Y_t\}$ is \textbf{stationary} with first and second moments...
+			\vspace{20pt}
+		\item[] \hspace{23pt}\makebox[2cm]{$\mathbb{E}[Y_t]=\frac{\alpha}{1-\phi_{1}}$\hfill}
+			\vspace{20pt}
+		\pause 	
+		\item[]  \hspace{23pt}\makebox[2cm]{$\gamma(k)=\phi _{1}^{k}\frac{\sigma ^{2}}{1-\phi_1^2}$\hfill} $\;\;\;\;\;\;\forall$ $k \in \mathcal{T},\qquad$ \pause 
+			\vspace{10pt}
+		\item[] \hspace{23pt}\makebox[2cm]{$\rho(k)=\phi_1^k$\hfill} $\;\;\;\;\;\;\forall$ $k \in \mathcal{T}.$ 
+		\vspace{-4.5cm} \hspace{5cm}
+			\begin{figure}
+			
+			\subfloat{\label{du2}  \hspace{-1cm}
+				\begin{minipage}{\columnwidth}\footnotesize
+					\centering
+				
+					\qquad\qquad\qquad	\qquad\qquad\qquad
+					\subsubfloat{ \hypertarget{ar1}{\zoombox{\includegraphics[width=6.5cm, height=4cm]{ar1acf}}}}{}%
+					
+					{}\end{minipage}}
+		\end{figure}
+	\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}
+	\frametitle{Moments of other ARMA Processes}
+	\begin{itemize}
+		\large 
+		\item[] \textbf{Lecture Notes 1} \& (\textbf{H} pp. 50-51) derive MA(q) autocovariance fn.
+			\vspace{15pt}
+		\pause 
+		\item[] \textbf{Exercise 1} asks you to do the same for ARMA(1,1)
+			\vspace{25pt}
+		\pause 
+		\item[] MA(q) always stationary - \textit{models with an AR component may not be}
+			\vspace{25pt}
+		\pause 
+	
+		\pause 
+		\item[] A  useful tool to study properties of ARMA(p,q)  is the \textit{lag operator}...
+		
+		
+		\end{itemize}
+\end{frame}
+	
+		
+		\begin{frame}
+			\frametitle{Lag Operator}
+			
+			\begin{itemize}
+				\item[] \begin{mydef*}[width=2.5in]{Lag Operator}The Lag Operator $L$ satisfies
+					\begin{equation*} LY_t=Y_{t-1}   \qquad \textrm{for any t} \end{equation*} \end{mydef*}
+				
+				
+				
+				\pause
+			\end{itemize}\begin{center}
+				\mybox{\textbf{Important Property}: L `behaves' like Polynomial}	
+			\end{center}
+			\pause
+	
+			
+			\vspace{-0.5cm}
+			
+			\begin{minipage}{.5\linewidth}
+				\begin{eqnarray*}
+				{\color{red}	(1-L)(1+L)Y_t} &=&(1-L)(Y_t+LY_t)\\ \pause
+					&=&(1-L)(Y_t+Y_{t-1})\\\pause
+					&=&(Y_t+Y_{t-1})-L(Y_t+Y_{t-1})\\\pause
+					&=& (Y_t+Y_{t-1})-Y_{t-1} -Y_{t-2}\\\pause
+					&=&Y_{t}-Y_{t-2}
+				\end{eqnarray*}
+			\end{minipage}\pause
+			\begin{minipage}{.5\linewidth}\vspace{-2cm}
+				\begin{eqnarray*}
+						{\color{red}(1-L^2)Y_t} &=& Y_t-L^2 Y_{t}\\\pause
+					&=& Y_t-Y_{t-2} 		\end{eqnarray*}
+			\end{minipage}
+			
+			
+		\end{frame}
+
+\begin{frame}
+	\frametitle{Intuition for Stationarity Condition in AR(p) for p=2}
+	\begin{itemize}
+		\item[] \begin{center}  $Y_t=\alpha+ \phi_1Y_{t-1}+\phi_2 Y_{t-2}+\varepsilon_t \quad \Leftrightarrow \quad  (1-\phi_1L-\phi_2L^2)Y_t=\alpha+\varepsilon_t $
+			\vspace{26pt} \pause
+			\item[]$ (1-\phi_1L-\phi_2L^2)Y_t=(1-\lambda_1L)(1-\lambda_2L)Y_t $ 
+			\vspace{10pt} \pause	\item[]  \begin{figure} \subfloat{\mybox{
+						$Y_t=(1-\lambda_1L)^{-1}(1-\lambda_2L)^{-1}(\alpha+\varepsilon_t)$}} \subfloat{\myboxxx{Require $|\lambda_1|<1$ \textbf{and} $|\lambda_2|<1$ for \textbf{stationarity}}} \end{figure}
+		\end{center}
+	\large\pause
+		\vspace{26pt}\pause
+		\item[] Suppose not and  $\lambda_2=1$  \begin{eqnarray*} (1-\lambda_1L)Y_t&=&(1-L)^{-1}(\alpha+\varepsilon_t)\\
+			&=& (1+L+L^2+ \cdots)(\alpha+\varepsilon_t) \end{eqnarray*}
+			\vspace{10pt}\pause
+		\item[] Unbounded variance (and mean when $\alpha \neq 0$)
+		
+		
+		
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{Stationarity Condition in  General AR(p)}
+	\begin{itemize}
+		\item[] \begin{center}  $Y_t=\alpha+ \phi_1Y_{t-1}+ \cdots+ \phi_p Y_{t-p}+\varepsilon_t \quad \Leftrightarrow \quad  (1-\phi_1L-\cdots\phi_pL^p)Y_t=\alpha+\varepsilon_t $
+			\vspace{46pt} \pause
+			\item[]$ (1-\phi_1L-\cdots-\phi_pL^p)Y_t=(1-\lambda_1L)\times\cdots \times (1-\lambda_p)Y_t $ \pause
+			\vspace{40pt} 	\item[]  \begin{figure} \subfloat{\mybox{
+						$Y_t=(1-\lambda_1L)^{-1}\times \cdots \times (1-\lambda_p L)^{-1}(\alpha+\varepsilon_t)$}} \subfloat{\myboxxx{ $|\lambda_j|<1$ for $j=\{1,\cdots,p\}$  for \textbf{stationarity}}} \end{figure}
+		\end{center}
+		
+	
+\end{itemize}
+\end{frame}
+
+			\begin{frame}
+	\frametitle{Main Reading}
+	\begin{itemize}
+		
+		
+		\item[] \textbf{Hamilton} 
+		\item[] \textbf{[1]} Recap of difference equations and some useful (matrix) algebra. (Omit part on $p$th order diff. equations with repeated roots (p. 18/19). Appendix 1A optional)
+		\item[] \textbf{[2.1]} Realisation of a time series process and the lag operator
+		\item[] \textbf{[2.2]} Recursion using lag operator for first order difference series
+		\item[]  \textbf{[2.3]} Second order difference series (useful for studying properties of AR(2) models)
+		\item[] \textbf{[3.1]} Expectations and stochastic processes (gives more detail on what we discussed at the start of lecture)
+		\item[] \textbf{[3.2]} White noise processes
+		\item[]\textbf{[3.3]} Moving average processes (derives mean, variance and autocovariance/correlation functions of MA(q) and MA($\infty$) models and discussion of the absolute/squared summability conditions.)
+		\item[] \textbf{[3.4]} Properties and stationarity conditions for AR(p) models
+		\item[] \textbf{[3.5]} ARMA processes
+		\item[] \textbf{[3.7]} Invertibility of MA processes (we did not have time to cover this in lecture but it is examinable and I shall make a video clip discussing this)
+		
+		
+		\vspace{20pt}
+		\item[] \textbf{Lecture Notes 1 }(available on Moodle)
+		
+\end{itemize}\end{frame}
+
+
+			\section{Next Week}
+			
+			\begin{frame}
+				\frametitle{Next Week- Estimation and Inference}
+				\normalsize
+				\begin{itemize}
+					
+
+			
+			
+			\vspace{25pt}
+					\item[] Sample estimation of first/second moments of a process
+						\vspace{25pt}
+						\item[] Study their asymptotic (large sample) properties
+				
+				
+					\vspace{25pt}
+					\item[] Maximum likelihood estimation of ARMA models and testing
+					
+					
+				\end{itemize}
+			\end{frame}
+		
+		
+		
+		\end{document} 

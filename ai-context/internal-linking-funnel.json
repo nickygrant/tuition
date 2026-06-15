@@ -1,0 +1,342 @@
+{
+  "purpose": "Internal linking funnel connecting free resources, credentials and research evidence to the primary tutoring/service pages.",
+  "primaryConversionPages": [
+    "https://www.drnickygrant.com/econometrics-tutor.html",
+    "https://www.drnickygrant.com/a-level-maths-tutor.html",
+    "https://www.drnickygrant.com/a-level-economics-tutor.html",
+    "https://www.drnickygrant.com/tmua-preparation.html",
+    "https://www.drnickygrant.com/oxbridge-economics-tutor.html",
+    "https://www.drnickygrant.com/university-economics-tutor.html",
+    "https://www.drnickygrant.com/statistics-tutor.html",
+    "https://www.drnickygrant.com/finance-tutor.html",
+    "https://www.drnickygrant.com/financial-econometrics-tutor.html",
+    "https://www.drnickygrant.com/phd-econometrics-tutor.html"
+  ],
+  "resourceToServiceRoutes": {
+    "blog/what-is-ols-ordinary-least-squares.html": [
+      {
+        "label": "Econometrics tuition",
+        "url": "https://www.drnickygrant.com/econometrics-tutor.html",
+        "reason": "OLS, regression assumptions, inference, diagnostics and coursework help."
+      },
+      {
+        "label": "Statistics tuition",
+        "url": "https://www.drnickygrant.com/statistics-tutor.html",
+        "reason": "Regression, p-values, confidence intervals and data interpretation."
+      },
+      {
+        "label": "Free econometrics notes",
+        "url": "https://www.drnickygrant.com/teaching.html",
+        "reason": "Lecture notes and exercises covering OLS and applied econometrics."
+      }
+    ],
+    "blog/hypothesis-testing-explained.html": [
+      {
+        "label": "Statistics tuition",
+        "url": "https://www.drnickygrant.com/statistics-tutor.html",
+        "reason": "Hypothesis tests, p-values, confidence intervals and t-tests."
+      },
+      {
+        "label": "Econometrics tuition",
+        "url": "https://www.drnickygrant.com/econometrics-tutor.html",
+        "reason": "Regression inference, robust standard errors and model testing."
+      },
+      {
+        "label": "University economics tuition",
+        "url": "https://www.drnickygrant.com/university-economics-tutor.html",
+        "reason": "Quantitative methods for economics modules and dissertations."
+      }
+    ],
+    "blog/time-series-econometrics-guide.html": [
+      {
+        "label": "Econometrics tuition",
+        "url": "https://www.drnickygrant.com/econometrics-tutor.html",
+        "reason": "Stationarity, ARMA models, forecasting and applied time series."
+      },
+      {
+        "label": "Financial econometrics tuition",
+        "url": "https://www.drnickygrant.com/financial-econometrics-tutor.html",
+        "reason": "Returns, volatility, ARMA/GARCH and empirical finance."
+      },
+      {
+        "label": "Free time series notes",
+        "url": "https://www.drnickygrant.com/teaching.html",
+        "reason": "Downloadable time-series econometrics notes and problem sets."
+      }
+    ],
+    "blog/time-series-econometrics-part2.html": [
+      {
+        "label": "Econometrics tuition",
+        "url": "https://www.drnickygrant.com/econometrics-tutor.html",
+        "reason": "ARMA, stationarity, lag operators and model selection."
+      },
+      {
+        "label": "Financial econometrics tuition",
+        "url": "https://www.drnickygrant.com/financial-econometrics-tutor.html",
+        "reason": "ARMA/GARCH and volatility modelling for finance."
+      },
+      {
+        "label": "PhD econometrics support",
+        "url": "https://www.drnickygrant.com/phd-econometrics-tutor.html",
+        "reason": "More advanced time series, asymptotics and methods chapters."
+      }
+    ],
+    "blog/ar-arma-processes-explained.html": [
+      {
+        "label": "Econometrics tuition",
+        "url": "https://www.drnickygrant.com/econometrics-tutor.html",
+        "reason": "AR, MA and ARMA processes explained and applied."
+      },
+      {
+        "label": "Financial econometrics tuition",
+        "url": "https://www.drnickygrant.com/financial-econometrics-tutor.html",
+        "reason": "Time series models for returns and volatility."
+      },
+      {
+        "label": "Free lecture notes",
+        "url": "https://www.drnickygrant.com/teaching.html",
+        "reason": "ARMA and time-series PDFs, exercises and solutions."
+      }
+    ],
+    "blog/reading-the-correlogram.html": [
+      {
+        "label": "Econometrics tuition",
+        "url": "https://www.drnickygrant.com/econometrics-tutor.html",
+        "reason": "Correlograms, ACF, Ljung-Box and model diagnostics."
+      },
+      {
+        "label": "Financial econometrics tuition",
+        "url": "https://www.drnickygrant.com/financial-econometrics-tutor.html",
+        "reason": "Model selection for financial return series."
+      },
+      {
+        "label": "GARCH guide",
+        "url": "https://www.drnickygrant.com/garch-volatility-explained.html",
+        "reason": "Next step after ARMA diagnostics: conditional volatility."
+      }
+    ],
+    "blog/garch-volatility-explained.html": [
+      {
+        "label": "Financial econometrics tuition",
+        "url": "https://www.drnickygrant.com/financial-econometrics-tutor.html",
+        "reason": "GARCH, volatility, returns, MLE and forecasting."
+      },
+      {
+        "label": "Finance tuition",
+        "url": "https://www.drnickygrant.com/finance-tutor.html",
+        "reason": "Quantitative finance and empirical asset-pricing support."
+      },
+      {
+        "label": "Econometrics tuition",
+        "url": "https://www.drnickygrant.com/econometrics-tutor.html",
+        "reason": "Time series, maximum likelihood and diagnostics."
+      }
+    ],
+    "blog/hardest-further-maths-topics.html": [
+      {
+        "label": "A Level Maths tuition",
+        "url": "https://www.drnickygrant.com/a-level-maths-tutor.html",
+        "reason": "Further Maths topics, proof, calculus, complex numbers and matrices."
+      },
+      {
+        "label": "TMUA preparation",
+        "url": "https://www.drnickygrant.com/tmua-preparation.html",
+        "reason": "Mathematical reasoning, logic, functions and timed problem solving."
+      },
+      {
+        "label": "Oxbridge Economics preparation",
+        "url": "https://www.drnickygrant.com/oxbridge-economics-tutor.html",
+        "reason": "Quantitative economics admissions support."
+      }
+    ],
+    "blog/cambridge-economics-interview-guide.html": [
+      {
+        "label": "Oxbridge Economics preparation",
+        "url": "https://www.drnickygrant.com/oxbridge-economics-tutor.html",
+        "reason": "Interview preparation, economic reasoning and mathematical discussion."
+      },
+      {
+        "label": "TMUA preparation",
+        "url": "https://www.drnickygrant.com/tmua-preparation.html",
+        "reason": "Logic, proof, timing and mathematical reasoning."
+      },
+      {
+        "label": "A Level Economics tuition",
+        "url": "https://www.drnickygrant.com/a-level-economics-tutor.html",
+        "reason": "Micro, macro, diagrams and essay preparation."
+      }
+    ],
+    "blog/oxbridge-economics-interview-questions-worked.html": [
+      {
+        "label": "Oxbridge Economics preparation",
+        "url": "https://www.drnickygrant.com/oxbridge-economics-tutor.html",
+        "reason": "Mock interviews, worked questions and admissions strategy."
+      },
+      {
+        "label": "TMUA preparation",
+        "url": "https://www.drnickygrant.com/tmua-preparation.html",
+        "reason": "Mathematical reasoning for economics applicants."
+      },
+      {
+        "label": "A Level Economics tuition",
+        "url": "https://www.drnickygrant.com/a-level-economics-tutor.html",
+        "reason": "Subject depth beyond the syllabus."
+      }
+    ],
+    "blog/economics-personal-statement-guide.html": [
+      {
+        "label": "Oxbridge Economics preparation",
+        "url": "https://www.drnickygrant.com/oxbridge-economics-tutor.html",
+        "reason": "Personal statement, interview and economics-reading preparation."
+      },
+      {
+        "label": "A Level Economics tuition",
+        "url": "https://www.drnickygrant.com/a-level-economics-tutor.html",
+        "reason": "Strengthen micro, macro, diagrams and evaluation."
+      },
+      {
+        "label": "Choosing a tutor",
+        "url": "https://www.drnickygrant.com/choosing-an-economics-tutor.html",
+        "reason": "How to check fit, credentials and subject specialism."
+      }
+    ],
+    "econometrics-explained.html": [
+      {
+        "label": "Econometrics tuition",
+        "url": "https://www.drnickygrant.com/econometrics-tutor.html",
+        "reason": "Work from topic map to targeted 1-1 sessions."
+      },
+      {
+        "label": "PhD econometrics support",
+        "url": "https://www.drnickygrant.com/phd-econometrics-tutor.html",
+        "reason": "Advanced GMM, IV, asymptotics and methods support."
+      },
+      {
+        "label": "Free econometrics notes",
+        "url": "https://www.drnickygrant.com/teaching.html",
+        "reason": "University-level PDFs, exercises and solutions."
+      }
+    ],
+    "teaching.html": [
+      {
+        "label": "Econometrics tuition",
+        "url": "https://www.drnickygrant.com/econometrics-tutor.html",
+        "reason": "Turn the free notes into targeted support for your module."
+      },
+      {
+        "label": "Financial econometrics tuition",
+        "url": "https://www.drnickygrant.com/financial-econometrics-tutor.html",
+        "reason": "Time series, GARCH and finance applications."
+      },
+      {
+        "label": "PhD econometrics support",
+        "url": "https://www.drnickygrant.com/phd-econometrics-tutor.html",
+        "reason": "Advanced methods, identification and thesis support."
+      }
+    ],
+    "research.html": [
+      {
+        "label": "Econometrics tuition",
+        "url": "https://www.drnickygrant.com/econometrics-tutor.html",
+        "reason": "Research-backed help with GMM, IV, time series and inference."
+      },
+      {
+        "label": "PhD econometrics support",
+        "url": "https://www.drnickygrant.com/phd-econometrics-tutor.html",
+        "reason": "Identification, asymptotics, methods chapters and research design."
+      },
+      {
+        "label": "Credentials verification",
+        "url": "https://www.drnickygrant.com/credentials.html#research-evidence",
+        "reason": "External profiles, papers, PDFs and seminar evidence."
+      }
+    ],
+    "credentials.html": [
+      {
+        "label": "Econometrics tuition",
+        "url": "https://www.drnickygrant.com/econometrics-tutor.html",
+        "reason": "Use the research/teaching evidence for advanced econometrics support."
+      },
+      {
+        "label": "University economics tuition",
+        "url": "https://www.drnickygrant.com/university-economics-tutor.html",
+        "reason": "Undergraduate and MSc economics, statistics and dissertation support."
+      },
+      {
+        "label": "Book a consultation",
+        "url": "https://www.drnickygrant.com/index.html#contact",
+        "reason": "Send level, module, topic and timescale."
+      }
+    ],
+    "about.html": [
+      {
+        "label": "Credentials verification",
+        "url": "https://www.drnickygrant.com/credentials.html",
+        "reason": "CV, Cambridge qualifications and external academic profiles."
+      },
+      {
+        "label": "Tutoring subjects",
+        "url": "https://www.drnickygrant.com/services.html",
+        "reason": "Choose the right route by subject and level."
+      },
+      {
+        "label": "Book a consultation",
+        "url": "https://www.drnickygrant.com/index.html#contact",
+        "reason": "Send level, topic and current deadline."
+      }
+    ],
+    "blog.html": [
+      {
+        "label": "Econometrics tuition",
+        "url": "https://www.drnickygrant.com/econometrics-tutor.html",
+        "reason": "OLS, IV, GMM, panel data and time series support."
+      },
+      {
+        "label": "A Level Maths tuition",
+        "url": "https://www.drnickygrant.com/a-level-maths-tutor.html",
+        "reason": "Maths, Further Maths and quantitative reasoning."
+      },
+      {
+        "label": "Oxbridge Economics preparation",
+        "url": "https://www.drnickygrant.com/oxbridge-economics-tutor.html",
+        "reason": "Interview, TMUA and application preparation."
+      }
+    ],
+    "questions.html": [
+      {
+        "label": "Services",
+        "url": "https://www.drnickygrant.com/services.html",
+        "reason": "Find the relevant subject route."
+      },
+      {
+        "label": "Pricing",
+        "url": "https://www.drnickygrant.com/pricing.html",
+        "reason": "See how sessions work and typical rates."
+      },
+      {
+        "label": "Book a consultation",
+        "url": "https://www.drnickygrant.com/index.html#contact",
+        "reason": "Ask about level, topic and availability."
+      }
+    ],
+    "choosing-an-economics-tutor.html": [
+      {
+        "label": "Econometrics tuition",
+        "url": "https://www.drnickygrant.com/econometrics-tutor.html",
+        "reason": "Specialist econometrics support."
+      },
+      {
+        "label": "University economics tuition",
+        "url": "https://www.drnickygrant.com/university-economics-tutor.html",
+        "reason": "Undergraduate and MSc economics help."
+      },
+      {
+        "label": "Credentials",
+        "url": "https://www.drnickygrant.com/credentials.html",
+        "reason": "Verify CV, qualifications and academic evidence."
+      }
+    ]
+  },
+  "semanticScholarUrl": "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351",
+  "videoPolicy": "Teaching videos are listed on teaching.html#teaching-videos, not research.html."
+}

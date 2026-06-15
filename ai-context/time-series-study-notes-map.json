@@ -1,0 +1,27 @@
+{
+  "public_pages_created": 0,
+  "notes_updated": [
+    "blog/time-series-econometrics-guide.html",
+    "blog/reading-the-correlogram.html",
+    "blog/ar-arma-processes-explained.html",
+    "blog/time-series-econometrics-part2.html"
+  ],
+  "source_material": [
+    "ECON30401_2016_notes(1).tex",
+    "2.zip images",
+    "existing EC5221 TeX notes"
+  ],
+  "concept_links": {
+    "correlogram": "blog/reading-the-correlogram.html",
+    "stationarity": "blog/time-series-econometrics-guide.html#stationarity",
+    "white noise": "blog/time-series-econometrics-guide.html#white-noise",
+    "autocorrelation": "blog/time-series-econometrics-guide.html#acf",
+    "MA processes": "blog/ar-arma-processes-explained.html#ma1",
+    "AR processes": "blog/ar-arma-processes-explained.html#ar1",
+    "ARMA processes": "blog/ar-arma-processes-explained.html#arma11",
+    "lag operator": "blog/time-series-econometrics-part2.html#lag-operator",
+    "Wold decomposition": "blog/time-series-econometrics-part2.html#wold",
+    "prediction": "blog/time-series-econometrics-part2.html#prediction",
+    "seasonality": "blog/time-series-econometrics-part2.html#seasonality"
+  }
+}

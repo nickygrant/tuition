@@ -1,0 +1,21 @@
+{
+  "routes": {
+    "A-Level & Admissions": [
+      "exam board",
+      "year group",
+      "current grade",
+      "target grade",
+      "exam date",
+      "difficult topics"
+    ],
+    "University & Postgraduate": [
+      "module title",
+      "degree level",
+      "topic list",
+      "deadline",
+      "software/dataset if relevant",
+      "specific issue"
+    ]
+  },
+  "booking_policy": "The consultation is free. The rate is confirmed before any paid session is booked. Sessions are booked per session with no upfront commitment."
+}

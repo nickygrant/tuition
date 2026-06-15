@@ -1,0 +1,42 @@
+{
+  "primaryPurpose": "student acquisition for specialist online tutoring",
+  "mainStudentRoutes": [
+    "/services.html",
+    "/econometrics-tutor.html",
+    "/a-level-maths-tutor.html",
+    "/tmua-preparation.html",
+    "/oxbridge-economics-tutor.html",
+    "/index.html#contact"
+  ],
+  "verificationRoutes": [
+    "/credentials.html",
+    "/credentials.html#external-verification",
+    "/credentials.html#research-evidence",
+    "/research.html",
+    "/teaching.html"
+  ],
+  "evidenceHierarchy": [
+    "service pages",
+    "credentials hub",
+    "research evidence",
+    "teaching/free resources"
+  ],
+  "identitySignals": [
+    "ORCID",
+    "CeMMAP/IFS",
+    "St Andrews",
+    "LinkedIn",
+    "YouTube",
+    "Academia.edu"
+  ],
+  "researchSignals": [
+    "Springer",
+    "IDEAS/RePEc",
+    "CeMMAP/IFS working papers",
+    "Emerald",
+    "Academia.edu paper pages",
+    "local PDFs and seminar slides"
+  ],
+  "semanticScholarUrl": "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351",
+  "videoPolicy": "Teaching videos are listed on teaching.html#teaching-videos, not research.html."
+}

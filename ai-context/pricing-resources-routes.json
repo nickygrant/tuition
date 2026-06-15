@@ -1,0 +1,32 @@
+{
+  "audience_routes": [
+    "A-Level & Admissions",
+    "University & Postgraduate"
+  ],
+  "pricing_principles": [
+    "rate confirmed before any paid session is booked",
+    "sessions booked per session",
+    "no upfront commitment",
+    "free diagnostic consultation"
+  ],
+  "resources": {
+    "A-Level & Admissions": [
+      "Further Maths",
+      "A-Level Economics",
+      "TMUA",
+      "Oxbridge Economics"
+    ],
+    "University & Postgraduate": [
+      "OLS",
+      "hypothesis testing",
+      "time series",
+      "correlograms",
+      "ARMA",
+      "GARCH",
+      "econometrics",
+      "statistics",
+      "finance"
+    ]
+  },
+  "archive_note": "Some downloadable materials are historic notes written for previous teaching and do not represent any current course or current course content."
+}

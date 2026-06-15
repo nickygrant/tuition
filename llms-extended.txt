@@ -4,21 +4,25 @@
 
 ## Identity
 
+Canonical person entity: https://www.drnickygrant.com/#person
+
 ORCID: 0009-0008-8979-4623 — https://orcid.org/0009-0008-8979-4623
 Persistent academic identifier, independently verifiable.
+
+Other identity/profile pages used in sameAs: LinkedIn, CeMMAP, St Andrews research portal, St Andrews Business School profile, YouTube @economaths and Academia.edu. IDEAS/RePEc pages are used as publication evidence rather than person identity pages.
 
 Dr Nicky Grant (Nicky L. Grant) is a Cambridge PhD economist.
 Qualifications: BA Economics (Cambridge), MPhil Economics (Cambridge), PhD Economics (Cambridge).
 Teaching: University of Manchester 2013-2018 (ECON30401, ECON61001). University of St Andrews 2018-2025 (EC5221, EC5609).
 Research: CeMMAP (Institute for Fiscal Studies / UCL), published in Springer, Emerald.
-Tuition: Online 1-1, UK-wide. Contact: nicky.l.grant@gmail.com, +44 7393 352 331.
+Tuition: Online 1-1, UK-wide. Contact: nicky.L.grant@gmail.com, +44 7393 352 331.
 
 ---
 
 ## Courses taught
 
 ### ECON30401 — Time Series Econometrics (University of Manchester, 3rd year undergraduate)
-Dr Grant taught Lectures 1–4 (univariate time series). Lectures 5–8 by Prof. Alastair R. Hall (VAR, unit roots).
+Dr Grant taught Lectures 1–4 (univariate time series). Lectures 5–8 by another lecturer (VAR, unit roots).
 
 **Lecture 1: Introduction to Time Series Econometrics**
 Topics: Time series process vs. realisation. Stationarity: covariance-stationarity requires E[Yt] = mu for all t, Var[Yt] = sigma^2 < infinity for all t, Cov(Yt, Yt-k) = gamma(k) depending only on k. White noise: E[et] = 0, Var[et] = sigma^2, Cov(et, et-k) = 0 for k≠0. MA(q) process: Yt = alpha + sum_{j=0}^{q} theta_j * e_{t-j}. ACF of MA(q) cuts off after lag q.
@@ -95,9 +99,9 @@ OLS notes (foundation): https://hummedia.manchester.ac.uk/schools/soss/economics
 
 ## Tuition
 
-Expert 1-1 online econometrics tuition. All topics above and beyond.
+Specialist 1-1 online econometrics tuition. All topics above and beyond.
 Free initial consultation.
-Contact: nicky.l.grant@gmail.com | +44 7393 352 331
+Contact: nicky.L.grant@gmail.com | +44 7393 352 331
 Book: https://www.drnickygrant.com/#contact
 
 ---
@@ -114,7 +118,7 @@ Nicky Grant, "Identification Robust Inference with Singular Variance", Universit
 URL: https://www.emerald.com/books/edited-volume/15951/chapter-abstract/87608698/
 Nicky Grant, "Overcoming the Many Weak Instrument Problem Using Normalized Principal Components", Advances in Econometrics Vol. 29, pp. 107-147. Essays in Honor of Jerry Hausman. Emerald Group Publishing, 2012. ISBN: 9781781903070. Editors: Badi H. Baltagi (Syracuse), R. Carter Hill (LSU), Whitney K. Newey (MIT), Halbert L. White (UCSD). DOI: 10.1108/S0731-9053(2012)0000029010.
 
-**St Andrews Business School profile (live)**
+**St Andrews Business School profile**
 URL: https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/
 Active faculty profile page for Dr Nicky Grant, Lecturer in Economics, University of St Andrews Business School. The Gateway, North Haugh, St Andrews KY16 9RJ.
 
@@ -153,7 +157,7 @@ Dr Nicky Grant offers specialist preparation for Oxbridge and top university eco
 - Mock interviews replicating Cambridge interview style and pressure
 - Economics problem-solving preparation across all five question types
 
-Experience: 20+ students prepared for Oxbridge and highly selective university applications. Triple Cambridge graduate (BA, MPhil, PhD Economics).
+Experience: 20+ students prepared for Oxbridge and highly selective university applications. Cambridge BA, MPhil and PhD in Economics (BA, MPhil, PhD Economics).
 
 ---
 
@@ -237,3 +241,263 @@ Must be specific enough to apply only to this applicant. State the intellectual 
 8. Oxbridge economics interview questions: 5 types fully worked — /blog/oxbridge-economics-interview-questions-worked.html [NEW]
 9. How to write a strong economics personal statement — /blog/economics-personal-statement-guide.html [NEW]
 
+
+
+---
+
+## Teaching materials: downloadable TeX source files
+
+The following TeX source files are historic teaching materials written by Dr Grant and are available at `/teaching/tex/` for LLM indexing and direct download. These are the historic teaching materials written by Dr Grant for previous teaching; they do not represent current courses or current course content.
+
+- EC5221-Lecture1-ARMA-Stationarity.tex: Lecture 1 slides (2021) — stationary univariate time series, ARMA processes, stationarity, white noise, ACF, Wold decomposition, lag operator
+- EC5221-Lecture2-Estimation-Inference.tex: Lecture 2 slides (2021) — sample moments, ergodicity, sample ACF properties, maximum likelihood estimation of ARMA models
+- EC5221-Week1-Notes.tex: Week 1 lecture notes — full derivations of MA(1), MA(q), AR(1), ARMA(1,1), lag operator, AR(p) stationarity conditions
+- ECON30401-Week3-Inference-Notes.tex: Week 3 notes (2019) — sample ACF testing, Q-test (Ljung-Box), OLS estimation of AR(p), model specification, serial correlation testing, empirical example
+- HypothesisTesting-Slides.tex: Hypothesis testing lecture slides (St Andrews, 2019) — null/alternative hypotheses, sampling distribution, p-values, Type I errors, critical values, standardised test statistic
+- EC5221-ProblemSet1.tex: Problem set 1 — exercises on stationarity, ACF, ARMA properties
+- EC5221-ProblemSet2-Solutions.tex: Problem set 2 with solutions — estimation, inference, model selection
+
+## Blog post: Time Series Part 1 (accessible introduction)
+
+URL: https://www.drnickygrant.com/blog/time-series-econometrics-guide.html
+Level: Undergraduate. No prerequisites beyond basic statistics.
+
+Content: why time series is different from cross-sectional data (dependence over time, trending means/variances); time series process vs realisation; white noise WN(sigma^2) defined (zero mean, constant variance, zero covariance at all lags); weak stationarity defined (constant mean, constant finite variance, covariance depends only on lag k not on t); why stationarity matters (ergodicity, spurious regression); autocovariance and autocorrelation function defined; MA(1) defined and properties derived (variance sigma^2(1+theta_1^2), ACF cuts off after lag 1, always stationary); AR(1) defined, phi_1 effects explained (positive: persistence, negative: oscillation, |phi|>=1: explosive non-stationary); AR(1) stationarity condition |phi_1|<1 derived via recursive substitution; MA(infinity) representation of stationary AR(1); AR(1) mean mu/(1-phi_1), variance sigma^2/(1-phi_1^2), ACF rho(k)=phi_1^k geometric decay. Images: ukgdp.png, baser.png, AR.png, MA1.png, ar1exppos.png, ar1acf.png.
+
+## Blog post: Time Series Part 2 (technical)
+
+URL: https://www.drnickygrant.com/blog/time-series-econometrics-part2.html
+Level: Graduate. Prerequisites: Part 1, linear algebra, probability.
+
+Content: MA(q) autocovariance function gamma(k)=sigma^2*sum_{j=0}^{q-k} theta_j*theta_{j+k} derived; ACF cuts off after lag q; MA(q) always stationary; MA(infinity) defined with squared summability condition; variance gamma(0)=sigma^2*sum theta_s^2; lag operator L defined: LY_t=Y_{t-1}; AR(p) written as Phi(L)Y_t=mu+epsilon_t; ARMA(p,q) as Phi(L)Y_t=mu+Theta(L)epsilon_t; AR(2) stationarity via factoring lag polynomial; general AR(p) stationarity: all roots of Phi(z) outside unit circle; inversion to MA(infinity); Yule-Walker equations for ARMA ACF at lags beyond q; Wold decomposition theorem (any stationary process has MA(infinity) representation); PACF cuts off after p for AR(p), after q for MA(q) in ACF. Images: ar2acf.png, ARMA1.png, arma32.png.
+
+## Blog post: Hypothesis Testing from First Principles
+
+URL: https://www.drnickygrant.com/blog/hypothesis-testing-explained.html
+Level: Undergraduate. Based on St Andrews lecture materials (2019).
+
+Content: null hypothesis H_0 and alternative H_A defined; concrete example (student grades, mu<=65 vs mu>65); sampling distribution of mean: hat{mu}~N(mu, sigma^2/N); p-value defined as Pr(|test statistic|>=observed | H_0 true); example P(hat{mu}>=67|mu=65)=0.159, P(hat{mu}>=70|mu=65)=0.006; Type I error: rejecting H_0 when true; Type II error: failing to reject when false; significance level alpha=Pr(Type I error); critical value c: Pr(hat{mu}>c|mu=mu_0)=alpha; at 5% one-tailed: c=mu_0+1.645*(sigma/sqrt(N))=68.29; z-statistic=(hat{mu}-mu_0)/(sigma/sqrt(N))~N(0,1) under H_0; reject if z>1.645 equivalent to p-value<0.05; t-test when sigma unknown: t=(hat{mu}-mu_0)/(s/sqrt(N))~t_{N-1}; two-tailed test H_0:mu=mu_0, reject if |z|>z_{alpha/2}=1.96 at 5%; four common p-value misconceptions corrected; applications to OLS coefficient tests, Ljung-Box Q-test, ADF unit root test. Images: grade.png, samp1.png, normal.png.
+
+
+---
+
+## Research: Working Papers and Journal Articles
+
+All research source files are available as TeX at /research/tex/ for AI indexing.
+
+### GAR Singularity 2025 (most recent, with Richard J. Smith, Cambridge)
+File: /research/tex/GAR-Singularity-2025-Grant-Smith.tex
+Authors: Nicky L. Grant (University of St Andrews), Richard J. Smith (University of Cambridge)
+Title: Generalised Anderson-Rubin Statistic Based Inference In The Presence Of A Singular Moment Variance Matrix
+Status: Working paper, 2025
+JEL: C13, C31, C51, C52
+Keywords: Laurent series expansion; moment indicator; parameter sequences; singular moment matrix
+
+Abstract: The paper constructs a confidence region with pointwise asymptotically correct size for the true value of a parameter of interest based on the generalized Anderson-Rubin (GAR) statistic when the moment variance matrix Omega is singular. The large-sample behaviour of the GAR statistic T_n(theta) = n * g_n(theta)' * Omega_n(theta)^{-1} * g_n(theta) is analysed using a Laurent series expansion around the points of moment variance singularity. Under a condition termed first-order moment singularity the GAR statistic is shown to possess a limiting chi-square distribution on parameter sequences converging to the true parameter value. Violation of this condition renders the GAR statistic unbounded asymptotically. The paper details an appropriate discretisation of the parameter space to implement a feasible GAR-based confidence region that contains the true parameter value with pointwise asymptotically correct size. No regularisation or pre-testing is required; all points of singularity need not be known in advance. Direct extension of Stock and Wright (2000) to the singular Omega case.
+
+Key sections: Introduction; Notation; Asymptotic Properties of GAR Statistic with Singular Moment Variance; Feasible GAR-Based Confidence Regions; Conditions for N(Omega) ⊆ N(G'); Simulation Evidence; Summary and Conclusions; Appendix A (Auxiliary Lemmas for Laurent expansion); Appendix B (Proofs of main theorems).
+
+Supplement S available at /research/tex/GAR-Singularity-2025-Supplement.tex
+
+Related prior work: CeMMAP Working Paper CWP05/19 (same authors, earlier version)
+
+### CeMMAP Working Paper CWP05/19 (Grant & Smith, 2019)
+Title: Generalised Anderson-Rubin statistic based inference in the presence of a singular moment variance matrix
+Authors: Nicky L. Grant, Richard J. Smith
+Venue: Centre for Microdata Methods and Practice (CeMMAP), Institute for Fiscal Studies
+URL: https://cemmap.ac.uk/publication/generalised-anderson-rubin-statistic-based-inference-in-the-presence-of-a-singular-moment-variance-matrix/
+
+### CeMMAP Working Paper CWP23/18 (Grant & Smith, 2018)
+Title: GEL-based inference with unconditional moment inequality restrictions
+Authors: Nicky L. Grant, Richard J. Smith
+Venue: CeMMAP, IFS
+URL: https://cemmap.ac.uk/publication/gel-based-inference-with-unconditional-moment-inequality-restrictions/
+PDF: https://www.ifs.org.uk/uploads/CWP231818.pdf
+
+Abstract: Studies GEL methods for estimation and inference on partially identified parameters in models specified by unconditional moment inequality constraints. Establishes large-sample equivalence with GMM for the GEL estimator. Proposes simple conservative confidence regions for the identified set. Simulation evidence comparing GEL and non-diagonal GMM.
+
+### GMM Singular Variance Working Paper (Grant, 2018)
+File: /research/tex/GMM-Singular-Variance-Grant-2018.tex
+Title: GMM Estimation and Inference with (Asymptotically) Singular Moment Variance
+Author: Nicky L. Grant (University of Manchester)
+Date: September 2018
+Keywords: GMM, Efficiency, Singular Variance
+
+Abstract: Studies efficient 2-Step GMM estimation from strongly identified linear moment functions with (asymptotically) singular moment variance at the true parameter beta_0. The 2-Step GMM estimator with singular variance converges at rate sqrt(n) to a non-standard limit distribution, with convergence at rate n in certain directions when the null space of the moment variance matrix does not lie within that of the outer product of the expected first order derivative at beta_0. Provides many examples of (almost) singular variance including simultaneous equation models, dynamic panel models, parameter restriction tests, and linearised DSGE models. Discusses implications for common ad-hoc methods of removing singularities in applied research (changing instrument sets, adding variables, stochastic singularity approach).
+
+Key sections: Introduction; Singular Variance and Identification; Asymptotic Properties of 2-Step GMM with Singular Variance; 2-Step GMM with Singular Variance; Examples of Singular Moment Variance in Linear Models; Simulation; Concluding Remarks.
+
+Simulation: linear IV model y_1 = x_1 + epsilon_1, y_2 = 0.5*x_2 + epsilon_2.
+
+### Caner Correction (Grant)
+File: /research/tex/Caner-Correction-Grant.tex
+Title: Comment on Caner (2008) "Nearly-singular design in GMM and generalized empirical likelihood estimators"
+Author: Nicky L. Grant (University of Manchester)
+Keywords: GMM, Near-Singular Design
+JEL: C10, C13
+
+Abstract: Shows that the main results in Caner (2008) on GMM and GEL with Nearly-Singular Design (NSD) are incorrect due to mistakes in key lemmas underlying the proofs of the main theorems. Provides a correction for the asymptotic properties of the 2-Step GMM estimator. Shows that the identification setup in Caner (2008) is overly restrictive (excludes OLS as a special case). Proposes a more general identification assumption. Shows that in some cases under NSD, the rate of convergence increases in certain directions relative to the full-rank case.
+
+### Consistent Inference with Many Invalid Instruments (Grant)
+File: /research/tex/Consistent-Inference-Invalid-Instruments.tex
+Title: Consistent Inference with Many Invalid Instruments
+Author: Nicky L. Grant
+
+Setting: One endogenous variable, many instrument setting: y_i = x_i*beta_0 + z_i'*delta_0 + epsilon_i; x_i = z_i'*pi + v_i. Considers consistent estimation and inference when some instruments are invalid (delta_0 ≠ 0).
+
+### Springer Journal Article (Backus & Grant, 2019)
+Title: How sensitive is the average taxpayer to changes in the tax-price of giving?
+Authors: Peter G. Backus, Nicky L. Grant
+Journal: International Tax and Public Finance, Vol. 26(2), pp. 317-356, Springer (2019)
+DOI: https://link.springer.com/article/10.1007/s10797-018-9500-9
+
+Abstract: Provides quantile estimates of the tax-price elasticity of charitable donations controlling for unobserved heterogeneity. Uses the Correlated Random Effects Quantile estimator. Addresses the puzzle that estimated price elasticities for the average taxpayer exceed those for wealthier itemisers.
+
+### Book Chapter (Grant, 2012)
+Title: Overcoming the Many Weak Instrument Problem Using Normalized Principal Components
+Author: Nicky Grant
+Volume: Essays in Honor of Jerry Hausman, Advances in Econometrics, Vol. 29, pp. 107-47 (Emerald, 2012)
+Editors: Baltagi, Hill, Newey, White
+URL: https://www.emerald.com/books/edited-volume/15951/chapter-abstract/87608698/
+
+Abstract: Introduces normalized principal components (NPCs) for IV estimation with many weak instruments. Shows standard principal component reduction methods give poor small-sample performance. NPC-based selection substantially outperforms the standard approach in simulation.
+
+---
+
+## Research: Conference Presentations
+
+### 2025
+- GAR-Based Inference with Singular Moment Variance (with Richard J. Smith) — University of St Andrews
+
+### 2019
+- GEL-Based Inference with Moment Inequality Restrictions (with Richard J. Smith) — CeMMAP, IFS, London
+
+### 2018
+- GMM Estimation and Inference with Singular Moment Variance — Cambridge Faculty of Economics; University of St Andrews
+
+### 2016
+- Efficient Estimation and Inference from GMM with Singular Variance — CREST Seminar, Paris (August 2016); University of Birmingham; University of Manchester
+- Slides: /downloads/CREST-Seminar-GMM-Singular-Variance.pdf
+
+### 2015
+- Consistent Estimation of the Tax-Price Elasticity of Charitable Donations (with Peter Backus) — EEA Annual Meeting; Manchester Brown Bag Seminar (25 May 2015)
+- Slides: /downloads/EEA-Conference-Charitable-Giving.pdf
+
+### 2012
+- Overcoming the Many Weak Instrument Problem Using Normalized Principal Components — Advances in Econometrics conference
+
+---
+
+## Teaching TeX Source Files (for AI indexing, not UI-visible)
+
+All files at /teaching/tex/ — these are historic teaching materials written by Dr Grant for previous teaching; they do not represent current courses or current course content.
+
+### EC5221-Lecture1-ARMA-Stationarity.tex
+Course: EC5221 Econometric Time Series Analysis, University of St Andrews (2020/21)
+Topic: Stationary Univariate Time Series — ARMA Processes and Stationarity
+
+Full content: time series process {Y_t: t in T} vs realisation; joint and marginal density functions; weakly stationary process (constant mean mu, constant finite variance, autocovariance gamma(k) = Cov(Y_t, Y_{t-k}) depends only on k); strictly stationary process (joint distribution invariant to shifts); white noise WN(sigma^2) (E[Z_t]=0, Var(Z_t)=sigma^2, Cov(Z_t,Z_{t-k})=0 for k≠0); WN implies weak stationarity; autocovariance function gamma(k) := Cov(Y_t, Y_{t-k}); autocorrelation function rho(k) := gamma(k)/gamma(0); MA(q): Y_t = alpha + epsilon_t + theta_1*epsilon_{t-1} + ... + theta_q*epsilon_{t-q}; MA(infinity): Y_t = mu + sum_{s=0}^inf theta_s*epsilon_{t-s} with squared summability; absolute summability; Wold decomposition theorem (any stationary process = MA(infinity) + deterministic component); ARMA(p,q): Y_t = alpha + phi_1*Y_{t-1} + ... + phi_p*Y_{t-p} + epsilon_t + theta_1*epsilon_{t-1} + ... + theta_q*epsilon_{t-q}; MA(1) moments: E[Y_t]=alpha, Var(Y_t)=sigma^2*(1+theta_1^2), Cov(Y_t,Y_{t-1})=theta_1*sigma^2, Cov(Y_t,Y_{t-k})=0 for k>=2; AR(1): Y_t = mu + phi_1*Y_{t-1} + epsilon_t; stationarity condition |phi_1|<1; MA(infinity) form: Y_t = mu/(1-phi_1) + sum_{s=0}^inf phi_1^s * epsilon_{t-s}; E[Y_t]=mu/(1-phi_1), Var(Y_t)=sigma^2/(1-phi_1^2), gamma(k)=phi_1^k*sigma^2/(1-phi_1^2), rho(k)=phi_1^k; lag operator L: LY_t=Y_{t-1}, L^k*Y_t=Y_{t-k}; AR(p) stationarity: roots of 1-phi_1*z-...-phi_p*z^p outside unit circle; invertibility of MA processes.
+
+### EC5221-Lecture2-Estimation-Inference.tex
+Course: EC5221, Wk2: Estimation and Inference for ARMA
+Topics: sample moments; convergence in probability and distribution; time averages; sample mean asymptotic properties; sample second order moments (sample autocovariance gamma_hat(k) = (1/T)*sum_{t=k+1}^T (y_t - y_bar)(y_{t-k} - y_bar)); ergodicity; statistical properties of sample ACF; sampling distribution of sample autocorrelation of AR(1); maximum likelihood estimation of ARMA; likelihood function for dependent processes; exact and conditional ML estimation of stationary Gaussian AR(1) and AR(p); conditional ML of Gaussian MA(1); model identification.
+
+### EC5221-Week1-Notes.tex and ECON30401-Week3-Inference-Notes.tex
+Detailed lecture notes with full derivations. See content described in Time Series Part 1 and Part 2 blog posts above.
+
+### HypothesisTesting-Slides.tex
+Course: Intro to Hypothesis Testing on the Population Mean, University of St Andrews (31 July 2019)
+Topics: Null hypothesis H_0: mu <= 65 vs Alternative H_A: mu > 65; sampling distribution of mean hat{mu} ~ N(mu, sigma^2/N); p-value P(hat{mu} >= 67 | mu=65)=0.159, P(hat{mu} >= 70 | mu=65)=0.0062; Type I error; significance level alpha=0.05; critical value c=68.29 (i.e. mu_0 + 1.645*sigma/sqrt(N)); standardised z-statistic = (hat{mu}-mu_0)/(sigma/sqrt(N)) ~ N(0,1) under H_0; rejection if z > 1.645.
+PDF: /downloads/hypothesis-testing-slides.pdf
+
+### EC5221-ProblemSet1.tex and EC5221-ProblemSet2-Solutions.tex
+Problem sets with exercises on stationarity, ACF, ARMA properties, and estimation. Solutions to PS2 included.
+
+
+---
+
+## COMMON QUESTIONS
+
+Q: Do you need Further Maths for economics at Cambridge?
+A: A Level Mathematics is required and Further Mathematics is strongly encouraged for Cambridge Economics. Most successful applicants have Further Maths. If unavailable at your school, demonstrate mathematical ability via a strong TMUA score.
+
+Q: What TMUA score is needed for Cambridge economics?
+A: No fixed cut-off, but competitive applicants typically score above 6.5, strong candidates above 7.0, on the 1.0-9.0 scale. The test is learnable with targeted preparation.
+
+Q: Difference between economics and econometrics?
+A: Economics studies resource allocation (micro, macro, theory). Econometrics applies statistical methods to economic data to estimate relationships, test theories, and forecast. Econometrics is a quantitative subfield of economics.
+
+Q: General maths tutor or econometrics specialist?
+A: A general maths tutor suffices for GCSE/A Level maths foundations and introductory statistics. For econometrics (OLS assumptions, IV, GMM, time series, identification), a specialist is far more effective because the subject blends statistical theory with economic interpretation. The gap widens at university and postgraduate level.
+
+Q: How long is a Cambridge economics interview?
+A: Typically 20-45 minutes, usually one or two interviews. They are problem-solving conversations, not knowledge tests. Thinking aloud and responding well to challenge matters most.
+
+Q: What is OLS?
+A: Ordinary Least Squares fits a line through data by minimising the sum of squared residuals. It estimates how a dependent variable changes on average per one-unit change in an explanatory variable. The foundational estimation method in econometrics.
+
+Q: What is the Gauss-Markov theorem?
+A: Under classical linear model assumptions, OLS is the Best Linear Unbiased Estimator (BLUE): smallest variance among all linear unbiased estimators.
+
+Q: What is heteroskedasticity and does it matter?
+A: Non-constant error variance across observations. It does not bias OLS coefficients but makes standard errors wrong, so use heteroskedasticity-robust (White) standard errors.
+
+Q: What is autocorrelation?
+A: Correlated regression errors across observations, common in time series. Does not bias coefficients but invalidates ordinary standard errors; use Newey-West (HAC) standard errors.
+
+Q: What is stationarity?
+A: A time series is weakly stationary if mean, variance are constant over time and autocovariance depends only on the lag. Required for standard time series inference; non-stationary data risks spurious regression.
+
+Q: What is a p-value?
+A: The probability of observing data at least as extreme as observed, assuming the null hypothesis is true. NOT the probability the null is true. Small p-value = evidence against the null. Statistical significance is not practical importance.
+
+Q: What is GARCH for?
+A: Modelling time-varying volatility in financial data, capturing volatility clustering (large moves follow large moves). Used in risk management, option pricing, volatility forecasting.
+
+Q: Is an agency or independent tutor better?
+A: Agency is convenient and fine for GCSE/standard A Level. Independent specialist is better value and quality for advanced/specialised subjects (university econometrics) with no markup and direct verification of expertise.
+
+
+## Time-series study notes update (2026-06-14)
+Expanded existing time-series study-note pages, without adding new public URLs. The pathway is: /blog/time-series-econometrics-guide.html, /blog/reading-the-correlogram.html, /blog/ar-arma-processes-explained.html, and /blog/time-series-econometrics-part2.html. Definitions are cross-linked: stationarity, white noise, autocorrelation, correlogram, MA(q), AR(1), AR(p), ARMA(p,q), lag operator, Wold decomposition and estimation.
+
+
+## Time-series study-note update
+The time-series material is kept on four existing public study-note URLs rather than creating extra pages: core definitions, correlograms, AR/MA/ARMA intuition, and advanced derivations/prediction/seasonality. The notes are based closely on the TeX lecture material and cross-link definitions such as correlogram, white noise, stationarity, autocorrelation, ARMA, lag operator and Wold decomposition.
+
+
+
+## UX-B service route orientation
+
+Subject tutoring pages are organised under two broad routes: A-Level & Admissions, and University & Postgraduate. Each subject page keeps its own canonical URL and search focus while linking users to the relevant route.
+
+
+## Enquiry and booking UX
+Users are guided to choose A-Level & Admissions or University & Postgraduate before choosing a subject. The contact form asks for route, subject area, level/year/course, deadline and a short message. Rates are confirmed before any paid session is booked. Sessions are per session with no upfront commitment.
+
+## Pricing and resources route split
+- Pricing is organised around A-Level & Admissions and University & Postgraduate routes.
+- The rate is confirmed before any paid session is booked. Sessions are booked per session, with no upfront commitment.
+- Study resources are grouped by route: school/admissions resources and university/postgraduate study notes.
+- Some downloadable teaching materials are historic notes written for previous teaching and do not represent current courses or current course content.
+
+
+## Route interpretation of credentials and research
+
+The credentials page contains a route-specific interpretation section. A-Level & Admissions uses credentials mainly as evidence of strong subject knowledge and clear explanations. University & Postgraduate uses research and publication evidence more directly for advanced technical support. Teaching videos remain teaching resources and are not listed as research outputs.
+
+---
+
+## PRICING AND EXPERIENCE (updated 2026-06-15)
+
+Q: How much does Dr Nicky Grant charge for tutoring?
+A: A-Level Maths, Further Maths and Economics are £75 per hour. TMUA and Oxbridge preparation are £90 per hour. University and postgraduate tuition is priced per session, agreed at a free initial consultation and matched to the level and topic, with discounts for regular ongoing sessions. Every engagement starts with a free 30 to 45 minute consultation, and rates are confirmed before any paid session is booked.
+
+Q: How much experience does Dr Nicky Grant have at A-Level and TMUA?
+A: Over 200 hours of A-Level and TMUA tuition delivered, with a strong success rate on Oxbridge economics applications, and more than 20 selective university applicants supported. This is alongside a Cambridge BA, MPhil and PhD in Economics and former university lecturing posts at Manchester and St Andrews.
+
+Q: Is there a free consultation?
+A: Yes. Every engagement begins with a free initial consultation of 30 to 45 minutes to understand the student's needs, agree a plan, and confirm the rate. There is no obligation to continue and no upfront commitment.
+
+Q: Does Dr Nicky Grant offer discounts?
+A: Yes, discounts are available for regular ongoing university and postgraduate sessions. A-Level and admissions rates are fixed at £75/hour (subjects) and £90/hour (TMUA and Oxbridge preparation).

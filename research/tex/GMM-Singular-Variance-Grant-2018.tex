@@ -1,0 +1,840 @@
+\documentclass[11pt, fleqn]{article}
+
+\usepackage{amsfonts,amssymb,graphics,epsfig,verbatim,bm,latexsym,amsmath,url,amsbsy}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{array}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{threeparttable}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage[width=17cm, bottom=3cm, top=4cm, foot=2cm,
+a4paper]{geometry}
+\usepackage{fancyhdr}
+\setlength{\parindent}{0pt}
+\renewcommand{\baselinestretch}{1.4}
+\begin{document}
+
+\setlength{\parindent}{0pt}
+
+
+\title{   GMM Estimation and Inference with (Asymptotically) Singular Moment Variance}\setlength{\parindent}{0pt}
+
+
+\author{Nicky Grant  \\\\
+ University of Manchester \\}
+
+\date{This Draft: September 2018}
+\maketitle\setlength{\parindent}{0pt}
+
+
+
+\begin{abstract}
+ \small\setlength{\parindent}{0pt}
+
+This paper considers efficient GMM estimation  from linear strongly identified moment functions with  (asymptotically) singular variance  at the true parameter, $\beta_0$.  The 2-Step GMM estimator with singular variance is shown to converge at rate $\sqrt{n}$ to a non-standard limit distribution, with convergence at rate $n$ in  certain directions when the null space of the moment variance matrix does not lie within that of the outer product of the expected  first order derivative at $\beta_0$. Many examples of (almost) singular  are provided along with  cases in which the null space condition does not hold.  The implications for inference of some common methods of removing singularities  employed in applied research are discussed. A simulation study demonstrates the key results of this paper.\\
+
+
+
+\textsc{Keywords:} GMM, Efficiency, Singular Variance.
+
+
+
+
+
+
+
+\end{abstract}
+
+
+\newpage
+
+\section{Introduction}
+
+Moments with  (almost) singular variance at $\beta_0$ are often encountered in econometric research. Common examples include singularity from identification failure in non-linear models (Andrews \& Cheng (2012), Andrews \& Guggenberger (2015), Grant (2013)),  simultaneous equation  and dynamic  panel models  (Arrelano \& Bond (1991), Han \& Phillips (2010)), and  parameter restriction tests under the null, (Andrews (1987), Penaranda \& Sentana (2010), Dufour \& Valery (2011). However the general properties of GMM type estimators with singular variance remain largely undeveloped. Some headway has been made in the case where  singularity arises from identification failure, for example the properties of the Maximum Likelihood estimator with singularity in non-linear models (Melino (1982), Lee \& Chesher (1986), Bottai et al (2003), Andrews \& Cheng (2013)). In most cases where singularity does not arise from identification failure estimation is based on some form of regularised  GMM estimator that removes moment singularity e.g Doran \& Schmidt (2006).  As such the properties of the 2-Step GMM estimator with singular variance  in such cases remain largely unstudied.
+
+
+This paper derives the asymptotic properties of the 2-Step GMM estimator in identified linear models where moment variance singularity may occur at the true parameter, though is non-singular for (small) perturbations from $\beta_0$. In this the 2-Step GMM estimator is shown to have a highly nonstandard distribution with convergence at rate $n$ in certain directions when the null space of the moment variance matrix is not a subset or equal to that of the outer product of the expect first order moment derivative  at $\beta_0$. The condition that moment variance is non-singular for small perturbations to every element of $\beta_0$ is shown to hold in all examples provided in this paper- where it is argued violations would occur only in pathological cases.
+
+To derive the properties of 2-Step GMM with singular variance, eigen-pair expansions of the moment variance matrix  around $\beta_0$ in Grant (2013)\footnote{ These Eigen-pair expansions are based heavily on the results  in Kato (1982) and others.} used to study the properties of the Generalised Anderson Rubin Statistic with singular variance are utilised\footnote{These
+expansions are valid when the eigenvalues of the moment variance matrix are simple which restricts the  dimension of the null space the be less than or equal to one.}.
+
+The nearest paper to this is Grant (2014) that  considers the properties of 2-Step GMM when eigenvalues are small but converge at a slow enough rate such that the GMM estimator when appropriately  scaled has a Gaussian distribution. Namely when smallest eigenvalue is non-zero and $O(n^{-\delta})$ for $\delta<1$ then 2-Step is shown to converge  at non-standard rate $n^{(1+\delta)/2}$ in certain directions when the null space condition does not hold to the usual Gaussian limit distribution under strong identification, Hansen (1982).
+
+
+Other papers have also considered the issue of (almost) singular variance for the properties of moment based estimators satisfying the identification condition.   Doran \& Schmidt  (2006) consider a regularised GMM estimator  based on the method of principal components for dynamic panel GMM with moment variance close to singular. Ruge-Murcia (2007) overcome the issue of (almost) singularities in linearised DSGE models by adding random noise to the moment function termed 'stochastic singularity'. Penaranda \& Sentana (2010) consider the case the singularity at $\beta_0$ is known under the null and propose a 2-step GMM estimator with weight matrix based on a generalized inverse of the sample moment variance. Such methods are commonly used in empirical research when moments variances are (close to) singular along with other ad-hoc methods such as adding and deleting exogenous/endogenous variables in IV simultaneous equation models. Once the singularity is removed- then under the usual identification and further regularity conditions 2-Step GMM has a Gaussian limit distribution with root-n rate of convergence. 
+
+
+Results in this paper show that when singularity occurs at small enough region around $\beta_0$ then removing singularities in the moment variance via some form of regularisation or otherwise increases the asymptotic variance of 2-Step GMM and potentially reduces the rate of convergence.  This suggests that the method commonly applied in empirical research can lead to a less efficient estimator of the true parameter. Given the highly non-standard limit distribution of 2-Step GMM  then inference based on the normal approximation without  a regularisation would be  asymptotically invalid. As such results in this paper suggest that regularisation does have the benefit of validating standard inference methods. A preferred method may be to use the distributional results in this paper robust to singularity, yielding asymptotically valid inference along with a more efficient estimator.
+
+
+To highlight the results in this paper general examples of singular variance are provided based on a linear simultaneous IV model. We show how singularity may arise from common shocks in the unobservable when interacted with instruments.  Using these examples we show how the methods of  regularisation, changing the instrument set and stochastic singularity of Ruge-Murcia (2007) can remove moment singularities.
+
+A simulation study verifies the main results of this paper- along with the properties of 2-Step GMM and the Wald Statistic based on such methods of removing singularities. As predicted by results of this paper removing singularities leads to an increased moment variance, a  lower speed of convergence (when the null space condition does not hold) where the small sample distribution  of 2-Step GMM is better approximated by a Gaussian distribution as the sample size increases.
+
+
+This paper considers linear models with a finite number of moments that satisfy the identification condition. Extensions to non-linear models and/or many weak or unidentified instruments would be possible, though to clearly highlight the implications  of singular variance in isolation are not considered in this appear for clarity. Correspondingly we assume that the dimension of the null space of the variance matrix at $\beta_0$ is at most 1, i.e at most one zero (or $O(n^{-1})$) eigenvalue. Again this simplifies the proofs of this paper. The author intends to work on the case multiple zero eigenvalues in future work.
+
+
+Section 2 discusses singularity and the main results of the paper. Section 3 derives the asymptotic properties of the eigenvalues and eigenvectors of the sample moment variance evaluated at an initial GMM estimator. Using the results in Section 3 the asymptotic properties of 2-Step GMM and related statistics are provided in  Section 4. Examples of singular variance and a simulation study are provided in Sections 5 and 6 respectively. Finally some concluding remarks on directions for future research and extensions are detailed in Section 7. Proofs and definitions used throughout the paper are collected in an Appendix.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Notation  and Setup of Paper}
+For simplicity this paper considers $\{x_t$: $(t=1,..,T),T\geq 1\}$ where $x \in \mathcal{X}\subseteq\mathbb{R}^k$. Let the known  moment function $m\times 1$ moment function $g(\cdot,\cdot): \mathcal{X} \times \mathbf{B}\mapsto\mathbb{R}$ where $\mathbf{B}\subset \mathbb{R}^p$  is the parameter space 
+\begin{equation}\label{moment} E[\frac{1}{T}\sum_{t=1}^{T} g(x_t,\beta_0)]=0 \end{equation}
+where $\beta_0\in \textrm{int}(\mathbf{B}$) which is a standard regularity assumption to avoid a parameter on the boundary issue Andrews (1999). An assumption of linearity is made partly for simplicity and to highlight the unto now properties of 2-Step GMM with singular variance clearly. We make the following definitions,
+
+ \begin{equation} g_T(\beta)= E[\sum_{t=1}^{T} g(x_t,\beta)/T] \qquad \hat{g}_T(\beta)=\frac{1}{T} \sum_{i=1}^T g_t(\beta) \qquad \hat{g}=\hat{g}_T(\beta_0) \end{equation}
+ 
+ 
+ \begin{equation} \hat{\Omega}_T(\beta)=\frac{1}{T}\sum_{t=1}^T g_t(\beta) g_t(\beta)' \qquad \Omega_T(\beta)=\frac{1}{T}\sum_{t=1}^TE[g_t(\beta)g_t(\beta)'] \qquad \Omega(\beta)=\underset{T\rightarrow \infty}{ \lim} \Omega_T(\beta) \end{equation}
+ where we let  $\hat{\Omega}_T=\hat{\Omega}(\beta_0)$, $\Omega_T:=\Omega_T(\beta_0)$,$ \Omega:=\Omega(\beta_0)$. Define the first order derivative of the moment function (where under the linearity assumption is not a function of $\beta$)\\
+\begin{equation} G_t=\frac{\partial}{\partial \beta'} g_t(\beta) \qquad G_T:=E[\frac{1}{T}\sum_{t=1}^TG_t] \qquad \hat{G}_T=\frac{1}{T} \sum_{t=1}^T G_t \end{equation}
+
+\section{Singular Variance \& Identification}
+We first define  Almost Singular Variance (ASV) 
+
+\begin{center}
+\textsc{Almost Singular Variance}
+\end{center}
+\begin{center}
+$ \Omega_T=P_{+T}\Lambda_{+T}P_{+T}'+P_{0T}\Lambda_{0T}P_{0T}'$\end{center}
+where $\Lambda_{+T}$ is an $(m-\bar{m}_T)\times(m-\bar{m}_T)$ diagonal matrix where $\left[\Lambda_{+T}\right]_{jj}=\lambda_{+jT}$ where $\inf_{T\geq 1} \lambda_{+jT}>0$ for all $j=1,..,m-\bar{m}_T$  and $ \Lambda_{0T}$ an $\bar{m}_T\times \bar{m}_T$  where   $P_T:=(P_{+T},P_{0T})$ is such that $P_T'P_T=I_m$ and $\Lambda_{0T}$ is a diagonal  $\bar{m}_T \times \bar{m}_T$ matrix where $\left[\Lambda_{0T}\right]_{jj}=\bar{\lambda}_{0jT}/T^{\delta_j}$  for all $j=1,..,\bar{m}_T$ where $0\leq \bar{\lambda}_{0jT} < \infty $, $\delta_j>0$.\\
+
+The Almost Singular Variance (ASV)  assumption allows $0 \leq \bar{m}_T\leq m$ of the eigenvalues of the moment variance at the true parameter $\Omega_T$ converge to or be exactly equal zero. Define (assuming the limits exist) $P_+=\underset{T\rightarrow \infty}{\lim}P_{+T}$ and $\Lambda_+=\underset{T\rightarrow \infty}{\lim}\Lambda_{+T}$
+then as $\Lambda_{0T}\rightarrow 0$ and $P_{0T}'P_{0T}=I_{\bar{m}_T}$ so that $P_{0T}$ is bounded then $\Omega_T\rightarrow \Omega$ where $\Omega=P_+\Lambda_+ P_+'$. Let $P_0$ be the eigenvector of the $\bar{m}=\underset{T\rightarrow \infty}{\lim} \bar{m}_T$ zero eigenvalues of $\Omega$  such that $P_0'P_+=0$ and $P_0'\Omega P_0=0$. Under these assumptions we can show that $P_{0T}\rightarrow P_0$ which is crucial in deriving the properties of the 2-Step GMM estimator under ASV.\\
+
+We allow Nearly Weak Identification similar to the many weak moment  setup in Newey \& Windmeijer (2009) though we consider for simplicity the case of a finite number of moments. Namely we assume
+\begin{equation} \sqrt{T}S_T^{-1}G_T'\rightarrow G' \end{equation}  where $G$ is a $p\times p$ full rank matrix   where $S_T= \bar{S}_T\textrm{diag}(\mu_{1T},..,\mu_{pT})$ and $\bar{S}_T$ is a bounded full rank  $p\times p$ matrix where $\mu_{1T}\geq\mu_{2T}..\geq \mu_{pT}>0$ and $\mu_{1T}/\sqrt{T}\rightarrow c$ for some $0\leq c< \infty$ and $\mu_{pT}\rightarrow \infty$. Define $\bar{G}=\underset{T\rightarrow \infty}{\lim} \bar{G}_T$. Under this assumption and the requisite regularity conditions then the first step GMM estimator is consistent and converges in distribution to a Normal distribution at  rate less than $\sqrt{T}$ when $\mu_{pT}\rightarrow \infty$.\\
+
+
+
+
+
+
+
+
+\section{ Asymptotic Properties of 2-Step GMM with Singular Variance}
+
+
+\textsc{Assumption 1 (A1)} : \textit{Eigensystem  Asymptotics}\\
+\textit{(i) }$w_i (i=1,..,n)$ \textit{is an i.i.d sequence, (ii) } $\mathbb{E}[|\!| g_i|\!|^4] <\infty$,\textit{(iii)} $ \frac{1}{n} \sum_{i=1}^n|\!| G_i(\beta)-G_i(\beta^*)|\!| \leq \hat{M} |\!|\beta-\beta^*|\!| $  $\forall \beta,\beta^* \in \mathbf{B}$ \textit{where} $\hat{M}=O_p(1)$, \textit{(iv)} $\mathbb{E}[|\!| G_i|\!|^2] <\infty$, \textit{(v)} $|\!| \hat{\Omega}(\beta)-\hat{\Omega}(\beta^*)|\!|\leq \hat{M} |\!| \beta-\beta^*|\!| $ $\forall \beta,\beta^* \in \mathbf{B}$ \textit{for some} $\hat{M}=O_p(1)$, \textit{(v)} Eigenvalues $\Lambda$ are simple, (\textit{vi}) $|\!|\Lambda|\!|\leq K$ for some $K<\infty$, (\textit{vii})$m<\infty$.\\
+ U
+ nder the additional strong identification condition in Assumption 2 in Section 4 then it is straightforward to show $\sqrt{n}(\tilde{\beta}-\beta_0)=\Xi\sqrt{n}\hat{g}+o_p(1)$ for some bounded $p \times m$ matrix $\Xi$. Hence $\tilde{\beta}-\beta_0=O_p(n^{-1/2})$.
+
+Define $c_i=n^{1/2}P_0'g_i$ noting that $c_i=0$ w.p.1 if $\Omega_n$ is singular (i.e $\Lambda_0=0)$ where  $c_i=O_p(1)$ when $\Lambda_0\neq 0$ since $P_0'\Omega_nP_0=P_0'E[g_ig_i']P_0=\Lambda_0/n$. This paper considers WSV with $\delta=1$ and allowing for exact singularity. 
+We now set out some definitions to simplify the proof of Theorem 1. Write $G_i'=(G_{i1},..,G_{im})$ where $G_{il}'$ is the $l'th$ row of $G_i$. Define  $\theta_{jk}:=\Xi' E[G_{ik}g_{ij}]$, $\upsilon_{jk}:=\Xi'E[G_{ik}c_{ij}]$, $\gamma_{jk}=\Xi' E[G_{ij}G_{ik}']\Xi$ resp.for $j,k=\{1,..,m\}$ then define the following matrices
+\begin{equation}\label{theta} \Theta:=
+\begin{bmatrix}
+ \theta_{11} & \cdots & \theta_{1m}\\
+\vdots & \ddots & \vdots   \\
+  \theta_{m1} & \cdots&  \theta_{mm} \end{bmatrix}
+\end{equation}
+\begin{equation} \Upsilon:=
+\begin{bmatrix}
+ \upsilon_{11} & \cdots & \upsilon_{1m}\\
+\vdots & \ddots & \vdots   \\
+  \upsilon{m1} & \cdots&  \upsilon_{mm} \end{bmatrix}
+\end{equation}
+\begin{equation}\label{gamma}\Gamma:=
+\begin{bmatrix}
+ \textrm{vec}(\gamma_{11})' & \cdots & \textrm{vec}(\gamma_{1m})'\\
+\vdots & \ddots & \vdots   \\
+\textrm{vec}(\gamma_{m1})' & \cdots &  \textrm{vec}(\gamma_{mm})\end{bmatrix}\end{equation}\\
+The asymptotic distribution correspondingly the distribution of 2-Step GMM) when $\bar{m}>0$ depends on both the distribution of $\sqrt{n}\hat{g}$ as standard but also limit distribution of the first order derivative, i.e the matrix random variable $\sqrt{n}(\hat{G}-G)$. As such we must model potential dependence between both random variables. Under A1(i),(ii),(iii) by Lindberg Levy Multivariate Central limit Theorem
+  \begin{equation}  \frac{1}{\sqrt{n}}\sum_{i=1}^n\left( \begin{array}{c}g_i \\ \textrm{vec}(G_i-G)\end{array}\right)\overset{d}{\rightarrow}  \left( \begin{array}{c}Z_g \\ Z_G \end{array}\right) \overset{d}{\sim} N\left(0_{m(p+1)\times 1}, \Sigma\right)\end{equation}
+\begin{equation} \Sigma :=\left(\begin{array}{cc} \Omega & \Omega_{Gg} \\ \Omega_{Gg}' & \Omega_{GG}\end{array}\right)\end{equation}
+Where $\Omega_{Gg}=E[\textrm{vec}(G_i-G)g_i']$, $\Omega_{GG}=E[\textrm{vec}(G_i-G)\textrm{vec}(G_i-G)']$.
+Then we can show,
+\begin{equation} \sqrt{n}(\hat{G}-G)\overset{d}{\rightarrow} \bar{Z}_G \end{equation}
+\begin{equation} \bar{Z}_G= \left(  Z_{G1}, \cdots, Z_{Gp} \right) \end{equation}
+where $Z_{Gj}$ is a $m\times 1$ sub-vector of containing  elements $\{(j-1)m+1:jm\}$ of $Z_G$.\footnote{To show this formally note that the characteristic function (c.f) of $\sqrt{n}(\hat{G}-G)$ (i.e $M_{G}(T)=\mathbb{E}[\exp(\textrm{tr}((T'\sqrt{n}(\hat{G}-G))]=$)  where $ T \in \mathbb{R}^{p \times m}$) is equivalent to the c.f of $\textrm{vec}(\sqrt{n}(\hat{G}-G)$ (i.e $M_{vec(G)}(t)=E[\exp(t'\textrm{vec}(\sqrt{n}(\hat{G}-G))]$) where $t=\textrm{vec}(T)$ using the result $tr(AB)=vec(A')'vec(B)$.}\\
+
+Firstly we derive eigensystem asymptotic properties of  the eigensystem of $\hat{\Omega}(\tilde{\beta})$ which are critical to the limit distributions for 2-Step GMM shown in Theorem 2 in Section 4. Define $\Omega_+^*=P_+\Lambda_+^{-1}P_+'$. In Theorem 2 assumption 2 (A2) is provided in Section 4.\\
+
+\textsc{Theorem 1}
+
+\begin{equation*} \mathcal{W}_{\Lambda_0}:=\Lambda_0+ P_0' \left( (I_m\otimes Z_g')\Upsilon+\Upsilon'(I_m \otimes Z_g)\right)P_0\end{equation*}
+ \begin{equation} \label{negvallim}\qquad \qquad +P_0'\left(\Gamma(I_m\otimes Z_g\otimes Z_g)- \Theta'(I_m \otimes Z_{g})\Omega_+^*(I_{m}\otimes Z_{g}')\Theta\right)
+ P_0
+\end{equation}
+\begin{equation}\label{negveclim} \mathcal{W}_{P_0}\overset{d}{\rightarrow} \Omega_+^*E[g_ic_i']+\Omega_+^*(I_{m}\otimes Z_{g}')\Theta P_0 \end{equation}
+
+If $\Omega_n$ is exactly singular, i.e $\Lambda_{0}=0$, then  $c_i=0$ w.p.1 then $E[g_ic_i']=0$ and $\Upsilon=0_{m\times m}$ so that (\ref{negvallim}), (\ref{negveclim}) resp. imply,
+\begin{equation} \label{negnodrift} n\hat{\Lambda}_0(\tilde{\beta})\overset{d}{\rightarrow}P_0'\left(\Gamma(I_m\otimes Z_g\otimes Z_g)- \Theta'(I_m \otimes Z_{g})\Omega_+^*(I_{m}\otimes Z_{g}')\Theta\right)P_0\end{equation}
+\begin{equation}\label{negeigvec} \hspace{1pt}  n^{1/2}(\hat{P}_{0}(\tilde{\beta})-P_0)\overset{d}{\rightarrow}  \Omega_+^*(I_{m}\otimes Z_{g}')\Theta P_0 \end{equation}
+In this case the drift terms drop out and the asymptotic distribution of $ n\hat{\Lambda}_0(\tilde{\beta})$ is consistently estimable. Hence allowing for $\Lambda_{0n}=O(n^{-1})$ does not appreciably change the results relative to the case of exact singularity $\Lambda_{0n}=0$. Note that (\ref{negnodrift}) could be used to test for singularity of $\Omega_n$ under a strong identification assumption.
+
+\section{ 2-Step GMM with Singular Variance}
+Define the initial  GMM estimator $\tilde{\beta}$ (for simplicity suppressing  notion governing  potential dependence on the initial estimate depend on $W$) based on some (potentially data dependent) symmetric  (asymptotically) bounded p.s.d. matrix $W_n$, where $W_n\overset{p}{\rightarrow}W$ and  $\hat{Q}_W(\beta) :=n\hat{g}(\beta)'W_n\hat{g}(\beta)$.
+\begin{equation} \label{initial} \tilde{\beta}=\underset{\beta \in \mathbf{B}}{\arg \min} \hspace{4pt} \hat{Q}_W(\beta) \end{equation}
+ Then under A1 ,A2 by Hansen (1982),
+ \begin{equation}\tilde{\beta}\overset{p}{\rightarrow} \beta_0\end{equation}
+\begin{equation} n^{1/2}(\tilde{\beta}-\beta_0)=\Xi\sqrt{n}\hat{g}+o_p(1)\end{equation}
+Where $\Xi=(G'WG)^{-1}G'$ and the asymptotic variance of $n^{1/2}(\tilde{\beta}-\beta_0)$ is $\Phi=\Xi \Omega \Xi'$  (suppressing   dependence of $\Xi$  on $W$) where $W$ is such that $G'WG$ is full rank. Note that this result holds whether or not $\Omega$ is non-singular.\\
+Define the 2-Step GMM objective function,
+  \begin{equation}\hat{Q}_{opt}(\beta)=n\hat{g}(\beta)'\hat{\Omega}(\tilde{\beta})^{-1}\hat{g}(\beta)\end{equation}
+   and corresponding 2-Step GMM estimator.
+  \begin{equation} \hat{\beta}=\underset{\beta \in \mathbf{B}}{\arg \min} \hspace{4pt} \hat{Q}_{opt}(\beta) \end{equation}
+Non-standard asymptotic results   when using $W_n=\hat{\Omega}(\tilde{\beta})^{-1}$ when $\Omega_n$ is (weakly) singular.\\
+
+\textsc{Assumption 2 (A2)} \textsc{ Identification Conditions} \\
+(i) $\textrm{Rank}(G)=p$,  (ii)
+$\Omega_n(\beta)$ satisfies WSV with  $\delta=1$.\\
+
+
+   A2(i) assumes first order identification, the standard identification condition, which under the maintained linearity assumption is equivalent to global identification.\footnote{ This result  could be extended to allow the many-weak moment setup of Newey \& Windmeijer (2009), however for clarity in exposition on the unto now unknown impact of singular variance for inference is left for future research.}   A2(i) (along with the regularity conditions A1(i),(ii)) establish  $\sqrt{n}$ convergence of the initial GMM estimator. This results holds whether or not $\Omega_n$  is singular. Note that A2 (ii) the assumption of WSV with $\delta=1$  includes the case of non-singularity $\bar{m}=0$) and is made as an identification condition given the impact on the rate of convergence and distribution of 2-Step GMM\footnote{Together with the results of Grant (2014) for $0<\delta<1$ we could allow for differing rates of convergence of $\Lambda_{0n}$, though for clarity of exposition given the complexity of the limit distributions for the singular variance assumed in this paper this result is omitted}. \\
+A1(ii) encapsulates the standard assumption that $\Omega_n$ is full rank when $\bar{m}=0$. In this case  standard strong identified GMM asymptotics holds, e.g Hansen (1982).  If $\bar{m}>0$ then asymptotic of 2-Step GMM under A1(iii) depends on the distribution of $\tilde{\beta}$. \\
+
+
+  Let $B$ be  a bounded full rank $p\times p$ a matrix such that\footnote{This transformation is made- similar to the method in Phillips (1989) to isolate the directions of convergence of $\hat{\beta}-\beta_0$ with different rates- in this case rate $n$ and $n^{1/2}$ since the term in the asymptotic expansion of $\sqrt{n}(\hat{\beta}-\beta_0)$, namely $(\hat{G}'\hat{\Omega}^{-1}\hat{G})^{-1} $ will shrink at rate $n^{-1}$ (since $\hat{\Lambda}_0(\tilde{\beta})^{-1}=O_p(n))$ in certain directions which will yield the faster rate of convergence of  $\sqrt{n}(\hat{\beta}-\beta_0$).}
+  \begin{equation}\label{B}  B'G'P_0:=G_{BP_0}'\end{equation}
+  \begin{equation}\label{BB} G_{BP_0}=\left(G_{BP_0}^{\bar{p}'}, 0_{ \bar{m}\times(p-\bar{p})}\right)\end{equation}
+  where $G_{BP_0}^{\bar{p}}$ is  a full column rank $ \bar{p}\times \bar{m}$ matrix for some $0\leq \bar{p}\leq p$. Note that $B$ is not unique. If $G'P_0=0_{p\times \bar{m}}$ then $\bar{p}=0$ and any $B$ satisfies (\ref{BB}). If $G'P_0$ is full column rank  (if $\bar{p}\leq\bar{m})$ then $\bar{p}=p$ and again any full rank matrix B satisfies (\ref{BB}). If $0<\bar{p}<p$ then we can perform Gauss-Jordan elimination to re-write $G'P_0$ in the form (\ref{BB}).\\
+  Similarly define,
+ \begin{equation} B'G'P_+:=G_{BP_+}'\end{equation}
+ \begin{equation}G_{BP_+}=\left( G_{BP_+}^{\bar{p}'}, G_{BP_+}^{p-\bar{p}'} \right)\end{equation}
+  $ G_{BP_+}^{\bar{p}}$,$ G_{BP_+}^{p-\bar{p}} $ as the upper $\bar{p}\times(m-\bar{m})$  and lower $(p-\bar{p})\times (m-\bar{m})$ sub-matrix of $G_{BP_+}$ respectively.\\
+
+
+
+  Define $B_n=\left(\begin{array}{cc} n^{1/2}I_{\bar{p}} & 0_{\bar{p}\times \bar{p}}\\ 0_{(p-\bar{p})\times (p-\bar{p})} & I_{p-\bar{p}}\end{array}\right)B^{-1}$,  $\bar{B}=\lim_{n\rightarrow\infty} B_n^{-1}=B\left(\begin{array}{cc} 0_{\bar{p}} & 0_{\bar{p}\times \bar{p}}\\ 0_{(p-\bar{p})\times (p-\bar{p})} & I_{p-\bar{p}}\end{array}\right)$.\\
+
+ Theorem 1 below shows that the limit distribution of $\sqrt{n}B_n(\hat{\beta}-\beta_0)$ is highly non-standard. $B_n$ will contain $\bar{p}$ elements growing at rate $n^{1/2}$ where $\bar{p}$ is the rank of $G'P_0$. Namely when there exist $\bar{p}$ linearly independent directions such that $\delta'\Omega=0$ does not imply $\delta'G\neq0$.\\
+Define the following,
+  \begin{equation} \mathcal{C}:=(P_0'\bar{Z}_{G}+ \mathcal{W}_{P_0}'G)\bar{B}+G_{BP_0}\end{equation} \begin{equation} \Phi_1=\bar{B}'G_{BP_+}'\Lambda_+^{-1}G_{BP_+}\bar{B}+\mathcal{C}'\mathcal{W}_{\Lambda_0}^{-1}\mathcal{C} \end{equation} \begin{equation} \Phi_2=\bar{B}G_{BP_+}'\Lambda_+^{-1}P_+' +
+  \mathcal{C}'\mathcal{W}_{\Lambda_0}^{-1}\mathcal{W}_{P_0} \end{equation}
+
+
+  \textsc{ Assumption 3}:\textit{ Regularity Conditions}\\
+(i) $\mathcal{W}_{\Lambda_0}$ is full rank w.p.1, (ii) $\Phi_1$ is full rank w.p.1.\\
+
+  A3() is a mild restriction that $\mathcal{W}_{\Lambda_0}$ is full rank which requires that $\hat{\Omega}(\tilde{\beta})$ exists w.p.1. Only in pathological cases would A3(i) or (iii) break down, where further discussion is provided in the appendix. A3(ii) is a high level condition for the existence of the limit distribution of 2-Step GMM which will depend on singularities the distribution of $Z_G$.
+
+For simplicity Theorem 1 is provided for the case of exact singularity ($\Lambda_0=0$) allowing for general $\Lambda_0$ would change the result below by the inclusion of a drift term governed by $\Lambda_0$. Define $\hat{V}(\beta)=(\hat{G}(\beta)'\hat{\Omega}(\tilde{\beta})^{-1}\hat{G}(\beta))^{-1}$.\\
+
+  \textsc{Theorem 1}:  Under A1,A2,A3
+   \begin{equation} \label{consistency} \sqrt{n}(\hat{\beta}- \beta_0)= O_p(1) \end{equation}
+  \begin{equation}  \label{limit} \sqrt{n}B_n(\hat{\beta}- \beta_0)\overset{d}{\rightarrow} \Phi_1^{-1}\Phi_2Z_g\end{equation}
+  \begin{equation*}  \label{limit1}\hat{V}(\tilde{\beta})^{-\frac{1}{2}}(\hat{\beta}- \beta_0)\overset{d}{\rightarrow} \Phi_1^{-1/2}\Phi_2 Z_g\end{equation*}
+
+  \textsc{Remarks}\\
+(i) When $\bar{m}=0$ ($\Omega$ non-singular) then $\bar{p}=0$ $\mathcal{C}=0$, $\bar{B}=I_p$ $\Phi_1=(G_{BP_+}'\Lambda_+^{-1}G_{BP_+}=B'G'\Omega^{-1}GB$ since $\Omega=\Omega_+$ which is full rank when $\bar{m}=0$. Note also that $\Phi_2=B'G'\Omega^{-1}$ then finally since $B_n=B$ when $\bar{p}=0$ then (\ref{limit}) of Theorem 1 collapses to the well known  result in the non-singular case $\sqrt{n}B^{-1}(\hat{\beta}-\beta_0)\overset{d}{\rightarrow} N(0,(B'G'\Omega^{-1}GB)^{-1}).$\\
+(ii)  When $\bar{m}>0$ ($\Omega$ singular) both $\Phi_1$, $\Phi_2$ are non-linear functions of $Z_g$, $Z_G$. If $\bar{p}=0$ then $B_n=B$ and convergence occurs at the standard rate $\sqrt{n}$. When $\bar{p}>0$ (i.e $G'P_0\neq 0$) then convergence  of $\hat{\beta}-\beta_0$ occurs at rate n in certain directions governed by $B^{-1}$.\\
+(iii) If a regularisation was preformed using a transformed moment function with a full rank $m-\bar{m}$ variance matrix, then the standard asymptotic result in the identified case holds and $\bar{C}=0$ which will increase the asymptotic variance of the GMM estimator.\\
+
+
+
+
+
+Theorem 1 can be used to derive the limit distribution of the  GMM Wald Statistic $\hat{W}=n(\hat{\beta}-\beta_0)'\hat{\Omega}(\tilde{\beta})^{-1}(\hat{\beta}-\beta_0)$\\
+
+\textsc{Corollary 1} Under A1-A3 as a consequence of Theorem 1,
+\begin{equation} \hat{W}\overset{d}{\rightarrow} Z_g'\Phi_2'\Phi_1^{-1}\Phi_2 Z_g\end{equation}
+
+
+When $\bar{m}>0$ then unless a regularisation is performed to remove the singularity in $\Omega$ then inference on $\beta_0$ should be based on the Wald Statistic and corresponding test statistics with the limit distributions provided in Theorem 1 and Corollary 1. Section  4.1 discusses how to perform such inference which requires estimates of $\bar{m}$, $\bar{p}$ that converge in with probability 1. To do so we use the results in Theorem 1 that if $\bar{m}=1$ then $n\hat{\lambda}_j(\tilde{\beta})=O_p(1)$ for some $j=\{1,..,m\}$ and if $\bar{m}=0$ then $ n\hat{\lambda}_j(\tilde{\beta})\rightarrow \infty$  for all $j=\{1,..,m\}.$ which allows the estimation of $\bar{m}$ w.p.1 (under the maintained assumption that $\bar{m}\leq 1$).
+
+\subsection{Inference Robust to Singularity}
+[Under Construction]
+
+
+
+
+\section{Examples of Singular Moment Variance in Linear Models}
+
+This section provides examples of singular variance in linear models. Some discussion is also provided on the impact of some common ad-hoc methods in the applied research to remove (almost) singularities in the moment function. These include changing the instrument set, expanding the included variable set and also the stochastic singularity approach commonly used in linearised DSGE models. A simulation experiment in Section 6 shows the impact on asymptotic properties of efficient GMM estimation when (almost) singular variance is removed from the moment function via some transformation.\\
+
+\textsc{Example 1:Linear IV Simultaneous Equations}\\
+
+ This section considers a more general example of the linear IV example used in in Grant (2014) for Linear IV simultaneous equations. We also provide some discussion on the ad hoc methods of overcoming singularity which seem to be new in the literature.
+\begin{equation} \label{eqn1} y_j=\theta_{0j}'x_{j}+\delta_{0j} x +\varepsilon_j\end{equation}
+For $j=\{1,,.,J\}$ where $\theta_{0j}\in \mathbb{R}^{p_j}$ where $p=\sum_{j=1}^J p_j$, $\kappa_{0j}\in\mathbb{R}$, where  the true unknown partaker vector $\beta_0=(\theta_{0},\kappa_0)'$ where $\theta_0=(\theta_{01},..,\theta_{0J})$, $\kappa_0=(\kappa_{01},...,\kappa_{0J})$.
+This specification allows the inclusion of a common variable $x$, where high correlation within the moment functions could arise from omission  of this variable, i.e if we run
+ \begin{equation}\label{omit1} y_j=\theta_{0j}'x_{j}+\epsilon_j\end{equation}
+ Where $\epsilon_j=\varepsilon_j+\delta_{0j}x$ for $j=\{1,,.,J\}$.
+
+ Suppose we have $m^*$ instruments $z$ where for simplicity $z\sim N(0,I_{m^*})$ where $x$ independent of $(z,x_J)'$ where $x_J=(x_1,..,x_{J})'$ where for simplicity assume $E[x]=0$,$E[x^2]=\sigma^2_x$.  Define $\epsilon=(\epsilon_1,\cdots,\epsilon_J)'$ where $E[\epsilon|z]=0$ where. Suppose
+\begin{equation} x_j=f_j(z)+\eta_j\end{equation}
+for some functions $f_j(\cdot)$ and where $E[\eta_j|z]=0$ and $E[\eta_j^2|z]=\sigma^2_{\eta}$ for $j=\{1,,\cdots,J\}$.
+Then the following moment function,
+\begin{equation} g(\beta)=\begin{array}{c} \epsilon(\beta) \otimes \phi(z)\end{array} \end{equation}
+with $\beta:=(\theta,\delta)'$ where $\theta=(\theta_1',\cdots,\theta_J')'\in\mathbb{R}^{p}$ and $ \delta=(\delta_1,\cdots,\delta_J)'\in \mathbb{R}^J$
+ where $\phi(\cdot)$ is $m\times 1$ function of the instruments $z$ (commonly polynomials in $z$). This gives $mJ$ moments, then for $p\leq mJ$ and $G$ full rank then $E[g(\beta)]=0$  uniquely at $\beta=\beta_0$.
+Suppose the unobservable residuals in (\ref{eqn1})  satisfy
+\begin{equation}
+\varepsilon_j=\upsilon_j h_j(z) \end{equation}
+For some functions $h_j(\cdot)$  allowing general forms of heteroscedasticity of $\varepsilon_j$ in the instruments where for simplicity assume $E[\upsilon_j|z]=0$ and $E[\upsilon_j^2|z]=1$ for $j=\{1,\cdot,J\}$.\\
+ When running regressions based on (\ref{omit1}),the moment function at $\beta_0$ is,
+ \begin{equation} g(\beta_0)=\left(\varepsilon+\kappa_0x \right)\otimes \phi_(z)\end{equation}
+ where Grant (2014) considers a special case with $J=2$, $p_1=p_2=1$, $m^*=2$  where $ \kappa_0=0$ with $h_1(z)=z_2$ and $h_2(z)=z_1$ hence
+ \begin{equation} cor(g_1(\beta_0),g_4(\beta_0))=cor(\epsilon_1z_2, \epsilon_2 z_1)=cor(\upsilon_1,\upsilon_2):=\rho\end{equation}
+  where $ \rho \approx 1$ then $\Omega_n$ is almost singular since some linear combinations of $g(\beta_0)$ are highly correlated. Under the assumptions made $cor(\epsilon_1,\epsilon_2)=0$ so that correlations between the moment function at $\beta_0$ does not arise from correlation in the residuals of (\ref{eqn1}). Simulation evidence  based on this example in Grant (2014) shows the poor approximation of a Gaussian distribution to the distribution of 2-Step GMM even for large samples for $\rho$ near to 1. Below we use simple examples of Linear IV simultaneous equations to model some common causes of singular variance and detail the theoretical consequences of  ad-hoc methods used in practise to remove (almost) singularities. \\
+
+\subsection{Ad-Hoc Methods of Removing Moment Singularity}
+
+\textsc{Changing the  Instrument Set}\\
+
+A common problem faced in dynamic panel and large dynamic  linear simultaneous systems is both how to choose the instrument set, namely $\phi(z)$. Often there are potentially an infinite number of moments to choose from, where the many instrument problem is well known in the literature. Commonly the properties of GMM  can vary dramatically when altering the instrument set, which is often attributed non-standard properties of GMM with many/weak instruments, e.g Stock \& Wright (2000). However as seen in Theorem 1 the distribution of 2-Step GMM is highly non-normal, if changing the instrument set removes moment singularity but the new moment still identified then the limit distribution is asymptotically normal.  As such changing the instrument set can lead to distributional changes in the 2-Step GMM even in a strongly identified setting with few instruments.\\
+ This issue has largely been left untreated in the theoretical econometric literature, possibly due to the lack of results on the properties of GMM with  (almost ) singular variance. This example shows that even for small $m$ and $J$ where instruments are strong, the rank of the variance matrix can change when altering which instruments are included. A simulation example shows the quite dramatic change in even large sample properties of 2-Step GMM.\\
+Consider Example 1 with $J=2$, $m^*=3$ where $\kappa_0=0$ where we assume $p\leq mJ$ and $G$ is full rank so the model is identified. Suppose $\phi(z)=(z_1,z_2,z_1^2)'$ where $h_1(z)=z_1$ and $h_2(z)=1$ then
+\begin{equation} g(\beta_0)=\left(\begin{array}{c}\upsilon_1z_1 \\ \upsilon_2 \end{array} \right) \otimes \left(\begin{array}{c} z_1 \\ z_2 \\ z_1^2 \end{array} \right) \end{equation}
+ and $\textrm{cor} (g_1(\beta_0), g_6(\beta_0))=\textrm{cor} (\upsilon_1 z_1^2,\upsilon_2 z_1^2)=\rho$ so when $\rho=1$ then $\Omega_n$ is exactly singular. Though note given $E[z_1]=0$ and and is independent of $\upsilon_1,\upsilon_2$ then $\textrm{cor}(\epsilon_1,\epsilon_2)=\rho E[z_1]=0$ so that the residuals from the regression function are uncorrelated. If we use $\phi^*(z)=(z_1,z_2)$ then $g^*(\beta_0)=\epsilon(\beta)\otimes \phi^*(\beta)$ has no perfectly correlated elements, even if $\rho=1$.\\
+
+
+\textsc{Changing the Included Variable Set}\\
+
+
+
+   Below we consider  a simple example where (almost) singular variance may also (partly) arise due to a common omitted variable $x$. Since in practise a common method of removing singularities from the moment is to include variables or factors that are suspected to potentially drive the correlation in the moment function. Simulation evidence in Section 5 demonstrates the implication for inference of changing the variable set to remove singularities  in light of result in Theorem 2 and are new in the literature.\\
+
+   Firstly we consider a more general example, providing a special case below, which though unrealistic serves to model the impact of changing the variable set on the asymptotic properties of 2-Step GMM.\\
+   To model this take the  case $J=2$, $m^*=2$ where $h_1(z)=h_2(z)=1$  then noting that $\epsilon_1 z_1=(\upsilon_1z_1+\kappa_{01} xz_1)$ and $\epsilon_2 z_1=(\upsilon_2 z_1 +\kappa_{02} x z_1)$ under the assumptions made it is straightforward to show
+ \begin{equation}  cor(g_1(\beta_0),g_3(\beta_0))=cor(\epsilon_1z_1,\epsilon_2z_1)=\frac{\rho+\kappa_{01}\kappa_{02}\sigma^2_x}{\sqrt{(1+\kappa_{01}^2\sigma^2_x)(1+\kappa_{02}^2\sigma^2_x)}} \end{equation}
+
+  and since  $z_1,z_2$ are independent then $cor(g_1(\beta_0),g_2(\beta_0))= cor(g_3(\beta_0),g_4(\beta_0))=0$.
+ As $\sigma^2_x,$ (and/or $|\kappa_{01}|$,$|\kappa_{02}|$) increase  and/or as $|\rho|$ approaches 1  with $|\kappa_{01}-\kappa_{02}|$ approaches zero then $cor(g_1(\beta_0),g_3(\beta_0))$ approaches 1.
+
+Suppose we construct the moment function
+ including the variable $x$ in $y_1$,
+ \begin{equation} \bar{g}(\beta)=\bar{\epsilon}(\beta)\otimes \phi(z) \end{equation}
+ where $\bar{\epsilon}(\beta):=(\bar{\epsilon}_1(\beta),\epsilon_2(\beta))$ for $\bar{\epsilon}_1(\beta)=(y_1-\theta x_1-\kappa x)$, where $\bar{\epsilon}_1(\beta_0)=\varepsilon_1$ then
+\begin{equation} cor(\bar{g}_1(\beta_0),\bar{g}_3(\beta_0))=cor(\varepsilon_1z_1,\epsilon_2z_1)=\frac{\rho}{\sqrt{(1+\kappa_{02}^2\sigma^2_x)}} \end{equation}
+
+Suppose $\rho=1$ and $|\kappa_{01}-\kappa_{02}|=0$  where $\kappa_{02}\neq 0$   so moment $g(\beta_0)$ has a singular variance matrix, though $\bar{g}(\beta_0)$ will have a non-singular variance matrix, where correlation between $\bar{g}_1(\beta_0),\bar{g}_3(\beta_0)$  decreases as $\kappa_{02}\sigma_x^2$ increases. Hence this modification to the moment function has removed singularity in the moment variance matrix. This  example though somewhat unrealistic, as singular variance arises from perfect residual correlation,  allows the formulation of a simple simulation to demonstrate the impact of changing the variable set where omitted variables may be a (part) cause of the singularity  of $\Omega_n$. Appendix C provides an extension to this example provided here with $J=4$ and further unobservable shocks, providing a more realistic situation when common omitted variables can lead to singularity. \\
+
+
+
+\textsc{Stochastic Singularity}\\
+
+Another method common used in DSGE models is to include further artificial shocks, for example independent random normal variables, in to the the dependent variables and/or directly to the moment function e.g Ruge-Murcia (2007). Again for simplicity consider  $J=2$,$m^*=2$, $h_1(z)=z_2$,$h_2(z)=z_1$, $\kappa_0=0$.
+\begin{equation}cor(g_2(\beta_0),g_3(\beta_0))=\rho \end{equation}
+Let $(\xi_1,\xi_2)' \overset{i.i.d}{\sim} N(0,\sigma^2_{\xi})$, then define $ \epsilon^*(\beta)= (\epsilon_1^*(\beta),\epsilon_2^*(\beta))'$ where $\epsilon_1^*(\beta)=\epsilon_1(\beta)+\xi_1$ ,$ \epsilon_2^*(\beta)=\epsilon_2(\beta)+\xi_2 $ and the transformed moment function
+\begin{equation} g^*(\beta)=\epsilon^*(\beta) \otimes \phi(z) \end{equation}
+
+Then $\Omega_n^*:=E[ g^*(\beta_0) g^*(\beta_0)']$ which given $\xi$ is i.i.d and independent to all entries then $\Omega_n*=\Omega_n+\sigma^2_{\xi}I_4$ (since $E[[\phi(z)\phi(z)']=I_2)$ and $g(\beta_0)^*$ has a   non-singular  variance matrix at $\beta_0$ even when $\Omega_n$ is singular.  As $\sigma^2_{\xi}$ increased the smallest eigenvalues of $\Omega_n^*$ increase. In essence the addition of extra noise serves
+ to regularise $\Omega_n$ from within. To see the impact on the correlation between moment functions note that,
+ \begin{equation} \textrm{cor}(g^*_2(\beta_0),g^*_4(\beta_0))=cor((\epsilon_1+\xi_1)z_1,(\epsilon_2+\xi_2)z_2)=\frac{\rho}{1+\sigma^2_{\xi}}\end{equation}
+Where $ \textrm{cor}(g^*_1(\beta_0),g^*_2(\beta_0))= \textrm{cor}(g^*_3(\beta_0),g^*_4(\beta_0)=0$.\\
+Note that if $\sigma^2_{\xi}>0$ then $| \textrm{cor}(g^*_2(\beta_0),g^*_3(\beta_0))|<1$ and is decreasing in $\sigma^2_\xi$ for any configuration of parameters $\beta_0$.  The addition of the shock $\xi$ does not enter the expected first order derivative matrix $G$. When $\Omega_n$ is non-singular, then so is $\Omega_n^*$ standard asymptotic theory holds where the asymptotic variance is increase in $\sigma^2_x$. However if $\Omega_n$ is  (almost) singular, then the distribution of 2-Step GMM  based on $g(\beta)$  shown Theorem 1 is highly non-standard (with potential non-standard rate of convergence), whereas 2-Step GMM based on $g^*(\beta)$ has a limit normal distribution with the usual asymptotic variance matrix.\\
+If $\Omega_n$ is (almost) singular in light of Theorem 1 a Gaussian approximation to the distribution of the 2-step GMM be poor even for large sample sizes, which is demonstrated in Grant (2014) and in the simulation below. We would expect as $\sigma^2_{\xi}$ increases that a Gaussian limit distribution better approximate the small sample distribution  of 2-Step GMM.\\
+  However two things to note - as $\sigma^2_{\xi}$ increases so does the asymptotic variance. Also the rate of convergence will slow down if $\mathcal{N}(\Omega) \nsubseteq \mathcal{N}(GG')$. Hence we may expect 2-Step GMM based on $g(\beta)$ be closer to the true parameter for any given n relative to that based on $g^*(\beta)$.  This modification often used in practise, though serves to render the usual asymptotic theory valid,  will to lead inefficient inference and a potentially slower rate of convergence in light of Theorem 1. In sum- taking in to account singularities in to the limit distribution as discussed in Section 4 such that asymptotically inference based on 2-Step GMM using $g(\beta)$ is valid despite potential singularities in $\Omega_n$ and does not suffer asymptotic losses of efficiency. This issue is currently unknown in the literature. A simulation experiment studies this in Section 6.
+
+
+\section{Simulation}
+ This section considers a specific example of a linear IV example set out Section 5.
+\begin{equation*} y_{1}=  x_{1} + \epsilon_{1} \qquad y_{2}=0.5 x_2+ \epsilon_{2} \end{equation*}
+\begin{equation*} x_1 = 1.3*z_1-0.8*z_1 +\eta_1 \qquad  x_2 =1.5*z_2 +\eta_2 \end{equation*}
+Where $z=(z_1,z_2)'\overset{i.i.d}{\sim} N(0,I_2)$,
+\begin{equation*}\epsilon_1=\upsilon_1z_1, \quad \epsilon_2=\upsilon_2 z_2\end{equation*}
+\begin{equation*} \upsilon_{1}= \sqrt{\frac{1+\rho}{2}} \zeta_1 + \sqrt{\frac{1-\rho}{2}} \zeta_2, \quad\upsilon_2= \sqrt{\frac{1+\rho}{2}} \zeta_1 - \sqrt{\frac{1-\rho}{2}} \zeta_2\end{equation*}
+such that $cor(\upsilon_1,\upsilon_2)=\rho$.
+\begin{equation*} (\zeta_1,\zeta_2,\eta_1, \eta_2)'|z \overset{i.i.d}{\sim} N(0_4, \Pi)\quad \Pi=\left(\begin{array}{cccc}  1 & 0 & 0.3 & 0 \\  0 & 1 & 0.5 & 0 \\ 0.3 & 0 &1 & 0 \\ 0 & 0.5 &0 & 1  \end{array} \right)\end{equation*}
+Let $\hat{\beta}:=(\hat{\beta}_1,\hat{\beta}_2)'$ be the 2-Step GMM estimator with $W=\hat{\Omega}(\tilde{\beta})^{-1}$ where $\tilde{\beta}$ is a first-step GMM estimator with $W_n=I_{2\times2 }$.\\ $\epsilon(\beta)=(y_1-x_1\beta_1,y_2-x_2\beta_2)'$ where $\beta:=(\beta_1,\beta_2)'$, $\beta_1,\beta_2 \in \mathbb{R}$.
+\begin{equation} g(\beta)= \epsilon(\beta)\otimes z \end{equation}
+As noted in Section 4- the rate of convergence depends crucially on $P_0'G$.
+In this example,
+\begin{equation} \Omega=\left(\begin{array}{cccc} 3 &0&0&1 \\ 0&1&1&0\\0&1&1&0\\1&0&0&3 \end{array}\right) \qquad G=-\left(\begin{array}{cc} E[x_1z_1] & 0\\  E[x_1 z_2] & 0\\ 0 & E[x_2z_1] \\ 0 & E[x_2z_2]\end{array} \right) \end{equation}
+
+where $P_0=(0, -\sqrt{2},\sqrt{2},0)'$ (since in this case the 2 and 3rd moment in $g(\beta_0)$ are perfectly positively correlated so that $G'P_0=\sqrt{2}\left(\begin{array}{c} -E[x_1z_2] \\ E[x_2 z_1]\end{array}\right)$. If $E[x_1z_2]=E[x_2z_1]=0$ then $G'P_0=0$ and the 2-step GMM estimator is $O_p(n^{-1/2})$. If either $E[x_1z_1]$, $E[x_1z_1]$ do not equal zero then in some directions $\sqrt{n}(\hat{\beta}-\beta_0)$ converges at rate $n^{1/2}$. We set $E[x_2z_1]=0$ and let $E[x_1z_2]$ vary so that $B=I_2$.
+
+
+We consider the case of exact singularity $\rho=1$\footnote{
+ A related simulation experiment was studied in Grant (2013) for the case of Weakly Singular Variance with $\delta<1$ and $\Lambda_0>0$, demonstrating the non-standard rate of convergence in some directions of $n^{(1+\delta)/2}$ of the 2-Step GMM estimator when $G'P_0\neq 0$. In this case of WSV 2-Step GMM and the Wald Statistic have the standard normal and $\chi^2_m$ limit distribution which is verified in the simulation.} for $n=\{500,5000,50000,50000\}$ to verify the results of this paper\footnote{We also consider $\rho=1-n^{-1}$ and find similar results as expected by Theorem 1 given the non-standard rate of convergence of 2-Step GMM and it's limit distribution hold for such sequences also, these results are omitted for brevity.}.
+
+
+\subsection{Simulation Results}
+The simulation is split in to three parts- firstly we verify the results of Theorem 1 and 2 for the example above. Then the finite sample properties of the 2-step GMM/Wald Statistic are studied when removing singularity by changing the instrument set and stochastic singularity as discussed above.\\
+
+
+\subsubsection{Simulation 1: Small Sample Properties with Singular Variance }
+The small sample distribution 2-step GMM estimator $b=\sqrt{n}(\hat{\beta}-\beta_0)$, $b^*=\hat{V}(\tilde{\beta})^{-1/2}b$ and the Wald Statistic $W=b^{*'}b^{*}$ are studied for  and the main results of Theorem 1 and 2 are verified.  When $\Omega$ is non-singular $b^*=(b_1^*,b_2^*)'$ should be standard normal. Figures 1 and 2 demonstrate that $b^*$ is highly non-standard as expected by Theorem 1. Finally Figure 3 shows the non-standard limit of the Wald Statistic, which in the case of $\Omega$ non-singular is asymptotically $\chi^2_2$ in this example. Notably the small sample distribution of $W$ even for $n=500000$ is oversized. As such rejection frequencies based on a Wald Test of $\beta_0=c(1,0.5)$ based on quantiles of a $\chi^2_2$   are also oversized as noted in Table 1 below.
+
+\begin{figure}[H]
+  \includegraphics[scale=0.38]{sim1_b1}
+  \caption{Density of $b_1^*$}
+  \end{figure}
+  \begin{figure}[H]
+    \includegraphics[scale=0.38]{sim1_b2}
+     \caption{Density of $b_2^*$}
+     \end{figure}
+     \begin{figure}[H]
+    \includegraphics[scale=0.38]{sim1_W}
+\caption{Density of $W$}
+\end{figure}
+\newpage
+
+
+
+\subsubsection{Simulation 2: Stochastic Singularity}
+ Simulation 2 considers the impact of introducing a perturbation to the moment $g(\beta)$ by $\sqrt{s}\xi$ where $\xi\overset{i.i.d}{\sim} N(0,I_4)$ for $s=\{\sqrt{0.1}\sqrt{0.5}\}$. As noted in Section 5 the transformed moment is now nonsingular, where the smallest eigenvalue increases as $s$ increases.
+
+
+\begin{figure}[H]
+  \includegraphics[scale=0.38]{sim2_01_new}
+  \caption{ Simulation 2(a): Density of $b_1^*$ $s=\sqrt{0.1}$}
+  \end{figure}
+
+\begin{figure}[H]
+  \includegraphics[scale=0.38]{sim2_s05}
+  \caption{ Simulation 2(b): Density of $b_1^*$ $s=\sqrt{0.5}$}
+  \end{figure}
+
+Table 1 summarises key results on the distribution of $b$,$b^*$, $W$.
+
+\subsubsection{ Simulation 3: Changing the Instrument Set}
+Simulation 3  considers the impact on the small sample distribution of $b,b^*$ and $W$ of removing the singularity by changing the instrument set. Namely we drop the instrument $z_1$. In this case the singularity is removed and now moments are just identified. Since $G$ is full rank then $b,b^*,W$ should satisfy standard asymptotics when $\Omega$ is non-singular, e.g Hansen (1982). Figure 4 demonstrates that for large n the distribution of $b_1$ is better approximated by a normal distribution relative simulation 1. For brevity we omit the distributions of $b_2^*$ and $W$, where summary of the properties of the distribution are provided in Table 1.\\
+
+\begin{figure}[H]
+  \includegraphics[scale=0.38]{sim3_new}
+  \caption{Simulation 2: Density of $b_1^*$ removing instrument $z_1$.}
+  \end{figure}
+
+
+Table  1 below summarises the key properties of the 2-Step GMM estimator in the three simulations above.  Monte Carlo estimates ($R=2000$) of the variance of $b$ and the rejection frequencies from a Wald Test that $\beta_0=(1,0.5)'$  based on the quantiles of a $\chi^2_2$.\\
+First to note that in Sim 1 then 2-Step GMM with singular variance is such that the variance of $b_1$ is $O(n^{-1})$ which is as expected given $n^{1/2}b_1=O_p(1)$ by Theorem 1 since in this example $B_n=\left(\begin{array}{cc} n^{1/2} & 0 \\ 0 & 1 \end{array} \right)$ where $b_2=O_p(1)$ as seen in Sim 1 below. As expected given the non-standard distribution of the Wald Statistic when $\bar{m}>0$ the size of the Wald Test is oversized even for $n=500000$.\\
+
+Both Sim 2 and Sim 3 have performed a modification which remove the singularity in the moment function. As such both $b_1,b_2$ should be $O_p(1)$ and the Wald Statistic have correct size for $n$ large.  The variance of $b_1$ does not shrink at rate $n$ but is bounded away from zero. Also the variance of $b_2$ has increased. In both Sim 2 and Sim 3 size of the Wald Test is closer to the nominal level for all $n$ relative to Sim 1.
+
+
+ \begin{table}[H]
+\begin{center}
+\tiny
+
+\begin{tabular}{|cc|cc|ccc|}
+
+\hline
+& & \multicolumn{2}{c|}{\textbf{Efficiency}} & \multicolumn{3}{c|}{\textbf{Limit Distribution }}  \\
+
+& & \multicolumn{1}{c}{Var($b_1$)}& \multicolumn{1}{c|}{Var($b_2$)}
+  & \multicolumn{1}{c}{Wald-Size(90\%)}
+                & \multicolumn{1}{c}{Wald-Size (95\%)}      & \multicolumn{1}{c|}{Wald-Size(99\%)}
+\\ \hline
+
+  \multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering Sim 1}\end{sideways}}
+
+
+
+&\hspace{-0.7cm}$ n=500$   & 1.40$*10^{-2}$&1.18  &0.230 &   0.176   & 0.102      \\  [0.18cm]
+&\hspace{-0.7cm}$n=5000$   & 1.27$*10^{-3}$&1.25  &0.223 &   0.168   & 0.088     \\ [0.18cm]
+&\hspace{-0.5cm}$n=50000$  & 1.18$*10^{-4}$&1.17  &0.222 &   0.151   & 0.079      \\  [0.18cm]
+&\hspace{-0.30cm}$n=500000$& 1.15$*10^{-5}$&1.15  &0.219 &   0.163   & 0.081       \\ [0.18cm]
+
+
+  \hline
+
+
+
+
+
+
+
+
+  \multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering Sim 2(a) }\end{sideways}}
+
+&\hspace{-0.7cm}$ n=500$      &0.289 &1.23  &0.141  & 0.065    &0.016    \\  [0.18cm]
+&\hspace{-0.7cm}$n=5000$      &0.256 &1.29  &0.125  & 0.053    &0.017   \\ [0.18cm]
+&\hspace{-0.5cm}$n=50000$     &0.269 &1.31  &0.114  & 0.070    & 0.019   \\  [0.18cm]
+&\hspace{-0.30cm}$n=500000$   &0.257 &1.16  &0.121  & 0.054    & 0.018    \\ [0.18cm]
+
+
+
+  \multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering Sim 2(b)}\end{sideways}}
+
+&\hspace{-0.7cm}$ n=500$      &0.807 &1.52  &0.121  & 0.066    & 0.014   \\  [0.18cm]
+&\hspace{-0.65cm}$n=5000$     &0.855  &1.54  &0.132  & 0.075    & 0.021  \\ [0.18cm]
+&\hspace{-0.5cm}$n=50000$     &0.816  & 1.48 &0.116  & 0.07     & 0.022   \\  [0.18cm]
+&\hspace{-0.30cm}$n=500000$   &0.779  &1.57  &0.12   &0.062     & 0.015    \\ [0.18cm]
+
+\hline
+
+
+  \multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering Sim 3}\end{sideways}}
+
+&\hspace{-0.7cm}$ n=500$      &1.57 &1.32  &0.114  &0.062    &0.014    \\  [0.18cm]
+&\hspace{-0.7cm}$n=5000$      &1.39 &1.34  &0.082  &0.040    &0.011   \\ [0.18cm]
+&\hspace{-0.5cm}$n=50000$     &1.53 &1.36  &0.096  &0.049    &0.008    \\  [0.18cm]
+&\hspace{-0.30cm}$n=500000$   &1.52 &1.34  &0.098  &0.054    &0.013     \\ [0.18cm]
+
+
+  \hline
+
+\end{tabular} \end{center}
+\end{table}
+
+
+
+
+\section{Concluding Remarks}
+
+
+This paper considers efficient GMM estimation in strongly identified linear models when moments have (asymptotically) singular variance. We derive the non-standard limit distribution of 2-Step GMM and related statistics. Discussion is provided which discusses how regularising the variance matrix, a method commonly applied in applied and theoretical research on moment type estimators leads to an estimator with a larger asymptotic variance and a potentially slower rate of convergence. Namely we show that the rate of convergence is shown to be rate-n when the null space of the moment variance matrix is not a subset or equal to the null space of the outer product of the expected first order derivative at $\beta_0$.
+
+A common intuition in the literature is that those linear combination of moments with zero variance provide no informative content in estimation of $\beta_0$, e.g Doran \& Schmidt (2006).Results in this paper show in fact the opposite is true and that regularising the variance matrix can lead to a less efficient estimator. This opens up the question of what is the efficient limiting variance and rate of convergence when we remove the assumption that the moment variance (after a regularisation) is asymptotically non-singular. This paper argues that the assumption on the form and ran of the moment variance be made as an identification condition, similar the the rank assumption on the expected first order moment derivative.
+
+Results in this paper were based on some simplifying assumptions. Relaxing the assumption eigenvalues are simple will allow for the rank of the variance matrix to take any value. The author intends to work on this in future research. Considering the case of weak/lack of identification would also be interesting- given the increase of rate of convergence in certain cases with singular variance in the strongly identified case. This paper served as an initial foray in to the properties of moment estimator with singular variance and extensions to many weak moments, generalised empirical likelihood estimators and non-linear models may shed further light on the impact of singular variance for inference.
+
+
+
+
+
+
+
+
+
+\section*{Appendix}
+
+
+
+
+
+
+
+
+\subsection*{ Appendix A: Proof of Lemmas}
+
+
+
+\textsc{Lemma 1}  
+\begin{equation} \sqrt{n}\hat{\Omega}_T(\tilde{\beta})P_{0T}\Xi_T \overset{d}{\rightarrow} \Psi \end{equation}
+where $\Psi= (I_m \otimes Z_g')\Theta P_0 $\\
+
+\textsc{Proof of Lemma 1}
+
+By a Taylor expansion of $\hat{\Omega}(\tilde{\beta})$ around $\beta_0$ and under the Linearity assumption,
+\begin{equation}\label{varexpansion}\hat{\Omega}(\tilde{\beta})=\hat{\Omega}+\frac{1}{n}\sum_{i=1}^ng_i\tilde{\Delta}'G_i'+
+\frac{1}{n}\sum_{i=1}^n G_i \sqrt{n}\tilde{\Delta}g_i'+\frac{1}{n}\sum_{i=1}^n G_i\tilde{\Delta}\tilde{\Delta}' G_i'\end{equation}
+Multiply the Left Hand Side (LHS) of (\ref{varexpansion}) by $P_0$ and define $c_{i,n}=n^{\delta/2}P_0'g_i$
+\begin{equation}\sqrt{n}\hat{\Omega}(\tilde{\beta})P_0=n^{1/2}\hat{\Omega}P_0+ \frac{1}{n}\sum_{i=1}^ng_i\sqrt{n}\tilde{\Delta}'G_i' P_0 +\frac{1}{n}\sum_{i=1}^n G_i\tilde{\Delta} c_{i,n}'+\frac{1}{n}\sum_{i=1}^n G_i\sqrt{n}\tilde{\Delta}\tilde{\Delta}' G_i'P_0 \end{equation}
+Firstly is is  straightforward to show 
+\begin{eqnarray}
+\frac{1}{n}\sum_{i=1}^n \sqrt{n}G_i\tilde{\Delta}\tilde{\Delta}' G_i'P_0
+&\leq& \sqrt{n}|\!|P_0|\!||\!|\frac{1}{n}\sum_{i=1}^n|\!|G_i|\!|^2|\!||\!|\tilde{\Delta}|\!|^2 =O_p(n^{-1/2})
+\end{eqnarray}
+
+\begin{eqnarray}
+\frac{1}{n}\sum_{i=1}^n G_i\tilde{\Delta} c_{i,n}'&\leq& |\!|\tilde{\Delta}|\!|\frac{1}{n}\sum_{i=1}^n|\!|G_i|\!|\frac{1}{n}\sum_{i=1}^n|\!|c_{i,n}|\!|=O_p(n^{-1/2})
+\end{eqnarray}
+
+\begin{equation}\sqrt{n}\hat{\Omega}(\tilde{\beta})P_0= \frac{1}{n}\sum_{i=1}^ng_i\sqrt{n}\tilde{\Delta}'G_i' P_0 +O_p(n^{-1/2}) \end{equation}
+
+Using Theorem $\sqrt{n}\tilde{\Delta}=\Xi \sqrt{n}\hat{g}+o_p(1)$ then the jk'th element of $\frac{1}{n}\sum_{i=1}^ng_i\sqrt{n}\tilde{\Delta}'G_i'$,
+\begin{equation}\left[\frac{1}{n}\sum_{i=1}^ng_i\sqrt{n}\tilde{\Delta}'G_i'\right]_{jk}=
+\frac{1}{n}\sum_{i=1}^ng_{ij}\sqrt{n}\hat{g}'\Xi'G_{ik}=\sqrt{n}\hat{g}'\hat{\theta}_{jk}\end{equation}
+Define $\hat{\theta}_{jk}:=\frac{1}{n}\sum_{i=1}^n\Xi'G_{ik}g_{ij}$ hence
+\begin{equation}\frac{1}{n}\sum_{i=1}^ng_i\sqrt{n}\tilde{\Delta
+}'G_i'=(I_m \otimes \sqrt{n}\hat{g}')\hat{\Theta}
+ \end{equation}
+Where $\hat{\Theta}$ is defined,
+\begin{equation}\hat{\Theta}:=
+\left[\begin{array}{cccc}
+\hat{\theta}_{11} & \cdots & \hat{\theta}_{1m}\\
+\vdots & \ddots & \vdots &  \\
+\hat{ \theta}_{m1} & \cdots&  \hat{\theta}_{mm}\end{array}\right]
+\end{equation}
+and  $\hat{\theta}_{jk} \overset{p}{\rightarrow}\theta_{jk}$ where $\theta_{jk}=\lim_{n\rightarrow \infty} E\left[\frac{1}{n}\sum_{i=1}^n\Xi'G_{ik}g_{ij}\right]$  for all $j,k=\{1,..,m\}$ by the WLLn for Triangular Arrays. 
+\begin{equation}\label{d}\hat{\Theta}\overset{p}{\rightarrow} \Theta\end{equation}
+and by the Lindberg-Feller Central Theorem under A1(i),(ii) then $\sqrt{n}\hat{g}'\overset{d}{\rightarrow} Z_g'$ then together (\ref{c}), (\ref{d}) by Slutskys Theorem establishes (\ref{negeigvec})
+\begin{equation} \frac{1}{n}\sum_{i=1}^ng_i\sqrt{n}\tilde{\Delta
+}'G_i'P_0\overset{d}{\rightarrow} (I_m \otimes Z_g')\Theta P_0\end{equation}
+Establishing the result,
+\begin{equation}\sqrt{n}\hat{\Omega}(\tilde{\beta})P_0 \overset{p}{\rightarrow}(I_m \otimes Z_g')\Theta P_0 \end{equation}
+
+
+
+
+
+\textsc{Lemma 2} Under Assumption 
+\begin{equation*} \Xi_TP_{0T}'\hat{\Omega}_T(\tilde{\beta})P_{0T}\Xi_T\overset{d}{\rightarrow} \mathcal{W} \end{equation*}
+\textsc{Proof:} Taylor expanding $\hat{\Omega}_T(\tilde{\beta}_T)$ around $\beta_0$ 
+\begin{equation*}\label{expan}
+P_{0T}'\hat{\Omega}_T(\tilde{\beta}_T)P_{0T}=  P_{0T}'\hat{\Omega}_TP_{0T}+ \frac{1}{T}\sum_{t=1}^Tc_{t}\tilde{\Delta}_T'G_t' P_{0T} +\frac{1}{T}\sum_{t=1}^T P_{0T}'G_t\tilde{\Delta}_T c_{t}'+\frac{1}{T}\sum_{t=1}^T P_{0T}'G_t\tilde{\Delta}_T\tilde{\Delta}_T' G_t'P_{0T} \end{equation*}
+utilising linearity of the moment function where $c_{t}=P_{0T}'g_t$ where dependence on $T$ is suppressed and defining $\tilde{\Delta}_T=\tilde{\beta}_T-\beta_0$. Noting that $c_t=\Lambda_{0T}^{1/2}\bar{c}_t$ where $\Lambda_{0T}=\textrm{diag}(\lambda_{m-\bar{m},T},..,\lambda_{m,T})$ where $E\left[\frac{1}{T}\sum_{t=1}^T\bar{c}_t\bar{c}_t'\right]=I_{\bar{m}}$ and $P_{0T}'\Omega_TP_{0T}=E[\frac{1}{T}\sum_{t=1}^T c_t c_t']=\Lambda_{0T}$. Define $\tilde{\Delta}_T^S=S_T'\tilde{\Delta}_T$ where $\tilde{\Delta}_T^S\overset{d}{\rightarrow} CZ_g$ where $C=(G'WG)^{-1}G'W\Omega^{1/2}Z_g$
+
+\begin{eqnarray*}
+\Xi_T\frac{1}{T}\sum_{t=1}^T P_{0T}'G_t\tilde{\Delta}_Tc_t&=&\mu_{pT}\Xi_T\frac{1}{T}\sum_{t=1}^T P_{0T}'G_t\bar{S}_T^{'-1}\textrm{diag}(\mu_{pT}\mu_{1T}^{-1},..,1)\tilde{\Delta}_T^S\bar{c}_t\Lambda_{0T}^{1/2}\Xi_T\\
+&\overset{d}{\rightarrow}& \Xi_{\mu}\frac{1}{T}\sum_{t=1}^T()  \Xi_{\lambda}
+\end{eqnarray*}
+
+where $\mu_{pT}\Xi_T=\textrm{diag}(\mu_{pT}\xi_{1T},..,\mu_{pT}\xi_{\bar{m}T})\rightarrow \textrm{diag}(\xi_{1,\mu},..,\xi_{\bar{m},\mu})$ and $\xi_{j,\mu}=\underset{T\rightarrow \infty}{\lim} \mu_{pT}\xi_{jT} $ for $j=\{1,..,\bar{m}\}$ and $\xi_{j,\mu}=\underset{T\rightarrow \infty}{\lim}\mu_{pT}/\lambda_{m-\bar{m}-1+j,T}^{1/2}$ for $j=\{1,..,k\}$ $\xi_{j,\mu}=1$ for $j=\{k+1,..,\bar{m}\}$ and  $\Lambda_{0T}^{1/2}\Xi_T=\textrm{diag}(\lambda_{m-\bar{m},T}^{1/2}\xi_{1T},..,\lambda_{m,T}^{1/2}\xi_{\bar{m}T})\rightarrow \textrm{diag}(\xi_{1,\lambda},..,\xi_{\bar{m},\lambda})$ where $\xi_{j,\lambda}=1$ for $j=\{1,..,k\}$ and $\xi_{j,\lambda}=0$ for $j=\{k+1,..,\bar{m}\}$.
+
+
+Again using $\sqrt{n}\tilde{\Delta}'=\sqrt{n}\Xi\hat{g}'+o_p(1)$
+then $ [\frac{1}{n}\sum_{i=1}^n c_{i,n}'\sqrt{n}\tilde{\Delta}' G_i']_{jk}=\sqrt{n}\hat{g}'\Xi'\frac{1}{n}\sum_{i=1}^nG_{ik}c_{ij}+o_p(1)$.\\
+Define $\hat{\upsilon}_{jk}=\Xi'\frac{1}{n}\sum_{i=1}^nG_{ik}c_{ij}$, then
+\begin{equation}\frac{1}{n}\sum_{i=1}^n c_{i,n}'\sqrt{n}\tilde{\Delta}' G_i'=(I_m \otimes \sqrt{n}\hat{g}) \hat{\Upsilon}+ o_p(1) \end{equation}
+Where $\hat{\Upsilon}$ is defined similarly to $\Upsilon$ replacing $\upsilon_{jk}$ with $\hat{\upsilon}_{jk}$ for all $j,k=\{1,..,m\}$ where $\hat{\Upsilon}\overset{p}{\rightarrow} \Upsilon$ which  establishes (\ref{uh}). Finally to show,
+\begin{equation}\label{f}P_0'\frac{1}{n}\sum_{i=1}^n G_in\tilde{\Delta}\tilde{\Delta}' G_i'P_0
+\overset{d}{\rightarrow}P_0'\Gamma(I_m\otimes Z_g\otimes Z_g)P_0\end{equation}
+Define $\hat{\gamma}_{jk}:=\Xi'\frac{1}{n}\sum_{i=1}^nG_{ik}G_{jk}'\Xi$ then note
+\begin{equation} [\frac{1}{n}\sum_{i=1}^n G_i n\tilde{\Delta}\tilde{\Delta}' G_i']_{jk}=\frac{1}{n}\sum_{i=1}^n G_{ij}'n\tilde{\Delta}\tilde{\Delta}' G_{ij}=\textrm{tr}(\hat{\gamma}_{jk}' n\hat{g}\hat{g}')=\textrm{vec}(\hat{\gamma}_{jk})'\textrm{vec}(n\hat{g}\hat{g}')\end{equation}
+Using the results that for two  square matrices A,B $\textrm{tr}(AB)=\textrm{vec}(A')'\textrm{vec}(B)$.
+Noting the fact $a\in \mathbb{R}^q$  $\textrm{vec}(aa')=a\otimes a$ then
+\begin{equation} \frac{1}{n}\sum_{i=1}^n G_i n\tilde{\Delta}\tilde{\Delta}' G_i'=\hat{\Gamma}(I_m \otimes \sqrt{n}\hat{g} \otimes \sqrt{n}\hat{g})+o_p(1)\end{equation}
+Where $\hat{\Gamma}$ is defined similarly to $\Gamma$ in (\ref{gamma}) replacing $\Gamma_{jk}$ with $\hat{\Gamma}_{jk}$ for $j,k=\{1,..,m\}$ where $\hat{\Gamma}\overset{p}{\rightarrow} \Gamma$ which together imply,
+\begin{equation}\label{g} P_0' \frac{1}{n}\sum_{i=1}^n G_i n\tilde{\Delta}\tilde{\Delta}' G_i'P_0\overset{d}{\rightarrow} P_0\Gamma(I_m\otimes Z_g \otimes Z_g')P_0 \end{equation}
+
+
+
+Finally by (\ref{uh}), \begin{equation} n P_0'(\hat{\Omega}(\tilde{\beta})-\hat{\Omega})P_0\overset{d}{\rightarrow} 
+ P_0' \left( (I_m\otimes Z_g')\Upsilon+\Upsilon'(I_m \otimes Z_g)\right)P_0+P_0'\Gamma(I_m\otimes Z_g\otimes Z_g) P_0 
+\end{equation}
+\begin{equation}nP_0'(\hat{\Omega})P_0\overset{p}{\rightarrow} \Lambda_0 \end{equation}
+Establishing the result
+\begin{equation}nP_0'\hat{\Omega}(\tilde{\beta})P_0\overset{d}{\rightarrow} \mathcal{W} \end{equation}
+
+
+
+Define
+
+ \textsc{Lemma 3}: Under A1 when $\bar{m}>0$ then for any  $\lambda_1, \lambda_2 \in \mathbb{R}^{k\times m}$ where $k\geq 1$   defining $W_1=(I-\hat{\Delta}_{\Omega}M_0)\lambda_1$, $W_2=(I-\hat{\Delta}_{\Omega}M_0)\lambda_2$  \begin{equation} \label{laur} \lambda_1'\hat{\Omega}(\tilde{\beta})^{-1}\lambda_2= \lambda_1'M_0\lambda_2 + W_1'\hat{\Pi} W_2 +O_p(n^{-1/2}|\!|W_1|\!||\!|W_2|\!|).\end{equation}
+ 
+ 
+ \textsc{Proof of Lemma 1}\\ Let $A$ be an $m \times m$ singular matrix and $B$ some $m\times m$ (asymptotically) bounded matrix. Define $A(z)=A+zB$ for some scalar $z$.
+ By Theorem 2.10 and Theorem 2.11 (pages 22-25) of Avrachenkov et al. (2013)  for all
+ $z \rightarrow 0$ then if $A(z)^{-1}$ exists in a punctured neighbourhood around $z=0$ and $B$ satisfies $det(V_0'BV_0)\neq 0$ w.p.1. for $V_0$ such that $AV_0=0$
+ \begin{equation} \label{kons} A(z)^{-1}= \frac{1}{z}X_0+ X_1-zX_1BX_1+z^2X_1BX_1BX_1+.. \end{equation}
+ where $X_0=V_0[V_0'BV_0]^{-1}V_0'$, $X_1=(I-X_0B)A^*(I-BX_0)$ and $A^*$ is the Moore-Penrose generalised inverse of $A$.\\
+ Applying this result to $\hat{\Omega}(\tilde{\beta})$ where $A=\Omega$ and $V_0=P_0$ (the expansion is invariant to right multiplication by a full rank matrix), $B=\hat{\Delta}_{\Omega}$ setting $z=1$ noting that $|\!|B|\!|\overset{p}{\rightarrow} 0$. Finally $X_0=M_0$, $X_1=M_1$ where $M_1=(I- M_0\hat{\Delta}_{\Omega})\Omega^*(I-\hat{\Delta}_{\Omega}M_0)$  and noting that $V_0'BV_0=P_0'\hat{\Omega}(\theta_n)P_0$ is full rank w.p.1 by A1(vii). Then $ \hat{\Omega}(\tilde{\beta})^{-1}$ has a Laurent Series expansion
+ \begin{equation} \label{laurent1}\hat{\Omega}(\tilde{\beta})^{-1}= M_0+M_1-M_1\hat{\Delta}_{\Omega}M_1+M_1\hat{\Delta}_{\Omega}M_1\hat{\Delta}_{\Omega}M_1+...
+ \end{equation}
+ plugging the relevant entries above in to (\ref{kons}).\\
+ Define $M_2=(I-\hat{\Delta}_{\Omega}M_0)\hat{\Delta}_{\Omega}(I-M_0\hat{\Delta}_{\Omega})\Omega^*$ then by simple algebraic multiplication we may express (\ref{laurent1})
+ \begin{equation} \label{laurent2} \hat{\Omega}(\tilde{\beta})^{-1}= M_0 +(I-M_0\hat{\Delta}_{\Omega})\Omega^*\sum_{j=0}^\infty (-M_2)^j(I-\hat{\Delta}_{\Omega}M_0)\end{equation}
+ which can be verified by expanding the sum and using the definition of $M_1$.
+ 
+ Expanding out $M_2$ we find
+ \begin{equation} \label{m2}M_2= (\hat{\Delta}_{\Omega} -2\hat{\Delta}_{\Omega}M_0\hat{\Delta}_{\Omega} +
+ \hat{\Delta}_{\Omega}M_0\hat{\Delta}_{\Omega}M_0\hat{\Delta}_{\Omega})\Omega^*. \end{equation}
+ Firstly note that since $\hat{\Delta}_{\Omega}=(\hat{\Omega}(\tilde{\beta})-\hat{\Omega})-(\Omega-\hat{\Omega})$ then by T
+ \begin{equation} |\!|\hat{\Delta}_{\Omega}|\!|\leq |\!|\hat{\Omega}(\tilde{\beta})-\hat{\Omega}|\!|
+ +|\!|\hat{\Omega}-\Omega|\!| \end{equation}
+ where $ |\!|\hat{\Omega}(\tilde{\beta})-\hat{\Omega}|\!|=O_p(n^{-1/2})$ by A1(iv) and $|\!|\hat{\Omega}-\Omega|\!|=o_p(1)$ by A1(i),(ii) so that since $|\!|\Omega^*|\!|\leq |\!|P_+|\!|^2|\!|\Lambda_+|\!|^{-1}=O(1)$ as $|\!|P_+|\!|=m-\bar{m}<\infty$ and $\Lambda_+=P_+'\Omega P_+$ where $|\!|\Omega|\!|=O(1)$ by A1(ii) then
+ \begin{equation} \label{lllk}  \hat{\Delta}_{\Omega}\Omega^* =o_p(1). \end{equation}
+ Noting that $M_0\hat{\Delta}_{\Omega}M_0=M_0$
+ \begin{align}  \hat{\Delta}_{\Omega}M_0\hat{\Delta}_{\Omega}M_0\hat{\Delta}_{\Omega}= \hat{\Delta}_{\Omega}M_0\hat{\Delta}_{\Omega} \label{m12} \end{align}
+ 
+ 
+ so together (\ref{m12}) and (\ref{lllk}) plugged in to (\ref{m2}) imply
+ \begin{eqnarray} \label{m23} -M_2&=& \hat{\Delta}_{\Omega}M_0\hat{\Delta}_{\Omega}\Omega^*+o_p(1) \\	&=& n^{1/2}\hat{\Omega}(\theta_n)P_0[nP_0'\hat{\Omega}(\tilde{\beta})P_0]^{-1}n^{1/2}P_0'\hat{\Omega}(\tilde{\beta})\end{eqnarray}
+ 
+
+
+ where by Lemma 1 and Lemma 2 and that $\Gamma$ is invertible by A1(viii) an application of CMT establishes
+ \begin{equation} \label{m11} n^{1/2}\hat{\Omega}(\theta_n)P_0[nP_0'\hat{\Omega}(\theta_n)P_0]^{-1}n^{1/2}P_0'\hat{\Omega}(\theta_n)=
+ \hat{\Psi}'\hat{\mathcal{W}}^{-1}\hat{\Psi} \end{equation}
+ which plugged in to (\ref{m23}) implies
+ \begin{equation} \label{m22} M_2=-\hat{\Psi}'\hat{\Gamma}\hat{\Psi}\Omega^* +o_p(1). \end{equation}
+ 
+ Finally multiplying (\ref{laurent2}) on the left and right by $\lambda_1, \lambda_2$ respectively and plugging in  $-M_2=\Psi'\Gamma\Psi\Omega^* +o_p(1)$  and using by definition that
+ $W_1=(I-\hat{\Delta}_{\Omega}M_0)\lambda_1$, $W_2=(I-\hat{\Delta}_{\Omega}M_0)\lambda_2$
+ \begin{align} \lambda_1'\hat{\Omega}(\theta_n)^{-1}\lambda_2 &= \lambda_1'M_0\lambda_2 +W_1'\Omega^*\sum_{j=0}^\infty (\hat{\Psi}'\hat{\mathcal{W}}\hat{\Psi}\Omega^*+o_p(1))^j W_2\\
+ \label{laurent3} &=\lambda_1'M_0\lambda_2 +W_1'\hat{\Pi} W_2+ o_p(W_1'W_2)\end{align}
+ 
+ where (\ref{laurent3}) follows since
+ \begin{align}\Omega^*\sum_{j=0}^\infty (\hat{\Psi}'\Gamma\Psi\Omega^*+o_p(1))^j&=\Omega^*+\sum_{j=1}^\infty \Omega^*(\Psi'\Gamma^{-1}\Psi\Omega^*)^j+o_p(1)\\
+ \label{had} &=\Omega^*+ \Omega^*\Psi'\left(\Gamma^{-1}\sum_{j=0}^\infty(\Psi'\Omega^*\Psi\Gamma^{-1})^j\right)\Psi\Omega^*+o_p(1)\\
+ \label{hd} &=\Pi+o_p(1)
+ \end{align}
+ and (\ref{hd}) follows since by repeated application of the Woodbury Formula,
+ \begin{equation} \label{wood} \Phi^{-1}=\Gamma^{-1}\sum_{j=0}^\infty(\Psi'\Omega^*\Psi\Gamma^{-1})^j\end{equation}
+ since $\Gamma$ and $\Phi=\Gamma-\Psi'\Omega^*\Psi$ are full rank by A1(viii) and $\Pi=\Omega^*+ \Omega^*\Psi'\Phi^{-1}\Psi\Omega^*$ by definition. Finally since $W_1'W_2\leq |\!|W_1|\!|W_2|\!|$ by CS which together with (\ref{laurent3}) establishes (\ref{laur}).\\
+ 
+
+
+
+
+
+
+
+
+
+\section*{Appendix B: Proofs of Main Theorems}
+
+
+
+ To show $(\ref{limit})$ we use the usual Taylor expansion  of the GMM first order condition around $\beta_0$. By definition $\hat{\beta}$ solves the first order condition
+  \begin{equation} \hat{G}'\hat \Omega(\tilde{\beta})^{-1}\hat{g}(\hat{\beta})=0\end{equation}
+  Then performing a Mean Value Expansion around $\beta_0$
+  \begin{equation} \label{bexpan}\sqrt{n}(\hat{\beta}-\beta_0)=-(\hat{G}'\Omega(\tilde{\beta})^{-1}\hat{G})^{-1}
+  \hat{G}'\Omega(\tilde{\beta})^{-1}\sqrt{n}\hat{g}(\beta_0)\end{equation}
+
+Define $\hat{\Phi}_1=(\hat{G}'\Omega(\tilde{\beta})^{-1}\hat{G})$, $\hat{\Phi}_2= \hat{G}'\Omega(\tilde{\beta})^{-1}\sqrt{n}\hat{g}(\beta_0)$ then by  (\ref{bexpan}) \begin{equation}\sqrt{n}(\hat{\beta}-\beta_0)=\hat{\Phi}_1^{-1}\hat{\Phi}_2\end{equation}.
+ We can rewrite   $\hat{\Phi}_1^{-1}\hat{\Phi}_2=B_n^{-1}(B_n^{'-1}\hat{\Phi}_1 B_n^{-1})^{-1}
+  B_n^{'-1}\hat{\Phi}_2$ where,
+  \begin{equation} B_n \sqrt{n}(\hat{\beta}-\beta_0) =(B_n^{'-1}\hat{\Phi}_1 B_n^{-1})^{-1}B_n^{'-1}\hat{\Phi}_2\end{equation}
+
+  We now show that both $B_n^{'-1}\hat{\Phi}_1 B_n^{-1}\overset{d}{\rightarrow}\Phi_1$ and $B_n^{'-1}\hat{\Phi}_2$ which establishes (\ref{limit}).
+ By Lemma 3 for $\lambda_1=\lambda_2=B_n^{'-1}\hat{G}'$ when $W_1$ and $W_2$ are $O_p(1)$ and by Lemma 3
+ 
+ 
+ \begin{eqnarray*}\label{p1} B_n^{'-1}\hat{\Phi}_1B_n^{-1}&=& B_n^{'-1}\hat{G}'\hat{\Omega}(\tilde{\beta})^{-1}\hat{G} B_n^{-1}\\
+ &=& B_n^{'-1}\hat{G}'M_0\hat{G} B_n^{-1}
+ +B_n^{'-1}\hat{G}'(I-\hat{\Delta}_{\Omega}M_0)\hat{\Pi}(I-M_0\hat{\Delta}_{\Omega})\hat{G}B_n^{-1} +o_p(1)
+  \end{eqnarray*}
+
+\begin{eqnarray} B_n^{'-1}\hat{G}'M_0\hat{G} B_n^{-1}&=&n^{1/2}B_n^{'-1}\hat{G}'P_0[nP_0'\hat{\Delta}_{\Omega}P_0]^{-1}n^{1/2}P_0'\hat{G} B_n^{-1}
+\end{eqnarray}
+Where $[nP_0'\hat{\Delta}_{\Omega}(\tilde{\beta})P_0]^{-1}\overset{d}{\rightarrow} 
+\Gamma^{-1}$ by CMT and 
+\begin{eqnarray} n^{1/2}B_n^{'-1}\hat{G}'P_0 &=& 
+n^{1/2}B_n^{'-1}(\hat{G}-G)'P_0 + n^{1/2}B_n^{'-1}G'P_0\\
+&\overset{d}{\rightarrow} & \left(\begin{array}{cc} 0 & 0\\ 0 & I_{p-\bar{p}}\end{array}\right)B'Z_G'P_0+ \left(\begin{array}{cc} I_{\bar{p}} & 0\\ 0 & 0\end{array}\right) B'G'P_0\label{p2}\\
+&=& \left(\begin{array}{cc} 0 & 0\\ 0 & B_{p-\bar{p}}'\end{array}\right)Z_G'P_0+\left(\begin{array}{cc} B_{\bar{p}}' & 0\\ 0 & 0\end{array}\right)G'P_0 \label{p3} \\
+&:=& \mathcal{C}\end{eqnarray}
+ where (\ref{p2}) holds since  $B'G'P_0=\left(\begin{array}{c} G_{BP_0} \\ 0 \end{array}\right)$ by definition of $B$ and (\ref{p3}) holds noting
+ 
+ 
+  $ \left(\begin{array}{cc} I_{\bar{p}} & 0\\ 0 & 0\end{array}\right)B'=\left(\begin{array}{cc} B_{\bar{p}}' & 0\\ 0 & 0\end{array}\right)$ where $B_{\bar{p}}'$ is the upper $\bar{p}\times \bar{p}$ sub-matrix of $B'$ 
+ 
+ Together by the CMT establishes
+ 
+  \begin{equation}
+  B_n^{'-1}\hat{G}'M_0\hat{G} B_n^{-1}\overset{p}{\rightarrow} \mathcal{C}'\Gamma^{-1}\mathcal{C}
+  \end{equation}
+  
+   $\left(\begin{array}{cc} 0 & 0\\ 0 & I_{p-\bar{p}}\end{array}\right) B'= \left(\begin{array}{cc} 0 & 0\\ 0 & B'_{p-\bar{p}}\end{array}\right)$ where $B_{p-\bar{p}}'$ is the lower $(p-\bar{p})\times(p- \bar{p})$ sub-matrix of $B'$.\\
+ 
+ 
+ We now show that 
+ \begin{equation} B_n^{'-1}\hat{G}'(I-M_0\hat{\Delta}_{\Omega})\Pi(I-\hat{\Delta}_{\Omega}M_0)\hat{G}B_n^{-1}= \end{equation}
+   \begin{equation} B_n^{'-1}\hat{G}'(I-M_0\hat{\Delta}_{\Omega})= B_n^{'-1}\hat{G}' -B_n^{'-1}\hat{G}'M_0\hat{\Delta}_{\Omega} \end{equation}
+ Where 
+ \begin{eqnarray}
+ B_n'^{-1}\hat{G}&\overset{p}{\rightarrow}& \left(\begin{array}{cc} 0 & 0\\ 0 & B_{p-\bar{p}}'\end{array}\right)G'\\
+ &=& \bar{B}'G'
+ \end{eqnarray}
+ 
+  \begin{eqnarray}
+ B_n^{'-1}\hat{G}'M_0\hat{\Delta}_{\Omega}&=&n^{1/2}B_n^{'-1}\hat{G}'P_0[nP_0'\hat{\Delta}_{\Omega}P_0]^{-1}n^{1/2}P_0'\hat{\Delta}_{\Omega}\\
+ &\overset{d}{\rightarrow}& \mathcal{C}'\Gamma^{-1} \Psi'
+  \end{eqnarray}
+  Hence
+ \begin{equation} B_n^{'-1}\hat{\Phi}_1B_n^{-1}
+ \overset{d}{\rightarrow} \mathcal{C}'\Gamma^{-1}\mathcal{C}+  (G\bar{B}-\Psi'\Gamma^{-1}\mathcal{C})'\Pi(G\bar{B}-\Psi'\Gamma^{-1}\mathcal{C}) \end{equation}
+
+
+\textbf{Appendix C: Examples of Singular Variance}\\
+
+The example used in Section X to demonstrate the impact of common omitted variables was somewhat unrealistic as it required the residuals from the regression equations be perfectly correlated. As the number of equations,$J$ increases and with further omitted shocks- both observable and unobservable, singularity may arise in situations residuals in the regression functions are not perfectly correlated.
+Take the case $J=4$, $m=2$ where with $\sum_{j=1}^4p_j \leq mJ=8$ and assume $G$ is full rank.
+\begin{equation}\varepsilon_1=\varepsilon_3+\bar{\varepsilon}_1 \end{equation}
+\begin{equation}\varepsilon_2=\varepsilon_4+\bar{\varepsilon}_2\end{equation}
+Where $ E[\bar{\varepsilon}_1|z]= E[\bar{\varepsilon}_2|z]=0$, $E[\bar{\varepsilon}_1^2|z]=E[\bar{\varepsilon}_2^2|z]=1$ and $E[\bar{\varepsilon}_1
+\bar{\varepsilon}_2|z]=\rho_{\bar{\varepsilon}}$. In this case a common shock enters equations 1 and 2, and also 3 and 4.
+\begin{equation}g_1(\beta_0)-g_5(\beta_0)=(\bar{\varepsilon}_1 +(\kappa_{01}-\kappa_{03})x)z_1\end{equation}
+\begin{equation} g_2(\beta_0)-g_6(\beta_0)=(\bar{\varepsilon}_2+(\kappa_{01}-\kappa_{03})x)z_1 \end{equation}
+\begin{equation}g_3(\beta_0)-g_7(\beta_0)=(\bar{\varepsilon}_1 +(\kappa_{02}-\kappa_{04})x)z_2\end{equation}
+\begin{equation} g_4(\beta_0)-g_8(\beta_0)=(\bar{\varepsilon}_2+(\kappa_{02}-\kappa_{04})x)z_2 \end{equation}
+So that
+\begin{equation} \textrm{cor}\left(g_1(\beta_0)-g_5(\beta_0),g_2(\beta_0)-g_6(\beta_0)\right)=\frac{\rho_{\varepsilon}+(\kappa_{01}-\kappa_{03})^2\sigma_x^2}
+{1+(\kappa_{01}-\kappa_{03})^2\sigma_x^2}\end{equation}
+\begin{equation} \textrm{cor}\left(g_3(\beta_0)-g_7(\beta_0),g_4(\beta_0)-g_8(\beta_0)\right)=\frac{\rho_{\varepsilon}+(\kappa_{02}-\kappa_{04})^2\sigma_x^2}
+{1+(\kappa_{02}-\kappa_{04})^2\sigma_x^2}\end{equation}
+When $\rho_{\varepsilon}=1$ then $\Omega_n$ is exactly singular. As $(\kappa_{01}-\kappa_{03})^2$ and $(\kappa_{02}-\kappa_{04})^2$ increase (also as  $\sigma_x^2$ increase), then $\textrm{cor}\left(g_1-g_5,g_2-g_6\right)$ and $\textrm{cor}\left(g_3(\beta_0)-g_7(\beta_0),g_4(\beta_0)-g_8(\beta_0)\right)$  approach 1 respectively, even when $\rho_{\varepsilon}<1$. For example if $\kappa_{01}=2,\kappa_{02}=-2$ and $\sigma_x^2=2$ and $\rho_{\varepsilon}=0.75$ then $\textrm{cor}\left(g_1-g_5,g_2-g_6\right)=0.992$. \\
+Note in this setting the composite error terms $\epsilon_j$ for $j=1,,.4$ may not be perfectly correlated, and will allow quite general correlation patterns, even when $\Omega_n$ is exactly singular.
+ Since $\epsilon_1=\varepsilon_3+\bar{\varepsilon}_1+\kappa_{01}x$, $\epsilon_2=\varepsilon_4+\bar{\varepsilon}_2+\kappa_{02}x$,
+$\epsilon_3=\varepsilon_3+\kappa_{03}x$, $\epsilon_4=\varepsilon_4+\kappa_{04}x$ even if  $\rho_{\varepsilon}=1$ none of the composite error terms from the regression functions are necessarily perfectly correlated as $ \textrm{cor}(\varepsilon_3,\varepsilon_4)$  can take any value and similarly $\kappa_{0j}$ for $j=\{1,..,4\}$.
+
+If $\rho_{\varepsilon}=1$ then $\Omega_n$ is singular, though if we include $x$ in regression equation 1 and 2 then $\Omega_n$ will not be exactly singular when $\kappa_{03},\kappa_{02} \neq 0$.  Also when $\rho_{\varepsilon}<1$ though say either $(\kappa_{01}-\kappa_{03})^2$ and $\sigma_x^2$ are high then $ \textrm{cor}\left(g_1(\beta_0)-g_5(\beta_0),g_2(\beta_0)-g_6(\beta_0))\right)$ is close to 1. Including x in any (or all) of the regression equations will reduce the correlation between linear combinations of moments. When we consider the case of multiple omitted variables, observable and unobservable with many equations $J$ then singular may arise in many different ways, where changing any/all of the variables included can alter the rank of $\Omega_n$.
+
+
+
+
+
+
+\section*{Existence of $\hat{\Omega}(\tilde{\beta})^{-1}$ when $\Omega_n$ is Singular}
+
+
+When $\Lambda_{0n}=0$, i.e $\Lambda_0=0_{\bar{m}}$ then in order for 2-Step GMM to exist we require $\Omega_n(\tilde{\beta})$ is full rank on $\beta \in \mathbb{B}(\beta_0,\epsilon)/\beta_0$ for some $\epsilon>0$ (a ball around epsilon). This assumption is quite natural.
+
+Take Example 1 with $J=2$, $p_1=p_2=1$, $\kappa_0=0$ $h_1(z)=h_2(z)=1$ so that singularity in the moment function is  the cause of singular moment variance. Then $\Omega_n(\beta_0+\Delta)$ for some $|\!|\Delta|\!|>0$ noting in the case of 2-Step GMM $\Delta$ is a random variable.\\
+
+If $|\textrm{cor}(x_1,x_2)|<1 $then  $\epsilon_1(\beta_0+\Delta)=\epsilon_1+\delta_1x_1$,$\epsilon_2(\beta_0+\Delta)=\epsilon_2+\delta_2 x_2$ then $\textrm{cor}(\epsilon_1(\beta_0+\Delta),\epsilon_2(\beta_0+\Delta))<1$ for all $|\!|\Delta|\!|>0$ where $\Pr\{\tilde{\beta}=\beta_0\}=0$ given $\tilde{\beta}$ is a continuous random variable. Likewise even if $x_1=x_2=x$ so that then $\epsilon_1(\beta_0+\Delta)=\epsilon_1+\delta_1x$,$\epsilon_2(\beta_0+\Delta)=\epsilon_2+\delta_2 x$ then $ \textrm{cor}(\epsilon_1(\beta_0+\Delta),\epsilon_2(\beta_0+\Delta))=1$  iff $\delta_1=\delta_2$. The probability $\tilde{\beta}_1-\beta_{01}=\tilde{\beta}_2-\beta_{02}$ is equal to zero. In fact in linear models especially   it is difficult to construct an example where this assumption will not hold. There would need to be a plane such that $\Omega_n(\beta_0+\Delta)$ were singular for all $\Delta_1\in (-\varsigma_1,\varsigma_2)$ and $\Delta_2\in (-\zeta_1,\zeta_2)$ for some $\varsigma_1>0$ and/or $\varsigma_2>0$ and $\zeta_1>0$ and/or $\zeta_2>0$. In this case the probability that $\tilde{\beta}$ lies in this space may be greater than zero. Even in non-linear models, for example $y=\beta x^{\gamma}+\epsilon$ when $\beta_0=0$ then the moment variance matrix is singular for $\beta_0$ and $\gamma=\gamma_0+\delta$ for any $\delta$. Again the probability that the GMM estimator lies in this space is zero. We would require also that moment variance were singular for some $\beta$ in some small neighborhood around $\beta_0$. It is difficult to think of such examples. As such the assumption at first seemingly restrictive conditions is in fact in a relatively innocuous assumption
+
+\newpage
+
+\section*{Bibligography}
+
+
+
+Andrews, D.W.K., 1987. Asymptotics results for generalized Wald tests. Econometric Theory 3, 347–358.
+
+Andrews, D.W.K., 2001. Testing When a Parameter Is on the Boundary of the Maintained Hypothesis. Econometrica 69,  683-734.
+
+Andrews, D. W. K., and Cheng, X. 2012: Estimation and Inference With Weak, Semi-Strong, and Strong Identification, \textit{Econometrica}, 80, 2151-2211.
+
+Andrews, Donald W.K. and Cheng, Xu, 2013. Maximum likelihood estimation and uniform inference with sporadic identification failure, Journal of Econometrics, Elsevier, vol. 173(1), pages 36-56.
+
+
+Andrews, D. W. K.,  and Guggenberger, P., 2015. Identification- and Singularity-Robust Inference for Moment Condition Models, Cowles Foundation Discussion Paper No. 1978.
+
+Arellano, M., and Bond, S., 1991. Some Tests of Specification for Panel Data: Monte Carlo Evidence and an Application to Employment Equations, Review of Economic Studies, Wiley Blackwell, vol. 58(2), pages 277-97.
+
+
+ Bosq, D., 2000. Linear Processes in Function Spaces. Springer, New York.
+
+ Bottai, M., Rotnitzky, A., D. R. Cox, , and J. Robins, 2000. Likelihood-based inference with
+singular information matrix, Bernoulli 6 , 243-284.
+
+Choi, I., and  Phillips, P C. B., 1992. Asymptotic and finite sample distribution theory for IV estimators and tests in partially identified structural equations. Journal of Econometrics,  51, pages 113-150.
+
+ Doran, H. E., and Schmidt, P., 2006. GMM estimators with improved finite sample properties using principal components of the weighting matrix, with an application to the dynamic panel data model. Journal of Econometrics 133, 387-409.
+
+
+ Dufour,J.M., and Val\'{e}ry, P., 2011. Wald-type tests when rank conditions fail: a smooth regularization approach. Unpublished Working Paper.
+
+
+ Grant, N.L., 2013. Identification Robust Inference with Singular Variance, Manchester University Economics Discussion Paper Series, EDP-1315.
+
+
+
+Han, C., and Phillips, Peter C. B., 2010. GMM Estimation For Dynamic Panels With Fixed Effects And Strong Instruments At Unity, Econometric Theory, Cambridge University Press, vol. 26(01), pages 119-151.
+
+Hansen, L.P., 1982. Large Sample Properties of Generalized Method of Moments Estimators. Econometrica 50,  1029-54.
+
+Kato, T. 1982: `A short introduction to the perturbation theory of linear operators,' Springer-Verlag 1982.
+
+ Lee, L., and Chesher, A., 1986. Specification testing when score test statistics are identically zero, Journal of Econometrics, Elsevier, vol. 31(2), pages 121-149.
+
+Melino, A. 1982. Testing for sample selection bias. Review of Economic
+Studies. 49: 151-153.
+
+Newey, W.N., and Windmeijer, F., 2009. Generalized Method of Moments With Many Weak Moment Conditions. Econometrica 77,  687-719.
+
+ Pe\~{n}aranda, F. and  Sentana, E., 2010. A unifying approach to the empirical evaluation of asset pricing models. Economics Working Papers 1229, Department of Economics and Business, Universitat Pompeu Fabra.
+
+Ruge-Murcia, Francisco J., 2007. Methods to estimate dynamic stochastic general equilibrium models, Journal of Economic Dynamics and Control, Elsevier, vol. 31(8), pages 2599-2636.
+
+Staiger, D.,  and Stock, J.H., 1997.
+Instrumental Variables Regression with Weak Instruments. Econometrica 65, 557-586.
+
+
+
+Stock, J.H. and  Wright, J.,2000. GMM with Weak Identification. Econometrica 68,  1055-1096.
+
+\end{document}
+

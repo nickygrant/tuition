@@ -1,0 +1,1129 @@
+
+
+\documentclass[openany]{tufte-book} % Use the tufte-book class which in turn uses the tufte-common class
+
+\hypersetup{colorlinks} % Comment this line if you don't wish to have colored links
+
+\usepackage{amsmath}
+\usepackage{media9}
+\usepackage{microtype} % Improves character and word spacing
+
+\usepackage{lipsum} % Inserts dummy text
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+\usepackage{booktabs} % Better horizontal rules in tables
+\hypersetup{pdfstartview=FitH, pdfpagemode=UseNone}
+\usepackage{amsfonts,amssymb,graphics,epsfig,verbatim,bm,latexsym,amsmath,url,amsbsy}
+\usepackage{graphicx} % Needed to insert images into the document
+\graphicspath{{graphics/}} % Sets the default location of pictures
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio} % Improves figure scaling
+\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}% Rule colour
+\makeatletter
+\newcommand{\mybox}[1]{%
+	\setbox0=\hbox{#1}%
+	\setlength{\@tempdima}{\dimexpr\wd0+13pt}%
+	\begin{tcolorbox}[colframe=mycolor,boxrule=0.5pt,arc=4pt,
+		left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,width=\@tempdima]
+		#1
+	\end{tcolorbox}
+}
+\makeatother
+\usepackage{fancyvrb} % Allows customization of verbatim environments
+\fvset{fontsize=\normalsize} % The font size of all verbatim text can be changed here
+
+\definecolor{bananamania}{rgb}{0.98, 0.91, 0.71}
+\definecolor{bananayellow}{rgb}{1.0, 0.88, 0.21}
+\newcommand{\hangp}[1]{\makebox[0pt][r]{(}#1\makebox[0pt][l]{)}} % New command to create parentheses around text in tables which take up no horizontal space - this improves column spacing
+\newcommand{\hangstar}{\makebox[0pt][l]{*}} % New command to create asterisks in tables which take up no horizontal space - this improves column spacing
+
+\usepackage{xspace} % Used for printing a trailing space better than using a tilde (~) using the \xspace command
+
+\newcommand{\highlight}[1]{\colorbox{green}{\ensuremath{#1}}}
+
+\newcommand{\monthyear}{\ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi\space\number\year} % A command to print the current month and year
+
+\newcommand{\openepigraph}[2]{ % This block sets up a command for printing an epigraph with 2 arguments - the quote and the author
+\begin{fullwidth}
+\sffamily\large
+\begin{doublespace}
+\noindent\allcaps{#1}\\ % The quote
+\noindent\allcaps{#2} % The author
+\end{doublespace}
+\end{fullwidth}
+}
+\geometry{
+  left=22.8mm, % left margin
+  textwidth=125mm, % main text block
+  marginparsep=2.2mm, % gutter between main text block and margin notes
+  marginparwidth=50.4mm % width of margin notes
+}
+\newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage} % Command to insert a blank page
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\definecolor{indianyellow}{rgb}{0.89, 0.66, 0.34}
+\definecolor{cadmiumyellow}{rgb}{1.0, 0.96, 0.0}
+\tcbuselibrary{theorems}
+\definecolor{beaublue}{rgb}{0.74, 0.83, 0.9}
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{lightgoldenrodyellow}{rgb}{0.98, 0.98, 0.82}
+\newtcbtheorem[number within=chapter]{myex}{Example}%
+{colback=lightgoldenrodyellow,colframe=indianyellow,fonttitle=\bfseries}{th}
+\newtcbtheorem[number within=chapter]{mydef}{Definition}%
+{colback=beaublue,colframe=titlepagecolor,fonttitle=\bfseries}{th}
+
+
+
+
+
+\usepackage{units} % Used for printing standard units
+
+\newcommand{\hlred}[1]{\textcolor{Maroon}{#1}} % Print text in maroon
+\newcommand{\hangleft}[1]{\makebox[0pt][r]{#1}} % Used for printing commands in the index, moves the slash left so the command name aligns with the rest of the text in the index
+\newcommand{\hairsp}{\hspace{1pt}} % Command to print a very short space
+\newcommand{\ie}{\textit{i.\hairsp{}e.}\xspace} % Command to print i.e.
+\newcommand{\eg}{\textit{e.\hairsp{}g.}\xspace} % Command to print e.g.
+\newcommand{\na}{\quad--} % Used in tables for N/A cells
+\newcommand{\measure}[3]{#1/#2$\times$\unit[#3]{pc}} % Typesets the font size, leading, and measure in the form of: 10/12x26 pc.
+\newcommand{\tuftebs}{\symbol{'134}} % Command to print a backslash in tt type in OT1/T1
+
+\providecommand{\XeLaTeX}{X\lower.5ex\hbox{\kern-0.15em\reflectbox{E}}\kern-0.1em\LaTeX}
+\newcommand{\tXeLaTeX}{\XeLaTeX\index{XeLaTeX@\protect\XeLaTeX}} % Command to print the XeLaTeX logo while simultaneously adding the position to the index
+
+\newcommand{\doccmdnoindex}[2][]{\texttt{\tuftebs#2}} % Command to print a command in texttt with a backslash of tt type without inserting the command into the index
+
+\newcommand{\doccmddef}[2][]{\hlred{\texttt{\tuftebs#2}}\label{cmd:#2}\ifthenelse{\isempty{#1}} % Command to define a command in red and add it to the index
+{ % If no package is specified, add the command to the index
+\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2}}% Command name
+}
+{ % If a package is also specified as a second argument, add the command and package to the index
+\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2} (\texttt{#1} package)}% Command name
+\index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}% Package name
+}}
+
+\newcommand{\doccmd}[2][]{% Command to define a command and add it to the index
+\texttt{\tuftebs#2}%
+\ifthenelse{\isempty{#1}}% If no package is specified, add the command to the index
+{%
+\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2}}% Command name
+}
+{%
+\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2} (\texttt{#1} package)}% Command name
+\index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}% Package name
+}}
+
+% A bunch of new commands to print commands, arguments, environments, classes, etc within the text using the correct formatting
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}
+\newenvironment{docspec}{\begin{quotation}\ttfamily\parskip0pt\parindent0pt\ignorespaces}{\end{quotation}}
+\newcommand{\docenv}[1]{\texttt{#1}\index{#1 environment@\texttt{#1} environment}\index{environments!#1@\texttt{#1}}}
+\newcommand{\docenvdef}[1]{\hlred{\texttt{#1}}\label{env:#1}\index{#1 environment@\texttt{#1} environment}\index{environments!#1@\texttt{#1}}}
+\newcommand{\docpkg}[1]{\texttt{#1}\index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}}
+\newcommand{\doccls}[1]{\texttt{#1}}
+\newcommand{\docclsopt}[1]{\texttt{#1}\index{#1 class option@\texttt{#1} class option}\index{class options!#1@\texttt{#1}}}
+\newcommand{\docclsoptdef}[1]{\hlred{\texttt{#1}}\label{clsopt:#1}\index{#1 class option@\texttt{#1} class option}\index{class options!#1@\texttt{#1}}}
+\newcommand{\docmsg}[2]{\bigskip\begin{fullwidth}\noindent\ttfamily#1\end{fullwidth}\medskip\par\noindent#2}
+\newcommand{\docfilehook}[2]{\texttt{#1}\index{file hooks!#2}\index{#1@\texttt{#1}}}
+\newcommand{\doccounter}[1]{\texttt{#1}\index{#1 counter@\texttt{#1} counter}}
+
+
+
+\titleformat{\chapter}%
+[block]% shape
+{\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}% format applied to label+text
+{\itshape\huge\thechapter\hspace{10pt}}% label
+{0pt}% horizontal separation between label and title body
+{\huge\rmfamily\itshape}% before the title body
+[\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body
+
+
+
+
+\hypersetup{
+    colorlinks,
+    citecolor=green,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=red
+}
+
+\setcounter{secnumdepth}{3}
+
+\setcounter{tocdepth}{2}
+
+
+\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+\definecolor{ikb}{rgb}{0.0, 0.18, 0.65}
+\definecolor{namecolor}{cmyk}{1,.50,0,.10}
+
+\usepackage{makeidx} % Used to generate the index
+\makeindex % Generate the index which is printed at the end of the document
+
+
+\begin{document}
+\title{ECON5221:Time Series Econometrics}
+\author[Nicky  Grant]{Nicky Grant}
+
+\begin{titlepage}
+\newgeometry{left=7.5cm} %defines the geometry for the titlepage
+\pagecolor{ikb}
+\noindent
+
+\color{white}
+\makebox[0pt][l]{\rule{1\textwidth}{2pt}}
+\par
+
+\vspace{5pt}\textbf{\huge \textsf{Time Series Econometrics}} \hspace{5pt} \textcolor{white}{\textsf{Nicky Grant}}
+\vfill
+\noindent
+{\huge \textsf{ECON5221 Lecture Notes 1}}
+\vskip\baselineskip
+\noindent
+\textsf{\Large Semester 2 2019/2020}
+\end{titlepage}
+\restoregeometry % restores the geometry
+\nopagecolor% Use this to restore the color pages to whiteint the title page
+
+
+
+
+
+\chapter*{Introduction} % The asterisk leaves out this chapter from the table of contents
+
+During your studies of economics, especially macroeconomics and finance, you will have encountered many time series variables, for example  US disposable income and UK interest rates. The first half of the course aims to equip you with the basic framework and some key concepts and methods with which to study and understand the  properties of such series. With Professor Roderick McCrorie you will then move on and introduce somee more more modern and advanced concepts, to give you a grounding in some of the many techniques and ideas in the vast and ever growing field of time series econometrics. These skills can be of great value for those intending to go on to further study economics/finance/econometrics at PhD level and/or those considering a career in banking, finance and certain economic consultancy or research roles.
+
+
+ The course contains is mostly theoretical concepts, containing some empirical examples to highlight the ideas, and is quite challenging at times. It is advised to prepare as much as possible in advance of lectures by reading the lecture materials and notes. Undergraduate level econometrics, maths and statistics is taken as assumed in this course, along with the concepts in covered in EC5203 from Semester One.
+
+
+\begin{fullwidth}
+~\vfill
+\thispagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+Copyright \copyright\ \the\year\  \\
+
+\href{mailto:nlg1@st-andrews.ac.uk}{nlg1@st-andrews.ac.uk}\\
+
+Office F14, Castlecliffe, St Andrews
+
+
+
+
+\par\textit{Second Revision, January 2020.}
+\end{fullwidth}
+------------------------------------------------------------------------
+\thispagestyle{empty}
+\tableofcontents % Print the table of contents
+
+%----------------------------------------------------------------------------------------
+\thispagestyle{empty}
+\listoffigures % Print a list of figures
+
+
+
+
+\mainmatter
+
+
+\chapter{Introduction to Time Series}
+\label{ch:intro}
+------------------------
+
+\section{Time Series Process and Sample Realisations} \label{sec:realisation}
+
+
+A\textbf{ time series process }$\{Y_t : t=..-2,-1,0,1,2,...\}$ is the unknown data generating mechanism  which generates  the sample \textbf{realisation} of some  variable that we observe. \sidenote[][-0.75cm]{Unless stated otherwise the process evolves over discrete time observations (t=..-2,-1,0,1,2,...). We may expand this definition to allow an arbitrary set time $\mathcal{T}$, e.g. continuous time processes, the subject of lecture 9/10 with Professor McCrorie, requiring a different method of analysis than considered for discrete time processes.} For example the true underlying data generating mechanism (process) which generates the UK Consumer Price Index (CPI).  The sample realisation  is commonly referred to as the data, denoted $\{y_1,y_2,..,y_T\}$ , for example monthly data on CPI from January 2000 to August 2015 yielding a sample with $T=200$ data points.\sidenote[]{Written shorthand as $\{y_t\}_{t=1}^T$.}
+
+The process $\{Y_t : t=..-2,-1,0,1,2,...\}$ is a vector random variable and the  distribution of this random variable is unknown to us.\sidenote{If not stated otherwise we assume the process runs indefinitely in to the past and future, i.e $t=(..-2,-1,0,1,2...)$. } \textbf{The overarching aim of time series econometrics is to infer (some) properties of the data generating mechanism (process) which generates the data (sample realisation) we observe}. The basic premise of all methods of inference is that since the sample data $\{y_t\}_{t=1}^T$ is drawn from the true process then (under some assumptions) this realisation should reflect the properties of this process.  Understanding the properties of the underlying process  may be desirable for example to test some economic or financial theory, or with which to predict future outcomes of some variable to guide economic policy, e.g predicting CPI to guide monetary policy.
+
+\begin{myex}{\hspace{5pt} Realisations of an Autoregressive Process}
+	FFigure \ref{mult} below plots four sample realisations drawn from the process \newline$Y_t=0.1+0.4 Y_t+ \varepsilon_t $ where $\epsilon_t \overset{i.i.d}{\sim} N(0,1)$.   \end{myex} \marginnote[-1.4cm]{We let $\epsilon_t \overset{i.i.d}{\sim} N(0,1)$ be shorthand for $\epsilon_t$ independent and identically distributed Normal with mean zero and variance 1.}
+
+\begin{figure} \label{mult}
+\includegraphics[width=12.4cm,height=8cm]{MultipleAR1.png}
+\caption[Realisations of Autoregressive Process $Y_t=0.1+0.4 Y_t+ \varepsilon_t $]{\textbf{Realisations of  Autoregressive Process} \vspace{5pt} \newline \noindent \emph{Simulated data  sets of size $T=100$ from $Y_t=0.1+0.4 Y_t+ \varepsilon_t $ in \textsc{R} setting $Y_0=0$ and drawing the `shocks' $\varepsilon_t$ from $T$ independent draws from a $N(0,1)$ distribution.}}
+\end{figure}
+
+We see in Figure \ref{mult} four realisations all drawn from the  process. In practise we only observe one sample path, e.g of CPI, but if we could go back in time and let CPI evolve again we would generally observe a different path. The aim of time series is to infer the form of the process from the sample path we observe, and to make statistical inference that takes in account the stochastic variation in possible samples we may observe from a given process.
+Initially it may seem odd to think that each observed sample point $y_t$ is drawn from some random variable $Y_t$, as once we know $y_t$, say UK Consumer Price Inflation (CPI) in January 2020, there is no remaining randomness. However in December 2019 the CPI the following month was uncertain. Namely we can think  there was some probability that CPI in January 2020 would lie in  certain ranges.
+\begin{figure}[h]\label{cpi}
+	\includegraphics[scale=0.32]{cpi.png}
+	\caption[UK CPI up to August 2016 and projections based market interest rate expectations.]{\textbf{UK CPI up to August 2015 and projections based market interest rate expectations.}\vspace{5pt}\newline \noindent
+	\emph{Out-turns of inflation are  expected to lie within each pair of the lighter red areas on
+		30 occasions. In any particular quarter of the forecast period, inflation is therefore expected to lie somewhere within the fans on 90 out of 100 occasions. On the remaining 10 out of 100 occasions inflation can fall
+		anywhere outside the red area.}\vspace{5pt}\newline \noindent
+		\tiny \textsc{Source: \href{http://www.bankofengland.co.uk/publications/Documents/inflationreport/2016/aug.pdf}{BoE Inflation Report, August 2016, pg. 39}}}
+\end{figure}
+
+
+
+Figure \ref{cpi} below plots actual CPI   (up to August 2016) then onwards the Bank of England's (BoE) forecast (i.e their belief about the uncertainty surrounding the likely outcome of CPI in to the future). The lighter shaded areas representing the future outcomes of interest rates with decreasing likelihood of occurring (often referred to in general as a fan chart). In essence this reflects  the distribution of CPI in to the future.\sidenote{Technically it is the BoE's estimate of the distribution of CPI in to the future.} This example is given here to highlight the idea of viewing the sample point as being drawn from a probability distribution. We come back to the notion of forecasting and prediction in Lecture 4 and more generally in the second half of the course where further details are given on how the BoE derive such predictions for CPI  above.
+
+Again take the example above with data on CPI from January 2000 to August 2016. This data is known to us now and fixed. However if we were able to go back to January 2000 and let the world play out again we'd likely observe a different set of data points. And if we kept doing this  experiment we  would find a set of alternate streams of CPI over this period all with different probabilities of occurring. Intuitively the process $Y_t$  governs the probability of observing  particular realisations of sample points if we carried out the experiment (e.g observing CPI over the same period) repeatedly.
+
+ This lecture will introduce some simple theoretical processes $Y_t$  and the tools and methods with  which we quantify and compare their properties. Later on in the course we will then study how to use the sample data to infer properties about the true process $Y_t$ which generated this data. Understanding the distinction between the two is key to understanding Time Series, and is a point which will become clearer as the course progresses.
+
+
+\section{Examples of some Time Series Realisations}
+The figures below plot some example Economic Time Series that highlight some of the issues we tackle in this book in modelling time series processes.
+
+\begin{figure}
+\includegraphics[height=6cm]{ibm} \label{ibm}
+\caption[Monthly IBM Stock Return]{\textbf{Monthly IBM Stock Return} \vspace{5pt}\newline \noindent	\scriptsize \textsc{Source: Analysis of Financial Time Series (Tsay), pg.18}}
+\end{figure}
+
+Figure \ref{ibm} plots monthly IBM Stock Returns. From the graph the series fluctuates around zero and seems difficult to predict future outcomes from previous observations. The volatility in the series seems to change over time, being higher during the Great Depression and after the 2008 Financial Crash suggesting the process may change over time.
+\begin{figure}\label{pop}
+\includegraphics[height=7.5cm]{population}
+\caption[US Population at Ten Year Intervals]{\textbf{US Population at Ten Year Intervals} \vspace{5pt} \newline \noindent	\scriptsize \textsc{Source: Introduction to Time Series (Brockwell),  pg.  5}}
+\end{figure}
+\newline
+The series for US Population in Figure \ref{pop} looks quadratic with small random deviations every year. We may expect a model which includes $t^2$ would fit well to this process.
+
+
+The underlying process generating the  US Strike data  in Figure \ref{strike} looks more complex than the previous two plots. Firstly the mean looks to increase around 1970 and the series looks much easier to predict given past information than the IBM series. Also we may expect a model which allows strong positive dependence on past values would fit well to this process and we consider such models in Section 2.
+
+
+\begin{figure}
+	\includegraphics[height=7.5cm]{strikes} \label{strike}
+	\caption[Total Yearly US Strikes 1950-1990]{\textbf{Total Yearly US Strikes 1950-1990}
+		\vspace{5pt} \newline \noindent \scriptsize \textsc{Source: Introduction to Time Series (Brockwell), pg.5 }}
+\end{figure}
+
+\begin{figure}\label{wine}
+	\includegraphics[height=7.5cm]{wine} \caption[Monthly Australian Red Wine Sales]{\textbf{Monthly Australian Red Wine Sales 1980-1992}
+		\vspace{5pt} \newline \noindent \scriptsize \textsc{Source: Introduction to Time Series  (Brockwell), pg. 2}}
+\end{figure}
+
+
+Finally Figure \ref{wine} shows Monthly Australian Red Wine Sales, where each year sales peak in the summer months and are lower in winter. This series clearly exhibits a seasonal pattern which repeats year on year. We will look at modelling processes with seasonal patterns in Lecture 4.
+
+
+ \section{Key Definitions in Time Series}
+ 
+Below we define \textbf{Stationarity} and a\textbf{ White Noise} Process, two concepts widely encountered in the study of Time Series. Please recap your first and second year statistics notes on joint distributions, expectation and moments of a distribution. This knowledge is taken as a given in ECON30401 and is recapped only very briefly in Lecture 1.\marginnote[0.8cm]{Here $\mathbb{E}[\cdot]$ refers to the `Expectation Operator' taken with the respect to the joint distribution of the process $Y_t$. The following clips gives a basic intro to probability.\includemedia[
+	label=exp,
+	activate=onclick,
+	deactivate=pageclose,
+	keepaspectratio,
+	playbutton=none,
+	windowed=1000x900@c,
+	flashvars={
+		modestbranding=1 % no YT logo in control bar
+		&autohide=1 % controlbar autohide
+		&showinfo=0 % no title and other info before start
+		&rel=0 % no related videos after end
+	},
+	url % Flash loaded from URL
+	]{}{https://www.youtube.com/v/lEW3mmjXUX4?rel=0&amp;vq=hd1080}
+	
+	\mediabutton[ mediacommand=lagop:playPause, overface=\color{blue}{\fbox{\includegraphics{play}}}, downface=\color{red}{\fbox{\strut Play/Pause}}
+	]{\mybox{ \includegraphics[width=0.3cm]{vid} \textbf{Intro To Probabi lity}}}}
+
+\begin{mydef}{\hspace{3pt}Stationary Process} AA process $Y_t$: $(t=..-2,-1,0,1,2..)$ is \textbf{stationary} if
+
+\begin{enumerate}
+\item $\mathbb{E}\left[ Y_{t}\right] =\mu $  for all $t$\medskip
+
+\item $Var\left[ Y_{t}\right] =\sigma^2<\infty$  for all $t$
+\medskip
+
+\item $Cov\left[ Y_{t},Y_{t-j}\right]=\gamma(|j|) $ for each $j$  \&
+for all $t\medskip $
+\end{enumerate}
+for some function $\gamma(\cdot)$ that does not depend on $t$ (i.e time).\end{mydef} \marginnote[-2cm]{Technically this definition is \textbf{Weak Stationarity} also known as \textbf{Covariance Stationarity} \& \textbf{Second
+	Order Stationarity}. When referring to stationarity in this course we refer to Definition 1.1.}
+
+\textsc{Remarks}
+\begin{itemize}
+\item Intuitively if a process is stationary its distribution remains the same over time (i.e it doesn't move or change, hence it is stationary). Specifically that the moments of the distribution of $Y_t$ (the mean, variance and covariance) do not vary with  time.
+
+    \item In practise it is often assumed a process is stationary as it has desirable properties for inference. To understand why, take the extreme case  where the distribution of $Y_t$ is different every time period. In this case  for any $t$  there exists only one observation $y_t$ with which to make inference on the properties of the distribution $Y_t$. If the distribution of $Y_t$ were the same every  time period (stationary), then our sample data $\{y_1,..,y_T\}$  are all drawn from the same distribution, hence under this assumption we have $T$ draws from the same distribution. Having $T$ observations from the unknown process clearly provides more information on the form of the distribution of the process than one observation. Intuitively this has benefits in terms of efficiency for estimation.
+
+        \item Assuming a process is stationary  is only an assumption and may not hold. For example the assumption is unlikely to hold for the distribution of UK Base Rates as seen in Figure 1.7 the last 7 years rates  been fixed at 0.5\%, and in the early 1990s interest rates were in the range of 10-15\% and higher. Hence it is highly unlikely the mean of UK interest rates is the same now as it was 20 years ago. \begin{marginfigure} \vspace{-2.3cm}\label{baser}
+        	\includegraphics{baser}\caption[Quarterly UK Base Rates]{\footnotesize Quarterly UK Base Rate 1987-2017  \tiny \textsc{\hspace{2pt}Source:\href{http://www.bbc.co.uk/news/business-36945368}{BBC Business}}} \end{marginfigure}
+            \item  A much studied and important violation of the stationarity assumption is when the true process is a \textbf{random walk}, or more generally when a process has \textbf{unit root(s)}. This violation of the stationarity condition has severe consequences for estimation and inference unlike some other violations of stationarity (e.g when the mean varies over time). Unit roots and the issues caused for inference is covered in the final lecture of the course.
+
+            \end{itemize}
+
+We now provide a definition of a \textbf{White Noise} process, a concept which is commonly encountered when studying the properties of  Time Series Processes.
+
+\begin{mydef}{White Noise Process} AA process $Y_t$  $(t=..-2,-1,0,1,2,..)$ is \textbf{White Noise} if
+
+\begin{enumerate}
+\item $\mathbb{E}[Y_{t}]=0$ for all $t\medskip $
+
+
+\item $\mathbb{E}[Y_{t}^{2}]=\sigma ^{2}<\infty$ for all $t$ \medskip
+
+\item $\mathbb{E}[Y_{t}Y_{t-j}]=0$ for all $t$ \& for any $%
+j\neq 0\medskip $
+\end{enumerate} \end{mydef}
+
+\marginnote[-2cm]{For shorthand we write $Y_t\sim$ WN$(\sigma^2)$ to denote that a process $Y_t$ is White Noise with variance $\sigma^2$.}
+
+\textsc{Remarks}
+\begin{itemize}
+\item Intuitively a White Noise Process (WN) is a variable that fluctuates randomly around zero and the observations from the periods before have no predictive power for observations in the future.
+    \item If $Y_t$ is i.i.d (independent and identically distributed) then it is also WN (White Noise), though the reverse is not true.\sidenote[][-1cm]{For practical purposes the distinction between the two is minimal, in that if a process is WN only in pathological cases will it not also be i.i.d.}
+        \item If $Y_t$ is WN then it is also stationary, however the reverse is not true. Though the definitions at first look  similar, \textbf{Stationarity and White Noise are NOT the same thing}.\sidenote[][-0.9cm]{A stationary process does not necessarily have all covariances in different time periods of zero, just that the covariances are the same over time.}
+            \end{itemize}
+
+\section{Some Simple Time Series Processes}
+We now define some simple time series processes. Intuitively we wish to study models which allow different forms  the dynamics of $Y_t$, namely   how it evolve over time and  how $Y_t$ may be related to past observations.\sidenote[][-1cm]{This is in distinction to cross sectional data where it is often assumed data is i.i.d and we do not model the evolution of some variable, for example years of schooling throughout the population.}\newline
+
+ The simplest type of process  is the \textbf{Moving Average} of order 1 process (shorthand MA(1)). \newline
+ \begin{mydef}{ $MA(1)$ process} AAn MA(1) process satisfies
+\begin{equation*}
+Y_t=\alpha +\varepsilon _{t}+\theta_{1}\varepsilon
+_{t-1},\;\;\;\;\varepsilon _{t}\sim WN(\sigma^{2})
+\end{equation*} for some constants $\alpha, \theta_1$. \end{mydef}
+\marginnote[-2.5cm]{ The coefficients   $\alpha, \theta_1$  (often referred to as the `\textbf{model parameters}' or `\textbf{true parameters}'). In later lectures we will discuss methods of estimating the parameters of an  underlying process.}
+
+Figure \ref{ma14} plots the sample realisations of some MA(1) processes.
+ \begin{figure}[h]\label{ma14}
+ \includegraphics[height=7.5cm]{MA1}
+ \caption[Realisation of various MA(1) Processes]{\textbf{Realisations of MA(1) Processes with} $\alpha=0$ \textbf{for} $\theta_1=(-1,-0.1,0.1,1)$.}
+ \end{figure}
+
+ \marginnote[-4cm]{\emph{We generate $Y_t=\alpha+\varepsilon_t+\theta_1\varepsilon_{t-1}$ for $\alpha=0$, $\theta_1=(-1,-0.1,0.1,1)$ setting $\epsilon_0=0$ where all four processes evaluated at the same   100  independent draws of $\varepsilon_t$ from  a $N(0,1)$ distribution.}}
+
+All four MA processes are evaluated at the same `shocks' $\varepsilon_t$ $t=1,,,100$ to show how varying the MA coefficients, particularly $\theta_1$, governs the evolution of $Y_t$. For $\theta_1=0.1$ and $\theta_1=-0.1$ both plots looks to be similar to the evolution of a White Noise Process. This is to be expected as $\theta_1=0.1$ is close to zero where an MA(1) with $\theta_1=0$ is White Noise. For $\theta_1$ equal to 1 and -1 we notice much higher volatility (the process spans a much wider range of values) and also some slight dependence on the outcome from the previous period. For $\theta_1=-1$ we see a slight oscillatory pattern, a  positive shock at $t-1$ impacts $Y_t$ by $-\epsilon_{t-1}$. These graphs gives a visual depiction of the types of dependence an MA(1) can generate.
+
+\textsc{Remarks}
+\begin{itemize}
+\item The random variable (r.v) $\varepsilon_t$ is often thought  of as a random `shock' at time $t$. For example if $Y_t$ were the process of UK GDP then $\varepsilon_t$ reflects the change to GDP from some factors occurring at time $t$.  For example if there is an economic boom at time $t$ then intuitively we may view due to a large positive shock  $\varepsilon_t$ at time $t$.
+
+    \item  An  MA(1) process  may only be correlated  with its past observation. To see this note that in $Y_t=\alpha + \theta_1\varepsilon_{t-1}+\varepsilon_{t}$ and $Y_{t-1}=\alpha+\theta_1\varepsilon_{t-2}+\varepsilon_{t-1}$ share the common `shock' $\varepsilon_{t-1}$ (all other shocks in each are uncorrelated by WN).  \sidenote[][-1cm]{Likewise $Y_{t-2}, Y_{t-3}$ and all further lags  are uncorrelated to $Y_t$, see section \ref{ma1properties} for a formal proof of this.}
+    \item The assumption that $\varepsilon_t$ is White Noise is merely made for simplicity, intuitively we wish the dependence properties to be determined by the common shocks that impact $Y_t$ at different points in time, where all other variation is purely random. We can allow more complex patterns of dependence by allowing further lags of $\epsilon_t$ to impact $Y_t$.
+
+    \item The term `Moving Average' refers to the fact an MA process is a weighted moving average of the shocks in past periods. For an MA(1) this is $\varepsilon_t +\theta_1 \varepsilon_{t-1}$ which is a weighted average of the shocks in the current period $t$ and the previous period $t-1$ which `moves along' across $t$, hence the name.
+
+\end{itemize}
+
+Another model commonly used in practise is the \textbf{Autoregressive Model} of lag 1 (AR(1)).
+\begin{mydef}{AR(1) Process}
+AAn
+$AR(1)$ process satisfies
+\begin{equation*}
+Y_{t}=\mu +\phi_1 Y_{t-1}+\varepsilon_{t} \qquad \varepsilon_t\sim WN(\sigma^2)
+\end{equation*}
+for some constants $\mu$, $\phi_1$. \end{mydef}
+
+Similarly to Figure \ref{ma14} we plot realisations of four AR(1) processes for $\alpha=0$ for $\phi_1=(-0.9,-0.2,0.2,0.9)$.
+
+
+For $\phi_1=0.9$ the process is highly persistent, namely when $Y_t$ is above the mean zero, it tends to persist for a number of periods, and conversely when $Y_t$ is below zero. This makes intuitive sense as $Y_t$ move closely with $Y_{t-1}$ when $\phi_1=0.9$.
+For $\phi_1=-0.9$ the AR(1)  process exhibits a strong oscillatory pattern, when $Y_t$ above the mean at some $t$ then the process shifts below the mean at $t+1$ where a big shock at some point persists for a number of periods. Both patterns are observed correspondingly for $\phi_1=0.2$ and $\phi_1=-0.2$ respectively, though the persistence is not as strong given the weaker influence of $Y_{t-1}$ on $Y_t$ in these cases.
+ \newpage
+ \begin{figure}\label{ar14}
+ 	\includegraphics[height=7.5cm]{AR}
+ 	\caption[Realisation of  AR(1) Processes]{\textbf{Realisations of AR(1) Processes with} $\mu=0$ \textbf{for} $\phi_1=(-0.9,-0.2,0.2,0.9)$.}
+ \end{figure}
+
+ \marginnote[-4cm]{\emph{We generate $Y_t=\mu+\phi_1Y_{t-1}+\varepsilon_t$ for $\mu=0$, $\theta_1=(-0.9,-0.2,0.2,0.9)$ setting $Y_0=0$ and all four processes evaluated at the same   100  independent draws of $\varepsilon_t$ from  a $N(0,1)$ distribution.}}
+
+\textsc{Remarks}
+\begin{itemize}
+\item If a process is AR(1) then $Y_t$ is regressed on its past value $Y_{t-1}$ and hence the name, auto-regressive.
+
+\item An AR(1) process is essentially a random fluctuation around a first order difference equation $Y_t=\alpha+\phi_1Y_{t-1}$. The dynamics are governed by the first-order difference equation, and the randomness governed by the shock $\varepsilon_{t}$
+
+    \item Under the AR(1) assumption then the unknown true parameters $\mu, \phi_1$ can be estimated using \textbf{Ordinary Least Squares}, regressing the the variable on the lag of the independent variable. Lecture 3 gives more detail on estimating AR(1) models.
+
+        \end{itemize}
+
+
+  To develop a process which can allow more complex forms of dynamics we can combine an MA(1) and AR(1) to form an \textbf{Autoregressive-Moving Average} of order (1,1) (an ARMA(1,1)).
+
+  \begin{mydef}{ARMA(1,1)}
+  	AAn ARMA(1,1) satisfies
+\begin{equation*}
+Y_{t}=\mu +\phi_1 Y_{t-1}+\varepsilon_{t}+\eta_1 \varepsilon_{t-1} \qquad \varepsilon_t\sim WN(\sigma^2).
+\end{equation*}
+for some coefficients $\mu, \eta_1, \phi_1$
+\end{mydef}
+
+Figure \ref{arma14} plots some sample realisations of an ARMA(1,1) for various configurations of $\phi_1,\eta_1$.
+In distinction to the realisations of processes of AR(1) and MA(1) the ARMA(1,1) allows a much richer form of dynamics, with more complex evolutions through time. For $(\eta_1,\theta_1)=(0.9,0.6)$ there is a very strong positive dependence, much more than the $MA(1)$ with $\theta_1=1$ and the AR(1) with $\phi_1=0.9$. This makes intuitive as $Y_t$ has a strong positive  dependence on  both $Y_{t-1}$ and $\varepsilon_{t-1}$. Correspondingly for $(\phi_1,\eta_1)=(-0.9,-0.6)$   there is a strong oscillatory pattern depending negatively on both the shock and the outcome last period. For  $ (\phi_1,\eta_1)=\{(0.9,-0.6), (-0.6,0.9)\}$  the process show less dependence than in the previous cases, as shocks to both $Y_{t-1}$ and $\epsilon_{t-1}$ partially `cancel out' in terms of their impact on $Y_{t-1}$.\sidenote[][-1.3cm]{As $\phi_1$ gets closer to $-\eta_1$ the ARMA(1,1) shows less persistence. This is because an ARMA(1,1)  wih $\phi_1=-\eta_1$ is a WN process, see  Video Exercise 1.}
+
+
+\begin{figure} \label{arma14} \includegraphics[]{ARMA1}
+	\caption[Realisation of  ARMA(1,1) Processes]{\textbf{Realisations of ARMA(1,1) Processes} with coefficients $\mu=0$. \textbf{for}$(\eta_1,\phi_1)=\left\{(0.9,0.6), (-0.9,-0.6),\right.$ $ \left.(-0.9,0.6), (0.9,-0.6)\right\}$.}
+\end{figure}
+
+\marginnote[-4.5cm]{\emph{We generate $Y_t=\mu+\varepsilon_t+\phi_1 Y_{t-1}+\eta_1\varepsilon_{t-1}$ for $\mu=0$ for $(\phi_1,\eta_1)=\left\{(0.9,0.6), (-0.9,-0.6),\right.$ $ \left.(0.9,-0.6), (0.6,-0.6)\right\}$ setting $Y_0=\varepsilon_0=0$ and all four processes evaluated at the same   100  independent draws of $\varepsilon_t$ from  a $N(0,1)$ distribution.}}
+
+\textsc{Remarks}
+\begin{itemize}
+\item The ARMA(1,1) is more general than both the AR(1) and MA(1), capturing both as special cases. If $\eta_1=0$ then we have the AR(1) and if $\phi_1=0$ then the ARMA(1,1) collapses to an MA(1)  \item As such intuitively the ARMA(1,1) allows more complex forms of dynamics than either model. The ARMA(1,1) can be a good approximation to many commonly observed economic time series. More to follow when we discuss estimation and model selection and in the PC Lab Tutorials  where you will estimate such models using real data.
+  \end{itemize}
+
+These are examples of some simple processes commonly studied in Time Series, and as we see in later lectures, are commonly used to form an estimator of the unknown process. Again these processes are definitions, the true process could take one of these forms, or may be of a more complicated form. We now study the theoretical properties of MA(1)  and more generally MA(q) processes for $q>1$ defined below. We study the theoretical properties of different processes, so that when we observe the properties of the sample realisation we have an indication of what the true process may look like. This point is discussed in more depth in Lecture 3 on estimation. For now we stick purely to the theoretical properties of some simple processes.
+
+
+\section{Autocovariance and Autocorrelation Function}
+In practise when studying the properties of some process we often plot the sample realisation over time, i.e we plot the graph. For example plotting the graph of UK Interest Rates over time. This provides a visual display of the properties of the underlying process and may give some clues as  to what properties the true unknown process may satisfy. However eye-balling the graph  of a process does not immediately tell us the exact form of the process, nor does it provide a framework with which to test between hypothesised models.
+
+For example examining the plot of a sample realisation (i.e the data) of UK GDP Growth (1959-2014) below we can surmise some likely key features of the true process of UK GDP Growth rates.  For example that the mean is around 2\% and the process does not look to be White Noise. However we can not observe by analysing solely the plot of the data the likely form of the true process, e.g where it is an AR(1) or MA(1) or such like.\sidenote[][-2cm]{
+	Suppose the true process for UK GDP is $Y_t=0.2+0.1Y_{t-1}+\epsilon_t$ where $\epsilon_t \sim WN(1)$ (i.e $\sigma=1$), it would be impossible to judge that this was the true process from just looking at the graph above (no matter how much data were available).}
+\begin{figure}
+\includegraphics[scale=0.45]{ukgdp.png}
+\caption[Annual Growth (\%) in Total UK GDP (1959-2014)]{\textbf{Annual Growth (\%)  in Total UK GDP (1959-2014)} \vspace{5pt} \newline  \noindent \textsc{Source: \href{https://fred.stlouisfed.org/series/NAEXKP01GBQ652S}{St Louis Fed}}}
+\end{figure}
+
+
+
+
+In order to provide an estimate  of the form of the true process $Y_t$ we need some means of succinctly quantifying the properties of a process which is easy to interpret and compare across different types of processes. One key method to achieve this is the use of the \textbf{Autocorrelation Function} (derived from the \textbf{Autocovariance Function}) which describes the key dependence properties of a process over time in a simple functional form.\\
+
+
+
+\begin{mydef}{Autocovariance Function} TThe Autocovariance function of a Stationary Process
+  \begin{equation*} \gamma(k):=Cov(Y_t,Y_{t-k}) \qquad k=0,1,2,...\end{equation*} \end{mydef}
+
+
+\marginnote[-1.8cm]{We assume $Y_t$ is stationary  (as maintained throughout ECON30401 aside from the final lecture on Unit Roots/Random Walks).}
+
+\begin{mydef}{Autocorrelation Function(ACF)}  TThe Autocorrelation function (ACF) of a Stationary Process\\
+\begin{equation*}\rho(k):=\frac{Cov(Y_t,Y_{t-k})}{\sqrt{Var(Y_t)Var(Y_{t-k})}}=\frac{\gamma(k)}{\gamma(0)} \qquad k=0,1,2,... \end{equation*}\end{mydef}
+
+\marginnote[-1.8cm]{Under the assumption of stationarity $Var(Y_t)=Var(Y_{t-k})=\gamma(0) $  which simplifies the formula for the ACF.}
+
+ The ACF is the correlation of $Y_t$ with $Y_{t-k}$  (i.e $\rho(k)$) for all lags  $k=0,1,2,..$ and hence is a function of $k$ (since we assume stationarity none of the correlations depend on time).   For example if $Y_t$ were GDP growth and $k=1$ then $\rho(1)$ is the correlation between GDP growth now and the previous period. This function over all lags provides the key information on the dependence properties of the process $Y_t$ with its past observations.\sidenote[][-1cm]{For example a White Noise process has   $\rho(k)=0$ for all $k\geq 1$ ($\rho(0)=1$). }
+
+We often plot  the ACF $\rho(k)$   against $k=0,1,2,,$ for a visual depiction of the dependence in the process. This function summarises the key properties of the process and forms the theoretical underpinnings  of inference in time series. The ACF is a powerful tool in studying time series processes and understanding this concept and its uses for inference and estimation is paramount.
+
+ Below we derive the ACF for MA processes. Doing so we show the forms of dependence that an MA process can exhibit. This will be useful when establishing whether the true process of interest (e.g GDP growth) is an MA process, or some other process when observing the correlations in the sample data [discussed in more depth in Lecture 3].
+
+
+
+
+
+
+
+
+
+
+
+\section{Theoretical Properties of MA Processes}
+This section expands on the slides relating to the properties of MA processes. Namely deriving the mean and variance and most importantly the Autocovariance function and ACF of an MA process.
+
+\subsection{Properties of MA(1) Process} \label{ma1properties}
+The \emph{moving average} process of first order, $MA(1)$, is defined by
+\begin{equation} \label{madef}
+Y_{t}=\alpha +\varepsilon_{t}+\theta_{1}\varepsilon_{t-1}
+\end{equation}
+with $\varepsilon_{t}\sim WN\left(\sigma ^{2}\right) $. By direct
+calculation of expected value and variance, utilising the assumption $\varepsilon_t$ is White Noise and by (\ref{madef}) we find
+\begin{eqnarray*}
+\mathbb{E}\left[ Y_{t}\right]  &=&\alpha \;\;\;\;\;  \highlight{\textrm{as all} \;\;\mathbb{E}[\varepsilon_t]=0 \; \textrm{by WN}} \\
+Var\left[ Y_{t}\right]  &=&Var[\varepsilon_{t}+\theta_{1}\varepsilon_{t-1}]\;\;\;\;\; \highlight{\textrm{as }\alpha \textrm{ is nonstochastic}} \\
+&=&Var\left[ \varepsilon_{t}\right] +\theta_{1}^{2}Var%
+\left[ \varepsilon_{t-1}\right] \;\;\;\;\;\highlight{\textrm{as shocks uncorrelated by WN}} \\
+&=&\sigma^{2}(1+\theta_{1}^{2}) \;\;\;\;\;\highlight{\textrm{as variance is constant by WN}}.
+\end{eqnarray*}
+where the above hold for any $t$. Utilising the definition of the covariance then\footnote{For any r.v's $X,W$ then $Cov(X,W):=\mathbb{E}\left[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])\right]$.}
+\begin{eqnarray*}
+Cov\left[ Y_{t},Y_{t-1}\right]  &=&\mathbb{E}\left[ \left( Y_{t}-\mathbb{E}\left[
+Y_{t}\right] \right) \left( Y_{t-1}-\mathbb{E}\left[ Y_{t-1}\right] \right) \right]
+\\
+&=&\mathbb{E}\left[ \left( Y_{t}-\alpha \right) \left( Y_{t-1}-\alpha \right) \right]
+\end{eqnarray*}
+as $\mathbb{E}[Y_t]=E[Y_{t-1}]=\alpha$ as shown above. Noting that $Y_t-\alpha=\varepsilon_t+\theta_1\varepsilon_{t-1}$ by definition for any t we find that%
+\[
+Cov\left[ Y_{t},Y_{t-1}\right] =E\left[ \left( \varepsilon_{t}+\theta_{1}\varepsilon_{t-1}\right) \left( \varepsilon_{t-1}+\theta_{1}\varepsilon_{t-2}\right) \right] .
+\]%
+Multiplying out the bracket inside the expectation, using the uncorrelated and  zero
+mean properties for $\varepsilon _{t}$ and $\varepsilon _{t-1}$ by the WN assumption we have%
+\begin{eqnarray*}
+Cov(Y_{t},Y_{t-1}) &=& \mathbb{E}\left[(\varepsilon_{t}\varepsilon_{t-1}+\theta_{1}\varepsilon_{t}\varepsilon_{t-2}+\theta_{1}\varepsilon_{t-1}^{2}+\theta_{1}^{2}\varepsilon_{t-1}\varepsilon_{t-2})\right] \\
+&=& \mathbb{E}\left[\varepsilon_{t}\varepsilon_{t-1}\right] +\theta_1\mathbb{E}\left[\varepsilon_{t}\varepsilon_{t-2}\right] + \theta_{1}^{2}\mathbb{E}\left[\varepsilon_{t-1}\varepsilon_{t-2}\right] +\theta_{1}\mathbb{E}\left[\varepsilon_{t-1}^{2}\right]\\
+&=&\theta_{1}\mathbb{E}[\varepsilon_{t-1}^{2}]=\theta_{1}\sigma^{2}.
+\end{eqnarray*}
+\marginnote[-3cm]{ We move from the second to final lines as $\mathbb{E}[\varepsilon_{t}\varepsilon_{t-1}]=\mathbb{E}[\varepsilon_{t-1}\varepsilon_{t-2}]=\mathbb{E}[\varepsilon_{t}\varepsilon_{t-2}]=0$ by the WN assumption of uncorrelatedness  and $\mathbb{E}[\varepsilon_{t-1}^{2}]=\sigma^2$ by the constant variance of a WN process [note that since a WN process has $\mathbb{E}[\epsilon_t]=0$ then $Var(\varepsilon_t)=\mathbb{E}[\varepsilon_t^2]$ for any t).}
+
+Similarly, we can show that%
+\begin{eqnarray*}
+Cov(Y_{t},Y_{t-2}) &=&\mathbb{E}\left[(\varepsilon_{t}+\theta_{1}\varepsilon_{t-1})(\varepsilon_{t-2}+\theta_{1}\varepsilon_{t-3})\right]\\
+&=&0
+\end{eqnarray*}
+since there are no products that are squares, i.e. with common time
+subscripts. By the same arguments,
+\[
+Cov(Y_{t},Y_{t-j})=0,\qquad j\geq 2.
+\]
+Hence the Autocovariance function ($\gamma(k)=Cov(Y_t,Y_{t-k})$  is
+\[\gamma(k) = \left\{
+  \begin{array}{lr}
+    \sigma^2\theta_1 & : k =1\\
+    0 & : k>1.
+  \end{array}
+\right.
+\]
+
+ From this the ACF can be found $\rho(k)=\frac{\gamma(k)}{\gamma(0)}$ where $\gamma(0)=Var(Y_t)$ by definition as $\gamma(0)=Cov(Y_t,Y_t)=Var(Y_t)$ (use the definitions of Cov and Var to convince yourself of this).
+\[\rho(k) = \left\{
+  \begin{array}{lr}
+    \frac{\theta_1}{1+\theta_1^2} & : k =1\\
+    0 & : k>1
+  \end{array}
+\right.
+\]\marginnote[-1cm]{The ACF is a function of $k$ and must be derived for all lags.}
+
+
+\textsc{Remarks}
+\begin{itemize}
+\item  An MA(1) process has constant mean, variance and covariance which follows since an MA(1) by definition has White Noise (and hence also Stationary) `shocks' $\varepsilon_t$.
+
+\item The \index{ACF} ACF of an MA(1) is zero for all lags 2 and above with a potential non-zero correlation at lag 1.  This means that if a process is MA(1) it is only (potentially) correlated with its immediate past observation.
+
+    \item Suited to model properties of economic time series with little to no persistence being related only to its immediate past observation, for example monthly stock return data. Is not suited to model such variables as interest rates. Take for example the monthly UK Interest rate which was constant for 7 years, see Figure \ref{baser}.
+         Clearly from the sample realisation of UK Interest Rates above the true process of monthly UK interest rates is not only correlated with the interest rate in the previous period, but is related to the interest rate in many previous periods.  .
+    \end{itemize}
+
+
+    \subsection{$MA\left( q\right) $ process}
+
+It is possible to construct more general versions of the $MA\left( 1\right) $
+process simply by increasing the number of lags from 1. This will allow more general forms of dynamics. The $%
+MA\left( 2\right) $ process is defined as
+\[
+Y_{t}=\alpha +\varepsilon_{t}+\theta_{1}\varepsilon_{t-1}+\theta_{2}\varepsilon_{t-2}
+\]%
+and the $MA\left( 3\right) $ is
+\[
+Y_{t}=\alpha+\varepsilon_{t}+\theta_{1}\varepsilon_{t-1}+\theta_{2}\varepsilon_{t-2}+\theta_{3}\varepsilon _{t-3}.
+\]%
+Where we can keep going adding an arbitrary number of lags of $\varepsilon_t$. If $q$ is the maximum lag of $\varepsilon_{t}$
+appearing in the $MA$ process, the $MA\left( q\right) $ process.
+
+\begin{mydef}{MA(q) Process}  AAn MA(q) process satisfies
+\begin{equation}
+Y_{t}=\alpha +\varepsilon_{t}+\theta_{1}\varepsilon_{t-1}+...+\theta_{q}\varepsilon_{t-q} \quad  \varepsilon_t\sim WN(\sigma^2)  \label{Maaq}
+\end{equation}
+ for some coefficients $\alpha, \theta_1,..,\theta_q$.\end{mydef}
+
+It is  then clear to see that in (\ref{Maaq})
+\begin{equation}
+\mathbb{E}\left[ Y_{t}\right] =\mu   \label{mean_MAq}
+\end{equation}%
+by taking expectations on both sides and noting  $\mathbb{E}[\varepsilon_t]=0$ for all t.\newline
+\begin{changemargin}{-1.9cm}{0.001cm}
+\includemedia[
+	label=mean,
+	activate=onclick,
+	deactivate=pageclose,
+	playbutton=none,
+height=1.1\linewidth,
+width=1.45\linewidth,
+keepaspectratio,
+	flashvars={
+		modestbranding=1 % no YT logo in control bar
+		&autohide=1 % controlbar autohide
+		&showinfo=1 % no title and other info before start
+		&rel=0 % no related videos after end
+	},
+	url % Flash loaded from URL
+	]{}{https://www.youtube.com/v/mRK31_pcroQ?rel=0&amp;vq=hd720}
+	\mediabutton[ mediacommand=mean:playPause, overface=\color{blue}{\fbox{\includegraphics{play}}}, downface=\color{red}{\fbox{\strut Play/Pause}}
+	]{	\mybox{\includegraphics[width=0.5cm]{vid}\hspace{0.1cm}\textbf{Mean of MA(q)}}}
+\end{changemargin}
+
+\newpage
+
+ Again also utilising the assumption that $\varepsilon_t\sim$ WN($\sigma^2$)  it also follows that
+\[ Var\left[ Y_{t}\right] =\sigma^{2}\left( 1+\theta_{1}^{2}+...+\,\theta_{q}^{2}\right) .
+\]
+since $Var(Y_t)=Var(\sum_{j=0}^q\theta_j\varepsilon_{t-j})$ (letting $\theta_0=1$) and the variance of the sum of q uncorrelated random variables is the sum of all the variances and $Var(\theta_j\varepsilon_{t-j})=\theta_j^2Var(\varepsilon_{t-j})=\sigma^2\theta_j^2$ for any $t,j$ as in each such case $Var(\varepsilon_{t-j})=\sigma^2$.\newline
+\begin{changemargin}{-1.9cm}{0.001cm}
+\includemedia[
+	label=varma1,
+	activate=onclick,
+	deactivate=pageclose,
+	playbutton=none,
+	height=1.1\linewidth,
+	width=1.45\linewidth,
+	keepaspectratio,
+	flashvars={
+		modestbranding=1 % no YT logo in control bar
+		&autohide=1 % controlbar autohide
+		&showinfo=1 % no title and other info before start
+		&rel=0 % no related videos after end
+	},
+	url % Flash loaded from URL
+	]{}{https://www.youtube.com/v/wg1i5AaqwUY?rel=0&amp;vq=hd720}
+	\mediabutton[ mediacommand=varma1:playPause, , overface=\color{blue}{\fbox{\includegraphics{play}}},  downface=\color{red}{\fbox{\strut Play/Pause}}
+	]{\mybox{ \includegraphics[width=0.5cm]{vid} \textbf{Variance of MA(q)}}}
+\end{changemargin}
+
+\newpage
+In principle it is just as easy to find the covariances, but it will help to
+adopt a systematic approach to this for later use.
+Consider the covariance at lag 1, $Cov\left[ Y_{t},Y_{t-1}\right]
+=\mathbb{E}[Y_{t}-\alpha ][Y_{t-1}-\alpha ]$ (as $\mathbb{E}[Y_t]=\mathbb{E}[Y_{t-1}]=\alpha$) this is equal to
+\[
+\mathbb{E}\left[ (\varepsilon_{t}+\theta_{1}\varepsilon_{t-1}+...+\theta_{q}\varepsilon_{t-q})(\varepsilon_{t-1}+\theta_{1}\varepsilon_{t-2}+...+\theta_{q}\varepsilon_{t-q-1})\right] .
+\]%
+Arrange this calculation in a \textbf{tabular form} (in essence writing to clearly see the common shocks in both $Y_t$ and $Y_{t-1}$), putting a common time subscript
+in each column, as
+\begin{equation*}
+\begin{tabular}{rrrrrrrrr}
+& $\mathbb{E}[($ & $\varepsilon_{t}$ & $+\theta_{1}\varepsilon_{t-1}$ & $+\theta_{2}\varepsilon_{t-2}$ & $+...$ & $+\theta_{q}\varepsilon_{t-q}$ &  & $)$
+\\
+& $\times \;($ &  & $\varepsilon_{t-1}$ & $+\theta_{1}\varepsilon_{t-2}$
+& $+...$ & $+\theta _{q-1}\varepsilon_{t-q}$ & $+\theta_{q}\varepsilon_{t-q-1}$ & $)]$ \\
+$=$ &  &  & $\theta_{1}\mathbb{E}\left[ \varepsilon_{t-1}^{2}\right] $ & $+\theta_{2}\theta_{1}\mathbb{E}\left[ \varepsilon_{t-2}^{2}\right] $ & $+...$ & $+\theta_{q}\theta_{q-1}\mathbb{E}\left[ \varepsilon_{t-q}^{2}\right] $ & $.$ &
+\end{tabular}%
+\end{equation*}
+This uses the argument that, out of all the products $\varepsilon_{t-i}\varepsilon_{t-j}$ whose expectation is required, only those for
+which $i=j$ will have non-zero expected value $\sigma^{2}$, because the $%
+\varepsilon_{t}$ indifferent time periods are uncorrelated by the WN assumption. Hence,
+\begin{equation*}
+Cov\left[ Y_{t},Y_{t-1}\right] =\sigma^{2}\left( \theta_{1}+\theta_{1}\theta_{2}+...+\theta_{q-1}\theta_{q}\right) .
+\end{equation*}
+Notice that the difference of lags between $t$ and $t-1$ (namely $1$), is
+reflected in the differences of the subscripts on the right hand side.
+
+Next, consider $Cov\left[ Y_{t},Y_{t-k}\right] $ for $1<k\leq
+q:$ in \textbf{tabular form} this is
+\begin{equation*}
+\begin{tabular}{rrrrrrrrr}
+& $\mathbb{E}[($ & $\varepsilon_{t}$ & $+\theta_{1}\varepsilon_{t-1}+...$ & $%
++\theta_{j}\varepsilon_{t-j}+...$ & $+\theta_{q}\varepsilon_{t-q}$ &  &
+& $)$ \\
+& $\times \;($ &  &  & $\varepsilon_{t-k}+...$ & $+\theta_{q-j}\varepsilon_{t-q}$ & $+...$ & $+\theta_{q}\varepsilon_{t-q-k}$ & $)]$ \\
+$=$ &  &  &  & $\theta_{k}\mathbb{E}\left[ \varepsilon_{t-k}^{2}\right] +...$ & $%
++\theta_{q}\theta_{q-k}\mathbb{E}\left[ \varepsilon_{t-q}^{2}\right] $ &  &  &
+\end{tabular}
+\end{equation*}
+which makes it clear that
+\begin{equation*}
+Cov\left[ Y_{t},Y_{t-k}\right] =\sigma^{2}\left( \theta_{k}+\theta_{1}\theta_{k+1}+...+\theta_{q-k}\theta_{q}\right) .
+\end{equation*}
+When $k=q,$ this is just
+\begin{equation*}Cov\left[ Y_{t},Y_{t-q}\right] =\sigma^{2}\theta_{q}
+\end{equation*}
+and for $k\geq q+1,$%
+\begin{equation*}
+Cov\left[ Y_{t},Y_{t-k}\right] =0.
+\end{equation*}
+Just as in the $MA\left( 1\right) $ case, the covariances are all zero for
+any lag greater than the order of the process ($q$). The tabular form makes
+this clear because there is no $\varepsilon _{t-i}$ in common between $Y_{t}$
+and $Y_{t-q-1}$ or for any lags further in the past.
+
+We can then write the variance and the collection of covariances for the $%
+MA\left( q\right) $ process as
+\begin{eqnarray*}
+Cov\left[ Y_{t},Y_{t-k}\right]  &=&\sigma^{2}\sum_{s=k}^{q}\theta_{s-k}\theta_{s}  \nonumber \\
+&=&\sigma^{2}\sum_{s=0}^{q-k}\theta_{s}\theta_{s+k},\quad \textrm{for }
+k=0,1,2,.q \label{cov_MAq}
+\end{eqnarray*}%
+where we define $\theta_{0}=1$. In the latter expression, if $k>q,$ the
+index range in the sum is empty, and the sum is then taken to equal zero:
+this gives the \textquotedblleft switch off\textquotedblright\ property of
+the covariances. When $k=0$, this gives the variance.
+\newpage
+Hence the Autocovariance function of an MA(q) process is 
+\[\gamma(k) = \left\{
+  \begin{array}{lr}
+   \sigma^{2}\sum_{s=0}^{q-k}\theta_{s}\theta_{s+k}   & : k =0,..,q\\
+    0 & : k>q
+  \end{array}
+\right.
+\]
+\begin{changemargin}{-1.9cm}{0.01cm} 
+\includemedia[
+	label=acfma1,
+	width=0.11cm,height=0.11cm,
+	activate=onclick,
+	deactivate=pageclose,
+	playbutton=none,
+	height=1\linewidth,
+	width=1.45\linewidth,
+	flashvars={
+		modestbranding=1 % no YT logo in control bar
+		&autohide=1 % controlbar autohide
+		&showinfo=0 % no title and other info before start
+		&rel=0 % no related videos after end
+	},
+	url % Flash loaded from URL
+	]{}{https://www.youtube.com/v/GhdJM7fGTpU?rel=0&amp;vq=hd720}
+	\mediabutton[ mediacommand=acfma1:playPause, overface=\color{blue}{\fbox{\includegraphics{play}}}, downface=\color{red}{\fbox{\strut Play/Pause}}
+	]{ \mybox{ \includegraphics[width=0.5cm]{vid}\textbf{Autocovariance Function  of MA(q)}}}
+	\end{changemargin}
+	\vspace{0.5cm}
+To derive the  ACF (divide the Autocovariance Function by the variance of $Y_t$ $\gamma(0)$) is
+
+\[\rho(k) = \left\{
+  \begin{array}{lr}
+   \frac{\sum_{s=k}^{q}\theta_{s-k}\theta_{s}}{\sum_{s=0}^q\theta_s^2}   & : k =0,..,q\\
+    0 & : k>q
+  \end{array}
+\right.
+\]
+
+\textsc{Remarks}
+\begin{itemize}
+\item For $q=1$ (i.e $\theta_2=\theta_2=\theta_q=0$) both $\gamma(k),\rho(k)$ collapse to the Autocovariance function  and ACF of an MA(1) as to be expected (convince yourself by verifying this).
+\item An MA(q) has constant mean $\alpha$ (as also shown in the case $q=1$). The variance of an MA(q) increases in $q$, which makes sense, as the addition of further random shocks increase the random variation on $Y_t$
+
+    \item The MA(q) process may have non-zero correlation up to lag $q$ and then zero correlation afterwards. The larger is $q$ the more general forms of dependence an MA(q) process can exhibit. For $q$ large enough an MA(q) process can approximate  most processes $Y_t$, which is discussed more next lecture.
+        \end{itemize}
+
+
+
+
+
+
+
+\chapter[ARMA(p,q) Processes \& Stationarity ]{ARMA(p,q) Processes \& Stationarity }
+\label{ch:-ARMA}
+
+In Lecture 1 we introduced some simple Time Series Processes, studying the properties of MA(q) models. In this lecture we study the properties of the AR(1) and ARMA(1,1) models and introduce the general ARMA(p,q) models. We also discuss under what conditions such processes are Stationary, which is crucial when it comes to estimating such models which we cover in Lecture 3.
+
+\section{$MA\left( \infty \right) $ process}
+Last lecture we studied the properties of an MA(q) process
+\begin{equation*}
+Y_{t}=\alpha +\varepsilon_{t}+\theta_{1}\varepsilon_{t-1}+...+\theta_{q}\varepsilon_{t-q} \label{MAq}
+\end{equation*}
+ where $\varepsilon_t\sim$ WN($\sigma^2)$. Intuitively an MA(q) is a process correlated with at most $q$ lags of the process in the past. If we view $\varepsilon_t$ as the shock to the process at time $t$ (e.g if $Y_t$ were GDP then a shock to GDP at time $t$) then the MA(q) process is a function of up to  $q$  of the past `shocks'. The larger is $q$ the more complex form of dynamics such a process can capture.
+
+ To recap last lecture we found for the MA(q) we found that
+\begin{equation*}
+\mathbb{E}\left[ Y_{t}\right] =\alpha  \label{mean_MAq}
+\end{equation*}
+\[ Var\left[ Y_{t}\right] =\sigma^{2}\left( 1+\theta_{1}^{2}+...+\,\theta_{q}^{2}\right) .
+\]
+ and the Autocorrelation Function
+ \begin{equation} \label{acfmaq}\rho(k) = \left\{
+  \begin{array}{lr}
+   \frac{\sum_{s=0}^{q-k}\theta_{s}\theta_{s+k}}{\sum_{s=0}^q\theta_s^2}   & : k =0,..,q\\
+    0 & : k>q
+  \end{array}
+\right.
+\end{equation}
+\textsc{Remarks}
+\begin{itemize}
+\item An MA(q) has mean, variance and autocovariance function which are constant across time.
+\item If $1+\theta_{1}^{2}+...+\,\theta_{q}^{2}<\infty$ then the variance is constant, together with the above constancy of the moments over times implies an MA(q) satisfies all three parts of the definition of stationarity.
+\item An MA(q) allows correlations between $Y_t$ and $Y_{t-j}$ for $j=1,..,q$ to vary by varying the coefficients $\theta_1,..,\theta_q$ and to be zero for all lags greater than q. Hence as $q$ increases the more complex forms of dynamics the MA(q) can generate.
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+An important process is the MA($\infty$) process,  which is the MA(q) for $q \rightarrow \infty$.
+
+\begin{mydef}{MA($\infty$) Process} AAn MA($\infty$) process satisfies
+\begin{equation}
+Y_{t} =\alpha +\sum_{s=0}^{\infty }\theta _{s}\varepsilon _{t-s} \qquad \varepsilon_t\sim WN(\sigma^2) \label{MA_infinite}
+\end{equation}
+where $\theta _{0}:=1$ for some coefficients $\alpha, \theta_1,..,\theta_{\infty} $\end{mydef}
+
+ To derive the mean, variance and ACF of an MA($\infty$) we can use the results from the MA(q) where $q\rightarrow \infty$ under the conditions the moments exist (namely that the variance is finite). Namely the variance of an MA($\infty$) is
+\begin{equation*} Var[Y_t]=\underset{q\rightarrow \infty}{\lim}\sigma^2\sum_{s=0}^q \theta_s^2= \sigma^2\sum_{s=0}^\infty \theta_s^2\end{equation*}
+so long as $\sum_{s=0}^\infty \theta_s^2<\infty$.\sidenote[][-0.5cm]{The sum of an infinite number of integers may not be finite, for example if $\theta_s=1$ for all $s$ $\sum_{s=0}^\infty \theta_s^2$ is infinite.}Likewise the mean is given by
+$\mathbb{E}\left[ Y_{t}\right] =\alpha $ when $q$ is finite remains unchanged as $q\rightarrow \infty .$ This is
+because each $\varepsilon _{t-s}$ in (\ref{MA_infinite}) has zero mean for any $t,s$, so
+that $\mathbb{E}[Y_{t}]$ is unaffected by the number of $MA$ lags.
+ The autocorrelation function is found taking the limit of the ACF for an  MA(q)  in \ref{acfmaq} as $q \rightarrow \infty$
+ \[ \rho(k) =  \frac{\sum_{s=0}^{\infty}\theta_{s}\theta_{s+k}}{\sum_{s=0}^\infty\theta_s^2} \qquad k=0,1,2....\].
+
+\textsc{Remarks}
+\begin{itemize}
+\item An MA($\infty$) is stationary if $\sum_{s=0}^\infty\theta_s^2$ is finite. This condition is known as \textbf{Squared Summability}. Namely the sum of all the MA coefficients squared is finite.
+\item It can be shown that \textbf{Absolute Summability}, namely $\sum_{s=0}^\infty|\theta_s|<\infty$ implies Squared Summability. If we can verify that an MA($\infty$) process has coefficients satisfying Absolute Summability then it is stationary.
+    \item Wold (1938) proves that any stationary process may be expressed as an MA($\infty$) process. This result is useful as  for any stationary process once we have work out the corresponding coefficients  $\theta_s$ $s=0,1,2,..$ of its MA($\infty$) representation we can simply work out the key properties of the processes distribution by plugging them in to the general formulas for the mean etc. above.
+
+        \end{itemize}
+        We will now move on to study the property of other processes, starting firstly with the AR(1). We then move on to study the properties of the ARMA(1,1) which combines the AR(1) and MA(1) model. Understanding the key properties of an MA(1), AR(1) and ARMA(1,1) and how to derive them provide in essence all the  conceptual basis needed to understand the properties of much more complex processes and how they are  derived.
+
+
+        \section{ AR(1) Process}
+        An AR(1) process is defined,
+        \begin{equation*} Y_t=\mu+\phi_1 Y_{t-1}+\varepsilon_t \qquad \varepsilon_t  \sim\textrm{WN}(\sigma^2) \end{equation*}
+
+        where the dynamics are governed by the first order difference equation $Y_t=\mu+ \phi_1 Y_{t-1}$ with a random fluctuation around this governed by the `shock' $\varepsilon_t$. The properties of an AR(1) depend crucially on $\phi_1$.
+
+        \begin{itemize}
+        	\item [] \fbox{ $ \phi_1>0$}
+        	\begin{itemize}
+        		\item[]  $Y_t$ depends positively on the outcome last period $Y_{t-1}$ where by the same token $Y_{t-1}$ depends positively on $Y_{t-2}$ and so on. As such for $\phi_1>0$ we'd expect to find a positive dependence between $Y_t$ and all past values, and the degree of persistence dependent on the magnitude of $\phi_1$.   For $0<\phi_1<1$ then the correlation between $Y_t$ and $Y_{t-j}$  will be positive always but decrease in $j$, the distance between the observations. In this case the effect of the past dies away eventually. The graphs to the right  show sample realisations of an AR(1)   when $\phi_1\geq 1$. In this case the process is explosive and hence non-stationary (moments vary with time and infinite variance). \end{itemize}\vspace{15pt}	\end{itemize}
+       \begin{marginfigure}[-7.5cm]  \vspace{-0.3cm}\includegraphics[scale=1.18]{ar1exppos.png}\end{marginfigure}
+       
+       \begin{marginfigure}[-0.9cm] \includegraphics[scale=1.18]{ar1expneg.png}\caption{Sample Realisation of Nonstationary AR(1) Processes} \label{expp} \end{marginfigure}
+       
+        	\begin{itemize}        		\item[] \fbox{ $ \phi_1<0$}
+        		\begin{itemize} \item[]  $Y_t$ moves in the opposite direction to $Y_{t-1}$ and $Y_{t-1}$ in an opposite direction to $Y_{t-2}$, so that $Y_t$ moves positively with $Y_{t-2}$ and so on. Hence we expect to see an oscillatory pattern to our sample realisation where  degree of oscillation and how this persists depends on the magnitude of $\phi_1$, depending crucially whether $\phi_1$ is less or greater than $-1$.  Figure \ref{expp} shows the increasing oscillation patter for $\phi_1=(1,-1.1)$ that does not die away.  In order for the oscillations to `dampen down' then we require $\phi_1>-1$, otherwise the effect of past shocks do not dissipate and the process  cannot be stationary as th e variance is increasing over time. \end{itemize}\vspace{15pt}
+\end{itemize}
+
+ 
+
+
+It turns out the condition for stationarity of an AR(1) is that $-1<\phi_1<1 $, i.e $|\phi_1|<1$ that $\phi_1$ is less than one in absolute value. We can see this just by looking and thinking about the dynamics from the first order difference equation $Y_t=\mu +\phi_1 Y_{t-1}$.
+        To formalise these arguments we derive the properties of an AR(1), crucially deriving the variance and ACF. This function encapsulates the key information on how the process is correlated with outcomes from the past, which gives a key visual depiction of the form of dependence (if any) in a process. \begin{fullwidth} There are multiple ways to derive the ACF of an AR(1) the simplest is to write the process in it's MA($\infty)$ form. Since $Y_t=\mu+\phi_1 Y_{t-1}+\varepsilon_t $ for all t we can see a recursive structure to the process by back-substituting in $Y_{t-1}=\mu +\phi_1 Y_{t-2}+\varepsilon_{t-1}$ and so on indefinitely. Namely,
+         \begin{eqnarray}Y_t &=&\mu+ \phi_1Y_{t-1}+\varepsilon_t \\
+&=&  \mu+\mu\phi_1+\phi_1^2Y_{t-2}+\phi_1\varepsilon_{t-1}+\varepsilon_t \qquad \qquad\qquad\qquad\quad \highlight{(\textrm{Sub in} \; Y_{t-1}=\mu+\phi_1 Y_{t-2}+\varepsilon_{t-1})} \\
+&=&  \mu+\mu\phi_1+\mu\phi_1^2+ \phi_1^3Y_{t-3}+\phi_1^2\varepsilon_{t-2}+\phi_1\varepsilon_{t-1}+\varepsilon_t \qquad  \highlight{(\textrm{Sub} \; Y_{t-2}=\mu+\phi_1 Y_{t-3}+\varepsilon_{t-2})} \\
+&\vdots&  \colorbox{green}{\textrm{Recursing back j periods}}
+\\
+&=& \mu+\mu\phi_1+..+\mu\phi_1^j+ \phi_1^{j+1}Y_{t-j-1}+\phi_1^j\varepsilon_{t-j}+ \phi_1^{j-1}\varepsilon_{t-j+1}+...+\varepsilon_t \label{quick}\\
+&\vdots&  \highlight{\textrm{if}\quad|\phi_1|<1 \quad \phi_1^{j+1}Y_{t-j-1}\rightarrow 0 \;\textrm{as} \;j\rightarrow \infty} \\
+&=&\frac{\mu}{1-\phi_1}+ \sum_{j=0}^\infty \phi_1^j \varepsilon_{t-j} \qquad \mathbf{\textrm{MA}(\infty) \;\textrm{form of Stationary AR(1)}} \label{final} \end{eqnarray}
+  where (\ref{quick}) follows for $|\phi_1|<1$ as $|\phi_1|^{j+1}\rightarrow 0$ exponentially  quickly and hence why $ \phi_1^{j+1}Y_{t-j-1}\rightarrow 0$.
+where (\ref{final}) follows as $\lim_{j\rightarrow \infty} \sum_{s=0}^j \mu\phi_1^s= \frac{\mu}{1-\phi_1}$ where $|\phi_1|<1$.\sidenote{The limit of a sequence $1+x+x^2+x^3...$ (a Geometric Progressions) when $x$ is less than 1 in absolute value is $\frac{1}{1-x}$. This result is used quite a lot in determining properties of AR type models.}  \end{fullwidth}
+\vspace{10pt}
+\textsc{Remarks}
+\begin{itemize}
+\item  We then see an AR(1) is stationarity when $|\phi_1|<1$. Take for example the case $\phi_1=1$ then the sum $\mu+\mu\phi_1+..+\mu\phi_1^j=j\mu$ and in the limit is infinite.  The same holds for $\phi_1=-1$ and the case $|\phi_1|>1$. Likewise the variance is also infinite. As such the process is not stationary.  The case where $|\phi_1|=1$ is known generally as \textbf{ unit-root }(sometimes referred to as a \textbf{random-walk} in the AR(1) case.) The issue of unit roots is not specific only to AR(1) processes and the properties of AR models with unit-root(s) will be the topic of the final lecture with later material.
+    \item Using the MA($\infty$) form under the assumption of stationarity we can derive the mean, variance, Autocovariance function and most importantly the  ACF using the general formulas for the corresponding entities of an MA($\infty$). Technically we have performed the Wold-Decomposition, i.e written a stationary process in it's MA($\infty$) for the MA($\infty$) coefficients are $\alpha=\frac{\mu}{1-\phi_1}$ and $\theta_s=\phi_1^s$ for $s\geq 0$.
+
+        \end{itemize}
+
+        Using the results from the properties of on MA($\infty$) we can see for any AR(1) where $|\phi_1|<1$
+        \begin{equation*} \mathbb{E}[Y_t]=\frac{\mu}{1-\phi_1} \end{equation*}
+
+        \begin{eqnarray*} Var[Y_t] &=& \sigma^2 \sum_{s=0}^\infty (\phi_1^s)^2 \\
+        &=& \sigma^2 \sum_{s=0}^\infty (\phi_1^{2})^s \qquad \highlight{\textrm{A Geometric Progression in} \; \phi_1^2} \\
+        &=& \frac{\sigma^2}{1-\phi_1^2}  \qquad \highlight{ \textrm{By GP Formula as} \;    \phi_1^2<1} \end{eqnarray*}
+
+
+        Likewise the Autocovariance Function (remember general definition $\gamma(k)=Cov[Y_t, Y_{t-k}]$ for k=1,2...) of an AR(1) using the general formula for a stationary AR[1] (where $\theta_s=\phi_1^s$)
+        \begin{eqnarray*} \gamma(k)&=& \sigma^2 \sum_{s=0}^\infty \phi_1^s \phi_1^{s+k} \\
+        &=& \sigma^2 \phi_1^k \sum_{s=0}^\infty (\phi_1^2)^s \\
+        &=&  \phi_1^k \frac{\sigma^2}{1-\phi_1^2} \qquad \highlight{ \textrm{Same argument as in deriving variance}}\\
+        &=&=\phi_1^k \gamma(0) \qquad\textrm{For any k=0,1,..} \end{eqnarray*}
+   The the ACF $\rho(k)=\gamma(k)/\gamma(0)$ is simple to derive from the Autocovariance Function
+   \begin{equation*} \rho(k)=\phi_1^k \qquad \textrm{For any k=0,1,2,...} \end{equation*}
+   Figure (\ref{aracf})  plots the correlation between $Y_t$ and $Y_{t-k}$   for some AR(1) models.
+\begin{figure}\label{aracf}
+	\includegraphics[scale=1.18]{ar1acf.png}\caption[ACF of Stationary AR(1)]{\textbf{ACF of Stationary AR(1)}} \end{figure}
+   \textsc{Remarks}
+
+   \begin{itemize}
+   \item As seen in Figure(\ref{aracf}) for $\phi_1>0$ then the correlation between any $Y_t$  and $Y_{t-k}$ for any $k>0$ is positive and declining exponentially in $k$. This formalises the intuition of the properties from above. If $\phi_1<0$ then the correlation between $Y_t$ and $Y_{t-k}$ is positive for $k$ even and negative for $k$ odd, and hence the oscillating nature of an AR(1) process with $\phi_1<0$. In both cases the strength of the persistence in the series is determined by $|\phi_1|$, the larger in absolute value, the more persistence.
+
+       \item The AR(1) process models a particular form of dependence, either positive and exponentially declining correlations with past observations, or an oscillating pattern of correlations between positive and negative, dampening out exponentially quickly.
+        \item For example the AR(1) not suited to capture dependence of processes with say a correlation only at lag 1. Also does not allow more complex forms of dynamics. To achieve this we require more general models, which is the study of the final part of this note/lecture.
+
+   \end{itemize}
+   
+    Knowledge of the form of ACF that different processes can take  is very useful when it comes to estimating the form of the true process from some sample realisation of this process. We usually begin in practise by plotting the correlations in the realisations between different time periods. In other words we estimate the sample correlation function. If the sample size is large enough (we need enough observations with which to be able to reliably estimate such correlations) then the sample correlations should match the theoretical auto-correlation function of the process which derived the sample realisation we observe. If the sample autocorrelation does not correspond to the forms of dependence an AR(1) model can capture, this is evidence against the fact the process is AR(1). In that case we would likely move on to consider that the true process was another process. For example an ARMA(1,1), or some other process. This is partly why we derive the theoretical ACF of different processes. As mentioned, the ACF is  a powerful tool and a key part of the course is understanding how to derive conditions for stationarity and then the corresponding ACF of different processes.
+
+We now discuss the properties of an ARMA(1,1) process. The proofs of the derivation of the ACF etc. are given in sketch form as deriving this is part of  Video Exercise 1. With a similar method to that of deriving the properties of an AR(1) you should be able to do this. We then move on to consider more general processes, namely the AR(p) [an AR model with $p$ lags of $Y_{t}$] and then finally the ARMA(p,q) which is an AR(p) and MA(q) combined. The derivations of general ARMA(p,q) processes though derivable by the same method to the AR(1) become difficult quite quickly, requiring the utilisation of properties of higher order difference equations. Solutions to such general higher order difference equations  are \textbf{not} part of the course, and you are expected to understand the intuition of the properties of the general ARMA(p,q) from your understanding of how the properties are derived in simpler models. Conceptually there is little difference, aside from more complex algebra.
+
+\section{ARMA(1,1) Process}
+\begin{fullwidth}
+   We can repeat the analysis for the AR(1) for the ARMA(1,1), which differs from the AR(1) by the addition of the MA term $\varepsilon_{t-1}$
+\small
+ \begin{eqnarray*}Y_t &=&\mu+ \phi_1Y_{t-1}+\eta_1 \varepsilon_{t-1}+\varepsilon_t \\
+&=&  \mu+\mu\phi_1+\phi_1^2Y_{t-2}+\phi_1\theta_1\varepsilon_{t-2}+(\phi_1+\eta_1)\varepsilon_{t-1}+\varepsilon_t \qquad  \highlight{(\textrm{Subst.} \; Y_{t-1}=\mu+\phi_1 Y_{t-2}+\theta_1\varepsilon_{t-2}+\varepsilon_{t-1})} \\
+&=&  \mu+\mu\phi_1+\mu\phi_1^2+ \phi_1^3Y_{t-3}+\phi_1^2\eta_1\varepsilon_{t-3}+\phi_1(\phi_1+\eta_1)\varepsilon_{t-2}+(\phi_1+\eta_1)\varepsilon_{t-1}+\varepsilon_t \qquad  \highlight{(\textrm{Subs.} \; Y_{t-2}=\mu+\phi_1 Y_{t-3}+\theta_1\varepsilon_{t-3}+\varepsilon_{t-2})} \\
+&\vdots&  \colorbox{green}{\textrm{Recursing back j  periods}}
+\\
+&=& \mu+\mu\phi_1+..+\mu\phi_1^{j} +\underline{ \phi_1^{j+1}Y_{t-j-1} +\theta_1\phi_1^j\varepsilon_{t-j-1}}+\phi_1^{j-1}(\theta_1+\phi_1)\varepsilon_{t-j}+..+(\eta_1+\phi_1)\varepsilon_{t-1}+\varepsilon_t \\
+&\vdots&  \highlight{\textrm{if}\quad|\phi_1|<1 \quad \phi_1^{j+1}Y_{t-j-1}\rightarrow 0 \; \&  \; \phi_1^j\varepsilon_{t-j-1}\rightarrow 0 \;\textrm{as} \;j\rightarrow \infty}\\
+&=&\frac{\mu}{1-\phi_1}+ (\eta_1+\phi_1)\sum_{j=1}^\infty \phi_1^{j-1} \varepsilon_{t-j}+\varepsilon_{t}\qquad \mathbf{\textrm{MA}(\infty) \;\textrm{form of Stationary ARMA(1)}} \end{eqnarray*}
+
+\end{fullwidth}
+\textsc{Remarks}
+\begin{itemize}
+\item In the above we have kept back substituting and spotted the general pattern. We did recursion 1 and 2 then general $j$. If you don't see the pattern here then on paper do the third recursion and keep going and you will see the sum forming $(\eta_1+\phi_1)\sum_{j=1}^\infty \phi_1^{j-1} \varepsilon_{t-j}+\varepsilon_t$ where if $|\phi_1|<1$ the remaining two terms die away. \sidenote[][-1.9cm]{As for the AR(1), stationary of an ARMA(1,1) is determined by the AR(1) part, i.e when $|\phi_1|<1$ as in this case both $\phi_1^{j+1}Y_{t-j-1}\rightarrow 0 \; \&  \; \phi_1^j\varepsilon_{t-j-1}\rightarrow 0$ as $j\rightarrow \infty$.}
+
+ \item If $\eta_1=0$ the ARMA(1,1) becomes the AR(1) and we can see that the above back recursion is identical.
+
+ \item We have derived the MA($\infty$) form of a stationary ARMA(1,1) where $\alpha=\frac{\mu}{1-\phi_1}$, $\theta_s=(\phi_1+\eta_1)\phi_1^{s-1}$ for $s\geq 1$ and $\eta_0=1$. Again if $\eta_1=0$ (AR(1)) then $\theta_s=\phi_1\phi_1^{s-1}=\phi_1^s$ as we found above.
+
+     \item We can then plug in these coefficients in to the general formulas for an AR(1) and find the mean, variance and ACF. The algebra is a little more involved, but the idea is the same. We will cover this in the video to exercise 1. Please attempt to do this yourself for your own learning, as  being comfortable at formally deriving the properties of processes using this method is crucial and comes largely with practise.
+
+
+\end{itemize}
+
+
+
+\begin{equation*} \mathbb{E}[Y_t]=\frac{\mu}{1-\phi_1} \end{equation*}
+\begin{eqnarray*}
+Var[Y_{t}]=\sigma ^{2}\frac{(1+2\phi _{1}\eta _{1}+\theta _{1}^{2})}{1-\phi_{1}^{2}}.
+\end{eqnarray*}
+
+
+\[\gamma(k) =\left\{
+  \begin{array}{lr}
+   \sigma^{2}(\phi_1+\theta_1)\left[1+\frac{(\phi_1+\eta_1)}{1-\phi_1^2} \right]   & : k =1\\
+    \phi_1^{k-1}\gamma(1) & : k>1
+  \end{array}
+\right.
+\]
+
+Then using the Autocovariance function we find the ACF
+
+
+\[\rho(k) =\left\{
+  \begin{array}{lr}
+   \frac{(\phi_1+\eta_1)(1+\phi_1\eta_1)}{1+2\phi_1\eta_1+\eta_1^2}   & : k =1\\
+    \phi_1^{k-1}\rho(1) & : k>1
+  \end{array}
+\right.
+\]
+
+
+\textsc{Remarks}
+\begin{itemize}
+\item When $\eta_1=0$ then the mean variance and ACF collapse to that of an AR(1), which makes sense as an ARMA(1,1) with $\eta_1=0$ is an AR(1) model
+
+\item The correlation between $Y_t$ and $Y_{t-k}$ for $k \geq 2$ decay exponentially and have a similar form to the AR(1) ACF. For $k=1$ the ACF differs, as the addition of $\eta_1 \varepsilon_{t-1}$ to the AR(1) to form the ARMA(1,1) allows the correlation between $Y_t$ and $Y_{t-1}$ to take any particular value as we vary $\theta_1$. This extra shock allows the correlation at lag 1 to vary relative to an AR(1)
+
+    \item As we saw from the ARMA(1,1) sample realisations in Figure (\ref{arma14}) as we vary the coefficients $\phi_1$, $\eta_1$ we see  very different dynamics.
+
+    \item An ARMA(1,1) allows more complex dynamics than both the AR(1) and MA(1), covering both and also more general forms. Though again the ARMA(1,1) has limits in the complexity of dynamics it allows. We can see that it still places restrictions on the form of the correlation in $Y_t$ and all lags 2 and further back of the form of an AR(1).  It is natural to then consider more general ARMA models, allowing an arbitrary number of AR and MA components
+
+        \end{itemize}
+
+
+        We now study the properties of general AR(p) models before moving on to the more general ARMA(p,q) models. Before doing so we introduce a useful tool known as the \textbf{Lag Operator}, which is especially useful in deriving the properties of more complex models.
+
+
+        \section{Lag Operator}
+
+         TThe \textbf{Lag Operator} $L$ satisfies the following
+\begin{eqnarray*}
+LY_{t} &=&Y_{t-1}, \\
+L^{2}Y_{t} &=&LY_{t-1}=Y_{t-2} \\
+L^{j}Y_{t} &=&Y_{t-j},\text{\quad }j=1,2,...
+\end{eqnarray*}%
+\marginnote[-1.3cm]{As a consequence of the definition for a constant $\alpha $ then $L\alpha =\alpha$ as $\alpha$ does not vary over time, so is the same no matter how far we `lag back'.}
+
+
+\begin{myex}{ AR(1) in Lag Polynomial Form} TThe AR(1) may be expressed
+\begin{equation*}
+\left( 1-\phi _{1}L\right)Y_t=\mu+\varepsilon_t
+\end{equation*}
+where $(1-\phi_1L)Y_t=Y_t-\phi_1LY_t=Y_t-\phi_1Y_{t-1}$ by the definition of the Lag Operator above. \end{myex}
+ The Lag Operator, though not a polynomial or function still behaves like a polynomial.\sidenote[][-0.3cm]{An operator applies an action to a variable, and is a different mathematical entity entirely to a function or polynomia.} For some polynomial in $x$ where say $x$ lies anywhere on the real line, then we know by basic properties of algebra that  for example $(1-x)(1+x)=1-x^2$. It turns out the Lag Operator behaves as if it were a polynomial. For example as shown in Lecture 2 (also in the video link below)
+\begin{equation*} (1-L)(1+L)Y_t=(1-L^2)Y_t \end{equation*}
+where then by definition $(1-L^2)Y_t=Y_t-Y_{t-2}$. This is then beneficial, as we can express $Y_t - Y_{t-2}$ as $(1-L^2)Y_{t}$. This property has great benefit when expressing more complex series in a compact form where general properties of a process may be established using the fact the Lag Operator behaves as if it were a polynomial. 
+\section{AR(p) Models}
+The AR(1) process can be generalised by allowing $Y_t$ to depend on an arbitrary number of lags(p) of $Y_t$.
+\begin{mydef}{AR(p) Process}
+AAn AR(p) process satisfies
+\begin{equation*}
+Y_{t}=\mu +\phi _{1}Y_{t-1}+...+\phi _{p}Y_{t-p}+\varepsilon _{t} \qquad \varepsilon_{t}\sim WN(\sigma^2)
+\end{equation*} \end{mydef}
+For $p=1$ we have the special of an AR(1) process. We can see the addition of further lags of $Y_t$ allow more complex forms of dynamics. Solving for the ACF becomes trickier for $p \geq 2$. As for the AR(1) we express an AR(p) in its MA($\infty$) form and find the conditions on the parameters $ \phi_1,..,\phi_p$ to determine when the process is stationary for general $p$.
+
+It turns out the MA($\infty$) process for the AR(p) has MA($\infty$) coefficients that satisfy a $p'th$ order difference equation. In the case $p=1$ we showed above the AR(1) had MA($\infty$) coefficients $\theta_s=\phi_1^s$ which is the solution to first order difference equation $\theta_s=\phi_1 \theta_{s-1}$  where $\theta_0=1$ (the initial condition as termed when studying properties of difference equations).\sidenote[][-1cm]{For this course you are not expected to be able to solve general second  (or higher) order difference equations, but it is useful to understand the intuition behind where the general properties of an AR(p) arise.}
+
+We can show using  a similar method to the case of an AR(1) that the AR(p) for any order $p$ is stationary if the roots of the \textbf{Characteristic Equation}
+\begin{equation*} \psi \left( \lambda \right) =\lambda ^{p}-\phi _{1}\lambda ^{p-1}-\phi
+_{2}\lambda ^{p-2}-...-\phi _{p}=0  \end{equation*}
+\textbf{are inside the unit circle}, i.e all the roots of $\psi(\lambda)=0$ are between -1 and 1. Take the case of an AR(1) then $p=1$ and this condition says the solution to $\lambda-\phi_1=0$ lie between -1 and 1, i.e that $-1<\phi_1<1$, which is just the stationarity condition for an AR(1). To see the intuition for the general case, take the case $p=2$ (i.e an AR(2) model)
+\begin{equation*} Y_t=\mu+ \phi_1Y_{t-1}+\phi_2 Y_{t-2} +\varepsilon_t \end{equation*}
+which re-arranging we may re-express as
+\begin{equation*} Y_t- \phi_1Y_{t-1}-\phi_2 Y_{t-2}=\mu+\varepsilon_t \end{equation*}
+we can write the process in its Lag Operator Form, noting that
+\begin{equation*} Y_t- \phi_1Y_{t-1}-\phi_2 Y_{t-2}=(1-\phi_1L-\phi_2L^2)Y_t \end{equation*}
+ and since $L$ behaves as it were a polynomial, we can factorise and find $\lambda_1$ and $\lambda_2$ such that
+\begin{equation*} 1-\phi_1L-\phi_2L^2=(1-\lambda_1L)(1-\lambda_2L) \end{equation*}
+e.g if $\phi_1=0$ and $\phi_2=1$ then $1-L^2=(1-L)(1+L)$ so that $\lambda_1=1$ and $\lambda_2=-1$.
+Hence we may re-express the AR(2) as
+\begin{equation} (1-\lambda_1L)(1-\lambda_2L)Y_t=\mu+\varepsilon_t \end{equation}\label{pll}
+where both $|\lambda_1|<1$ and $|\lambda_2|<1$ are required for stationary. To see this then take the case   for example where $\lambda_1=1$ then using (2.10)
+ \begin{eqnarray*} (1-\lambda_2L)Y_t&=& (1-L)^{-1}(\mu+\varepsilon_t) \qquad \highlight{\textrm{Dividing both sides of (2.10) by (1-L)}}\\
+&=&  (1+L+L^2+...)(\mu+\varepsilon_t) \qquad \highlight{(1-L)^{-1}=1+L+L^2..}\\
+&=& (1+1+1+..)\mu+ (1+L+L^2+...)\varepsilon_t \qquad \highlight{\textrm{Expanding out and noting} \; L^j\mu=\mu \;}\\
+&\rightarrow & \infty! \end{eqnarray*}
+
+But the condition that $|\lambda_1|<1$ \& $|\lambda_2|<1$ for stationarity is exactly what we find  as the solution to
+\begin{equation*} \lambda^2-\phi_1\lambda -\phi_2=0 \end{equation*}
+having roots inside the unit circle.  Namely we may factorise
+\begin{equation*} \lambda^2-\phi_1\lambda -\phi_2=(\lambda-\lambda_1)(\lambda-\lambda_2) \end{equation*}
+ and hence the roots are just $\lambda_1$ and $\lambda_2$, the exact same roots for  $ 1-\phi_1L-\phi_2L^2=(1-\lambda_1L)(1-\lambda_2L)$ as dividing both sides by $L^2$ this is the same as solving
+\begin{equation*} L^{-2}-\phi_1L^{-1}-\phi_2=(L^{-1}-\lambda_1)(L^{-1}-\lambda_2) \end{equation*}
+which is a quadratic in $L^{-1}$. This is just the characteristic equation with $\lambda=L^{-1}$. In essence the roots of this characteristic equation correspond to the roots to perform the factorisation of a p'th order polynomial. All of these roots must be less than 1 in absolute value, otherwise the process is explosive.\sidenote[][-0.8cm]{For extra discussion on this see	\includemedia[
+	label=lagop,
+	activate=onclick,
+	deactivate=pageclose,
+	keepaspectratio,
+	playbutton=none,
+	windowed=1000x900@c,
+	flashvars={
+		modestbranding=1 % no YT logo in control bar
+		&autohide=1 % controlbar autohide
+		&showinfo=0 % no title and other info before start
+		&rel=0 % no related videos after end
+	},
+	url % Flash loaded from URL
+	]{}{https://www.youtube.com/v/hC34zTnwCBA?rel=0&amp;vq=hd720}
+	
+	\mediabutton[ mediacommand=lagop:playPause, overface=\color{blue}{\fbox{\includegraphics{play}}}, downface=\color{red}{\fbox{\strut Play/Pause}}
+	]{\mybox{ \includegraphics[width=0.3cm]{vid} \textbf{Lag Operator \& AR(p) Stationarity}}}}
+
+The solution to the ACF for p'th order difference equations become very complex for larger p and are in most cases only solvable numerically. Below we plot the ACF of some AR(2) processes with different coefficients to give some examples of the forms of dependence they can capture.
+\begin{figure}\caption[ACFs of  AR(2) Processes]{\textbf{ACFs of some AR(2) Processes}}
+\includegraphics[scale=1]{ar2acf.png} \end{figure}
+
+ It isn't always obvious looking at the sample correlations if a process is an AR(p) process for some $p$.  Lecture 3 talks more about how we use these ACFs in practise in order to determine what form the true process may take, which ultimately is the end goal of understanding the theoretical properties of different processes.
+
+\section{ARMA(p,q) Processes}
+We have discussed properties of AR(p) and MA(q) models. A more general model is to combine elements of both to form an ARMA(p,q).
+
+\begin{mydef}{ARMA(p,q) Process} AAn ARMA(p,q) process satisfies
+\begin{equation*}Y_{t}=\mu +\phi _{1}Y_{t-1}+...+\phi _{p}Y_{t-p}+\varepsilon _{t}+\theta
+_{1}\varepsilon _{t-1}+...+\eta _{q}\varepsilon _{t-q} \quad \varepsilon_t \sim WN(\sigma^2)
+\end{equation*}
+for some coefficients $\mu,\phi_1,..,\phi_p,\eta_1,..,\eta_q$.\end{mydef}
+where for $p=0$ we have an MA(q) and for  $q=0$ we have the AR(p). 
+\begin{figure} \label{arma32}\includegraphics[scale=1.2]{arma32}\caption[Sample Realisations of ARMA(3,2) processes]{\textbf{Sample Realisations of ARMA(3,2) processes}}
+\end{figure}
+
+
+
+
+
+The ARMA(p,q) is a general class of processes capable of modelling complex dynamics.\sidenote{There exist more complex models, however this course does not consider such processes.} Figure (\ref{arma32}) shows sample realisations from a selection of ARMA(3,2) (with $\mu=0$ as this does not impact the dynamics, merely shifts the mean). As can be seen as we vary the ARMA(3,2) patterns we generate vastly different sample realisations even though each process is evaluated at the same stream of shocks.
+
+As with the ARMA(1,1) we saw stationarity was governed by the AR(1) part, i.e when $|\phi_1|<1$, the stationarity of the ARMA(p,q) is governed by the AR(p) part, i.e when the AR(p) coefficients to the ARMA(p,q) satisfy the condition above on the Characteristic Function.
+
+Again we may write the ARMA(p,q) in it's Lag Operator form, which as with the AR(p) is useful when considering the properties of ARMA(p,q) models. Namely we we may re-write the ARMA(p,q)
+
+\begin{eqnarray*}
+&&\qquad
+\begin{tabular}{l}
+$\phi \left( L\right) Y_{t}=\mu +\eta \left( L\right) \varepsilon _{t}$%
+\end{tabular}
+\\
+\phi \left( L\right) &=&1-\phi _{1}L-...-\phi _{p}L^{p},\;\eta \left(
+L\right) =1+\eta _{1}L+...+\eta _{q}L^{q}
+\end{eqnarray*}
+which has both the following  MA($ \infty$)representations when the process satisfies the stationarity condition
+
+
+
+\begin{equation*}
+Y_{t}=\frac{\mu }{\phi (1)}+\phi (L)^{-1}\eta \left( L\right)
+\varepsilon _{t}
+\end{equation*}
+which is termed  Wold Decomposition]\medskip
+
+
+
+We will re-visit the ARMA(p,q) model again in Lecture 3. We have seen the properties sin some special cases. Again as $q$ and especially $p$ become large the properties become complex and are usually evaluated numerically.
+
+\end{document}
+
+
+
+
+

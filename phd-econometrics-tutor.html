@@ -1,48 +1,295 @@
 <!DOCTYPE html>
 
 <html lang="en"><head><meta charset="utf-8"/>
-<link rel="icon" type="image/svg+xml" href="favicon.svg"/><link rel="icon" href="favicon.svg"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/>
-<title>PhD Econometrics Tutor | Dr Nicky Grant</title><meta content="Specialist PhD econometrics tuition and supervision-style support from a Cambridge PhD economist with published econometric theory research. Online UK-wide." name="description"/><link href="https://www.drnickygrant.com/phd-econometrics-tutor.html" rel="canonical"/>
-<meta content="website" property="og:type"/><meta content="PhD Econometrics Tutor | Dr Nicky Grant" property="og:title"/><meta content="Specialist PhD econometrics tuition and supervision-style support from a Cambridge PhD economist with published econometric theory research. Online UK-wide." property="og:description"/><meta content="https://www.drnickygrant.com/img/og-image.jpg" property="og:image"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/><link href="favicon.svg" rel="icon"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>PhD Econometrics Tutor | GMM, IV &amp; Research Methods Support</title><meta content="Specialist PhD econometrics support from a Cambridge PhD economist: GMM, IV, identification, asymptotics, time series, panel data and thesis methods." name="description"/><link href="https://www.drnickygrant.com/phd-econometrics-tutor.html" rel="canonical"/>
+<meta content="website" property="og:type"/><meta content="PhD Econometrics Tutor | GMM, IV &amp; Research Methods Support" property="og:title"/><meta content="Specialist PhD econometrics support from a Cambridge PhD economist: GMM, IV, identification, asymptotics, time series, panel data and thesis methods." property="og:description"/><meta content="https://www.drnickygrant.com/img/og-image.jpg" property="og:image"/>
 <meta content="index,follow,max-snippet:-1,max-image-preview:large" name="robots"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/><link href="css/main.css" rel="stylesheet"/>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Service", "@id": "https://www.drnickygrant.com/phd-econometrics-tutor.html#service", "name": "PhD Econometrics Tutor", "serviceType": "PhD Econometrics Tutor", "provider": {"@id": "https://www.drnickygrant.com/#person"}, "areaServed": {"@type": "Country", "name": "United Kingdom"}, "description": "Specialist PhD econometrics tuition and supervision-style support from a Cambridge PhD economist with published econometric theory research. Online UK-wide."}, {"@type": "Person", "@id": "https://www.drnickygrant.com/#person", "name": "Dr Nicky Grant", "honorificPrefix": "Dr", "url": "https://www.drnickygrant.com/", "image": "https://www.drnickygrant.com/img/nicky-grant-headshot.webp", "sameAs": ["https://orcid.org/0009-0008-8979-4623", "https://www.linkedin.com/in/nicky-lee-grant/", "https://cemmap.ac.uk/person/nicky-l-grant/", "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351", "https://ideas.repec.org/a/kap/itaxpf/v26y2019i2d10.1007_s10797-018-9500-9.html"]}]}</script><link href="css/polish.css" rel="stylesheet"/><script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@graph":[
-    {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can Dr Grant help with my PhD econometrics?","acceptedAnswer":{"@type":"Answer","text":"Yes. Dr Grant offers support at PhD, MRes and advanced MSc level covering econometric theory, identification, GMM, instrumental variables, time series, panel data, asymptotics and empirical strategy. His own CeMMAP research is on identification-robust inference with singular moment variance, he can engage with material at research frontier depth."}},
-        {"@type":"Question","name":"What is identification-robust inference?","acceptedAnswer":{"@type":"Answer","text":"Identification-robust inference refers to methods of statistical inference that remain valid even when the parameters of interest are only weakly or partially identified by the data. Standard Wald tests break down in these settings. Dr Grant's CeMMAP research extends these methods to settings where the moment variance matrix is singular."}},
-        {"@type":"Question","name":"Can Dr Grant help me understand a specific econometrics paper?","acceptedAnswer":{"@type":"Answer","text":"Yes. Sessions can be structured around working through a paper's assumptions, proofs, key theorems and empirical implementation. This is one of the most common PhD-level requests, understanding why a proof works, what conditions are truly needed, and how to verify them in practice."}}]},
-    {"@type":"BreadcrumbList","itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.drnickygrant.com/"},
-      {"@type":"ListItem","position":2,"name":"Services","item":"https://www.drnickygrant.com/services.html"},
-      {"@type":"ListItem","position":3,"name":"PhD Econometrics Tuition","item":"https://www.drnickygrant.com/phd-econometrics-tutor.html"}
-    ]}
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.drnickygrant.com/#website",
+      "url": "https://www.drnickygrant.com/",
+      "name": "Dr Nicky Grant | Economics, Econometrics and Maths Tutor",
+      "description": "Specialist online tuition in economics, econometrics, mathematics, statistics, finance, TMUA and Oxbridge economics applications, supported by verifiable Cambridge credentials, teaching materials and research evidence.",
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.drnickygrant.com/#person",
+      "name": "Dr Nicky Grant",
+      "alternateName": [
+        "Nicky Grant",
+        "Nicky L. Grant",
+        "Nicky Lee Grant"
+      ],
+      "honorificPrefix": "Dr",
+      "givenName": "Nicky",
+      "familyName": "Grant",
+      "url": "https://www.drnickygrant.com/",
+      "image": "https://www.drnickygrant.com/img/nicky-grant-headshot.webp",
+      "email": "nicky.L.grant@gmail.com",
+      "telephone": "+447393352331",
+      "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor",
+      "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0008-8979-4623",
+          "url": "https://orcid.org/0009-0008-8979-4623"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Semantic Scholar",
+          "value": "97839351",
+          "url": "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Cambridge",
+        "sameAs": "https://www.cam.ac.uk/"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "PhD in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "MPhil in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BA in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        }
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "CeMMAP, Centre for Microdata Methods and Practice",
+        "sameAs": "https://cemmap.ac.uk/"
+      },
+      "knowsAbout": [
+        "economics tuition",
+        "econometrics tuition",
+        "A Level Mathematics",
+        "Further Mathematics",
+        "A Level Economics",
+        "TMUA preparation",
+        "Oxbridge Economics applications",
+        "statistics",
+        "financial econometrics",
+        "time series econometrics",
+        "GMM",
+        "instrumental variables",
+        "panel data",
+        "PhD econometrics"
+      ],
+      "sameAs": [
+        "https://orcid.org/0009-0008-8979-4623",
+        "https://www.linkedin.com/in/nicky-lee-grant/",
+        "https://cemmap.ac.uk/person/nicky-l-grant/",
+        "https://research-portal.st-andrews.ac.uk/en/persons/nicky-lee-grant",
+        "https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/",
+        "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351",
+        "https://www.youtube.com/@economaths",
+        "https://independent.academia.edu/NickyGrant"
+      ]
+    },
+    {
+      "@type": "ServicePage",
+      "@id": "https://www.drnickygrant.com/phd-econometrics-tutor.html#page",
+      "url": "https://www.drnickygrant.com/phd-econometrics-tutor.html",
+      "name": "PhD econometrics tuition",
+      "isPartOf": {
+        "@id": "https://www.drnickygrant.com/#website"
+      },
+      "about": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB",
+      "description": "Specialist PhD econometrics tuition and supervision-style support from a Cambridge PhD economist with published econometric theory research. Online.",
+      "mainEntity": {
+        "@id": "https://www.drnickygrant.com/phd-econometrics-tutor.html#service"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.drnickygrant.com/phd-econometrics-tutor.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.drnickygrant.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Phd Econometrics Tutor",
+          "item": "https://www.drnickygrant.com/phd-econometrics-tutor.html"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.drnickygrant.com/phd-econometrics-tutor.html#service",
+      "name": "PhD Econometrics Support",
+      "serviceType": "PhD econometrics tutoring",
+      "provider": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "url": "https://www.drnickygrant.com/phd-econometrics-tutor.html",
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Kingdom"
+      },
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://www.drnickygrant.com/phd-econometrics-tutor.html",
+        "availableLanguage": "English"
+      },
+      "audience": [
+        {
+          "@type": "EducationalAudience",
+          "educationalRole": "PhD student"
+        },
+        {
+          "@type": "EducationalAudience",
+          "educationalRole": "MRes student"
+        },
+        {
+          "@type": "EducationalAudience",
+          "educationalRole": "researcher"
+        }
+      ],
+      "about": [
+        "PhD econometrics",
+        "GMM",
+        "instrumental variables",
+        "identification",
+        "asymptotics",
+        "panel data",
+        "time series",
+        "thesis methods"
+      ],
+      "isRelatedTo": [
+        {
+          "@id": "https://www.drnickygrant.com/credentials.html#page"
+        }
+      ],
+      "description": "Dr Nicky Grant offers specialist PhD econometrics support for research students working with econometric theory, identification, GMM, instrumental variables, time series, panel data, asymptotics, simulation, empirical strategy or thesis methods chapters.",
+      "mainEntityOfPage": "https://www.drnickygrant.com/phd-econometrics-tutor.html",
+      "abstract": "Dr Nicky Grant offers PhD econometrics support for research students working with econometric theory, identification, GMM, instrumental variables, time series, panel data, asymptotics, simulation, empirical strategy or thesis methods chapters."
+    }
   ]
+}</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/><link href="css/main.css" rel="stylesheet"/>
+<link href="css/polish.css" rel="stylesheet"/>
+<meta content="2026-06-15" name="last-modified"/><meta content="https://www.drnickygrant.com/phd-econometrics-tutor.html" property="og:url"/><script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Service",
+"serviceType": "PhD Econometrics Support",
+"description": "Research-level econometrics support for PhD students, including identification and advanced methods.",
+"provider": {
+"@type": "Person",
+"@id": "https://www.drnickygrant.com/#person",
+"name": "Dr Nicky Grant",
+"jobTitle": "Economics and Econometrics Tutor",
+"description": "Cambridge PhD economist and former university lecturer offering specialist online tuition.",
+"alumniOf": {
+"@type": "CollegeOrUniversity",
+"name": "University of Cambridge"
+},
+"knowsAbout": [
+"Economics",
+"Econometrics",
+"Statistics",
+"Mathematics",
+"Finance"
+],
+"url": "https://www.drnickygrant.com"
+},
+"areaServed": {
+"@type": "Country",
+"name": "United Kingdom"
+},
+"audience": {
+"@type": "EducationalAudience",
+"educationalRole": "Postgraduate students"
+},
+"url": "https://www.drnickygrant.com/phd-econometrics-tutor.html"
 }
 </script>
 </head><body><a class="skip-link" href="#main">Skip to main content</a><nav aria-label="Main navigation" id="nav">
 <div class="nav-inner">
 <a aria-label="Dr Nicky Grant home" class="nav-logo" href="index.html">Dr Nicky <span>Grant</span></a>
-<ul class="nav-links" role="list"><li><a href="index.html">Home</a></li><li><a aria-current="page" class="on" href="services.html">Subjects</a></li><li><a href="oxbridge-economics-tutor.html">Applications</a></li><li><a href="blog.html">Resources</a></li><li><a href="credentials.html">Credentials</a></li><li><a href="pricing.html">Pricing</a></li></ul>
+<ul class="nav-links" role="list">
+<li><a href="a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
+<li><a href="university-postgraduate-tutoring.html">University &amp; Postgraduate</a></li>
+<li><a href="blog.html">Resources</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="pricing.html">Pricing</a></li>
+</ul>
 <a class="nav-cta" href="index.html#contact">Book consultation</a>
 <button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
 </div>
-<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="index.html">Home</a><a aria-current="page" class="on" href="services.html">Subjects</a><a href="oxbridge-economics-tutor.html">Applications</a><a href="blog.html">Resources</a><a href="credentials.html">Credentials</a><a href="pricing.html">Pricing</a><a href="index.html#contact">Book consultation</a></div>
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="index.html">Home</a><a href="a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="university-postgraduate-tutoring.html">University &amp; Postgraduate</a><a href="blog.html">Resources</a><a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="index.html#contact">Book consultation</a></div>
 </nav>
 <main id="main">
-<div class="answer-capsule" role="note" aria-label="Quick summary"><p>Dr Nicky Grant offers specialist econometrics support for PhD, MRes and advanced MSc students. His own research background covers identification-robust inference, GMM, weak instruments and singular variance, he can engage with material at any depth including proofs, estimator construction, simulation design and dissertation chapters. Cambridge PhD, former lecturer at Manchester and St Andrews. Free initial consultation.</p></div>
-<section aria-labelledby="page-h" class="section" style="padding-top:8.5rem"><div class="wrap"><p class="s-eye">Advanced econometrics</p><h1 class="h2" id="page-h">PhD econometrics<br/><em>tuition</em></h1><p class="s-lead">Specialist support for PhD, MRes and advanced MSc students working with econometric theory, identification, asymptotics, moment conditions, instrumental variables, time series, panel data or empirical strategy.</p><div class="svc-tags" style="margin-top:1.5rem"><span class="svc-tag">PhD</span><span class="svc-tag">MRes</span><span class="svc-tag">GMM</span><span class="svc-tag">IV</span><span class="svc-tag">Time series</span><span class="svc-tag">Panel data</span><span class="svc-tag">Asymptotics</span></div><div class="hero-actions" style="margin-top:2rem"><a class="btn btn-fill" href="index.html#contact">Book a free consultation</a><a class="btn btn-line" href="credentials.html">View credentials</a></div></div></section>
-<section class="section alt"><div class="wrap"><p class="s-eye">How sessions work</p><h2 class="h2">Focused<br/><em>expert support</em></h2><div class="why-grid" style="margin-top:2rem"><div class="why-card"><div class="why-h">Research-level depth</div><div class="why-p">Sessions can work through papers, proofs, identification arguments, estimator construction, simulation design and dissertation or thesis chapters.</div></div><div class="why-card"><div class="why-h">Clear mathematical exposition</div><div class="why-p">The aim is to make difficult technical material usable: assumptions, intuition, theorem logic, empirical implementation and writing.</div></div><div class="why-card"><div class="why-h">Econometric theory background</div><div class="why-p">Research experience includes weak instruments, singular variance, moment inequalities, GMM and tax-price elasticity estimation.</div></div><div class="why-card"><div class="why-h">Output-focused support</div><div class="why-p">Support can be structured around a chapter, seminar presentation, problem set, replication exercise, viva preparation or journal response.</div></div></div></div></section>
-<section aria-labelledby="faq-h" class="section"><div class="wrap"><p class="s-eye">Questions</p><h2 class="h2" id="faq-h">Common<br/><em>questions</em></h2><div class="faq-list" itemscope="" itemtype="https://schema.org/FAQPage"><div class="faq-item" itemprop="mainEntity" itemscope="" itemtype="https://schema.org/Question"><button aria-expanded="false" class="faq-q" onclick="toggleFaq(this)"><span itemprop="name">Can you help with PhD thesis chapters?</span><span aria-hidden="true" class="faq-ico">+</span></button><div class="faq-a" itemprop="acceptedAnswer" itemscope="" itemtype="https://schema.org/Answer"><p itemprop="text">Yes. Sessions can focus on structure, identification, interpretation, proof strategy, exposition and empirical implementation. The work remains your own; the tuition is explanatory and advisory.</p></div></div><div class="faq-item" itemprop="mainEntity" itemscope="" itemtype="https://schema.org/Question"><button aria-expanded="false" class="faq-q" onclick="toggleFaq(this)"><span itemprop="name">Do you help with coding?</span><span aria-hidden="true" class="faq-ico">+</span></button><div class="faq-a" itemprop="acceptedAnswer" itemscope="" itemtype="https://schema.org/Answer"><p itemprop="text">Yes, where it supports the econometric issue. Typical work includes Stata, R, Python or Matlab interpretation, debugging logic, replication and simulation design.</p></div></div><div class="faq-item" itemprop="mainEntity" itemscope="" itemtype="https://schema.org/Question"><button aria-expanded="false" class="faq-q" onclick="toggleFaq(this)"><span itemprop="name">Is this suitable for MSc students?</span><span aria-hidden="true" class="faq-ico">+</span></button><div class="faq-a" itemprop="acceptedAnswer" itemscope="" itemtype="https://schema.org/Answer"><p itemprop="text">Yes. Many advanced MSc econometrics modules contain PhD-level material, especially GMM, asymptotic theory, time series and panel methods.</p></div></div></div><nav aria-label="Related services" style="margin-top:2rem"><p style="font-size:var(--t-xs);letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);margin-bottom:0.75rem;font-weight:400">Related services</p><div style="display:flex;flex-wrap:wrap;gap:0.5rem"><a href="econometrics-tutor.html" style="font-size:var(--t-xs);color:var(--gold);border:1px solid rgba(184,144,96,0.3);padding:0.35rem 0.8rem">Econometrics</a><a href="university-economics-tutor.html" style="font-size:var(--t-xs);color:var(--gold);border:1px solid rgba(184,144,96,0.3);padding:0.35rem 0.8rem">University economics</a><a href="a-level-economics-tutor.html" style="font-size:var(--t-xs);color:var(--gold);border:1px solid rgba(184,144,96,0.3);padding:0.35rem 0.8rem">A Level Economics</a><a href="finance-tutor.html" style="font-size:var(--t-xs);color:var(--gold);border:1px solid rgba(184,144,96,0.3);padding:0.35rem 0.8rem">Finance</a><a href="a-level-maths-tutor.html" style="font-size:var(--t-xs);color:var(--gold);border:1px solid rgba(184,144,96,0.3);padding:0.35rem 0.8rem">A Level Maths</a><a href="tmua-preparation.html" style="font-size:var(--t-xs);color:var(--gold);border:1px solid rgba(184,144,96,0.3);padding:0.35rem 0.8rem">TMUA</a></div></nav></div></section>
-<section class="section alt"><div class="wrap"><h2 class="h2">Start with a<br/><em>free consultation</em></h2><p class="s-lead">Send the course, exam board, module outline or assignment brief. The first conversation establishes exactly where support will have the highest return.</p><div class="hero-actions"><a class="btn btn-fill" href="index.html#contact">Book a free consultation</a><a class="btn btn-line" href="mailto:nicky.l.grant@gmail.com">Email directly</a></div></div></section></main>
-<footer role="contentinfo">
-<div class="foot-cols">
-<div class="fc"><h4>Dr Nicky Grant</h4><p>Cambridge PhD economist. Specialist online tuition in economics, econometrics, finance, statistics and maths.</p></div>
-<div class="fc"><h4>Services</h4><a href="econometrics-tutor.html">Econometrics tutor</a><a href="university-economics-tutor.html">University economics</a><a href="a-level-economics-tutor.html">A Level Economics</a><a href="a-level-maths-tutor.html">A Level Maths</a><a href="finance-tutor.html">Finance tutor</a></div>
-<div class="fc"><h4>Credentials</h4><a href="credentials.html">CV &amp; qualifications</a><a href="https://orcid.org/0009-0008-8979-4623" rel="noopener" target="_blank">ORCID</a><a href="https://www.linkedin.com/in/nicky-lee-grant/" rel="noopener" target="_blank">LinkedIn</a><a href="https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351" rel="noopener" target="_blank">Semantic Scholar</a></div>
-<div class="fc"><h4>Contact</h4><a href="mailto:nicky.l.grant@gmail.com">nicky.l.grant@gmail.com</a><a href="tel:+447393352331">+44 7393 352 331</a><a href="index.html#contact">Book a consultation</a></div>
+<div aria-label="Quick answer" class="answer-capsule" data-chunk="LM-answer-capsule" role="note"><p>Dr Nicky Grant offers PhD econometrics support for research students working with econometric theory, identification, GMM, instrumental variables, time series, panel data, asymptotics, simulation, empirical strategy or thesis methods chapters.</p></div>
+<section aria-labelledby="page-h" class="section" style="padding-top:8.5rem"><div class="wrap">
+<nav aria-label="Breadcrumb" class="route-breadcrumb"><a href="index.html">Home</a> <span class="bc-sep">›</span> <a href="university-postgraduate-tutoring.html">University &amp; Postgraduate</a> <span class="bc-sep">›</span> <span class="bc-current">PhD econometrics tuition</span></nav><p class="s-eye">Advanced econometrics</p><h1 class="h2" id="page-h">PhD econometrics<br/><em>tuition</em></h1><p class="s-lead">Specialist support for PhD, MRes and advanced MSc students working with econometric theory, identification, asymptotics, moment conditions, instrumental variables, time series, panel data or empirical strategy.</p><div class="svc-tags" style="margin-top:1.5rem"><span class="svc-tag">PhD</span><span class="svc-tag">MRes</span><span class="svc-tag">GMM</span><span class="svc-tag">IV</span><span class="svc-tag">Time series</span><span class="svc-tag">Panel data</span><span class="svc-tag">Asymptotics</span></div><div class="hero-actions" style="margin-top:2rem"><a class="btn btn-fill" href="index.html#contact">Book a free PhD econometrics diagnostic</a><a class="btn btn-line" href="credentials.html">View credentials</a></div></div></section>
+<section class="section service-landing-panel" data-chunk="B-service-landing"><div class="wrap"><p class="s-eye">Subject match</p><h2 class="h2">Who this support is for</h2><p class="s-lead service-landing-lead">A quick match for the students, topics and goals covered.</p><div class="service-landing-grid"><article class="service-landing-card"><h3>Who this is for</h3><ul><li>PhD and MRes economics students</li><li>Researchers working with econometric theory or empirical strategy</li><li>Students writing methods, identification or estimation chapters</li><li>Candidates preparing seminars, presentations or viva-style explanations</li></ul></article><article class="service-landing-card"><h3>Topics covered</h3><ul><li>GMM and moment conditions</li><li>Instrumental variables and weak instruments</li><li>Identification and empirical strategy</li><li>Asymptotics and limiting distributions</li><li>Time series and panel-data methods</li><li>Simulation, replication and thesis chapter structure</li></ul></article><article class="service-landing-card service-resource-card"><h3>Related pages</h3><ul><li><a href="research.html">Research</a></li><li><a href="econometrics-tutor.html">Econometrics tutor</a></li><li><a href="downloads/GMM-Singular-Variance-Working-Paper.pdf">GMM working paper</a></li><li><a href="credentials.html">Credentials</a></li></ul></article></div><p class="service-landing-cta"><a class="btn btn-fill" href="index.html#contact">Book a free PhD econometrics diagnostic</a> <a class="btn btn-line" href="pricing.html">View pricing</a></p></div></section>
+<section class="section service-trust-block" data-chunk="DE-service-trust"><div class="wrap">
+<p class="s-eye">Credential match</p><h2 class="h2">Why this is specialist PhD econometrics support</h2>
+<p class="s-lead">At PhD level, useful support usually requires method-level judgement: assumptions, identification, asymptotics, notation, implementation and how the method fits the research question.</p>
+<div class="service-trust-grid">
+<article class="service-trust-card"><h3>Relevant background</h3><ul><li>economics specialist.</li><li>Research background in econometric theory, GMM, moment restrictions and identification-robust inference.</li><li>Experience supporting advanced methods, thesis chapters and research design.</li><li>Links to papers, seminar PDFs and public academic profiles are collected on the credentials page.</li></ul></article>
+<article class="service-trust-card"><h3>Useful checks</h3><ul><li><a href="credentials.html#research-evidence">Research papers</a></li><li><a href="research.html">Full research page</a></li><li><a href="econometrics-tutor.html">Econometrics tuition</a></li></ul></article>
+<article class="service-trust-card"><h3>Get started</h3><p>A free 30 to 45 minute consultation, with no obligation. The rate is confirmed before any paid session.</p><p style="margin-top:.8rem"><a href="pricing.html">View pricing</a> &middot; <a href="index.html#contact">Book a consultation</a></p></article>
 </div>
-<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>Cambridge PhD · University lecturer · Online UK-wide</span></div>
+</div></section>
+<section class="section alt"><div class="wrap"><p class="s-eye">What this support covers</p><h2 class="h2">Focused<br/><em>specialist support</em></h2><div class="why-grid" style="margin-top:2rem"><div class="why-card"><div class="why-h">Research-level depth</div><div class="why-p">Sessions can work through papers, proofs, identification arguments, estimator construction, simulation design and dissertation or thesis chapters.</div></div><div class="why-card"><div class="why-h">Clear mathematical exposition</div><div class="why-p">The aim is to make difficult technical material usable: assumptions, intuition, theorem logic, empirical implementation and writing.</div></div><div class="why-card"><div class="why-h">Econometric theory background</div><div class="why-p">Research experience includes weak instruments, singular variance, moment inequalities, GMM and tax-price elasticity estimation.</div></div><div class="why-card"><div class="why-h">Output-focused support</div><div class="why-p">Support can be structured around a chapter, seminar presentation, problem set, replication exercise, viva preparation or journal response.</div></div></div></div></section>
+<section aria-labelledby="faq-h" class="section"><div class="wrap"><p class="s-eye">Questions</p><h2 class="h2" id="faq-h">Common<br/><em>questions</em></h2><div class="faq-list" itemscope="" itemtype="https://schema.org/FAQPage"><div class="faq-item" itemprop="mainEntity" itemscope="" itemtype="https://schema.org/Question"><button aria-expanded="false" class="faq-q" onclick="toggleFaq(this)"><span itemprop="name">Can you help with PhD thesis chapters?</span><span aria-hidden="true" class="faq-ico">+</span></button><div class="faq-a" itemprop="acceptedAnswer" itemscope="" itemtype="https://schema.org/Answer"><p itemprop="text">Yes. Sessions can focus on structure, identification, interpretation, proof strategy, exposition and empirical implementation. The work remains your own; the tuition is explanatory and advisory.</p></div></div><div class="faq-item" itemprop="mainEntity" itemscope="" itemtype="https://schema.org/Question"><button aria-expanded="false" class="faq-q" onclick="toggleFaq(this)"><span itemprop="name">Do you help with coding?</span><span aria-hidden="true" class="faq-ico">+</span></button><div class="faq-a" itemprop="acceptedAnswer" itemscope="" itemtype="https://schema.org/Answer"><p itemprop="text">Yes, where it supports the econometric issue. Typical work includes Stata, R, Python or Matlab interpretation, debugging logic, replication and simulation design.</p></div></div><div class="faq-item" itemprop="mainEntity" itemscope="" itemtype="https://schema.org/Question"><button aria-expanded="false" class="faq-q" onclick="toggleFaq(this)"><span itemprop="name">Is this suitable for MSc students?</span><span aria-hidden="true" class="faq-ico">+</span></button><div class="faq-a" itemprop="acceptedAnswer" itemscope="" itemtype="https://schema.org/Answer"><p itemprop="text">Yes. Many advanced MSc econometrics modules contain PhD-level material, especially GMM, asymptotic theory, time series and panel methods.</p></div></div></div><nav aria-label="Related services" style="margin-top:2rem"><p style="font-size:var(--t-xs);letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);margin-bottom:0.75rem;font-weight:400">Related services</p><div style="display:flex;flex-wrap:wrap;gap:0.5rem"><a href="econometrics-tutor.html" style="font-size:var(--t-xs);color:var(--gold);border:1px solid rgba(184,144,96,0.3);padding:0.35rem 0.8rem">Econometrics</a><a href="university-economics-tutor.html" style="font-size:var(--t-xs);color:var(--gold);border:1px solid rgba(184,144,96,0.3);padding:0.35rem 0.8rem">University economics</a><a href="a-level-economics-tutor.html" style="font-size:var(--t-xs);color:var(--gold);border:1px solid rgba(184,144,96,0.3);padding:0.35rem 0.8rem">A Level Economics</a><a href="finance-tutor.html" style="font-size:var(--t-xs);color:var(--gold);border:1px solid rgba(184,144,96,0.3);padding:0.35rem 0.8rem">Finance</a><a href="a-level-maths-tutor.html" style="font-size:var(--t-xs);color:var(--gold);border:1px solid rgba(184,144,96,0.3);padding:0.35rem 0.8rem">A Level Maths</a><a href="tmua-preparation.html" style="font-size:var(--t-xs);color:var(--gold);border:1px solid rgba(184,144,96,0.3);padding:0.35rem 0.8rem">TMUA</a></div></nav></div></section>
+<section class="section alt"><div class="wrap"><h2 class="h2">Start with a<br/><em>free consultation</em></h2><p class="s-lead">Send the course, exam board, module outline or assignment brief. The first conversation establishes exactly where support will have the highest return.</p><div class="hero-actions"><a class="btn btn-fill" href="index.html#contact">Book a free PhD econometrics diagnostic</a><a class="btn btn-line" href="mailto:nicky.L.grant@gmail.com">Email directly</a></div></div></section></main>
+<footer>
+<div class="foot-cols">
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
+<div class="fc"><h4>A-Level &amp; Admissions</h4><a href="a-level-admissions-tutoring.html">Overview</a><a href="a-level-maths-tutor.html">A-Level Maths</a><a href="a-level-economics-tutor.html">A-Level Economics</a><a href="tmua-preparation.html">TMUA preparation</a><a href="oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
+<div class="fc"><h4>University &amp; Postgraduate</h4><a href="university-postgraduate-tutoring.html">Overview</a><a href="university-economics-tutor.html">University Economics</a><a href="econometrics-tutor.html">Econometrics</a><a href="statistics-tutor.html">Statistics</a><a href="finance-tutor.html">Finance</a><a href="phd-econometrics-tutor.html">PhD econometrics</a></div>
+<div class="fc"><h4>Resources &amp; contact</h4><a href="blog.html">Study notes</a><a href="questions.html">Common questions</a><a href="credentials.html">Credentials</a><a href="pricing.html">Pricing</a><a href="index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
+</div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online UK-wide</span></div>
 </footer>
 <script>document.getElementById('yr').textContent = new Date().getFullYear();function toggleNav(btn){const mob=document.getElementById('mobNav');const open=mob.classList.toggle('open');btn.setAttribute('aria-expanded',open);}window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('solid',window.scrollY>40);},{passive:true});</script><script>function toggleFaq(btn){const a=btn.nextElementSibling;const ic=btn.querySelector('.faq-ico');const open=a.classList.toggle('open');ic.classList.toggle('open',open);btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open);}</script></body></html>

@@ -1,0 +1,436 @@
+\documentclass[options]{beamer}
+\mode<presentation>
+\usecolortheme{whale}
+\usetheme{Antibes}
+\usefonttheme{default}
+\setbeamertemplate{navigation symbols}{}
+\useoutertheme{infolines}
+
+
+\usepackage{multirow}
+\usepackage{bm}
+\usepackage{threeparttable}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{indentfirst}
+
+\usepackage{multirow}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{threeparttable}
+\usepackage{array}
+\newcommand{\highlight}[1]{\colorbox{green}{\ensuremath{#1}}}
+
+
+\usepackage{color}
+
+\usepackage{xcolor}
+\newenvironment{rcases}
+{\left.\begin{aligned}}
+	{\end{aligned}\right\rbrace}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+
+
+\title[ Tax-Price  Response of Donations]{ Consistent Estimation of Tax-Price Elasticity of Charitable Giving with Survey Data }
+
+\author[NG \& PB]{ Nicky Grant \& Peter Backus}
+\institute{University of Manchester}
+
+
+\date[ EEA- 22nd August 2016]{CEA Conference-2nd June 2018}
+
+
+\maketitle
+
+
+
+
+\begin{frame}
+\frametitle{Empirical Question}
+\begin{enumerate}
+	
+	\item Charity donations tax deductible for tax \textbf{Itemisers} in US
+	
+	\vspace{1pt}
+	\item Price  of donating \$1  function of\textbf{ MTR ($\tau$)} \& \textbf{Itemisation Status} (I) 
+
+		\vspace{10pt}
+	 \item[] \[\textrm{Price} = \left\{
+	 \begin{array}{lr}
+	 1-\tau & : \textrm{Itemiser}\\
+	 1 & :\textrm{Non-Itemiser}
+	 \end{array}
+	 \right.
+	 \]
+	
+	\item[] \colorbox{yellow}{\parbox{\textwidth}{ Question: What is the  elasticity of Donations w.r.t   Price?}}
+		\vspace{1pt}
+	\footnotesize	
+	\item[] \colorbox{green}{Policy Relevance} Charitable Tax Subsidies  \$134bn in US 2010 (Lowry, 2014) \vspace{8pt}
+
+	\item[-]  Is the charity tax subsidy an Optimal Subsidy in the US?
+	\item[] e.g Optimal Subsidy is 8 times larger if elasticity is -1 relative to -0.5 Saez (2004)
+	
+\end{enumerate}
+\end{frame}
+	
+		
+		\begin{frame}
+			\frametitle{Itemisation}
+			\begin{itemize}
+			\item $\highlight{E_{it}}$ all other tax-deductible expenses (e.g medical costs ) (\$)
+				\vspace{15pt}
+				\item  $\highlight{S_{it}}$	tax-free allowance ($\approx$ \$6000 for singles, \$12000  married couples)
+				\vspace{15pt}
+				\item  $\highlight{\Delta_{it}}=\max\{D_{it}+E_{it}-S_{it},0\}$ is \textbf{tax deductible }
+				\vspace{15pt}
+				\item  $\Delta_{it}>0$ agent may itemise (tax-file) and tax-deduct $\Delta_{it}$
+				\vspace{15pt}
+				\item[]	
+				$\Delta_{it}>0 \rightarrow  \left\{
+				\begin{array}{lr}
+				E_{it} > S_{it}& : \highlight{\textrm{Exogenous Itemiser}}\\
+				E_{it}\leq S_{it}& : \highlight{ \textrm{Endogenous Itemiser}}
+				\end{array}
+				\right.$
+				\item[] $\Delta_{it}=0 $ \highlight{ \textrm{Non Itemiser}}
+			\end{itemize}\end{frame}
+	\begin{frame}
+		\frametitle{Baseline Model in Literature}
+	
+	\begin{equation*}
+\log(D_{it})= \alpha_i +\beta\log P_{it}+\omega 'X_{it}+ e_{it} 
+	\end{equation*}		
+	\begin{equation*} P_{it}=1-I_{it}\tau _{it} \end{equation*}
+	\begin{equation*} I_{it}=1( D_{it}+E_{it}>S_{it}) \end{equation*}
+					\begin{itemize}
+	\item[] $\highlight{D_{it}}$- (Donations+1)
+
+\vspace{5pt}
+\item[] $\highlight{S_{it}}$- (Standard Deduction+1)
+
+\vspace{5pt}
+\item[] $\highlight{\tau_{it} }$ MTR (usually on first dollar of donation)
+
+\vspace{5pt}
+\item[] 	$\highlight{X_{it}}$ - Vector of controls (varies depending on data variable) commonly \textbf{Income, Wealth, Gender, Education.}
+	
+	
+		\end{itemize}\end{frame}
+			
+		
+
+	\begin{frame}
+		\frametitle{Puzzle in Existing Literature}
+		\begin{itemize}
+
+		
+		
+		\item[]\small  \textit{Some commentators have voiced the suspicion that, while a
+		few sophisticated taxpayers (and their tax or financial advisors)
+		might be sensitive to variations in tax rates, the average taxpayer
+		is too oblivious or unresponsive to the marginal tax rate for anything
+		like the economic model to be a realistic representation of reality.}
+\textbf{	Clotfelter (2002)}
+		
+		\vspace{10pt}
+		\small
+
+			\vspace{10pt}
+				\item[]
+				\colorbox{yellow}{Elasticity on survey-data sig. larger than tax-filer -1.29 vs. -1.08 } 
+				[Meta-Analysis by Peloza \& Steele (2005)]
+				\vspace{25pt}
+				\item[] \textbf{Puzzle: Elasticity in general population (survey) larger than  wealthier selected sample  (tax-filer)}
+		\end{itemize}
+		
+	\end{frame}
+
+
+
+	
+	\begin{frame}
+		\frametitle{Main Contributions of Paper}
+			\begin{itemize}
+				
+		\item[] \textbf{Provide  theoretical and  empirical   support for  downward bias in standard mondel including Non-Itemisers using Survey Data}
+			\vspace{15pt}
+			
+	\item[] Show controlling for itemisation status in FD estimator removes this bias under a testable restriction.
+		\vspace{15pt}
+	\item[]  Find strong and robust empirical evidence  this restriction holds
+		\vspace{15pt}
+		
+		
+		\item[] Find inelastic price response in general population \textbf{Explains the empirical puzzle {\tiny }}
+	 
+
+ \end{itemize}
+ 
+\end{frame}
+
+	
+
+
+	\begin{frame}
+		\frametitle{ Bias From `Switchers': Intuition}
+		\begin{itemize}
+		
+			\item[]  \begin{equation*}\Delta \log(D_{it})=\beta \Delta\log(P_{it})+ \omega'\Delta X_{it}+ u_{it} \end{equation*}
+		\vspace{1pt}
+
+\item[] \textbf{ Stop Itemiser} $ \Delta I_{it}=-1, I_{i,t-1}=0, \;I_{it}=1$
+\vspace{10pt}
+\item   $\Delta \log (P_{it})=-\log(1-\tau_{i,t-1})>0$
+\vspace{10pt}
+\item  $\Delta \log (D_{it})=\log( D_{it})-\log (D_{i,t-1})\leq \log(S_{it}+E_{it})$
+\vspace{5pt}
+\item[]
+\vspace{5pt}
+\item[] Since $I_{it}=0$ then  $D_{it}\leq S_{it}+E_{it}$ by definition and $-\log (D_{i,t-1})\leq 0$.
+\vspace{5pt}
+\begin{center}
+\item[] \textbf{ $u_{it}$  bounded above \&  -ve correlation with $\Delta \log P_{it}$}
+\end{center}
+
+
+	
+
+
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Theorem 1: Downard Bias From Non-Itemisers/Switchers}
+
+	\begin{itemize}
+	\centering
+	\item[] 	$p_{1}=$$\mathcal{P}$$\{\Delta I_{it}=1\}$ $\;\;\;\;\;\;\;\;\;\;\;p_{-1}=$$\mathcal{P}$$\{\Delta I_{it}=-1\}$ \vspace{10pt}
+	\item[] $\xi_1=\frac{Cov(u_{it},\log(P_{it})|\Delta I_{it}=1))}{Var(\log(P_{it}))}$ $\;\;\;\;\;\;\;\;\xi_{-1}=\frac{Cov(u_{it},\log(P_{it})|\Delta I_{it}=-1))}{Var(\log(P_{it}))}$
+
+	\vspace{25pt}
+\item[]	\framebox{\textsc{Theorem\,1:\,\,} $\hat{\beta}_{FD}\overset{p}{\rightarrow}\beta+\underset{<0}{\underbrace{p_{1}\xi_1+p_{-1}\xi_{-1}}}$	where $\xi_1, \xi_{-1}<0$}
+		
+\vspace{25pt}
+\item $p_1$ (probability of Start Itemiser $\approx 0.10$)	
+\item $p_{-1}$	 (probability of Stop Itemiser $\approx 0.08$)
+\item[]  $\approx 18\%$ of sample are Switchers
+
+
+
+
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Theorem 2: Consistent inference Controlling for $\Delta I_{it}$ }
+	\begin{itemize}
+\small
+\item[] \highlight{\textrm{Itemiser Model:}} $\;\;\Delta \log(D_{it})=\gamma\Delta I_{it}+\beta \Delta\log(P_{it})+ \omega'\Delta X_{it}+ \eta_{it} $
+
+\begin{equation*}\scriptsize
+\hat{\theta}_{FD}^{I}=\left(\sum_{i=1}^{N}\sum_{t=2}^{T}w_{it}w_{it}'\right)^{-1}\sum_{i=1}^{N}\sum_{t=2}^{T}w_{it}\Delta\log(D_{it})
+\end{equation*}
+ $w_{it}=(\Delta I_{it}, \Delta \log (P_{it}), \Delta X_{it}')'$ 
+ $\;\;\;\;\hat{\theta}^I_{FD}=(\hat{\gamma}_{FD}^I,\hat{\beta}_{FD}^I,\hat{\omega}_{FD}^{I'})'$.
+\vspace{15pt}
+\item[]  $\bar{\tau}_{1}=E[\Delta\log(P_{it})|\Delta I_{it}=1]$\\ \vspace{2pt}
+ $\bar{\tau}_{-1}=E[\Delta \log(P_{it})|\Delta I_{it}=-1]$\\  \vspace{2pt}
+$C=\det(E[w_{it}w_{it}'])$ 
+\vspace{10pt}
+\item[] \textsc{Theorem\,2\,\,}\framebox{ $
+\hat{\beta}_{FD}^{I}\overset{p}{\rightarrow}\beta+\frac{p_{1}p_{-1}}{C}(\bar{\tau}_{1}+\bar{\tau}_{-1})(E[\eta_{it}|\Delta I_{it}=-1]+E[\eta_{it}|\Delta I_{it}=1]) $}
+
+\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{Data Description}
+	\begin{itemize}
+\item[]\textbf{Panel Study of Income Dynamics (PSID)}  bi-annual survey of US
+households.
+\vspace{9pt}
+\item[]\textbf{Center on Philanthropy
+Panel Study (COPPS)} module containing questions on giving and volunteering
+\vspace{9pt}
+\item[] PSID covering \textbf{2000-2012  raw sample 58,993
+observations}
+\vspace{9pt}
+\item[] Drop households donating $>50\%$  taxable income,  with taxable income less than the standard deduction ($S_{it}$) 
+and households appearing only once. 
+\vspace{9pt}
+\item[]  Working sample of 28,480 \textbf{ (6325) households appearing for an average of 5.4 years) }
+\end{itemize}\end{frame}
+
+
+
+
+\begin{frame}
+	\frametitle{MTR and price construction}
+	\begin{itemize}
+		
+		
+
+\item[] \textit{Actual Price:} \framebox{$P_{it}^a=1-I_{it}\tau_{it}$}
+\item[] \textit{Auten et al (2002) Price}: \framebox{$P_{it}^b=1-\tau_{it}^{b}$ } \vspace{10pt}
+
+---------------------------------------------------------------------------------
+\vspace{10pt}
+\item[]$\tau_{it}^{s}$: \textbf{'Synthetic' MTR}  using $i$'s tax  characteristics in $t$, including giving
+set to 0, but the tax code from  $t-2$. \vspace{9pt}
+
+\item[] $\tau_{it}^{f}$: MTR applied to first dollar of giving \vspace{9pt}
+\item[]  $\tau_{it}^{p}$:  MTR for giving set at 1\% household income \vspace{9pt}
+\item[]  $\tau_{it}^{b}$: \textbf{'Auten MTR'} $\tau_{it}^{b}=\frac{1}{2}(\tau_{it}^{f}+\tau_{it}^{p})$
+
+
+\end{itemize}\end{frame}
+
+
+
+
+\begin{frame}
+	\frametitle{Empirical Strategy}
+	\begin{itemize}
+		\footnotesize
+		
+		\item[]  $I_{it}=1(E_{it}>S_{it})$ $\;\;\textrm{Exogenous Itemiser [Endogenous Itemisers Ommited]}$
+		
+		\item[] \begin{equation*}\Delta\log(D_{it})= \gamma \Delta I_{it}+\beta\Delta \log(P_{it}) + \theta'\Delta X_{it}+ e_{it} \end{equation*}
+			\normalsize	
+				
+	
+		\vspace{2pt}
+			\hrulefill 
+		\begin{itemize}
+			\item[(1)] $\gamma=0$ \& OLS $\highlight{\textrm{Literature}}$
+		\vspace{5pt}
+				\item[(2)] $\gamma=0$ \& Instrument $\Delta \log P$ with $\Delta \tau^b$ $\highlight{\textrm{IV1}}$
+						\vspace{5pt}
+							\item[(3)] $\gamma=0$ \& Instrument $\Delta \log P$ with $\Delta \tau^s$ $\highlight{\textrm{IV2}}$
+							\vspace{5pt}
+			\item[(4)] $\gamma $ unrestricted   \& OLS when $\tau_1=\tau_{-1}$ $\;\;  \highlight{\textrm{ Itemiser Model}}$
+		\end{itemize}
+		
+
+			\hrulefill 
+		\item[] 	\begin{enumerate}
+		
+
+		\vspace{10pt}
+		
+		\item[] \textbf{Robustness}: Non Linear Effects, Heterogenous Response (over income), Tobit , Within Group.
+		\end{enumerate}
+		
+	\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Empirical Results: Main Results}
+
+
+\begin{table}[H]
+
+	
+	\begin{center}
+		{\footnotesize \begin{tabular}{l l l l l l l l l}
+				
+				&         (1)   &         (2)   &         (3)   &         (4)  \\
+				\hline
+				\hline
+				& Standard   &         IV with   &         IV with    &       Itemizer   \\
+				&model&$\tau_{it}^{s}-\tau_{it}^{b}$&$\Delta\tau_{it}^{b}$&model\\
+				\cline{2-5}
+				$\Delta$log$P^{b}$    &      -1.346***&      -0.263   &      -0.168   &      -0.049   \\             &     (0.192)   &     (2.324)   &     (0.658)   &     (0.315)   \\  $\Delta$itemizer     &               &               &               &       0.452***\\             &               &               &               &     (0.095)   \\ \hline
+				Observations           &       19342   &       19342   &       19342   &       19342   \\ $R^2$          &       0.019   &       0.013   &       0.013   &       0.019   \\ First stage $F$-statistic          &               &       76.290   &       613.959   &               \\
+				$H_{0}:\beta_{\Delta Log price}<-1$ &0.965&0.751&0.147&0.001\\
+				
+				\hline
+				\hline
+			\end{tabular}}
+		\end{center}
+		\begin{tiny}Notes: All standard errors are clustered (at the household level). The penultimate row test that the 2SLS-FD estimator is identified. The tests reported in the last row is the one-sided t-tests of the estimated price elasticities being elastic ($\leq-1$) against the alternative hypothesis that the donations are price inelastic. Stars indicate statistical significance according to the following schedule: *** 1\%, ** 5\% and * 10\%. \end{tiny}
+	\end{table}
+			\begin{center}
+\framebox{$H_0$: $\tau_1=\tau_{-1}$   (p=0.892) }	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Non-Linear Price Effects}
+\includegraphics[scale=0.73]{non1.png}
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Heterogenous Response - Income}
+	\begin{center}
+\includegraphics[scale=0.62]{figure4.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Bias-Switcher Relationship over Income Decile}
+	\begin{center}
+		\includegraphics[scale=0.65]{figure3.png}
+	\end{center}
+\end{frame}
+
+
+		
+			
+			\begin{frame}
+				\frametitle{Conclusions}
+				\begin{enumerate}
+						\item[] Theoretical \& empirical  evidence  for large downwards bias in price response in Survey Data  literature 
+	
+		
+					\vspace{10pt}
+					
+					\item[] Controlling for itemisation  removes bias under testable restriction found to hold empirically
+						\vspace{10pt}
+						
+						
+					\item[] Yields estimator with s.e 1/3 of an IV approach
+							\vspace{10pt}
+							
+					\item[] \colorbox{green}{ Strong evidence average price response is inelastic}
+						\vspace{10pt}
+					
+						\item[] \colorbox{green}{Donations price elastic only in top income  decile.}
+						\vspace{10pt}
+						
+					\item[] 53\% of \$134bn tax subsidy from  income below top decile   (\$250000) 
+					\item[] Suggests subsidy be removed/lowered for lower income earners
+					
+					\end{enumerate}
+				\end{frame}
+					
+	\end{document}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

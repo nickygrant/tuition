@@ -1,30 +1,216 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<link rel="icon" type="image/svg+xml" href="../favicon.svg"/><link rel="icon" href="../favicon.svg"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>AR and ARMA Processes Explained. A Complete Guide | Dr Nicky Grant</title>
-<meta name="description" content="A clear, rigorous guide to autoregressive and ARMA processes in time series econometrics. Covers AR(1), MA(q), ARMA(p,q), stationarity conditions, autocorrelation functions, and real economic applications. Written by Dr Nicky Grant, Cambridge PhD."/>
-<link rel="canonical" href="https://www.drnickygrant.com/blog/ar-arma-processes-explained.html"/>
-<meta property="og:type" content="article"/>
-<meta property="og:title" content="AR and ARMA Processes Explained | Dr Nicky Grant"/>
-<meta name="last-modified" content="2026-06-14"/>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
-  {"@type":"Article","headline":"AR and ARMA Processes Explained: A Complete Guide","url":"https://www.drnickygrant.com/blog/ar-arma-processes-explained.html","datePublished":"2026-06-14","dateModified":"2026-06-14","author":{"@id":"https://www.drnickygrant.com/#person"},"publisher":{"@type":"Person","name":"Dr Nicky Grant","url":"https://www.drnickygrant.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.drnickygrant.com/blog/ar-arma-processes-explained.html"},"description":"A rigorous yet accessible guide to autoregressive (AR), moving average (MA) and ARMA processes in time series econometrics.","keywords":["AR process","ARMA process","MA process","time series econometrics","autocorrelation function","stationarity","white noise","Wold decomposition"],"wordCount":3200,"articleSection":"Time Series Econometrics"},
-  {"@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.drnickygrant.com/"},
-    {"@type":"ListItem","position":2,"name":"Resources","item":"https://www.drnickygrant.com/blog.html"},
-    {"@type":"ListItem","position":3,"name":"AR and ARMA Processes Explained","item":"https://www.drnickygrant.com/blog/ar-arma-processes-explained.html"}
-  ]}
-]}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap"/>
-<link rel="stylesheet" href="../css/main.css"/>
-<link rel="stylesheet" href="../css/polish.css"/>
+<meta charset="utf-8"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/><link href="../favicon.svg" rel="icon"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
+<meta content="Dr Nicky Grant" name="author"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>AR, MA and ARMA Processes Explained | Time Series Study Notes</title>
+<meta content="Study notes explaining MA(1), MA(q), AR(1), AR(p) and ARMA(p,q) processes using the lecture-note intuition of shocks, lagged values, stationarity and autocorrelation patterns." name="description"/>
+<link href="https://www.drnickygrant.com/blog/ar-arma-processes-explained.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="AR, MA and ARMA Processes Explained | Time Series Study Notes" property="og:title"/>
+<meta content="2026-06-14" name="last-modified"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.drnickygrant.com/#website",
+      "url": "https://www.drnickygrant.com/",
+      "name": "Dr Nicky Grant | Economics, Econometrics and Maths Tutor",
+      "description": "Specialist online tuition in economics, econometrics, mathematics, statistics, finance, TMUA and Oxbridge economics applications, supported by verifiable Cambridge credentials, teaching materials and research evidence.",
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.drnickygrant.com/#person",
+      "name": "Dr Nicky Grant",
+      "alternateName": [
+        "Nicky Grant",
+        "Nicky L. Grant",
+        "Nicky Lee Grant"
+      ],
+      "honorificPrefix": "Dr",
+      "givenName": "Nicky",
+      "familyName": "Grant",
+      "url": "https://www.drnickygrant.com/",
+      "image": "https://www.drnickygrant.com/img/nicky-grant-headshot.webp",
+      "email": "nicky.L.grant@gmail.com",
+      "telephone": "+447393352331",
+      "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor",
+      "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0008-8979-4623",
+          "url": "https://orcid.org/0009-0008-8979-4623"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Semantic Scholar",
+          "value": "97839351",
+          "url": "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Cambridge",
+        "sameAs": "https://www.cam.ac.uk/"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "PhD in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "MPhil in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BA in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        }
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "CeMMAP, Centre for Microdata Methods and Practice",
+        "sameAs": "https://cemmap.ac.uk/"
+      },
+      "knowsAbout": [
+        "economics tuition",
+        "econometrics tuition",
+        "A Level Mathematics",
+        "Further Mathematics",
+        "A Level Economics",
+        "TMUA preparation",
+        "Oxbridge Economics applications",
+        "statistics",
+        "financial econometrics",
+        "time series econometrics",
+        "GMM",
+        "instrumental variables",
+        "panel data",
+        "PhD econometrics"
+      ],
+      "sameAs": [
+        "https://orcid.org/0009-0008-8979-4623",
+        "https://www.linkedin.com/in/nicky-lee-grant/",
+        "https://cemmap.ac.uk/person/nicky-l-grant/",
+        "https://research-portal.st-andrews.ac.uk/en/persons/nicky-lee-grant",
+        "https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/",
+        "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351",
+        "https://www.youtube.com/@economaths",
+        "https://independent.academia.edu/NickyGrant"
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/ar-arma-processes-explained.html#page",
+      "url": "https://www.drnickygrant.com/blog/ar-arma-processes-explained.html",
+      "name": "AR, MA and ARMA processes: how models create memory",
+      "isPartOf": {
+        "@id": "https://www.drnickygrant.com/#website"
+      },
+      "about": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB",
+      "description": "Study notes explaining MA(1), MA(q), AR(1), AR(p) and ARMA(p,q) processes using the lecture-note intuition of shocks, lagged values, stationarity and autocorrelation patterns.",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/time-series-econometrics-guide.html",
+        "https://www.drnickygrant.com/blog/reading-the-correlogram.html",
+        "https://www.drnickygrant.com/blog/time-series-econometrics-part2.html"
+      ],
+      "abstract": "Intermediate study notes on MA, AR and ARMA processes, explaining common shocks, lagged values, stationarity, ACF patterns and how to interpret model dynamics.",
+      "dateModified": "2026-06-14"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.drnickygrant.com/blog/ar-arma-processes-explained.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.drnickygrant.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://www.drnickygrant.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Ar Arma Processes Explained",
+          "item": "https://www.drnickygrant.com/blog/ar-arma-processes-explained.html"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/ar-arma-processes-explained.html#article",
+      "headline": "AR, MA and ARMA processes: how models create memory",
+      "url": "https://www.drnickygrant.com/blog/ar-arma-processes-explained.html",
+      "author": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.drnickygrant.com/blog/ar-arma-processes-explained.html#page"
+      },
+      "dateModified": "2026-06-14",
+      "inLanguage": "en-GB",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/time-series-econometrics-guide.html",
+        "https://www.drnickygrant.com/blog/reading-the-correlogram.html",
+        "https://www.drnickygrant.com/blog/time-series-econometrics-part2.html"
+      ],
+      "abstract": "Intermediate study notes on MA, AR and ARMA processes, explaining common shocks, lagged values, stationarity, ACF patterns and how to interpret model dynamics.",
+      "description": "Study notes explaining MA(1), MA(q), AR(1), AR(p) and ARMA(p,q) processes using the lecture-note intuition of shocks, lagged values, stationarity and autocorrelation patterns."
+    }
+  ]
+}</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../css/main.css" rel="stylesheet"/>
+<link href="../css/polish.css" rel="stylesheet"/>
 <style>
 .art{max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) clamp(3rem,8vw,6rem)}
 .art-hero{padding:clamp(6rem,14vw,9rem) clamp(1rem,4vw,2.5rem) clamp(2rem,5vw,3.5rem);border-bottom:1px solid var(--line-soft,rgba(248,242,232,.085))}
@@ -65,457 +251,146 @@ table.acf-table td:first-child{font-family:var(--fb);letter-spacing:.06em;color:
 .math-block{font-family:'Georgia','Times New Roman',serif;font-size:.91rem;letter-spacing:.01em;}
 code{font-family:'KaTeX_Math','STIX Two Math','Latin Modern Math',Georgia,serif;}
 </style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"/>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
 </head>
 <body>
-<a href="#main" class="skip-link">Skip to main content</a>
-<nav id="nav" aria-label="Main navigation">
-  <div class="nav-inner">
-    <a href="../index.html" class="nav-logo">Dr Nicky <span>Grant</span></a>
-    <ul class="nav-links" role="list">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../services.html">Subjects</a></li>
-      <li><a href="../oxbridge-economics-tutor.html">Applications</a></li>
-      <li><a href="../blog.html" class="on" aria-current="page">Resources</a></li>
-      <li><a href="../credentials.html">Credentials</a></li>
-      <li><a href="../pricing.html">Pricing</a></li>
-    </ul>
-    <a href="../index.html#contact" class="nav-cta">Book consultation</a>
-    <button class="nav-burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobNav" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
-  </div>
-  <div class="mob-nav" id="mobNav"><a href="../index.html">Home</a><a href="../services.html">Subjects</a><a href="../oxbridge-economics-tutor.html">Applications</a><a href="../blog.html" class="on">Resources</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
-</nav>
-
-<div class="art-hero">
-  <div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
-    <span class="eyebrow">Time series · AR and ARMA processes</span>
-    <h1>AR and ARMA processes:<br/><em>a complete guide</em></h1>
-    <p class="lede">Autoregressive and ARMA processes are the core building blocks of time series econometrics. This article covers what they are, how their autocorrelation functions behave, when they are stationary, and how to tell them apart in practice, with graphs.</p>
-    <div class="art-meta"><span>Dr Nicky Grant · Cambridge PhD</span><span>Time Series Econometrics</span><span>ECON30401, Manchester</span><span>~3,000 words</span></div>
-  </div>
-</div>
-
-<main id="main" class="art">
-
-<div class="answer-capsule" role="note"><p>AR (autoregressive) and ARMA (autoregressive moving average) processes model how a time series variable depends on its own past values and past shocks. An AR(1) process sets Y_t = α + φ₁Y_{t-1} + ε_t. A stationary AR(1) has |φ₁| &lt; 1, and its autocorrelation function decays as ρ(k) = φ₁^k. An ARMA(p,q) combines AR and MA components. This guide explains these processes, derives their properties, and shows how the ACF pattern differs across model types.</p></div>
-
-<h2>Process versus realisation</h2>
-
-<p>Before looking at any particular model, it is worth being precise about what we are modelling. A <em>time series process</em> Y<sub>t</sub> (t = … −2, −1, 0, 1, 2, …) is the unknown data-generating mechanism. The <em>sample realisation</em> {y<sub>1</sub>, y<sub>2</sub>, …, y<sub>T</sub>} is the single path of data we actually observe.</p>
-
-<p>The Bank of England's monthly CPI data is one realisation of an unknown inflation process. Monthly IBM stock returns are one realisation of an unknown returns process. The aim of time series econometrics is to infer the properties of the underlying process from the sample realisation we observe.</p>
-
-<p>This distinction matters because the same process generates different sample paths each time. If UK CPI could be "re-run" from 2000, we would observe a different sequence of monthly values, but all drawn from the same underlying process. Our one observed sample path should, under appropriate assumptions, reflect the properties of that process.</p>
-
-<h2>White noise and stationarity</h2>
-
-<p>The starting point for all ARMA models is the concept of <em>white noise</em>. A process ε<sub>t</sub> is white noise with variance σ², written ε<sub>t</sub> ~ WN(σ²), if:</p>
-
-<div class="math-block">E[ε_t] = 0    (zero mean)
-Var[ε_t] = σ²  (constant variance)
-Cov(ε_t, ε_s) = 0  for t ≠ s  (no serial correlation)</div>
-
-<p>White noise is the "unpredictable" component, the part of each observation that cannot be forecast from past observations. AR and ARMA processes are built by taking current and lagged values of white noise shocks and combining them with lagged values of the variable itself.</p>
-
-<p>A process is <em>covariance-stationary</em> (or weakly stationary) if its mean, variance, and autocovariances do not depend on time t, only on the lag k. Formally:</p>
-
-<div class="math-block">E[Y_t] = μ              (constant mean)
-Var[Y_t] = γ(0) < ∞    (finite, constant variance)
-Cov(Y_t, Y_{t-k}) = γ(k)  (depends only on lag k)</div>
-
-<p>Stationarity is what makes the ACF a well-defined, interpretable object. A non-stationary process, for example one whose variance grows over time, does not have a fixed ACF to plot or estimate.</p>
-
-<h2>The autocorrelation function (ACF)</h2>
-
-<p>The autocorrelation at lag k is:</p>
-
-<div class="math-block">ρ(k) = γ(k) / γ(0)  =  Cov(Y_t, Y_{t-k}) / Var[Y_t]</div>
-
-<p>This is always between −1 and 1 (it is a correlation). The ACF plot, the correlogram, shows ρ(k) against k. It is the single most important diagnostic tool in time series analysis. The shape of the ACF is different for each class of process, which is what allows us to identify the appropriate model from data.</p>
-
-<h2>The AR(1) process</h2>
-
-<div class="def">
-  <span class="def-label">Definition. AR(1) process</span>
-  <p>Y<sub>t</sub> = α + φ<sub>1</sub>Y<sub>t-1</sub> + ε<sub>t</sub>, &nbsp; ε<sub>t</sub> ~ WN(σ²)</p>
-</div>
-
-<p>The current value Y<sub>t</sub> depends on its immediately preceding value Y<sub>t-1</sub> and a white noise shock. The parameter φ<sub>1</sub> controls how strongly the past value influences the current one.</p>
-
-<h3>Stationarity condition</h3>
-
-<p>The AR(1) is stationary if and only if |φ<sub>1</sub>| &lt; 1. To see why, write the AR(1) out by substituting for lagged values repeatedly:</p>
-
-<div class="math-block">Y_t = α + φ₁Y_{t-1} + ε_t
-    = α + φ₁(α + φ₁Y_{t-2} + ε_{t-1}) + ε_t
-    = α(1 + φ₁) + φ₁²Y_{t-2} + φ₁ε_{t-1} + ε_t
-    ⋮
-    = α/(1-φ₁)  +  Σⱼ₌₀^∞ φ₁ʲ ε_{t-j}   [when |φ₁| &lt; 1]</div>
-
-<p>This is the MA(∞) representation of the stationary AR(1). The condition |φ<sub>1</sub>| &lt; 1 is needed for the sum Σφ<sub>1</sub><sup>j</sup>ε<sub>t-j</sub> to converge, if |φ<sub>1</sub>| ≥ 1, the influence of past shocks never dies out and the variance is infinite. When φ<sub>1</sub> = 1 we have a random walk, which is non-stationary.</p>
-
-<h3>Mean, variance and ACF</h3>
-
-<p>From the MA(∞) representation, the properties of the stationary AR(1) follow directly:</p>
-
-<div class="math-block">Mean:      E[Y_t] = α / (1 - φ₁)
-Variance:  Var[Y_t] = σ² / (1 - φ₁²)
-ACF:       ρ(k) = φ₁ᵏ    for k = 0, 1, 2, …</div>
-
-<p>The mean and variance are both constant (confirming stationarity). The ACF has a clean closed form: it is φ<sub>1</sub> raised to the power k. This is the key identifying feature of an AR(1) in data.</p>
-
-<p>The four panels below show the ACF for four different values of φ<sub>1</sub>. Each panel shows ρ(k) against lag k for k = 0 to 20. The dashed lines are 95% confidence bands at ±1.96/√100, any bar outside these bands is statistically significantly different from zero at the 5% level for a sample of T = 100.</p>
-
-<!-- ACF GRID, 4 panels -->
-<div class="chart-outer">
-  <div class="chart-grid">
-
-    <!-- Panel 1: φ = 0.5 -->
-    <div class="fig-wrap">
-      <span class="fig-label">AR(1): φ₁ = 0.5, positive, moderate persistence</span>
-      <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ACF plot for AR(1) with phi=0.5">
-        <rect width="280" height="160" fill="none"/>
-        <!-- Axes -->
-        <line x1="32" y1="10" x2="32" y2="130" stroke="rgba(248,242,232,.2)" stroke-width="0.8"/>
-        <line x1="32" y1="80" x2="275" y2="80" stroke="rgba(248,242,232,.2)" stroke-width="0.8"/>
-        <!-- Confidence bands -->
-        <line x1="32" y1="64" x2="275" y2="64" stroke="rgba(211,163,91,.35)" stroke-width="0.7" stroke-dasharray="3,2"/>
-        <line x1="32" y1="96" x2="275" y2="96" stroke="rgba(211,163,91,.35)" stroke-width="0.7" stroke-dasharray="3,2"/>
-        <!-- Y-axis labels -->
-        <text x="28" y="12" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">1</text>
-        <text x="28" y="82" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">0</text>
-        <text x="28" y="132" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">-1</text>
-        <!-- Stems: ρ(k) = 0.5^k, x starts at 40, step 11, y = 80 - ρ*70 -->
-        <!-- k=0: ρ=1.0, y=10 -->
-        <line x1="40" y1="80" x2="40" y2="10" stroke="rgba(211,163,91,.9)" stroke-width="2.5"/>
-        <circle cx="40" cy="10" r="2.2" fill="#D3A35B"/>
-        <!-- k=1: ρ=0.5, y=45 -->
-        <line x1="51" y1="80" x2="51" y2="45" stroke="rgba(211,163,91,.9)" stroke-width="2.5"/>
-        <circle cx="51" cy="45" r="2.2" fill="#D3A35B"/>
-        <!-- k=2: ρ=0.25, y=62 -->
-        <line x1="62" y1="80" x2="62" y2="62" stroke="rgba(211,163,91,.9)" stroke-width="2.5"/>
-        <circle cx="62" cy="62" r="2.2" fill="#D3A35B"/>
-        <!-- k=3: ρ=0.125, y=71 -->
-        <line x1="73" y1="80" x2="73" y2="71" stroke="rgba(211,163,91,.9)" stroke-width="2.5"/>
-        <circle cx="73" cy="71" r="2.2" fill="#D3A35B"/>
-        <!-- k=4..20: all near zero, just show small bars -->
-        <line x1="84" y1="80" x2="84" y2="76" stroke="rgba(211,163,91,.6)" stroke-width="2"/>
-        <circle cx="84" cy="76" r="1.8" fill="rgba(211,163,91,.6)"/>
-        <line x1="95" y1="80" x2="95" y2="78" stroke="rgba(211,163,91,.4)" stroke-width="2"/>
-        <line x1="106" y1="80" x2="106" y2="79" stroke="rgba(211,163,91,.3)" stroke-width="2"/>
-        <!-- X axis ticks and labels -->
-        <text x="40" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">0</text>
-        <text x="51" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">1</text>
-        <text x="62" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">2</text>
-        <text x="73" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">3</text>
-        <text x="84" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">4</text>
-        <text x="155" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">10</text>
-        <text x="258" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">20</text>
-        <text x="155" y="154" text-anchor="middle" fill="rgba(248,242,232,.2)" font-size="6" font-family="sans-serif">lag k</text>
-      </svg>
-    </div>
-
-    <!-- Panel 2: φ = 0.9 -->
-    <div class="fig-wrap">
-      <span class="fig-label">AR(1): φ₁ = 0.9, positive, high persistence</span>
-      <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ACF plot for AR(1) with phi=0.9">
-        <rect width="280" height="160" fill="none"/>
-        <line x1="32" y1="10" x2="32" y2="130" stroke="rgba(248,242,232,.2)" stroke-width="0.8"/>
-        <line x1="32" y1="80" x2="275" y2="80" stroke="rgba(248,242,232,.2)" stroke-width="0.8"/>
-        <line x1="32" y1="64" x2="275" y2="64" stroke="rgba(211,163,91,.35)" stroke-width="0.7" stroke-dasharray="3,2"/>
-        <line x1="32" y1="96" x2="275" y2="96" stroke="rgba(211,163,91,.35)" stroke-width="0.7" stroke-dasharray="3,2"/>
-        <text x="28" y="12" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">1</text>
-        <text x="28" y="82" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">0</text>
-        <text x="28" y="132" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">-1</text>
-        <!-- k=0: 1.0→10 | k=1: 0.9→17 | k=2: 0.81→23 | k=3: 0.73→29 | k=4: 0.66→34 | k=5: 0.59→39 | k=6: 0.53→43 | k=7: 0.48→46.5 | k=8: 0.43→50 | k=9: 0.39→53 | k=10: 0.35→55.5 -->
-        <!-- y = 80 - ρ*70 -->
-        <line x1="40" y1="80" x2="40" y2="10" stroke="rgba(211,163,91,.9)" stroke-width="2.5"/><circle cx="40" cy="10" r="2.2" fill="#D3A35B"/>
-        <line x1="51" y1="80" x2="51" y2="17" stroke="rgba(211,163,91,.9)" stroke-width="2.5"/><circle cx="51" cy="17" r="2.2" fill="#D3A35B"/>
-        <line x1="62" y1="80" x2="62" y2="23" stroke="rgba(211,163,91,.9)" stroke-width="2.5"/><circle cx="62" cy="23" r="2.2" fill="#D3A35B"/>
-        <line x1="73" y1="80" x2="73" y2="29" stroke="rgba(211,163,91,.9)" stroke-width="2.5"/><circle cx="73" cy="29" r="2.2" fill="#D3A35B"/>
-        <line x1="84" y1="80" x2="84" y2="34" stroke="rgba(211,163,91,.9)" stroke-width="2.5"/><circle cx="84" cy="34" r="2.2" fill="#D3A35B"/>
-        <line x1="95" y1="80" x2="95" y2="39" stroke="rgba(211,163,91,.85)" stroke-width="2.5"/><circle cx="95" cy="39" r="2.2" fill="#D3A35B"/>
-        <line x1="106" y1="80" x2="106" y2="43" stroke="rgba(211,163,91,.85)" stroke-width="2.5"/><circle cx="106" cy="43" r="2.2" fill="#D3A35B"/>
-        <line x1="117" y1="80" x2="117" y2="46" stroke="rgba(211,163,91,.8)" stroke-width="2.5"/><circle cx="117" cy="46" r="2.2" fill="#D3A35B"/>
-        <line x1="128" y1="80" x2="128" y2="50" stroke="rgba(211,163,91,.8)" stroke-width="2.5"/><circle cx="128" cy="50" r="2.2" fill="#D3A35B"/>
-        <line x1="139" y1="80" x2="139" y2="53" stroke="rgba(211,163,91,.75)" stroke-width="2.5"/><circle cx="139" cy="53" r="2.2" fill="#D3A35B"/>
-        <line x1="150" y1="80" x2="150" y2="56" stroke="rgba(211,163,91,.75)" stroke-width="2.5"/><circle cx="150" cy="56" r="2.2" fill="#D3A35B"/>
-        <!-- k=11..20: continue slow decay -->
-        <line x1="161" y1="80" x2="161" y2="59" stroke="rgba(211,163,91,.7)" stroke-width="2"/><circle cx="161" cy="59" r="1.8" fill="rgba(211,163,91,.7)"/>
-        <line x1="172" y1="80" x2="172" y2="61" stroke="rgba(211,163,91,.65)" stroke-width="2"/><circle cx="172" cy="61" r="1.8" fill="rgba(211,163,91,.65)"/>
-        <line x1="183" y1="80" x2="183" y2="63" stroke="rgba(211,163,91,.6)" stroke-width="2"/><circle cx="183" cy="63" r="1.8" fill="rgba(211,163,91,.6)"/>
-        <line x1="194" y1="80" x2="194" y2="65" stroke="rgba(211,163,91,.55)" stroke-width="2"/><circle cx="194" cy="65" r="1.8" fill="rgba(211,163,91,.55)"/>
-        <line x1="205" y1="80" x2="205" y2="66" stroke="rgba(211,163,91,.5)" stroke-width="2"/><circle cx="205" cy="66" r="1.8" fill="rgba(211,163,91,.5)"/>
-        <line x1="216" y1="80" x2="216" y2="68" stroke="rgba(211,163,91,.45)" stroke-width="2"/><circle cx="216" cy="68" r="1.8" fill="rgba(211,163,91,.45)"/>
-        <line x1="227" y1="80" x2="227" y2="69" stroke="rgba(211,163,91,.4)" stroke-width="2"/><circle cx="227" cy="69" r="1.8" fill="rgba(211,163,91,.4)"/>
-        <line x1="238" y1="80" x2="238" y2="70" stroke="rgba(211,163,91,.35)" stroke-width="2"/><circle cx="238" cy="70" r="1.8" fill="rgba(211,163,91,.35)"/>
-        <line x1="249" y1="80" x2="249" y2="71" stroke="rgba(211,163,91,.3)" stroke-width="2"/><circle cx="249" cy="71" r="1.8" fill="rgba(211,163,91,.3)"/>
-        <line x1="260" y1="80" x2="260" y2="72" stroke="rgba(211,163,91,.25)" stroke-width="2"/><circle cx="260" cy="72" r="1.8" fill="rgba(211,163,91,.25)"/>
-        <text x="40" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">0</text>
-        <text x="51" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">1</text>
-        <text x="150" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">10</text>
-        <text x="260" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">20</text>
-        <text x="155" y="154" text-anchor="middle" fill="rgba(248,242,232,.2)" font-size="6" font-family="sans-serif">lag k</text>
-      </svg>
-    </div>
-
-    <!-- Panel 3: φ = -0.5 -->
-    <div class="fig-wrap">
-      <span class="fig-label">AR(1): φ₁ = −0.5, negative, alternating</span>
-      <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ACF plot for AR(1) with phi=-0.5">
-        <rect width="280" height="160" fill="none"/>
-        <line x1="32" y1="10" x2="32" y2="130" stroke="rgba(248,242,232,.2)" stroke-width="0.8"/>
-        <line x1="32" y1="80" x2="275" y2="80" stroke="rgba(248,242,232,.2)" stroke-width="0.8"/>
-        <line x1="32" y1="64" x2="275" y2="64" stroke="rgba(211,163,91,.35)" stroke-width="0.7" stroke-dasharray="3,2"/>
-        <line x1="32" y1="96" x2="275" y2="96" stroke="rgba(211,163,91,.35)" stroke-width="0.7" stroke-dasharray="3,2"/>
-        <text x="28" y="12" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">1</text>
-        <text x="28" y="82" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">0</text>
-        <text x="28" y="132" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">-1</text>
-        <!-- k=0: 1.0, y=10 | k=1: -0.5, y=115 | k=2: 0.25, y=62 | k=3: -0.125, y=89 | k=4: 0.063, y=76 -->
-        <line x1="40" y1="80" x2="40" y2="10" stroke="rgba(211,163,91,.9)" stroke-width="2.5"/><circle cx="40" cy="10" r="2.2" fill="#D3A35B"/>
-        <line x1="51" y1="80" x2="51" y2="115" stroke="rgba(100,180,255,.85)" stroke-width="2.5"/><circle cx="51" cy="115" r="2.2" fill="#64B4FF"/>
-        <line x1="62" y1="80" x2="62" y2="62" stroke="rgba(211,163,91,.9)" stroke-width="2.5"/><circle cx="62" cy="62" r="2.2" fill="#D3A35B"/>
-        <line x1="73" y1="80" x2="73" y2="89" stroke="rgba(100,180,255,.7)" stroke-width="2.5"/><circle cx="73" cy="89" r="2.2" fill="rgba(100,180,255,.7)"/>
-        <line x1="84" y1="80" x2="84" y2="76" stroke="rgba(211,163,91,.7)" stroke-width="2"/><circle cx="84" cy="76" r="1.8" fill="rgba(211,163,91,.7)"/>
-        <line x1="95" y1="80" x2="95" y2="83" stroke="rgba(100,180,255,.5)" stroke-width="2"/><circle cx="95" cy="83" r="1.8" fill="rgba(100,180,255,.5)"/>
-        <line x1="106" y1="80" x2="106" y2="78" stroke="rgba(211,163,91,.5)" stroke-width="1.8"/>
-        <line x1="117" y1="80" x2="117" y2="81" stroke="rgba(100,180,255,.4)" stroke-width="1.8"/>
-        <text x="40" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">0</text>
-        <text x="51" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">1</text>
-        <text x="62" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">2</text>
-        <text x="73" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">3</text>
-        <text x="155" y="154" text-anchor="middle" fill="rgba(248,242,232,.2)" font-size="6" font-family="sans-serif">lag k</text>
-      </svg>
-    </div>
-
-    <!-- Panel 4: φ = -0.9 -->
-    <div class="fig-wrap">
-      <span class="fig-label">AR(1): φ₁ = −0.9, negative, strong alternating</span>
-      <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ACF plot for AR(1) with phi=-0.9">
-        <rect width="280" height="160" fill="none"/>
-        <line x1="32" y1="10" x2="32" y2="130" stroke="rgba(248,242,232,.2)" stroke-width="0.8"/>
-        <line x1="32" y1="80" x2="275" y2="80" stroke="rgba(248,242,232,.2)" stroke-width="0.8"/>
-        <line x1="32" y1="64" x2="275" y2="64" stroke="rgba(211,163,91,.35)" stroke-width="0.7" stroke-dasharray="3,2"/>
-        <line x1="32" y1="96" x2="275" y2="96" stroke="rgba(211,163,91,.35)" stroke-width="0.7" stroke-dasharray="3,2"/>
-        <text x="28" y="12" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">1</text>
-        <text x="28" y="82" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">0</text>
-        <text x="28" y="132" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">-1</text>
-        <!-- k=0:1→10 | k=1:-0.9→143 | k=2:0.81→23 | k=3:-0.73→131 | k=4:0.66→34 | k=5:-0.59→121 | k=6:0.53→43 | k=7:-0.48→114 | k=8:0.43→50 -->
-        <line x1="40" y1="80" x2="40" y2="10" stroke="rgba(211,163,91,.9)" stroke-width="2.5"/><circle cx="40" cy="10" r="2.2" fill="#D3A35B"/>
-        <line x1="51" y1="80" x2="51" y2="143" stroke="rgba(100,180,255,.9)" stroke-width="2.5"/><circle cx="51" cy="143" r="2.2" fill="#64B4FF"/>
-        <line x1="62" y1="80" x2="62" y2="23" stroke="rgba(211,163,91,.9)" stroke-width="2.5"/><circle cx="62" cy="23" r="2.2" fill="#D3A35B"/>
-        <line x1="73" y1="80" x2="73" y2="131" stroke="rgba(100,180,255,.85)" stroke-width="2.5"/><circle cx="73" cy="131" r="2.2" fill="#64B4FF"/>
-        <line x1="84" y1="80" x2="84" y2="34" stroke="rgba(211,163,91,.85)" stroke-width="2.5"/><circle cx="84" cy="34" r="2.2" fill="#D3A35B"/>
-        <line x1="95" y1="80" x2="95" y2="121" stroke="rgba(100,180,255,.8)" stroke-width="2.5"/><circle cx="95" cy="121" r="2.2" fill="#64B4FF"/>
-        <line x1="106" y1="80" x2="106" y2="43" stroke="rgba(211,163,91,.8)" stroke-width="2.5"/><circle cx="106" cy="43" r="2.2" fill="#D3A35B"/>
-        <line x1="117" y1="80" x2="117" y2="114" stroke="rgba(100,180,255,.75)" stroke-width="2.5"/><circle cx="117" cy="114" r="2.2" fill="#64B4FF"/>
-        <line x1="128" y1="80" x2="128" y2="50" stroke="rgba(211,163,91,.75)" stroke-width="2.5"/><circle cx="128" cy="50" r="2.2" fill="#D3A35B"/>
-        <line x1="139" y1="80" x2="139" y2="107" stroke="rgba(100,180,255,.7)" stroke-width="2.5"/><circle cx="139" cy="107" r="2.2" fill="#64B4FF"/>
-        <line x1="150" y1="80" x2="150" y2="55" stroke="rgba(211,163,91,.7)" stroke-width="2.5"/><circle cx="150" cy="55" r="2.2" fill="#D3A35B"/>
-        <text x="40" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">0</text>
-        <text x="51" y="142" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">1</text>
-        <text x="155" y="154" text-anchor="middle" fill="rgba(248,242,232,.2)" font-size="6" font-family="sans-serif">lag k</text>
-        <!-- Note: clipping for -0.9 bars that exceed axis -->
-        <clipPath id="plotClip"><rect x="32" y="10" width="243" height="120"/></clipPath>
-      </svg>
-    </div>
-
-  </div>
-  <div style="padding:.8rem 1.1rem;font-size:.72rem;color:rgba(248,242,232,.4);border-top:1px solid rgba(248,242,232,.07);line-height:1.55">
-    <strong style="color:rgba(248,242,232,.6)">Figure 1.</strong> ACF of AR(1) for four values of φ₁. Copper bars = positive ACF; blue bars = negative ACF. Dashed lines: 95% confidence bands (±1.96/√100). As φ₁ increases toward 1, the ACF decays more slowly. A negative φ₁ produces an alternating sign pattern.
-  </div>
-</div>
-
-<p>The four panels above are drawn directly from the lecture slides. Reading them:</p>
-
-<p><strong>φ₁ = 0.5:</strong> The ACF starts at 1 (lag 0) and decays quickly. By lag 3, the autocorrelation is 0.125, barely distinguishable from zero. The series has short memory.</p>
-
-<p><strong>φ₁ = 0.9:</strong> The ACF starts at 1 and decays very slowly, it is still 0.35 at lag 10 and 0.12 at lag 20. This is a highly persistent series. UK GDP growth is an example where moderate positive autocorrelation at low lags is typical.</p>
-
-<p><strong>φ₁ = −0.5:</strong> The ACF alternates in sign: positive at even lags, negative at odd lags, with the magnitude decaying. This means consecutive observations tend to reverse direction, if this week is above average, next week tends to be below average, but the week after tends to be above again.</p>
-
-<p><strong>φ₁ = −0.9:</strong> Strong alternating pattern. The series overshoots in both directions persistently, the ACF remains large in magnitude out to lag 10, alternating between strongly positive and strongly negative values.</p>
-
-<h2>The MA(q) process</h2>
-
-<div class="def">
-  <span class="def-label">Definition. MA(q) process</span>
-  <p>Y<sub>t</sub> = α + ε<sub>t</sub> + θ<sub>1</sub>ε<sub>t-1</sub> + … + θ<sub>q</sub>ε<sub>t-q</sub>, &nbsp; ε<sub>t</sub> ~ WN(σ²)</p>
-</div>
-
-<p>A moving average process expresses Y<sub>t</sub> as a linear combination of current and past white noise shocks. Unlike the AR process, there are no lagged values of Y<sub>t</sub> itself, only lagged values of the shock ε<sub>t</sub>.</p>
-
-<p>The MA(q) process has a distinctive ACF: it is non-zero for lags 1 through q, and exactly zero for all lags beyond q. This is the key diagnostic signature, an ACF that "cuts off" sharply after lag q indicates an MA(q) process.</p>
-
-<div class="math-block">ACF of MA(q):
-  ρ(k) = (Σˢ₌₀ᵍ⁻ᵏ θₛθₛ₊ₖ) / (Σˢ₌₀ᵍ θₛ²)   for k = 1, …, q
-  ρ(k) = 0                                       for k > q</div>
-
-<p>For the simplest case, MA(1) with θ₁ = 0.8:</p>
-
-<div class="math-block">ρ(1) = θ₁ / (1 + θ₁²) = 0.8 / (1 + 0.64) = 0.488
-ρ(k) = 0   for k ≥ 2</div>
-
-<p>The MA(q) is always stationary, regardless of the values of θ<sub>1</sub>, …, θ<sub>q</sub>. This is because it is a finite linear combination of stationary white noise, no stability condition is required.</p>
-
-<!-- MA ACF plot -->
-<div class="fig-wrap" style="margin:1.8rem 0">
-  <span class="fig-label">MA(1): θ₁ = 0.8. ACF cuts off after lag 1</span>
-  <svg viewBox="0 0 560 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ACF plot for MA(1) with theta=0.8">
-    <line x1="36" y1="10" x2="36" y2="100" stroke="rgba(248,242,232,.2)" stroke-width="0.8"/>
-    <line x1="36" y1="65" x2="545" y2="65" stroke="rgba(248,242,232,.2)" stroke-width="0.8"/>
-    <line x1="36" y1="52" x2="545" y2="52" stroke="rgba(211,163,91,.35)" stroke-width="0.7" stroke-dasharray="3,2"/>
-    <line x1="36" y1="78" x2="545" y2="78" stroke="rgba(211,163,91,.35)" stroke-width="0.7" stroke-dasharray="3,2"/>
-    <text x="32" y="12" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">1</text>
-    <text x="32" y="67" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">0</text>
-    <!-- k=0: ρ=1→y=10 | k=1: ρ=0.488→y=38 | k=2..20: ρ=0→y=65 -->
-    <!-- y = 65 - ρ*55 -->
-    <line x1="55" y1="65" x2="55" y2="10" stroke="rgba(211,163,91,.9)" stroke-width="3"/><circle cx="55" cy="10" r="2.5" fill="#D3A35B"/>
-    <line x1="80" y1="65" x2="80" y2="38" stroke="rgba(211,163,91,.9)" stroke-width="3"/><circle cx="80" cy="38" r="2.5" fill="#D3A35B"/>
-    <!-- k=2..20: zero (just dots at zero line) -->
-    <circle cx="105" cy="65" r="2" fill="rgba(248,242,232,.25)"/>
-    <circle cx="130" cy="65" r="2" fill="rgba(248,242,232,.22)"/>
-    <circle cx="155" cy="65" r="2" fill="rgba(248,242,232,.2)"/>
-    <circle cx="180" cy="65" r="2" fill="rgba(248,242,232,.18)"/>
-    <circle cx="205" cy="65" r="2" fill="rgba(248,242,232,.16)"/>
-    <circle cx="230" cy="65" r="2" fill="rgba(248,242,232,.15)"/>
-    <circle cx="255" cy="65" r="2" fill="rgba(248,242,232,.14)"/>
-    <circle cx="280" cy="65" r="2" fill="rgba(248,242,232,.13)"/>
-    <circle cx="305" cy="65" r="2" fill="rgba(248,242,232,.12)"/>
-    <circle cx="330" cy="65" r="2" fill="rgba(248,242,232,.11)"/>
-    <!-- X labels -->
-    <text x="55" y="112" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">0</text>
-    <text x="80" y="112" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">1</text>
-    <text x="105" y="112" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">2</text>
-    <text x="155" y="112" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">4</text>
-    <text x="255" y="112" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">8</text>
-    <text x="330" y="112" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="6.5" font-family="Courier New">11</text>
-    <text x="290" y="124" text-anchor="middle" fill="rgba(248,242,232,.2)" font-size="6" font-family="sans-serif">lag k</text>
-    <text x="65" y="30" fill="rgba(211,163,91,.7)" font-size="7" font-family="Courier New">ρ(1)=0.49</text>
-    <text x="108" y="58" fill="rgba(248,242,232,.4)" font-size="7" font-family="Courier New">ρ(k)=0 for k≥2</text>
-  </svg>
-  <div class="fig-caption">MA(1) with θ₁ = 0.8. The ACF is non-zero only at lag 1, then drops to exactly zero. This "cut-off" is the defining diagnostic of an MA process. Dashed lines show 95% confidence bands.</div>
-</div>
-
-<h2>The ARMA(p,q) process</h2>
-
-<div class="def">
-  <span class="def-label">Definition. ARMA(p,q) process</span>
-  <p>Y<sub>t</sub> = α + φ<sub>1</sub>Y<sub>t-1</sub> + … + φ<sub>p</sub>Y<sub>t-p</sub> + ε<sub>t</sub> + θ<sub>1</sub>ε<sub>t-1</sub> + … + θ<sub>q</sub>ε<sub>t-q</sub></p>
-</div>
-
-<p>The ARMA(p,q) is the general class that combines both AR and MA components. Setting q = 0 gives an AR(p). Setting p = 0 gives an MA(q). The ARMA(1,1), with both one AR and one MA term, is the most commonly used specification in practice.</p>
-
-<h3>Properties of the ARMA(1,1)</h3>
-
-<p>For Y<sub>t</sub> = α + φ<sub>1</sub>Y<sub>t-1</sub> + ε<sub>t</sub> + θ<sub>1</sub>ε<sub>t-1</sub>:</p>
-
-<div class="math-block">Mean:     E[Y_t] = α / (1 - φ₁)       [same as AR(1)]
-
-Variance: Var[Y_t] = σ² (1 + 2φ₁θ₁ + θ₁²) / (1 - φ₁²)
-
-ACF:      ρ(1) = (φ₁ + θ₁)(1 + φ₁θ₁) / (1 + 2φ₁θ₁ + θ₁²)
-          ρ(k) = φ₁ · ρ(k-1)   for k ≥ 2</div>
-
-<p>The key point: the ACF of an ARMA(1,1) behaves like an AR(1) for lags k ≥ 2, it decays at rate φ<sub>1</sub><sup>k</sup>. But the initial value ρ(1) is shifted by the MA component. This shift can make the ACF larger or smaller at lag 1 than a pure AR(1) would produce.</p>
-
-<p>The stationarity condition is the same as for the AR(1): |φ<sub>1</sub>| &lt; 1. The MA component does not affect stationarity, only the AR part does.</p>
-
-<h3>The Wold Decomposition</h3>
-
-<p>A deeper result explains why AR processes can always be written as MA(∞). The Wold Decomposition Theorem states that any covariance-stationary process can be written as an MA(∞):</p>
-
-<div class="math-block">Y_t = μ + Σⱼ₌₀^∞ θⱼ εₜ₋ⱼ,   θ₀ = 1,   εₜ ~ WN(σ²)</div>
-
-<p>where the θ<sub>j</sub> coefficients satisfy a summability condition. This is why the AR(1) can be written as Σφ<sub>1</sub><sup>j</sup>ε<sub>t-j</sub>, it is its Wold representation. The ARMA(1,1) has the MA(∞) form with coefficients that combine both the AR and MA parameters.</p>
-
-<p>This result is foundational: it tells us that any stationary time series process, however complex its actual dynamics, can in principle be approximated arbitrarily well by a finite-order ARMA model.</p>
-
-<h2>How to tell them apart: the identification table</h2>
-
-<div class="process-compare">
-  <div class="pc-row">
-    <span class="pc-name">Process</span>
-    <span class="pc-def">Definition</span>
-    <span class="pc-acf">ACF pattern</span>
-  </div>
-  <div class="pc-row">
-    <span class="pc-name">White noise</span>
-    <span class="pc-def">ε<sub>t</sub> ~ WN(σ²)</span>
-    <span class="pc-acf">All zeros for k ≥ 1. All bars within confidence bands.</span>
-  </div>
-  <div class="pc-row">
-    <span class="pc-name">MA(q)</span>
-    <span class="pc-def">Finite weighted sum of shocks</span>
-    <span class="pc-acf">Non-zero for lags 1 to q, then <em>cuts off to exactly zero</em>. Sharp drop is the tell.</span>
-  </div>
-  <div class="pc-row">
-    <span class="pc-name">AR(1)</span>
-    <span class="pc-def">Y<sub>t</sub> = α + φ₁Y<sub>t-1</sub> + ε<sub>t</sub></span>
-    <span class="pc-acf">Decays exponentially as φ₁<sup>k</sup>. Positive φ₁: smooth one-sided decay. Negative φ₁: alternating signs.</span>
-  </div>
-  <div class="pc-row">
-    <span class="pc-name">AR(p)</span>
-    <span class="pc-def">Depends on p lags of Y<sub>t</sub></span>
-    <span class="pc-acf">Decays toward zero, can show oscillating patterns with complex roots. The PACF cuts off at lag p.</span>
-  </div>
-  <div class="pc-row">
-    <span class="pc-name">ARMA(p,q)</span>
-    <span class="pc-def">Both AR and MA components</span>
-    <span class="pc-acf">Decays exponentially after lag q. No clean cut-off. Both ACF and PACF tail off, neither cuts off sharply.</span>
-  </div>
-</div>
-
-<div class="note"><p><strong>Note on the PACF:</strong> The partial autocorrelation function (PACF) is the complement to the ACF for model identification. It measures correlation between Y<sub>t</sub> and Y<sub>t-k</sub> after removing the influence of the intermediate lags. An AR(p) has a PACF that cuts off after lag p, while an MA(q) has a PACF that tails off. In practice, you plot both to narrow down the model.</p></div>
-
-<h2>The general ARMA(p,q) stationarity condition</h2>
-
-<p>For an AR(p), and therefore for any ARMA(p,q), stationarity requires that the roots of the characteristic polynomial lie outside the unit circle. Writing the AR polynomial using the lag operator L (where LY<sub>t</sub> = Y<sub>t-1</sub>):</p>
-
-<div class="math-block">Φ(L) = 1 - φ₁L - φ₂L² - … - φₚLᵖ</div>
-
-<p>Stationarity holds if and only if the roots of the polynomial equation Φ(z) = 0 all lie outside the unit circle in the complex plane (i.e., |z| &gt; 1 for all solutions z).</p>
-
-<p>For AR(1): 1 - φ<sub>1</sub>z = 0 → z = 1/φ<sub>1</sub>. This lies outside the unit circle iff |1/φ<sub>1</sub>| &gt; 1 iff |φ<sub>1</sub>| &lt; 1. Confirmed.</p>
-
-<p>For AR(2): 1 - φ<sub>1</sub>z - φ<sub>2</sub>z² = 0 has two roots (which may be complex). Stationarity requires both to lie outside the unit circle. An AR(2) can produce more complex ACF patterns than AR(1), including damped oscillations, because complex roots produce cyclical autocorrelation.</p>
-
-<h2>A practical example: IBM monthly stock returns</h2>
-
-<p>Monthly IBM stock returns from 1991 to 2013 (T = 276) provide a natural example. The ACF of the raw return series shows no significant autocorrelation at any lag, the bars all lie within the ±1.96/√276 ≈ ±0.118 confidence bands. This is consistent with a white noise process: monthly stock returns are approximately unpredictable (as market efficiency would suggest).</p>
-
-<p>However, the ACF of the <em>squared</em> returns, which measures volatility clustering, shows significant autocorrelations at many lags. High-volatility months tend to be followed by high-volatility months. This pattern motivates GARCH models, which are covered in a separate article.</p>
-
-<p>If instead we were looking at the ACF of UK GDP growth, we would typically see one or two significant bars at low lags with exponential decay, consistent with a low-order AR process. This is why AR models are the standard starting point for macroeconomic forecasting.</p>
-
-<h2>Summary</h2>
-
-<p>The key results to retain from this article:</p>
-
-<ul style="color:rgba(248,242,232,.72);font-weight:300;font-size:clamp(.9rem,1.6vw,.97rem);line-height:2;padding-left:1.5rem;margin-bottom:1.5rem">
-  <li>AR(1) is stationary iff |φ₁| &lt; 1. Its ACF decays as ρ(k) = φ₁<sup>k</sup>.</li>
-  <li>MA(q) is always stationary. Its ACF cuts off to zero after lag q.</li>
-  <li>ARMA(p,q) is stationary iff the AR roots lie outside the unit circle. Its ACF decays but does not cut off cleanly.</li>
-  <li>The Wold Decomposition guarantees any stationary process has an MA(∞) representation, this is why stationary AR processes can always be written as infinite MA processes.</li>
-  <li>In practice: look at the ACF and PACF together to identify model order. A cut-off in the ACF suggests MA. A cut-off in the PACF suggests AR. Neither cuts off cleanly. ARMA.</li>
+<a class="skip-link" href="#main">Skip to main content</a>
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a aria-label="Dr Nicky Grant home" class="nav-logo" href="../index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list">
+<li><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
+<li><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a></li>
+<li><a href="../blog.html">Resources</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../pricing.html">Pricing</a></li>
 </ul>
-
-<p>The next step from here is estimation: given a sample realisation, how do we estimate the parameters of an ARMA model? That involves the sample ACF, the Ljung-Box test, and information criteria such as AIC and BIC, covered in the article on <a href="reading-the-correlogram.html" style="color:var(--copper,#D3A35B)">how to read a correlogram and select a model</a>.</p>
-
-<hr style="border:none;border-top:1px solid rgba(248,242,232,.08);margin:2.5rem 0"/>
-
-<div style="background:linear-gradient(180deg,rgba(211,163,91,.07),rgba(211,163,91,.025));border:1px solid rgba(211,163,91,.18);border-radius:12px;padding:1.5rem 1.75rem;margin:2rem 0">
-  <p style="font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.5rem">Tuition in this topic</p>
-  <p style="margin:0;font-size:.95rem;color:rgba(248,242,232,.8)">Time series econometrics. AR, ARMA, model selection, forecasting, is covered in depth in 1-1 online sessions with Dr Grant. The free initial consultation establishes your level and what you need. <a href="../index.html#contact" style="color:var(--copper,#D3A35B)">Book the free consultation →</a></p>
+<a class="nav-cta" href="../index.html#contact">Book consultation</a>
+<button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
 </div>
-
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+</nav>
+<div class="art-hero">
+<div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
+<span class="eyebrow">Econometrics · Study notes · Time series 3</span>
+<h1>AR, MA and ARMA Processes:<em>how models create memory</em></h1>
+<p class="lede">A model-intuition note explaining how moving-average shocks, autoregressive persistence and ARMA combinations generate time dependence.</p>
+<div class="art-meta"><span>Dr Nicky Grant · economics specialist</span><span>Time Series Study Notes</span><span>Intermediate</span></div>
+</div>
+</div>
+<main class="art" id="main">
+<div aria-label="Quick answer" class="answer-capsule" data-chunk="TS2-fuller-notes" role="note">
+<p>AR, MA and ARMA models are different ways of building memory into a time series. MA models remember past shocks, AR models remember past values, and ARMA models combine both. The lecture-note intuition is that the dependence comes from common shocks and from the way past values carry those shocks forward.</p>
+</div><div class="study-note-box" data-chunk="UXDE-study-note-cta"><h2>Stuck on AR, MA or ARMA models?</h2><p>Send the lecture topic list, problem set and any software output. The diagnostic can identify whether the difficulty is notation, stationarity, ACF intuition or estimation.</p><p><a class="btn btn-fill" href="../university-postgraduate-tutoring.html">View University &amp; Postgraduate support</a> <a class="btn btn-line" href="../index.html#contact">Send an enquiry</a></p></div>
+<div aria-label="Time series study notes pathway" class="part-nav">
+<span style="font-size:.78rem;color:rgba(248,242,232,.52)">Time series notes:</span>
+<a href="time-series-econometrics-guide.html">1. Core definitions</a>
+<span class="divider">|</span>
+<a href="reading-the-correlogram.html">2. Correlogram &amp; testing</a>
+<span class="divider">|</span>
+<a href="ar-arma-processes-explained.html">3. AR, MA &amp; ARMA intuition</a>
+<span class="divider">|</span>
+<a href="time-series-econometrics-part2.html">4. Derivations, prediction &amp; seasonality</a>
+</div>
+<section class="study-note-box" id="where-models-fit">
+<h2>Where these models fit</h2>
+<p>The first notes defined <a href="time-series-econometrics-guide.html#white-noise">white noise</a>, <a href="time-series-econometrics-guide.html#stationarity">stationarity</a> and <a href="time-series-econometrics-guide.html#acf">autocorrelation</a>. This note explains simple processes that generate autocorrelation in controlled ways.</p>
+<p>The aim is not just to memorise formulas. The aim is to see how a model creates time dependence: by letting current values share shocks with past values, or by letting past values directly enter the current equation.</p>
+</section>
+<section id="ma1">
+<h2>1. MA(1): a weighted average of current and previous shocks</h2>
+<p>The simplest moving-average model is:</p>
+<div class="math-note">Y<sub>t</sub> = α + ε<sub>t</sub> + θ<sub>1</sub>ε<sub>t−1</sub>,   ε<sub>t</sub> ∼ WN(σ²)</div>
+<p>The word “moving average” means that the series is a weighted moving average of shocks. At time \(t\), the process depends on the current shock and the previous shock. The coefficient \(θ_1\) tells us how much the previous shock still matters.</p>
+<div class="img-block"><img alt="Sample realisations of MA(1) processes for different theta values" loading="lazy" src="../img/teaching/MA1.png"/><span class="img-caption">Changing \(θ_1\) changes how the previous shock enters the current value.</span></div>
+<div class="def"><span class="def-label">Intuition from the notes</span><p>If \(Y_t\) were GDP, \(ε_t\) could be read as the shock to GDP at time \(t\). An MA(1) lets the shock affect GDP now and one period later, but not forever.</p></div>
+<p>Why is an MA(1) correlated with its immediate past? Write the neighbouring observations:</p>
+<div class="math-note">Y<sub>t</sub> = α + ε<sub>t</sub> + θ<sub>1</sub>ε<sub>t−1</sub><br/>Y<sub>t−1</sub> = α + ε<sub>t−1</sub> + θ<sub>1</sub>ε<sub>t−2</sub></div>
+<p>Both contain the common shock \(ε_{t-1}\). That shared shock creates covariance between \(Y_t\) and \(Y_{t-1}\). But \(Y_t\) and \(Y_{t-2}\) share no common shock, so the autocovariance is zero after lag 1.</p>
+</section>
+<section id="ma1-properties">
+<h2>2. MA(1) mean, variance and autocorrelation</h2>
+<p>Using the white-noise assumptions, the MA(1) has:</p>
+<div class="math-note">E[Y<sub>t</sub>] = α</div>
+<div class="math-note">Var(Y<sub>t</sub>) = σ²(1 + θ<sub>1</sub>²)</div>
+<div class="math-note">γ(1) = θ<sub>1</sub>σ²,   γ(k)=0 for k&gt;1</div>
+<p>The key interpretation is that an MA(1) has <strong>short memory</strong>. Its ACF cuts off after lag 1. This is why the <a href="reading-the-correlogram.html">correlogram</a> can help identify MA-type behaviour.</p>
+<p>The sign of \(θ_1\) determines the sign of the lag-1 autocorrelation. If \(θ_1&gt;0\), the common shock pushes neighbouring observations in the same direction. If \(θ_1&lt;0\), it pushes them in opposite directions, giving oscillation.</p>
+</section>
+<section id="maq">
+<h2>3. MA(q): shocks can matter for q periods</h2>
+<p>The MA(q) model generalises the same idea:</p>
+<div class="math-note">Y<sub>t</sub> = α + ε<sub>t</sub> + θ<sub>1</sub>ε<sub>t−1</sub> + … + θ<sub>q</sub>ε<sub>t−q</sub></div>
+<p>An MA(q) is correlated with at most \(q\) lags of itself. The reason is the same common-shock logic: observations close enough together can share shocks; observations more than \(q\) periods apart cannot.</p>
+<div class="def"><span class="def-label">Correlogram implication</span><p>For an MA(q), the theoretical ACF cuts off after lag \(q\). That is why a sample <a href="reading-the-correlogram.html">correlogram</a> with a sharp cut-off can suggest a moving-average model.</p></div>
+</section>
+<section id="ar1">
+<h2>4. AR(1): the current value depends on the previous value</h2>
+<p>The AR(1) model is:</p>
+<div class="math-note">Y<sub>t</sub> = μ + φ<sub>1</sub>Y<sub>t−1</sub> + ε<sub>t</sub></div>
+<p>This is different from MA(1). Instead of depending directly on a previous shock, \(Y_t\) depends on the previous value \(Y_{t-1}\). But that previous value already contains earlier shocks. So a shock can be carried forward indirectly through the series.</p>
+<div class="img-block"><img alt="Sample realisations of AR(1) processes" loading="lazy" src="../img/teaching/AR.png"/><span class="img-caption">AR(1) processes show persistence because each value partly carries forward the previous value.</span></div>
+<p>Substituting backwards gives the intuition:</p>
+<div class="math-note">Y<sub>t</sub> = μ + φ<sub>1</sub>(μ + φ<sub>1</sub>Y<sub>t−2</sub> + ε<sub>t−1</sub>) + ε<sub>t</sub></div>
+<p>So \(Y_t\) depends on \(Y_{t-2}\), then \(Y_{t-3}\), and so on, but with powers of \(φ_1\). If \(|φ_1|&lt;1\), those powers shrink and the effect of old shocks dies away.</p>
+</section>
+<section id="ar1-acf">
+<h2>5. AR(1) stationarity and ACF</h2>
+<p>The stationary AR(1) has:</p>
+<div class="math-note">E[Y<sub>t</sub>] = μ / (1 − φ<sub>1</sub>)</div>
+<div class="math-note">Var(Y<sub>t</sub>) = σ² / (1 − φ<sub>1</sub>²)</div>
+<div class="math-note">ρ(k) = φ<sub>1</sub><sup>k</sup></div>
+<p>The stationarity condition is \(|φ_1|&lt;1\). This says the influence of past shocks must eventually fade. If \(φ_1\) is close to one, the process is highly persistent. If \(φ_1\) is negative, the autocorrelation alternates in sign.</p>
+<div class="img-block"><img alt="AR(1) autocorrelation function for different phi values" loading="lazy" src="../img/teaching/ar1acf.png"/><span class="img-caption">The AR(1) ACF tails off geometrically rather than cutting off.</span></div>
+<p>This is the crucial contrast with MA models. MA(q) autocorrelation cuts off. AR(1) autocorrelation tails off. A correlogram with a gradual decline is therefore often read as AR-like.</p>
+</section>
+<section id="arma11">
+<h2>6. ARMA(1,1): combining lagged values and lagged shocks</h2>
+<p>The ARMA(1,1) model combines the two mechanisms:</p>
+<div class="math-note">Y<sub>t</sub> = μ + φ<sub>1</sub>Y<sub>t−1</sub> + ε<sub>t</sub> + θ<sub>1</sub>ε<sub>t−1</sub></div>
+<p>This is more flexible than either AR(1) or MA(1). If \(θ_1=0\), it becomes AR(1). If \(φ_1=0\), it becomes MA(1). With both parameters present, the model captures both persistence from past values and short-run shock effects.</p>
+<div class="img-block"><img alt="Sample realisations of ARMA(1,1) processes" loading="lazy" src="../img/teaching/ARMA1.png"/><span class="img-caption">ARMA(1,1) combines AR persistence with MA shock dependence.</span></div>
+<p>The ACF usually tails off rather than cutting off, but its early-lag shape can be affected by the MA parameter. This is why ARMA correlograms can be harder to identify visually than pure AR or pure MA models.</p>
+</section>
+<section id="arp-arma-pq">
+<h2>7. AR(p) and ARMA(p,q)</h2>
+<p>The general AR(p) model is:</p>
+<div class="math-note">Y<sub>t</sub> = μ + φ<sub>1</sub>Y<sub>t−1</sub> + … + φ<sub>p</sub>Y<sub>t−p</sub> + ε<sub>t</sub></div>
+<p>The general ARMA(p,q) model is:</p>
+<div class="math-note">Y<sub>t</sub> = μ + φ<sub>1</sub>Y<sub>t−1</sub> + … + φ<sub>p</sub>Y<sub>t−p</sub> + ε<sub>t</sub> + θ<sub>1</sub>ε<sub>t−1</sub> + … + θ<sub>q</sub>ε<sub>t−q</sub></div>
+<p>The notation is simple once the intuition is clear: \(p\) counts lagged values of \(Y\), and \(q\) counts lagged shocks. The advanced note explains the lag operator and stationarity root conditions used to analyse these general processes.</p>
+<div class="img-block"><img alt="Simulated ARMA(3,2) process" loading="lazy" src="../img/teaching/arma32.png"/><span class="img-caption">A higher-order ARMA process can create more complex dependence patterns.</span></div>
+</section>
+<section id="model-summary">
+<h2>8. Summary table: how each model remembers the past</h2>
+<table class="concept-table">
+<thead><tr><th>Model</th><th>What creates memory?</th><th>ACF pattern</th><th>Practical clue</th></tr></thead>
+<tbody>
+<tr><td>White noise</td><td>No memory.</td><td>Zero autocorrelation at all positive lags.</td><td>Sample ACF should stay near zero.</td></tr>
+<tr><td>MA(q)</td><td>Shared shocks up to q periods apart.</td><td>Cuts off after q.</td><td>Sharp cut-off in correlogram.</td></tr>
+<tr><td>AR(p)</td><td>Past values carry shocks forward.</td><td>Tails off.</td><td>Gradual decay or oscillation.</td></tr>
+<tr><td>ARMA(p,q)</td><td>Past values and past shocks.</td><td>Often tails off with flexible early-lag behaviour.</td><td>Use correlogram plus estimation and diagnostics.</td></tr>
+</tbody>
+</table>
+</section>
+<section class="study-note-box" id="next-study-notes">
+<h2>Next notes in this pathway</h2>
+<ol>
+<li><a href="reading-the-correlogram.html">How to read a correlogram</a>: use these theoretical ACF ideas in data.</li>
+<li><a href="time-series-econometrics-part2.html#lag-operator">Lag operator and stationarity roots</a>: write ARMA models compactly.</li>
+<li><a href="time-series-econometrics-part2.html#estimation">Estimation and model selection</a>: choose and estimate ARMA models from data.</li>
+</ol>
+</section>
+<div class="tuition-cta"><p>ARMA tuition</p><p>For help deriving ARMA moments, interpreting ACFs, or using ARMA models in exams or dissertations, see <a class="gold-link" href="../econometrics-tutor.html">econometrics tuition</a> or <a class="gold-link" href="../phd-econometrics-tutor.html">PhD econometrics support</a>.</p></div>
 </main>
-
-<footer role="contentinfo" style="border-top:1px solid rgba(248,242,232,.08);padding:2.5rem clamp(1rem,4vw,2.5rem);background:linear-gradient(180deg,rgba(248,242,232,.02),rgba(0,0,0,.18))">
-  <div style="max-width:740px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.72rem;color:rgba(248,242,232,.4);font-weight:300">
-    <span>© <span id="yr"></span> Dr Nicky Grant · <a href="../index.html" style="color:rgba(248,242,232,.4)">drnickygrant.com</a></span>
-    <span><a href="../blog.html" style="color:rgba(248,242,232,.4)">← All resources</a></span>
-  </div>
+<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../econometrics-tutor.html"><strong>Econometrics tuition</strong><span>AR, MA and ARMA processes explained and applied.</span></a><a class="funnel-card" href="../financial-econometrics-tutor.html"><strong>Financial econometrics tuition</strong><span>Time series models for returns and volatility.</span></a><a class="funnel-card" href="../teaching.html"><strong>Free lecture notes</strong><span>ARMA and time-series PDFs, exercises and solutions.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book a free consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
+<div class="foot-cols">
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
+<div class="fc"><h4>A-Level &amp; Admissions</h4><a href="../a-level-admissions-tutoring.html">Overview</a><a href="../a-level-maths-tutor.html">A-Level Maths</a><a href="../a-level-economics-tutor.html">A-Level Economics</a><a href="../tmua-preparation.html">TMUA preparation</a><a href="../oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
+<div class="fc"><h4>University &amp; Postgraduate</h4><a href="../university-postgraduate-tutoring.html">Overview</a><a href="../university-economics-tutor.html">University Economics</a><a href="../econometrics-tutor.html">Econometrics</a><a href="../statistics-tutor.html">Statistics</a><a href="../finance-tutor.html">Finance</a><a href="../phd-econometrics-tutor.html">PhD econometrics</a></div>
+<div class="fc"><h4>Resources &amp; contact</h4><a href="../blog.html">Study notes</a><a href="../questions.html">Common questions</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../how-it-works.html">How it works</a><a href="../index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
+</div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online UK-wide</span></div>
 </footer>
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();

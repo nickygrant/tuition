@@ -1,0 +1,821 @@
+	
+	
+	\documentclass{beamer}
+	\usetheme{metropolis}
+	\usefonttheme{professionalfonts}
+	
+	\setbeamertemplate{itemize item}{\color{titlepagecolor}$\hookrightarrow$}
+	\definecolor{whitesmoke}{rgb}{0.96, 0.96, 0.96}
+	\setbeamercolor{background canvas}{bg=whitesmoke}
+	\usepackage{wrapfig}
+	\usepackage{graphicx}
+	\usepackage{mwe}
+	\usepackage{subfig}
+	\newcommand{\subsubfloat}[2]{%
+		\begin{tabular}{@{}c@{}}#1\\#2\end{tabular}%
+	}
+	\usepackage{media9}
+	\usepackage{mdframed}
+	
+	\newcommand{\highlight}[1]{\colorbox{green}{\ensuremath{#1}}}
+	\makeatletter
+	\newsavebox\zb@x
+	\newcounter{z@@m}
+	\usepackage{calc}
+	\newdimen\B@r\newdimen\P@r
+	\newdimen\@zw\newdimen\@zh\newdimen\@zd
+	
+	\newcommand{\zoombox}[2][0]{%
+		\leavevmode%
+		\sbox\zb@x{#2}%
+		\setlength\B@r{1pt*\ratio{\wd\zb@x}{\ht\zb@x+\dp\zb@x}}%
+		\setlength\P@r{1pt*\ratio{\paperwidth}{\paperheight}}%
+		\ifdim\B@r>\P@r\relax%
+		\setlength\@zw{\wd\zb@x}\setlength\@zh{\@zw*\ratio{\paperheight}{\paperwidth}}%
+		\setlength\@zd{(\@zh-\ht\zb@x-\dp\zb@x)*\real{0.5}+\dp\zb@x}%
+		\setlength\@zh{\@zh-\@zd}%
+		\else%
+		\setlength\@zh{\ht\zb@x+\dp\zb@x}%
+		\setlength\@zw{\@zh*\ratio{\paperwidth}{\paperheight}}%
+		\setlength\@zh{\ht\zb@x}\setlength\@zd{\dp\zb@x}%
+		\fi%
+		\makebox[0pt][l]{\makebox[\wd\zb@x][c]{\makebox[\@zw][l]{%
+					\pdfdest name {zbfs\thez@@m} fitr
+					width  \@zw\space
+					height \@zh\space
+					depth  \@zd\space
+				}}}%
+				\pdfdest name {zb\thez@@m} fitr
+				width  \wd\zb@x\space
+				height \ht\zb@x\space
+				depth  \dp\zb@x\space
+				\immediate\pdfannot
+				width  \wd\zb@x\space
+				height \ht\zb@x\space
+				depth  \dp\zb@x\space
+				{%
+					/Subtype/Link/H/N
+					/Border [0 0 #1 [1 2]]
+					/A <<
+					/S/JavaScript
+					/JS (
+					if(typeof(zoomed)=='undefined'||!zoomed){
+						var lastView=this.viewState;
+						if(app.fs.isFullScreen) this.gotoNamedDest('zbfs\thez@@m');
+						else this.gotoNamedDest('zb\thez@@m');
+						zoomed=true;
+					}else{
+					this.viewState=lastView;
+					zoomed=false;
+				}
+				)
+				>>
+			}%
+			\usebox{\zb@x}%
+			\stepcounter{z@@m}%
+		}
+		\makeatother
+		\makeatletter
+		\newcommand\HUGE{\@setfontsize\Huge{40}{55}}
+		\makeatother
+		
+		\usepackage[orientation=landscape,size=custom,width=16.7,height=10.5,scale=0.5,debug]{beamerposter}
+		\definecolor{ikb}{rgb}{0.0, 0.18, 0.65}
+		\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+		\setbeamercolor{frametitle}{fg=white,bg=ikb}           % Use metropolis theme
+		\setbeamercolor{title}{fg=white,bg=white}
+		\setbeamercolor{date}{fg=white,bg=white}
+		\usepackage{pdfpages}
+		\setbeamersize{text margin left=5pt,text margin right=15pt}
+		\title{	\HUGE{ ECON30401: Time Series Econometrics}}\subtitle{\vspace{1cm}\LARGE Lecture 2: ARMA(p.q) Processes \& Stationarity}
+		\date{\large October 2016}
+		\author{
+			\href{mailto:nicky.grant@manchester.ac.uk}{\large Nicky L.  Grant}}
+		\usepackage{hyperref}
+		\usepackage{tcolorbox}
+		\tcbuselibrary{theorems}
+		\definecolor{indianyellow}{rgb}{0.89, 0.66, 0.34}
+		\definecolor{cadmiumyellow}{rgb}{1.0, 0.96, 0.0}
+		\definecolor{beaublue}{rgb}{0.74, 0.83, 0.9}
+		\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+		\newtcbtheorem[number within=section]{mydef}{Definition}%
+		{colback=beaublue,colframe=titlepagecolor,fonttitle=\bfseries}{th}
+		\newtcbtheorem[number within=section]{mytheo}{Theorem}%
+		{colback=beaublue,colframe=titlepagecolor,fonttitle=\bfseries}{th}
+		
+		\definecolor{beaublue}{rgb}{0.74, 0.83, 0.9}
+		\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+		\definecolor{lightgoldenrodyellow}{rgb}{0.98, 0.98, 0.82}
+		
+		\newtcbtheorem[number within=chapter]{mydefyel}{Definition}%
+		{colback=lightgoldenrodyellow,colframe=indianyellow,fonttitle=\bfseries}{th}
+		
+		
+		\setbeamerfont{title}{size=\HUGE, series=\bfseries}
+		\setbeamerfont{section title}{size=\Huge, series=\bfseries}
+		\hypersetup{pdfstartview=Fit, pdfpagemode=UseNone}
+		\definecolor{yg}{rgb}{0.3, 0.73, 0.09}
+		\definecolor{yg}{rgb}{0.01, 0.75, 0.24}
+		\usepackage{tcolorbox}% http://ctan.org/pkg/tcolorbox
+		\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}% Rule colour
+		\makeatletter
+		\newcommand{\mybox}[1]{%
+			\setbox0=\hbox{#1}%
+			\setlength{\@tempdima}{\dimexpr\wd0+13pt}%
+			\begin{tcolorbox}[colframe=mycolor,boxrule=0.5pt,arc=4pt,
+				left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,width=\@tempdima]
+				#1
+			\end{tcolorbox}
+		}
+		\makeatletter
+		\newcommand{\myboxx}[1]{%
+			\setbox0=\hbox{#1}%
+			\setlength{\@tempdima}{\dimexpr\wd0+13pt}%
+			\begin{tcolorbox}[colback=aliceblue,colframe=titlepagecolor, boxrule=0.5pt,arc=4pt,
+				left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,width=\@tempdima]
+				#1
+			\end{tcolorbox}
+		}
+		
+		\makeatother
+		
+		\makeatletter
+		\newcommand{\myboxxx}[1]{%
+			\setbox0=\hbox{#1}%
+			\setlength{\@tempdima}{\dimexpr\wd0+13pt}%
+			\begin{tcolorbox}[colback=lightgoldenrodyellow, colframe=indianyellow, boxrule=0.5pt,arc=4pt,
+				left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,width=\@tempdima]
+				#1
+			\end{tcolorbox}
+		}
+		
+		\makeatother
+		
+		
+		
+		\hypersetup{
+			colorlinks,
+			citecolor=yellow,
+			filecolor=yg,
+			linkcolor=ikb,
+			urlcolor=red
+		}
+		
+		\hypersetup{pdfnewwindow}
+		\begin{document}
+			\begin{center}\setbeamercolor{background canvas}{bg=ikb}\maketitle \end{center}
+			\setbeamercolor{background canvas}{bg=white} \small
+			\begin{frame}{Table of contents}
+				\setbeamertemplate{section in toc}[sections numbered]
+				\tableofcontents[hideallsubsections]
+			\end{frame}
+
+\section{Introduction}
+\begin{frame}
+\frametitle{Background to Research}
+\begin{itemize}
+
+\item Properties of GMM with Identification Failure well known
+\item[] \textit{Sargan (1958, 1983), Phillips (1989), Stock \& Wright (2000), Newey \& Smith (2004), Han \& Phillips (2006), Renault \& Donovon (2014)}
+\vspace{10pt}
+
+\item[] Most papers assume moment variance full rank
+\vspace{10pt}
+
+\item[] For class of models\textbf{ Sing.  variance} $\Leftrightarrow$ \textbf{ Identification Failure}
+\vspace{10pt}
+ \item Singular variance can also arise in identified models, e.g
+ \item[] \hspace{1cm} Large simult. eqn. models
+ \item[] \hspace{1cm} Dynamic Panel models
+ \vspace{10pt}
+\item[] \textbf{Paper focuses on 2-Step GMM with identified moments \& (almost) singular variance }
+\end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{Existing Literature}
+\begin{itemize}
+\item Identification Robust Inference with Singular Variance.\\
+(\textit{Andrews \& Cheng (2012,2013,2014), Andrews \& Guggenberer (2014), Grant (2015)}).
+    \vspace{14pt}
+
+ \item Maximum Likelihood Estimator with Singular Variance.\\
+  (\textit{Rotnitzky et al. (2000), Bottai (2003)})
+    \vspace{14pt}
+
+ \item 2-Step GMM with known singularities \\
+ (\textit{Penaranda \& Sentana (2008)})
+
+     \vspace{14pt}
+ \item[]\textbf{Properties of efficient GMM estimators with singular variance in general unknown.}
+
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+\frametitle{Main Contributions of paper}
+\begin{itemize}
+
+
+\item[] Asymptotics in linear identified models with (almost) singularity
+\vspace{14pt}
+\begin{enumerate}
+\item Eigenvalues/vectors of estimated optimal weight matrix
+\vspace{10pt}
+\item  2-Step (Efficient) GMM estimation in over-identified models
+\vspace{14pt}
+\item Over-identifying restrictions test (Hansen's J-Statistic)
+\end{enumerate}
+\vspace{14pt}
+\item[] \textbf{Eigenvalues close (or equal) to zero,2 -Step GMM converge at rate-n (in some directions)  to non-standard limit distribution}
+\vspace{14pt}
+\item[] Theoretical implications of common methods to remove singularities
+\vspace{14pt}
+\item[] Many examples provided and  key results verified in a simulation
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Empirical Methods to Remove Singularities}
+\begin{itemize}
+\vspace{10pt}
+\item[]Empirical Methods removing singularities often ad-hoc
+
+\end{itemize}
+\begin{enumerate}
+\item Regularisation (e.g Doran \& Schmidt (2007), Aguilary (2007))
+\vspace{10pt}
+\item Changing instrument/included variable set (e.g Bontempi \& Golinelli (2014))
+\vspace{10pt}
+ \item Addition of further  random shocks, common in linearised DSGE models with singularities (e.g Ruge-Murcia (2007))
+ \vspace{10pt}
+ \item Removing a priori known singularities (Penaranda \& Sentana (2008))
+\end{enumerate}
+\vspace{10pt}
+\begin{itemize}
+\pause
+\item[] Implications  for properties of 2-Step GMM/inference unknown
+\item[] \textbf{Overall main findings  of paper show 1-4 may..}
+\end{itemize}
+
+\begin{enumerate}
+\item[i] Reduce rate of convergence
+\item[ii] Increase asymptotic variance
+\item[iii] Dramatic change in  of distribution (non-normality to normality)
+
+\end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Overview of Talk}
+\begin{enumerate}
+
+\item Examples of Singular Variance/Simulation
+\vspace{10pt}
+\item Definition of Almost Singular Variance
+\vspace{10pt}
+\item Properties of 2-Step GMM with (almost) singular variance
+\vspace{10pt}
+\item Simulation of Ad hoc methods of removing singularities
+\vspace{10pt}
+\item Implications of results/ Conclusion
+\end{enumerate}
+\end{frame}
+
+
+
+\section{Examples of Singular Variance}
+
+
+
+
+\begin{frame}
+\frametitle{Example: Linear IV Simultaneous Equations with Conditional Heteroscedasticity}
+\begin{itemize}
+\item[] \begin{equation} \epsilon_{1}(\beta)= y_{1}-\beta_1 x_1 \qquad \epsilon_{2}(\beta)= y_{2}-\beta_2 x_2 \end{equation}
+\item[] \begin{equation*} \epsilon_1:=\epsilon_1(\beta_0) \qquad \epsilon_2:=\epsilon_2(\beta_0)\end{equation*}
+\item[]   $\qquad \beta:= ( \beta_1, \beta_2)$ , $\beta_0=(\beta_{01}, \beta_{02})$ with instruments $ z:=(z_{1}, z_{2})$
+
+ \item[] \begin{equation} \mathbb{E}\left[\epsilon_{1},\epsilon_{2}| z\right]=0\end{equation}
+
+\item[]\begin{equation}  g(\beta)= \left(\begin{array}{c} \epsilon_{1}(\beta) \\  \epsilon_{2}(\beta) \end{array}\right) \otimes \left(\begin{array}{c} z_1 \\ z_2 \end{array} \right)\end{equation}
+\vspace{8pt}
+\item[] E.g \textbf{IV-CAPM}  (Cochrane (1996), \textbf{Linear Factor Models} (Kadansky (1963), Doz \& Renault (2004), Kleibergen (2009)..)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+
+\item[] \begin{center} \framebox{ $\epsilon_{1}=\vartheta_1 z_{1}$  $\quad\epsilon_{2}=\vartheta_2 z_{2}$  (`level effects") }\end{center}
+\item[]  \begin{equation*}\mathbb{E}[\vartheta_1,\vartheta_2|z]=0, \quad E[\vartheta_1^2,\vartheta_2^2|z]=1, \quad   E[\vartheta_1\vartheta_2|z]=\rho\end{equation*}
+
+    \item[]\begin{equation} g(\beta_0)=\left(\begin{array}{c} \vartheta_{1}z_1 \\  \vartheta_{2}z_2 \end{array}\right) \otimes \left(\begin{array}{c} z_1 \\ z_2 \end{array} \right) \end{equation}
+    \item[] \begin{equation*} g_2(\beta_0)=\vartheta_1 z_1 z_2 \qquad g_3(\beta_0)=\vartheta_2 z_2z_1\end{equation*}
+    \item[] \begin{equation*} cor(g_2(\beta_0),g_3(\beta_0))= \frac{E[\vartheta_1\vartheta_2 (z_1 z_2)^2]}{E[(z_1 z_2)^2]}=\rho\end{equation*}
+
+    \item[] \framebox{$ |\rho|=1$ \textsc{exact singularity} $\quad|\rho|\approx1$ \textsc{almost singularity}}
+    \vspace{5pt}
+    \item[] Note $cov(\epsilon_1,\epsilon_2)=cov(\vartheta_1 z_1,\vartheta_2z_2)=E[\vartheta_1 \vartheta_2z_1z_2]=\rho E[z_1 z_2]$
+     \vspace{5pt}
+
+    \item[] \textbf{Residuals from regression may not be perfectly correlated}
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{ Strongly Identified 2-Step GMM Asymptotics }
+
+\begin{center} \framebox{\textsc{First Step GMM}} \end{center}
+\begin{equation*} \tilde{\beta}=\underset{\beta \in \mathbf{B}}{\arg \min} \hspace{4pt}n\hat{g}(\beta)'W_n\hat{g}(\beta)\qquad
+ W_n\overset{p}{\rightarrow} W \end{equation*}
+\vspace{1pt}
+\begin{equation*} n^{1/2}(\tilde{\beta}-\beta_0)\overset{d}{\rightarrow} N(0,(G'WG)^{-1}G'\Omega G (G'WG)^{-1})\end{equation*}
+\begin{itemize}
+\vspace{10pt}
+\item[] When $G=E[\frac{\partial}{\partial \beta } g_i(\beta_0)]$ is full column rank.
+\end{itemize}
+
+\vspace{10pt}
+\begin{center} \framebox{ \textsc{2-Step GMM} } \end{center}
+
+  \begin{equation*} \hat{\beta}=\underset{\beta \in \mathbf{B}}{\arg \min} \hspace{4pt} n\hat{g}(\beta)'\hat{\Omega}(\tilde{\beta})^{-1}\hat{g}(\beta)\end{equation*}
+
+\framebox{Non-standard asymptotics  with $W_n=\hat{\Omega}(\tilde{\beta})^{-1}$ if $\Omega$ (almost) singular}
+\end{frame}
+
+
+
+
+
+\section{Simulation}
+
+
+
+\begin{frame}
+\frametitle{Simulation: Linear IV Simultaneous Equations with Conditional Heteroscedasticity}
+\begin{equation*} y_{1}=  x_{1} + \epsilon_{1} \qquad y_{2}=0.5 x_2+ \epsilon_{2} \end{equation*}
+\begin{equation*} x_1 = z_2 +\eta_1 \qquad  x_2 =z_1+z_2 +\eta_2 \qquad z=(z_1,z_2)'\sim N(0,I_2)\end{equation*}
+
+\begin{equation*}\epsilon_1=\vartheta_1z_1, \quad \epsilon_2=\vartheta_2 z_2\end{equation*}
+\begin{equation*} \vartheta_{1}= \sqrt{\frac{1+\rho}{2}} \zeta_1 + \sqrt{\frac{1-\rho}{2}} \zeta_2, \quad\vartheta_2= \sqrt{\frac{1+\rho}{2}} \zeta_1 - \sqrt{\frac{1-\rho}{2}} \zeta_2\end{equation*}
+\begin{equation*} \textrm{such that} \quad \textrm{cor}(\vartheta_1,\vartheta_2|z)=\rho\end{equation*}
+\begin{equation*} (\zeta_1,\zeta_2,\eta_1, \eta_2)'|z \overset{i.i.d}{\sim} N(0_4, \Xi)\quad \Xi=\left(\begin{array}{cccc}  1 & 0 & 0.3 & 0 \\  0 & 1 & 0.5 & 0 \\ 0.3 & 0 &1 & 0 \\ 0 & 0.5 &0 & 1  \end{array} \right)\end{equation*}
+
+ $\hat{\beta}$ is  2-Step GMM ($W_n=\hat{\Omega}(\tilde{\beta})^{-1}$) where $\tilde{\beta}$ is GMM  with $W=I_2$
+
+\end{frame}
+
+
+\begin{frame}
+\begin{itemize}
+\item[] \item[]\begin{equation*}  g(\beta)= \left(\begin{array}{c} \epsilon_{1}(\beta) \\  \epsilon_{2}(\beta) \end{array}\right) \otimes \left(\begin{array}{c} z_1 \\ z_2 \end{array} \right) \qquad  g(\beta_0)=\left(\begin{array}{c} \vartheta_{1}z_1 \\  \vartheta_{2}z_2 \end{array}\right) \otimes \left(\begin{array}{c} z_1 \\ z_2 \end{array} \right) \end{equation*}
+\item[] \begin{equation*} cor(g_2(\beta_0),g_3(\beta_0))=\rho \end{equation*}
+   \vspace{10pt}
+\item[] \begin{equation*} \hat{V}=(\hat{G}'\hat{\Omega}(\tilde{\beta})^{-1}\hat{G})^{-1} \quad b^*=\hat{V}^{-1/2}(\hat{\beta}-\beta_0)\end{equation*}
+            \vspace{10pt}
+        \item[] \framebox{ $b_1=n^{1/2}(\hat{\beta}_1-1)$,$\quad b_2=n^{1/2}(\hat{\beta}_2-0.5)$}
+        \vspace{10pt}
+        \item[]\framebox{ $b_1^*=(1,0)b^*$, $\quad b_2^*=(0,1)b^*$}
+
+           \vspace{10pt}
+          \item[] Simulate densities of $b,b^*$ for  $n=\{100,1000,50000\}$  $\quad\rho=\{0.9,0.995,,0.9995, 0.99995,1\}$ $R=5000$
+
+ \end{itemize}
+ \end{frame}
+\begin{frame}
+
+ \begin{table}[ht]
+\begin{center}
+\tiny
+
+\begin{tabular}{|cc|cc|cc|}
+
+\hline
+& & \multicolumn{2}{c|}{\textbf{Efficiency}} & \multicolumn{2}{c|}{\textbf{Limit Distribution }}  \\
+
+& & \multicolumn{1}{c}{MAD($b_2$)}& \multicolumn{1}{c|}{MAD($b_1$)}
+ &   \multicolumn{1}{c}{Wald-Size(90\%)}
+                & \multicolumn{1}{c|}{Wald-Size (95\%)}
+\\ \hline
+
+  \multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering $N=100$}\end{sideways}}
+
+
+
+&\hspace{-0.8cm}$\rho=0.9$      &0.259  &0.071  &0.158 &0.100       \\  [0.18cm]
+&\hspace{-0.85cm}$\rho=0.995$   &0.249  &0.031   &0.132 &0.079      \\ [0.18cm]
+&\hspace{-0.6cm}$\rho=0.9995$   &0.250  &0.027   &0.147 &0.101       \\  [0.18cm]
+&\hspace{-0.40cm}$\rho=0.99995$ &0.247  &0.026   &0.160 &0.111        \\ [0.18cm]
+&\hspace{-1.0cm}$\rho=1 $       &0.250  &\textbf{0.025}   &0.172 &0.126        \\ [0.18cm]
+
+  \hline
+
+  \multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering $N=1000$}\end{sideways}}
+
+ &\hspace{-0.8cm} $\rho=0.9$         &0.264  &0.067   &0.103  &0.052    \\  [0.18cm]
+ &\hspace{-0.85cm} $\rho=0.995$      &0.257  &0.018   &0.083  &0.038   \\ [0.18cm]
+ &\hspace{-0.6cm} $\rho=0.9995$      &0.259  &0.009   &0.055  &0.026     \\  [0.18cm]
+ &\hspace{-0.40cm} $\rho=0.99995$    &0.262  &0.008   &0.047  &0.023       \\ [0.18cm]
+ &\hspace{-1.0cm} $\rho=1 $          &0.259  &\textbf{0.007}   &0.070  &0.046      \\ [0.18cm]
+  \hline
+
+  \multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering $N=50000$}\end{sideways}}
+
+  &\hspace{-0.8cm} $\rho=0.9$        &0.269  &0.0671 &0.104 &0.053       \\  [0.18cm]
+ &\hspace{-0.85cm} $\rho=0.995$      &0.259  &0.0158 &0.099 &0.047       \\ [0.18cm]
+ &\hspace{-0.6cm} $\rho=0.9995$      &0.262  &0.0051 &0.092 &0.042        \\  [0.18cm]
+ &\hspace{-0.40cm} $\rho=0.99995$    &0.255  &0.0019 &0.059 &0.026          \\ [0.18cm]
+ &\hspace{-1.0cm} $\rho=1 $          &0.260  &\textbf{0.0009 }&0.038 &0.017        \\ [0.18cm]
+
+  \hline
+
+\end{tabular} \end{center}
+\label{turns}
+\end{table}
+
+ \end{frame}
+
+
+\begin{frame}
+\frametitle{Density of $b_1^*$, $\rho=1$}
+
+\begin{figure}[H]
+  \includegraphics[scale=0.28]{sim1_b1}
+
+  \end{figure}
+  \end{frame}
+  \begin{frame}
+  \frametitle{Density of $b_2^*$, $\rho=1$}
+  \begin{figure}[H]
+    \includegraphics[scale=0.28]{sim1_b2}
+
+     \end{figure}
+     \end{frame}
+
+
+
+
+
+\section{Almost Singular Variance}
+
+
+\begin{frame}
+\frametitle{Almost Singular Variance Assumption}
+\begin{center}
+\framebox{\textsc{Almost Singular Variance}}
+\end{center}\begin{equation} \Omega_n(\beta)=P_+(\beta)\Lambda_+(\beta)P_+(\beta)'+P_0(\beta)\Lambda_{0n}(\beta)P_0(\beta)'\end{equation}
+\vspace{5pt}
+\begin{center}
+ $\Lambda_+(\beta)$ is full rank $(m-\bar{m}(\beta))\times (m-\bar{m}(\beta))$ \\
+
+ \vspace{10pt}
+  \framebox{$\Lambda_{0n}(\beta)=\frac{\Lambda_0(\beta)}{n^{\delta(\beta)}}$} $ \Lambda_0(\beta)$ is  $\bar{m}(\beta)\times \bar{m}(\beta)$ matrix\\
+   \vspace{10pt}
+Where $0<\delta(\beta)\leq 1$ . $0 \leq \bar{m}(\beta) \leq m$ $\forall \beta \in \mathbf{B}$.
+\end{center}
+\pause
+
+  \begin{itemize}
+  \vspace{5pt}
+  \item[]Define $\delta(\beta_0):=\delta$. Grant (2014) studies $0<\delta<1$  with $\Lambda_0$ full rank
+  \vspace{5pt}
+
+
+  \item[]\framebox{ This paper considers $\delta=1$}
+
+    \end{itemize}
+    \begin{enumerate}
+  \item[a] $\textrm{Rank}(\Lambda_0)<m$
+    \vspace{5pt}
+
+  \item[b] $\Lambda_0=0$ (exact singularity). \textbf{[Focus of this talk]}
+  \end{enumerate}
+  \end{frame}
+
+\section{GMM with (Almost) Singular Variance}
+
+\begin{frame}
+\frametitle{Assumptions}
+$w_i (i=1,..,n)$ \textit{is an i.i.d sequence}, $m<\infty$  and Linearity (for simplicity to highlight impact of singular variance)\\
+\vspace{10pt}
+\framebox{\textsc{Assumption 1 (A1)} : \textsc{Eigensystem  Asymptotics}}\\
+
+\textit{(i)} $|\!| \hat{\Omega}(\beta)-\hat{\Omega}(\beta^*)|\!|\leq \hat{M} |\!| \beta-\beta^*|\!| $ $\forall \beta,\beta^* \in \mathbf{B}$ \textit{for some} $\hat{M}=O_p(1)$\\
+\textit{(ii)}  $\mathbb{E}[|\!| g_i|\!|^4] <\infty$\\
+
+ \textit{(iii)} $\mathbb{E}[|\!| G_i|\!|^2] <\infty$\\
+
+ \textit{(iv)} $|\!|\Lambda_+|\!|\leq K$ for some $K<\infty$\\
+
+
+      \end{frame}
+
+
+\begin{frame}
+\frametitle{Eigensystem Asymptotics of $\hat{\Omega}(\tilde{\beta})$ for $\Lambda_0=0$}
+\begin{equation*} \Omega_+^*=P_+\Lambda_+^{-1}P_+' \qquad \sqrt{n}\hat{g}(\beta_0)\overset{d}{\rightarrow} Z_g \end{equation*}
+
+
+\textsc{Theorem 1} Eigen-sysytem Asymptotics
+
+\begin{equation}\label{poseigvec}  \hspace{1pt} \hat{P}_{+}(\tilde{\beta})\overset{p}{\rightarrow}P_{+} \end{equation}
+\begin{equation} \label{poseigval} \hspace{1pt} \hat{\Lambda}_{+}(\tilde{\beta})\overset{p}{\rightarrow}\Lambda_+\end{equation}
+\begin{equation}\label{negeigvec} \hspace{1pt}  n^{1/2}(\hat{P}_{0}(\tilde{\beta})-P_0)\overset{d}{\rightarrow}  \mathcal{W}_{P_0} \end{equation}
+\begin{equation} \hspace{1pt} n\hat{\Lambda}_0(\tilde{\beta})\overset{d}{\rightarrow} \mathcal{W}_{\Lambda_0}
+\end{equation}
+\vspace{5pt}
+\begin{equation*} \mathcal{W}_{\Lambda_0}:=P_0' \left(\Gamma(I_m\otimes Z_g\otimes Z_g)- \Theta'(I_m \otimes Z_{g})\Omega_+^*(I_{m}\otimes Z_{g}')\Theta\right)
+ P_0
+\end{equation*}
+\vspace{5pt}
+\begin{equation*} \mathcal{W}_{P_0}:=\Omega_+^*(I_{m}\otimes Z_{g}')\Theta P_0 \end{equation*}
+
+
+\end{frame}
+
+
+
+
+
+
+
+    \begin{frame}
+    \frametitle{Asymptotic Properties 2-Step GMM with Singular Variance}
+
+\begin{equation*}\left(\begin{array}{c}\sqrt{n}\hat{g} \\ \sqrt{n} \textrm{vec}(\hat{G}-G) \end{array}\right)\overset{d}{\rightarrow}  \left( \begin{array}{c}Z_g \\ Z_G \end{array}\right) \end{equation*}
+
+\begin{equation*} BG'P_0=\left(\begin{array}{c} G_{BP_0}^{\bar{p}} \\ 0_{(p-\bar{p})\times \bar{m}}\end{array}\right):=B_{GP_0} \end{equation*}
+
+ \begin{equation*} B'GP_+:=G_{BP_+} \end{equation*}
+
+
+ \begin{equation*} B_n=\left(\begin{array}{cc} n^{1/2}I_{\bar{p}} & 0\\ 0 & I_{p-\bar{p}}\end{array}\right)B^{-1}     \qquad \bar{B}=\lim_{n\rightarrow\infty} B_n^{-1}\end{equation*}
+
+\begin{equation*} \mathcal{C}:=\bar{B}'(Z_{G}^{*'}P_0+ G'\mathcal{W}_{P_0})\bar{B}+G_{BP_0} \end{equation*}
+
+
+\begin{equation*} \Phi= \bar{B}'G_{BP_+}\Lambda_+^{-1}G_{BP_+}'\bar{B}+\mathcal{C}\mathcal{W}_{\Lambda_0}^{-1}\mathcal{C}'\end{equation*}
+
+
+    \end{frame}
+    \begin{frame}
+    \framebox{\textsc{Assumption 2 (A2)} \textsc{ Identification Conditions}}\\
+(i)   $\textrm{Rank}(G)=p$ \\
+\vspace{10pt}
+ \framebox{\textsc{ Assumption 3 (A3)}:\textsc{ Regularity Conditions}}\\
+
+(i) $\mathcal{W}_{\Lambda_0}$ is full rank w.p.1, (ii) $\Phi$ is full rank w.p.1, (iii) $\beta_0 \in\textrm{int}( \mathbf{B})$, (iv) $\mathbf{B}$ is compact,
+
+
+\ \begin{center} \textsc{Theorem 2}  Under A1,A2,A3\end{center}
+  \begin{equation*} \label{consistency} \sqrt{n}(\hat{\beta}- \beta_0)= O_p(1) \end{equation*}
+
+  \begin{equation*}  \label{limit} \sqrt{n}B_n(\hat{\beta}- \beta_0)\overset{d}{\rightarrow} \Phi^{-1} \left(\bar{B}'G_{BP_+}\Lambda_+^{-1}G_{BP_+}'\bar{B}+
+  \mathcal{C}\mathcal{W}_{\Lambda_0}^{-1}\mathcal{W}_{P_0}'\right) Z_g\end{equation*}
+
+  \begin{equation*}  \label{limit}\hat{V}^{-\frac{1}{2}}(\hat{\beta}- \beta_0)\overset{d}{\rightarrow}\Phi^{-\frac{1}{2}} \left(\bar{B}'G_{BP_+}\Lambda_+^{-1}G_{BP_+}'\bar{B}+
+  \mathcal{C}\mathcal{W}_{\Lambda_0}^{-1}\mathcal{W}_{P_0}'\right) Z_g\end{equation*}
+
+    \end{frame}
+
+    \begin{frame}
+    \frametitle{Implications of Theorem 2}
+  \begin{itemize}
+  \item[]  $\Omega$ (almost)  singular  $\Rrightarrow$ GMM non-standard distribution
+  \item[]   Rate-$n$ convergence  related to $\bar{p}$ directions $G'P_{0j}\neq0$ ($\textrm{Rank}(G'P_0)=\bar{p}$)
+  \pause
+  \vspace{10pt}
+
+      \item[] $G'P_0=0$ is a non-trivial assumption.. leads to interesting question
+       \vspace{8pt}
+         \item[] Regularizing variance such that $\Omega$ full rank
+          \item[] $\Rrightarrow$ $\sqrt{n}(\hat{\beta}-\beta_0)\overset{d}{\rightarrow} N(0,(G'\Omega^{-1}G)^{-1})$
+          \vspace{9pt}
+      \item[]  2-Step GMM removing  even only `redundant" linear combinations of moments at/near $\beta_0$ of moments `less' efficient
+      \item[]\textbf{Lower convergence rate \& Higher asymptotic variance}
+
+
+      \pause
+
+          \vspace{9pt}
+      \item[] What is the efficient rate of convergence?
+      \item[] What is the efficient limiting variance?
+      \item[] More generally what is strong/weak identification?
+    \end{itemize}
+    \end{frame}
+    \begin{frame}
+    \frametitle{Issue with status-quo in the Literature}
+    \begin{itemize}
+
+    \item[] $\Omega$ (almost) singular  directions $P_0'\Omega P_0\approx0$ yield little information
+    \vspace{5pt}
+    \item[] e.g Doran \& Schmidt (2006) "\textit{GMM estimators with improved finite sample properties using principal components of the weighting matrix, with an application to the dynamic panel data model}" (JoE)
+    \vspace{8pt}
+
+    \item[] This (theoretically unfounded) logic warrants further attention..
+    \pause\vspace{5pt}
+\item[] $\delta'\Omega \delta=E[(\delta'g_i(\beta_0))^2]=0$ hence $\delta'g_i(\beta)=0$ w.p.1 at $\beta=\beta_0$
+
+  \pause\vspace{5pt}
+\item[] Removing $\delta'g_i(\beta)$ (e.g Penaranda \& Sentana (2008), Doran \& Schmidt (2007)) is not removing those directions with no/little information
+  \pause\vspace{5pt}
+\item[] Quite the opposite. Esp. in the PS (2008) case in overidentified setting where the singularity occurs under the null and is known
+  \pause\vspace{5pt}
+\item[] Rate of convergence depends on $\delta'G$.
+  \pause\vspace{5pt}
+\item[] $\delta'g_i(\beta_0)=0$ implies $\delta'g_i(\beta)=\delta'G_i(\beta-\beta_0)$
+
+
+    \end{itemize}
+    \end{frame}
+
+
+
+
+
+    \section{ Ad-hoc Empirical Methods Removing Moment Singularities}
+  \begin{frame}
+  \frametitle{Stochastic Singularity in DSGE Models}
+  \begin{itemize}
+
+
+  \item[]\textbf{Linearised DSGE may generate predictions of more observable variables than exogenous shocks are specified in
+the model leading to (almost) singularities }(e.g Ruge- Murcia (2007))
+  \vspace{10pt}
+\item[] Addition of random noise to  $g(\beta)$ can eradicate singular variance
+   \vspace{10pt}
+
+  \item[] e.g $g^*(\beta)=g(\beta)+s\tau$ where $\tau\overset{i.i.d}{\sim} N(0,I)$
+   \vspace{10pt}
+  \item[] $\Rrightarrow $ $E[g^*(\beta_0)g^*(\beta_0)']=\Omega+s^2I$
+  \vspace{10pt}
+  \item[] Known as `Stochastic Singularity' in DSGE Literature
+
+
+  \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+  \frametitle{Simulation 2: Stochastic Singularity }
+  \begin{itemize}
+  \item[] Earlier example   \item[]\begin{equation*}  g(\beta)= \left(\begin{array}{c} \epsilon_{1}(\beta) \\  \epsilon_{2}(\beta) \end{array}\right) \otimes \left(\begin{array}{c} z_1 \\ z_2 \end{array} \right) \qquad g(\beta_0)=\left(\begin{array}{c} \vartheta_{1}z_1 \\  \vartheta_{2}z_2 \end{array}\right) \otimes \left(\begin{array}{c} z_1 \\ z_2 \end{array} \right) \end{equation*}
+      \item[] \begin{equation*} cor(g_2(\beta_0),g_3(\beta_0))=\rho \end{equation*}
+
+      \begin{equation}  g^*(\beta)= \left(\begin{array}{c} \epsilon_{1}(\beta) \\  \epsilon_{2}(\beta) \end{array}+s \tau \right) \otimes \left(\begin{array}{c} z_1 \\ z_2 \end{array} \right)\end{equation}
+ \item[] \begin{equation*} cor(g_2^*(\beta_0),g_3^*(\beta_0))=\rho/1+s^2 \end{equation*}
+      \item[]\begin{equation*} \Omega^*=\Omega+s^2 I \end{equation*}
+    \item[]  Simulate  density of $n^{1/2}(\hat{\beta}^*-\beta_0)$ , $R=5000$, $n=\{100,1000,50000\}$ $s=\{\sqrt{0.1},\sqrt{0.5}\}$ (Sim 2a and 2b resp.)
+
+
+    \end{itemize}
+    \end{frame}
+
+
+\begin{frame}
+\frametitle{Simulation Results (Removing Singularity) $\rho=1$}
+ \begin{table}[H]
+\begin{center}
+\tiny
+
+\begin{tabular}{|cc|cc|ccc|}
+
+\hline
+& & \multicolumn{2}{c|}{\textbf{Efficiency}} & \multicolumn{3}{c|}{\textbf{Limit Distribution }}  \\
+
+& & \multicolumn{1}{c}{Var($b_1$)}& \multicolumn{1}{c|}{Var($b_2$)}
+  & \multicolumn{1}{c}{Wald-Size(90\%)}
+                & \multicolumn{1}{c}{Wald-Size (95\%)}      & \multicolumn{1}{c|}{Wald-Size(99\%)}
+\\ \hline
+
+  \multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering Sim 1}\end{sideways}}
+
+
+
+&\hspace{-0.7cm}$ n=500$   & 1.40$*10^{-2}$&1.18  &0.230 &   0.176   & 0.102      \\  [0.18cm]
+&\hspace{-0.7cm}$n=5000$   & 1.27$*10^{-3}$&1.25  &0.223 &   0.168   & 0.088     \\ [0.18cm]
+&\hspace{-0.5cm}$n=50000$  & 1.18$*10^{-4}$&1.17  &0.222 &   0.151   & 0.079      \\  [0.18cm]
+&\hspace{-0.30cm}$n=500000$& 1.15$*10^{-5}$&1.15  &0.219 &   0.163   & 0.081       \\ [0.18cm]
+
+
+  \hline
+
+
+
+
+
+
+
+
+  \multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering Sim 2(a) }\end{sideways}}
+
+&\hspace{-0.7cm}$ n=500$      &0.289 &1.23  &0.141  & 0.065    &0.016    \\  [0.18cm]
+&\hspace{-0.7cm}$n=5000$      &0.256 &1.29  &0.125  & 0.053    &0.017   \\ [0.18cm]
+&\hspace{-0.5cm}$n=50000$     &0.269 &1.31  &0.114  & 0.070    & 0.019   \\  [0.18cm]
+&\hspace{-0.30cm}$n=500000$   &0.257 &1.16  &0.121  & 0.054    & 0.018    \\ [0.18cm]
+
+
+
+  \multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering Sim 2(b)}\end{sideways}}
+
+&\hspace{-0.7cm}$ n=500$      &0.807 &1.52  &0.121  & 0.066    & 0.014   \\  [0.18cm]
+&\hspace{-0.65cm}$n=5000$     &0.855  &1.54  &0.132  & 0.075    & 0.021  \\ [0.18cm]
+&\hspace{-0.5cm}$n=50000$     &0.816  & 1.48 &0.116  & 0.07     & 0.022   \\  [0.18cm]
+&\hspace{-0.30cm}$n=500000$   &0.779  &1.57  &0.12   &0.062     & 0.015    \\ [0.18cm]
+
+\hline
+
+
+  \multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering Sim 3}\end{sideways}}
+
+&\hspace{-0.7cm}$ n=500$      &1.57 &1.32  &0.114  &0.062    &0.014    \\  [0.18cm]
+&\hspace{-0.7cm}$n=5000$      &1.39 &1.34  &0.082  &0.040    &0.011   \\ [0.18cm]
+&\hspace{-0.5cm}$n=50000$     &1.53 &1.36  &0.096  &0.049    &0.008    \\  [0.18cm]
+&\hspace{-0.30cm}$n=500000$   &1.52 &1.34  &0.098  &0.054    &0.013     \\ [0.18cm]
+
+
+  \hline
+
+\end{tabular} \end{center}
+\end{table}
+\end{frame}
+
+
+\begin{frame}
+\begin{figure}[H]
+  \includegraphics[scale=0.28]{sim1_b1}
+ \caption{ Simulation 1: Density of $b_1^*$}
+  \end{figure}
+  \end{frame}
+
+\begin{frame}
+\begin{figure}[H]
+  \includegraphics[scale=0.15]{sim2_01_new}
+  \caption{ Simulation 2(a): Density of $b_1^*$ $s=\sqrt{0.1}$}
+  \end{figure} \begin{figure}[H]
+  \includegraphics[scale=0.15]{sim2_s05}
+  \caption{ Simulation 2(b): Density of $b_1^*$ $s=\sqrt{0.5}$}
+  \end{figure}
+
+\end{frame}
+
+
+\section{Conclusion}
+
+\begin{frame}
+\frametitle{Main Findings Recap}
+\begin{itemize}
+\item[] Strongly identified Efficient GMM with (almost) Singular Variance
+\end{itemize}
+\begin{enumerate}
+ \item Non-standard asymptotic distribution
+ \item Closer $\Omega$ to singular poorer the normal approx. of small sample distn.
+ \item Increased rate of convergence when $\textrm{Null}(\Omega) \nsubseteq \textrm{Null}(GG')$
+ \item Lower asymptotic variance
+ \end{enumerate}
+ \begin{itemize}
+ \pause
+ \item Logic that removing singularities by a regularisation yields improved estimation needs further analysis
+
+ \item[]\textbf{Removing singularities justifies the  normal approx. to GMM}
+
+ \item[] \textbf{Though may $\downarrow$ rate of  convergence \& $\uparrow$ asy. variance!}
+ \vspace{5pt}
+ \item[] ..even  only removing moments combinations of moments in directions s.t $\delta'\Omega\approx 0$
+
+\end{itemize}
+
+\end{frame}
+
+
+
+ \begin{frame}
+\frametitle{Implications for Empirical Research}
+\begin{itemize}
+
+\item[] \textbf{Ad hoc removal of singularities may lead to drastic change in properties of estimator}
+\vspace{10pt}
+\item[] Estimator highly sensitive to the transformation and  cause of sing. variance
+\vspace{10pt}
+\item[]  Sensitivity to small change of insts./variables seen as misspecification and/or identification failure
+
+\vspace{10pt}
+\item[] Preferable to use GMM with inference based on Theorem 2 robust to singularities (in strong identified case at least)
+
+\end{itemize}
+\end{frame}
+
+
+
+
+
+\end{document} 

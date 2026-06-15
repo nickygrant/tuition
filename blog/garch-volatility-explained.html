@@ -1,29 +1,213 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<link rel="icon" type="image/svg+xml" href="../favicon.svg"/><link rel="icon" href="../favicon.svg"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>GARCH Models Explained. Volatility Clustering in Financial Returns | Dr Nicky Grant</title>
-<meta name="description" content="A clear, rigorous guide to ARCH and GARCH models for volatility in financial econometrics. Covers GARCH(1,1), EGARCH, stationarity, MLE estimation and why GARCH matters for risk and asset pricing. By Dr Nicky Grant (EC5609, St Andrews)."/>
-<link rel="canonical" href="https://www.drnickygrant.com/blog/garch-volatility-explained.html"/>
-<meta property="og:type" content="article"/>
-<meta name="last-modified" content="2026-06-14"/>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
-  {"@type":"Article","headline":"GARCH Models Explained: Volatility Clustering in Financial Returns","url":"https://www.drnickygrant.com/blog/garch-volatility-explained.html","datePublished":"2026-06-14","dateModified":"2026-06-14","author":{"@id":"https://www.drnickygrant.com/#person"},"publisher":{"@type":"Person","name":"Dr Nicky Grant","url":"https://www.drnickygrant.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.drnickygrant.com/blog/garch-volatility-explained.html"},"description":"A rigorous guide to GARCH models for financial econometrics. ARCH, GARCH(1,1), EGARCH, stationarity conditions, and MLE estimation.","keywords":["GARCH","ARCH","volatility clustering","financial econometrics","conditional heteroskedasticity","EGARCH","TARCH","risk modelling"],"wordCount":2600,"articleSection":"Financial Econometrics"},
-  {"@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.drnickygrant.com/"},
-    {"@type":"ListItem","position":2,"name":"Resources","item":"https://www.drnickygrant.com/blog.html"},
-    {"@type":"ListItem","position":3,"name":"GARCH Models Explained","item":"https://www.drnickygrant.com/blog/garch-volatility-explained.html"}
-  ]}
-]}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap"/>
-<link rel="stylesheet" href="../css/main.css"/>
-<link rel="stylesheet" href="../css/polish.css"/>
+<meta charset="utf-8"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/><link href="../favicon.svg" rel="icon"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
+<meta content="Dr Nicky Grant" name="author"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>GARCH Models Explained | Financial Econometrics &amp; Volatility</title>
+<meta content="ARCH and GARCH volatility models explained for financial econometrics: volatility clustering, GARCH(1,1), persistence, MLE and forecasting." name="description"/>
+<link href="https://www.drnickygrant.com/blog/garch-volatility-explained.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="2026-06-14" name="last-modified"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.drnickygrant.com/#website",
+      "url": "https://www.drnickygrant.com/",
+      "name": "Dr Nicky Grant | Economics, Econometrics and Maths Tutor",
+      "description": "Specialist online tuition in economics, econometrics, mathematics, statistics, finance, TMUA and Oxbridge economics applications, supported by verifiable Cambridge credentials, teaching materials and research evidence.",
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.drnickygrant.com/#person",
+      "name": "Dr Nicky Grant",
+      "alternateName": [
+        "Nicky Grant",
+        "Nicky L. Grant",
+        "Nicky Lee Grant"
+      ],
+      "honorificPrefix": "Dr",
+      "givenName": "Nicky",
+      "familyName": "Grant",
+      "url": "https://www.drnickygrant.com/",
+      "image": "https://www.drnickygrant.com/img/nicky-grant-headshot.webp",
+      "email": "nicky.L.grant@gmail.com",
+      "telephone": "+447393352331",
+      "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor",
+      "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0008-8979-4623",
+          "url": "https://orcid.org/0009-0008-8979-4623"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Semantic Scholar",
+          "value": "97839351",
+          "url": "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Cambridge",
+        "sameAs": "https://www.cam.ac.uk/"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "PhD in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "MPhil in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BA in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        }
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "CeMMAP, Centre for Microdata Methods and Practice",
+        "sameAs": "https://cemmap.ac.uk/"
+      },
+      "knowsAbout": [
+        "economics tuition",
+        "econometrics tuition",
+        "A Level Mathematics",
+        "Further Mathematics",
+        "A Level Economics",
+        "TMUA preparation",
+        "Oxbridge Economics applications",
+        "statistics",
+        "financial econometrics",
+        "time series econometrics",
+        "GMM",
+        "instrumental variables",
+        "panel data",
+        "PhD econometrics"
+      ],
+      "sameAs": [
+        "https://orcid.org/0009-0008-8979-4623",
+        "https://www.linkedin.com/in/nicky-lee-grant/",
+        "https://cemmap.ac.uk/person/nicky-l-grant/",
+        "https://research-portal.st-andrews.ac.uk/en/persons/nicky-lee-grant",
+        "https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/",
+        "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351",
+        "https://www.youtube.com/@economaths",
+        "https://independent.academia.edu/NickyGrant"
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/garch-volatility-explained.html#page",
+      "url": "https://www.drnickygrant.com/blog/garch-volatility-explained.html",
+      "name": "GARCH models: volatility clustering explained",
+      "isPartOf": {
+        "@id": "https://www.drnickygrant.com/#website"
+      },
+      "about": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB",
+      "description": "A clear, rigorous guide to ARCH and GARCH models for volatility in financial econometrics. Covers GARCH(1,1), EGARCH, stationarity, MLE estimation and why.",
+      "relatedLink": [
+        "https://www.drnickygrant.com/financial-econometrics-tutor.html",
+        "https://www.drnickygrant.com/finance-tutor.html",
+        "https://www.drnickygrant.com/econometrics-tutor.html"
+      ],
+      "abstract": "GARCH models describe time-varying volatility, especially in financial returns. This guide links volatility clustering, persistence, maximum likelihood and forecasting to financial econometrics and finance tutoring."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.drnickygrant.com/blog/garch-volatility-explained.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.drnickygrant.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://www.drnickygrant.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Garch Volatility Explained",
+          "item": "https://www.drnickygrant.com/blog/garch-volatility-explained.html"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/garch-volatility-explained.html#article",
+      "headline": "GARCH models: volatility clustering explained",
+      "url": "https://www.drnickygrant.com/blog/garch-volatility-explained.html",
+      "author": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.drnickygrant.com/blog/garch-volatility-explained.html#page"
+      },
+      "dateModified": "2026-06-14",
+      "inLanguage": "en-GB",
+      "relatedLink": [
+        "https://www.drnickygrant.com/financial-econometrics-tutor.html",
+        "https://www.drnickygrant.com/finance-tutor.html",
+        "https://www.drnickygrant.com/econometrics-tutor.html"
+      ],
+      "abstract": "GARCH models describe time-varying volatility, especially in financial returns. This guide links volatility clustering, persistence, maximum likelihood and forecasting to financial econometrics and finance tutoring."
+    }
+  ]
+}</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../css/main.css" rel="stylesheet"/>
+<link href="../css/polish.css" rel="stylesheet"/>
 <style>
 .art{max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) clamp(3rem,8vw,6rem)}
 .art-hero{padding:clamp(6rem,14vw,9rem) clamp(1rem,4vw,2.5rem) clamp(2rem,5vw,3.5rem);border-bottom:1px solid rgba(248,242,232,.085)}
@@ -52,245 +236,194 @@ p{font-size:clamp(.93rem,1.6vw,1rem);font-weight:300;color:rgba(248,242,232,.78)
 .math-block{font-family:'Georgia','Times New Roman',serif;font-size:.91rem;letter-spacing:.01em;}
 code{font-family:'KaTeX_Math','STIX Two Math','Latin Modern Math',Georgia,serif;}
 </style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"/>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
 </head>
 <body>
-<a href="#main" class="skip-link">Skip to main content</a>
-<nav id="nav" aria-label="Main navigation">
-  <div class="nav-inner">
-    <a href="../index.html" class="nav-logo">Dr Nicky <span>Grant</span></a>
-    <ul class="nav-links" role="list">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../services.html">Subjects</a></li>
-      <li><a href="../oxbridge-economics-tutor.html">Applications</a></li>
-      <li><a href="../blog.html" class="on" aria-current="page">Resources</a></li>
-      <li><a href="../credentials.html">Credentials</a></li>
-      <li><a href="../pricing.html">Pricing</a></li>
-    </ul>
-    <a href="../index.html#contact" class="nav-cta">Book consultation</a>
-    <button class="nav-burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobNav" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
-  </div>
-  <div class="mob-nav" id="mobNav"><a href="../index.html">Home</a><a href="../services.html">Subjects</a><a href="../oxbridge-economics-tutor.html">Applications</a><a href="../blog.html" class="on">Resources</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
-</nav>
-
-<div class="art-hero">
-  <div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
-    <span class="eyebrow">Financial econometrics · Volatility modelling</span>
-    <h1>GARCH models:<br/><em>volatility clustering explained</em></h1>
-    <p class="lede">Stock returns are close to unpredictable in level. But their volatility, the size of moves, is predictable. Large moves cluster together. This is the empirical fact that GARCH models capture, and it is fundamental to option pricing, risk management, and portfolio construction.</p>
-    <div class="art-meta"><span>Dr Nicky Grant · Cambridge PhD</span><span>EC5609 Financial Econometrics</span><span>St Andrews MSc</span><span>~2,600 words</span></div>
-  </div>
+<a class="skip-link" href="#main">Skip to main content</a>
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a aria-label="Dr Nicky Grant home" class="nav-logo" href="../index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list">
+<li><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
+<li><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a></li>
+<li><a href="../blog.html">Resources</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../pricing.html">Pricing</a></li>
+</ul>
+<a class="nav-cta" href="../index.html#contact">Book consultation</a>
+<button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
 </div>
-
-<main id="main" class="art">
-
-<div class="answer-capsule" role="note"><p>GARCH (Generalised Autoregressive Conditional Heteroskedasticity) models time-varying volatility in financial returns. The GARCH(1,1) model specifies the conditional variance as h_t = ω + α·ε_{t-1}² + β·h_{t-1}. Stationarity requires α + β &lt; 1. GARCH captures volatility clustering, the fact that large price moves tend to follow large moves. EGARCH and TARCH extend this to capture asymmetric effects (the leverage effect). All are estimated by maximum likelihood.</p></div>
-
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+</nav>
+<div class="art-hero">
+<div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
+<span class="eyebrow">Financial econometrics · Volatility modelling</span>
+<h1>GARCH models:<br/><em>volatility clustering explained</em></h1>
+<p class="lede">Stock returns are close to unpredictable in level. But their volatility, the size of moves, is predictable. Large moves cluster together. This is the empirical fact that GARCH models capture, and it is fundamental to option pricing, risk management, and portfolio construction.</p>
+<div class="art-meta"><span>Dr Nicky Grant · Cambridge academic background</span><span>EC5609 Financial Econometrics</span><span>St Andrews MSc</span><span>~2,600 words</span></div>
+</div>
+</div>
+<main class="art" id="main">
+<div aria-label="Quick answer" class="answer-capsule" data-chunk="LM-answer-capsule" role="note"><p>GARCH models describe time-varying volatility, especially in financial returns. This guide links volatility clustering, persistence, maximum likelihood and forecasting to financial econometrics and finance tutoring.</p></div><div class="study-note-box" data-chunk="UXDE-study-note-cta"><h2>Using GARCH or volatility models?</h2><p>Send the module topic list, return series context and output if available. The diagnostic can focus on volatility clustering, ARCH/GARCH intuition or interpretation.</p><p><a class="btn btn-fill" href="../university-postgraduate-tutoring.html">View University &amp; Postgraduate support</a> <a class="btn btn-line" href="../index.html#contact">Send an enquiry</a></p></div>
 <h2>The starting point: properties of financial returns</h2>
-
 <p>Consider the log return on a stock or index: r<sub>t</sub> = log(P<sub>t</sub>) − log(P<sub>t-1</sub>). Several empirical properties of financial return data are robustly documented across markets and time periods:</p>
-
 <p><strong>Near-zero autocorrelation in levels.</strong> The ACF of daily or weekly returns is close to zero at all lags. Returns are hard to forecast, roughly consistent with market efficiency. If you try to predict tomorrow's return from today's, the correlation is small (though not exactly zero, momentum effects exist, particularly at monthly frequency).</p>
-
 <p><strong>Significant autocorrelation in squared returns.</strong> The ACF of r<sub>t</sub>² is significantly positive at many lags. This is the signature of volatility clustering: periods of large returns (in either direction) tend to be followed by periods of large returns. Calm periods follow calm periods.</p>
-
 <p><strong>Fat tails (leptokurtosis).</strong> The distribution of returns has heavier tails than a normal distribution, extreme moves occur more often than normality would predict. The excess kurtosis (fourth standardised central moment minus 3) is positive for most financial return series.</p>
-
 <p><strong>Asymmetric response to shocks.</strong> Negative returns tend to increase volatility more than positive returns of the same magnitude. This is called the <em>leverage effect</em>, declining stock prices increase a firm's debt-to-equity ratio, increasing financial risk and hence volatility.</p>
-
 <p>The basic ARMA framework captures the first property well but has nothing to say about the second, third or fourth. We need models for the <em>conditional variance</em>, how the variance of tomorrow's return depends on today's information.</p>
-
 <!-- Volatility clustering illustration -->
 <div class="fig-wrap">
-  <span class="fig-label">Illustration, volatility clustering in financial returns</span>
-  <svg viewBox="0 0 600 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stylised illustration of volatility clustering in financial returns">
-    <rect width="600" height="140" fill="none"/>
-    <line x1="20" y1="70" x2="585" y2="70" stroke="rgba(248,242,232,.15)" stroke-width="0.8"/>
-    <text x="12" y="73" fill="rgba(248,242,232,.3)" font-size="7">0</text>
-    <!-- Low volatility period (left): small returns -->
-    <line x1="40" y1="70" x2="40" y2="62" stroke="rgba(211,163,91,.7)" stroke-width="1.8"/>
-    <line x1="55" y1="70" x2="55" y2="74" stroke="rgba(100,180,255,.6)" stroke-width="1.8"/>
-    <line x1="70" y1="70" x2="70" y2="66" stroke="rgba(211,163,91,.6)" stroke-width="1.8"/>
-    <line x1="85" y1="70" x2="85" y2="73" stroke="rgba(100,180,255,.55)" stroke-width="1.8"/>
-    <line x1="100" y1="70" x2="100" y2="68" stroke="rgba(211,163,91,.55)" stroke-width="1.8"/>
-    <line x1="115" y1="70" x2="115" y2="72" stroke="rgba(100,180,255,.5)" stroke-width="1.8"/>
-    <line x1="130" y1="70" x2="130" y2="67" stroke="rgba(211,163,91,.5)" stroke-width="1.8"/>
-    <line x1="145" y1="70" x2="145" y2="73" stroke="rgba(100,180,255,.5)" stroke-width="1.8"/>
-    <!-- High volatility period (middle): large returns -->
-    <line x1="180" y1="70" x2="180" y2="34" stroke="rgba(211,163,91,.95)" stroke-width="3"/>
-    <line x1="198" y1="70" x2="198" y2="103" stroke="rgba(100,180,255,.9)" stroke-width="3"/>
-    <line x1="216" y1="70" x2="216" y2="26" stroke="rgba(211,163,91,.95)" stroke-width="3"/>
-    <line x1="234" y1="70" x2="234" y2="107" stroke="rgba(100,180,255,.9)" stroke-width="3"/>
-    <line x1="252" y1="70" x2="252" y2="30" stroke="rgba(211,163,91,.9)" stroke-width="3"/>
-    <line x1="270" y1="70" x2="270" y2="110" stroke="rgba(100,180,255,.85)" stroke-width="3"/>
-    <line x1="288" y1="70" x2="288" y2="35" stroke="rgba(211,163,91,.85)" stroke-width="3"/>
-    <line x1="306" y1="70" x2="306" y2="100" stroke="rgba(100,180,255,.8)" stroke-width="3"/>
-    <!-- Moderate volatility (right of middle): settling down -->
-    <line x1="340" y1="70" x2="340" y2="55" stroke="rgba(211,163,91,.75)" stroke-width="2.2"/>
-    <line x1="358" y1="70" x2="358" y2="82" stroke="rgba(100,180,255,.7)" stroke-width="2.2"/>
-    <line x1="376" y1="70" x2="376" y2="58" stroke="rgba(211,163,91,.7)" stroke-width="2.2"/>
-    <line x1="394" y1="70" x2="394" y2="80" stroke="rgba(100,180,255,.65)" stroke-width="2.2"/>
-    <!-- Low volatility again (far right) -->
-    <line x1="430" y1="70" x2="430" y2="65" stroke="rgba(211,163,91,.55)" stroke-width="1.8"/>
-    <line x1="448" y1="70" x2="448" y2="74" stroke="rgba(100,180,255,.5)" stroke-width="1.8"/>
-    <line x1="466" y1="70" x2="466" y2="67" stroke="rgba(211,163,91,.5)" stroke-width="1.8"/>
-    <line x1="484" y1="70" x2="484" y2="72" stroke="rgba(100,180,255,.45)" stroke-width="1.8"/>
-    <line x1="502" y1="70" x2="502" y2="66" stroke="rgba(211,163,91,.45)" stroke-width="1.8"/>
-    <line x1="520" y1="70" x2="520" y2="73" stroke="rgba(100,180,255,.4)" stroke-width="1.8"/>
-    <line x1="538" y1="70" x2="538" y2="68" stroke="rgba(211,163,91,.4)" stroke-width="1.8"/>
-    <!-- Labels -->
-    <text x="92" y="130" text-anchor="middle" fill="rgba(248,242,232,.4)" font-size="8">Low volatility</text>
-    <text x="243" y="130" text-anchor="middle" fill="rgba(248,242,232,.55)" font-size="8">High volatility cluster</text>
-    <text x="484" y="130" text-anchor="middle" fill="rgba(248,242,232,.4)" font-size="8">Low volatility</text>
-    <!-- Time arrow -->
-    <line x1="25" y1="125" x2="575" y2="125" stroke="rgba(248,242,232,.15)" stroke-width="0.8"/>
-    <polygon points="575,122 582,125 575,128" fill="rgba(248,242,232,.15)"/>
-    <text x="300" y="140" text-anchor="middle" fill="rgba(248,242,232,.2)" font-size="7">time t</text>
-  </svg>
-  <div class="fig-caption">Stylised illustration of volatility clustering. Returns (copper = positive, blue = negative) are small in calm periods and large during turbulent periods. Large moves cluster together, a characteristic of financial return data captured by ARCH and GARCH models.</div>
+<span class="fig-label">Illustration, volatility clustering in financial returns</span>
+<svg aria-label="Stylised illustration of volatility clustering in financial returns" role="img" viewbox="0 0 600 140" xmlns="http://www.w3.org/2000/svg">
+<rect fill="none" height="140" width="600"></rect>
+<line stroke="rgba(248,242,232,.15)" stroke-width="0.8" x1="20" x2="585" y1="70" y2="70"></line>
+<text fill="rgba(248,242,232,.3)" font-size="7" x="12" y="73">0</text>
+<!-- Low volatility period (left): small returns -->
+<line stroke="rgba(211,163,91,.7)" stroke-width="1.8" x1="40" x2="40" y1="70" y2="62"></line>
+<line stroke="rgba(100,180,255,.6)" stroke-width="1.8" x1="55" x2="55" y1="70" y2="74"></line>
+<line stroke="rgba(211,163,91,.6)" stroke-width="1.8" x1="70" x2="70" y1="70" y2="66"></line>
+<line stroke="rgba(100,180,255,.55)" stroke-width="1.8" x1="85" x2="85" y1="70" y2="73"></line>
+<line stroke="rgba(211,163,91,.55)" stroke-width="1.8" x1="100" x2="100" y1="70" y2="68"></line>
+<line stroke="rgba(100,180,255,.5)" stroke-width="1.8" x1="115" x2="115" y1="70" y2="72"></line>
+<line stroke="rgba(211,163,91,.5)" stroke-width="1.8" x1="130" x2="130" y1="70" y2="67"></line>
+<line stroke="rgba(100,180,255,.5)" stroke-width="1.8" x1="145" x2="145" y1="70" y2="73"></line>
+<!-- High volatility period (middle): large returns -->
+<line stroke="rgba(211,163,91,.95)" stroke-width="3" x1="180" x2="180" y1="70" y2="34"></line>
+<line stroke="rgba(100,180,255,.9)" stroke-width="3" x1="198" x2="198" y1="70" y2="103"></line>
+<line stroke="rgba(211,163,91,.95)" stroke-width="3" x1="216" x2="216" y1="70" y2="26"></line>
+<line stroke="rgba(100,180,255,.9)" stroke-width="3" x1="234" x2="234" y1="70" y2="107"></line>
+<line stroke="rgba(211,163,91,.9)" stroke-width="3" x1="252" x2="252" y1="70" y2="30"></line>
+<line stroke="rgba(100,180,255,.85)" stroke-width="3" x1="270" x2="270" y1="70" y2="110"></line>
+<line stroke="rgba(211,163,91,.85)" stroke-width="3" x1="288" x2="288" y1="70" y2="35"></line>
+<line stroke="rgba(100,180,255,.8)" stroke-width="3" x1="306" x2="306" y1="70" y2="100"></line>
+<!-- Moderate volatility (right of middle): settling down -->
+<line stroke="rgba(211,163,91,.75)" stroke-width="2.2" x1="340" x2="340" y1="70" y2="55"></line>
+<line stroke="rgba(100,180,255,.7)" stroke-width="2.2" x1="358" x2="358" y1="70" y2="82"></line>
+<line stroke="rgba(211,163,91,.7)" stroke-width="2.2" x1="376" x2="376" y1="70" y2="58"></line>
+<line stroke="rgba(100,180,255,.65)" stroke-width="2.2" x1="394" x2="394" y1="70" y2="80"></line>
+<!-- Low volatility again (far right) -->
+<line stroke="rgba(211,163,91,.55)" stroke-width="1.8" x1="430" x2="430" y1="70" y2="65"></line>
+<line stroke="rgba(100,180,255,.5)" stroke-width="1.8" x1="448" x2="448" y1="70" y2="74"></line>
+<line stroke="rgba(211,163,91,.5)" stroke-width="1.8" x1="466" x2="466" y1="70" y2="67"></line>
+<line stroke="rgba(100,180,255,.45)" stroke-width="1.8" x1="484" x2="484" y1="70" y2="72"></line>
+<line stroke="rgba(211,163,91,.45)" stroke-width="1.8" x1="502" x2="502" y1="70" y2="66"></line>
+<line stroke="rgba(100,180,255,.4)" stroke-width="1.8" x1="520" x2="520" y1="70" y2="73"></line>
+<line stroke="rgba(211,163,91,.4)" stroke-width="1.8" x1="538" x2="538" y1="70" y2="68"></line>
+<!-- Labels -->
+<text fill="rgba(248,242,232,.4)" font-size="8" text-anchor="middle" x="92" y="130">Low volatility</text>
+<text fill="rgba(248,242,232,.55)" font-size="8" text-anchor="middle" x="243" y="130">High volatility cluster</text>
+<text fill="rgba(248,242,232,.4)" font-size="8" text-anchor="middle" x="484" y="130">Low volatility</text>
+<!-- Time arrow -->
+<line stroke="rgba(248,242,232,.15)" stroke-width="0.8" x1="25" x2="575" y1="125" y2="125"></line>
+<polygon fill="rgba(248,242,232,.15)" points="575,122 582,125 575,128"></polygon>
+<text fill="rgba(248,242,232,.2)" font-size="7" text-anchor="middle" x="300" y="140">time t</text>
+</svg>
+<div class="fig-caption">Stylised illustration of volatility clustering. Returns (copper = positive, blue = negative) are small in calm periods and large during turbulent periods. Large moves cluster together, a characteristic of financial return data captured by ARCH and GARCH models.</div>
 </div>
-
 <h2>ARCH: the first model for conditional variance</h2>
-
 <p>Robert Engle (Nobel Prize in Economics, 2003) introduced the ARCH (Autoregressive Conditional Heteroskedasticity) model in 1982. The key idea is to let the variance of the return at time t depend on past squared errors.</p>
-
 <p>Write the return as R<sub>t</sub> = μ<sub>t</sub> + u<sub>t</sub>, where μ<sub>t</sub> is the conditional mean (which could be a constant, or an ARMA model) and u<sub>t</sub> is the shock. Given information I<sub>t-1</sub> available at time t−1:</p>
-
 <div class="def">
-  <span class="def-label">ARCH(q) model</span>
-  <p>u<sub>t</sub> | I<sub>t-1</sub> ~ N(0, h<sub>t</sub>)</p>
-  <p style="margin-top:.5rem">h<sub>t</sub> = ω + α<sub>1</sub>u<sub>t-1</sub>² + α<sub>2</sub>u<sub>t-2</sub>² + … + α<sub>q</sub>u<sub>t-q</sub>²</p>
+<span class="def-label">ARCH(q) model</span>
+<p>u<sub>t</sub> | I<sub>t-1</sub> ~ N(0, h<sub>t</sub>)</p>
+<p style="margin-top:.5rem">h<sub>t</sub> = ω + α<sub>1</sub>u<sub>t-1</sub>² + α<sub>2</sub>u<sub>t-2</sub>² + … + α<sub>q</sub>u<sub>t-q</sub>²</p>
 </div>
-
 <p>The conditional variance h<sub>t</sub> depends on the squared past shocks u<sub>t-j</sub>². A large shock last period (|u<sub>t-1</sub>| large) increases the conditional variance this period, the model captures the fact that a large move yesterday predicts a volatile today.</p>
-
 <p>The ARCH model requires non-negativity: ω &gt; 0 and α<sub>j</sub> ≥ 0 for all j. For the unconditional variance to be finite (covariance stationarity), we also need Σα<sub>j</sub> &lt; 1.</p>
-
 <h2>GARCH(1,1): the workhorse of volatility modelling</h2>
-
 <p>Bollerslev (1986) generalised the ARCH model by including lagged conditional variances as well as lagged squared shocks, analogous to adding MA terms to an AR model. The GARCH(1,1) is by far the most widely used specification:</p>
-
 <div class="def">
-  <span class="def-label">GARCH(1,1) model</span>
-  <p>h<sub>t</sub> = ω + α·u<sub>t-1</sub>² + β·h<sub>t-1</sub></p>
-  <p style="margin-top:.5rem;font-size:.82rem;color:rgba(248,242,232,.65)">with ω &gt; 0, α ≥ 0, β ≥ 0, and α + β &lt; 1 for stationarity.</p>
+<span class="def-label">GARCH(1,1) model</span>
+<p>h<sub>t</sub> = ω + α·u<sub>t-1</sub>² + β·h<sub>t-1</sub></p>
+<p style="margin-top:.5rem;font-size:.82rem;color:rgba(248,242,232,.65)">with ω &gt; 0, α ≥ 0, β ≥ 0, and α + β &lt; 1 for stationarity.</p>
 </div>
-
 <p>Reading the equation:</p>
-
 <ul style="color:rgba(248,242,232,.72);font-weight:300;font-size:.94rem;line-height:2;padding-left:1.5rem;margin-bottom:1rem">
-  <li><strong>ω</strong> is the long-run average variance contribution. It determines where the conditional variance settles in the long run.</li>
-  <li><strong>α</strong> (the ARCH coefficient) captures how much yesterday's squared shock affects today's variance. A large α means the variance responds quickly to recent shocks.</li>
-  <li><strong>β</strong> (the GARCH coefficient) captures persistence, how much the variance from yesterday carries over to today. A large β means volatility is persistent: a volatile period stays volatile for a long time.</li>
+<li><strong>ω</strong> is the long-run average variance contribution. It determines where the conditional variance settles in the long run.</li>
+<li><strong>α</strong> (the ARCH coefficient) captures how much yesterday's squared shock affects today's variance. A large α means the variance responds quickly to recent shocks.</li>
+<li><strong>β</strong> (the GARCH coefficient) captures persistence, how much the variance from yesterday carries over to today. A large β means volatility is persistent: a volatile period stays volatile for a long time.</li>
 </ul>
-
 <h3>Stationarity and the long-run variance</h3>
-
 <p>The GARCH(1,1) is covariance stationary if and only if α + β &lt; 1. Under stationarity, the unconditional (long-run) variance is:</p>
-
 <div class="math-block">E[u_t²] = ω / (1 − α − β)</div>
-
-<p>This is the variance the process reverts to in the long run. In practice, estimated GARCH parameters for financial returns often show α + β close to 0.95–0.99, indicating very high volatility persistence, a shock to volatility takes a long time to dissipate. When α + β = 1, we have the Integrated GARCH (IGARCH) model, which is non-stationary in variance, shocks to volatility are permanent.</p>
-
+<p>This is the variance the process reverts to in the long run. In practice, estimated GARCH parameters for financial returns often show α + β close to 0.95-0.99, indicating very high volatility persistence, a shock to volatility takes a long time to dissipate. When α + β = 1, we have the Integrated GARCH (IGARCH) model, which is non-stationary in variance, shocks to volatility are permanent.</p>
 <div class="note"><p><strong>Typical estimated values:</strong> For daily equity returns, GARCH(1,1) estimates are often around ω ≈ 0.00001, α ≈ 0.08, β ≈ 0.91, giving α + β ≈ 0.99. This high persistence means a volatility spike on one day will still be partially visible many days later, consistent with the empirical clustering we observe.</p></div>
-
 <h3>Mean reversion in variance</h3>
-
 <p>The GARCH(1,1) can be written as:</p>
-
 <div class="math-block">h_t = σ̄²(1 − α − β) + α·u_{t-1}² + β·h_{t-1}</div>
-
 <p>where σ̄² = ω/(1−α−β) is the long-run variance. This shows that h<sub>t</sub> mean-reverts toward σ̄² at rate (1−α−β). High current variance → next period's variance is pulled back toward the long-run level. This is the mechanism by which calm eventually returns after turbulent periods.</p>
-
 <h2>Asymmetric GARCH models</h2>
-
 <p>A well-documented asymmetry in equity markets is the leverage effect: negative returns (price falls) increase volatility more than positive returns (price rises) of the same magnitude. The symmetric GARCH(1,1) cannot capture this, it enters u<sub>t-1</sub>² which is the same whether the shock was positive or negative.</p>
-
 <table class="model-table">
-  <thead><tr><th>Model</th><th>Conditional variance specification</th><th>What it captures</th></tr></thead>
-  <tbody>
-    <tr>
-      <td>ARCH(q)</td>
-      <td>h<sub>t</sub> = ω + Σα<sub>j</sub>u<sub>t-j</sub>²</td>
-      <td>Variance depends on past squared shocks only</td>
-    </tr>
-    <tr>
-      <td>GARCH(1,1)</td>
-      <td>h<sub>t</sub> = ω + αu<sub>t-1</sub>² + βh<sub>t-1</sub></td>
-      <td>Variance persistence (both past shocks and past variance)</td>
-    </tr>
-    <tr>
-      <td>TARCH / GJR-GARCH</td>
-      <td>h<sub>t</sub> = ω + αu<sub>t-1</sub>² + γu<sub>t-1</sub>²·𝟙[u<sub>t-1</sub>&lt;0] + βh<sub>t-1</sub></td>
-      <td>Asymmetry: negative shocks (γ&gt;0) have larger impact on variance</td>
-    </tr>
-    <tr>
-      <td>EGARCH</td>
-      <td>log(h<sub>t</sub>) = ω + α|u<sub>t-1</sub>/√h<sub>t-1</sub>| + γ(u<sub>t-1</sub>/√h<sub>t-1</sub>) + β·log(h<sub>t-1</sub>)</td>
-      <td>Asymmetry through sign of standardised shock; log ensures h<sub>t</sub>&gt;0</td>
-    </tr>
-    <tr>
-      <td>GARCH-in-mean</td>
-      <td>R<sub>t</sub> = μ + δ·h<sub>t</sub> + u<sub>t</sub></td>
-      <td>Volatility in mean equation, risk-return tradeoff</td>
-    </tr>
-  </tbody>
+<thead><tr><th>Model</th><th>Conditional variance specification</th><th>What it captures</th></tr></thead>
+<tbody>
+<tr>
+<td>ARCH(q)</td>
+<td>h<sub>t</sub> = ω + Σα<sub>j</sub>u<sub>t-j</sub>²</td>
+<td>Variance depends on past squared shocks only</td>
+</tr>
+<tr>
+<td>GARCH(1,1)</td>
+<td>h<sub>t</sub> = ω + αu<sub>t-1</sub>² + βh<sub>t-1</sub></td>
+<td>Variance persistence (both past shocks and past variance)</td>
+</tr>
+<tr>
+<td>TARCH / GJR-GARCH</td>
+<td>h<sub>t</sub> = ω + αu<sub>t-1</sub>² + γu<sub>t-1</sub>²·𝟙[u<sub>t-1</sub>&lt;0] + βh<sub>t-1</sub></td>
+<td>Asymmetry: negative shocks (γ&gt;0) have larger impact on variance</td>
+</tr>
+<tr>
+<td>EGARCH</td>
+<td>log(h<sub>t</sub>) = ω + α|u<sub>t-1</sub>/√h<sub>t-1</sub>| + γ(u<sub>t-1</sub>/√h<sub>t-1</sub>) + β·log(h<sub>t-1</sub>)</td>
+<td>Asymmetry through sign of standardised shock; log ensures h<sub>t</sub>&gt;0</td>
+</tr>
+<tr>
+<td>GARCH-in-mean</td>
+<td>R<sub>t</sub> = μ + δ·h<sub>t</sub> + u<sub>t</sub></td>
+<td>Volatility in mean equation, risk-return tradeoff</td>
+</tr>
+</tbody>
 </table>
-
 <p>The EGARCH (Exponential GARCH, Nelson 1991) is particularly important. By modelling log(h<sub>t</sub>) rather than h<sub>t</sub>, it guarantees non-negativity of variance without needing to impose sign constraints on parameters. The term γ(u<sub>t-1</sub>/√h<sub>t-1</sub>) captures asymmetry: γ &lt; 0 means that negative standardised shocks increase log variance more than positive ones, the leverage effect.</p>
-
 <h2>Estimation by maximum likelihood</h2>
-
 <p>GARCH models are estimated by maximising the conditional log-likelihood. Assuming conditionally normal errors:</p>
-
 <div class="math-block">ℓ(θ) = Σₜ₌₁ᵀ ℓₜ(θ)
 
 ℓₜ(θ) = −(1/2)·log(2π) − (1/2)·log(h_t) − u_t²/(2h_t)</div>
-
 <p>The log-likelihood is the sum of the contributions from each period. Each term has two parts: −(1/2)log(h<sub>t</sub>) rewards a small predicted variance when the shock u<sub>t</sub> turns out to be small (not being unnecessarily alarmed), and −u<sub>t</sub>²/(2h<sub>t</sub>) penalises a large squared shock relative to the predicted variance (being surprised by a large move when you predicted calm).</p>
-
 <p>Maximisation is iterative (Newton-Raphson or BFGS). The h<sub>t</sub> sequence is computed recursively: starting from an initial value h<sub>1</sub> (typically the unconditional sample variance), each h<sub>t</sub> is computed from the preceding shock and variance. The initial value affects estimation but the effect dissipates as T grows.</p>
-
 <div class="note"><p><strong>Non-Gaussian alternatives:</strong> Financial returns have fat tails, the conditional normal assumption understates tail probabilities. Common alternatives are the Student-t distribution and the generalised error distribution (GED). Using the t-distribution in the likelihood adds one parameter (the degrees of freedom ν) and typically improves fit significantly for daily or weekly data.</p></div>
-
 <h2>Testing and selecting GARCH specifications</h2>
-
 <p>The workflow for a GARCH analysis is:</p>
-
 <ol style="color:rgba(248,242,232,.72);font-weight:300;font-size:.94rem;line-height:2;padding-left:1.5rem;margin-bottom:1.5rem">
-  <li><strong>Estimate the conditional mean.</strong> This could be a constant, an AR(p), or a GARCH-in-mean specification. Get the residuals û<sub>t</sub>.</li>
-  <li><strong>Test for ARCH effects.</strong> Regress û<sub>t</sub>² on a constant and q lags of û<sub>t-j</sub>²; if the R² is significant (T·R² ~ χ²<sub>q</sub> under H₀), there are ARCH effects and a GARCH model is warranted.</li>
-  <li><strong>Estimate GARCH(1,1).</strong> This almost always fits well as a starting point.</li>
-  <li><strong>Test for asymmetry.</strong> Fit the TARCH or EGARCH and test whether γ is significant. In equity markets, γ &lt; 0 is almost always found.</li>
-  <li><strong>Compare specifications using AIC/BIC.</strong> GARCH(1,1) often wins on AIC/BIC even against larger models, more parameters rarely improve fit enough to justify the penalty.</li>
-  <li><strong>Check standardised residuals.</strong> The standardised residuals ê<sub>t</sub> = û<sub>t</sub>/√ĥ<sub>t</sub> should be approximately iid with unit variance. Check their ACF and ACF of their squares, both should show no significant autocorrelation if the model is adequate.</li>
+<li><strong>Estimate the conditional mean.</strong> This could be a constant, an AR(p), or a GARCH-in-mean specification. Get the residuals û<sub>t</sub>.</li>
+<li><strong>Test for ARCH effects.</strong> Regress û<sub>t</sub>² on a constant and q lags of û<sub>t-j</sub>²; if the R² is significant (T·R² ~ χ²<sub>q</sub> under H₀), there are ARCH effects and a GARCH model is warranted.</li>
+<li><strong>Estimate GARCH(1,1).</strong> This almost always fits well as a starting point.</li>
+<li><strong>Test for asymmetry.</strong> Fit the TARCH or EGARCH and test whether γ is significant. In equity markets, γ &lt; 0 is almost always found.</li>
+<li><strong>Compare specifications using AIC/BIC.</strong> GARCH(1,1) often wins on AIC/BIC even against larger models, more parameters rarely improve fit enough to justify the penalty.</li>
+<li><strong>Check standardised residuals.</strong> The standardised residuals ê<sub>t</sub> = û<sub>t</sub>/√ĥ<sub>t</sub> should be approximately iid with unit variance. Check their ACF and ACF of their squares, both should show no significant autocorrelation if the model is adequate.</li>
 </ol>
-
 <h2>Why GARCH matters beyond modelling</h2>
-
 <p>GARCH estimates have direct practical uses in finance:</p>
-
 <p><strong>Option pricing.</strong> The Black-Scholes model assumes constant volatility, the famous "volatility smile" in implied volatility surfaces is evidence that markets price options using a volatility process closer to GARCH. GARCH option pricing models (Duan, 1995) incorporate time-varying volatility directly.</p>
-
 <p><strong>Value-at-Risk (VaR).</strong> Risk management requires estimating the probability of large losses. A GARCH model gives a time-varying conditional variance ĥ<sub>t</sub>, from which a one-day 99% VaR can be computed as ẑ<sub>0.01</sub>·√ĥ<sub>t+1</sub> (where ẑ<sub>0.01</sub> is the 1% quantile of the assumed distribution). GARCH-based VaR is time-varying, it rises in turbulent periods and falls in calm ones.</p>
-
 <p><strong>Portfolio optimisation.</strong> Mean-variance optimisation uses a variance-covariance matrix of returns. A multivariate GARCH model (e.g., DCC-GARCH) allows this matrix to change over time, improving portfolio allocation in volatile periods.</p>
-
 <hr style="border:none;border-top:1px solid rgba(248,242,232,.08);margin:2.5rem 0"/>
-
 <div style="background:linear-gradient(180deg,rgba(211,163,91,.07),rgba(211,163,91,.025));border:1px solid rgba(211,163,91,.18);border-radius:12px;padding:1.5rem 1.75rem;margin:2rem 0">
-  <p style="font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#D3A35B;margin-bottom:.5rem">Free lecture notes</p>
-  <p style="margin:0 0 .75rem;font-size:.95rem;color:rgba(248,242,232,.8)">The full EC5609 Financial Econometrics lecture slides, including Lecture 7 on GARCH and the Lecture 1 slides on distribution theory and properties of stock returns, are available to download free at <a href="../teaching.html" style="color:#D3A35B">drnickygrant.com/teaching.html</a></p>
-  <p style="margin:0;font-size:.95rem;color:rgba(248,242,232,.8)">For 1-1 tuition covering any aspect of financial econometrics, <a href="../index.html#contact" style="color:#D3A35B">book a free consultation →</a></p>
+<p style="font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#D3A35B;margin-bottom:.5rem">Free lecture notes</p>
+<p style="margin:0 0 .75rem;font-size:.95rem;color:rgba(248,242,232,.8)">The full EC5609 Financial Econometrics lecture slides, including Lecture 7 on GARCH and the Lecture 1 slides on distribution theory and properties of stock returns, are available to download free at <a href="../teaching.html" style="color:#D3A35B">drnickygrant.com/teaching.html</a></p>
+<p style="margin:0;font-size:.95rem;color:rgba(248,242,232,.8)">For 1-1 tuition covering any aspect of financial econometrics, <a href="../index.html#contact" style="color:#D3A35B">book a free consultation →</a></p>
 </div>
-
 </main>
-
-<footer role="contentinfo" style="border-top:1px solid rgba(248,242,232,.08);padding:2.5rem clamp(1rem,4vw,2.5rem);background:linear-gradient(180deg,rgba(248,242,232,.02),rgba(0,0,0,.18))">
-  <div style="max-width:740px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.72rem;color:rgba(248,242,232,.4);font-weight:300">
-    <span>© <span id="yr"></span> Dr Nicky Grant · <a href="../index.html" style="color:rgba(248,242,232,.4)">drnickygrant.com</a></span>
-    <span><a href="../blog.html" style="color:rgba(248,242,232,.4)">← All resources</a></span>
-  </div>
+<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../financial-econometrics-tutor.html"><strong>Financial econometrics tuition</strong><span>GARCH, volatility, returns, MLE and forecasting.</span></a><a class="funnel-card" href="../finance-tutor.html"><strong>Finance tuition</strong><span>Quantitative finance and empirical asset-pricing support.</span></a><a class="funnel-card" href="../econometrics-tutor.html"><strong>Econometrics tuition</strong><span>Time series, maximum likelihood and diagnostics.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book a free consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
+<div class="foot-cols">
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
+<div class="fc"><h4>A-Level &amp; Admissions</h4><a href="../a-level-admissions-tutoring.html">Overview</a><a href="../a-level-maths-tutor.html">A-Level Maths</a><a href="../a-level-economics-tutor.html">A-Level Economics</a><a href="../tmua-preparation.html">TMUA preparation</a><a href="../oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
+<div class="fc"><h4>University &amp; Postgraduate</h4><a href="../university-postgraduate-tutoring.html">Overview</a><a href="../university-economics-tutor.html">University Economics</a><a href="../econometrics-tutor.html">Econometrics</a><a href="../statistics-tutor.html">Statistics</a><a href="../finance-tutor.html">Finance</a><a href="../phd-econometrics-tutor.html">PhD econometrics</a></div>
+<div class="fc"><h4>Resources &amp; contact</h4><a href="../blog.html">Study notes</a><a href="../questions.html">Common questions</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../how-it-works.html">How it works</a><a href="../index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
+</div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online UK-wide</span></div>
 </footer>
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();

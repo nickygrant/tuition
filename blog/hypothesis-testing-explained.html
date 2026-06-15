@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
+<meta content="Dr Nicky Grant" name="author"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Hypothesis Testing Explained | Statistics &amp; Econometrics Guide</title>
+<meta content="Hypothesis testing explained from first principles: null and alternative hypotheses, p-values, critical values, confidence intervals, Type I errors and t-tests." name="description"/>
+<link href="https://www.drnickygrant.com/blog/hypothesis-testing-explained.html" rel="canonical"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.drnickygrant.com/#website",
+      "url": "https://www.drnickygrant.com/",
+      "name": "Dr Nicky Grant | Economics, Econometrics and Maths Tutor",
+      "description": "Specialist online tuition in economics, econometrics, mathematics, statistics, finance, TMUA and Oxbridge economics applications, supported by verifiable Cambridge credentials, teaching materials and research evidence.",
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.drnickygrant.com/#person",
+      "name": "Dr Nicky Grant",
+      "alternateName": [
+        "Nicky Grant",
+        "Nicky L. Grant",
+        "Nicky Lee Grant"
+      ],
+      "honorificPrefix": "Dr",
+      "givenName": "Nicky",
+      "familyName": "Grant",
+      "url": "https://www.drnickygrant.com/",
+      "image": "https://www.drnickygrant.com/img/nicky-grant-headshot.webp",
+      "email": "nicky.L.grant@gmail.com",
+      "telephone": "+447393352331",
+      "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor",
+      "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0008-8979-4623",
+          "url": "https://orcid.org/0009-0008-8979-4623"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Semantic Scholar",
+          "value": "97839351",
+          "url": "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Cambridge",
+        "sameAs": "https://www.cam.ac.uk/"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "PhD in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "MPhil in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BA in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        }
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "CeMMAP, Centre for Microdata Methods and Practice",
+        "sameAs": "https://cemmap.ac.uk/"
+      },
+      "knowsAbout": [
+        "economics tuition",
+        "econometrics tuition",
+        "A Level Mathematics",
+        "Further Mathematics",
+        "A Level Economics",
+        "TMUA preparation",
+        "Oxbridge Economics applications",
+        "statistics",
+        "financial econometrics",
+        "time series econometrics",
+        "GMM",
+        "instrumental variables",
+        "panel data",
+        "PhD econometrics"
+      ],
+      "sameAs": [
+        "https://orcid.org/0009-0008-8979-4623",
+        "https://www.linkedin.com/in/nicky-lee-grant/",
+        "https://cemmap.ac.uk/person/nicky-l-grant/",
+        "https://research-portal.st-andrews.ac.uk/en/persons/nicky-lee-grant",
+        "https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/",
+        "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351",
+        "https://www.youtube.com/@economaths",
+        "https://independent.academia.edu/NickyGrant"
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/hypothesis-testing-explained.html#page",
+      "url": "https://www.drnickygrant.com/blog/hypothesis-testing-explained.html",
+      "name": "Hypothesis testing: explained from first principles",
+      "isPartOf": {
+        "@id": "https://www.drnickygrant.com/#website"
+      },
+      "about": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB",
+      "description": "Hypothesis testing explained from scratch: null and alternative hypotheses, sampling distributions, p-values, Type I errors, critical values, the t-test.",
+      "relatedLink": [
+        "https://www.drnickygrant.com/statistics-tutor.html",
+        "https://www.drnickygrant.com/econometrics-tutor.html",
+        "https://www.drnickygrant.com/university-economics-tutor.html"
+      ],
+      "abstract": "Hypothesis testing compares sample evidence with a null hypothesis using a test statistic, critical value or p-value. This guide supports statistics and econometrics students who need clearer inference methods."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.drnickygrant.com/blog/hypothesis-testing-explained.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.drnickygrant.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://www.drnickygrant.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Hypothesis Testing Explained",
+          "item": "https://www.drnickygrant.com/blog/hypothesis-testing-explained.html"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/hypothesis-testing-explained.html#article",
+      "headline": "Hypothesis testing: explained from first principles",
+      "url": "https://www.drnickygrant.com/blog/hypothesis-testing-explained.html",
+      "author": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.drnickygrant.com/blog/hypothesis-testing-explained.html#page"
+      },
+      "dateModified": "2026-06-14",
+      "inLanguage": "en-GB",
+      "relatedLink": [
+        "https://www.drnickygrant.com/statistics-tutor.html",
+        "https://www.drnickygrant.com/econometrics-tutor.html",
+        "https://www.drnickygrant.com/university-economics-tutor.html"
+      ],
+      "abstract": "Hypothesis testing compares sample evidence with a null hypothesis using a test statistic, critical value or p-value. This guide supports statistics and econometrics students who need clearer inference methods."
+    }
+  ]
+}</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../css/main.css" rel="stylesheet"/>
+<link href="../css/polish.css" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script crossorigin="anonymous" defer="" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+.art{max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) clamp(3rem,8vw,6rem)}
+.art-hero{padding:clamp(6rem,14vw,9rem) clamp(1rem,4vw,2.5rem) clamp(2rem,5vw,3.5rem);border-bottom:1px solid rgba(255,255,255,.07)}
+.eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.75rem;display:block}
+.art-hero h1{font-family:var(--fd);font-size:clamp(2.1rem,5vw,3.6rem);font-weight:500;line-height:1.02;letter-spacing:-.04em;color:var(--ivory,#F8F2E8);margin-bottom:1rem}
+.art-hero .lede{font-size:clamp(1rem,1.8vw,1.15rem);font-weight:300;color:rgba(248,242,232,.72);line-height:1.78;max-width:660px}
+.art-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.25rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(248,242,232,.38)}
+h2{font-family:var(--fd);font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:500;letter-spacing:-.03em;color:var(--ivory,#F8F2E8);margin:2.5rem 0 .75rem;line-height:1.05}
+h3{font-family:var(--fd);font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:500;letter-spacing:-.02em;color:var(--ivory,#F8F2E8);margin:2rem 0 .6rem}
+p{font-size:clamp(.93rem,1.6vw,1rem);font-weight:300;color:rgba(248,242,232,.78);line-height:1.85;margin-bottom:1.1rem}
+.def{background:linear-gradient(180deg,rgba(211,163,91,.07),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-left:3px solid var(--copper,#D3A35B);padding:1.1rem 1.4rem;margin:1.5rem 0;border-radius:0 8px 8px 0}
+.def .def-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.45rem;display:block}
+.def p{font-size:.92rem;margin:0 0 .4rem;color:rgba(248,242,232,.88)}
+.def p:last-child{margin:0}
+.math-block{background:rgba(248,242,232,.04);border:1px solid rgba(248,242,232,.09);border-radius:8px;padding:1.1rem 1.6rem;margin:1.1rem 0;font-size:.95rem;color:var(--ivory,#F8F2E8);overflow-x:auto;line-height:1.9;text-align:center}
+.note{background:rgba(248,242,232,.03);border-left:2px solid rgba(248,242,232,.18);padding:.75rem 1.2rem;margin:1.2rem 0;border-radius:0 6px 6px 0}
+.note p{font-size:.88rem;margin:0;color:rgba(248,242,232,.58)}
+.answer-capsule{background:linear-gradient(180deg,rgba(211,163,91,.09),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.22);border-radius:10px;padding:1.2rem 1.5rem;margin:0 0 2.5rem}
+.answer-capsule p{font-size:.92rem;margin:0;color:rgba(248,242,232,.82);line-height:1.75}
+.img-block{margin:1.8rem 0;text-align:center}
+.img-block img{max-width:100%;border-radius:8px;border:1px solid rgba(248,242,232,.08)}
+.img-caption{font-size:.75rem;color:rgba(248,242,232,.4);margin-top:.5rem;font-style:italic;display:block}
+.scenario{background:rgba(248,242,232,.025);border:1px solid rgba(248,242,232,.09);border-radius:8px;padding:1rem 1.2rem;margin:1.2rem 0}
+.scenario .sc-label{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(248,242,232,.4);margin-bottom:.4rem;display:block}
+.scenario p{font-size:.9rem;margin:0;color:rgba(248,242,232,.7)}
+.warning-box{background:rgba(224,85,85,.06);border:1px solid rgba(224,85,85,.2);border-radius:8px;padding:1rem 1.2rem;margin:1.5rem 0}
+.warning-box p{font-size:.9rem;margin:0;color:rgba(248,242,232,.75)}
+a.gold-link{color:var(--copper,#D3A35B);font-weight:500}
+.tuition-cta{background:linear-gradient(180deg,rgba(211,163,91,.08),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-radius:12px;padding:1.5rem 1.75rem;margin:2rem 0}
+.tuition-cta p{margin:0;font-size:.95rem;color:rgba(248,242,232,.8)}
+.tuition-cta p:first-child{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.5rem}
+hr.sd{border:none;border-top:1px solid rgba(255,255,255,.07);margin:2.5rem 0}
+.two-hyp{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.2rem 0}
+.hyp-box{background:rgba(248,242,232,.03);border:1px solid rgba(248,242,232,.1);border-radius:8px;padding:.9rem 1rem;text-align:center}
+.hyp-box .hyp-label{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(248,242,232,.4);margin-bottom:.4rem;display:block}
+.hyp-box p{font-size:.95rem;margin:0;color:rgba(248,242,232,.85)}
+@media(max-width:480px){.two-hyp{grid-template-columns:1fr}}
+</style>
+<meta content="2026-06-14" name="last-modified"/></head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a aria-label="Dr Nicky Grant home" class="nav-logo" href="../index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list">
+<li><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
+<li><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a></li>
+<li><a href="../blog.html">Resources</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../pricing.html">Pricing</a></li>
+</ul>
+<a class="nav-cta" href="../index.html#contact">Book consultation</a>
+<button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+</div>
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+</nav>
+<div class="art-hero">
+<div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
+<span class="eyebrow">Statistics · Econometrics</span>
+<h1>Hypothesis testing:<br/><em>explained from first principles</em></h1>
+<p class="lede">What a hypothesis test actually is, what a p-value actually measures, why a 5% significance level means what it does, and how the z-test becomes the t-test when you do not know the population standard deviation. From first principles, with worked examples. Adapted from archived teaching materials (University of St Andrews).</p>
+<div class="art-meta"><span>Dr Nicky Grant · economics specialist</span><span>Statistics</span><span>~3,200 words</span></div>
+</div>
+</div>
+<main class="art" id="main">
+<div aria-label="Quick answer" class="answer-capsule" data-chunk="LM-answer-capsule" role="note"><p>Hypothesis testing compares sample evidence with a null hypothesis using a test statistic, critical value or p-value. This guide supports statistics and econometrics students who need clearer inference methods.</p></div><div class="study-note-box" data-chunk="UXDE-study-note-cta"><h2>Need help applying hypothesis tests?</h2><p>Send the test, dataset or exam question and the part that is unclear. The diagnostic can focus on null hypotheses, p-values, confidence intervals or interpretation.</p><p><a class="btn btn-fill" href="../university-postgraduate-tutoring.html">View University &amp; Postgraduate support</a> <a class="btn btn-line" href="../index.html#contact">Send an enquiry</a></p></div>
+<h2>The basic problem: claims and evidence</h2>
+<p>Suppose two students disagree about the average economics grade in the UK undergraduate population.</p>
+<div class="two-hyp">
+<div class="hyp-box">
+<span class="hyp-label">Student A claims</span>
+<p>The population mean grade \(\mu \leq 65\%\)</p>
+</div>
+<div class="hyp-box">
+<span class="hyp-label">Student B claims</span>
+<p>The population mean grade \(\mu &gt; 65\%\)</p>
+</div>
+</div>
+<p>Neither can observe every economics student in the UK. Instead they agree to draw a random sample of 25 students and use that data to evaluate the competing claims. This is the fundamental setup of a hypothesis test.</p>
+<h2>Null and alternative hypotheses</h2>
+<p>The first step is to formalise the competing claims as statistical hypotheses about the unknown population parameter \(\mu\).</p>
+<div class="def">
+<span class="def-label">Definition</span>
+<p><strong>Null hypothesis \(H_0\):</strong> the claim to be tested. By convention, the null typically specifies a specific value or boundary for the parameter. Here: \(H_0: \mu \leq 65\).</p>
+<p><strong>Alternative hypothesis \(H_A\):</strong> what we conclude if the evidence against the null is strong enough. Here: \(H_A: \mu &gt; 65\).</p>
+</div>
+<p>The null is the default position, the claim we start by assuming is true and ask whether the data gives us sufficient reason to abandon. We do not directly test the alternative; instead, we ask whether the data is sufficiently <em>inconsistent with the null</em> that we should reject it in favour of the alternative.</p>
+<p>This asymmetry matters. We cannot "accept" the null, only fail to reject it. Failing to reject \(H_0\) does not prove \(H_0\) is true; it simply means the data is not inconsistent with \(H_0\) at our chosen standard of evidence.</p>
+<h2>The sampling distribution: the key insight</h2>
+<p>Suppose we draw a sample of 25 students and compute their sample mean \(\hat{\mu}\). Before we see the data, \(\hat{\mu}\) is a <em>random variable</em>, different random samples would give different values.</p>
+<p>Suppose individual grades \(X\) are normally distributed with mean \(\mu\) and variance \(\sigma^2 = 100\) (standard deviation 10). Then by the properties of the normal distribution, the sample mean of 25 independent observations has the distribution:</p>
+<div class="math-block">$$\hat{\mu} \sim N\!\left(\mu,\, \frac{\sigma^2}{N}\right) = N\!\left(\mu,\, \frac{100}{25}\right) = N(\mu, 4)$$</div>
+<p>The sample mean is normally distributed with mean equal to the true population mean \(\mu\), and variance \(\sigma^2/N = 4\) (standard deviation 2). This is the <em>sampling distribution of the mean</em>.</p>
+<div class="img-block">
+<img alt="Normal distribution of student grades" loading="lazy" src="../img/teaching/grade.png"/>
+<span class="img-caption">The distribution of individual student grades, assumed normal with mean \(\mu\) and standard deviation \(\sigma = 10\). The sample mean of 25 students has the same mean but standard deviation \(\sigma/\sqrt{N} = 10/5 = 2\), making it much more concentrated around the true mean.</span>
+</div>
+<p>This is the key insight that makes hypothesis testing work. Even though we cannot observe \(\mu\) directly, we know the exact distribution of our estimator \(\hat{\mu}\) as a function of \(\mu\). If Student A is right and \(\mu = 65\), then \(\hat{\mu} \sim N(65, 4)\). We can use this to ask: how likely would our observed sample mean be if the null were true?</p>
+<h2>p-values: what they actually measure</h2>
+<p>Suppose our sample of 25 students has a mean grade of \(\hat{\mu} = 67\%\). Should we reject Student A's claim?</p>
+<p>The question cannot be answered by just looking at whether \(67 &gt; 65\). We need to know how likely a sample mean of 67 or more would be <em>if the null were true</em>.</p>
+<p>Under the null (\(\mu = 65\)), \(\hat{\mu} \sim N(65, 4)\). The probability of observing a sample mean at least as large as 67 is:</p>
+<div class="math-block">$$\Pr\{\hat{\mu} \geq 67 \mid \mu = 65\} = \Pr\!\left\{Z \geq \frac{67 - 65}{2}\right\} = \Pr\{Z \geq 1\} \approx 0.159$$</div>
+<p>where \(Z\) is a standard normal random variable. This probability, 15.9%, is the <strong>p-value</strong>.</p>
+<div class="def">
+<span class="def-label">Definition: p-value</span>
+<p>The p-value is the probability of observing a test statistic at least as extreme as the one we computed, <em>assuming the null hypothesis is true</em>. A small p-value means the data would be unlikely under \(H_0\), evidence against \(H_0\). A large p-value means the data is consistent with \(H_0\).</p>
+</div>
+<div class="img-block">
+<img alt="Sampling distribution of mean under null hypothesis showing p-value area" loading="lazy" src="../img/teaching/samp1.png"/>
+<span class="img-caption">The sampling distribution of \(\hat{\mu}\) under the null (\(\mu = 65\)). The shaded area to the right of the observed value 67 is the p-value: the probability, under \(H_0\), of observing a sample mean at least this large. A p-value of 15.9% is not very surprising, we cannot reject \(H_0\) on this basis.</span>
+</div>
+<p>Now suppose the sample mean were \(\hat{\mu} = 70\) instead. Then:</p>
+<div class="math-block">$$\Pr\{\hat{\mu} \geq 70 \mid \mu = 65\} = \Pr\!\left\{Z \geq \frac{70-65}{2}\right\} = \Pr\{Z \geq 2.5\} \approx 0.006$$</div>
+<p>A sample mean of 70 would occur with probability only 0.6% if the null were true. This is much stronger evidence against Student A's claim.</p>
+<hr class="sd"/>
+<h2>Type I error and the significance level</h2>
+<p>To make a formal decision, reject or fail to reject, we need to set a <em>significance level</em> in advance. This requires understanding the type of error we most want to control.</p>
+<div class="def">
+<span class="def-label">Definition: Type I error</span>
+<p>Rejecting the null hypothesis when it is actually true. This is a false positive: we conclude the data is inconsistent with \(H_0\), but \(H_0\) was correct. The significance level \(\alpha\) is the maximum probability of making a Type I error that we are willing to accept.</p>
+</div>
+<div class="def">
+<span class="def-label">Definition: Type II error</span>
+<p>Failing to reject the null hypothesis when it is actually false. This is a false negative: we fail to find evidence against \(H_0\), but the alternative was true. The probability of a Type II error depends on the true value of the parameter and the sample size.</p>
+</div>
+<p>The significance level \(\alpha\) is set before looking at the data, typically 5% (\(\alpha = 0.05\)), sometimes 1% or 10%. Setting \(\alpha = 0.05\) means: "I am willing to incorrectly reject the null 5% of the time, across many repetitions of this procedure, when the null is true."</p>
+<p>There is a direct trade-off: reducing \(\alpha\) (demanding stronger evidence before rejection) reduces the Type I error rate but increases the Type II error rate. The 5% convention is not sacred, it reflects a historical standard, not a universal truth.</p>
+<h2>The critical value and rejection region</h2>
+<p>Given a significance level \(\alpha = 0.05\), we need to find the <em>critical value</em> \(c\) such that the probability of rejecting \(H_0\) when it is true equals exactly 5%.</p>
+<p>For our one-tailed test (\(H_A: \mu &gt; 65\)), we want \(c\) such that:</p>
+<div class="math-block">$$\Pr\{\hat{\mu} &gt; c \mid \mu = 65\} = 0.05$$</div>
+<p>Since \(\hat{\mu} \sim N(65, 4)\) under \(H_0\), we need the 95th percentile of this distribution:</p>
+<div class="math-block">$$c = 65 + 1.645 \times 2 = 65 + 3.29 = 68.29$$</div>
+<p>The number 1.645 is the 95th percentile of the standard normal distribution. The test procedure is then:</p>
+<div class="def">
+<span class="def-label">Test procedure at 5% significance</span>
+<p><strong>Fail to reject</strong> \(H_0\) if \(\hat{\mu} \leq 68.29\)</p>
+<p><strong>Reject</strong> \(H_0\) in favour of \(H_A\) if \(\hat{\mu} &gt; 68.29\)</p>
+</div>
+<p>The set of values that lead to rejection (\(\hat{\mu} &gt; 68.29\)) is the <em>rejection region</em>. Our observed sample mean of 67 falls outside the rejection region, so we fail to reject \(H_0\) at the 5% level. A sample mean of 70 would fall inside the rejection region and lead to rejection.</p>
+<hr class="sd"/>
+<h2>The standardised test statistic</h2>
+<p>In practice, rather than comparing \(\hat{\mu}\) to a critical value in the original units, we standardise to form a test statistic with a known distribution.</p>
+<p>Standardise \(\hat{\mu}\) by subtracting its mean under \(H_0\) and dividing by its standard deviation:</p>
+<div class="math-block">$$z = \frac{\hat{\mu} - \mu_0}{\sigma/\sqrt{N}} = \frac{\hat{\mu} - 65}{10/\sqrt{25}} = \frac{\hat{\mu} - 65}{2}$$</div>
+<p>Under \(H_0\) (when \(\mu = 65\)), this <em>z-statistic</em> follows a standard normal distribution: \(z \sim N(0,1)\).</p>
+<p>The rejection procedure in terms of the z-statistic is equivalent:</p>
+<div class="math-block">$$\hat{\mu} \leq 68.29 \iff z \leq \frac{68.29 - 65}{2} = 1.645$$</div>
+<p>So we reject \(H_0\) if \(z &gt; 1.645\). The value 1.645 is the critical value from the standard normal table for a one-tailed test at the 5% level. This is the standard form of the test as you will encounter it in textbooks and software output.</p>
+<div class="img-block">
+<img alt="Standard normal distribution showing rejection region" loading="lazy" src="../img/teaching/normal.png"/>
+<span class="img-caption">The standard normal distribution. The rejection region for a one-tailed test at 5% significance is the upper 5% of the distribution, to the right of 1.645. If the z-statistic exceeds 1.645, we reject \(H_0\).</span>
+</div>
+<h3>Equivalently: reject when p-value is below \(\alpha\)</h3>
+<p>The two approaches, comparing the z-statistic to the critical value, or comparing the p-value to \(\alpha\), always give the same conclusion:</p>
+<div class="math-block">$$\text{Reject } H_0 \iff z &gt; 1.645 \iff p\text{-value} &lt; 0.05$$</div>
+<p>This is not a coincidence. When \(z &gt; 1.645\), the area to the right of \(z\) in the standard normal is less than 5%, meaning the p-value is less than 0.05. The two conditions are mathematically identical.</p>
+<hr class="sd"/>
+<h2>The t-test: when \(\sigma\) is unknown</h2>
+<p>The z-test assumes we know the population standard deviation \(\sigma\). In practice this is almost never the case. Instead, we estimate \(\sigma\) from the sample using the sample standard deviation \(s = \sqrt{\frac{1}{N-1}\sum_{i=1}^N(X_i - \hat{\mu})^2}\).</p>
+<p>Substituting the sample standard deviation for the population value gives the <em>t-statistic</em>:</p>
+<div class="math-block">$$t = \frac{\hat{\mu} - \mu_0}{s/\sqrt{N}}$$</div>
+<p>Under \(H_0\), this statistic follows a <em>t-distribution with \(N-1\) degrees of freedom</em>, written \(t_{N-1}\), rather than the standard normal. The t-distribution has heavier tails than the normal, there is more probability mass in the extremes, which reflects the additional uncertainty from estimating \(\sigma\).</p>
+<div class="note"><p>As \(N\) grows large, \(s \to \sigma\) and the t-distribution approaches the standard normal. For \(N \geq 30\) the two are close in practice; for small samples the difference matters. In economics, with large datasets, z and t critical values are often interchangeable. With small samples (30 or fewer observations), use the t-distribution.</p></div>
+<p>The test procedure is the same: compute the t-statistic, find the critical value from the t-distribution at the chosen significance level and degrees of freedom, and reject if the t-statistic exceeds the critical value in absolute value (for a two-tailed test) or in the appropriate tail (for a one-tailed test).</p>
+<hr class="sd"/>
+<h2>Two-tailed tests</h2>
+<p>Our example was a <em>one-tailed test</em> because the alternative was directional (\(\mu &gt; 65\)). When the alternative is non-directional, we want to test simply whether the population mean differs from a specified value, we use a <em>two-tailed test</em>.</p>
+<div class="def">
+<span class="def-label">Two-tailed test</span>
+<p>\(H_0: \mu = \mu_0\) against \(H_A: \mu \neq \mu_0\)</p>
+<p>Reject \(H_0\) at level \(\alpha\) if \(|z| &gt; z_{\alpha/2}\), where \(z_{\alpha/2}\) is the \((1-\alpha/2)\) percentile of the standard normal.</p>
+<p>At \(\alpha = 0.05\): \(z_{\alpha/2} = z_{0.025} = 1.96\). Reject if \(|z| &gt; 1.96\).</p>
+</div>
+<p>The \(\alpha/2\) split arises because we want a total probability of \(\alpha\) of incorrectly rejecting, and this probability is split equally between the two tails (very large or very small values of the test statistic are both evidence against \(H_0\)).</p>
+<p>The two-tailed p-value is twice the one-tailed p-value: \(p\text{-value} = 2\Pr\{Z &gt; |z|\}\).</p>
+<p>Most standard regression output in Stata, R, EViews, and Python reports two-tailed p-values for coefficient tests, testing \(H_0: \beta_k = 0\) against \(H_A: \beta_k \neq 0\). If you have a directional hypothesis (e.g., you expect a positive coefficient), the relevant p-value is half the reported one.</p>
+<hr class="sd"/>
+<h2>What p-values do not mean: common mistakes</h2>
+<p>The p-value is one of the most widely misunderstood quantities in statistics. Here are the most common errors.</p>
+<div class="warning-box">
+<p><strong>Mistake 1: "The p-value is the probability the null hypothesis is true."</strong> False. The p-value is \(\Pr(\text{data this extreme} \mid H_0 \text{ true})\), not \(\Pr(H_0 \text{ true} \mid \text{data})\). These are completely different quantities. Computing the latter requires Bayesian methods and a prior on \(H_0\).</p>
+</div>
+<div class="warning-box">
+<p><strong>Mistake 2: "A p-value of 0.04 means there is only a 4% chance we are wrong."</strong> False. It means that if \(H_0\) were true, there would be a 4% chance of observing data this extreme. Whether \(H_0\) is actually true given the data is a separate question.</p>
+</div>
+<div class="warning-box">
+<p><strong>Mistake 3: "p &gt; 0.05 means the null is true."</strong> False. Failing to reject \(H_0\) at the 5% level only means the data is not inconsistent with \(H_0\) at that standard of evidence. The null could still be false, perhaps the sample size was too small to detect a real effect.</p>
+</div>
+<div class="warning-box">
+<p><strong>Mistake 4: "p &lt; 0.05 means the result is practically important."</strong> False. Statistical significance is not economic significance. With a large enough sample, even a tiny and economically irrelevant difference from \(H_0\) will be statistically significant. Always look at the magnitude of the estimated effect, not just whether it is statistically significant.</p>
+</div>
+<hr class="sd"/>
+<h2>Hypothesis tests in econometrics</h2>
+<p>The framework above applies wherever you test a claim about a parameter. In econometrics, the most common tests you will encounter follow exactly this logic.</p>
+<p><strong>OLS coefficient test:</strong> testing \(H_0: \beta_k = 0\) (the variable \(k\) has no effect) uses the t-statistic \(t = \hat{\beta}_k / \text{SE}(\hat{\beta}_k)\), compared to the t-distribution with \(N-K\) degrees of freedom.</p>
+<p><strong>F-test:</strong> testing joint restrictions on several coefficients simultaneously (e.g., \(H_0: \beta_1 = \beta_2 = 0\)) uses the F-statistic, compared to the F-distribution.</p>
+<p><strong>Ljung-Box Q-test:</strong> testing \(H_0: \rho(1) = \rho(2) = \cdots = \rho(k) = 0\) (residuals are white noise, no serial correlation up to lag k). The Q-statistic under \(H_0\) follows a chi-squared distribution with \(k\) degrees of freedom. Rejecting means the residuals exhibit serial correlation, evidence of model misspecification.</p>
+<p><strong>ADF unit root test:</strong> testing \(H_0:\) the series has a unit root (is non-stationary) against \(H_A:\) the series is stationary. Uses the Dickey-Fuller statistic, compared to special critical values (not the standard normal, due to the non-standard asymptotic distribution under \(H_0\)).</p>
+<p>In each case the logic is the same: specify \(H_0\), derive the distribution of the test statistic under \(H_0\), compute the statistic from data, compare to the critical value or report the p-value.</p>
+<p>The lecture slides and worked examples accompanying this material are available as a PDF download: <a class="gold-link" href="../downloads/hypothesis-testing-slides.pdf">Hypothesis Testing Slides (University of St Andrews) →</a></p>
+<div class="tuition-cta">
+<p>Statistics and econometrics tuition</p>
+<p>Sessions on hypothesis testing, OLS inference, and econometric diagnostics are available at A Level, undergraduate, and postgraduate level. <a class="gold-link" href="../index.html#contact">Book the free initial consultation →</a></p>
+</div>
+<hr class="sd"/>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;margin:1.5rem 0">
+<a class="gold-link" href="what-is-ols-ordinary-least-squares.html" style="font-size:.85rem">OLS regression explained →</a>
+<a class="gold-link" href="time-series-econometrics-guide.html" style="font-size:.85rem">Time series econometrics Part 1 →</a>
+<a class="gold-link" href="reading-the-correlogram.html" style="font-size:.85rem">Reading a correlogram →</a>
+</div>
+</main>
+<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../statistics-tutor.html"><strong>Statistics tuition</strong><span>Hypothesis tests, p-values, confidence intervals and t-tests.</span></a><a class="funnel-card" href="../econometrics-tutor.html"><strong>Econometrics tuition</strong><span>Regression inference, robust standard errors and model testing.</span></a><a class="funnel-card" href="../university-economics-tutor.html"><strong>University economics tuition</strong><span>Quantitative methods for economics modules and dissertations.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book a free consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
+<div class="foot-cols">
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
+<div class="fc"><h4>A-Level &amp; Admissions</h4><a href="../a-level-admissions-tutoring.html">Overview</a><a href="../a-level-maths-tutor.html">A-Level Maths</a><a href="../a-level-economics-tutor.html">A-Level Economics</a><a href="../tmua-preparation.html">TMUA preparation</a><a href="../oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
+<div class="fc"><h4>University &amp; Postgraduate</h4><a href="../university-postgraduate-tutoring.html">Overview</a><a href="../university-economics-tutor.html">University Economics</a><a href="../econometrics-tutor.html">Econometrics</a><a href="../statistics-tutor.html">Statistics</a><a href="../finance-tutor.html">Finance</a><a href="../phd-econometrics-tutor.html">PhD econometrics</a></div>
+<div class="fc"><h4>Resources &amp; contact</h4><a href="../blog.html">Study notes</a><a href="../questions.html">Common questions</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../how-it-works.html">How it works</a><a href="../index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
+</div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online UK-wide</span></div>
+</footer>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+nav.classList.toggle('solid',scrollY>40);
+function toggleNav(btn){const m=document.getElementById('mobNav');const o=m.classList.toggle('open');btn.setAttribute('aria-expanded',String(o));}
+document.addEventListener('click',function(e){const m=document.getElementById('mobNav');const b=document.getElementById('burgerBtn');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&b&&!b.contains(e.target)){m.classList.remove('open');b.setAttribute('aria-expanded','false');}});
+</script>
+</body>
+</html>

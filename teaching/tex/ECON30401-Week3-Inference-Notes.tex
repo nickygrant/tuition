@@ -1,0 +1,948 @@
+
+%----------------------------------------------------------------------------------------
+
+\documentclass[openany]{tufte-book} % Use the tufte-book class which in turn uses the tufte-common class
+
+\hypersetup{colorlinks} % Comment this line if you don't wish to have colored links
+
+\usepackage{amsmath}
+\usepackage{media9}
+\usepackage{microtype} % Improves character and word spacing
+\usepackage{animate}
+\usepackage{lipsum} % Inserts dummy text
+	\usepackage{subfig}
+	\newcommand{\subsubfloat}[2]{%
+		\begin{tabular}{@{}c@{}}#1\\#2\end{tabular}%
+	}
+\usepackage{booktabs} % Better horizontal rules in tables
+\hypersetup{pdfstartview=FitH, pdfpagemode=UseNone}
+\usepackage{amsfonts,amssymb,graphics,epsfig,verbatim,bm,latexsym,amsmath,url,amsbsy}
+\usepackage{graphicx} % Needed to insert images into the document
+\graphicspath{{graphics/}} % Sets the default location of pictures
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio} % Improves figure scaling
+
+\usepackage{fancyvrb} % Allows customization of verbatim environments
+\fvset{fontsize=\normalsize} % The font size of all verbatim text can be changed here
+
+\newcommand{\hangp}[1]{\makebox[0pt][r]{(}#1\makebox[0pt][l]{)}} % New command to create parentheses around text in tables which take up no horizontal space - this improves column spacing
+\newcommand{\hangstar}{\makebox[0pt][l]{*}} % New command to create asterisks in tables which take up no horizontal space - this improves column spacing
+
+\usepackage{xspace} % Used for printing a trailing space better than using a tilde (~) using the \xspace command
+
+\newcommand{\highlight}[1]{\colorbox{green}{\ensuremath{#1}}}
+
+\newcommand{\monthyear}{\ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi\space\number\year} % A command to print the current month and year
+
+\newcommand{\openepigraph}[2]{ % This block sets up a command for printing an epigraph with 2 arguments - the quote and the author
+\begin{fullwidth}
+\sffamily\large
+\begin{doublespace}
+\noindent\allcaps{#1}\\ % The quote
+\noindent\allcaps{#2} % The author
+\end{doublespace}
+\end{fullwidth}
+}
+\geometry{
+  left=22.8mm, % left margin
+  textwidth=125mm, % main text block
+  marginparsep=2.2mm, % gutter between main text block and margin notes
+  marginparwidth=50.4mm % width of margin notes
+}
+\newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage} % Command to insert a blank page
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+\definecolor{beaublue}{rgb}{0.74, 0.83, 0.9}
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\newtcbtheorem[number within=chapter]{myex}{Example}%
+{colback=beaublue,colframe=titlepagecolor,fonttitle=\bfseries}{th}
+\newtcbtheorem[number within=chapter]{mydef}{Definition}%
+{colback=beaublue,colframe=titlepagecolor,fonttitle=\bfseries}{th}
+
+
+		\newtcbtheorem[number within=section]{mytheo}{Theorem}%
+		{colback=beaublue,colframe=titlepagecolor,fonttitle=\bfseries}{th}
+
+
+\usepackage{units} % Used for printing standard units
+
+\newcommand{\hlred}[1]{\textcolor{Maroon}{#1}} % Print text in maroon
+\newcommand{\hangleft}[1]{\makebox[0pt][r]{#1}} % Used for printing commands in the index, moves the slash left so the command name aligns with the rest of the text in the index
+\newcommand{\hairsp}{\hspace{1pt}} % Command to print a very short space
+\newcommand{\ie}{\textit{i.\hairsp{}e.}\xspace} % Command to print i.e.
+\newcommand{\eg}{\textit{e.\hairsp{}g.}\xspace} % Command to print e.g.
+\newcommand{\na}{\quad--} % Used in tables for N/A cells
+\newcommand{\measure}[3]{#1/#2$\times$\unit[#3]{pc}} % Typesets the font size, leading, and measure in the form of: 10/12x26 pc.
+\newcommand{\tuftebs}{\symbol{'134}} % Command to print a backslash in tt type in OT1/T1
+
+\providecommand{\XeLaTeX}{X\lower.5ex\hbox{\kern-0.15em\reflectbox{E}}\kern-0.1em\LaTeX}
+\newcommand{\tXeLaTeX}{\XeLaTeX\index{XeLaTeX@\protect\XeLaTeX}} % Command to print the XeLaTeX logo while simultaneously adding the position to the index
+
+\newcommand{\doccmdnoindex}[2][]{\texttt{\tuftebs#2}} % Command to print a command in texttt with a backslash of tt type without inserting the command into the index
+
+\newcommand{\doccmddef}[2][]{\hlred{\texttt{\tuftebs#2}}\label{cmd:#2}\ifthenelse{\isempty{#1}} % Command to define a command in red and add it to the index
+{ % If no package is specified, add the command to the index
+\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2}}% Command name
+}
+{ % If a package is also specified as a second argument, add the command and package to the index
+\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2} (\texttt{#1} package)}% Command name
+\index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}% Package name
+}}
+
+\newcommand{\doccmd}[2][]{% Command to define a command and add it to the index
+\texttt{\tuftebs#2}%
+\ifthenelse{\isempty{#1}}% If no package is specified, add the command to the index
+{%
+\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2}}% Command name
+}
+{%
+\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2} (\texttt{#1} package)}% Command name
+\index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}% Package name
+}}
+
+% A bunch of new commands to print commands, arguments, environments, classes, etc within the text using the correct formatting
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}
+\newenvironment{docspec}{\begin{quotation}\ttfamily\parskip0pt\parindent0pt\ignorespaces}{\end{quotation}}
+\newcommand{\docenv}[1]{\texttt{#1}\index{#1 environment@\texttt{#1} environment}\index{environments!#1@\texttt{#1}}}
+\newcommand{\docenvdef}[1]{\hlred{\texttt{#1}}\label{env:#1}\index{#1 environment@\texttt{#1} environment}\index{environments!#1@\texttt{#1}}}
+\newcommand{\docpkg}[1]{\texttt{#1}\index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}}
+\newcommand{\doccls}[1]{\texttt{#1}}
+\newcommand{\docclsopt}[1]{\texttt{#1}\index{#1 class option@\texttt{#1} class option}\index{class options!#1@\texttt{#1}}}
+\newcommand{\docclsoptdef}[1]{\hlred{\texttt{#1}}\label{clsopt:#1}\index{#1 class option@\texttt{#1} class option}\index{class options!#1@\texttt{#1}}}
+\newcommand{\docmsg}[2]{\bigskip\begin{fullwidth}\noindent\ttfamily#1\end{fullwidth}\medskip\par\noindent#2}
+\newcommand{\docfilehook}[2]{\texttt{#1}\index{file hooks!#2}\index{#1@\texttt{#1}}}
+\newcommand{\doccounter}[1]{\texttt{#1}\index{#1 counter@\texttt{#1} counter}}
+
+
+
+\titleformat{\chapter}%
+[block]% shape
+{\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}% format applied to label+text
+{\itshape\huge\thechapter\hspace{10pt}}% label
+{0pt}% horizontal separation between label and title body
+{\huge\rmfamily\itshape}% before the title body
+[\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body
+
+
+
+
+\hypersetup{
+    colorlinks,
+    citecolor=green,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=red
+}
+
+\setcounter{secnumdepth}{3}
+
+\setcounter{tocdepth}{2}
+
+
+\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+\definecolor{ikb}{rgb}{0.0, 0.18, 0.65}
+\definecolor{namecolor}{cmyk}{1,.50,0,.10}
+
+\usepackage{makeidx} % Used to generate the index
+\makeindex % Generate the index which is printed at the end of the document
+
+
+\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}
+		\makeatletter
+
+		\newcommand{\mybox}[1]{%
+			\setbox0=\hbox{#1}%
+			\setlength{\@tempdima}{\dimexpr\wd0+13pt}%
+			\begin{tcolorbox}[colframe=mycolor,boxrule=0.5pt,arc=4pt,
+				left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,width=\@tempdima]
+				#1
+			\end{tcolorbox}
+		}
+		\makeatletter
+
+\begin{document}
+\title{ECON30401:Time Series Econometrics}
+\author[Nicky L. Grant]{Nicky L. Grant}
+
+\begin{titlepage}
+\newgeometry{left=7.5cm} %defines the geometry for the titlepage
+\pagecolor{ikb}
+\noindent
+
+\color{white}
+\makebox[0pt][l]{\rule{1\textwidth}{2pt}}
+\par
+
+\vspace{5pt}\textbf{\huge \textsf{Time Series Econometrics}} \hspace{5pt} \textcolor{white}{\textsf{Nicky Grant}}
+\vfill
+\noindent
+{\Huge \textsf{ECON30401 Lecture Notes 3}}
+\vskip\baselineskip
+\noindent
+\textsf{\large Semester 1 2016}
+\end{titlepage}
+\restoregeometry % restores the geometry
+\nopagecolor% Use this to restore the color pages to whiteint the title page
+
+
+
+\chapter{Inference in Time Series}
+
+In the first two lectures we  defined the notion of a process $Y_t (t=..-2,-1,0,1,2,..)$, some unobserved random variable (i.e data generating mechanism) which generates the data we observe $\{y_t\}_{t=1}^T$. So far we have studied the properties of different theoretical processes $Y_t$  (specifically ARMA models) by studying the form of dynamics they can capture. Namely we derived the theoretical Auto-Correlation Function (ACF) of some key ARMA processes- for example the AR(1) and MA(1) and observed how they permit very different dependence properties. Understanding the theoretical properties of alternative processes is a crucial part to understanding the notion of inference from sample data and is the topic we now move on to.
+
+
+ In reality we observe some realisation of time series data, for example UK GDP Growth  which came from some unknown process,  the exact form of which is unknown to us. \textbf{This lecture is concerned with methods to infer the form of the true process $Y_t (t=..-2,-1,0,1,2,..)$  based on a realisation from this process, namely the sample data of size $T$  $\{y_t\}_{t=1}^T$.} From our perspective the true process could take any form and the aim of inference is to determine  the form of this process as closely as possible. To achieve this we discuss some simple methods to select and test between different processes using our sample data to try and unearth the form of the underlying process.
+
+Often the first step in an analysis of time series data is to undertake a visual
+examination of the properties of the observed series by graphing the data over time. Below is the graph of UK GDP between 1984Q1 and 2012Q4. \sidenote{`Q' refers to Quarter.}
+\begin{figure}
+\begin{center}`
+\includegraphics{ukgdp2.png} \caption[Annual Growth (\%) in Total UK GDP (1984Q1-2012Q4)]{\textbf{Annual Growth (\%)  in Total UK GDP  (1984Q1-2012Q4)} \vspace{5pt} \newline  \noindent \textsc{Source: \href{https://fred.stlouisfed.org/series/NAEXKP01GBQ652S}{St Louis Fed}}}
+
+\end{center}
+\end{figure}
+ By eye-balling the graph of the series we may have some notion of some general properties of the process of UK GDP growth.  For example the mean looks to be around 1 and there is clear evidence of positive persistence in the series.  However this still gives no indication more specifically of the form of the process, which may be useful for example to predict future GDP growth.
+ Suppose for sake of example that the true process of UK GDP is $Y_t=0.4+0.5Y_{t-1}-0.1\varepsilon_{t-1}+\varepsilon_t$ where $\varepsilon_t\sim WN(1)$ (i.e an ARMA(1,1),\textbf{ the question is then how to use a realisation (namely the sample data) to unearth this process which is unknown to us?}
+
+At the broadest level the task is quite daunting, we have a set of $T$ observations, say for example $T=240$ observations of monthly UK GDP data from September 1995 to September 2015 with which to unearth this process which is completely unknown. From our perspective the true model could take any form- i.e it could be a particular ARMA(1,1) or an AR(5) or an ARMA(5,16) or an even more complex model.
+
+ Intuitively at the most fundamental level  it should be apparent that in order to make any inference on the true process we need a sufficiently large data set. For example if we only have data on 3 quarterly observations of UK GDP Growth it is going to be extremely difficult for any form of estimation or model selection to unearth the true process. Simply because with 3 data points it is difficult to distinguish between different processes.
+
+  In order to be able to infer the form of the dynamics (i.e the correlation patterns, the ACF) we need sufficiently long data sets with which to be able to reliably estimate correlations of $Y_t$ with past observations. Secondly in order to reliably estimate the true process we require the process to be stable over time, i.e that the process does not change dramatically over time. Namely it would be desirable if the true process we are trying to determine is stationary. In this lecture we make this assumption which is often the starting point in many theoretical and empirical studies of time series. \sidenote[][-2cm]{We will refer to these more general issues in the PC Labs and lectures.  }\newline\vspace{1cm}
+In this lecture we will study
+
+ \begin{enumerate}
+ \item
+  Methods to estimate correlations in the data and perform tests on the dependence properties of the underlying process. To do this we introduce and discuss the \textbf{Sample Autocorrelation Function} and how we may use this  to perform \textbf{ hypothesis tests }on the sign and magnitude of correlations at different lags of the true underlying process which generated our data.
+
+  \item Estimation of ARMA type models in particular \textbf{OLS estimation of AR(p) models}. Also methods with which to test hypotheses on the coefficients of  ARMA  models.\sidenote[][-1cm]{ We will not be concerned with proving the results on estimation and inference below, but more that you understand the intuition of the results and are comfortable in applying such techniques in practise.}
+  
+  \item Methods to test that our model is dynamically complete, namely that the model we specify has errors which are uncorrelated (White Noise) and as such our specified models captures all the dynamics so that what remains is random variation.
+
+  \item Model selection betwee methods in ARMA models, namely using information criterion methods  \textbf{Akaike and Bayesian Information Criterion}  \textbf{(AIC \& BIC).}
+   \end{enumerate}
+
+
+
+ \section{Sample Auto-Correlation Function \& Testing}
+ The dependence properties of Time series can be characterised  by their ACF, examples of which were given in lectures 1 and 2. For example  an MA(1) process could allow a non-zero correlation at lag 1 and no correlation elsewhere.  Hence if the data we observe came from an MA(1) process then the correlations between observations in the data should also satisfy this property for sufficiently large data sets.
+
+
+It seems natural to then use sample values to estimate the populations correlations of the underlying process $\rho(k)$. Rememberer for stationary series the correlation between $Y_t$ and $Y_{t-k}$ (see notes from lecture 1) is
+\begin{equation*} \rho(k)=\frac{Cov(Y_t, Y_{t-k})}{Var(Y_{t})} \end{equation*}
+where $Cov(Y_t, Y_{t-k})$ and $Var(Y_{t})$ are the covariance and variance in the whole population (and hence unknown to us). However we have a sample of observations $\{y_t\}_{t=1}^T$ and we can replace the population averages with the sample averages.
+
+ \begin{mydef}{Sample Auto-Correlation } TThe Sample Autocorrelation $\hat{\rho}_T(k)$ is defined
+\begin{equation*}
+\hat{\rho}_T(k)=\dfrac{\sum_{t=k+1}^{T}\left( y_{t}-\bar{y}%
+\right) \left( y_{t-k}-\bar{y}\right) }{\sum_{t=1}^{T}\left( y_{t}-\bar{y}%
+\right) ^{2}}  \label{sample autocorr}
+\end{equation*} \end{mydef}
+
+where $\bar{y}:=\frac{1}{T} \sum_{t=1}^t y_t$ is the sample mean, i.e the estimator of $\mu=\mathbb{E}[Y_t]$ the population means (assumed constant due to stationarity). The \textbf{Sample Autocorrelation Function }is the Sample Autocorrelation at at all  lags $k=1,..,K$ for some $k$ where $K<T$ (see discussion below).\newline\vspace{0.2cm}
+
+\textsc{Remarks}
+\begin{itemize}
+	\item The subscript `T' in $\hat{\rho}_T(k)$ denotes this estimator is from a sample of size T where the properties of  $\hat{\rho}_T(k)$  will depend on the sample size.
+\item We may re-write $\hat{\rho}_T(k)$ 
+\begin{equation}
+\hat{\rho}_T(k)=\dfrac{\frac{1}{T}\sum_{t=k+1}^{T}\left( y_{t}-\bar{y}%
+\right) \left( y_{t-k}-\bar{y}\right) }{\frac{1}{T}\sum_{t=1}^{T}\left( y_{t}-\bar{y}%
+\right) ^{2}}  \label{sample autocorr}
+\end{equation}%
+
+ The numerator of $\hat{\rho}_T(k)$ is an estimate of
+\begin{equation} Cov[Y_t,Y_{t-k}]=\mathbb{E}[(Y_t-\mathbb{E}[Y_t])(Y_{t-k}-\mathbb{E}[Y_{t-k}])] \end{equation}
+as it  takes the  average of  $ \left( y_{t}-\bar{y}%
+\right) \left( y_{t-k}-\bar{y}\right)$ in the sample, noting that average is taken  from $k+1$ to $T$ as $t=k+1$ is the first observations $t$
+for which the pair $\left( y_{t},y_{t-k}\right) $ is available in the
+sample. As an implication $K<T$ which makes sense, to estimate how $y_t$ and $y_{t-k}$ move together we need to observe observations at least $k$ periods ago.
+\item In practise we would only estimate sample autocorrelations up to some number $K$ which we would select be much smaller than $T$ to form reliable estimates.  \sidenote[][-1cm]{For example if we observe only $10$ years of UK GDP Data then for example we only have one data point with which to estimate the correlation at lag $9$, namely observation 1 and 10. This is clearly going to be a very unreliable estimate of the correlation of UK GDP with 9 periods ago..}
+
+\item The numerator is an estimator of the variance $Var[Y_t]=\mathbb{E}[(Y_t-\mathbb{E}[Y_t])^2]$ replacing the population average with the sample average.
+
+\item We can see the stationary assumptions is key here. For example we've used the fact the variance is constant over time so that the variance in the sample is reflective of the variance in any time period. This is also the case for estimating the mean and covariance which under stationarity do not change over time
+
+    \item Intuitively the larger is the sample, the closer $\hat{\rho}_T(k)$ is to $\rho(k)$ though they never equal each other and will differ by sampling variation.\sidenote[][-0.5cm]{For example suppose a stationary process has variance 5 (population variance). If  we have a sample $T=20$ in our realisation we may find the sample variance of this of 5.5, if we observed another realisation of $T=20$ we may find variance in this sample of say $5.2$ and so on.} Namely $\hat{\rho}_T(k)$ is the realisation of a random variable and we must characterise this  randomness (i.e it's distribution) when forming hypotheses on $\rho(k)$.
+
+        \end{itemize}
+
+        As with the Population Auto-Correlation Function we may plot the  Sample Auto-Correlations for different lags to form the \textbf{Sample Auto-Correlation Function}, also known as the \textbf{Correlogram}. 
+
+        By matching the properties of the Correlogram with the theoretical
+autocorrelation properties for stationary $ARMA$ processes, an initial
+indication can be given of models that may be appropriate for the data. In
+doing so, however, it needs to be remembered that sample data will not
+precisely reproduce the properties of the underlying process, particularly
+when the available sample size is of moderate size.
+
+In order to make inference on the form of the dependence in the true series we require methods to test certain hypothesis on the true unobserved autocorrelation function. To do this we must take in to account the sampling error in our  estimate $\hat{\rho}_T(k)$ in estimating $\rho(k)$
+
+\subsection{Sampling Properties of the Sample Autocorrelation (Function)}
+
+
+The correlation structure of the true process $\rho(k)$ are unknown to us. We have an estimate $\hat{\rho}_T(k)$ which for $T$ large should give a good approximation to $\rho(k)$. However this concept is vague when it comes to making inference. If for example in our sample we find $\hat{\rho}_T(1)=0.09$ then the sample correlation at lag 1 is small, which may lead us to suspect that the true correlation at lag  1 is $\rho(1)=0$ (or very small). However $\hat{\rho}_T(k)$ is a realisation from some random variable, for every different realisation we'd find a different estimate of the correlation at lag 1.  As such we require methods with which to formalise the sampling uncertainty in our estimator to formally test hypotheses on $\rho(k)$ based on the sample data that formed $\hat{\rho}_T(k)$.
+
+In order to see the sampling uncertainty in the sample autocorrelation we now consider a simulation experiment.
+
+	Suppose the true Process is \framebox{  $Y_t=0.5Y_{t-1}+\varepsilon_t$  $\quad\varepsilon_t\sim$ WN(1)}. We know the ACF is $\rho(k)=0.5^k$ which is plotted in Figure \ref{ar105} below.
+
+	\begin{figure}
+		\includegraphics[scale=0.05]{ar1acf05} \caption[ACF of AR(1)]{\textbf{ACF of an AR(1) $Y_t=0.5Y_{t-1}+\varepsilon_t$}} \label{ar105}
+	\end{figure}
+
+
+Of course when observe our sample data in practise we do  not know that the true process was an AR(1) above and that the ACF looked as in Figure \ref{ar105}. We would however plot the Sample Autcorrelation Function (the correlation patterns in our data) as our best guess of what the true ACF looked like. But in a simulation we can set the true process, generate data and then see the properties of our different estimation methods.
+
+ The graphs below are  an animated figure which perform the following simulations for $T=\{30,100,1000,10000\}$
+
+\begin{enumerate}	
+\item Generate a sample $\{y_1^b,..,y_T^b\}$ from $Y_t=0.5Y_{t-1} +\varepsilon_t$ where $\varepsilon_t \sim N(0,1)$
+
+\item Calculate the Sample ACF up to lag 5 $\hat{\rho}_{T}^b(1)$,..,$\hat{\rho}_{T}^b(1)$	for each sample $b$   
+
+
+
+
+\item	Plot  Sample ACF  $\hat{\rho}_{T}^b(1)$,..,$\hat{\rho}_{T}^b(5)$   for  $b=\{1,..,100\}$.
+
+\end{enumerate}
+
+
+Take $T=30$. As you click forward in the figure below a sample draw is taken from an AR(1) as in Step 1 and plotted, repeatedly. 
+\begin{figure}
+\animategraphics[ controls,scale=0.75]{1}{acfar1T30}{1}{100}\caption[Animated Simulation Sample Autocorrelation Function (T=100) of AR(1)  ]{\textbf{Animated Simulation Sample Autocorrelation Function(T=30) of AR(1) $Y_t=0.5Y_{t-1} +\varepsilon_t$. }}
+
+\end{figure}
+ \marginnote[-8cm]{\emph{We generate 100 samples of size $T=100$ from $Y_t=0.5Y{t-1}+\varepsilon_t$  setting $Y_0=0$ evaluated where  $\varepsilon_t$ is drawn from an i.i.d $N(0,1)$ distribution and plot the Sample ACF up to lag 5 for each sample. The line in red shows the population ACF $\rho(k)=0.5^k$.}}
+
+What would we expect to happen to the sample realisations of the Sample ACF as the sample size T increases? Figure \ref{ar2} repeats the above simulation for $T=100$.
+
+\begin{figure} \label{ar2}
+	\animategraphics[ controls,scale=0.75]{100}{acfar1T100}{1}{100}\caption[Animated Simulation Sample Autocorrelation Function (T=1000) of AR(1)  ]{\textbf{Animated Simulation Sample Autocorrelation Function(T=30) of AR(1) $Y_t=0.5Y_{t-1} +\varepsilon_t$. }}
+	
+\end{figure}
+
+ Figure \ref{ar3}  and Figure \ref{ar4} repeats the above simulation again for  $T=1000,10000$, again what do we expect to see happen?  
+ 
+
+\begin{figure} \label{ar3}
+	\animategraphics[ controls,scale=0.75]{1}{acfar1T1000}{1}{100}\caption[Animated Simulation Sample Autocorrelation Function (T=30) of AR(1)  ]{\textbf{Animated Simulation Sample Autocorrelation Function(T=30) of AR(1) $Y_t=0.5Y_{t-1} +\varepsilon_t$. }}
+	\end{figure}
+
+
+\begin{figure}\label{ar4}
+	\animategraphics[ controls,scale=0.75]{1}{acfar1T10000}{1}{100}\caption[Animated Simulation Sample Autocorrelation Function (T=10000) of AR(1)  ]{\textbf{Animated Simulation Sample Autocorrelation Function(T=30) of AR(1) $Y_t=0.5Y_{t-1} +\varepsilon_t$. }}
+	
+\end{figure}
+\newpage
+The animations above give a visual depiction of the sampling variation in the Sample ACF. We can see as the sample size increases the Sample ACF better approximates the true ACF of the process which generated our data. Again this makes intuitive sense, the data is generated from a process with a certain correlation pattern, and hence our data should reflect this in large enough samples. 
+
+We can also say more about the distribution or the sampling variation in the Sample Autocorrelations. To see this we perform a simulation below which shows the sampling distribution of $\hat{\rho}_T(1)$ for $T=2,..200$. Namely we plot the probabilty the Sample Autocorrelation at lag 1 takes on particular values. \sidenote[][-1.1cm]{For brevity we  consider only the Sample ACF at lag 1, though we the idea holds for the Sample correlation at any lag.}\newline \vspace{0.5cm}
+
+The animated figure below performs the following simulation
+
+\begin{enumerate}	
+	\item Generate 1000 samples $\{y_1^b,..,y_T^b\}$ from $Y_t=0.5Y_{t-1} +\varepsilon_t$ where $\varepsilon_t \sim N(0,1)$
+
+	\item Calculate $\hat{\rho}_{T}^b(1)$	for each sample $b=\{1,..,1000\}$  
+	
+
+	
+	\item	Plot probability distribution of   $\hat{\rho}_{T}^b(1)$  $b=\{1,..,1000\}$  for $T=2,.200$.
+	
+\end{enumerate}
+
+The top graph in Figure \ref{arsim}  plots the sampling distribution of  $\hat{\rho}_{T}(1)$ and  the bottom graph the mean and standard deviation of  $\hat{\rho}_{T}^(1)$  for $T=2,..,200$. What do we expect to happen to
+
+\begin{enumerate}
+	\item[A] The form of the distribution of  $\hat{\rho}_{T}^(1)$ as T increases?
+	\item[B] The mean of $\hat{\rho}_{T}(1)$  as T increases?
+	\item[C] The standard deviation (sd) of $\hat{\rho}_{T}^(1)$  as T increases?
+\end{enumerate}
+\begin{figure} \label{arsim}
+\animategraphics[ controls, scale=0.45]{1}{lllnar1.ani}{1}{199} \caption[Simulation Sampling Distribution of Sample ACF of AR(1)]{Animated Simulation of Sampling Distribution of $\hat{\rho}_{T}^{b}(1)$  T=2,..200.}
+\end{figure}
+
+We can see from Figures \ref{ar105} to Figure \ref{a4} and the evidence in Figure \ref{arsim} that 
+\begin{enumerate}
+	\item[A] The distribution  $\hat{\rho}_{T}^(1)$  converges to a Normal Distribution as $T\rightarrow \infty$. 
+	\item[B] The average value (mean) of $\hat{\rho}_{T}(1)$  converges to the population autocorrelation $\rho(1)$?
+	\item[C] The standard deviation (sd) of $\hat{\rho}_{T}(1)$  converges to zero.
+\end{enumerate}
+All of these results  verified in the simulations are formalsised in Section (\ref{sec2}) more generally.
+
+
+\subsection{Large Sample Properties of Sample ACF and Hypothesis Testing}
+ \label{sec2}
+In this section we overview the statistical properties of the Sample Autocorrelations of a White Noise Process. We do this as often we wish to test a process is white noise, or more specifically whether or not the correlation at some lag is zero or not. \sidenote[][-1cm]{We can provide more general results, that look very similar to those in this section though allowing the case the population ACF isn't zero.}
+
+If $Y_t$ is a White Noise Process (i.e $\rho(k)=0$ for all $k=1,2,..$) then it can be shown the following results hold.
+\begin{mytheo}{Consistency}  IIf $Y_t$ is a White Noise Process
+	\begin{equation*}
+	\hat{\rho}_T(k)\overset{p}{\rightarrow} 0\quad \text{all }%
+	k=1, 2,...  \label{autocorr cons}
+	\end{equation*} \end{mytheo}
+This  result says that the sample ACF converges to the population ACF with probability converging to 1. We saw this above for the case $\hat{\rho}_T(1)$ where $\rho(1)=0.5$, namely as T increased  $\hat{\rho}_T(1)$ approached 0.5 with increasing probability.\sidenote[][-0.8cm]{More generally when $Y_t$ isn't White Noise we can show $\hat{\rho}_T(k)\overset{p}{\rightarrow} \rho(k)$ for all $k=1,2,..$.}
+\begin{mytheo}{Central Limit Theorem}  IIf $Y_t$ is a White Noise Process
+	\begin{equation*}
+\sqrt{T}\hat{\rho}_T(k)\overset{d}{\rightarrow}N\left( 0,1\right) \quad \text{all }%
+k=1, 2,...  \label{autocorr distn}
+\end{equation*} \end{mytheo}
+
+\marginnote[-6.8cm]{
+You are not expected to be able to prove any of the statistical results below, but be able to use them to perform hypothesis tests and to be able to properly analyse and utilise the Correlogram.}
+
+ The results says that if $Y_t$ were White Noise the variable $\sqrt{T}\hat{\rho}_T(k)$ for $T$ large enough when is distributed as a Normal random variable with mean zero and variance 1 (formally that this statistic Converges in Distribution to a $N(0,1)$.\sidenote[][-1.5cm]{ This is just the Central Limit Theorem applied to the case of sample auto-correlations. It is well beyond the scope of this course to prove this result. However it is key to understand how to use this result to perform hypothesis tests on $\rho(k)$.}
+ 	
+ 	If $Y_t$ is White Noise then $\rho(k)=0$ for any $k=1,2,..$. This allows us to form tests a process has correlation at any lag, and hence is not White Noise, but a dependent series
+ 	
+ Commonly we wish to test that there is no correlation at some lag $k$. The null hypothesis is then
+\begin{equation*} H_0:\;  \rho(k)=0 \end{equation*}
+\begin{equation*} H_A:\;  \rho(k)\neq 0 \end{equation*}
+where the alternative $H_A$ is that this correlation is non-zero.
+
+Under the Null Hypothesis then $\rho(k)=0$  (and also that $Y_t$ is WN ) the result above says that
+\begin{equation}
+\sqrt{T}\hat{\rho}_T(k)\overset{d}{\rightarrow}N\left( 0,1\right)  \label{autocorr distn}
+\end{equation}
+
+hence if the null $H_0$ is true then $\sqrt{T}\hat{\rho}_T(k)$ is approximately normally distributed, where $\Pr\{-c<\sqrt{T}\hat{\rho}_T(k)<c\}=\Pr\{-c<Z<c\}$ where $Z$ is the standard normal distribution. We can then use this result to perform a test $H_0$ is true. Take $c=1.96$ we know by the properties of a $N(0,1)$ random variable that
+$\Pr\{-1.96<Z< 1.96\}=0.95$. Hence under $H_0$  we know $ Pr\{-1.96<\sqrt{T}\hat{\rho}_T(k)<1.96\}=0.95$ so that there is 95\% of the time the statistic $\sqrt{T}\hat{\rho}_T(k)$ lies in the region $(-1.96, 1.96)$. If this statistic lies outside this range we know there's only a 5\% probability of observing this outcome under $H_0$. Hence if $|\sqrt{T}\hat{\rho}_T(k)|>1.96$ we would reject the null with 95\% certainty and if $|\sqrt{T}\hat{\rho}_T(k)|<1.96$ we can not find evidence to reject the null hypothesis at the 5\% significance level.
+
+This was a quick recap of the notion of a hypothesis test applied to the case of testing whether a correlation at lag $k$ is zero, i.e if $\rho(k)=0$.
+\subsection{Q-Test}
+In addition to testing that individual correlations at particular lags are zero, we often wish to perform a joint test that all correlations up to some point are zero. Namely we may wish to test
+\begin{eqnarray}\label{Q}
+H_{0} &:&\rho(k)=0\text{ all }k=1,2,...,L  \label{H0-white noise} \\
+H_{A} &:&\text{ At least one }\rho(k) \neq 0\text{ for }k=1,2,...,L  \notag
+\end{eqnarray}
+for some $L$. E.g if $L=2$ the null is the correlation at the first two lags is zero, against the alternative that at least one of these correlations are non-zero.\\
+
+\begin{mydef}{Chi Squared Distribution}
+FFor  $k$ independent random variables where $
+X_{1},...,X_{k}\sim N(0,1)$, then
+\begin{equation*}
+\sum_{j=1}^{k}X_{j}^{2}\sim \chi _{k}^{2}.
+\end{equation*} \end{mydef}
+
+That is, the sum of squares of $k$ independent standard normal variables is
+a $\chi ^{2}$ variable with $k$ degrees of freedom. Below is the plot of the distribution  of $\chi^2_k$ for $k=1,5,10$.
+\begin{center}	\includegraphics[scale=0.5]{chi}
+\end{center}
+Again we can choose the relevant critical value to perform the test, which is done automatically in the Correlogram in Eviews.
+
+
+
+
+
+
+Since we can show the sample
+autocorrelations $\hat{\rho}_T(j)$  where $\rho(j)=0$ (assuming $Y_t$ is WN) for $ j=1,2,...L$ are asymptotically
+independent where by eq. (\ref{autocorr distn}) $ (\sqrt{T}\hat{\rho}_T(j) $ is distributed approximately $N(0,1)$ (so that $ (\sqrt{T}\hat{\rho}_T(j))^2$) is approx. $\chi^2_1$ distributed) so that 
+) we can consequently state that%
+\begin{equation*}
+Q=\sum\limits_{j=1}^{k}(\sqrt{T}\hat{\rho}_T(j))^{2}=T\sum\limits_{j=1}^{k}\hat{\rho}_T(j)^{2}%
+\overset{d}{\rightarrow}\chi _{k}^{2}  \label{Qstat}
+\end{equation*}
+namely that $Q$ is approximately distributed $\chi^2_k$ if the null is true.
+
+ This $Q$-statistic
+therefore provides a means to test  (\ref{Q}). If the Null is true then Q is approximately distributed $\chi^2_k$ so if the Q statistic is less than the critical value from the relevant $\chi^2_k$ distribution we accept the null, rejecting otherwise. This test is performed automatically in Eviews. We now move on to the Correlogram Output from Eviews and provide examples of these tests.
+
+We now move on to discuss the Correlogram output in Eviews and give an example of performing hypothesis tests on auto-correlations.
+
+
+\subsection{Correlogram output in Eviews}
+
+
+
+
+
+
+The Correlogram of GDP growth (here denoted DLDGP) based on a data set of $T=116$ observations from 1984Q1 to 2012Q4  is given below.
+This has been obtained using EViews (which we will see in the PC Lab in Week 5).
+\begin{center}
+\includegraphics[scale=1.2]{corrgdp1.png}
+\end{center}
+\textsc{Correlogram Eviews Output: User Guide}
+\begin{enumerate}
+
+\item Gives the dates of the observation 1984Q1 to 2012Q4 with $T=116$ observations.
+\item Column indicating the lag, e.g at 1 all entries in that row refer to the sample  correlation information pertaining to lag 1.
+\item Vertical bar plot of $\hat{\rho}_T(k)$ for $k=1,..16$. It is often clearer to interpret plotted horizontally as done for the Population Auto-Correlation Function.
+\begin{center}
+\includegraphics[scale=1.3]{rkgdp.png}
+\end{center}
+where the dotted lines have been removed. The column labelled \textsc{AC} gives the actual values of $\hat{\rho}_T(k)$ represented in the plot. For $k=1$ here $\hat{\rho}_T(1)=0.582$.
+The dotted lines in the plot in 1 give the rejection/acceptance region of a test that $\rho(k)=0$ against the alternative that $\rho(k)\neq 0$. Remember we reject the null (at the 5\% level) if $|\sqrt{T}\hat{\rho}_T(k)|>1.96$ namely if $|\hat{\rho}_T(k)|>1.96/\sqrt{T}$. The dotted lines are horizontal lines at $\pm  1.96/\sqrt{T}$. In this case at $\pm1.96/\sqrt{116}=\pm 0.186$.
+  Namely for any lag $k$ is $\hat{\rho}_T(k)$  lies outside the banded region around $0$ we have evidence at the 5\% level that the correlation at lag $k$ is not zero. For example we see $\hat{\rho}_T(1)=0.582>0.182$  and lies outside this region so we would find evidence to reject the null that $\rho(1)=0$ at the 5\% level.
+
+\item  At any lag $k$ the Q-Stat gives the test statistic corresponding to the Joint Hypothesis that $\rho(1)=..\rho(k)=0$ [namrly the null hypothesis is that the ACF up to lag k are all zero] against the alternative hypothesis that at least one of these correlations are non-zero. Namely it calculates $ Q=\sum\limits_{j=1}^{k}(\sqrt{T}\hat{\rho}_T(j))^{2}=T\sum\limits_{j=1}^{k}\hat{\rho}_T(j)^{2}$.
+
+
+
+\textbf{The corresponding entry to the right in the column Prob is the p-value for this test, i.e the probability that this joint null hypothesis is true.} Namely it is the probability that a $\chi^2_k$ takes a value at least as large as $Q$, i.e $\Pr\{\chi^2_k>Q \}$. If the null is true we know that $Q$ was drawn  from a  $\chi^2_k$ and hence the probability of observing a value at least as large as  $Q$ corresponds to how likely it is the null holds. If this probability is very small it is unlikely to observe the statistic as large as $Q$ if the null were true (as we know it came from a $\chi^2_k$ in this case).
+
+    \item The columns in red for the graph of the Partial Autocorrelations with the corresponding values provided  PAC are not covered in this course and we can ignore these.
+\end{enumerate}
+
+Hence the Correlogram Output from Eviews provides all the key information on the dependence properties of a particular time series variable and allows us to both visualise the form of the dependence in the true process, and perform formal hypothesis tests about its structure. We perform an example analysis for the Correlogram above.\newline \vspace{0.5cm}
+
+\textsc{Properties of UK GDP Growth From the Correlogram}
+\begin{itemize}
+
+\item The Correlogram shows clear evidence of
+dependence in GDP growth. We can see the first three autocorrelations lie outside the critical region bounds and hence we'd reject the null that any of these correlations were zero. This is verified by the Q-Statistic where the joint hypothesis that the first three correlations are zero has a p-value of 0, i.e there is zero probability the null is true.  After lag 4 we  find no evidence of non-zero correlations, all the sample autocorrelations lie  within the acceptance region.
+\item We see the first few correlations are positive and decline quickly. This provides evidence the true process may be an AR(1), as remember the theoretical ACF an AR(1) for a positive AR(1) coefficient had positive correlations decaying exponentially quickly.
+
+\end{itemize}
+
+Hence there is evidence the true process of UK GDP Growth may be of an AR(1) form. However this is not formally tested, so the true model may be of another form, however it is likely to be related to the AR(1) process.
+
+Often assessing the properties of the process from the Correlogram is  a key step in guiding estimation which we now move on to.  Though a good guide to the likely true form of the process,  we still require formal methods with which to estimate the exact form of the process.\sidenote[][-1.5cm]{ For example even if the true process for UK GDP growth was an AR(1), we still do not know the exact form of the process,  just that it is  $Y_t=\mu+\phi_1 Y_{t-1}+ \varepsilon_t$ for some $\mu$, $\phi_1$. We now need a method to estimate the unknown coefficients $\mu,\phi_1$ which we now move on to.}
+
+
+
+
+\section{Estimation of ARMA(p,q) Models}
+
+This section discusses how to estimate an ARMA(p,q) model given a data set $\{y_t\}_{t=1}^T$. We focus mostly on the AR(p) as we can use the OLS estimator you have seen before. Similar results holds the same for general ARMA(p,q) model. Though when a model has MA components a different method is used and details are given for the simple case of an MA(1).\sidenote{ Again you are not expected to prove any results below, but to understand the intuition and how to use and interpret the results in practise.}
+
+
+\subsection{AR(p) Models}
+
+Say that, on whatever bases, it is considered that an $AR(p)$ may have
+generated the available data. For example for UK GDP growth by looking at the Correlogram we think an AR(1) may be the true underlying process. The next step then is how to estimate the AR(1) coefficients? Then the investigator uses the sample
+observations ($y_{1},$ $y_{2}$, $...$, $y_{T}$) to estimate the parameters
+of
+\begin{equation}
+Y_{t}=\alpha +\phi _{1}Y_{t-1}+...+\phi _{p}Y_{t-p}+\varepsilon _{t}
+\label{ARp}
+\end{equation}%
+ $\varepsilon _{t}\sim WN(\sigma ^{2})$. We can see this is just a linear regression model, and using terminology from the ECON21001 course the dependent variable is $Y_t$ and the independent variables are a constant $Y_{t-1},.., Y_{t-p}$. We could then just perform an OLS regression to estimate $\alpha, \phi_1,..,\phi_p$. It turns out for OLS to correctly estimate these parameters in large samples we require that $\varepsilon _{t}$ is uncorrelated with all past values, i.e that $\varepsilon _{t}$ are serially uncorrelated which we have maintained by the White Noise assumption.
+
+ To see how we would perform this regressions in practise we can see in the
+following extract from an Excel worksheet:
+
+\begin{center}
+\includegraphics{excel}
+\end{center}
+
+where the first observations are `lost" at the beginning of
+the sample in order to create the required lags; hence some lagged values
+are not available (indicated here as NA). For example, to estimate an $AR(2)$%
+, then the initial observations for $t=1,2$ cannot be used in the $AR(2)$
+regression as there are no corresponding observations available for $y_{t-2}$%.
+
+Programs typically make this adjustment automatically. However, when
+comparing different models estimated for a single variable, it is good
+practice to ensure that all are estimated over the same sample period. The reason being we want to compare the models over the same time period. Thus,
+if you want to compare $AR(1)$, $AR(2)$, $AR(3)$ and $AR(4)$ models for some
+$y_{t}$, all should be estimated using the observations $t=5,6,...,T$. To
+allow for such an adjustment, we denote the number of observations actually
+employed for estimation as $T^{\ast }=T-p-q$.
+
+\subsection{Properties of OLS}
+
+Let's assume that the investigator estimates an $AR(1)$ where the data were generated by an AR(1). Then the process is
+\begin{equation}
+Y_{t}=\alpha +\phi _{1}Y_{t-1}+\varepsilon _{t}  \label{AR1}
+\end{equation}%
+and the OLS estimators are%
+\begin{eqnarray*}
+	\hat{\alpha} &=&\bar{y}-\hat{\phi}_{1}\bar{y}_{-1} \\
+	&& \\
+	\hat{\phi}_{1} &=&\dfrac{\sum_{t=2}^{T}\left( y_{t}-\bar{y}\right) \left(
+		y_{t-1}-\bar{y}_{-1}\right) }{\sum_{t=2}^{T}\left( y_{t-1}-\bar{y}%
+		_{-1}\right) ^{2}}
+\end{eqnarray*}%
+where $\bar{y}_{-1}$ is the mean of the observations for $y_{t-1}$. [Note
+again that estimation can start only from $t=2$ as discussed above.] For an AR(2) or higher then we have a multivariate regression and Eviews automatically calculates the regression coefficients.
+
+We can also derive the large sample properties of the OLS Estimator as we did for the Sample ACF.
+
+ \begin{mytheo}{OLS Consistency} IIf $|\phi_1|<1$ and $\varepsilon_t\sim WN(\sigma^2)$ then 
+ 	\begin{equation*} \qquad\qquad\qquad\hat{\phi}_1\overset{p}{\rightarrow} \phi_1 \end{equation*} \end{mytheo}
+ 
+\begin{mytheo}{ OLS Central Limit Theorem} If $|\phi_1|<1$ and $\varepsilon_t\sim WN(\sigma^2)$ then	
+	\begin{equation} \label{olsclt}	\quad\sqrt{T}\frac{(\hat{\phi}_1-\phi_1)}{\textrm{sd}(\hat{\phi}_1)} \overset{d}{\rightarrow}N\left( 0,1\right)	\end{equation} \end{mytheo}
+
+\begin{enumerate}
+	\item[] \textbf{Crucial Assumptions}
+	\item$\varepsilon_t$ \textbf{Serially Uncorrelated} ( i.e $\varepsilon_t$  uncorrelated with all past values). If errors are serially correlated then the OLS assumption of exogeneity fails. For example if $\varepsilon_t$ is correlated with $\varepsilon_{t-1}$ then  $\varepsilon_t$ is correlated with $Y_{t-1}$ as $Y_{t-1}=\mu+\phi_1 Y_{t-2}+ \varepsilon_{t-1}$ where in this case $Y_{t-1}$ is our dependent variable.
+	\item $|\phi_1|<1$   \textbf{Stationarity}. IIF $|\phi_1|=1$ (unit root) then the variance of $Y_t$ is infinite and the properties of the OLS estimator are non-standard (covered in more detail in the final lecture with later material.)
+\end{enumerate}
+
+All these arguments for estimation in the $AR(1)$ extend to an $AR(p)$ with $%
+p>1$. There is one further comment, however. To apply a joint hypothesis
+test in the $AR(p)$, such as%
+\begin{eqnarray}
+H_{0} &:&\phi _{1}=...=\phi _{p}=0  \label{HO_zero coefficients} \\
+H_{A} &:&\text{ at least one }\phi _{i}\neq 0\text{, }i=1,...,p  \notag
+\end{eqnarray}
+we can perform an F-test of this joint hypothesis using the techniques from ECON21001.  again noting that this test will work well for large sample sizes. Again you are not expected to prove any of this but to understand these tests are approximate. See your second notes on joint hypothesis tests on OLS to refresh your memory further.
+
+
+ All that can be said from a theoretical perspective is that a
+Central Limit Theorem result analogous to (\ref{olsclt}) allows a "large
+sample" test statistic to be derived (the F-Statistics) which has n  $F$ distribution
+with for the test of (\ref{HO_zero coefficients}). This test is calculated and performed in Eviews and an example given below.
+
+
+
+
+\subsection{MA Models}
+\textbf{The material in this subsection is not examinable but is here to give you the intuition on how MA processes are estimated. You are expected to be able to perform tests on the MA coefficients based on the Eviews output, just as for the AR case but not to prove any of these results.}\\
+
+To highlight the intuition of how MA models in general can be estimated consider the $MA(1)$%
+\begin{equation}
+Y_{t}=\varepsilon _{t}+\theta _{1}\varepsilon _{t-1}  \label{MA1}
+\end{equation}%
+where we have set $\mu =0$ for simplicity. The coefficient $\theta _{1}$
+cannot be estimated using linear regression: however in this case our regressor is $\varepsilon_{t-1}$ and unlike $Y_{t-1}$ there are  no values are available to use
+for $\varepsilon _{t-1}$ and hence it cannot be treated as a regressor. But
+there are ways around this problem.
+
+The usual approach to estimation for an $MA$ assumes $\varepsilon _{0}=0$
+(corresponding to $t=0$, the observation prior to the sample period). Also
+write (\ref{MA1}) as%
+\begin{equation*}
+\varepsilon _{t}=Y_{t}-\theta _{1}\varepsilon _{t-1}.
+\end{equation*}%
+Now, say you have some initial "guess" for $\theta _{1}$, let's call it $%
+\widehat{\theta }_{1}^{(0)}$; this initial "guess" could be $\widehat{\theta
+}_{1}^{(0)}=0$. Now you can recursively calculate a pseudo residual series
+using this last equation, together with $\varepsilon _{0}=0$, as%
+\begin{eqnarray*}
+	e_{1}^{(0)} &=&Y_{1} \\
+	e_{2}^{(0)} &=&Y_{2}-\widehat{\theta }_{1}^{(0)}e_{1}^{(0)} \\
+	e_{3}^{(0)} &=&Y_{3}-\widehat{\theta }_{1}^{(0)}e_{2}^{(0)} \\
+	&&\vdots \\
+	e_{T}^{(0)} &=&Y_{T}-\widehat{\theta }_{1}^{(0)}e_{T-1}^{(0)}
+\end{eqnarray*}
+
+The series $e_{t}^{(0)}$ then gives a proxy for the unobserved $\varepsilon
+_{t-1}$. So we discard $\widehat{\theta }_{1}^{(0)}$ and set up the
+regression model
+\begin{equation}
+Y_{t}=\theta _{1}e_{t-1}^{(0)}+\varepsilon _{t}.  \label{MA1 regression}
+\end{equation}%
+A new (hopefully better) estimate of $\theta _{1}$ is obtained by applying
+OLS to this model. The process can then be repeated: the new estimate $%
+\widehat{\theta }_{1}^{(1)}$ is used to compute a new residual series $%
+e_{t}^{(1)}$, which in turn is used in the artificial regression model in
+place of $e_{t}^{(0)}$. This is known as iterative estimation: the process
+stops \ when two consecutive estimations deliver the same value for $%
+\widehat{\theta }_{1}$. The idea generalises to any finite order process $%
+MA(q)$, and also to $ARMA$ models.
+
+There are other, more sophisticated, ways to estimate the coefficients of an
+$MA$ or $ARMA$ model, but virtually all involve iteration. However, this is
+not a problem for modern computers. Despite requiring iteration for
+estimation, hypothesis testing is performed for $MA$ (and $ARMA$) models as
+for $AR$ models. In other words, the estimators are asymptotically normally
+distributed, with tests applied in practice using the $t$ and $F$
+distributions for single and joint tests, respectively.
+
+
+\section{Model Specification}
+
+The theoretical properties of estimators of the coefficients of an $ARMA$
+model assume that the model coincides with the DGP. For example, if an $%
+AR(2) $ model is estimated, then the theoretical properties are for the
+situation where an $AR(2)$ process did, indeed, generate the data.
+Therefore, the theory of estimators and hypothesis testing assumes that the
+investigator knows the nature of the true process, but not its coefficients.
+In practice, of course, the investigator does not know that an $AR(2)$
+generated the data. Hence s/he not only has to estimate the coefficients,
+but also deduce from the data what model or models should be estimated.
+
+Historically, $ARMA$ model specification was based on the Correlogram,
+together with the estimated partial autocorrelation function. We do not
+study the latter because these methods are often difficult to apply in
+practice and do not clearly indicate the appropriate form of $ARMA$ model.
+Nevertheless, the Correlogram remains very useful as a summary of the
+dependence properties of the data.
+
+The modern approach uses what are known as \textquotedblleft information
+criteria\textquotedblright . Many such criteria have been proposed, with two
+in widespread use. The first and oldest is known as the \textbf{Akaike
+	Information Criterion}, usually abbreviated to \textbf{AIC. }
+
+For the $ARMA\left( p,q\right) $ model (expressed succinctly in it's Lag Operator Form, see the end of notes for Lecture 2)
+\begin{equation*}
+\phi \left( L\right) T_{t}=\alpha +\theta (L)\varepsilon _{t}
+\end{equation*}%
+let $\hat{\sigma}^{2}$ be the  variance estimator for a given choice of $p,q$ so that%
+\begin{equation*}
+\hat{\sigma}^{2}=\dfrac{RSS}{T^{\ast }}
+\end{equation*}%
+where $RSS$ is the residual sum of squares from the ARMA(p,q) regression and $T^{\ast }$ is the number of
+observations used for estimating the model. Then, $AIC$ is defined by
+\begin{equation}
+AIC=\log \hat{\sigma}^{2}+\frac{2\left( p+q+1\right) }{T^{\ast }}
+\label{AIC}
+\end{equation}%
+in which $p+q+1$ is the number of coefficients estimated, including the
+intercept. If no intercept is included, $p+q$ is used rather than $p+q+1$.
+Obviously, if no $AR$ is estimated, $p=0$ and similarly $q=0$ if no $MA$
+coefficient is estimated. The $ARMA(0,0)$ model with intercept only has $%
+p=q=0$.
+
+The AIC it turns out gives a measure of how well a model fits to the data. The smaller the AIC roughly speaking the better the model fits and hence the more likely the true process takes that form. Hence we calculate $AIC$ for a range of values, such as $0\leqslant
+p\leqslant p_{\max }$ and $0\leqslant q\leqslant q_{\max }$ and then choose
+the ($p,$ $q$) which gives the minimum value of $AIC.$ This still requires
+the maximum lags, $p_{\max }$ and $q_{\max }$ to be specified.  In practice,
+a subset of models may be considered based on information in the
+Correlogram For example, for UK GDP growth, the declining pattern in the
+Correlogram appears to indicate the presence of an least an $AR(1)$ term,
+though it it not evident whether there is any $MA$.
+
+In terms of Eviews output, there is an alternative, equivalent, definition
+in terms of a quantity called the \textquotedblleft log-likelihood
+function". We will not define it, except to note that Eviews provides this
+automatically in its regression output as the \textquotedblleft Log
+Likelihood". Denote by $L$ this log likelihood. Then, the $AIC$ is computed
+by Eviews as%
+\begin{equation*}
+AIC=-2\left( \frac{L}{T^{\ast }}\right) +\frac{2(p+q+1)}{T^{\ast }}.
+\end{equation*}%
+Selecting the model that minimises this expression is equivalent to
+minimising (\ref{AIC}).
+
+An alternative is the \textbf{Schwarz Information Criterion}, abbreviated
+\textbf{SIC}\footnote{%
+	This criterion is sometimes also known as the \textbf{Bayesian Information
+		Criterion}, or BIC.}\textbf{:}
+\begin{equation}
+SIC=\log \hat{\sigma}^{2}+\frac{\left( p+q+1\right) \log T^{\ast }}{T^{\ast }%
+}  \label{BIC}
+\end{equation}%
+for which there is also an equivalent expression in terms of the log
+likelihood (and used by Eviews). As for AIC, a model is chosen by selecting
+the orders $p$ and $q$ that minimise SIC.
+
+It can be seen from (\ref{AIC}) and (\ref{BIC}) that both AIC and SIC
+trade-off goodness of fit (measures by $\hat{\sigma}^{2}$) against the
+number of coefficients estimated in relation to the sample size (measured by
+$p+q+1$), although the latter is weighted differently by the two criteria.
+In general, increasing the model order improves goodness of fit, so the
+criteria ask whether the better fit (smaller $\hat{\sigma}^{2}$) from
+increasing $p$ and/or $q$ is outweighed by the additional parameters.
+Remember, that better fit is obtained even when the additional parameters
+are truly equal to zero. Because the criteria are different, there is no
+guarantee that the two criteria will select the same model orders as being
+appropriate.
+
+The relative weight given to the number of coefficients estimated is $2$ for
+AIC and $\log T^{\ast }$ for SIC; the latter is greater that the former
+unless $T^{\ast }$ is very small. A consequence of this heavier
+\textquotedblleft cost\textquotedblright\ that SIC places on estimating
+coefficients is that, if we are selecting the order for an $AR$ model, then%
+\begin{equation}
+p_{AIC}\geq p_{SIC}  \label{AIC-SIC order}
+\end{equation}%
+and a similar relation applies for pure $MA$ models. While they can imply
+the same $p$, in practice AIC often chooses a model with more coefficients
+than does SIC. Keeping with the $AR$ case, and assuming that the true
+process is an $AR(p_{0}),$\ it can also be shown that, provided $p_{\max
+}\geq p_{0}$
+\begin{eqnarray*}
+	\text{as }T^{\ast } &\rightarrow &\infty \text{, }p_{SIC}\rightarrow \text{ }%
+	p_{0} \\
+	\text{as }T^{\ast } &\rightarrow &\infty \text{, }p_{AIC}\geq \text{ }p_{0}
+\end{eqnarray*}%
+\textbf{Thus, while SIC will asymptotically select the true $p_{0}$, AIC can (even
+asymptotically) over-specify the order. For this reason, some people prefer
+to use SIC.}
+
+Nevertheless, it is also worth noting that in practice we do not have an
+"infinite" sample size available, and hence it is debatable how much weight
+should be given to the asymptotic result that $p_{AIC}$ can over-specify the
+true\thinspace $p_{0}$. Practitioners have found both criteria to work well
+in practice, and it is sensible to combine their use with hypothesis tests
+to check whether coefficients are significant and also with hypothesis
+testing for the presence of serial correlation in the residuals, to which we
+turn next.
+
+
+\section{Testing for Serial Correlation}
+
+\subsection{Residual Serial Correlation}
+
+If the disturbances of a time series model are correlated, and hence are not
+white noise, then they are \textbf{serially correlated}. It is good practice
+to always apply a test for serial correlation after estimation of a time
+series model. If the model does not account for all the dependence in the
+data, hence leaving serial correlation in the residuals, then a higher order
+model is required.
+
+To see this, consider an $AR(p)$ model with where the disturbances are $%
+AR(m) $ rather than white noise:
+\begin{equation}
+\phi (L)Y_{t}=\alpha +u_{t}  \label{AR(p) baseline}
+\end{equation}%
+with
+\begin{equation}
+\psi (L)u_{t}=\varepsilon _{t}  \label{AR disturbances}
+\end{equation}%
+where $\psi (L)=1-\psi _{1}L-...-\psi _{m}L^{m}$ and $\varepsilon _{t}$ is
+white noise. Substituting $u_{t}=\psi (L)^{-1}\varepsilon _{t}$ from (\ref%
+{AR disturbances}) into (\ref{AR(p) baseline}) yields
+\begin{equation*}
+\psi (L)\phi (L)Y_{t}=\psi (1)\alpha +\varepsilon _{t}
+\end{equation*}%
+as the correct form of $AR$ process for $y_{t}$. In other words, (\ref{AR
+	disturbances}) implies that the correct process for $Y_{t}$ is an $AR(p+m)$,
+not $AR(p)$. Clearly, if the disturbances $u_{t}$ in (\ref{AR(p) baseline})
+are an $AR(m)$ process, the white noise disturbance assumption is wrong. In
+this case, the estimated model is \textit{misspecified} and a more general
+one, the higher order $AR(p+m)$, should be used.
+
+Analogous considerations apply if $u_{t}$ is an $MA(q)$, with
+\begin{equation*}
+u_{t}=\theta (L)\varepsilon _{t}
+\end{equation*}%
+then the appropriate model is $ARMA(p,q)$%
+\begin{equation*}
+\phi (L)Y_{t}=\alpha +\theta (L)\varepsilon _{t}.
+\end{equation*}%
+In practice, however, it may be unclear whether the additional terms
+required should be of the $AR$ or $MA$ form.
+
+The same considerations apply also in an $MA$ or $ARMA$ model. That is, the
+presence of serial correlation in the residuals implies that a higher order
+model is required.
+
+\subsection{Diagnostic Test}
+
+The test that $\varepsilon_{t}$ are not autocorrelated, against the possibility that
+they follow the $AR(m)$ of (\ref{AR disturbances}), can be carried out by
+estimating the auxiliary regression%
+\begin{equation}
+y_{t}=\alpha +\phi _{1}y_{t-1}+...+\phi _{p}y_{t-p}+\psi
+_{1}e_{t-1}+...+\psi _{m}e_{t-m}+\varepsilon _{t},
+\label{LM test regression}
+\end{equation}%
+where $e_{t}$ are the residuals obtained from estimating (\ref{AR(p)
+	baseline}), and testing the joint null hypothesis
+\begin{equation*}
+H_{0}:\psi _{1}=...=\psi _{m}=0
+\end{equation*}%
+against the alternative
+\begin{equation*}
+H_{A}:\text{ at least one }\psi _{j}\neq 0,j=1,...,m.
+\end{equation*}%
+Strictly speaking, this test is only valid asymptotically, when the
+corresponding test statistic is asymptotically distributed as $\chi _{m}^{2}$
+under the null hypothesis. However, although they are asymptotically
+equivalent, it has been shown that, in practice, an $F$-test for $\psi
+_{j}=0 $ ($j=1,...,m$) in (\ref{LM test regression}) performs better than a $%
+\chi ^{2}$ test.
+
+
+\includemedia[
+label=mean,
+activate=onclick,
+deactivate=pageclose,
+playbutton=none,
+height=1.1\linewidth,
+width=1.45\linewidth,
+keepaspectratio,
+flashvars={
+	modestbranding=1 % no YT logo in control bar
+	&autohide=1 % controlbar autohide
+	&showinfo=1 % no title and other info before start
+	&rel=0 % no related videos after end
+},
+url % Flash loaded from URL
+]{}{https://www.youtube.com/v/3vqbx2f36L0&amp;vq=hd720}
+\mediabutton[ mediacommand=mean:playPause, overface=\color{blue}{\fbox{\includegraphics{play}}}, downface=\color{red}{\fbox{\strut Play/Pause}}
+]{\mybox{\includegraphics[width=0.5cm]{vid}\textbf{ Serial Correlation \& Breusch Godfrey LM Test}}}
+
+
+
+
+From an examination of the form of (\ref{LM test regression}) you might
+guess that the test is against the alternative that the disturbances are of
+an $MA(m)$ form. Indeed, this is the case, in that the test does not
+discriminate against alternative hypotheses that the disturbances are $AR(m)$
+or $MA(m)$. In this sense the test is a general one for the presence of
+serial correlation, rather than specifically against an $AR$ or $MA$
+alternative.
+
+The test just outlined is a particular case of a \textit{Lagrange multiplier}
+test. Here it is the Lagrange multiplier test for residual autocorrelation
+of order $m$ in an $AR(p)$ model. However, the same principle can be used
+also to test for residual serial correlation in an estimated $MA$ or $ARMA$
+model. This test is often called the \textit{Breusch-Godfrey test}, after
+the econometricians (Trevor Breusch and Les Godfrey) who independently
+developed this test in the 1970s.
+
+The usual guideline is that the order $m$ used for the test should be 4 for
+quarterly data and 12 for monthly data, with the intention of testing for
+any remaining seasonality in the residuals. For annual data, $m=1$ or 2
+might be used, depending on the available size.
+
+One important implication of the discussion is that the Durbin-Watson test
+for first order autocorrelation is NOT\ VALID in the context of an $ARMA$
+process, because it does not take account of any relationship between the
+regressors and the lagged disturbances. However, by including the AR terms,
+in addition to the lagged residuals, (\ref{LM test regression}) does take
+account of this. In practice, the Durbin-Watson test is effectively useless
+for checking serial correlation in a time series model and \textbf{should
+	not be used}, or its value reported - despite the fact that it is
+automatically computed by many regression packages, including Eviews.
+
+
+
+\section{Empirical Example}
+
+For the GDP growth data over 1984Q1 to 2012Q4, say the investigator
+considers (for some reason) that an $MA(2)$ model may be appropriate.
+Estimating this model in Eviews gives\medskip
+
+\begin{center}
+\includegraphics{ma2gdp}
+\end{center}
+
+\noindent and both estimated $MA$ coefficients, together with the intercept,
+are highly significant. A test for serial correlation to lag $m=4$ however
+yields
+
+\begin{center}
+\includegraphics{lmma2}
+\end{center}
+
+\noindent so that significant residual serial correlation is present at the
+5\% level.
+
+The pattern of declining sample autocorrelations at short lags in the
+Correlogram suggests an $AR(1)$ may be appropriate for this GDP growth data.
+Estimation gives
+
+\begin{center}
+\includegraphics{ar1gdp}
+\end{center}
+
+\noindent with both the constant and estimated $AR(1)$ coefficient being
+highly significant. The autocorrelation test for this model gives
+
+\begin{center}
+\includegraphics{lmarr1}
+\end{center}
+
+\noindent which provides no evidence of significant residual serial
+correlation.
+
+It is clear that the $AR(1)$ specification is preferable to the $MA(2)$:
+both AIC and SIC would select the $AR(1)$ model, which also has no evidence
+of residual serial correlation. The $MA(2)$ is not satisfactory in showing
+significant serial correlation in the residuals, suggesting further dynanics not being captured by the MA(2) model that the AR(1) seems to capture.
+\newpage
+
+
+
+\end{document} 

@@ -1,0 +1,493 @@
+
+
+
+%----------------------------------------------------------------------------------------
+
+\documentclass[oneside,openany]{tufte-book} % Use the tufte-book class which in turn uses the tufte-common class
+
+
+
+\hypersetup{colorlinks} % Comment this line if you don't wish to have colored links
+
+\usepackage{amsmath}
+\usepackage{media9}
+\usepackage{microtype} % Improves character and word spacing
+
+\usepackage{lipsum} % Inserts dummy text
+
+\usepackage{booktabs} % Better horizontal rules in tables
+\hypersetup{pdfstartview=FitH, pdfpagemode=UseNone}
+\usepackage{amsfonts,amssymb,graphics,epsfig,verbatim,bm,latexsym,amsmath,url,amsbsy}
+\usepackage{graphicx} % Needed to insert images into the document
+\graphicspath{{graphics/}} % Sets the default location of pictures
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio} % Improves figure scaling
+\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}% Rule colour
+\makeatletter
+\newcommand{\mybox}[1]{%
+	\setbox0=\hbox{#1}%
+	\setlength{\@tempdima}{\dimexpr\wd0+13pt}%
+	\begin{tcolorbox}[colframe=mycolor,boxrule=0.5pt,arc=4pt,
+		left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,width=\@tempdima]
+		#1
+	\end{tcolorbox}
+}
+\makeatother
+\usepackage{fancyvrb} % Allows customization of verbatim environments
+\fvset{fontsize=\normalsize} % The font size of all verbatim text can be changed here
+
+\definecolor{bananamania}{rgb}{0.98, 0.91, 0.71}
+\definecolor{bananayellow}{rgb}{1.0, 0.88, 0.21}
+\newcommand{\hangp}[1]{\makebox[0pt][r]{(}#1\makebox[0pt][l]{)}} % New command to create parentheses around text in tables which take up no horizontal space - this improves column spacing
+\newcommand{\hangstar}{\makebox[0pt][l]{*}} % New command to create asterisks in tables which take up no horizontal space - this improves column spacing
+
+\usepackage{xspace} % Used for printing a trailing space better than using a tilde (~) using the \xspace command
+
+\newcommand{\highlight}[1]{\colorbox{green}{\ensuremath{#1}}}
+
+\newcommand{\monthyear}{\ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi\space\number\year} % A command to print the current month and year
+
+\newcommand{\openepigraph}[2]{ % This block sets up a command for printing an epigraph with 2 arguments - the quote and the author
+	\begin{fullwidth}
+		\sffamily\large
+		\begin{doublespace}
+			\noindent\allcaps{#1}\\ % The quote
+			\noindent\allcaps{#2} % The author
+		\end{doublespace}
+	\end{fullwidth}
+}
+\geometry{
+	left=22.8mm, % left margin
+	textwidth=125mm, % main text block
+	marginparsep=2.2mm, % gutter between main text block and margin notes
+	marginparwidth=50.4mm % width of margin notes
+}
+\newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage} % Command to insert a blank page
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\definecolor{indianyellow}{rgb}{0.89, 0.66, 0.34}
+\definecolor{cadmiumyellow}{rgb}{1.0, 0.96, 0.0}
+\tcbuselibrary{theorems}
+\definecolor{beaublue}{rgb}{0.74, 0.83, 0.9}
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{lightgoldenrodyellow}{rgb}{0.98, 0.98, 0.82}
+\newtcbtheorem[number within=chapter]{myex}{Example}%
+{colback=lightgoldenrodyellow,colframe=indianyellow,fonttitle=\bfseries}{th}
+\newtcbtheorem[number within=chapter]{mydef}{Definition}%
+{colback=beaublue,colframe=titlepagecolor,fonttitle=\bfseries}{th}
+
+
+
+
+
+\usepackage{units} % Used for printing standard units
+
+\newcommand{\hlred}[1]{\textcolor{Maroon}{#1}} % Print text in maroon
+\newcommand{\hangleft}[1]{\makebox[0pt][r]{#1}} % Used for printing commands in the index, moves the slash left so the command name aligns with the rest of the text in the index
+\newcommand{\hairsp}{\hspace{1pt}} % Command to print a very short space
+\newcommand{\ie}{\textit{i.\hairsp{}e.}\xspace} % Command to print i.e.
+\newcommand{\eg}{\textit{e.\hairsp{}g.}\xspace} % Command to print e.g.
+\newcommand{\na}{\quad--} % Used in tables for N/A cells
+\newcommand{\measure}[3]{#1/#2$\times$\unit[#3]{pc}} % Typesets the font size, leading, and measure in the form of: 10/12x26 pc.
+\newcommand{\tuftebs}{\symbol{'134}} % Command to print a backslash in tt type in OT1/T1
+
+\providecommand{\XeLaTeX}{X\lower.5ex\hbox{\kern-0.15em\reflectbox{E}}\kern-0.1em\LaTeX}
+\newcommand{\tXeLaTeX}{\XeLaTeX\index{XeLaTeX@\protect\XeLaTeX}} % Command to print the XeLaTeX logo while simultaneously adding the position to the index
+
+\newcommand{\doccmdnoindex}[2][]{\texttt{\tuftebs#2}} % Command to print a command in texttt with a backslash of tt type without inserting the command into the index
+
+\newcommand{\doccmddef}[2][]{\hlred{\texttt{\tuftebs#2}}\label{cmd:#2}\ifthenelse{\isempty{#1}} % Command to define a command in red and add it to the index
+	{ % If no package is specified, add the command to the index
+		\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2}}% Command name
+	}
+	{ % If a package is also specified as a second argument, add the command and package to the index
+		\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2} (\texttt{#1} package)}% Command name
+		\index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}% Package name
+	}}
+	
+	\newcommand{\doccmd}[2][]{% Command to define a command and add it to the index
+		\texttt{\tuftebs#2}%
+		\ifthenelse{\isempty{#1}}% If no package is specified, add the command to the index
+		{%
+			\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2}}% Command name
+		}
+		{%
+			\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2} (\texttt{#1} package)}% Command name
+			\index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}% Package name
+		}}
+		
+		% A bunch of new commands to print commands, arguments, environments, classes, etc within the text using the correct formatting
+		\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}
+		\newcommand{\docarg}[1]{\textrm{\textit{#1}}}
+		\newenvironment{docspec}{\begin{quotation}\ttfamily\parskip0pt\parindent0pt\ignorespaces}{\end{quotation}}
+		\newcommand{\docenv}[1]{\texttt{#1}\index{#1 environment@\texttt{#1} environment}\index{environments!#1@\texttt{#1}}}
+		\newcommand{\docenvdef}[1]{\hlred{\texttt{#1}}\label{env:#1}\index{#1 environment@\texttt{#1} environment}\index{environments!#1@\texttt{#1}}}
+		\newcommand{\docpkg}[1]{\texttt{#1}\index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}}
+		\newcommand{\doccls}[1]{\texttt{#1}}
+		\newcommand{\docclsopt}[1]{\texttt{#1}\index{#1 class option@\texttt{#1} class option}\index{class options!#1@\texttt{#1}}}
+		\newcommand{\docclsoptdef}[1]{\hlred{\texttt{#1}}\label{clsopt:#1}\index{#1 class option@\texttt{#1} class option}\index{class options!#1@\texttt{#1}}}
+		\newcommand{\docmsg}[2]{\bigskip\begin{fullwidth}\noindent\ttfamily#1\end{fullwidth}\medskip\par\noindent#2}
+		\newcommand{\docfilehook}[2]{\texttt{#1}\index{file hooks!#2}\index{#1@\texttt{#1}}}
+		\newcommand{\doccounter}[1]{\texttt{#1}\index{#1 counter@\texttt{#1} counter}}
+		
+		
+		
+		\titleformat{\chapter}%
+		[block]% shape
+		{\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}% format applied to label+text
+			{\itshape\huge\thechapter\hspace{10pt}}% label
+			{0pt}% horizontal separation between label and title body
+			{\huge\rmfamily\itshape}% before the title body
+			[\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body
+		
+		
+		
+		
+		\hypersetup{
+			colorlinks,
+			citecolor=green,
+			filecolor=black,
+			linkcolor=blue,
+			urlcolor=red
+		}
+		
+		\setcounter{secnumdepth}{3}
+		
+		\setcounter{tocdepth}{2}
+		
+		
+		\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+		\definecolor{ikb}{rgb}{0.0, 0.18, 0.65}
+		\definecolor{namecolor}{cmyk}{1,.50,0,.10}
+		
+		\usepackage{makeidx} % Used to generate the index
+		\makeindex % Generate the index which is printed at the end of the document
+		
+		
+		\begin{document}
+			\title{ECON5221: Econometric Time Series Analysis }
+			
+			
+			\begin{titlepage}
+				\newgeometry{left=7.5cm} %defines the geometry for the titlepage
+				\pagecolor{ikb}
+				\noindent
+				
+				\color{white}
+				\makebox[0pt][l]{\rule{1\textwidth}{2pt}}
+				\par
+				
+				\vspace{5pt}\textbf{\huge \textsf{Time Series Econometrics}} \hspace{5pt} \textcolor{white}{\textsf{Nicky Grant}}
+				\vfill
+				\noindent
+				{\huge \textsf{ECON5221: Problem Set 2 Solutions}}
+				\vskip\baselineskip
+				\noindent
+				\textsf{\Large Semester 2 2019/2020}
+			\end{titlepage}
+			\restoregeometry % restores the geometry
+			\nopagecolor% Use this to restore the color pages to whiteint the title page
+			
+			
+			
+			
+			
+			
+			
+			
+				
+				
+				
+				
+				\section*{\LARGE Exercise Questions 2}
+				
+				
+		
+
+				\subsection*{Problem Set 2}\label{c1}
+	
+	\begin{enumerate}
+
+
+\item Consider a bivariate (ie, two variable) $VAR(1)$ system
+\[
+\bm{Y}_{t}=\bm{\alpha} +\Phi_{1}\bm{Y}_{t-1}+\bm{\varepsilon}_{t}
+\]%
+where $\bm{\varepsilon }_{t}$ is vector white noise. \medskip
+
+\begin{enumerate}
+	\item Stationarity of $VAR$s. Write $\Phi(L)=I_2-\phi_1L$\medskip
+
+	
+
+		 With $\phi _{11}=0.6,\phi _{12}=0.1,\phi _{21}=-0.6,\phi _{22}=1.1:$%
+		\[
+		\left\vert \Phi (L)\right\vert =\left\vert
+		\begin{array}{cc}
+		1-0.6L & -0.1L \\
+		0.6L & 1-1.1L%
+		\end{array}%
+		\right\vert =1-1.7L+0.72L^{2}
+		\]%
+		and characteristic equation%
+		\begin{eqnarray*}
+			\lambda ^{2}-1.7\lambda +0.72 &=&(\lambda -0.9)(\lambda -0.8) \\
+			\lambda _{1} &=&0.9;~~\lambda _{2}=0.8
+		\end{eqnarray*}%
+		Both roots are less than one in absolute value and hence the $VAR$ is
+		stationary.\medskip
+
+	
+	\item From the stationary $VAR$ , we have%
+	\begin{eqnarray*}
+		\mathbb{E}[\textbf{Y}_t] &=&[\Phi (1)]^{-1}\bm{\alpha } \\
+		&& \\
+		\left[
+		\begin{array}{c}
+			\mu _{1} \\
+			\mu _{2}%
+		\end{array}%
+		\right] &=&\left\{ \left[
+		\begin{array}{cc}
+			1 & 0 \\
+			0 & 1%
+		\end{array}%
+		\right] -\left[
+		\begin{array}{cc}
+			0.6 & 0.1 \\
+			-0.6 & 1.1%
+		\end{array}%
+		\right] \right\} ^{-1}\left[
+		\begin{array}{c}
+			-0.2 \\
+			0.1%
+		\end{array}%
+		\right] \\
+		&=&\left[
+		\begin{array}{cc}
+			0.4 & -0.1 \\
+			0.6 & -0.1%
+		\end{array}%
+		\right] ^{-1}\left[
+		\begin{array}{c}
+			-0.2 \\
+			0.1%
+		\end{array}%
+		\right] \\
+		&=&\frac{1}{0.02}\left[
+		\begin{array}{cc}
+			-0.1 & 0.1 \\
+			-0.6 & 0.4%
+		\end{array}%
+		\right] \left[
+		\begin{array}{c}
+			-0.2 \\
+			0.1%
+		\end{array}%
+		\right] \\
+		&=&\left[
+		\begin{array}{c}
+			1.5 \\
+			8.0%
+		\end{array}%
+		\right]
+	\end{eqnarray*}%
+	\medskip
+
+	\item The infinite $VMA$ representation is
+	\begin{eqnarray*}
+		\bm{Y}_{t} &=&\bm{\varepsilon }_{t}+\bm{\Phi }_{1}\bm{%
+			\varepsilon }_{t-1}+\bm{\Phi }_{1}^{2}\bm{\varepsilon }_{t-2}+%
+		\bm{\Phi }_{1}^{3}\bm{\varepsilon }_{t-3}+... \\
+		&=&\bm{\varepsilon }_{t}+\bm{\Theta }_{1}\bm{\varepsilon }_{t-1}+%
+		\bm{\Theta }_{2}\bm{\varepsilon }_{t-2}+\bm{\Theta }_{3}\bm{%
+			\varepsilon }_{t-3}+..
+	\end{eqnarray*}%
+	Hence%
+	\begin{eqnarray*}
+		\bm{\Theta }_{0} &=&\bm{I}_{2} \\
+		\bm{\Theta }_{1} &=&\bm{\Phi }_{1}\bm{=}\left[
+		\begin{array}{cc}
+			0.6 & 0.1 \\
+			-0.6 & 1.1%
+		\end{array}%
+		\right]  \\
+		\bm{\Theta }_{2} &=&\bm{\Phi }_{1}^{2}=\left[
+		\begin{array}{cc}
+			0.30 & 0.17 \\
+			-1.02 & 1.15%
+		\end{array}%
+		\right]
+	\end{eqnarray*}%
+	\medskip
+	
+	\item Impulse response functions (corresponding to $s=0,1,2$) are read from
+	the elements of $\bm{\Theta }_{s}$ ($s=0,1,2$)
+	
+	\begin{enumerate}
+		\item The effect of a unit shock to $Y_{1t}$ on $Y_{1t}$ and $Y_{2t}:$ (namely $\epsilon_t=\left(\begin{array}{c} 1 \\ 0 \end{array}\right)$ and $\epsilon_s= \left(\begin{array}{c} 0 \\ 0 \end{array}\right)$ for all $s\neq t$. In essence  we assume the process is in equilibrium and we introduce a one unit shock to $Y_{1t}$ and see the dynamic response to both $Y_{1,t+j}$, $Y_{2,t+j}$ for $j=0,1,2$).
+		\begin{eqnarray*}
+			\text{Effect on }Y_{1} &:&1\text{, }0.6\text{, }0.30 \\
+			\text{Effect on }Y_{2} &:&0\text{, }-0.6\text{, }-1.02
+		\end{eqnarray*}
+		
+		\item The effect of a unit shock to $Y_{2t}$ on $Y_{1t}$ and $Y_{2t}$, (namely $\epsilon_t=\left(\begin{array}{c} 0 \\ 1 \end{array}\right)$ and $\epsilon_s= \left(\begin{array}{c} 0 \\ 0 \end{array}\right)$ for all $s\neq t$).
+		\begin{eqnarray*}
+			\text{Effect on }Y_{1} &:&0,\text{ }0.1,\text{ }0.17 \\
+			\text{Effect on }Y_{2} &:&1,\text{ }1.1,\text{ \thinspace }1.15
+		\end{eqnarray*}
+	\end{enumerate}
+					\end{enumerate}	
+					
+					\vspace{14pt}
+					
+					
+					\item Consider a stationary AR(2) process
+					\begin{equation} Y_t=\mu_0+ \phi_{10} Y_{t-1}+\phi_{20}Y_{t-2} +\varepsilon_t  \qquad 	 \varepsilon _{t}\overset{i.i.d}{\sim} N(0,\sigma^2) \end{equation}
+					where a researcher observes a sample realisation of size $T>2$, $(y_1,\cdots, y_T)$ from $\{Y_t\}$.
+					\begin{enumerate}
+						\item Derive conditional log likelihood function for (1) conditioning on $(Y_1=y_1,Y_2=y_2)$.
+						\medskip
+						
+						We derived this for the AR(1) in Lecture 2 (Wk3). It is also covered in Hamilton, the conditional likelihood function for any AR(p) model.\\
+						\medskip
+						Conditioning on $\theta=(\mu,\phi_1,\phi_2,\sigma^2)$ (being the true parameter) then, $Y_t|Y_{t-1}=y_{t-1},Y_{t-2}=y_{t-2}$ is distributed $N(\mu+ \phi_{1} y_{t-1}+\phi_{2}y_{t-2}, \sigma^2 )$ since  $\varepsilon _{t}\overset{i.i.d}{\sim} N(0,\sigma^2)$ hence is independently distributed of $Y_{t-2}$ and $Y_{t-1}$, both being functions of shocks prior to time period $t$.\\
+						\medskip
+						 The conditional likelihood function in this case is\\
+						  $f_{Y_T,\cdots,Y_3|Y_2,Y_1}(y_T,\cdots,y_1| \theta)= \displaystyle \prod_{t=3}^{T} f_{Y_t|Y_{t-2},Y_{t-1}}(y_t| y_{t-1}; \theta)	= \displaystyle \prod_{t=3}^{T} \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(y_t-\mu-\phi_1 y_{t-1}-\phi_2 y_{t-2})^2}{2\sigma^2}\right)$\\
+						 \medskip
+						 where the second inequality holds noting that \\
+						 \medskip
+						 $Y_t|Y_{t-1}=y_{t-1},Y_{t-2}=y_{t-2}$ is distributed $N(\mu+ \phi_{1} y_{t-1}+\phi_{2}y_{t-2}, \sigma^2 )$ for all $t=3,\cdots, T$ [We must start at time period 3 as $Y_t$ depends on the outcomes of the last two periods.]\\
+						 \medskip
+						 $\ln(f_{Y_T,\cdots,Y_3|Y_2,Y_1}(y_T,\cdots,y_1| \theta)=-\frac{T-2}{2}(\ln(2\pi)+\ln(\sigma^2)-\frac{1}{2\sigma^2}\sum_{t=3}^T(y_t-\mu-\phi_1 y_{t-1}-\phi_2y_{t-2})^2$
+						 
+				
+						 
+					
+						
+						\medskip
+						\item 
+						The ML estimator maximises the log likelihood function. We can see the maximiser for $\mu,\phi_1$ is the one which minimises $-\frac{1}{2\sigma^2}\sum_{t=3}^T(y_t-\mu-\phi_1 y_{t-1})^2$, hence the same as the maximiser of the sum of squared residuals. Hence the ML estimator is equivalent to OLS in this instance. Normality of errors is not needed to ensure the OLS estimator is consistent, hence establishing that the ML estimator isn't inconsistent in this example. 
+					\end{enumerate}
+					
+					\vspace{14pt}
+					
+						\item Consider an MA(1) process
+						\begin{equation} Y_t=\mu_0+ \theta_{10} \varepsilon_{t-1}+\varepsilon_t  \qquad 	 \varepsilon _{t}\overset{i.i.d}{\sim} N(0,\sigma^2) \end{equation}
+						where a researcher observes a sample realisation of size T, $(y_1,\cdots, y_T)$ from $\{Y_t\}$.
+						\medskip
+						\begin{enumerate}
+						\item	 \textbf{Conditional likelihood:}				 $f_{Y_T,\cdots, Y_1|\varepsilon_0=0}(y_T,\cdots,y_1,; \theta)= f_{Y_1|\epsilon_0=0}(y_1;\theta)	 \displaystyle \prod_{t=2}^{T} f_{Y_t|Y_{t-1},\cdots ,Y_1,\varepsilon_0=0}(y_t| y_{t-1}, \cdots,y_1; \theta)$
+					
+							
+						 \textbf{Conditional on} $\varepsilon_0=0$ can express realised shocks $\varepsilon_t$ as function of $(y_{t-1}, \cdots, y_1)$ 
+							
+							
+						\vspace{15pt}
+						   \hspace{39pt}           \makebox[4cm]{$\varepsilon_{1}=y_1-\alpha$\hfill} [$Y_1=y_1$]\\
+					\vspace{9pt}
+						         \hspace{39pt}        \makebox[4cm]{$\varepsilon_2= y_2-\alpha-\theta_1\varepsilon_1$\hfill} [$Y_1=y_1, Y_2=y_2$]	\vspace{9pt}
+						      \hspace{39pt}            $\vdots$	\vspace{9pt}
+						 \hspace{39pt}   \makebox[4cm]{$\varepsilon_T= y_T-\alpha-\theta_1\varepsilon_{T-1}$\hfill} [$Y_1=y_1, \cdots, Y_T=y_T$]
+						
+							\vspace{15pt}
+				  $Y_1|\varepsilon_0=0\sim  N(\alpha,\sigma^2)$
+							\vspace{12pt}
+						 $(Y_t|Y_{t-1}=y_{t-1},\cdots Y_1=y_1,\varepsilon_0=0)$ same distribution as $(Y_{t}|\varepsilon_{t-1})$ \hspace{7pt} for  $t=2,..,T$\\
+							\vspace{8pt}
+						i.e. 	       \hspace{32pt}  $(Y_t|Y_{t-1}=y_{t-1},\cdots, Y_1=y_1,\varepsilon_0=0)	\sim N(\alpha+\theta_1\varepsilon_{t-1}, \sigma^2)$ 
+							
+							
+							Hence we can put this together to find the likelihood function as\\
+							 $ \frac{1}{\sqrt{2\sigma^2}}\exp(-\frac{1}{2\sigma^2}(y_t-\alpha)^2)\prod_{t=2}^{T}\frac{1}{\sqrt{2\sigma^2}}\exp(-\frac{1}{2\sigma^2}(y_t-\alpha-\theta_1\epsilon_{t-1}))$
+									where $\epsilon_t$ for $t=2,\cdots, T$ are calculated using the recursion above and are a function observed data and the parameters. Then take logarithms to find the log-likelihood. [Check Hamilton, pp. 127-128 who runs through the derivation of the conditional MA(1) log likelihood function]
+							
+							
+							
+							
+							
+							
+							
+							
+							\item If the true $\theta_1$ is bigger than 1 (in absolute value) then conditioning on $\varepsilon_0$ is not innocuous (for large sample sizes).
+													\medskip
+							Note that we derived $\varepsilon_t$ as a function of the observable data, noting that $\varepsilon_t=y_t-\mu-\theta_1\varepsilon_{t-1}$ and starting at $\varepsilon_0=0$. This is an AR(1) process in $\varepsilon_t$, and we know $\theta_1$ here must be less than 1 in absolute value or the impact of past shocks doesn't vanish for large sample sizes.\\
+													\medskip
+							We can recurse the shocks back t periods and find:\\
+							 $\varepsilon_t=(y_t-\mu)-\theta(y_{t-1}-\mu) +\theta^2(y_{t-2}-\mu) - \cdots +(-1)^t\theta_1^t\varepsilon_0$
+							
+													\medskip
+							If $|\theta_1|<1$ then $(-1)^t\theta_1^t\varepsilon_0$ is small for t large, and conditioning on $\varepsilon_0=0$ when it may not be true will have no asymptotic (large sample) impact on the approximation of the likelihood function. This is not the case when $|\theta_1|>1$. In this case we can exploit invertibility of MA models and re-write the model equivalent with a parameter $1/\theta_1$ and variance of the shocks $\theta_1^2\sigma^2$
+					
+					
+						\end{enumerate}
+						
+									\vspace{10pt}
+					
+					
+					
+					
+					\item Derive the autocovaiance function of the VMA($\infty$) process	\[
+					\bm{Y}_{t}=\bm{\mu}+\sum_{s=0}^{\infty }\Theta_{s}\bm{\varepsilon }
+					_{t-s} \qquad \varepsilon_t \sim WN(\Sigma).
+					\]
+					where $\Sigma$ is $k\times k$ var-covariance matrix of $\bm{\varepsilon}_t$.
+														\vspace{10pt}
+														
+				Need to find $Cov(Y_{t}, Y_{t-k})$ for all values of $k$ (the autocovariance function).\\
+			We can find the covariances for $k=1,2,\cdots$ then use the fact $\Gamma(-k)=\Gamma(k)'$ to find the covariance for lags $k=-1,2...$.\\
+			\medskip
+				We also need to find for $k=0$, i.e. the variance. Utilising the assumption that $\bm{\varepsilon}_t\sim$ WN($\Sigma$)  it also follows that
+					\[ Var\left[ \textbf{Y}_{t}\right] =\sum_{j=0}^{\infty} \Theta_1Var(\bm{\varepsilon}_{t-j})\Theta_1'=\sum_{j=0}^{\infty} \Theta_1\Sigma\Theta_1'
+					\]
+		
+					
+					
+
+					Consider the covariance at lag 1, noting that $\mathbb{E}[\textbf{Y}_t]=\mathbb{E}[\textbf{Y}_{t-1}]=\mu$ (show this taking expectations of the VMA and using the fact the mean of the shocks are all zero by WN.)\medskip
+					
+					 $\Gamma(1)
+					=\mathbb{E}[(\textbf{Y}_{t}-\mu)(\textbf{Y}_{t-1}-\mu)' ]$ this is equal to
+					\[
+					\mathbb{E}\left[ (\bm{\varepsilon}_{t}+\Theta_{1}\bm{\varepsilon}_{t-1}+...)(\bm{\varepsilon}_{t-1}+\Theta_{1}\bm{\varepsilon}_{t-2}+...)'\right] .
+					\]%
+					Arrange this calculation in a \textbf{tabular form} (in essence writing to clearly see the common shocks in both $\textbf{Y}_t$ and $\textbf{Y}_{t-1}$), placing shocks in a common time 
+					in each column (i.e. the only shocks that are correlated due to WN assumption of $\bm{\varepsilon}_t$), as
+					\begin{equation*}
+					\begin{tabular}{rrrrrrrrr}
+					& $\mathbb{E}[($ & $\bm{\varepsilon}_{t}$ & $+\Theta_{1}\bm{\varepsilon}_{t-1}$ & $+\Theta_{2}\bm{\varepsilon}_{t-2}$ & $+...$  $)$
+					\\
+					& $\times \;($ &  & $\bm{\varepsilon}_{t-1}'$ & $+\bm{\varepsilon}_{t-2}'\Theta_1'$
+					& $+...$  $)]\\				
+						$=$ &  &  & \Theta_{1}\mathbb{E}\left[ \bm{\varepsilon}_{t-1}\bm{\varepsilon}_{t-1}'\right] $ & $+\Theta_{2}\mathbb{E}\left[ \bm{\varepsilon}_{t-2}\bm{\varepsilon}_{t-2}'\right]\Theta_{1}' +\cdots$ 
+					\end{tabular}%
+					\end{equation*}
+					The final line follows using the argument that, out of all the products $\bm{\varepsilon}_{t-i}\bm{\varepsilon}_{t-j}$  for i,j whose expectation is required, only those for
+					which $i=j$ will have non-zero expected value $\Sigma$, because the $%
+					\bm{\varepsilon}_{t}$ in different time periods are uncorrelated by the WN assumption. Hence,
+					\begin{equation*}
+					\Gamma(1)=Cov\left[ \textbf{Y}_{t}\textbf{,Y}_{t-1}\right] =\sum_{j=0}^\infty\Theta_{j+1} \Sigma\Theta_j'
+					\end{equation*}
+					Notice that the difference of lags between $t$ and $t-1$ (namely $1$), is
+					reflected in the differences of the subscripts on the right hand side.
+					
+					We can perform the prodecure for any $k>1$, and find 
+						\begin{equation*}
+					\Gamma(k)=Cov\left[ \textbf{Y}_{t}\textbf{,Y}_{t-k}\right] =\sum_{j=0}^\infty\Theta_{j+k} \Sigma\Theta_j'
+					\end{equation*}
+		(work through this to convince yourself, if you have any trouble with this please email to come to my office hour or I can make an online video clip.)
+					
+										\end{enumerate}
+					
+				
+	
+
+		\end{document}
+
+
+
+
+
+
+
+

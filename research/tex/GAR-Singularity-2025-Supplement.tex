@@ -1,0 +1,357 @@
+\documentclass[hidelinks, 11 pt, a4paper, pdflatex]{article}
+
+% ==================================================================================
+\usepackage{graphics,epsfig,verbatim,bm,latexsym,url,amsbsy,color}
+
+\usepackage{multicol}
+\usepackage{indentfirst}
+%\usepackage{graphicx}
+% ==================================================================================
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{subfigure}
+%\usepackage[pdftex]{graphicx}
+\usepackage{natbib}
+\usepackage[hypertexnames=false]{hyperref}
+\usepackage{setspace}
+%\usepackage{pdfsync}
+\usepackage{lscape}
+%\usepackage[hmargin=1.25in,vmargin=1.25in]{geometry}
+\usepackage[hmargin=0.90in,vmargin=0.90in]{geometry}
+
+\usepackage{enumitem}
+\usepackage{bibunits}
+
+% \defaultbibliographystyle{ims}
+% \defaultbibliography{mybibliography}
+
+% \hypersetup{colorlinks, linkcolor = {teal}, citecolor = {blue}, urlcolor ={blue!80!black}}
+
+% ==================================================================================
+\usepackage{color}
+%\usepackage[pdflatex]{graphicx}
+\usepackage{psfig}
+% ==================================================================================
+
+\newcommand{\I}{\mathbbm{1}}                           % indicator function - blackboard 1
+\newcommand{\abs}[1]{\lvert#1\rvert}                   %
+\newcommand{\norm}[1]{\lVert#1\rVert}                  %
+\newcommand{\transp}{\top}                             % alternative: \mathsf{T}
+\newcommand{\trace}{\mathop{\mathrm{tr}}}              % trace
+\newcommand{\littleO}[1][]{\mathit{o}_{#1}}            % small-Oh
+\newcommand{\bigO}[1][]{\mathit{O}_{#1}}               % big-Oh
+\newcommand{\R}{\mathbbm{R}}
+\newcommand{\interior}{\mathop{\mathrm{int}}}
+\DeclareMathOperator{\E}{E}
+\DeclareMathOperator{\M}{M}
+\DeclareMathOperator{\Bias}{Bias}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\MISE}{MISE}
+\DeclareMathOperator{\MSE}{MSE}
+\DeclareMathOperator{\ISE}{ISE}
+\DeclareMathOperator{\ISB}{ISB}
+\DeclareMathOperator{\IVar}{IVar}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\artanh}{artanh}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+% =================================================================================
+
+\makeatletter
+ \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+            {-2.5ex\@plus -1ex \@minus -.25ex}%
+            {1.25ex \@plus .25ex}%
+            {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\makeatletter
+\newcommand{\customlabel}[2]{%
+   \protected@write \@auxout {}{\string \newlabel {#1}{{#2}{\thepage}{#2}{#1}{}} }%
+   \hypertarget{#1}{#2}}
+\makeatother
+
+\setcounter{secnumdepth}{4} % how many sectioning levels to assign numbers to
+\setcounter{tocdepth}{4}    % how many sectioning levels to show in ToC
+
+\usepackage{mathrsfs,dsfont}
+%\usepackage[dvipsnames,svgnames, x11names]{xcolor}
+%\usepackage{pgfplots}
+%\usetikzlibrary{patterns}
+\usepackage{caption}
+
+%\bibliographystyle{ims}
+
+\DeclareGraphicsExtensions{.jpg}
+
+\def\qed{\rule{2mm}{2mm}}
+
+\parskip = 1.5ex plus 0.5 ex minus0.2 ex
+
+\newtheorem{condition}{Condition}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{assumption}{Assumption}[section]
+\newtheorem{algorithm}{Algorithm}[section]
+
+\newcommand{\citeposs}[1]{\citeauthor{#1}'s \citeyearpar{#1}}
+\newenvironment{packed_enum}{\begin{enumerate} \setlength{\itemsep}{1pt}\setlength{\parskip}{0pt}\setlength{\parsep}{0pt}}{\end{enumerate}}
+\renewcommand*{\thecondition}{\Alph{condition}}
+
+\onehalfspacing
+
+\renewcommand{\bibname}{Additional References}
+
+\vspace*{-\baselineskip} % Go back one line over the fake labels
+\renewcommand{\thepage}{}
+% \renewcommand{\thesection}{E.\arabic{section}}
+\renewcommand{\thesection}{Simulation S.\arabic{section}}
+\renewcommand{\theequation}{S.\arabic{equation}}
+\renewcommand{\theassumption}{S.\arabic{assumption}}
+\renewcommand{\theremark}{S.\arabic{remark}}
+\renewcommand{\thelemma}{S.\arabic{lemma}}
+\renewcommand{\thecorollary}{S.\arabic{corollary}}
+
+
+\begin{document}
+
+%\begin{bibunit}
+
+\title{\textsc{Generalised Anderson-Rubin Statistic Based Inference In The Presence Of A Singular Moment Variance Matrix}}
+{\author{Nicky L. Grant\thanks{School of Economics, Castlecliffe, The Scores, St Andrews, KY16 9AJ.}
+\\ University of St Andrews \\ nlg1@st-andrews.ac.uk
+\and
+Richard J Smith\thanks{Faculty of Economics, University of Cambridge, Austin Robinson Building, Sidgwick Avenue, Cambridge CB3 9DD, UK.}
+\\ c{\it e}mmap, U.C.L and I.F.S. \\ University of Cambridge \\ ONS Economic Statistics Centre of Excellence \\ rjs27@econ.cam.ac.uk}
+
+\date{This Draft: March 2025}
+\maketitle
+		
+
+\phantomsection
+\addcontentsline{toc}{section}{Supplement E: Examples}
+\textcolor{white}{ % Fake labels
+\customlabel{Supp:Examples}{E}}
+
+\vspace*{-\baselineskip} % Go back one line over the fake labels
+
+% -------------------------------------------------------------------------------------------------
+
+\textcolor{white}{
+\customlabel{Supp:Proofs}{P:}
+\customlabel{Lemma:convergence}{P.3}
+\customlabel{Eq:GEL.stochastic.expansion.2nd.order.bias.term}{2.2}
+\customlabel{Assumption.reformulation.bijection}{3.1}
+\customlabel{Assumption.KDE.default}{3.2}
+\customlabel{Assumption.U.and.K.diff.int.0}{3.3}
+\customlabel{Assumption.U.and.K.diff.int}{3.4}
+\customlabel{Eq:gelkde.known.beta.unweighted}{3.1}        % \tilde{f}
+\customlabel{Eq:gelkde.known.beta.gel.weighted}{3.4}      % \tilde{f}_{\rho}
+\customlabel{Eq:gelkde.estimated.beta.unweighted}{3.7}    % \hat{f}
+\customlabel{Eq:gelkde.estimated.beta.gel.weighted}{3.8}  % \hat{f}_{\rho}
+\customlabel{Thm:GEL.KDE.MSE.known.beta}{3.1}
+\customlabel{Thm:GEL.KDE.MSE.estimated.beta.Consistency}{3.2}
+\customlabel{Thm:GEL.KDE.MSE.estimated.beta}{3.3}
+\customlabel{Thm:GEL.KDE.MSE.estimated.beta:delta}{3.9}
+\customlabel{Thm:GEL.KDE.MSE.estimated.beta:delta.rho}{3.10}
+\customlabel{Thm:GEL.KDE.MSE.estimated.beta:VAR.f.hat}{3.11}
+\customlabel{Thm:GEL.KDE.MSE.estimated.beta:VAR.f.hat.rho}{3.12}
+\customlabel{Thm:GEL.KDFE.MSE.known.beta}{4.1}
+\customlabel{Thm:GEL.KDFE.MSE.known.beta.Bias}{4.4}
+\customlabel{Thm:GEL.KDFE.MSE.known.beta.Variance}{4.5}
+\customlabel{Thm:GEL.KDFE.MSE.estimated.beta.Consistency}{4.2}
+\customlabel{Thm:GEL.KDFE.MSE.estimated.beta}{4.3}
+\customlabel{Assumption.U.and.K.diff.int.CDF}{4.1}
+\customlabel{Thm:GEL.KDFE.MSE.estimated.beta:Var.F}{4.10}
+\customlabel{Thm:GEL.KDFE.MSE.estimated.beta:Var.F.rho}{4.11}
+}
+
+\vspace*{-\baselineskip} % Go back one line over the fake labels
+\vspace*{-\baselineskip} % Go back one line over the fake labels
+
+% -------------------------------------------------------------------------------------------------
+
+%\newpage
+
+% =================================================================================================================
+
+ \section{\textsc{Nonlinear Regression Model with First Order Moment Singularity}} \label{Simulation:nonlin.regrn.foms}
+
+  \setcounter{page}{1}
+  \renewcommand{\thepage}{[S.\arabic{page}]}
+
+  \indent Consider the following nonlinear regression model of Example E.2 in Supplement E
+   \begin{equation*}
+    y = \alpha_0 + \pi_0(1 + \kappa_0 x)^{-1} + \varepsilon, \; x \geq 0, \mathbb{E}_{\mathcal{P}_0}[\varepsilon|x] = 0.
+   \end{equation*}
+  Here the true value of the parameter vector of interest is $\theta_0 = (\alpha_0,\pi_0,\kappa_0)^{\prime} = (1,2,\kappa_0)^{\prime}$ with $\kappa_0 = 0.00$, $0.05$ and $0.50$, i.e.,
+	\begin{equation*}
+     y = x + 2(1 + \kappa_0 x)^{-1} + \varepsilon,
+    \end{equation*}
+  with $x$ and $\varepsilon$ distributed, respectively, as the absolute value of and, given $x$, standard normal variates. Recall from Example E.2 in Supplement E that if $\kappa_0 = 0.00$, then the first and third element of the moment indicator vector are perfectly correlated, i.e., $\mathrm{rk}(\Omega(\kappa_0)) = 2$; $\mathrm{rk}(\Omega(\kappa_0)) = 3$ if $\kappa_0 \neq 0$.
+
+  Table 1 plots the rejection probabilities $\mathcal{P}_0\{\hat{T}(\theta_{n}) \geq \chi_{3}^2(0.9)\}$, i.e., level $\alpha = 0.1$, estimated using $R =5000$ replications for a GAR-based test of the null hypothesis $\mathrm{H}_0:~\theta = \theta_{n}$ against the alternative hypothesis $\mathrm{H}_1:~\theta \neq \theta_{n}$ for $\theta_{n} = \theta_0 + n^{-1}(0,1,1)^{\prime}$, i.e., $\delta_n = \delta = (0,1,1)^{\prime}$, for sample sizes $n = 100$, $500$, $1000$, $5000$ and $50000$. Recall $\Delta_b = \{\delta \in \mathbb{R}^3:~\delta_2 \neq 0 \; \text{or} \; \delta_3 \neq 0\} \neq \emptyset$ and $\Delta_c = \mathbb{R}^3$. Hence, $\Delta_b \cap \Delta_c = \Delta_b \neq \emptyset$ and Assumption 3.2 is satisfied.
+	
+   \begin{table}[h]
+		
+	\begin{center}
+	 \begin{tabular}{ccccccccccc}
+	  & & \multicolumn{1}{c}{$\kappa_0=0.00$} & \multicolumn{1}{c}{$\kappa_0=0.05$} & \multicolumn{1}{c}{$\kappa_0=0.50$}  \\
+	  \hline
+      \hline
+	  & $n=100$  & 0.088 & 0.088 & 0.091 \\ [0.3cm]
+	  & $n=500$  & 0.099 & 0.100 & 0.100 \\  [0.3cm]
+	  & $n=1000$ & 0.102 & 0.099 & 0.100 \\ [0.3cm]
+	  & $n=5000$ & 0.098 & 0.106 & 0.099 \\ [0.3cm]
+	  & $n=50000$& 0.094 & 0.097 & 0.109 \\ [0.3cm]
+	 \end{tabular}
+    \end{center}
+   \caption{GAR Rejection Probabilities: Nonlinear Regression with First Order Moment Singularity.}
+   \end{table}
+
+  Table 1 corroborates Theorem 3.1. For the larger sample sizes $n$, and for all values of $\kappa_0$, the $0.9$ quantile of $\hat{T}(\theta_n)$ is well approximated by that of the $\chi_3^2$ distribution. Not reported here, in other experiments, this observation appeared to be  robust for $\delta_n = o(n^{-1/2})$ with $\delta_2 \neq 0 \; \text{or} \; \delta_3 \neq 0$. If the discretisation $\Theta_n$ of $\Theta$ is sufficiently fine so that $d_H(\Theta_n,\theta_0) = o(n^{-1/2})$, then the GAR-based confidence region eq. (4.4) covers all sequences $\theta_n \in \Theta_n$ with correct asymptotic size.
+
+
+% =================================================================================================================
+
+ \section{\textsc{Bivariate Linear Simultaneous Equations Model with Polynomial Instruments}} \label{Simulation:Lin.Simult.Eqn}
+
+  This simulation is based on a specific case of Example E.4 in Supplement E; \textit{viz}.
+   \begin{eqnarray*}
+    y_{1} & = & 1.0 x_{1} + \varepsilon_{1}, \; x_1 = \pi(1+w) + \eta_1, \; \varepsilon_1 = \upsilon_1 \exp(-\zeta_1w/2), \\
+	y_{2} & = & 0.5 x_2 + \varepsilon_{2}, \; x_2 = -\pi(1+w^2) + \eta_2, \; \varepsilon_2 = \upsilon_2 \exp(-\zeta_2 z/2).
+   \end{eqnarray*}
+  The innovation vector $(\upsilon_1,\upsilon_2,\eta_1,\eta_2)^{\prime}$ is distributed conditional on $w$ as $N(0,\Xi)$ where
+   \begin{equation*}
+    \Xi = \left(
+           \begin{array}{cccc}
+            1.0  & \rho & 0.3 & 0.0 \\
+            \rho & 1.0 & 0.5 & 0.0 \\
+            0.3  & 0.0 & 1.0 & 0.0 \\
+            0.0  & 0.5 & 0.0 & 1.0
+           \end{array}
+          \right).
+    \end{equation*}
+
+  We consider values $\rho = 0.999500$, $0.999995$ and $1.000000$, $\pi = 0.0$, $0.1$, $0.5$, $(\zeta_1,\zeta_2) = (0.0,0.0)$, $(0.0,0.5)$, $(0.0,1.0)$. The instrument vectors are
+  $(1,w)^{\prime}$, $(1,w,w^2)^{\prime}$ and $(1,w,w^2,w^3)^{\prime}$, i.e., polynomial instruments with dimensions $d_{\psi} = 2$, $3$ and $4$ respectively. Hence, since $d_\rho = 2$, $d_g = 2d_{\psi}$.
+		
+  GAR statistic rejection probabilities ($\alpha=0.1$) for $R = 5000$ replications are tabulated for $\theta_n =(1,0.5)' + n^{-1}\delta$ with $\delta = (1,1)'$ for sample sizes $n = 100, 500, 1000, 5000, 50000$. This choice for $\delta$ does not satisfy $\bar{p}_{0}^{\prime}G\delta \rightarrow 0$; see Example E.4 in Supplement E with $\zeta_1 = \zeta_2 = 0$ for $d_{\psi} = 2$.\footnote{It may be demonstrated that $\bar{p}_{0}^{\prime}G\delta \nrightarrow 0$ as $d_{\psi} \rightarrow \infty$ but the proof is omitted for brevity.}		
+			
+  Table 2 displays the GAR-based test rejection probabilities for $\pi = 0.1$.\footnote{The value $\pi = 0.0$ was also considered when $\Delta_c = \mathbb{R}^2$ and Theorem 3.1 holds in all cases. Rejection probabilities around $0.1$ were found for all $n$, $\rho$, $\zeta_1$, $\zeta_2$ and $d_g$ but these results are not reported here for brevity.} When $\rho = 1.0$ and $\zeta_1 = \zeta_2 = 0$, i.e., $\Omega$ is  singular, the GAR-based test rejection probabilities converge to $1$ as $n$ increases as expected from Theorem 3.2 since $\hat{T}(\theta_n)$ is asymptotically  unbounded in this case for any $d_g$. For both values $\rho = 0.999995$ and $\rho = 0.999500$, the rejection probabilities for any $n$ and $d_g$ are smaller when compared with those for $\rho = 1.000000$ but are still oversized in small samples.
+		
+  As $\zeta_2$ increases, and the residuals become less correlated conditional on $w$, the rejection probabilities decrease for any value of $\rho$ and $n$. Table 3 indicates that the GAR-based test rejection probabilities increase as $d_{\psi}$ increases, corroborating the intuition in Example E.4 in Supplement E that with many polynomial instruments $\hat{T}(\theta_n)$ diverges when $\Omega_w(\theta_0)$ is nearly singular a.s.($w$) and $\bar{p}_{0}^{\prime}G\delta \nrightarrow 0$.
+				
+  This pattern is also observed in Table 3 with stronger instruments, i.e., when $\pi = 0.5$. In this case the GAR-based test rejection probabilities are, in general, relatively more oversized for any $n$, $d_g$, $\rho$ and $\zeta_2$ than those when $\pi = 0.1$. In this case $\bar{p}_{0}^{\prime}G\delta$ is further from zero so that the rejection probabilities are relatively more oversized than when $\bar{\pi} = 0.1$.
+
+  \begin{landscape}					
+   \begin{table}[h]							
+	\begin{center}
+	 \begin{tabular}[t]{cccccccccccc}
+
+      \hline
+      \hline
+
+	  \multicolumn{3}{c}{} & \multicolumn{3}{c}{$\rho=0.999500$} & \multicolumn{3}{c}{$\rho=0.999995$} & \multicolumn{3}{c}{$\rho=1.000000$}  \\
+	  \multicolumn{3}{c}{} & \multicolumn{1}{c}{$d_g=4$} & \multicolumn{1}{c}{$d_g=6$} & \multicolumn{1}{c}{$d_g=8$} & \multicolumn{1}{c}{$d_g=4$} & \multicolumn{1}{c}{$d_g=6$} &
+               \multicolumn{1}{c}{$d_g=8$} & \multicolumn{1}{c}{$d_g=4$} & \multicolumn{1}{c}{$d_g=6$} & \multicolumn{1}{c}{$d_g=8$}   \\
+
+      \hline
+      \hline
+      $\zeta_1=0.0$ & $\zeta_2=0.0$ & $n=100$   & 0.135 & 0.123 & 0.198 & 0.428 & 0.380 & 0.800 & 0.492 & 0.421 & 0.867  \\ [0.3cm]
+                    &               & $n=500$   & 0.110 & 0.114 & 0.132 & 0.727 & 0.724 & 0.998 & 0.995 & 0.996 & 1.000  \\ [0.3cm]
+                    &               & $n=1000$  & 0.106 & 0.100 & 0.120 & 0.628 & 0.641 & 0.992 & 1.000 & 1.000 & 1.000  \\ [0.3cm]
+                    &               & $n=5000$  & 0.091 & 0.103 & 0.095 & 0.251 & 0.253 & 0.599 & 1.000 & 1.000 & 1.000  \\ [0.3cm]
+                    &               & $n=50000$ & 0.092 & 0.100 & 0.108 & 0.117 & 0.110 & 0.150 & 1.000 & 1.000 & 1.000  \\ [0.3cm]
+									
+      \hline
+
+      $\zeta_1=0.0$ & $\zeta_2=0.5$ & $n=100$   & 0.117 & 0.118 & 0.360 & 0.204 & 0.292 & 0.800 & 0.218 & 0.329 & 0.850  \\ [0.3cm]
+                    &               & $n=500$   & 0.102 & 0.107 & 0.267 & 0.124 & 0.542 & 1.000 & 0.119 & 0.954 & 1.000  \\ [0.3cm]
+                    &               & $n=1000$  & 0.106 & 0.103 & 0.194 & 0.105 & 0.461 & 1.000 & 0.104 & 1.000 & 1.000  \\ [0.3cm]
+                    &               & $n=5000$  & 0.105 & 0.098 & 0.109 & 0.106 & 0.196 & 0.986 & 0.094 & 1.000 & 1.000  \\ [0.3cm]
+                    &               & $n=50000$ & 0.103 & 0.105 & 0.103 & 0.099 & 0.107 & 0.278 & 0.095 & 0.676 & 1.000  \\ [0.3cm]
+									
+      \hline
+
+      $\zeta_1=0.0$ & $\zeta_2=1.0$ & $n=100$   & 0.080 & 0.107 & 0.521 & 0.089 & 0.234 & 0.739 & 0.076 & 0.263 & 0.764  \\ [0.3cm]
+                    &               & $n=500$   & 0.094 & 0.099 & 0.623 & 0.086 & 0.247 & 1.000 & 0.094 & 0.314 & 1.000  \\ [0.3cm]
+                    &               & $n=1000$  & 0.087 & 0.099 & 0.420 & 0.099 & 0.162 & 1.000 & 0.095 & 0.199 & 1.000  \\ [0.3cm]
+                    &               & $n=5000$  & 0.098 & 0.088 & 0.150 & 0.093 & 0.102 & 0.972 & 0.102 & 0.096 & 1.000  \\ [0.3cm]
+                    &               & $n=50000$ & 0.101 & 0.096 & 0.095 & 0.099 & 0.095 & 0.230 & 0.104 & 0.098 & 1.000  \\ [0.3cm]
+									
+      \hline
+      \hline
+									
+     \end{tabular}
+    \end{center}
+
+   \caption{GAR rejection  probabilities $\pi=0.1.$}
+
+   \end{table}
+  \end{landscape}
+  						
+   \vspace{0.3cm}
+
+  \begin{landscape}
+   \begin{table}[h]								
+    \begin{center}
+	 \begin{tabular}[t]{cccccccccccc}
+
+      \hline
+      \hline
+
+      \multicolumn{3}{c}{} & \multicolumn{3}{c}{$\rho=0.999500$} & \multicolumn{3}{c}{$\rho=0.999995$} & \multicolumn{3}{c}{$\rho=1.000000$}  \\
+      \multicolumn{3}{c}{} & \multicolumn{1}{c}{$d_g=4$} & \multicolumn{1}{c}{$d_g=6$} & \multicolumn{1}{c}{$d_g=8$} & \multicolumn{1}{c}{$d_g=4$} & \multicolumn{1}{c}{$d_g=6$} &
+               \multicolumn{1}{c}{$d_g=8$} & \multicolumn{1}{c}{$d_g=4$} & \multicolumn{1}{c}{$d_g=6$} & \multicolumn{1}{c}{$d_g=8$}   \\
+
+      \hline
+      \hline
+
+      $\zeta_1=0.0$ & $\zeta_2=0.0$ & $n=100$   & 0.927 & 0.893 & 0.999 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000  \\ [0.3cm]
+                    &               & $n=500$   & 0.495 & 0.477 & 0.939 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000  \\ [0.3cm]
+                    &               & $n=1000$  & 0.317 & 0.286 & 0.706 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000  \\ [0.3cm]
+                    &               & $n=5000$  & 0.145 & 0.144 & 0.222 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000  \\ [0.3cm]
+                    &               & $n=50000$ & 0.104 & 0.102 & 0.110 & 0.530 & 0.544 & 0.964 & 1.000 & 1.000 & 1.000  \\ [0.3cm]
+									
+      \hline
+									
+      $\zeta_1=0.0$ & $\zeta_2=0.5$ & $n=100$   & 0.761 & 0.895 & 1.000 & 0.988 & 1.000 & 1.000 & 0.992 & 1.000 & 1.000  \\ [0.3cm]
+                    &               & $n=500$   & 0.292 & 0.480 & 1.000 & 0.690 & 1.000 & 1.000 & 0.713 & 1.000 & 1.000  \\ [0.3cm]
+                    &               & $n=1000$  & 0.193 & 0.283 & 1.000 & 0.404 & 1.000 & 1.000 & 0.425 & 1.000 & 1.000  \\ [0.3cm]
+                    &               & $n=5000$  & 0.106 & 0.125 & 0.642 & 0.148 & 1.000 & 1.000 & 0.148 & 1.000 & 1.000  \\ [0.3cm]
+                    &               & $n=50000$ & 0.100 & 0.106 & 0.150 & 0.102 & 0.340 & 1.000 & 0.107 & 1.000 & 1.000  \\ [0.3cm]
+									
+      \hline
+
+      $\zeta_1=0.0$ & $\zeta_2=1.0$ & $n=100$   & 0.171 & 0.707 & 1.000 & 0.200 & 1.000 & 1.000 & 0.194 & 0.996 & 1.000  \\ [0.3cm]
+                    &               & $n=500$   & 0.101 & 0.277 & 1.000 & 0.097 & 0.996 & 1.000 & 0.089 & 0.955 & 1.000  \\ [0.3cm]
+                    &               & $n=1000$  & 0.096 & 0.182 & 1.000 & 0.091 & 0.936 & 1.000 & 0.098 & 0.349 & 1.000  \\ [0.3cm]
+                    &               & $n=5000 $ & 0.088 & 0.109 & 0.978 & 0.094 & 0.306 & 1.000 & 0.092 & 0.102 & 1.000  \\ [0.3cm]
+                    &               & $n=50000$ & 0.095 & 0.105 & 0.220 & 0.102 & 0.108 & 1.000 & 0.091 & 0.102 & 1.000  \\ [0.3cm]
+									
+      \hline
+
+     \end{tabular}
+								
+    \end{center}
+									
+    \caption{GAR rejection probabilities $\pi=0.5$.}
+
+   \end{table}
+  \end{landscape}
+
+% =================================================================================================================
+
+
+\end{document}
+
+

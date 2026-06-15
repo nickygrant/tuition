@@ -1,0 +1,142 @@
+\documentclass[11pt, fleqn]{article}
+
+\usepackage{amsfonts,amssymb,graphics,epsfig,verbatim,bm,latexsym,amsmath,url,amsbsy}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{multirow}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{array}
+\usepackage[width=14cm, bottom=3cm, top=4cm, foot=2cm,
+a4paper]{geometry}
+
+\renewcommand{\baselinestretch}{1.4}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+
+
+\title{\textbf{Consistent Inference with Many Invalid Instruments}}
+
+
+
+
+\maketitle
+
+\section{Basic Idea}
+Consider the one endogenous variable many instrument setting,
+\begin{equation} y_i=x_i\beta_0+z_i'\delta_0+\epsilon_i \end{equation}
+\begin{equation} x_i=z_i'\pi+v_i \end{equation}
+Where $\pi \in \mathbb{R}^m$ and $v_i=(y_i,x_i,z_i)$ is i.i.d. Traditionally in IV consistent inference is derived assuming $\delta_0=0$. Define $x=(x_1,..,x_n)'$,$z=(z_1,..,z_n)'$, $e=(\epsilon_1,..,\epsilon_n)'$, $v=(v_1,..,v_n)'$. Given some p.d weight matrix $W$ the IV-GMM estimator is $\hat{\beta}:=x'zWz'y/x'zWz'x$.
+
+\begin{align}\hat{\beta}&=\beta_0+  \frac{x'zWz'z\delta}{x'zWz'x}+  \frac{x'zWz'e}{x'zWz'x}\\
+&= \beta_0+  \frac{\pi'z'zWz'z\delta}{x'zWz'x}+  \frac{v'zWz'z\delta}{x'zWz'x} +\frac{x'zWz'e}{x'zWz'x}
+\end{align}
+
+For simplicity and w.l.o.g assume $z$ is normalised such that $z'z/n=I_m$ where $I_m$ is the $m\times m$ identity matrix
+
+
+\begin{equation}\hat{\beta}=\beta_0+   \frac{\pi'W\delta}{x'z/nWz'x/n}+  \frac{v'z/nW\delta}{x'z/nWz'x/n}+ \frac{x'z/nWz'e/n}{x'z/nWz'x/n}\end{equation}
+
+Then it is straightforward to show $ \frac{\pi'W\delta}{x'z/nWz'x/n}= \frac{\pi'W\delta}{\pi'W\pi}+\eta$  assuming $\pi'W\pi>0$ where $\eta$ will be negligible in the following (given we will be working with  the assumption $\frac{\pi'W\delta}{\pi'W\pi}$ is neglible when appropriately scaled by an increasing sequence). Hence up to first order
+
+\begin{equation} \label{cons}\hat{\beta}=\beta_0+   \frac{\pi'W\delta}{\pi'W\pi}+  \frac{v'z/nW\delta}{x'z/nWz'x/n} + \frac{x'z/nWz'e/n}{x'z/nWz'x/n}\end{equation}
+
+Where Koleskar et al (2012) $[http://obs.rc.fas.harvard.edu/chetty/invalid_instruments.pdf]$\\
+provide consistent inference when potentially $\delta\neq 0$ if $\pi'W\delta=0$ [They consider 2SLS but it is easily extended to a general weight matrix]. As an identifying strategy this is somewhat restrictive. By considering using many moments- we we can see in which cases the bias will be small for m,n large and choose instruments accordingly. \\
+
+
+ Assume $W$ diagonal for simplicity $\pi'W\pi=\sum_{j=1}^m \pi_j^2w_j$ and assume $\frac{1}{m}\sum_{j=1}^m \pi_j^2w_j\rightarrow \bar{\pi}_W>0$ (we could weaken to allow a slower rate in the case of some weak instruments) then consistency is achieved if $\pi'W\delta/m=o(1)$, i.e roughly speaking (once taking in to account the relative strength/weakness of the exog/endo instruments) if the number of invalid instruments grows slower relative to the total number of instruments. This guarantees the second term on the RHS of (\ref{cons}) is $o(1)$.\\
+ Also it is easy to show $\frac{v'z/nW\delta}{x'z/nWz'x/n}=o_p(1)$ since $\frac{1}{m}x'z/nWz'x/n=\pi_W+o_p(1)$ $v'z/n=O_p(\sqrt{m/n})$ hence we require $\frac{1}{m}v'z/nW\delta=\frac{1}{\sqrt{mn}} v'z/(\sqrt{n/m})W\delta=o_p(1)$, a sufficient condition being the non-zero elements of $\delta$ grow slowly enough.\\
+
+Finally since the final term on the RHS is $o_p(1)$ by usual arguments when m grows slowly enough relative to n, we can show $\hat{\beta}\overset{p}{\rightarrow} \beta_0$, even with a potentially asymptotically infinite number of invalid instruments.\\
+To show rate of convergence, note that $z'e/n$,$z'v/n$ are both $O_p(\sqrt{m/n})$ (e.g Newey \& Windmeijer (2009) [Technical appendix]). Hence,
+
+\begin{equation} \label{limit}\sqrt{\frac{n}{m}} (\hat{\beta}-\beta_0)=  \sqrt{\frac{n}{m}} \frac{\pi'W\delta}{\pi'W\pi}+  \sqrt{\frac{n}{m}} \frac{v'z/nW\delta}{x'z/nWz'x/n}+ \sqrt{\frac{n}{m}} \frac{x'z/nWz'e/n}{x'z/nWz'x/n} \end{equation}
+Where we require both $\sqrt{\frac{n}{m}} \frac{\pi'W\delta}{\pi'W\pi}$,$ \sqrt{\frac{n}{m}} \frac{v'z/nW\delta}{x'z/nWz'x/n}$ to be $o_p(1)$ in order for the limit distribution of $\sqrt{\frac{n}{m}} (\hat{\beta}-\beta_0)$ to be governed by the limit distribution of $ \sqrt{\frac{n}{m}} \frac{x'z/nWz'e/n}{x'z/nWz'x/n}$ as in the case of inference when $\delta=0$. This requires further rate restrictions on the number of invalid to total no. of instruments.\\
+
+Let $\pi'W\delta=O(\bar{m})$ and $\pi'W\pi=O(m)$ we then require $ \sqrt{\frac{n}{m}} O(\frac{\bar{m}}{m})=o(1)$ such that the first two terms on the RHS of (\label{limit}) are $o_p(1)$. If $\sqrt{\frac{n}{m}} O(\frac{\bar{m}}{m})=O(1)$ and is bounded away from zero then a constant drift term appears in the RHS of (\label{limit}) and potentially $\sqrt{\frac{n}{m}} \frac{v'z/nW\delta}{x'z/nWz'x/n}$ may not drop out asymptotically if it is of a same order as $\sqrt{\frac{n}{m}} \frac{\pi'W\delta}{\pi'W\pi}$ which roughly speaking could happen if $\pi_j=0$ for $\delta_j\neq 0$ for sufficient $j=\{1,...,m\}$ which would yield asymptotics more in line with  Hall \& Inoue (2003). This issue is quite an intricate issue- some discussion below.\\
+
+Hence we need $\bar{m}^2=o(m^3/n)$ in order to base inference on standard many moment asymptotics and $\bar{m}=o(m)$ for consistency. [This result would get a little more tricky when considering the interaction with some (growing number of ) elements of $\pi$  equal to zero. The condition would become stronger the more the exog. instruments were weak. Some interestign results may come out given the ideas by Chao \& Swanson (2005), Han \& Phillips (2006) where many weak instruments can in some cases ameliorate/overcome the weak instrument issue. The conditions would likely become quite strict once also using the many weak instruments to also overcome the bias.]\\
+
+\section{Further Discussion on Asymptotic Bias}
+The above ignored how the crucial bias term $\frac{\pi'W\delta}{\pi'W\pi}$ behaves in different scenarios in light of the strength of the invalid/valid instruments. We focus here just on conditions for consistency in more detail- so that the asymptotic bias term is $o(1)$. Further rate conditions would be needed to justify valid inference as mentioned above.
+
+W.l.o.g assume $\delta$ is arranged such that $\delta=(\bar{\delta},0)$ [Endogenous/Exogenous] where $\bar{\delta}$ is an $\bar{m}\times 1$ vector for $\bar{m}\leq m$.  Correspondingly write $\pi=(\bar{\pi},\tilde{\pi})$ where $\bar{\pi}$ is $\bar{m}\times 1$.
+ Let $W$ be be block diagonal for simplicity with the upper $\bar{m}\times m$ block equal to $\bar{W}$ and correspondingly $\tilde{W}$ for the lower submatrix.
+
+\begin{equation}\frac{\pi'W\delta}{\pi'W\pi}=\frac{ \bar{\pi}'\bar{W}\bar{\delta}}{\bar{\pi}'\bar{W}\bar{\pi}+\tilde{\pi}'\tilde{W}\tilde{\pi}} \end{equation}
+Then many situations arise depending on the size of
+\begin{itemize}
+  \item  $\bar{\pi}'\bar{W}\bar{\delta} $ [The impact of the direct effect of $z$ on y]
+  \item $\bar{\pi}'\bar{W}\bar{\pi}$ [The strength of the endogenous instruments]
+  \item $\tilde{\pi}'\tilde{W} \tilde{\pi}$  [The strength of the exogenous instruments]
+\end{itemize}
+Then many scenarios arise where the bias vanishes asymptotically (letting $m$ vary with n).
+\begin{itemize}
+\item $\delta=0$ the standard case with potentially many moments, e.g Chao \& Swanson (2005).
+\item $\bar{\pi}'\bar{W}\bar{\delta}=0$  e.g Koleskar (2012).
+\item $\bar{\pi}'\bar{W}\bar{\delta}=c_m$ for some $c_m=O(1)$ where $ \bar{\pi}'\bar{W}\bar{\pi}+\tilde{\pi}'\tilde{W}\tilde{\pi}\rightarrow \infty$ which could arise for example only from the strength of the endogenous instruments where some/all exogenous instruments are weak. As mentioned in Koleskar (2012) though restrictive in some cases it may be natural to think $\delta'W\pi=0$. Allowing $\delta'W\pi$ to be non-zero and potentially vary with $m$ is much weaker- especially as we don't need any valid/strong instruments.
+ \item   $\bar{\pi}'\bar{W}\bar{\delta}=O(m_n)$ where $m_n$ may grow with $n$ but not necessarily at rate $\bar{m}$ (given terms may cancel). Then if $\bar{\pi}'\bar{W}\bar{\pi}+\tilde{\pi}'\tilde{W}\tilde{\pi}=O(m_n+\Delta_m)$ where $\Delta_m\rightarrow \infty$.   Again all exogenous instruments may be weak if $m_n$ grows slowly enough relative to the number of strong endogenous instruments.
+     \item $\bar{\pi}'\bar{W}\bar{\delta}=O(\bar{m})$. The worst case scenario where no cancelling out occurs. In this case we require $\tilde{\pi}'\tilde{W}\tilde{\pi}\rightarrow \infty$, the rate at which depends on the rate of growth of $\bar{\pi}'\bar{W}\bar{\pi}$. If all endengous instruments are weak we need $\bar{m}/m^*\rightarrow 0$, i.e fater rate of growth of strong exogenous variables. If all endogenous variables are strong then we only require $\tilde{\pi}'\tilde{W}\tilde{\pi}\rightarrow \infty$ at any rate.
+
+\end{itemize}
+
+In each case the restrictions on the rate of growth of moments m , both from $\bar{m}$ and $m^*$ , relative to n, vary.\\
+
+
+There are possibly other  scenarios. It may be interesting how this relates to the properties of $\frac{v'z/nW\delta}{x'z/nWz'x/n}$ which is the other term in the expansion for the IV-GMM estimator which governs the bias. We can replace $x'z/nWz'x/n$ with $\pi'W\pi$ with higher order terms dropping out. Again using the decomposition above  and define the first $\bar{m}$ elements of $1 \times m$ vector $v'z/n$  as $h_n'$ where $h_n'=O_p(\sqrt{\frac{\bar{m}}{n}})$
+\begin{equation} \frac{v'z/nW\delta}{x'z/nWz'x/n}=\frac{h_n'\bar{W}\bar{\delta}}{ \bar{\pi}'\bar{W}\bar{\pi}+\tilde{\pi}'\tilde{W}\tilde{\pi}}\end{equation}
+
+Things become involved here as this term may be of a smaller , larger or equivalent magnitude to $\frac{\pi'W\delta}{\pi'W\pi}$, so the above needs to take thsi in to account. Also this term may or may not drop out asymptotically when scaled by $\sqrt{\frac{n}{m}}$ whether or not $\frac{\pi'W\delta}{\pi'W\pi}$ drops out.
+
+E.g take the case $\pi'W\delta=0$ then the first part of the bias drops out. Then $\sqrt{\frac{n}{\bar{m}}}h_n\overset{d}{\rightarrow} \phi$ for some random variable $\phi$.
+
+\begin{equation}  \sqrt{\frac{n}{m}}\frac{h_n'\bar{W}\bar{\delta}}{ \bar{\pi}'\bar{W}\bar{\pi}+\tilde{\pi}'\tilde{W}\tilde{\pi}}=\sqrt{\frac{\bar{m}}{m}}\frac{\sqrt{\frac{n}{\bar{m}}}h_n'\bar{W}\bar{\delta}}{ \bar{\pi}'\bar{W}\bar{\pi}+\tilde{\pi}'\tilde{W}\tilde{\pi}} \end{equation}
+
+If $\bar{m}/m=O(1)$ then the limit of this term will be non-zero and random so long as $\bar{\pi}'\bar{W}\bar{\pi}+\tilde{\pi}'\tilde{W}\tilde{\pi}$ grows slowly enough.\\
+
+Thinking about this more there is quite a lot to this and the properties of IV will vary dramatically in allsorts of different scenarious.
+
+
+
+
+
+
+
+
+\textbf{Ideas}
+\begin{itemize}
+  \item Use initial consistent estimate to estimate $\delta$. Could also use shrinking so could estimate the non-zero terms of $\delta$ w.p.1. Could allow us to weaken the rate conditions perhaps (At the cost of adding in extra noise from estimating $\delta$) to allow inference where the endogenous terms impact the limit distribution of 2SLS, similar to HI (2003).
+  \item Extend to many endogenous variable case- where would need to work with the matrix versions of above. Would likely increase rate conditions on invalid instruments.
+  \item The properties of Hansens J-Test in this case as you mentioned
+  \item Kang et al (2014) [http://arxiv.org/pdf/1401.5755.pdf] consider inference with invalid instruments in the fixed instrument case. Using Lasso they derive consistency even with invalid instruments and no first stage estimate needed. This requires sufficient sparsity. No  means of inference provided. Not sure if any of these ideas would be useful here. I guess the result above ties in more neatly with the  framework in the econometrics literature of studying the properties of many weak moments/bias etc.
+  \item ....  it is just a thought at the minute- could likely go in many directions, it does seem like it is unlikely that a clear inference strategy will come out of this- the limit of the estimator could vary dramatically with varying constant/random drift terms in different settings. Though thinking about it more it could be an interesting paper. Would be interesting to see what you think. 
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+
+

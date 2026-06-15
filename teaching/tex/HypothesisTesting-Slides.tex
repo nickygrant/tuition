@@ -1,0 +1,285 @@
+\documentclass{beamer}
+\usetheme{metropolis}
+ \usefonttheme{professionalfonts}
+\usepackage{amsfonts,amssymb,graphics,epsfig,verbatim,bm,latexsym,amsmath,url,amsbsy}
+\usepackage{graphicx}
+\setbeamertemplate{itemize item}{\color{titlepagecolor}$\hookrightarrow$}
+\definecolor{whitesmoke}{rgb}{0.96, 0.96, 0.96}
+  \setbeamercolor{background canvas}{bg=whitesmoke}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{mwe}
+
+\usepackage{subfig}
+\newcommand{\subsubfloat}[2]{%
+  \begin{tabular}{@{}c@{}}#1\\#2\end{tabular}%
+}
+\usepackage{media9}
+\usepackage{mdframed}
+
+\makeatletter
+\newsavebox\zb@x
+\newcounter{z@@m}
+\usepackage{calc}
+\newdimen\B@r\newdimen\P@r
+\newdimen\@zw\newdimen\@zh\newdimen\@zd
+
+\newcommand{\zoombox}[2][0]{%
+  \leavevmode%
+  \sbox\zb@x{#2}%
+  \setlength\B@r{1pt*\ratio{\wd\zb@x}{\ht\zb@x+\dp\zb@x}}%
+  \setlength\P@r{1pt*\ratio{\paperwidth}{\paperheight}}%
+  \ifdim\B@r>\P@r\relax%
+    \setlength\@zw{\wd\zb@x}\setlength\@zh{\@zw*\ratio{\paperheight}{\paperwidth}}%
+    \setlength\@zd{(\@zh-\ht\zb@x-\dp\zb@x)*\real{0.5}+\dp\zb@x}%
+    \setlength\@zh{\@zh-\@zd}%
+  \else%
+    \setlength\@zh{\ht\zb@x+\dp\zb@x}%
+    \setlength\@zw{\@zh*\ratio{\paperwidth}{\paperheight}}%
+    \setlength\@zh{\ht\zb@x}\setlength\@zd{\dp\zb@x}%
+  \fi%
+  \makebox[0pt][l]{\makebox[\wd\zb@x][c]{\makebox[\@zw][l]{%
+    \pdfdest name {zbfs\thez@@m} fitr
+      width  \@zw\space
+      height \@zh\space
+      depth  \@zd\space
+  }}}%
+  \pdfdest name {zb\thez@@m} fitr
+    width  \wd\zb@x\space
+    height \ht\zb@x\space
+    depth  \dp\zb@x\space
+  \immediate\pdfannot
+    width  \wd\zb@x\space
+    height \ht\zb@x\space
+    depth  \dp\zb@x\space
+  {%
+    /Subtype/Link/H/N
+    /Border [0 0 #1 [1 2]]
+    /A <<
+      /S/JavaScript
+      /JS (
+        if(typeof(zoomed)=='undefined'||!zoomed){
+          var lastView=this.viewState;
+          if(app.fs.isFullScreen) this.gotoNamedDest('zbfs\thez@@m');
+          else this.gotoNamedDest('zb\thez@@m');
+          zoomed=true;
+        }else{
+          this.viewState=lastView;
+          zoomed=false;
+        }
+      )
+    >>
+  }%
+  \usebox{\zb@x}%
+  \stepcounter{z@@m}%
+}
+\makeatother
+
+	\makeatother
+	\makeatletter
+	\newcommand\HUGE{\@setfontsize\Huge{40}{55}}
+	\makeatother
+\usepackage[orientation=landscape,size=custom,width=16.7,height=10.5,scale=0.5,debug]{beamerposter}
+\definecolor{ikb}{rgb}{0.0, 0.18, 0.65}
+\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+
+\setbeamercolor{frametitle}{fg=white,bg=ikb}           % Use metropolis theme
+\setbeamercolor{title}{fg=white,bg=white}
+\setbeamercolor{date}{fg=white,bg=white}
+\usepackage{pdfpages}
+\setbeamersize{text margin left=5pt,text margin right=15pt}
+\title{\HUGE{Intro to Hypothesis Testing on the Population Mean}}\subtitle{\vspace{1cm}\Large Nicky Grant}
+\date{\large University of St Andrews, 31st July 2019}
+
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+\definecolor{beaublue}{rgb}{0.74, 0.83, 0.9}
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\newtcbtheorem[number within=section]{mydef}{Definition}%
+{colback=beaublue,colframe=titlepagecolor,fonttitle=\bfseries}{th}
+
+
+\setbeamerfont{section title}{size=\Huge, series=\bfseries}
+\hypersetup{pdfstartview=Fit, pdfpagemode=UseNone}
+\definecolor{yg}{rgb}{0.3, 0.73, 0.09}
+\usepackage{tcolorbox}% http://ctan.org/pkg/tcolorbox
+\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}% Rule colour
+\makeatletter
+\newcommand{\mybox}[1]{%
+  \setbox0=\hbox{#1}%
+  \setlength{\@tempdima}{\dimexpr\wd0+13pt}%
+  \begin{tcolorbox}[colframe=mycolor,boxrule=0.5pt,arc=4pt,
+      left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,width=\@tempdima]
+    #1
+  \end{tcolorbox}
+}
+\makeatother
+
+\hypersetup{
+    colorlinks,
+    citecolor=yellow,
+    filecolor=yg,
+    linkcolor=ikb,
+    urlcolor=red
+}
+	
+\hypersetup{pdfnewwindow}
+\begin{document}
+  \begin{center}\setbeamercolor{background canvas}{bg=ikb}\maketitle \end{center}
+   \setbeamercolor{background canvas}{bg=white} \small
+
+
+
+
+\begin{frame}%
+\frametitle{Motivation}
+\begin{itemize}
+\item[] \textbf{Student A} claims the average economics grade in the UK population of UGs is no more than 65\%
+	\vspace{15pt}
+\item[] \textbf{Student B} disagrees believing this average grade is larger than $65\%$
+	\vspace{15pt}
+\item[] \textbf{How could we form a test of the validity of Student A's claim against B?}
+	\vspace{25pt}\pause
+\item[] \textit{First formally state the claims to be tested on the unknown population mean} $\mu$
+\pause
+	\item[]  \begin{figure} \subfloat{\mybox{\textbf{Null Hypothesis:} \hspace{0.1cm} $H_0:$ $\mu <= 65$ }} \end{figure}
+
+\item[] \begin{figure}   \subfloat{ \mybox{\textbf{Alternative Hypothesis:} \hspace{0.1cm} $H_A:$  $\mu > 65 $}} \end{figure}
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}%
+\frametitle{Motivation}
+\begin{itemize}
+	\item[] Generally we cannot observe the whole population of data
+		\vspace{25pt}
+		\pause
+			\item[] Instead we  observe a sample drawn from this population
+\pause
+		\vspace{25pt}
+	\item[]\textit{ Suppose we sample 25 UK students at random and find the their econ average grade is \textbf{65\%}}
+			\vspace{25pt}\pause
+	\item[] \textbf{Q: Does this imply Student A's claim (the Null Hypothesis) is correct?}
+\vspace{15pt}
+\pause
+\item[] \textbf{Q: If the mean in our sample was 67\% does this imply Student A is incorrect?}
+
+	
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}%
+\frametitle{Sampling Distribution of the Mean}
+\begin{itemize}
+	\item[]  Sample mean of N=25 students economics grades ($\hat{\mu}$) is a random variable
+	\vspace{15pt}
+	\pause
+	\item[] Suppose student grades (x) are normally distributed with mean $\mu$ and variance $\sigma^2=100$
+	\vspace{5pt}
+	
+	\includegraphics[scale=0.5]{grade.png}\caption{Sample Realisation of Nonstationary AR(1) Processes}
+	\pause
+		\item[] \textbf{Sample Mean Distribution}: $\hat{\mu}$ is normally distributed with mean $\mu$ and variance $\frac{\sigma^2}{25}=4$
+
+	
+	
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}%
+\frametitle{Importance of Sampling Distribution}
+\begin{itemize}
+	\item[]  Suppose again our sample mean of 25 students is $67\%$
+	
+		\vspace{15pt}
+	\item[]\textbf{Q: How to work out the probability of observing a sample mean $\geq 67$ if Stud. A is correct?}
+	\pause
+		\vspace{15pt}
+	\item[]  If Student A is correct (Null is true) and $\mu=65$ $\Rrightarrow$ $\hat{\mu}$ is normally dist. with $\mu=65$ and variance 4
+		\vspace{15pt}
+		\pause			\includegraphics[scale=0.35]{samp1.png}\caption{Sample Realisation of Nonstationary AR(1) Processes}
+
+	
+	\item[] \textbf{Q: Does this imply Student A's claim is correct?} $\Pr\{\hat{\mu}>67|\mu=65\}=0.159$ 
+	\pause	\vspace{15pt}
+	\item[] \textbf{Q: What if we observe sample mean of 70 where $\Pr\{\hat{\mu}>70|\mu=65\}=0.0062$ }
+		\pause	\vspace{5pt}
+	\item[] Both probabilities are known as \textbf{p-values} you may have seen reported on statistical software
+	
+
+	
+	
+\end{itemize}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\begin{itemize}
+	\frametitle{Formalising a Statistical Test}
+	
+	
+		
+	\item[] \textbf{Form a test where there is $5\%$ chance of rejecting the Null Hypothesis when it is true (\textbf{Type I Error})}
+		\vspace{25pt}
+		\pause
+		\item[]   $5\%$ is  the \textbf{significance level} of our test - the probability with which we are willing to make a Type I Error (other common choices are 10\% and 1\%)
+		\pause
+			\vspace{25pt}
+	\item[] Need to find '\textbf{critical value}' $c$ where  $\Pr\{\hat{\mu}>c | \mu=65\}=0.05$
+		\vspace{25pt} \pause
+	\item[] \textbf{Test Procedure:} \textbf{Accept} $H_0$ if $\hat{\mu}<=68.29$ and \textbf{Reject} if $\hat{\mu}>68.29$
+	
+	
+
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\begin{itemize}
+	\frametitle{Standardised Test}
+	
+	
+	\item[]  Often a hypothesis test of the mean \textbf{standardise} the test statistic to form acc./rej. region
+			\vspace{15pt} \pause
+	\item[] $\hat{\mu}\leq 68.29$  \textbf{equivalent to}  $\hat{\mu}-65\leq 3.29$ \textbf{equivalent to} $\frac{\hat{\mu}-65}{2}\leq 1.645$
+			\vspace{15pt}\pause
+	\item[] $\frac{\hat{\mu}-\mu}{\sigma/\sqrt{N}}$ is the \textbf{standardised sample mean} (\textbf{z-stat})
+				\vspace{15pt}\pause
+	\item[]  z-stat is distributed standard normal (mean 0 variance 1)
+				\vspace{15pt}
+	\item[] Perform test of Null Hypothesis by comparing z-stat with critical value from standard normal distribution tables
+	
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+	\frametitle{Standardised Test}
+\tiny
+ $\mu+10$ \hspace{30pt}
+ 
+   $\mu+20$ \hspace{30pt}
+   
+   $\mu+30$ \hspace{30pt}
+   
+    $\mu-10$\hspace{30pt}
+     $\mu-20$\hspace{30pt}
+      $\mu-30$
+	
+\end{itemize}
+\end{frame}
+
+
+		
+\end{document} 

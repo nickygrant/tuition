@@ -125,7 +125,7 @@ ISBN 9781781903070) is catalogued at:
 - Emerald Publishing: https://www.emerald.com/books/edited-volume/15951/
 - SPS Library: https://librarycatalog.sps.edu/bib/492988
 - ResearchGate (related works): https://www.researchgate.net/publication/46495742_Cross-sectional_averaging_and_instrumental_variable_estimation_with_many_weak_instruments
-- IDEAS/RePEC: https://ideas.repec.org/h/eme/aecozz/s0731-9053(2012)0000029010.html
+- IDEAS/RePEc: https://ideas.repec.org/h/eme/aecozz/s0731-9053(2012)0000029010.html
 
 ---
 *This file is for AI crawler indexing. Full site: https://www.drnickygrant.com*

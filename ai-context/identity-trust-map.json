@@ -1,0 +1,80 @@
+{
+  "canonicalPersonId": "https://www.drnickygrant.com/#person",
+  "primarySitePurpose": "Specialist online tutoring for economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics applications.",
+  "sameAsIdentityPages": [
+    "https://orcid.org/0009-0008-8979-4623",
+    "https://www.linkedin.com/in/nicky-lee-grant/",
+    "https://cemmap.ac.uk/person/nicky-l-grant/",
+    "https://research-portal.st-andrews.ac.uk/en/persons/nicky-lee-grant",
+    "https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/",
+    "https://www.youtube.com/@economaths",
+    "https://independent.academia.edu/NickyGrant"
+  ],
+  "publicationEvidence": [
+    {
+      "name": "IDEAS/RePEc record: How sensitive is the average taxpayer to changes in the tax-price of giving?",
+      "url": "https://ideas.repec.org/a/kap/itaxpf/v26y2019i2d10.1007_s10797-018-9500-9.html",
+      "type": "IDEAS/RePEc publication or working-paper record"
+    },
+    {
+      "name": "IDEAS/RePEc record: Generalised Anderson-Rubin statistic based inference",
+      "url": "https://ideas.repec.org/p/ifs/cemmap/05-19.html",
+      "type": "IDEAS/RePEc publication or working-paper record"
+    },
+    {
+      "name": "IDEAS/RePEc record: GEL-based inference with unconditional moment inequality restrictions",
+      "url": "https://ideas.repec.org/p/ifs/cemmap/23-18.html",
+      "type": "IDEAS/RePEc publication or working-paper record"
+    },
+    {
+      "name": "IDEAS/RePEc record: Manchester tax-price working paper",
+      "url": "https://ideas.repec.org/p/man/sespap/1606.html",
+      "type": "IDEAS/RePEc publication or working-paper record"
+    },
+    {
+      "name": "IDEAS/RePEc record: Advances in Econometrics book chapter",
+      "url": "https://ideas.repec.org/h/eme/aecozz/s0731-9053%282012%290000029010.html",
+      "type": "IDEAS/RePEc publication or working-paper record"
+    },
+    {
+      "name": "Springer journal article",
+      "url": "https://link.springer.com/article/10.1007/s10797-018-9500-9"
+    },
+    {
+      "name": "CeMMAP profile",
+      "url": "https://cemmap.ac.uk/person/nicky-l-grant/"
+    },
+    {
+      "name": "Academia.edu profile",
+      "url": "https://independent.academia.edu/NickyGrant"
+    },
+    {
+      "name": "GAR paper on Academia.edu",
+      "url": "https://www.academia.edu/85284057/Generalised_Anderson_Rubin_statistic_based_inference_in_the_presence_of_a_singular_moment_variance_matrix"
+    },
+    {
+      "name": "CRE tax-price paper on Academia.edu",
+      "url": "https://www.academia.edu/85284059/Correlated_Random_Effects_Quantile_Estimation_of_the_Tax_Price_Elasticity_of_Charitable_Donations"
+    },
+    {
+      "name": "Emerald Advances in Econometrics chapter",
+      "url": "https://www.emerald.com/books/edited-volume/15951/chapter-abstract/87608698/"
+    }
+  ],
+  "mainConversionPages": [
+    "https://www.drnickygrant.com/econometrics-tutor.html",
+    "https://www.drnickygrant.com/a-level-maths-tutor.html",
+    "https://www.drnickygrant.com/a-level-economics-tutor.html",
+    "https://www.drnickygrant.com/tmua-preparation.html",
+    "https://www.drnickygrant.com/oxbridge-economics-tutor.html",
+    "https://www.drnickygrant.com/university-economics-tutor.html",
+    "https://www.drnickygrant.com/statistics-tutor.html",
+    "https://www.drnickygrant.com/finance-tutor.html",
+    "https://www.drnickygrant.com/phd-econometrics-tutor.html"
+  ],
+  "semanticScholarPolicy": "Semantic Scholar is restored as a primary scholarly-discovery signal using https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351.",
+  "canonicalSameAs": [
+    "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"
+  ],
+  "videoPolicy": "YouTube/@economaths is teaching-resource evidence and is surfaced on teaching.html#teaching-videos, not research.html."
+}

@@ -1,0 +1,900 @@
+
+
+\documentclass{beamer}						
+\usetheme{metropolis}
+\usefonttheme{professionalfonts}
+
+\setbeamertemplate{itemize item}{\color{titlepagecolor}$\hookrightarrow$}
+\definecolor{whitesmoke}{rgb}{0.96, 0.96, 0.96}
+\setbeamercolor{background canvas}{bg=whitesmoke}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{mwe}
+\usepackage{amsmath}
+\everymath{\displaystyle}
+\usepackage{subfig}
+\newcommand{\subsubfloat}[2]{%
+	\begin{tabular}{@{}c@{}}#1\\#2\end{tabular}%
+}
+\usepackage{media9}	
+\usepackage{mdframed}
+	\usepackage{animate}
+\makeatletter
+\newsavebox\zb@x
+\newcounter{z@@m}
+\usepackage{calc}
+\newdimen\B@r\newdimen\P@r
+\newdimen\@zw\newdimen\@zh\newdimen\@zd
+
+\newcommand{\zoombox}[2][0]{%
+	\leavevmode%
+	\sbox\zb@x{#2}%
+	\setlength\B@r{1pt*\ratio{\wd\zb@x}{\ht\zb@x+\dp\zb@x}}%
+	\setlength\P@r{1pt*\ratio{\paperwidth}{\paperheight}}%
+	\ifdim\B@r>\P@r\relax%
+	\setlength\@zw{\wd\zb@x}\setlength\@zh{\@zw*\ratio{\paperheight}{\paperwidth}}%
+	\setlength\@zd{(\@zh-\ht\zb@x-\dp\zb@x)*\real{0.5}+\dp\zb@x}%
+	\setlength\@zh{\@zh-\@zd}%
+	\else%
+	\setlength\@zh{\ht\zb@x+\dp\zb@x}%
+	\setlength\@zw{\@zh*\ratio{\paperwidth}{\paperheight}}%
+	\setlength\@zh{\ht\zb@x}\setlength\@zd{\dp\zb@x}%
+	\fi%
+	\makebox[0pt][l]{\makebox[\wd\zb@x][c]{\makebox[\@zw][l]{%
+				\pdfdest name {zbfs\thez@@m} fitr
+				width  \@zw\space
+				height \@zh\space
+				depth  \@zd\space
+	}}}%
+	\pdfdest name {zb\thez@@m} fitr
+	width  \wd\zb@x\space
+	height \ht\zb@x\space
+	depth  \dp\zb@x\space
+	\immediate\pdfannot
+	width  \wd\zb@x\space
+	height \ht\zb@x\space
+	depth  \dp\zb@x\space
+	{%
+		/Subtype/Link/H/N
+		/Border [0 0 #1 [1 2]]
+		/A <<
+		/S/JavaScript
+		/JS (
+		if(typeof(zoomed)=='undefined'||!zoomed){
+			var lastView=this.viewState;
+			if(app.fs.isFullScreen) this.gotoNamedDest('zbfs\thez@@m');
+			else this.gotoNamedDest('zb\thez@@m');
+			zoomed=true;
+		}else{
+			this.viewState=lastView;
+			zoomed=false;
+		}
+		)
+		>>
+	}%
+	\usebox{\zb@x}%
+	\stepcounter{z@@m}%
+}
+\makeatother
+
+\makeatother
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{40}{33}}
+\makeatother
+\usepackage[orientation=landscape,size=custom,width=16.7,height=10.5,scale=0.5,debug]{beamerposter}
+\definecolor{ikb}{rgb}{0.0, 0.18, 0.65}
+\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+\definecolor{blue}{rgb}{0., 0.2, 0.75}
+\setbeamercolor{frametitle}{fg=white,bg=ikb}           % Use metropolis theme
+\setbeamercolor{title}{fg=white,bg=white}
+\setbeamercolor{date}{fg=white,bg=white}
+\usepackage{pdfpages}
+\setbeamersize{text margin left=5pt,text margin right=15pt}
+\title{\HUGE{Econometric Time Series Analysis$|$EC5221}}\subtitle{\vspace{4.5cm}\Large \textbf{Wk2: Stationary Univariate Time Series -\\ \textit{Estimation and Inference} }}
+\date{\large \textbf{Nicky Grant} (Semester 2, 2020/2021)}
+
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+\definecolor{beaublue}{rgb}{0.74, 0.83, 0.9}
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{lightyellow}{rgb}{0, 0, 0.88}
+\newtcbtheorem[number within=section]{mydef}{Definition}%
+{colback=aliceblue,colframe=blue,fonttitle=\bfseries}{th}
+\newtcbtheorem[number within=section]{myex}{Example}%
+{colback=white,colframe=blue,fonttitle=\bfseries}{th}
+\newtcbtheorem[number within=section]{myexx}{Definition}%
+{colback=aliceblue ,colframe=blue,fonttitle=\bfseries}{th}
+\newtcbtheorem[number within=section]{mytheo}{Theorem}%
+{colback=beaublue,colframe=titlepagecolor,fonttitle=\bfseries}{th}
+
+
+
+\setbeamerfont{section title}{size=\Huge, series=\bfseries}
+\hypersetup{pdfstartview=Fit, pdfpagemode=UseNone}
+\definecolor{yg}{rgb}{0.3, 0.73, 0.09}
+\definecolor{back}{rgb}{1, 0.6,0.4}
+
+\definecolor{lightgoldenrodyellow}{rgb}{0.98, 0.98, 0.82}
+
+\newtcbtheorem[number within=section]{mydefyel}{Definition}%
+{colback=lightgoldenrodyellow,colframe=aliceblue,fonttitle=\bfseries}{th}
+
+\definecolor{mycolor}{rgb}{0, 0, 205}% Rule colour
+\makeatletter
+\newcommand{\mybox}[1]{%
+	\setbox0=\hbox{#1}%
+	\setlength{\@tempdima}{\dimexpr\wd0+13pt}%
+	\begin{tcolorbox}[colframe=ikb, colback=aliceblue ,boxrule=0.5pt,arc=4pt,
+		left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,width=\@tempdima]
+		#1
+	\end{tcolorbox}
+}
+\newcommand{\myboxx}[1]{%
+	\setbox0=\hbox{#1}%
+	\setlength{\@tempdima}{\dimexpr\wd0+13pt}%
+	\begin{tcolorbox}[colframe=beaublue, colback=ikb ,boxrule=0.5pt,arc=4pt,
+		left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,width=\@tempdima]
+		#1
+	\end{tcolorbox}
+}
+
+\newcommand{\myboxxx}[1]{%
+	\setbox0=\hbox{#1}%
+	\setlength{\@tempdima}{\dimexpr\wd0+13pt}%
+	\begin{tcolorbox}[colback=lightgoldenrodyellow, colframe=aliceblue, boxrule=0.5pt,arc=4pt,
+		left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,width=\@tempdima]
+		#1
+	\end{tcolorbox}
+}
+
+\makeatother
+
+\hypersetup{
+	colorlinks,
+	citecolor=yellow,
+	filecolor=yg,
+	linkcolor=ikb,
+	urlcolor=red
+}
+
+\hypersetup{pdfnewwindow}
+\begin{document}
+
+		\begin{center}\setbeamercolor{background canvas}{bg=ikb}\maketitle \end{center}
+		\setbeamercolor{background canvas}{bg=white} \small
+		\begin{frame}{Table of contents}
+			\setbeamertemplate{section in toc}[sections numbered]
+			\tableofcontents[hideallsubsections]
+		\end{frame}
+		
+
+\begin{frame}
+\frametitle{Recap}\begin{center}
+\begin{itemize}
+\item[] Distinction between \textbf{process} $\{Y_t\}$ and \textbf{sample realisation  }$\{y_t\}$
+\vspace{10pt}
+\item[] White noise \& \textbf{stationarity}
+\vspace{10pt}
+\item[] Measuring statistical dependence- \textbf{auto-correlation function [ACF]}	
+\vspace{10pt}
+\item[] Moments and stationarity conditions of \textbf{ARMA} processes
+\vspace{20pt}
+\end{itemize}
+\end{center}
+\begin{center}
+\mybox{Focused on theoretical properties of ARMA processes assuming model parameters \textbf{known}}
+	\end{center}
+
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}
+		\frametitle{What We Will Cover}
+
+\begin{enumerate}
+	\item[] Sample moments \& asymptotic properties 
+			\vspace{15pt}
+	\item[] Quick refresher on convergence in probability and distribution 
+	
+		\vspace{15pt}
+	\item[] Maximum likelihood  estimation of ARMA models 
+
+\end{enumerate}
+
+
+
+\end{frame}
+
+
+
+	
+	\section{Sample Moments}
+	\begin{frame}
+		\frametitle{Estimating Population Moments}
+		\begin{itemize}
+			
+			\item[] Distribution of process generating sample data $\{Y_t: t=1,..,T\}$	  \textbf{unknown}
+			\vspace{10pt}
+			\pause 
+			\item[] \hspace{12pt} $\Rrightarrow$ population moments of  $\{Y_t\}$ \textbf{unknown} (e.g. mean, variance, auto-covariances)
+			\vspace{15pt}
+			\pause 
+			\item[] Construct \textbf{estimators} of population moments using realisations from $\{Y_t: t=1,..,T\}$
+			\vspace{20pt}
+			\pause 
+			\item[] \mybox{E.g. How to form a consistent estimator of the population mean $\mathbb{E}[Y_t]$?}
+				\vspace{15pt}
+			\pause 
+			\item[] i.e. an estimator \textbf{converging in probability} to  $\mathbb{E}[Y_t]$ as $T\rightarrow \infty$
+	
+			
+			
+		\end{itemize}
+	\end{frame}
+	
+		\begin{frame}
+		\frametitle{Refresher: Convergence in Probability and Distribution}
+		\begin{itemize}
+		\item[]	\begin{mydef*}[width=14cm]{Convergence in Probability} A stochastic sequence $X_T$ on $T=1,2,\cdots$ converges in probability to X if  $\forall$ $\epsilon>0$
+			\begin{equation*}\Pr\{|X_T-X|<\epsilon\} \underset{\tiny T\rightarrow \infty}{\rightarrow} 1 \end{equation*} \end{mydef*}
+				\vspace{15pt}
+		\pause 
+			\item[]	\begin{mydef*}[width=14cm]{Convergence in Distribution} A stochastic sequence $X_T$ on $T=1,2,\cdots$ converges in distribution to X when
+				
+				\begin{equation*} F_{X_T}(x) \underset{\tiny T\rightarrow \infty}{\rightarrow} F_X(x)  \quad \textrm{for x where} \; F_X(x) \; \textrm{is continuous} \end{equation*}  \end{mydef*}
+				\vspace{20pt}
+			\pause
+			\item[] \textbf{Shorthand:} $X_T\overset{p}{\rightarrow} X$ and $X_T\overset{d}{\rightarrow} X$ respectively
+	\end{itemize}
+\end{frame}	
+	\begin{frame}
+		\frametitle{Time Averages}
+		\begin{itemize}
+			\item[] Economics time series data contain \textbf{one realisation} from the unknown data generating process
+			\vspace{10pt}
+			\pause 
+			\item[] \hspace{12pt} Only sample data $(y_1\cdots,y_T)'$ is observed
+			\vspace{15pt}
+			\pause 
+		
+			\item[] Can constructs estimators of population moments by \textbf{time averages} based on sample realisation
+				\vspace{15pt}
+			\pause 
+			
+			
+			
+			
+			\item[] \textbf{A crucial assumption for consistency is the process generating the sample is stationary}
+			
+			
+			
+			
+				
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+	\frametitle{Sample Mean - Asymptotic Properties}
+	\begin{itemize}
+
+\item[] Time average in sample  $\quad \bar{y}_T:=\frac{1}{T}\sum_{t=1}^T y_t\quad$ drawn from the r.v. $\quad \bar{Y}_T:=\frac{1}{T}\sum_{t=1}^T Y_t$ 
+	\vspace{2pt}
+\pause 
+
+\item[] Define $\mathbb{E}[Y_t]=\mu$ 
+			\vspace{5pt}
+			\pause 
+			
+					\item[] \begin{mytheo}{Consistency of Sample Mean for Serial Dependent Processes}
+			AAny weakly-stationary process $\{Y_t\}$ with absolute summable covariances
+			\begin{equation*}
+	\bar{Y}_T\overset{p}{\rightarrow} \mu
+			\end{equation*}%
+		 \end{mytheo}
+	 
+	 \item[] \textbf{Exercise} Prove the above result [\textit{Hint: use Chebychev's Inequality}]
+			
+				\vspace{5pt}
+			\pause 
+			
+			
+				\item[] \begin{mytheo}{Central Limit Theorem for Serially Dependent Processes}
+				IIf $Y_t=\mu+\sum_{j=0}^{\infty} \psi_j \varepsilon_{t-j}$ where $\{\varepsilon_t\}$ is  i.i.d, $\mathbb{E}[\varepsilon_t]=0$, $\mathbb{E}[\varepsilon_t^2]<\infty$ and $\sum_{j=0}^{\infty} |\psi_j|<\infty$
+				\begin{equation*}
+				\sqrt{T}(\bar{Y}_T-\mu)\overset{d}{\rightarrow} N\left(0, \sum_{j=-\infty}^{\infty} \gamma(j)\right)
+				\end{equation*}%
+			\end{mytheo}
+			
+			
+		\end{itemize}
+	\end{frame}
+	\begin{frame}
+		\frametitle{Sample Second Order Moments }
+		\begin{itemize}
+			\item[]	\begin{mydef*}[width=13cm]{Sample Auto-Covariance Function} 
+				\begin{equation*}
+				\hat{\gamma}_T(k)=\; \frac{1}{T-k}\sum_{t=k+1}^{T}\left( Y_{t}-\bar{Y}_T
+				\right)\left( Y_{t-k}-\bar{Y}_T\right) \qquad \forall \;\; 0 \leq k <T \label{sample autocv}
+				\end{equation*} \end{mydef*}
+			\pause
+			\vspace{15pt}
+			\item[]	\begin{mydef*}[width=13cm]{Sample Auto-Correlation Function} 
+				\begin{equation*}
+				\hat{\rho}_T(k)=\; \frac{\hat{\gamma}_T(k)}{\hat{\gamma}_T(0)}  \qquad \forall \;\; 0 \leq k <T   \label{sample autocorr}
+				\end{equation*} \end{mydef*}
+			\pause
+			\vspace{25pt}  $\hat{\gamma}_T(k)$ and $\hat{\rho}_T(k)$  evaluated at  sample realisation $(y_1,\cdots,y_T)'$ to form  \textbf{sample estimate}
+		\end{itemize}	\end{frame}
+	
+		\begin{frame}
+		\frametitle{Asymptotic Properties of Second Order Sample Moments }
+		\begin{itemize}
+	
+		\item[] For linear processes $Y_t=\mu+\sum_{j=0}^{\infty} \psi_j \varepsilon_{t-j}$ where $\{\varepsilon_t\}$ is  i.i.d  and $\sum_{j=0}^{\infty} |\psi_j|<\infty$
+	\pause
+	\vspace{10pt}
+	
+	
+	\item[] \begin{mytheo}{Consistency of Sample Auto-covariances for Stationary Processes}
+		IIf $E[|\varepsilon_t|^r]<\infty$ for some $r>2$ 
+
+	\begin{equation*}
+\hat{\gamma}_T(k) \overset{p}{\rightarrow} \gamma(k) 
+\end{equation*} 
+
+\end{mytheo}
+
+\pause
+\vspace{2pt}
+Proven in $\textbf{H}$ pp.192-193 \textbf{[Not Examinable]}
+
+	\pause
+\vspace{10pt}
+
+	
+		\item[] \begin{mytheo}{Limit Distn. of Sample Auto-covariances for Stationary Processes}
+		IIf  $E[\varepsilon_t^4]<\infty$  
+		
+		\begin{equation*}
+		\sqrt{T}(\hat{\gamma}_T(k)-\gamma(k)) \overset{d}{\rightarrow} N\left(0,\sum_{s=0}^{\infty} (\rho(s+k)+\rho(s-k)-\rho(s)\rho(k))^2\right) 
+		\end{equation*} 
+		
+	\end{mytheo}
+
+\pause
+\vspace{2pt}
+We do \textbf{not} prove Theorem 1.18
+	
+		\end{itemize}	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Ergodicity}
+		\begin{itemize}
+			\item[]	\begin{mydef*}[width=14cm]{Ergodicity (mean)} A stationary process is \textit{ergodic for the mean} if $\;\;\frac{1}{T} \sum_{t=1}^TY_t \overset{p}{\rightarrow }\mu$ \end{mydef*}
+			\pause
+			\vspace{15pt}
+			\item[] \hspace{15pt} Stationary process  ergodic for mean if $\sum_{j=0}^\infty |\gamma(j)|<\infty$ (follows from Theorem 1.7)
+			
+			\vspace{25pt}
+			\item[]	\begin{mydef*}[width=14cm]{Ergodicity (second moments)} A stationary process is  \textit{ergodic for the second moment} if $\hat{\gamma}_T(k)\overset{p}{\rightarrow} \gamma(k)$ $\forall$ k 
+			\end{mydef*}
+			\pause
+			\vspace{15pt}
+			\item[] Ergodicity \& stationarity  closely linked- but a process can be stationary \& not ergodic (see \textbf{H} p. 47)
+		\end{itemize}
+	\end{frame}
+	
+	
+		
+	
+\section{Statistical Properties of Sample ACF}
+	\begin{frame}
+	\frametitle{	Simulation Example: Properties of Sample Autocorrelation of AR(1)}
+		\begin{center}
+		Suppose the true process is \framebox{  $Y_t=0.5Y_{t-1}+\varepsilon_t$  $\quad\varepsilon_t \overset{i.i.d}{\sim}$ N(0,1)}
+		\vspace{-0.7cm}
+		\begin{figure}[scale=0.04] \subfloat{
+			\includegraphics[scale=0.25]{ar1real}} \qquad \qquad\subfloat{	\includegraphics[scale=0.25]{ar1acf05}}
+		\end{figure}
+		
+		\mybox{By Theorems 1.7  $\hat{\rho}_T(k)\overset{p}{\rightarrow} \rho(k)$ }
+		\end{center}
+	\end{frame}
+
+	
+	
+	
+	
+
+
+\begin{frame}
+\vspace{-1.8cm}
+\begin{center} 
+
+\end{center}
+\begin{figure}
+\begin{minipage}[c]{0.5\textwidth}
+\animategraphics[ controls,scale=0.45]{1}{acfar1T30}{1}{100}
+\end{minipage}  \quad \begin{minipage}[c]{0.45\textwidth}
+\small
+\vspace{1cm}
+
+\begin{enumerate}	
+\item Generate a sample $\{y_1^b,..,y_T^b\}$ from $Y_t=0.5Y_{t-1} +\varepsilon_t$ where $\varepsilon_t \overset{i.i.d}{\sim} N(0,1)$ for $T=30$
+\vspace{1.5cm}
+\item Calculate $\hat{\rho}_{T}^b(1)$,..,$\hat{\rho}_{T}^b(1)$	for each sample $b$   
+
+\vspace{1.5cm}
+
+
+\item	Plot  Sample ACF  $\hat{\rho}_{T}^b(1)$,..,$\hat{\rho}_{T}^b(5)$   for  $b=\{1,..,100\}$.
+
+\end{enumerate}
+
+\end{minipage}
+\end{figure}
+
+\end{frame}
+
+
+
+
+
+\begin{frame}
+
+\begin{figure}
+
+\hspace{-6cm}				
+\animategraphics[controls,scale=0.52]{1}{acfar1T100}{1}{100}
+
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{figure}
+
+\hspace{-6cm}	
+\animategraphics[controls, scale=0.52]{1}{acfar1T1000}{1}{100}
+
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{figure}
+\hspace{-6cm}	
+\animategraphics[controls, scale=0.52]{1}{acfar1T10000}{1}{100}
+
+
+
+\end{figure}
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+\vspace{-3cm}
+\begin{center} 
+\frametitle{ Simulation:  Sampling Distribution of Sample Autocorrelation }
+\end{center}
+\begin{figure}
+\begin{minipage}[c]{0.4\textwidth}
+\animategraphics[ controls, scale=0.3]{1}{cltsc.ani}{1}{198}
+\end{minipage}  \quad \begin{minipage}[c]{0.5\textwidth}
+\vspace{1cm}
+
+\textbf{Consider} $Y_t=\varepsilon_t$ [i.e. $\phi_1=1$]\\
+\vspace{5pt}
+Theorem 1.8 $\Rrightarrow$ $\hat{\rho}_T(1)\overset{a}{\sim} N(0,1/T)$
+\vspace{1cm}
+\mybox{	 \textbf{Sampling Distribution} of $\hat{\rho}_{T}(1)$ for $T=2,..,200$}
+\vspace{10pt}\pause
+\begin{enumerate}	
+\item Generate 1000 samples $\{y_1^b,..,y_T^b\}$ from $Y_t=0.5Y_{t-1} +\varepsilon_t$ where $\varepsilon_t \sim N(0,1)$
+\vspace{1cm} \pause
+\item Calculate $\hat{\rho}_{T}^b(1)$	for  samples $b=\{1,..,1000\}$  
+
+\vspace{1cm}
+\pause
+
+\item	Plot distribution of   $\hat{\rho}_{T}^b(1)$ for  $b=\{1,..,1000\}$  
+
+\end{enumerate}
+
+\end{minipage}
+\end{figure}
+
+\end{frame}
+	
+	
+	
+	\section{Maximum Likelihood Estimation of ARMA Processes}
+	
+\begin{frame}
+	\frametitle{Refresher: Maximum Likelihood [ML]}
+	\begin{itemize}
+		\item[]	$\{Y_t: t=1,\cdots, T\}$ has \textbf{unknown} joint density function $h_{Y_1,\cdots, Y_T}(c_1,\cdots,c_T)$
+		
+		\pause
+		\vspace{15pt}
+		
+		\item[] \textbf{Assume} joint density fn.  known up to parameter vector $\theta$ in parameter space $\Theta$
+		\pause
+		\vspace{18pt}
+		\item[] \hspace{25pt }$h_{\tiny Y_T,\cdots, Y_1}(c_T,\cdots,c_1)\equiv f_{Y_T,\cdots, Y_1}(c_T,\cdots, c_1; \theta)$ for some $\theta=\theta_0\in\Theta$  
+			\pause
+		\vspace{18pt}
+	\item[] Define  \textbf{likelihood function} $L(\theta)=f_{Y_T,\cdots, Y_1}(y_T,\cdots, y_1; \theta) $
+		\pause
+		\vspace{18pt}
+		\item[] \textbf{ML Estimator:} \hspace{15pt } $\hat{\theta}_{ML} := \underset{\theta \in \Theta}{\arg\max} \; \;\ln L(\theta) $
+		\pause
+		\vspace{35pt}
+		\item[] If $\theta_0$ unique, $\{Y_t\}$ strictly stationary (+ regularity conditions)
+			\pause
+		\vspace{10pt}
+		\item[]	\hspace{25pt} $\hat{\theta}_{ML}\overset{p}{\rightarrow} \theta_0$
+			\pause
+		\vspace{16pt}
+		\item[] 	\hspace{25pt}$\sqrt{T}(\hat{\theta}_{ML}-\theta_0) \overset{d}{\rightarrow} N(0, I(\theta_0)^{-1})\quad$ where $I(\theta):=-\mathbb{E}\left [\frac{\partial^2}{\partial \theta \partial \theta'}\ln L(\theta)\right]
+$		
+		
+	\end{itemize}
+\end{frame}
+
+	\begin{frame}
+	\frametitle{Deriving Likelihood Function for Dependent Process}
+	\begin{itemize}
+
+	\item[] Generally $\{Y_t\}$ is not independent $\Rightarrow$  joint distribution \textbf{not} product of marginals
+\pause
+\vspace{16pt}
+\item[] Suppose joint density of $\{Y_t: t=1,\cdots, T\}$  is $f_{Y_T,\cdots, Y_1}(y_1,\cdots, y_T; \theta) $ at $\theta=\theta_0$
+\pause
+\vspace{16pt}
+
+\item[] \makebox[2cm]{\textbf{T=2}} $f_{Y_2,Y_1}(y_2,y_1; \theta)= f_{Y_2|Y_1}(y_2| y_1;\theta) f_{Y_1}(y_1;\theta)$ 
+\pause
+\vspace{16pt}
+\item[] \makebox[2cm]{\textbf{T=3}} $f_{Y_3,Y_2,Y_1}(y_3,y_2,y_1; \theta)=f_{Y_3|Y_2,Y_1}(y_3|y_2, y_1;\theta)f_{Y_2|Y_1}(y_2|y_1;\theta) f_{Y_1}(y_1;\theta)$
+\pause
+\vspace{16pt}
+\item[]
+\makebox[2cm]{\textbf{T  $\mathbf{>}$ 3}} $f_{Y_T,\cdots,Y_1}(y_T,\cdots,y_1; \theta)=\displaystyle \prod_{t=2}^{T} f_{Y_t|Y_{t-1},\cdots,Y_1}(y_T|y_{T-1},\cdots, y_1);\theta)\times  f_{Y_1}(y_1;\theta)$
+
+
+
+\end{itemize}
+\end{frame}
+
+	
+	\begin{frame}
+		\frametitle{ML Estimation of Stationary Gaussian AR(1) Process}
+		\begin{itemize}
+	
+	\item[]  \textbf{Gaussian AR(1):} $\quad Y_t=c+\phi_{1} Y_{t-1}+ \varepsilon_t\quad $ and $\quad\varepsilon_t \overset{i.i.d}{\sim} N(0,\sigma^2)$
+		\pause
+	\vspace{19pt}
+	
+	\item[]   \textbf{True parameter:} $\quad \theta=\theta_0$ where $\theta_0=(c_0, \phi_{10}, \sigma_0^2)'$ unknown  
+			\pause
+	\vspace{25pt} 
+
+
+	\item[] Construct \textbf{likelihood function} $\quad L(\theta)=f_{Y_1}(y_1;\theta) \displaystyle \prod_{t=2}^{T} f_{Y_t|Y_{t-1},\cdots,Y_1}(y_t| y_{t-1}, \cdots, y_1; \theta)$
+	
+			\pause
+	\vspace{19pt} 
+	
+	\item[] \hspace{25pt} $(Y_{t}|Y_{t-1}=y_{t-1},\cdots, Y_1=y_1)$ same distribution as  $(Y_{t}|Y_{t-1}=y_{t-1})$  
+			\pause
+	\vspace{19pt} 
+	
+	\item[] \hspace{105pt} $\Rrightarrow L(\theta)=f_{Y_1}(y_1;\theta) \displaystyle \prod_{t=2}^{T} f_{Y_t|Y_{t-1}}(y_t|y_{t-1} ; \theta)$
+\end{itemize}\end{frame}
+
+
+
+		\begin{frame}
+		\frametitle{ML Estimation - Stationary Gaussian AR(1) Process}
+		\begin{itemize}
+			
+			\item[] \textbf{Conditional density of $Y_t$ given $Y_{t-1}$}
+	\vspace{6pt} 
+	\item[] \hspace{35pt} $(Y_{t}|Y_{t-1}=y_{t-1}) \sim N(c+\phi_{1}y_{t-1}, \sigma^2)$
+	\pause	\vspace{16pt} 
+	\item[] \hspace{45pt} i.e. $f_{Y_t|Y_{t-1}}(y_t ; \theta)=\frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(y_t-c-\phi_1 y_{t-1})^2}{2\sigma^2}\right)$
+
+
+	\pause	\vspace{20pt} 
+		\pause	\vspace{16pt} 
+	\item[] \textbf{Marginal density of $Y_1$}
+		\vspace{6pt} 
+		\item[] \hspace{35pt} Stationarity($|\phi_1|<1$) $\;\;\Rrightarrow\qquad$  $\mathbb{E}[Y_1]=c/(1-\phi_{1}) \quad$ \& $\quad$ Var$(Y_1)=\sigma^2/(1-\phi_{1}^2)$
+					\pause	\vspace{10pt} 
+		\item[] \hspace{35pt}  $Y_1$ is linear function of process $\{\varepsilon_t\}\quad$ \textbf{[MA($\infty)$ representation]}
+				\pause	\vspace{10pt} 
+	\item[] \hspace{35pt}  Linear combination of Gaussian random variates is also Gaussian distributed
+			\pause	\vspace{10pt} 
+	\item[] \hspace{45pt}  $\Rrightarrow$ $Y_1\sim N(c/(1-\phi_1), \sigma^2/(1-\phi_{1}^2))$
+				\pause	\vspace{10pt} 
+	\item[] \hspace{55pt} i.e. $f_{Y_1}(y_1 ; \theta)=\frac{1}{\sqrt{2\pi}\sqrt{\sigma^2/(1-\phi_1^2)}}
+ \exp\left(-\frac{(y_t-c/(1-\phi_1))^2}{2\sigma^2/(1-\phi_1^2)}\right)$
+\end{itemize}
+\end{frame}
+
+
+
+
+	
+	\begin{frame}
+		\frametitle{ML Estimation - Stationary Gaussian AR(1) Process}
+		\begin{itemize}
+			
+			\item[] \textbf{Likelihood function}\\
+					\vspace{10pt} 
+			\hspace{10pt} $L(\theta)=\frac{1}{\sqrt{2\pi}\sqrt{\sigma^2/(1-\phi_1^2)}}
+			\exp\left(-\frac{(y_t-c/(1-\phi_1))^2}{2\sigma^2/(1-\phi_1^2)}\right)\displaystyle \prod_{t=2}^{T}\frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(y_t-c-\phi_1 y_{t-1})^2}{2\sigma^2}\right)$
+				\pause	\vspace{25pt} 
+			\item[] \textbf{Log-likelihood function}\\
+			\vspace{10pt} 
+					\hspace{10pt} $\ln L(\theta)=-\frac{1}{2}\ln(2\pi) - \frac{1}{2}\ln(\sigma^2/(1-\phi_1^2))- \frac{(y_1-c/(1-\phi_1))^2}{2\sigma^2/(1-\phi_1^2)}$ \\ \vspace{7pt}
+			 \hspace{120pt} $- \frac{T-1}{2}\ln(2\pi) -\frac{T-1}{2}\ln(\sigma^2)-\sum_{t=2}^T \left(\frac{(y_t-c-\phi_1 y_{t-1})^2}{2\sigma^2}\right)$
+		\pause	\vspace{20pt} 
+	\item[] Can derive directly noting  $(Y_1,\cdots, Y_T)'\sim N(\mathbf{c}, \mathbf{\Sigma})$ for some $\mathbf{c} $ $\&$ $\mathbf{\Sigma}$
+		\pause \vspace{10pt} 
+	\item[] \hspace{25pt} Use joint density of vector Gaussian variable [\textit{Do as an exercise}, see \textbf{H} pp. 119-122]
+\end{itemize}
+\end{frame}
+
+	
+	
+	\begin{frame}
+		\frametitle{ML Estimation - Stationary Gaussian AR(1) Process}
+		\begin{itemize}
+			
+			\item[] Log likelihood function is non-linear in $\theta$ 
+					\pause	\vspace{25pt} 
+			\item[] Finding maximiser of $\ln L(\theta)$ w.r.t. $\theta$ (i.e. ML estimator) can be computationally challenging 
+					\pause	\vspace{25pt} 
+			\item[] This is known as the \textbf{exact maximum likelihood estimator }
+					\pause	\vspace{10pt} 
+			\item[] \hspace{35pt} Exact ML estimator of $\phi_{10}$ biased when $|\phi_{10}|>1$  - \textbf{why?}
+					\pause	\vspace{25pt} 
+			\item[] Find \textbf{conditional maximum likelihood estimator} instead
+								\pause	\vspace{10pt} 
+			\item[]\hspace{35pt} Doesn't rely on distributional assumptions on $Y_1$ 
+				\pause	\vspace{10pt} 
+			\item[]\hspace{35pt} Conditional ML estimator has \textbf{closed form} solution  
+		\end{itemize}
+	\end{frame}
+		\begin{frame}
+		\frametitle{Conditional ML Estimation - Stationary Gaussian AR(1) Process}
+		\begin{itemize}
+			
+			
+			\item[] Exact ML requires knowledge of whole joint density fn. of $(Y_1,\cdots,Y_T)'$ up to some parameter $\theta$
+						\pause	\vspace{15pt} 
+			\item[] Conditional ML (for AR(1)) conditions on $Y_1$  equal to its realisation $y_1$
+				\pause	\vspace{19pt} 
+			\item[] \textbf{Conditional likelihood:} $\quad L(\theta|Y_1)=f_{Y_T,\cdots Y_2|Y_1}(y_T,\cdots,y_2|y_1 ; \theta)$
+				\pause	\vspace{15pt} 
+						\item[] \hspace{25pt} $Y_1=y_1$ is fixed and conditional density doesn't require assumptions on distribution of $Y_1$
+				\pause	\vspace{15pt} 
+			\item[] \hspace{20pt} $L(\theta|Y_1)= \displaystyle \prod_{t=2}^{T} f_{Y_t|Y_{t-1}}(y_t| y_{t-1}; \theta)$ \pause	=$ \displaystyle \prod_{t=2}^{T} \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(y_t-c-\phi_1 y_{t-1})^2}{2\sigma^2}\right)$
+			\pause	\vspace{20pt} 
+			\item[] \textbf{Conditional log-likelihood:}\\
+	\item[]\hspace{15pt} $\ln L(\theta|Y_1)=$ $- \frac{T-1}{2}\ln(2\pi) -\frac{T-1}{2}\ln(\sigma^2)-\sum_{t=2}^T \left(\frac{(y_t-c-\phi_1 y_{t-1})^2}{2\sigma^2}\right)$
+			
+					\end{itemize}
+		\end{frame}
+			
+			
+					\begin{frame}
+				\frametitle{Exact ML Estimation - Stationary Gaussian AR(p) Process}
+				\begin{itemize}
+					
+					\item[]  \textbf{Gaussian AR(p):} $\quad Y_t=c+\phi_{1} Y_{t-1}+\cdots \phi_{p}Y_{t-p} +\varepsilon_t\quad$ and $\quad\varepsilon_t \overset{i.i.d}{\sim} N(0,\sigma^2)$
+					\pause
+					\vspace{19pt}
+					
+					\item[]   \textbf{True parameter:} $\quad \theta=\theta_0$ where $\theta_0=(c_0, \phi_{10}, \cdots, \phi_{p0}, \sigma_0^2)'$ \textbf{unknown}  
+					\pause
+					\vspace{25pt} 
+					
+					
+			\item[] $L(\theta)=f_{Y_p,\cdots,Y_1}(y_p,\cdots,y_1 ; \theta) \displaystyle \prod_{t=p+1}^{T} f_{Y_t|Y_{t-1},\cdots, Y_{t-p}}(y_t|y_{t-1};\cdots, y_{t-p} ; \theta)$
+									\pause	\vspace{15pt} 
+		\item[] See \textbf{H} pp. 123-125 for full derivation of  log-likelihood fn. of  Gaussian AR(p)
+		\vspace{10pt} 
+		\item[] \hspace{20pt} Full  derivation of exact ML log-likelihood fn.  of Gaussian AR(p) \textbf{not} examinable for $p>2$
+		
+		
+			
+				\end{itemize}
+		\end{frame}
+	
+	
+	
+	\begin{frame}
+		\frametitle{Conditional ML Estimation - Stationary Gaussian AR(p) Process}
+		\begin{itemize}
+			
+			\item[] \textbf{Condition} on ($Y_1=y_1,\cdots,Y_p=y_p$)
+				\pause
+			\vspace{25pt}
+			\item[] ($Y_{t}|Y_{t-1}=y_{t-1},\cdots, Y_{t-p}=y_{t-p})\sim N(c+\phi_1y_{t-1}+\cdots+\phi_py_{t-p}, \sigma^2)\;\;$ for $t=p+1,\cdots T$
+				\pause
+			\vspace{25pt}
+			
+			
+			\item[] \textbf{Conditional likelihood}:\\
+			  $L(\theta|Y_1,\cdots Y_p)=\displaystyle \prod_{t=p+1}^{T} \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(y_t-c-\phi_1 y_{t-1}-\cdots-\phi_p y_{t-p})^2}{2\sigma^2}\right)$ 
+				\pause
+			\vspace{25pt}
+			
+			\item[]	\textbf{Conditional log-likelihood:}\\
+$\ln L(\theta|Y_1,\cdots, Y_p)= - \frac{T-1}{2}\ln(2\pi) - \frac{T-1}{2}\ln(\sigma^2)-\sum_{t=p+1}^T \left(\frac{(y_t-c-\phi_1 y_{t-1}-\cdots -\phi_p y_{t-p})^2}{2\sigma^2}\right)$
+			
+				\end{itemize}
+		\end{frame}
+	
+			
+			
+				\begin{frame}
+				\frametitle{Summary of Properties of Exact and Conditional  ML  of Stationary Gaussian AR(p)}
+				\begin{itemize}
+		\item[] Conditional ML estimator of $(c,\phi_1,\cdots,\phi_p)'$ equivalent to \textbf{ordinary least squares}
+		\pause
+		\vspace{15pt}
+		\item[] \hspace{25pt}$\Rrightarrow$ closed form solution (easier to solve than  exact ML estimator)	
+			\pause
+			\vspace{10pt}
+		\item[]\hspace{25pt} $\Rrightarrow$Conditional ML estimator consistent estimator of $(c,\phi_1,\cdots,\phi_p)'$ when $\varepsilon_t$ \textbf{not} Gaussian 	
+		\pause
+		\vspace{25pt}
+		\item[] Conditional ML estimator \textbf{consistent} when AR(p) does \textbf{not} satisfy stationary condition 
+		\pause
+		\vspace{15pt}
+		\item[] \hspace{25pt} Not the case for exact ML estimator (inconsistent)
+	
+					
+		\end{itemize}
+		\end{frame}
+	
+					\begin{frame}
+				\frametitle{Conditional ML - Gaussian MA(1) Process}
+				\begin{itemize}
+					
+					\item[] \textbf{Gaussian MA(1):} $\:Y_t=\alpha+\theta_1\varepsilon_{t-1}+\varepsilon_t \:$ \& $\:\varepsilon_t\overset{i.i.d}{\sim} N(0,\sigma^2)$
+					\pause
+					\vspace{15pt}
+					\item[] \textbf{True Parameter:} $\theta=\theta_0=(\alpha_0, \theta_{10}, \sigma^2_0)$ \textbf{unknown}
+					\pause
+					\vspace{15pt}
+					\item[] Derive likelihood function similar to the AR(1) using Bayes Rule
+					\pause
+					\vspace{15pt}
+					\item[] \hspace{30pt} Difference with AR(1): the 'regressor'  $\epsilon_{t-1}$ is \textbf{not observed}
+					\pause
+					\vspace{15pt}
+					\item[]  \hspace{30pt} Derive \textbf{conditional likelihood }$f_{Y_T,\cdots, Y_1|\varepsilon_0=0}(y_T,\cdots,y_1|\varepsilon_0=0, \theta)$
+					\pause
+					\vspace{15pt}
+					\item[]  \hspace{30pt} Express \textbf{realised shocks} $\varepsilon_t$ as function of \textbf{observable} $(y_{t-1}, \cdots, y_1)$ 
+					
+						\end{itemize}
+				\end{frame}
+						\begin{frame}
+						\frametitle{Conditional ML - Gaussian MA(1) Process}
+						\begin{itemize}
+	
+				\item[] \textbf{Conditional likelihood:}				 $f_{Y_T,\cdots, Y_1|\varepsilon_0=0}(y_T,\cdots,y_1,; \theta)= f_{Y_1|\epsilon_0=0}(y_1;\theta)	 \displaystyle \prod_{t=2}^{T} f_{Y_t|Y_{t-1},\cdots ,Y_1,\varepsilon_0=0}(y_t| y_{t-1}, \cdots,y_1; \theta)$
+							\pause
+				\pause\vspace{15pt}
+				
+							\item[] \textbf{Conditional on} $\varepsilon_0=0$ can express realised shocks $\varepsilon_t$ as function of $(y_{t-1}, \cdots, y_1)$ 
+							
+								
+							\pause\vspace{15pt}
+					\item[]            \hspace{39pt}     \makebox[4cm]{$\varepsilon_{1}=y_1-\alpha$\hfill} [$Y_1=y_1$]
+						\pause\vspace{9pt}
+					\item[]            \hspace{39pt}        \makebox[4cm]{$\varepsilon_2= y_2-\alpha-\theta_1\varepsilon_1$\hfill} [$Y_1=y_1, Y_2=y_2$]	\pause\vspace{9pt}
+					\item[]         \hspace{39pt}            $\vdots$	\pause\vspace{9pt}
+					\item[]  \hspace{39pt}   \makebox[4cm]{$\varepsilon_T= y_T-\alpha-\theta_1\varepsilon_{T-1}$\hfill} [$Y_1=y_1, \cdots, Y_T=y_T$]
+					
+					\pause
+					\vspace{15pt}
+					\item[]  $Y_1|\varepsilon_0=0\sim  N(\alpha,\sigma^2)$
+						\pause\vspace{12pt}
+			\item[] $(Y_t|Y_{t-1}=y_{t-1},\cdots Y_1=y_1,\varepsilon_0=0)$ same distribution as $(Y_{t}|\varepsilon_{t-1})$ \hspace{7pt} for  $t=2,..,T$
+				\pause\vspace{8pt}
+\item[] 	i.e. 	       \hspace{32pt}  $(Y_t|Y_{t-1}=y_{t-1},\cdots, Y_1=y_1,\varepsilon_0=0)	\sim N(\alpha+\theta_1\varepsilon_{t-1}, \sigma^2)$ 
+					
+				\end{itemize}
+		\end{frame}
+	
+		\begin{frame}
+		\frametitle{ML Estimation of ARMA Models (what you need to know)}
+		\begin{itemize}
+			\item[] We will \textbf{not} cover exact ML estimation of models with MA component or with  AR(p) for $p>2$
+			\pause\vspace{15pt}
+			\item[] All other cases of exact/conditional ML estimation for ARMA models are examinable
+			\pause\vspace{15pt}
+			\item[] See \textbf{H} p.130 for conditional ML for MA(q)
+			\pause\vspace{15pt}
+			\item[]  See \textbf{H} p.134 for conditional ML for ARMA(p,q)
+			\pause\vspace{15pt}
+			\item[]  \textbf{H} pp. 132-139 for  ML estimator computation in non-linear models (useful, but \textbf{not examinable})
+			
+				\end{itemize}
+		\end{frame}
+	
+	\section{Reading list}
+	\begin{frame}
+		\frametitle{Main Reading}
+		\begin{itemize}
+			\footnotesize
+			\item[] \textbf{Hamilton}
+			\vspace{5pt}
+			\item[] \textbf{[4.8]} Wold's Decomposition (Lecture 1 readinf) and section on sample autocorrelations.\vspace{10pt}
+			\item[] \textbf{[5.1]} Intro to ML. It may be useful to refresh your knowledge of ML estimation from your PG/UG notes.
+			\item[] \textbf{[5.2]} Conditional and exact ML estimation of Gaussian AR(1). Understand two alternative ways of deriving the log-likelihood function. You should be comfortable understanding both methods.
+			\item[] \textbf{[5.3]} Generalises 5.2 to AR(p). You need to understand all of this sub-chapter, aside from deriving the exact log-likelihood of AR(p) for p>2
+			\item[] \textbf{[5.4]} Conditional ML estimation of MA(1) (read the part on exact ML, not examinable)
+			\item[] \textbf{[5.5]} Extends 5.4 to general MA(q), again only the conditional ML part is examinable.
+			\item[] \textbf{[5.6]} Conditional ARMA(p,q)
+			\item[] \textbf{[5.7} Numerical optimisation (read over this material [omit the DFP if you wish], it is not examinable for my half of the course)
+			\item[] \textbf{[5.8]} ML estimation and inference. We did not cover this in lecture, a lot of this you saw in EC . You need to be comfortable doing the likelihood ratio and score test and deriving asymptotic standard errors of ML estimator.
+			\vspace{10pt}
+			\item[] \textbf{[7.1]} Review of asymptotic distribution theory
+			\item[] \textbf{[7.2]} Limit theorems for serially dependent processes pp.188-190 and CLT for stationary processes on p.195
+			
+			\end{itemize}
+	\end{frame}	
+			
+		\begin{frame}
+		\frametitle{Moving On}
+		\begin{itemize}
+			\item[] Covered univariate models and ML estimation of parameters of stationary processes
+						\pause\vspace{15pt}
+			\item[] Lects 3-5  extend these results to \textbf{multivariate} time series
+						\pause\vspace{15pt}
+			\item[] Model \textbf{vector processes}, e.g. the process generating interest rates and inflation together
+						\pause\vspace{15pt}
+			\item[] Study vector autoregression (\textbf{VAR}) and \textbf{impulse response functions}
+						\pause\vspace{15pt}
+			\item[] Estimation/inference from VARs (includes univariate as a special case)
+			
+			
+			
+				\end{itemize}
+	\end{frame}
+	
+			
+\end{document}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

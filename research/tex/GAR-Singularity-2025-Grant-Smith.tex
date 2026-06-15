@@ -1,0 +1,1270 @@
+\documentclass[hidelinks, 11 pt, a4paper, pdflatex]{article}
+
+% ==================================================================================
+\usepackage{graphics,epsfig,verbatim,bm,latexsym,url,amsbsy,color}
+\usepackage{natbib}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{indentfirst}
+%\usepackage{graphicx}
+% ==================================================================================
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{subfigure}
+%\usepackage[pdftex]{graphicx}
+\usepackage{natbib}
+\usepackage[hypertexnames=false]{hyperref}
+\usepackage{setspace}
+%\usepackage{pdfsync}
+\usepackage{lscape}
+%\usepackage[hmargin=1.25in,vmargin=1.25in]{geometry}
+\usepackage[hmargin=0.90in,vmargin=0.90in]{geometry}
+
+\usepackage{enumitem}
+\usepackage{bibunits}
+
+\bibliographystyle{chicago}
+
+% \defaultbibliographystyle{ims}
+% \defaultbibliography{mybibliography}
+
+% \hypersetup{colorlinks, linkcolor = {teal}, citecolor = {blue}, urlcolor ={blue!80!black}}
+
+% ==================================================================================
+
+\usepackage{color}
+%\usepackage[pdflatex]{graphicx}
+\usepackage{psfig}
+\usepackage{arydshln}
+
+% ==================================================================================
+
+\newcommand{\I}{\mathbb{I}}                            % indicator function - blackboard I
+\newcommand{\abs}[1]{\lvert#1\rvert}                   %
+\newcommand{\norm}[1]{\lVert#1\rVert}                  %
+\newcommand{\transp}{\top}                             % alternative: \mathsf{T}
+\newcommand{\trace}{\mathop{\mathrm{tr}}}              % trace
+\newcommand{\littleO}[1][]{\mathit{o}_{#1}}            % small-Oh
+\newcommand{\bigO}[1][]{\mathit{O}_{#1}}               % big-Oh
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\interior}{\mathop{\mathrm{int}}}
+\DeclareMathOperator{\E}{E}
+\DeclareMathOperator{\M}{M}
+\DeclareMathOperator{\Bias}{Bias}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\MISE}{MISE}
+\DeclareMathOperator{\MSE}{MSE}
+\DeclareMathOperator{\ISE}{ISE}
+\DeclareMathOperator{\ISB}{ISB}
+\DeclareMathOperator{\IVar}{IVar}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\artanh}{artanh}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+% =================================================================================
+
+\makeatletter
+ \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+            {-2.5ex\@plus -1ex \@minus -.25ex}%
+            {1.25ex \@plus .25ex}%
+            {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\makeatletter
+\newcommand{\customlabel}[2]{%
+   \protected@write \@auxout {}{\string \newlabel {#1}{{#2}{\thepage}{#2}{#1}{}} }%
+   \hypertarget{#1}{#2}}
+\makeatother
+
+\setcounter{secnumdepth}{4} % how many sectioning levels to assign numbers to
+\setcounter{tocdepth}{4}    % how many sectioning levels to show in ToC
+
+\usepackage{mathrsfs,dsfont}
+%\usepackage[dvipsnames,svgnames, x11names]{xcolor}
+%\usepackage{pgfplots}
+%\usetikzlibrary{patterns}
+\usepackage{caption}
+
+%\bibliographystyle{ims}
+
+\DeclareGraphicsExtensions{.jpg}
+
+\def\qed{\rule{2mm}{2mm}}
+
+\parskip = 1.5ex plus 0.5 ex minus0.2 ex
+
+\newtheorem{condition}{Condition}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{assumption}{Assumption}[section]
+\newtheorem{algorithm}{Algorithm}[section]
+
+\newcommand{\citeposs}[1]{\citeauthor{#1}'s \citeyearpar{#1}}
+\newenvironment{packed_enum}{\begin{enumerate} \setlength{\itemsep}{1pt}\setlength{\parskip}{0pt}\setlength{\parsep}{0pt}}{\end{enumerate}}
+\renewcommand*{\thecondition}{\Alph{condition}}
+
+\onehalfspacing
+
+\renewcommand{\bibname}{Additional References}
+
+\vspace*{-\baselineskip} % Go back one line over the fake labels
+\renewcommand{\thepage}{}
+%\renewcommand{\thesection}{E.\arabic{section}}
+%\renewcommand{\thesection}{\arabic{section}:}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+%\renewcommand{\theassumption}{\arabic{assumption}}
+\renewcommand{\theremark}{\arabic{remark}}
+\renewcommand{\thelemma}{\arabic{lemma}}
+%\renewcommand{\thecorollary}{\arabic{corollary}}
+
+
+\begin{document}
+
+%\begin{bibunit}
+
+\title{\textsc{Generalised Anderson-Rubin Statistic Based Inference In The Presence Of A Singular Moment Variance Matrix}}
+{\author{Nicky L. Grant\thanks{School of Economics, Castlecliffe, The Scores, St Andrews, KY16 9AJ.}
+\\ University of St Andrews \\ nlg1@st-andrews.ac.uk
+\and
+Richard J Smith\thanks{Faculty of Economics, University of Cambridge, Austin Robinson Building, Sidgwick Avenue, Cambridge CB3 9DD, UK.}
+\\ c{\it e}mmap, U.C.L and I.F.S. \\ University of Cambridge \\ ONS Economic Statistics Centre of Excellence \\ rjs27@econ.cam.ac.uk}
+
+\date{This Draft: March 2025}
+\maketitle
+
+ \begin{abstract}
+
+  The particular concern of this paper is the construction of a confidence region with pointwise asymptotically correct size for the true value of a parameter of interest based on the generalized Anderson-Rubin (GAR) statistic when the moment variance matrix is singular. The large sample behaviour of the GAR statistic is analysed using a Laurent series expansion around the points of moment variance singularity. Under a condition termed first order moment singularity the GAR statistic is shown to possess a limiting chi-square distribution on parameter sequences converging to the true parameter value. Violation, however, of this condition renders the GAR statistic unbounded asymptotically. The paper details an appropriate discretisation of the parameter space to implement a feasible GAR-based confidence region that contains the true parameter value with pointwise asymptotically correct size. Simulation evidence is provided that demonstrates the efficacy of the GAR-based approach to moment-based inference described in this paper.
+
+\vspace*{0.3\baselineskip}
+\noindent{\bf Keywords}: Laurent series expansion; moment indicator; parameter sequences; singular moment matrix.
+
+\vspace*{0.3\baselineskip}
+\noindent{\bf JEL Classifications}: C13, C31, C51, C52.
+%\noindent{\bf MSC 2010 subject classifications}: Primary 62G07, secondary 62G05, 62G20.
+
+\end{abstract}
+
+\phantomsection
+% \addcontentsline{toc}{section}{Supplement E: Examples}
+\textcolor{white}{ % Fake labels
+\customlabel{Supp:Examples}{E}}
+
+\vspace*{-\baselineskip} % Go back one line over the fake labels
+
+% -------------------------------------------------------------------------------------------------
+
+\textcolor{white}{
+\customlabel{Assumption.GEL.1}{P.1}
+\customlabel{Assumption.GEL.2}{P.2}
+\customlabel{Assumption.GEL.3}{P.3}
+\customlabel{Supp:Proofs}{P:}
+\customlabel{Supp:Examples}{E:}
+\customlabel{Lemma.Implied.probabilities}{P.1}
+\customlabel{Lemma.Implied.probabilities.moments}{P.2}
+\customlabel{Lemma:convergence}{P.3}
+\customlabel{Example:reg.on.a.const}{E.2}
+\customlabel{Example:GEL.with.constant}{E.3}
+\customlabel{Sec.Example:normal.over.GG}{E.4}
+\customlabel{Eq:GEL.stochastic.expansion.2nd.order.bias.term}{2.2}
+\customlabel{Assumption.reformulation.bijection}{3.1}
+\customlabel{Assumption.KDE.default}{3.2}
+\customlabel{Assumption.U.and.K.diff.int.0}{3.3}
+\customlabel{Assumption.U.and.K.diff.int}{3.4}
+\customlabel{Eq:gelkde.known.beta.unweighted}{3.1}        % \tilde{f}
+\customlabel{Eq:gelkde.known.beta.gel.weighted}{3.4}      % \tilde{f}_{\rho}
+\customlabel{Eq:gelkde.estimated.beta.unweighted}{3.7}    % \hat{f}
+\customlabel{Eq:gelkde.estimated.beta.gel.weighted}{3.8}  % \hat{f}_{\rho}
+\customlabel{Thm:GEL.KDE.MSE.known.beta}{3.1}
+\customlabel{Thm:GEL.KDE.MSE.estimated.beta.Consistency}{3.2}
+\customlabel{Thm:GEL.KDE.MSE.estimated.beta}{3.3}
+\customlabel{Thm:GEL.KDE.MSE.estimated.beta:delta}{3.9}
+\customlabel{Thm:GEL.KDE.MSE.estimated.beta:delta.rho}{3.10}
+\customlabel{Thm:GEL.KDE.MSE.estimated.beta:VAR.f.hat}{3.11}
+\customlabel{Thm:GEL.KDE.MSE.estimated.beta:VAR.f.hat.rho}{3.12}
+\customlabel{Thm:GEL.KDFE.MSE.known.beta}{4.1}
+\customlabel{Thm:GEL.KDFE.MSE.known.beta.Bias}{4.4}
+\customlabel{Thm:GEL.KDFE.MSE.known.beta.Variance}{4.5}
+\customlabel{Thm:GEL.KDFE.MSE.estimated.beta.Consistency}{4.2}
+\customlabel{Thm:GEL.KDFE.MSE.estimated.beta}{4.3}
+\customlabel{Assumption.U.and.K.diff.int.CDF}{4.1}
+\customlabel{Thm:GEL.KDFE.MSE.estimated.beta:Var.F}{4.10}
+\customlabel{Thm:GEL.KDFE.MSE.estimated.beta:Var.F.rho}{4.11}
+}
+
+\vspace*{-\baselineskip} % Go back one line over the fake labels
+\vspace*{-\baselineskip} % Go back one line over the fake labels
+
+% -------------------------------------------------------------------------------------------------
+
+\newpage
+
+% =====================================================================================================
+
+ \section{Introduction}
+
+  \setcounter{page}{1}
+  \renewcommand{\thepage}{[\arabic{page}]}
+  \setcounter{equation}{0}
+
+  \indent The generalized Anderson-Rubin (GAR) statistic is often used as the basis for the construction of an asymptotically valid confidence region for the true value $\theta_{0}$ of a $d_{\theta}$-vector $\theta \in \Theta$ of unknown parameters with $\Theta \subseteq \mathbb{R}^{d_{\theta}}$ the corresponding parameter space. A GAR-based confidence region estimator for $\theta_{0}$ with asymptotic level $\alpha$, $0 < \alpha < 1$, is formed by the inversion of the non-rejection region of a GAR-based test with asymptotic size $1 - \alpha$ of the hypothesis $\mathrm{H}_{0}:~\theta = \theta_{0}$.
+
+  To be more precise the moment indicator vector $g(z,\theta)$, a $d_{g}$-vector of known functions of the $d_{z}$-dimensional data observation vector $z$ and $\theta$, forms the basis for inference on $\theta_{0}$ in the following discussion and analysis. It is assumed that $\theta_0$ satisfies the population unconditional moment equality condition
+   \begin{equation} \label{mom.condn}
+    \mathbb{E}_{\mathcal{P}_0}[g(z,\theta)] = 0.
+   \end{equation}
+  where $\mathbb{E}_{\mathcal{P}_0}[\cdot]$ denotes expectation taken with respect to the true population probability law ($\mathcal{P}_0$) of $z$. Throughout the paper $z_{i}$, $(i=1,\ldots,n)$, will denote a random sample of size $n$ of observations on $z$. Let $g_{i}(\theta) = g(z_{i},\theta)$ and $G_{i}(\theta) = \partial g_{i}(\theta)/\partial \theta^{\prime}$, $(i=1,\ldots,n)$, $\hat{g}_{n}(\theta) = \sum_{i=1}^{n} g_{i}(\theta)/n$, $\hat{G}_n(\theta) = \sum_{i=1}^{n} G_{i}(\theta)/n$ and $\hat{\Omega}_{n}(\theta) = \sum_{i=1}^{n} g_{i}(\theta)g_{i}(\theta)^{\prime}/n$. A GAR-based confidence region estimator for $\theta_0$ is defined in terms of the GAR statistic
+   \begin{equation} \label{GAR.statistic}
+    \hat{T}_n(\theta) = n \hat{g}_n(\theta)^{\prime} \hat{\Omega}_{n}(\theta)^{-1} \hat{g}_n(\theta).
+   \end{equation}
+
+  The particular context for this study concerns circumstances in which the variance matrix $\Omega = \mathbb{E}_{\mathcal{P}_0}[g(z,\theta_{0})g(z,\theta_{0})^{\prime}]$ of the moment indicator vector $g(z,\theta)$ at the true parameter value $\theta_0$ is singular. Since the sample second moment matrix $\hat{\Omega}_{n}(\theta)$ at $\theta = \theta_0$ is consequentially rendered singular, a number of theoretical issues then arise with the GAR-based approach to confidence region estimation which are highlighted in this paper. First, the GAR statistic (\ref{GAR.statistic}) does not exist for certain parameter sequences $\theta_n$ converging to $\theta_{0}$. Next, even for those parameter sequences for which $\hat{T}_n(\theta_n)$ does exist, the probability limit of $\hat{\Omega}_{n}(\theta_n)$ is singular. This paper addresses both of these concerns and provides conditions for the construction of a feasible GAR-based confidence region that contains $\theta_{0}$ with pointwise asymptotically correct size. To derive the requisite asymptotic properties of the GAR statistic $\hat{T}_n(\theta)$ (\ref{GAR.statistic}), the paper adopts an approach new to the literature using a Laurent series expansion of the inverse of the sample moment variance matrix $\hat{\Omega}_n(\theta)$ around points of singularity. The paper places minimal restrictions on the rank and form of the moment variance matrix $\Omega$ and the expected Jacobian $G = \mathbb{E}_{\mathcal{P}_0}[\partial g(z,\theta_{0})/ \partial \theta^{\prime}]$ and provides a direct extension of those results for the GAR statistic with nonsingular $\Omega$ in Stock and Wright (2000).
+
+  We devote attention primarily to a relatively mild assumption on the columns of the sample Jacobian matrix $\hat{G}_n(\theta_0)$ which we term \textit{first order moment singularity}. This condition enables a Laurent series expansion of $\hat{\Omega}_{n}(\theta_n)^{-1}$ to be established and, consequently, the existence of the GAR statistic on particular parameter sequences $\theta_n$ converging to true parameter value $\theta_0$. We also show that, in the absence of this condition, the GAR statistic is asymptotically unbounded on a subset of such sequences. When $\Omega$ is singular the asymptotic size of a GAR-based confidence region depends crucially on the properties of the discretized parameter space $\Theta_n$ on which the GAR statistic is inverted in practice. Therefore, the paper details how to discretize appropriately the parameter space $\Theta$ to guarantee that it contains parameter sequences for which the GAR statistic is asymptotically chi-square distributed. The feasible GAR-based confidence region contains $\theta_0$ with correct size under relatively mild assumptions and requires no knowledge of points of singularity, so that all such points need not be included in the discretised parameter space $\Theta_n$. Furthermore, feasible GAR-based inference does not require any regularization or pre-testing, and so is less computationally burdensome than a regularization approach. A number of examples of moment functions with singular variance matrix are provided. A simulation study illustrates the results of this paper.
+
+  Much of the literature on identification-robust inference originating with Anderson and Rubin (1949) has been concerned with linear instrumental variable (IV) models. An array of alternative approaches providing asymptotically valid inference on $\theta_0$ under a minimal set of assumptions has been developed since this seminal work, including, but not limited to, Andrews and Marmer (2008), Andrews et al. (2007), Chernozhukov et al. (2009), Guggenberger et al. (2012), Kleibergen (2002), Kleibergen and Mavroeidis (2009), Magnusson (2010) and Moreira (2003). Important extensions to nonlinear moment indicator functions have been developed in which $\Omega$ is maintained non-singular. For example, Stock and Wright (2000) study confidence regions formed by inverting the GAR statistic (\ref{GAR.statistic}) non-rejection region under weak identification. These results are generalized to the many weak moment setup in Newey and Windmeijer (2009). Guggenberger and Smith (2005, 2008), Kleibergen (2005) and Guggenberger et al. (2012) consider GMM and generalized empirical likelihood based inference with the GAR statistic as a special case.
+
+  In nonlinear models identification failure may directly result in the singularity of $\Omega$. Consequently, research has focused on methods of inference that do not require $\Omega$ to be full rank. Andrews and Guggenberger (2018) study the asymptotic properties of, among others, a singularity-robust-GAR (SR-GAR) statistic that deletes redundant directions of the moment indicator vector across the parameter space $\Theta$. This method allows for general forms of $\Omega$. However, to obtain correct asymptotic size for an SR-GAR-based confidence region, all points of singularity are required to be included in the discretized parameter space used in practice. Dufour and Val\'{e}ry (2016) develop a regularized Wald statistic providing valid pointwise inference on strongly identified functions of $\theta_0$ in the presence of a singular $\Omega$. Pe\~{n}aranda and Sentana (2012) study GMM inference when the rank of $\Omega$ is known using a generalized inverse of the sample moment variance matrix. Another strand in the literature has studied the asymptotic properties of confidence regions based on various statistics with specific forms of singular moment indicator variance matrix. Andrews and Cheng (2012, 2013, 2014) and Cheng (2014) derive conditions for valid subvector inference (in a uniform sense) using $t$, Wald, quasi-likelihood ratio and maximum likelihood (ML) statistics. They consider moment indicators with a singular variance matrix arising from identification failure in a class of nonlinear models Rotnitzky et al. 2000 study the asymptotic properties of inference based on the likelihood ratio statistic when $\Omega$ is rank $d_{\theta} - 1$. In related work, Bottai (2003) considers inference from various ML-based statistics where $d_{\theta} = 1$ and $\Omega = 0$.
+
+  The remainder of the paper is set out as follows. Section 2 details the notation used in the paper. Section 3 studies asymptotic properties of the GAR statistic (\ref{GAR.statistic}) when $\Omega$ is singular. Section 4 details feasible GAR-based confidence regions formed by inverting the GAR statistic over a discretization $\Theta_n$ of the parameter space $\Theta$. Section 5 establishes sufficient conditions appropriate for nonlinear conditional moment restriction models. A simulation study is provided in Section 6, corroborating the main results of this paper. Section 7 presents conclusions and directions for further research. The Appendices collect proofs of the main theorems and subsidiary lemmas used in this paper. Supplements E and S contain examples and additional simulation evidence.
+
+
+% =================================================================================================================
+
+ \section{Notation}
+
+  \setcounter{equation}{0}
+
+  \indent $\overset{p}{\rightarrow}$, $\overset{d}{\rightarrow}$ denote convergence in probability and distribution, respectively, `w.p.(a.)1' is `with probability (approaching) 1' and `i.i.d.' is `independent and identically distributed'. $o_p(a)$ and $O_p(a)$ respectively indicate a variate that, after division by $a$, converges to zero w.p.a.$1$ and to a variate that is bounded w.p.a.$1$ by a bounded non-stochastic sequence; similar definitions apply for their deterministic counterparts $o(a)$, $O(a)$. For an arbitrary random variable $x$, a.s.$(x)$ denotes `almost surely' $x$.
+  
+  $\mathbb{E}_{\mathcal{P}_0}[\cdot]$ and $\Var_{\mathcal{P}_0}[\cdot]$ denote expectation and variance taken with respect to the true population probability law ($\mathcal{P}_0$) of $z$. For arbitrary random variables $y$ and $x$, $\mathbb{E}_{\mathcal{P}_0}[y|x]$ is the conditional expectation of $y$ given $x$. $\chi_{k}^{2}$ denotes a central chi-square distributed random variable with $k$ degrees of freedom.
+
+  $\mathrm{rk}(A)$ and $\mathcal{N}(A)$ denote the rank and (right) null space, respectively, of a matrix $A$ whereas $\mathrm{tr}(A)$ and $\mathrm{det}(A)$ are the trace and determinant, respectively, of a square matrix $A$.  For integer $k > 0$, $I_{k}$ denotes a $k \times k$ identity matrix. For a full column rank $k \times p$ matrix $A$ and $k \times k$ nonsingular matrix $K$, $P_{A}(K)$ denotes the oblique projection matrix $A(A^{\prime}K^{-1}A)^{-1}A^{\prime}K^{-1}$ and $M_{A}(K) = I_{k} - P_{A}(K)$ its orthogonal counterpart. We abbreviate this notation to $P_{A}$ and $M_{A}$ if $K = I_{k}$ and, if $p = 0$, set $M_{A} = I_{k}$. For square matrices $A$ and $B$, $\mathrm{diag}(A,B)$ denotes a block-diagonal matrix with diagonal blocks $A$ and $B$.
+
+  $\|A\| = \mathrm{tr}(A'A)^{1/2}$ denotes the Euclidean norm of the matrix $A$ and $d(x,y) = \|x - y\|$ the Euclidean distance between vectors $x,y \in \mathbb{R}^d$ for integer $d \geq 1$. The Hausdorff distance between sets $A$ and $B$ is defined as $d_{H}(A,B) = \max \{\underset{a \in A}{\sup}~d(a,B), \underset{b \in B} {\sup}~d(A,b)\}$, where $d(a,B) = \underset{b \in B}{\inf} \|b-a\|$, and $d_{H}(A,B) = \infty$ if either $A$ or $B$ is the null set $\emptyset$.
+
+  The expectations of the moment vector, Jacobian matrix and moment function second moment matrix are defined as $g(\theta) = \mathbb{E}_{\mathcal{P}_0}[g(z,\theta)]$, $G(\theta) = \mathbb{E}_{\mathcal{P}_0}[\partial g(z,\theta)/\partial \theta^{\prime}]$ and $\Omega(\theta) = \mathbb{E}_{\mathcal{P}_0}[g(z,\theta)g(z,\theta)^{\prime}]$ respectively, $\theta \in \Theta$.
+
+  At the true value $\theta_0$ the dependence on $\theta_0$ is suppressed where there can be no confusion. Thus, $g_{i} = g_{i}(\theta_0)$, $G_{i} = G_{i}(\theta_0)$, $(i=1,\ldots,n)$, $\hat{g}_{n} = \hat{g}_{n}(\theta_0)$ and $\hat{\Omega}_{n} = \hat{\Omega}_{n}(\theta_0)$. Recall $G = G(\theta_0)$ and $\Omega = \Omega(\theta_0)$.
+
+% =================================================================================================================
+
+
+ \section{Asymptotic Properties of the GAR Statistic with Singular Moment Variance} \label{Sec:GAR.CI}
+
+  \setcounter{equation}{0}
+
+  \indent When $\Omega$ is singular, $\hat{\Omega}_{n}$ is also singular w.p.$1$ so that the GAR statistic $\hat{T}_n(\theta)$ (\ref{GAR.statistic}) does not exist at $\theta = \theta_0$. Consequently, its large sample properties can no longer be studied using the standard analysis to be found in, e.g., Stock and Wright (2000). To deal with this difficulty, this section provides conditions under which $\hat{T}_n(\theta_n)$ exists w.p.a.$1$ and $\hat{T}_n(\theta_n) \overset{d}{\rightarrow} \chi_{d_{g}}^{2}$ for suitable parameter sequences $\theta_n = \theta_0 + o(n^{-1/2})$.
+
+   \textsc{Remark 3.1}. Another form of GAR statistic is $\tilde{T}_n(\theta) =
+    n\hat{g}_n(\theta)^{\prime}\tilde{\Omega}_{n}(\theta)^{-1}\hat{g}_n(\theta)$ based on the alternative
+    moment variance matrix estimator $\tilde{\Omega}_{n}(\theta) = \sum_{i=1}^{n} (g_{i}(\theta)-\bar{g}_{n}(\theta))(g_{i}(\theta)-\bar{g}_{n}(\theta))^{\prime}/n$. Although the discussion below primarily concerns the GAR statistic $\hat{T}_{n}(\theta)$, the results for the alternative GAR statistic $\tilde{T}_{n}(\theta_n)$ are almost identical to those for $\hat{T}_n(\theta_n)$.
+
+  By symmetry, the moment indicator second moment matrix $\Omega(\theta)$ satisfies the spectral decomposition
+   \begin{eqnarray}
+    \Omega(\theta) & = & P(\theta)\Lambda(\theta)P(\theta)^{\prime} \nonumber \\
+                   & = & P_{+}(\theta)\Lambda_{+}(\theta)P_{+}(\theta)^{\prime} + P_{0}(\theta)\Lambda_{0}(\theta)P_{0}(\theta)^{\prime} \nonumber \\
+                   & = & P_{+}(\theta)\Lambda_{+}(\theta)P_{+}(\theta)^{\prime} \label{sp.decompn}
+   \end{eqnarray}
+  where the eigen-vectors and eigen-values of $\Omega(\theta)$ respectively constitute the columns of the $d_{g} \times d_{g}$ orthonormal matrix $P(\theta)$ and the diagonal elements, arranged in non-increasing order of magnitude, of the $d_{g} \times d_{g}$ diagonal matrix $\Lambda(\theta)$. Given $\mathrm{rk}(\Omega(\theta)) = r_{\Omega}(\theta)$, defining $\bar{r}_{\Omega}(\theta) = d_{g} - r_{\Omega}(\theta)$, $P(\theta) = (P_{+}(\theta),P_{0}(\theta))$ and $\Lambda(\theta) = \mathrm{diag}(\Lambda_{+}(\theta),\Lambda_{0}(\theta))$ are partitioned such that $P_{+}(\theta)$ and $P_{0}(\theta)$ are of dimensions $d_{g} \times r_{\Omega}(\theta)$ and $d_{g} \times \bar{r}_{\Omega}(\theta)$ respectively with $\Lambda_{+}(\theta)$ and $\Lambda_{0}(\theta)$ $r_{\Omega}(\theta) \times r_{\Omega}(\theta)$ and $\bar{r}_{\Omega}(\theta) \times \bar{r}_{\Omega}(\theta)$ diagonal matrices respectively with the $r_{\Omega}(\theta)$ positive and $\bar{r}_{\Omega}(\theta)$ zero eigen-values as diagonal elements. At the true value $\theta_0$, we write $r_{\Omega} = r_{\Omega}(\theta_0)$, $\bar{r}_{\Omega} = d_{g} - r_{\Omega}$, $P_{+} = P_{+}(\theta_0)$, $P_{0} = P_{0}(\theta_0)$, $\Lambda_{+} = \Lambda_{+}(\theta_0)$ and $\Lambda_{0} = \Lambda_{0}(\theta_0)$.
+
+  To study the limiting properties of the GAR statistic $\hat{T}_n(\theta)$ (\ref{GAR.statistic}), define the set of sequences
+   \begin{equation} \label{cap.theta.n.0}
+    \Theta_n^{0}(\delta) = \{\theta_n \in \Theta:~\theta_n = \theta_0 + n^{-\varepsilon}\delta_n,~\varepsilon > 1/2,~n^{1/2}(\delta_n - \delta) \rightarrow 0,~\delta \neq 0,~\delta \in \mathbb{R}^{d_{\theta}}\}.
+   \end{equation}
+  \indent Section 3.1 provides conditions under which $\hat{T}_n(\theta_n) \overset{d}{\rightarrow} \chi_{d_{g}}^{2}$ for $\theta_{n} \in \Theta_{n}^{0}(\delta)$ (\ref{cap.theta.n.0}) when $\Omega$ has deficient rank. Section 3.2 shows that the GAR statistic is asymptotically unbounded, and, thus, GAR-based confidence regions empty, if a particular hypothesis of Section 3.1 fails to hold. Section 3.3 discusses the potential importance of the singularity of $\Omega$ for the construction of the GAR statistic (\ref{GAR.statistic}) and the consequent GAR-based confidence region for $\theta_0$.
+
+% =================================================================================================================
+
+  \subsection{Asymptotic Properties when $P_0^{\prime}G \delta = 0$}
+
+   When $\Omega$ is singular, then $P_{0}^{\prime}\Omega P_{0} = 0$ and, thus, $P_{0}^{\prime}g_{i} = 0$ w.p.1., $(i=1,\ldots,n)$, i.e., $\bar{r}_{\Omega}$ linearly independent combinations of the moment indicator function $g(z,\theta)$ evaluated at $\theta_{0}$ are degenerate. This section provides results on the large sample behaviour of the GAR statistic (\ref{GAR.statistic}) under a condition that we term \textit{first order moment singularity}, namely, there exists $\delta \in \mathbb{R}^{d_\theta}$ such that $\mathrm{rk}(\Var_{\mathcal{P}_{0}}[P_{0}^{\prime}(G_i\delta - \mathbb{E}_{\mathcal{P}_0}[G_i \delta g_i^{\prime}] \Omega^{-} g_i)]) = \bar{r}_{\Omega}$, where $\Omega^{-} = P_{+}\Lambda_+^{-1}P_+^{\prime}$ is the Moore-Penrose inverse of $\Omega$.
+
+   The following example highlights the importance of first order moment singularity for establishing the asymptotic properties of $\hat{T}_{n}(\theta_{n})$ for sequences $\theta_n \in \Theta_n^{0}(\delta)$ when $\Omega$ is singular. Suppose $g_{i}(\theta)$ is linear in $\theta \in \Theta $, i.e., $G_{i}(\theta) = G_{i}$, $(i=1,\ldots,n)$. Setting $\delta_{n} = \delta$ for simplicity, then, for $\theta_{n} \in \Theta_{n}^{0}(\delta)$, substituting for $\theta_{n}$,
+    \[
+     n^{\varepsilon }P_{0}^{\prime}g_{i}(\theta _{n}) = P_{0}^{\prime}G_{i}\delta \; \text{w.p.}1
+    \]
+   since $P_{0}^{\prime}g_{i} = 0$ w.p.1, i.e., there exists $\bar{r}_{\Omega}$ linearly independent combinations of $n^{\varepsilon}g_{i}(\theta_{n})$ that do not involve $g_{i}$, $(i=1,\ldots,n)$. Unlike the full rank case, the first order asymptotic properties of $\hat{T}_{n}(\theta _{n})$ depend not only on the mean and variance matrix of $P_{+}^{\prime}g_{i}$ but those of $P_{0}^{\prime}G_{i}\delta$ or, more precisely, $P_{0}^{\prime}(G_{i}\delta - \mathbb{E}_{\mathcal{P}_0}[G_i \delta g_i^{\prime}] \Omega^{-} g_i)$. For $\theta _{n} \in \Theta_{n}^{0}(\delta )$,
+    \begin{eqnarray*}
+     \mathbb{E}_{\mathcal{P}_{0}}[n^{\varepsilon}P_{0}^{\prime}g_{i}(\theta_{n})
+            - P_{0}^{\prime} \mathbb{E}_{\mathcal{P}_0}[G_i \delta g_i^{\prime}] \Omega^{-} g_i(\theta_{n})]
+      & = & P_{0}^{\prime}G\delta
+            - n^{-\varepsilon} P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_0}[G_i \delta g_i^{\prime}]\Omega^{-}G\delta \\
+      & = & P_{0}^{\prime} G \delta + o(1)
+    \end{eqnarray*}
+   and
+    \begin{eqnarray*}
+     \Var_{\mathcal{P}_0}[n^{\varepsilon}P_{0}^{\prime}g_{i}(\theta_{n}) - P_{0}^{\prime} \mathbb{E}_{\mathcal{P}_0}[G_i \delta
+            g_i^{\prime}] \Omega^{-} g_i(\theta_{n})]
+      & = & P_{0}^{\prime}(\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta\delta^{\prime}G_{i}^{\prime}]
+             - G\delta\delta^{\prime}G^{\prime} \\
+      &   & - \mathbb{E}_{\mathcal{P}_0}[G_i \delta g_i^{\prime}] \Omega^{-}
+             \mathbb{E}_{\mathcal{P}_0}[G_i \delta g_i^{\prime}]^{\prime})P_{0} + o(1).
+    \end{eqnarray*}
+   Moreover, and importantly,
+    \[
+     \Cov_{\mathcal{P}_0}[P_{+}^{\prime}g_{i}(\theta_{n}),n^{\varepsilon}P_{0}^{\prime}g_{i}(\theta_{n}) - P_{0}^{\prime}
+            \mathbb{E}_{\mathcal{P}_0}[G_i \delta g_i^{\prime}] \Omega^{-} g_i(\theta_{n})]
+      = o(1).
+    \]
+   For the GAR statistic (\ref{GAR.statistic}) to exist and be asymptotically bounded for sequences $\theta_{n} \in \Theta_{n}^{0}(\delta)$, we require that $n^{\varepsilon}P_{0}^{\prime}g_{i}(\theta_{n})$ has zero mean, i.e., $P_{0}^{\prime}G\delta = 0$. Moreover, not only should $n^{\varepsilon}P_{0}^{\prime}g_{i}(\theta_{n})$ have full rank variance matrix, i.e., $\mathrm{rk}(P_{0}^{\prime} \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta\delta^{\prime}G_{i}^{\prime}] P_{0}) = \bar{r}_{\Omega}$, but, crucially, the variance matrix of $n^{\varepsilon}P_{0}^{\prime}g_{i}(\theta_{n}) - P_{0}^{\prime} \mathbb{E}_{\mathcal{P}_0}[G_i \delta g_i^{\prime}] \Omega^{-} g_i(\theta_{n})$ should also be full rank, i.e., $\mathrm{rk}(P_{0}^{\prime}(\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta\delta^{\prime}G_{i}^{\prime}] - G\delta \delta^{\prime}G^{\prime} - P_{0}^{\prime} \mathbb{E}_{\mathcal{P}_0}[G_i \delta g_i^{\prime}] \Omega^{-} \mathbb{E}_{\mathcal{P}_0}[G_i \delta g_i^{\prime}]^{\prime}) P_{0}) = \bar{r}_{\Omega}$. If both of these conditions are met, then $\hat{T}_n(\theta_n)$ can be expressed w.p.a.$1$ as a quadratic form in $d_g$ moment functions with zero mean and full rank variance matrix, namely, $P_{+}^{\prime}\hat{g}$ and $P_{0}^{\prime}(\hat{G}\delta -  \mathbb{E}_{\mathcal{P}_0}[G_i \delta g_i^{\prime}] \Omega^{-} \hat{g})$ that, asymptotically, are both mean zero with full rank $r_{\Omega}$ and $\bar{r}_{\Omega}$ variance matrices respectively and, critically, are asymptotically uncorrelated. Hence, for any sequence $\theta_{n} \in \Theta _{n}^{0}(\delta)$ satisfying these conditions, $\hat{T}_n(\theta_n) \overset{d}{\rightarrow} \chi_{d_{g}}^{2}$.
+
+   More generally, under the regularity condition Assumption 3.1, Theorem 3.1 below states that $\hat{T}_n(\theta_n) \overset{d}{\rightarrow} \chi_{d_{g}}^{2}$ for any sequence $\theta _{n} \in \Theta _{n}^{0}(\delta)$ that satisfies Assumption 3.2.
+    \begin{assumption}
+     \textbf{(a)} $z_{i}$, $(i=1,\ldots,n)$, is a random sample of size $n$ on the $d_{z}$-dimensional observation vector $z$;
+     \textbf{(b)} $\mathbb{E}_{\mathcal{P}_{0}}[\sup_{\theta \in \Theta} \|g(z,\theta)\|^{2}] < \infty$, $\mathbb{E}_{\mathcal{P}_{0}}[\sup_{\theta \in \Theta} \|\partial
+      g(z,\theta)/\partial \theta^{\prime}\|^{2}] < \infty$;
+     \textbf{(c)} $\|\hat{\Omega}_{n}(\theta_{a}) - \hat{\Omega}_{n}(\theta_{b})\| \leq \hat{M}_{\Omega,n}\|\theta_{a} - \theta_{b}\|$ uniformly $\theta _{a},\theta _{b} \in \Theta$ for
+      some $\hat{M}_{\Omega,n} = O_{p}(1)$;
+     \textbf{(d)} $\|\hat{G}_{n}(\theta_{a}) - \hat{G}_{n}(\theta_{b})\| \leq \hat{M}_{G,n}\|\theta_{a}-\theta_{b}\|$ uniformly $\theta _{a},\theta _{b} \in \Theta $ for some
+      $\hat{M}_{G,n} = O_{p}(1)$.
+    \end{assumption}
+    \textsc{Remark 3.2}. Assumption 3.1 provides a set of relatively mild regularity conditions similar to those commonly made
+     in the literature on GAR-based inference. The random sampling Assumption 3.1(a) is primarily made for simplicity but could be weakened straightforwardly to allow for non-i.i.d. data. Assumptions A.1(b) and (c) ensure $\hat{g}_{n}(\theta) \overset{p}{\rightarrow} g(\theta)$, $\hat{G}_n(\theta) \overset{p}{\rightarrow} G(\theta)$ and $\hat{\Omega}_{n}(\theta) \overset{p}{\rightarrow} \Omega(\theta)$ uniformly $\theta \in \Theta$ by an i.i.d. uniform weak law of large numbers. \\
+
+   Define the sets
+    \begin{eqnarray*}
+     \Delta_{b} & = & \{\delta \in \mathbb{R}^{d_{\theta }}:~\mathrm{rk}(\Var_{\mathcal{P}_{0}}[P_{0}^{\prime}(G_i\delta -
+      \mathbb{E}_{\mathcal{P}_0}[G_i \delta g_i^{\prime}] \Omega^{-} g_i)] = \bar{r}_{\Omega}\}, \\
+     \Delta_{c} & = & \{\delta \in \mathbb{R}^{d_{\theta }}:~P_{0}^{\prime }G\delta = 0\}.
+    \end{eqnarray*}
+
+    \begin{assumption}
+     \textbf{(a)} $\mathrm{rk}(\Lambda_{+}) = r_{\Omega}$;
+     \textbf{(b)} $\Delta_{b} \neq \emptyset$;
+     \textbf{(c)} $\Delta_{b} \cap \Delta_{c} \neq \emptyset$.
+    \end{assumption}
+
+   \textsc{Remark 3.3}. A necessary and sufficient condition for Assumptions 3.2(a) and (b) is that the variance matrix of 
+    $P_{+}^{\prime}g_i$ and $P_{0}^{\prime}G_{i}\delta$ is full rank $d_g$.
+
+   Define the set of sequences
+    \[
+     \Theta _{n}^{0}(\Delta_{b} \cap \Delta_{c}) = \{\theta_{n} \in \Theta_{n}^{0}(\delta):~\delta \in \Delta_{b} \cap \Delta_{c}\}.
+    \]
+
+    \begin{theorem}
+     Let Assumptions 3.1 and 3.2 hold. Then, for any sequence $\theta _{n} \in \Theta_{n}^{0}(\Delta_{b} \cap \Delta_{c})$,
+      \textbf{(a)} $\hat{T}_{n}(\theta_{n}) \overset{d}{\rightarrow} \chi_{d_{g}}^{2}$;
+      \textbf{(b)} $\tilde{T}_{n}(\theta_{n}) \overset{d}{\rightarrow} \chi_{d_{g}}^{2}$.
+    \end{theorem}
+
+    \textsc{Remark 3.4}. If Assumptions 3.1 and 3.2(a) hold, it is straightforward to establish Theorem 3.1 when$\Omega$ is full
+     rank, i.e., $\bar{r}_{\Omega} = 0$; cf. Remark 3.3. A key step in the Proof of Theorem 3.1 is an expansion for $\hat{T}_{n}(\theta_{n})$ based on a Laurent series expansion of $\hat{\Omega}_n(\theta_n)^{-1}$ around points of singularity; see Lemma A.3 in Appendix A. Assumption 3.2(b), first order moment singularity, is a relatively mild requirement and is sufficient if Assumption 3.1 holds for the Laurent series expansion of $\hat{\Omega}_{n}(\theta _{n})^{-1}$ needed to establish the large sample properties of the statistic $\hat{T}_{n}(\theta _{n})$ and those sequences $\theta _{n} \in \Theta$ for which $\hat{T}_{n}(\theta_{n})$ exists w.p.a.$1$.\footnote{To illustrate, consider the nonlinear regression
+      $\epsilon(\theta) = y - h(x,\theta)$. Non-linear LS estimation of $\theta _{0}$ defines $g(z,\theta) = \epsilon(\theta) \partial h(x,\theta)/\partial \theta$ and $\Omega(\theta) = \mathbb{E}_{\mathcal{P}_{0}}[\epsilon(\theta)^{2} \partial h(x,\theta)/\partial \theta \partial h(x,\theta)/\partial \theta^{\prime}]$. If $P_{0}^{\prime}g(z,\theta_{0}) = 0$, i.e., $P_{0}^{\prime} \partial h(x,\theta_{0})/\partial \theta = 0$, Assumption 3.2(b) fails if and only if $\Var[P_{0}^{\prime} \partial^{2} h(x,\theta_0)/\partial \theta \partial \theta^{\prime } \delta] < \bar{r}_{\Omega }$ for all $\delta \in \mathbb{R}^{d_{\theta}}$ noting $\partial g(x,\theta)/\partial \theta^{\prime} = \epsilon(\theta) \partial^{2} h(x,\theta)/\partial \theta \partial \theta^{\prime} + \partial h(x,\theta)/\partial \theta \partial \epsilon(\theta)/\partial \theta^{\prime }$.}
+
+    \textsc{Remark 3.5}. Given Assumption 3.2(b), Assumption 3.2(c) requires that there exists $\delta \in \Delta_b$ such that 
+     $P_{0}^{\prime}G\delta = 0$. Thus $\hat{T}_{n}(\theta_{n})$ is asymptotically bounded; see the Proof of Theorem 3.1. A sufficient condition for Assumption 3.2(c) if Assumption 3.2(b) is satisfied, is $\mathcal{N}(\Omega) \subseteq \mathcal{N}(G^{\prime})$, i.e., $G^{\prime}P_{0} = 0$, and, thus, $\Delta_{c} = \mathbb{R}^{d_{\theta}}$. Section 5 provides general conditions for $\mathcal{N}(\Omega) \subseteq \mathcal{N}(G^{\prime})$ for nonlinear conditional moment functions; these conditions always hold for single equation nonlinear least squares moment functions but may not do so in multiple equation models.
+
+% =================================================================================================================
+
+  \subsection{Asymptotic Properties when $P_{0}^{\prime}G \delta \neq 0$}
+
+   The next theorem establishes that $\hat{T}_{n}(\theta _{n}) = O_p(n)$ for sequences $\theta_{n} \in \Theta_n^{0}(\delta)$ that satisfy Assumption 3.2(b) but when Assumption 3.2(c) fails, i.e., $P_0^{\prime}G\delta \neq 0$.
+
+   Let $\bar{\Delta}_{c}$ denote the complement of $\Delta_{c}$, i.e.,
+    \[
+     \bar{\Delta}_{c} = \{\delta \in \mathbb{R}^{d_{\theta}}:~P_{0}^{\prime}G\delta \neq 0\}.
+    \]
+   Also let $\Upsilon(\delta) = P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_0}[G_i \delta \delta^{\prime}G_i^{\prime}]P_0$ and $\Sigma(\delta)= \Upsilon(\delta) - \Psi(\delta) \Omega^{-} \Psi(\delta)^{\prime}$, where $\Psi(\delta) = P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_0}[G_i \delta g_i^{\prime}]$ and $\Omega^{-} = P_{+}\Lambda_+^{-1}P_+^{\prime}$. Define $\tilde{\Upsilon}(\delta) = \Upsilon(\delta) -  P_{0}^{\prime}G \delta \delta G^{\prime}P_0$ and $\tilde{\Sigma}(\delta) = \tilde{\Upsilon}(\delta) - \Psi(\delta) \Omega^{-} \Psi(\delta)^{\prime}$.
+    \begin{theorem}
+     Suppose Assumptions 3.1, 3.2(a) and (b) are satisfied. Then, for all $\theta _{n} \in \Theta_{n}^{0}(\Delta_{b} \cap \bar{\Delta}_{c})$,
+      \textbf{(a)} $\hat{T}_{n}(\theta_{n})/n
+                     \overset{p}{\rightarrow }
+                     \delta^{\prime}G^{\prime}P_{0} \Sigma(\delta) P_{0}^{\prime}G\delta $;
+      \textbf{(b)} $\tilde{T}_{n}(\theta_{n})/n
+                     \overset{p}{\rightarrow }
+                     \delta^{\prime}G^{\prime }P_{0} \tilde{\Sigma}(\delta) P_{0}^{\prime }G\delta $.
+    \end{theorem}
+
+   \textsc{Remark 3.6}. Unless $P_{0}^{\prime}G = 0$, i.e., $\mathcal{N}(\Omega) \subseteq \mathcal{N}(G^{\prime})$, there exist
+    sequences $\theta_{n} \in \Theta _{n}^{0}(\Delta_{b} \cap \bar{\Delta}_{c})$ for which the GAR statistic $\hat{T}_{n}(\theta_{n})$ is asymptotically unbounded. Section 4 shows how an appropriate discretisation $\Theta_{n}$ of the parameter space $\Theta$ to a sufficiently fine degree ensures sequences $\theta_n \in \Theta_{n} \cap \Theta_{n}^{0}(\Delta_{b} \cap \Delta_{c})$ for large enough $n$ and, thereby, that Theorem 3.1 is satisfied for such sequences.
+
+% =================================================================================================================
+
+  \subsection{Degeneracy in the Parameter Space}
+	
+   The singularity of $\Omega(\theta)$, $\theta \in \Theta$, leads to degeneracies in the parameter space, i.e., parameter subsets where particular functions of $z$ and $\theta$ are constant w.p.$1$.\footnote{We are indebted to P.C.B. Phillips for raising this issue.}
+	
+   To illustrate, consider the scalar moment indicator $g(z,\theta) = \exp(\theta z) - (1+\theta)$ in which case $d_g = d_\theta = 1$. Suppose $\bar{r}_{\Omega} = 1$. Hence, $g(z,\theta_0) = 0$ for all $z \in \mathbb{R}$ and $\theta_0 = 0$ w.p.$1$, i.e, the true value $\theta_0 = 0$ is identified w.p.$1$ from a single observation $z$. Although it is obviously still the case that $\mathbb{E}_{\mathcal{P}_0}[g(z,\theta)] = 0$ at $\theta_0 = 0$, any GAR-based confidence region is rendered irrelevant.
+   No matter that GAR-based inference would not be considered, the hypotheses of Theorem 3.1 may hold. In this example, $P_0 = 1$, so $\Var_{\mathcal{P}_0}[P_0^{\prime}G_i\delta] > 0$ satisfies Assumption 3.2(b) for $\Delta_b = \{\delta \in \mathbb{R}:~|\delta| > 0\}$. Since $G = \mathbb{E}_{\mathcal{P}_0}[z] - 1$, Assumption 3.2(c) holds if $G\delta = 0$ which is possible if and only if $G = 0$ given $\delta \neq 0$, i.e., $\mathbb{E}_{\mathcal{P}_0}[z] = 1$ and, thus, $\Delta_c = \mathbb{R}$. Then, from Theorem 3.1, $\hat{T}(\theta_n) \overset{d}{\rightarrow} \chi_1^{2}$ for all sequences $\theta_n \in \Theta_n^{0}(\Delta_b \cap \Delta_c)$, i.e, $\theta_n \in \Theta_n^{0}(\Delta_b)$ when $G = 0$. In fact, this result may be shown directly from a Taylor expansion of $\hat{\Omega}(\theta_n)^{-1}$ around $\theta_0$. When $G \neq 0$, then $\Delta_c = \emptyset$ and $\hat{T}(\theta_n) = O_p(n)$ for all $\theta_n \in \Theta_n^{0}(\Delta_b)$ by Theorem 3.2 as $\Delta_b \cap \bar{\Delta}_c = \Delta_b$ in this case too.	
+	
+   In the one moment, one parameter, setting, the singularity of $\Omega$, i.e., $\Omega = 0$, implies that the moment condition holds w.p.$1$ and the true value $\theta_0$ of the parameter vector $\theta$ can be deduced from a single observation of $z$. Similarly, and more generally, in the just-identified case, i.e., $d_g = d_{\theta}$, a single observation of $z$ is sufficient to deduce the true value $\theta_0$. However, in the more general over-identified setting when $d_g > d_{\theta}$ and in which $\bar{r}_{\Omega}(\theta) > 0$ linear combinations  of $g(z,\theta)$ are degenerate, the value $\theta$ is restricted to a $d_{\theta-\bar{r}_{\Omega}(\theta)}$ dimensional stochastic (sub-)manifold of $\Theta$ w.p.$1$ by the restriction $P_0(\theta)^{\prime}g(z,\theta) = 0$ w.p.$1$. Let $g_{\theta}(z,\theta) = P_0(\theta)^{\prime}g(z,\theta)$, i.e., $g_{\theta}(z,\theta) = 0$ w.p.$1$, and is, of course, invariant to $z$. Partition $\theta = (\theta_{d_{\theta}-\bar{r}_{\Omega}(\theta)}^{\prime},\theta_{\bar{r}_{\Omega}(\theta)}^{\prime})^{\prime}$, where $\theta_{d_{\theta}-\bar{r}_{\Omega}(\theta)}$ and $\theta_{\bar{r}_{\Omega}(\theta)}$ are, respectively, $d_{\theta}-\bar{r}_{\Omega}(\theta)$ and $\bar{r}_{\Omega}(\theta)$ sub-vectors of $\theta$ with the sub-vector $\theta_{\bar{r}_{\Omega}(\theta)}$ chosen so that the derivative matrix $\partial g_{\theta}(z,\theta)/ \partial \theta_{\bar{r}_{\Omega}(\theta)}$ is nonsingular. Thus, by the implicit function theorem, there exists a function $\theta_{\bar{r}_{\Omega}(\theta)}(\cdot)$ such that $\theta_{\bar{r}_{\Omega}(\theta)} = \theta_{\bar{r}_{\Omega}(\theta)}(\theta_{d_{\theta}-\bar{r}_{\Omega}(\theta)})$. Consequently, the parametric dimension $d_{\theta}$ is reduced to $d_{\theta-\bar{r}_{\Omega}(\theta)}$, i.e., $\theta_{d_{\theta-\bar{r}_{\Omega}(\theta)}}$, and, correspondingly, the moment function dimension $d_g$ to $r_{\Omega}(\theta)$, i.e., $P_+(\theta_{d_{\theta}-\bar{r}_{\Omega}(\theta)},\theta_{\bar{r}_{\Omega}(\theta)}(\theta_{d_{\theta}-\bar{r}_{\Omega}(\theta)}))^{\prime} g(z,\theta_{d_{\theta}-\bar{r}_{\Omega}(\theta)},\theta_{\bar{r}_{\Omega}(\theta)}(\theta_{d_{\theta}-\bar{r}_{\Omega}(\theta)}))$, since the moment restriction $P_0(\theta_{d_{\theta}-\bar{r}_{\Omega}(\theta)},\theta_{\bar{r}_{\Omega}(\theta)}(\theta_{d_{\theta}-\bar{r}_{\Omega}(\theta)}))^{\prime} g(z,\theta_{d_{\theta}-\bar{r}_{\Omega}(\theta)},\theta_{\bar{r}_{\Omega}(\theta)}(\theta_{d_{\theta}-\bar{r}_{\Omega}(\theta)})) = 0$ w.p.$1$ is now redundant. To illustrate, consider Example E.1 in Supplement E in which $P_0(\theta)^{\prime}g(z,\theta) = 0$ at $\theta = \theta_0$ implies $y_{1} - y_{2} = x_{1}\theta_{10} - x_{2}\theta_{20}$  w.p.$1$. Hence, $\theta_{10} = (y_{1} - y_{2})/x_{1} + \theta_{20} x_{2}/x_{1}$ w.p.1 if $\mathcal{P}_0\{x_{1} = 0\} = 0$. Thus, $g(z,\theta_0)$ can be expressed as a function of $\theta_{20}$ only; written this way the first two moment indicators are identical and the first moment function can be dropped in this example.
+	
+   In principle, then, the singularity of $\Omega(\theta)$ allows the dimensions $d_g$ of the moment indicator function $g(z,\theta)$ and $d_{\theta}$ of the parameter vector $\theta$ to be reduced to, respectively, $r_{\Omega}(\theta)$ and $d_{\theta-\bar{r}_{\Omega}(\theta)}$ with the $\bar{r}_{\Omega}(\theta)$ redundant directions $P_0(\theta)^{\prime}g(z,\theta)$ of the moment indicator vector $g(z,\theta)$ consequently deleted. A GAR-type statistic may then be based on the reduced moment indicator vector $P_{+}(\theta)^{\prime}g(z,\theta)$ which, by definition, has full rank variance matrix. This is, essentially, the approach taken in Andrews and Guggenberger (2019) to the formulation of the SR-GAR statistic with $P_{+}(\theta)$ and $P_{0}(\theta)$ estimated from $\hat{\Omega}_n(\theta)$. In the just-identified Example E.3 in Supplement E, where singularity of $\Omega$ occurs at $\sigma_0 = a_0$, setting parameter values so that $\sigma = a$ and deleting the last moment indicator reduces the parametric dimension $d_{\theta}$ to $d_{\theta}-\bar{r}_{\Omega}(\theta) = 3$ and the moment indicator dimension $d_g$ to $r_{\Omega}(\theta) = 3$. The difficulty with the Andrews and Guggenberger (2019) approach is that, in general, all points of singularity, i.e., those $\theta \in \Theta$ such that $\bar{r}_{\Omega}(\theta) > 0$, cannot be known \textit{a priori}. Even if the points of singularity were to be known, it may not be possible to include all such points in the discretised parameter set $\Theta_n$ necessitated for practical implementation of a GAR statistic based on the reduced moment indicator vector $P_{+}(\theta)^{\prime}g(z,\theta)$ and of a consequent GAR-based confidence region for $\theta_0$. See Section 4 for further discussion of the construction of the discretised parameter set $\Theta_n$.
+
+   \textsc{Remark 3.7}. The Andrews and Guggenberger (2019) SR-GAR method is particularly suited to the case in which $P_0(\theta) = P_0$
+    and, thus, the moment indicator vector $g(z,\theta)$ is redundant for all $\theta \in \Theta$ in the column directions of $P_0$. Hence, the GAR statistic (\ref{GAR.statistic}) does not exist for any value of $\theta \in \Theta$. Indeed, this case does not satisfy the hypotheses of Theorem 3.1. To see this, by the mean value theorem, $P_0^{\prime}g_i(\theta_a) = P_0^{\prime}g_i(\theta_b) + P_0^{\prime}G_i(\bar{\theta})(\theta_a - \theta_b)$ for any $\theta_a,\theta_b \in \Theta$, where $\bar{\theta}$ lies on the line segment joining $\theta_a$ and $\theta_b$, and, thus, $P_0^{\prime}G_i(\bar{\theta})(\theta_a - \theta_b) = 0$. Hence, since $\theta_a$ and $\theta_b$ are arbitrary, $P_0^{\prime}G_i(\theta) = 0$ for all $\theta \in \Theta$, a negation of Assumption 3.2(b). With identities in the moment indicator vector, redundant moments can be deleted straightforwardly and standard GAR-based inference undertaken if the reduced dimension moment indicator vector at $\theta_0$ is not subject to further, possibly unknown, singularities.
+
+% =================================================================================================================
+
+
+ \section{Feasible GAR-Based Confidence Regions}
+
+  \setcounter{equation}{0}
+
+  \indent This section details a discretisation $\Theta_{n}$ of the parameter space $\Theta$ required to implement a feasible GAR-based confidence region to ensure, for $n$ large enough, coverage of (a subset of) sequences $\theta_n \in \Theta_n^{0}(\delta)$ for any arbitrary $\delta \in \mathbb{R}^{d_{\theta}}$ where $\theta_n \in \Theta_n^{0}(\delta)$ is defined in (\ref{cap.theta.n.0}). The approach described below then exploits Theorem 3.1 to construct a GAR-based confidence region which is shown to contain $\theta_0$ with asymptotically correct size.
+
+  The concern then is a study of the asymptotic properties of the feasible GAR-based confidence region
+   \begin{equation} \label{GAR.CR}
+    \hat{\mathcal{C}}_n(\chi_{d_{g}}^{2}(\alpha)) = \{\theta \in \Theta_n:~\hat{T}_n(\theta) \leq \chi_{d_{g}}^{2}(\alpha)\},
+   \end{equation}
+  where $\chi_{d_{g}}^{2}(\alpha)$ denotes the $100 \times \alpha$ percentile of the $\chi_{d_{g}}^{2}$ distribution. The confidence region $\hat{\mathcal{C}}_n(\chi_{d_{g}}^{2}(\alpha))$ (\ref{GAR.CR}) is formed by the inversion over $\Theta_n$ of the non-rejection region of a GAR-based test with asymptotic size $1 - \alpha$ of the hypothesis $\mathrm{H}_{0}:~\theta = \theta_{0}$.\footnote{Mikusheva (2010) proposed a similar solution that inverts $\hat{T}_{n}(\theta)$ over some $\Theta_n$ in a one parameter linear IV model with non-singular moment variance matrix that is equivalent to the solution of a system of quadratic inequalities inverted over $\Theta_n$ that can be solved explicitly.}
+
+   \textsc{Remark 4.1}. If $\Omega$ is non-singular, i.e., $r_{\Omega} = d_{g}$, under suitable regularity conditions, see, e.g., Stock and Wright (2000), $\hat{T}_n(\theta_0)
+    \rightarrow \chi_{d_{g}}^{2}$. Hence, pointwise, $\lim_{n \rightarrow \infty} \mathcal{P}_0\{\theta_0 \in \hat{\mathcal{C}}_n(\chi_{d_{g}}^{2}(\alpha))\} = \alpha$ for $\theta_0$ satisfying (\ref{mom.condn}).
+
+  In general, however, there is no guarantee that $\Theta_{n}$ contains $\theta_0$ or any particular parameter sequence $\theta_{n}$ converging to $\theta_0$. Unless $P_{0}^{\prime}G = 0$, i.e., $\mathcal{N}(\Omega) \subseteq \mathcal{N}(G^{\prime})$, there exist sequences $\theta_n \in \Theta _{n}^{0}(\Delta_{b} \cap \bar{\Delta}_{c})$ for which the GAR statistic $\hat{T}_{n}(\theta_{n})$ is asymptotically unbounded by Theorem 3.2. Consequently, GAR-based confidence regions are empty asymptotically, i.e., $\hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha)) = \emptyset$ w.p.a.$1$ for any $\alpha \in (0,1)$. If $\Theta_{n} \cap \Theta_{n}^{0}(\Delta_{b} \cap \Delta_{c}) \neq \emptyset$ for $n$ large enough, then, from Theorem 3.1, $\hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha))$ contains sequences $\theta_{n}$ such that $d(\theta_{n},\theta_{0}) = o(n^{-1/2})$ and has correct asymptotic level $\alpha$. Our concern then is to show how discretising $\Theta$ to a sufficiently fine degree ensures that $\Theta_{n} \cap \Theta_{n}^{0}(\Delta_{b} \cap \Delta_{c}) \neq \emptyset$ for large enough $n$.
+
+   \textsc{Remark 4.2}. Theorem 15.1, p.20, in the Supplement to Andrews and Guggenberger (2019) demonstrates that a confidence region formed 
+    by inverting the SR-GAR based non-rejection region constructed using a Moore-Penrose pseudoinverse of $\Omega_{n}(\theta)$ over $\Theta$ has correct asymptotic size. However, for this result to hold when the SR-GAR based confidence region is constructed in practice with a discretised parameter space $\Theta_{n}$, $\theta_0 \in \Theta_{n}$ (or $\theta_{n} \in \Theta_{n}$ with $\mathrm{rk}(\hat{\Omega}_{n}(\theta_{n})) = \mathrm{rk}(\hat{\Omega}_{n}(\theta_0))$ w.p.a.1) is required for correct asymptotic level when $\Omega$ is singular. The asymptotic properties of the SR-GAR statistic in this case may be studied using the methods in this paper, or similar.
+
+  The asymptotic properties of the GAR-based confidence region estimator $\hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha))$ (\ref{GAR.CR}) are studied for $\Theta_{n}$ either fixed or selected at random. Hence the events $\{\theta_{n} \in \Theta_{n}\}$ and $\{\hat{T}_{n}(\theta_{n}) \leq \chi_{d_{g}}^{2}(\alpha)\}$ are independent, i.e.,
+   \begin{equation} \label{GAR.CR.cov}
+    \mathcal{P}_0 \{\theta_{n} \in \hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha))\} = \mathcal{P}_0 \{\theta_{n}\in \Theta_{n}\}\mathcal{P}_0 \{\hat{T}_{n}(\theta_{n}) \leq
+     \chi_{d_{g}}^{2}(\alpha)\}.
+   \end{equation}
+
+   \textsc{Remark 4.3}. Even if $\Omega$ is full rank, when $\hat{T}_{n}(\theta _{n}) \overset{d}{\rightarrow} \chi_{d_{g}}^{2}$, from (\ref{GAR.CR.cov}), $\lim_{n \rightarrow \infty}
+    \mathcal{P}_0 \{\theta_{0} \in \Theta_{n}\} = 1$ is a necessary condition for the confidence region $\hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha))$ (\ref{GAR.CR}) to have correct asymptotic size $\alpha$. However, this condition is non-trivial and not readily verifiable in practice, irrespective of how finely the parameter space $\Theta$ is discretized.\footnote{Consider $d_{\theta} = 1$ with $\Theta =[0,1]$. Suppose $\Theta_{n} = \{0,\frac{1}{n},...,\frac{n-1}{n},1\}$ and $\theta_{0} = 1/\sqrt{2}$. Then $\theta_{0}
+    \notin \Theta_{n}$ for all $n$ and, thus, $\mathcal{P}_0 \{\theta_{0} \in \Theta_{n}\} = 0$. Hence $\mathcal{P}_0 \{\theta_{n} \in \hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha))\} = 0$ by (\ref{GAR.CR.cov}).}
+
+  The issue noted in Remark 4.3 is especially important when $\Omega$ is singular, as indicated by Theorem 3.1, since if $\mathcal{N}(\Omega) \nsubseteq \mathcal{N}(G^{\prime})$, then the GAR statistic $\hat{T}_{n}(\theta_{n})$ (\ref{GAR.statistic}) is asymptotically unbounded for $\theta_{n} \in \Theta_{n}^{0}(\Delta_{b} \cap \bar{\Delta}_{c})$ and the confidence region $\hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha))$ (\ref{GAR.CR}) correspondingly empty w.p.a.$1$ if $\Theta_n \subseteq \Theta_{n}^{0}(\Delta_{b} \cap \bar{\Delta}_{c})$. Hence, in general, the discretized set $\Theta_{n}$ should contain a subset of sequences $\theta_{n} \in \Theta_{n}^{0}(\Delta _{b} \cap \Delta_{c})$ such that, by Theorem 3.1, the GAR statistic is asymptotically distributed as a $\chi_{d_{g}}^{2}$ random variate. Therefore, the GAR-based confidence region $\hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha))$ will include sequences $\theta_{n} \in \Theta_{n}^{0}(\Delta_{b} \cap \Delta_{c})$ with correct asymptotic size $\alpha$. To construct a confidence region that includes $\theta_{0}$ with probability $\alpha$ asymptotically, first consider the discretisation
+   \begin{equation}\label{GAR.CR.discretn}
+    \Theta_{n} = \{-k_{n},-\frac{[n^{\kappa }]-1}{n^{\kappa }}k_{n},...,-\frac{1}{n^{\kappa }},0,\frac{1}{n^{\kappa }},...,\frac{[n^{\kappa }]-1}{n^{\kappa }}k_{n},k_{n}\}^{d_{\theta }}
+   \end{equation}
+  when $d_{\theta} = 1$ where $k_{n} > 0$, $k_{n} \rightarrow \infty$ and $\kappa > 1$; the extension to the case $d_{\theta} > 1$ is straightforward by applying the same argument element-wise to $\theta \in \Theta$.
+
+   \textsc{Remark 4.4}. The discretisation $\Theta_{n}$ (\ref{GAR.CR.discretn}) is chosen so that $\theta_{0}$ is at most a $1/n^{\kappa}$ perturbation from some element of $\Theta_{n}$
+    for $n$ large enough and, thus, $\theta_{0}$ is in the convex hull of $\Theta_{n}$ as $k_{n} \rightarrow \infty$. Then, for any $\epsilon > 1/2$ such that $\kappa \geq \epsilon + 1/2$ and some $\underline{b}_{n},\overline{b}_{n} \in B_{n} = \{1,\ldots,[k_{n}n^{\kappa}]\}$, where $[\cdot]$ is the integer part of $\cdot$, there exists $\tilde{\theta}_{n} \in \Theta_{n}$ such that $-\underline{b}_{n}/n^{\kappa - \epsilon} \leq n^{\epsilon} (\tilde{\theta}_{n} - \theta _{0}) \leq \overline{b}_{n}/n^{\kappa - \epsilon}$. For any $\delta \in \mathbb{R}$, for $n$ large enough, there exists $\underline{b}_{n} = \underline{c}_{n} - n^{\kappa -\epsilon}\delta$ and $\overline{b}_{n} = \overline{c}_{n} + n^{\kappa -\epsilon}\delta$ for some bounded $\underline{c}_{n},\overline{c}_{n}$ in the convex hull of $B_{n}$ so that $-\underline{c}_{n}/n^{\kappa -\epsilon}\leq n^{\epsilon} (\tilde{\theta}_{n} - \theta _{0}) - \delta \leq \overline{c}_{n}/n^{\kappa - \epsilon}$. Thus, writing $\delta_{n} = n^{\epsilon} (\tilde{\theta}_{n} - \theta_{0})$, since $\kappa - \epsilon > 1/2$ and $\underline{c}_{n},\overline{c}_{n}$ are $O(1)$, $n^{1/2}(\tilde{\theta}_{n} - \theta _{0}) - \delta \rightarrow 0$, i.e., $\tilde{\theta}_{n} \in \Theta_{n}^{0}(\delta)$.
+
+  The argument of Remark 4.4 holds for any $\delta \in \mathbb{R}^{d_{\theta}}$ so that $\Theta_{n}$ includes sequences $\theta_{n} \in \Theta_{n}^{0}(\delta)$ for $1/2 < \epsilon \leq \kappa - 1/2$. Therefore, the feasible confidence region $\hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha)) = \{\theta \in \Theta_{n}:~\hat{T}_{n}(\theta) \leq \chi_{d_g}^{2}(\alpha)\}$ with $\Theta_{n}$ defined above will contain sequences in $\Theta_{n}^{0}(\delta)$ with probability $\alpha$ as $n \rightarrow \infty$ under Assumptions 3.1 and 3.2. Importantly this discussion does not establish that $\theta_{0} \in \hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha))$ with asymptotic probability $\alpha$ unless $\hat{T}_{n}(\theta_{0})$ exists and $\theta_{0} \in \Theta_{n}$ for $n$ large enough but rather that $\hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha))$ covers certain $o(n^{-1/2})$ perturbations to $\theta_{0}$ with asymptotic probability $\alpha$. Further modifications to $\hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha))$ are therefore required for a feasible GAR-based confidence region that covers $\theta_{0}$ with asymptotic level $\alpha$.
+
+  Consider the set
+   \begin{equation} \label{GAR.CR.F}
+    \hat{\mathcal{C}}_{n}^{0}(\chi_{d_{g}}^{2}(\alpha)) = \{\theta \in \Theta:~d_{H}(\theta,\hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha))) \leq Cn^{-v}\}
+   \end{equation}
+  for some $C > 0$ and $v > 1/2$. Theorem 4.1 below shows that a (piecewise) continuous confidence region $\hat{\mathcal{C}}_{n}^{0}(\chi_{d_{g}}^{2}(\alpha))$ where $\hat{\mathcal{C}}_{n}^{0}(\chi_{d_{g}}^{2}(\alpha)) \supseteq \hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha))$ contains $\theta_{0}$ with asymptotic probability $\alpha$.
+   \begin{theorem}
+    Suppose Assumptions 3.1 and 3.2 are satisfied. Then, if $\kappa > v + 1/2$ and $v > 1/2$, $\lim_{n \rightarrow \infty}\mathcal{P}_0\{\theta_0 \in \hat{\mathcal{C}}_{n}^{0}(\chi_{d_{g}}^{2}(\alpha))\} = \alpha$.
+   \end{theorem}
+
+   \textsc{Remark 4.5}. The feasible GAR-based confidence region $\hat{\mathcal{C}}_{n}^{0}(\chi_{d_{g}}^{2}(\alpha))$ (\ref{GAR.CR.F}) can be constructed by forming $\Theta_{n}$
+    (\ref{GAR.CR.discretn}) for some large $k_{n} > 0$ and $\kappa > 1$ where $v < \kappa - 1/2$. Under the relatively mild assumptions needed for Theorem 3.1, Theorem 4.1 establishes that $\hat{\mathcal{C}}_{n}^{0}(\chi_{d_{g}}^{2}(\alpha))$ includes $\theta_{0}$ asymptotically with probability $\alpha$ with little restriction on the form of $\Omega$ or \textit{a priori} knowledge of points of singularity.
+
+   \textsc{Remark 4.6}. The construction of the confidence set $\hat{\mathcal{C}}_{n}^{0}(\chi_{d_{g}}^{2}(\alpha))$ essentially ignores the information $P_{0}^{\prime}g(z,\theta_{0}) =
+    0$ w.p.1 associated with the singular moment variance matrix $\Omega$; see the discussion in Section 3.3. As noted in Remark 4.2, however, the Andrews and Guggenberger (2019) SR-GAR confidence region requires $\theta _{0} \in \Theta_{n}$ for correct asymptotic level if $\Omega$ is singular.
+
+% =================================================================================================================
+
+
+ \section{Conditions For $\mathcal{N}(\Omega) \subseteq \mathcal{N}(G^{\prime })$}
+
+  \setcounter{equation}{0}
+
+  \indent As noted above, $\Delta_{c} = \mathbb{R}^{d_{\theta }}$ when $\mathcal{N}(\Omega) \subseteq \mathcal{N}(G^{\prime})$, i.e., $P_{0}^{\prime}G\delta = 0$ for all $\delta \in \Delta_{b}$. Thus, $\hat{T}_{n}(\theta_{n}) \overset{d}{\rightarrow} \chi_{d_{g}}^{2}$ for all sequences $\theta_{n} \in \Theta_{n}^{0}(\delta)$, $\delta \in \Delta_{b}$, i.e., sequences $\theta_{n}$ such that $\hat{T}_{n}(\theta_{n})$ exists w.p.a.$1$.
+
+  In this section, the moment function $g(z,\theta )$ is defined via a residual $d_{\rho}$-dimensional vector $\rho(z,\theta)$ and the conditional moment restriction
+   \[
+    \mathbb{E}_{\mathcal{P}_{0}}[\rho(z,\theta)|x] = 0 \; \text{a.s.}(x).
+   \]
+
+  We distinguish between two types of moment function depending upon whether an initial estimation of $\mathbb{E}_{\mathcal{P}_{0}}[\partial \rho(z,\theta)/\partial \theta^{\prime}|x]$ is required.
+
+  Let $D(x,\theta) = \mathbb{E}_{\mathcal{P}_{0}}[\partial \rho(z,\theta)/\partial \theta^{\prime }|x]$ and $V(x,\theta) = \mathbb{E}_{\mathcal{P}_{0}}[\rho(z,\theta)\rho(z,\theta)^{\prime}|x]$. Then the optimal vector of instruments is $D(x,\theta)^{\prime}V(x,\theta)^{-1}\rho(z,\theta)$; see, e.g., Newey (1993).
+
+% =================================================================================================================
+
+  \subsection{Case A. $\mathbb{E}_{\mathcal{P}_{0}}[\partial \rho (z,\theta )/\partial \theta^{\prime}|x] = \partial \rho(\theta)/\partial \theta^{\prime}$ a.s.($x$)}
+
+   Since $\theta_{0}$ is unknown, the moment indicator vector is often formed in practice as
+    \[
+     g(z,\theta) = \frac{\partial \rho(\theta)^{\prime}}{\partial \theta} \rho(z,\theta),
+    \]
+  i.e., as if the conditional moment variance matrix $V(x,\theta_0)$ is the identity matrix $I_{d_{\rho}}$. Here, $d_{g} = d_{\theta}$. Hence, $G = (\partial \rho(\theta_{0})/\partial \theta^{\prime})^{\prime}(\partial \rho(\theta_{0})/\partial \theta^{\prime})$ and $\Omega = (\partial \rho(\theta_{0})/\partial \theta^{\prime})^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[\rho(z,\theta_{0})\rho(z,\theta_{0})^{\prime}](\partial \rho(\theta_{0})/\partial \theta^{\prime })$. If the unconditional variance matrix $\mathbb{E}_{\mathcal{P}_{0}}[\rho(z,\theta_{0})\rho(z,\theta_{0})^{\prime}]$ of the residual vector $\rho(z,\theta_{0})$ is non-singular then, for any $\beta \in \mathbb{R}^{d_{\theta}}$, $\Omega \beta = 0$ if and only if $(\partial \rho(\theta_{0})/\partial \theta^{\prime})\beta = 0$, i.e., $D(x,\theta_{0})\beta = 0$. Hence, $G^{\prime}\beta = 0$ if and only if $(\partial \rho(\theta_{0})/\partial \theta^{\prime})\beta = 0$. Therefore $\mathcal{N}(\Omega) = \mathcal{N}(G^{\prime})$.
+
+   \begin{proposition}
+    Let $g(z,\theta) = (\partial \rho(\theta)/\partial \theta^{\prime})\rho(z,\theta_{0})$. Then, if $\mathbb{E}_{\mathcal{P}_{0}}[\rho(z,\theta_{0})\rho(z,\theta_{0})^{\prime }]$ is non-singular, $\mathcal{N}(\Omega) = \mathcal{N}(G^{\prime})$.
+   \end{proposition}
+
+   \textsc{Remark 5.1}. More generally, if $\mathbb{E}_{\mathcal{P}_{0}}[\rho(z,\theta_{0})\rho(z,\theta_{0})^{\prime}]$ is singular, then $\mathcal{N}(G^{\prime}) \subseteq
+    \mathcal{N}(\Omega)$. Proposition 5.1 is applicable to the nonlinear IV simultaneous equation model.
+
+% =================================================================================================================
+
+  \subsection{Case B. $\mathbb{E}_{\mathcal{P}_{0}}[\partial \rho (z,\theta )/\partial \theta^{\prime}|x] \neq \partial \rho(\theta)/\partial \theta^{\prime}$ a.s.($x$)}
+
+   When the condition $\mathbb{E}_{\mathcal{P}_{0}}[\partial \rho(z,\theta)/\partial \theta^{\prime}|x] = \partial \rho(\theta)/\partial \theta^{\prime}$ a.s.($x$) fails to hold, it often the case in practice that the unconditional moment vector $g(z,\theta)$ is constructed using a $d_{\psi}$-vector of functions $\psi(x) = (\psi_{1}(x),...,\psi_{d_{\psi}}(x))^{\prime}$ of the instruments $x$, i.e.,
+    \[
+     g(z,\theta) = \rho(z,\theta) \otimes \psi(x);
+    \]
+   cf. \textit{inter alia} \cite{jorgenson1974}. Here, $d_{g} = d_{\rho}d_{\psi}$. Hence, $G = \mathbb{E}_{\mathcal{P}_{0}}[\mathbb{E}_{\mathcal{P}_{0}}[\partial \rho(z,\theta_{0})/\partial \theta^{\prime}|x] \otimes \psi(x)]$ and $\Omega = \mathbb{E}_{\mathcal{P}_{0}}[\mathbb{E}_{\mathcal{P}_{0}}[\rho(z,\theta_{0})\rho(z,\theta_{0})^{\prime}|x] \otimes \psi(x)\psi(x)^{\prime}]$. We assume that $\psi(x)$ does not include any linearly redundant components, i.e., $\mathbb{E}_{\mathcal{P}_{0}}[\psi(x)\psi (x)^{\prime}]$ is non-singular. Hence, $\Omega$ is singular only if $\mathbb{E}_{\mathcal{P}_{0}}[\rho(z,\theta_{0})\rho(z,\theta_{0})^{\prime}|x]$ has deficient rank a.s.($x$).
+
+   Define $\delta = (\delta_1^{\prime},\ldots,\delta_{d_{\rho}}^{\prime})^{\prime}$ where $\delta_j \in \mathbb{R}^{d_{\psi}}$, $(j=1,\ldots,d_{\psi})$.
+    \begin{proposition}
+     Let $g(z,\theta) = \rho(z,\theta) \otimes \psi(x)$. Then, if $\mathbb{E}_{\mathcal{P}_{0}}[\psi(x)\psi(x)^{\prime}]$ is non-singular, $\mathcal{N}(\Omega) \subseteq \mathcal{N}(G^{\prime})$ if and only if $G^{\prime}\delta = 0$ for all $\delta \in \mathbb{R}^{d_g}$ such that $(I_{d_\rho} \otimes \psi(x)^{\prime})\delta \in \mathcal{N}(\mathbb{E}_{\mathcal{P}_{0}}[\rho(z,\theta_{0})\rho(z,\theta_{0})^{\prime}|x] \otimes I_{d_\psi})$ a.s.($x$).
+    \end{proposition}
+
+    \textsc{Remark 5.2}. If the residual function $\rho(z,\theta)$ is conditionally homoskedastic a.s.($x$), i.e.,
+     $\mathbb{E}_{\mathcal{P}_{0}}[\rho(z,\theta_{0})\rho(z,\theta_{0})^{\prime}|x] = \mathbb{E}_{\mathcal{P}_{0}}[\rho(z,\theta_{0})\rho(z,\theta_{0})^{\prime}]$, then $\mathrm{rk}(\Omega) = r_{\rho}d_{\psi}$ where $r_{\rho} = \mathrm{rk}(\mathbb{E}_{\mathcal{P}_{0}}[\rho(z,\theta_{0})\rho (z,\theta_{0})^{\prime}])$.
+
+
+
+ \section{Simulation Evidence}
+
+  \setcounter{equation}{0}
+
+% =================================================================================================================
+
+  \subsection{Preliminaries}
+
+   \indent Consider the bivariate linear IV regression model, cf. Example E.1 in Supplement E,
+    \begin{equation*}
+     y_{j} = \theta_{0j}x_{j} + \varepsilon_{j}, \; (j=1,2),
+    \end{equation*}
+   where $x_{j} = \pi w_{1} + \eta_{j}$, $(j=1,2)$, and $w =(w_{1},w_{2})^{\prime}$ denotes the vector of instruments.
+
+   In all cases, the true value of the parameter vector $\theta_{0}$ is given by $\theta_{01} = 1.0$, $\theta_{02} = 0.5$ and the instruments $w_{j}$, $(j=1,2)$, are independent standard normal variates.
+
+   Since $\pi_{1} = \pi_{2} = \pi$, it follows from Example E.1 that $P_0^{\prime}G\delta = - \pi (\delta_1 - \delta_2)/\sqrt{2}$. We consider  $\theta_{n} = \theta_0 + n^{-1}\delta_n$ where $\delta_n = (\delta_{1n},\delta_{2n})^{\prime}$; cf. (\ref{cap.theta.n.0}). By Theorem 3.2, in the common shock case of Example E.1, i.e., $\varepsilon_{1} = \varepsilon_{2}$, $\hat{T}(\theta_n)/n \rightarrow \delta^{\prime}G^{\prime}P_0 \Phi(\delta)^{-1} P_0^{\prime}G\delta \propto \frac{\pi^2}{2} (\delta_1 - \delta_2)^2$; here $\lim_{n \rightarrow \infty}\delta_{1n} - \delta_{2n} = \delta_1 - \delta_2$.
+
+% =================================================================================================================
+
+  \subsection{Design}
+
+   The structural innovations $\varepsilon_1, \ \varepsilon_2$ are described by
+    \begin{eqnarray*}
+     \varepsilon_{1} & = & \sqrt{\frac{1+\rho}{2}}\upsilon_1 + \sqrt{\frac{1-\rho}{2}}\upsilon_2 \\
+     \varepsilon_{2} & = & \sqrt{\frac{1+\rho}{2}}\upsilon_1 - \sqrt{\frac{1-\rho}{2}}\upsilon_2.
+    \end{eqnarray*}
+   and $(\upsilon_1,\upsilon_2,\eta_1,\eta_2)^{\prime}$ is distributed conditional on $w$ as $N(0,\Xi)$ where
+    \begin{equation*}
+      \Xi = \left(
+             \begin{array}{cccc}
+              1.0 & 0.0 & 0.3 & 0.0 \\
+              0.0 & 1.0 & 0.5 & 0.0 \\
+              0.3 & 0.0 & 1.0 & 0.0 \\
+              0.0 & 0.5 & 0.0 & 1.0
+             \end{array}
+            \right)
+    \end{equation*}
+
+   For sequences $\theta_n$, we set $\delta_{1n} = \delta_1 = 1$ and $\delta_{2n} = 1 + \epsilon_n$ where $\epsilon_n = 10\exp(0.15j)/\exp(0.15J_n)$, $j \in \{0,\cdots,J_n\}$, $J_n \in \{90,100,110,115\}$ corresponding to $n=100$, $500$, $1000$ and $5000$ respectively. This specification allows for sequences $\theta_n$ such that $\delta_{2n}$ deviates from $\delta_{1n}$ by $\epsilon_n$ ranging from $10/\exp(-0.15J_n)$ to 10 with smaller increments for larger sample sizes. For any such $\theta_n$, the minimum of $\delta_{2} - \delta_1$, i.e., the limit of $\delta_{1n} - \delta_{2n}$, is $9$. This set of sequences $\theta_n$ includes $\epsilon_n = o(n^{-1/2})$. Hence, some sequences $\theta_n \in \Theta_n^{0}(\Delta_b \cap \Delta_c)$ are also covered so that the limiting distribution of $\hat{T}(\theta_n)$ is $\chi_3^2$ by Theorem 3.1; see Section 3.1.
+
+   Sample sizes $n = 100$, $500$, $1000$ and $5000$ are examined. All results are based on $1,000$ random draws.
+
+% =================================================================================================================
+
+  \subsection{Results}
+		
+   Figure 1 plots $\mathcal{P}_0\{\hat{\mathcal{C}}_{n}^{0}(\chi_{d_{g}}^{2}(0.90)\}$ (\ref{GAR.CR.F}) against $\delta_{2n} - \delta_{1n}$ on a logarithmic scale.
+
+   It is immediately apparent that, for all sample sizes $n$, sequences $\delta_{2n} - \delta_{1n}$, $\rho$ and $\pi$, the coverage $\mathcal{P}_0\{\theta_0 \in \hat{\mathcal{C}}_{n}^{0}(\chi_{d_{g}}^{2}(0.90)\}$ is approximately $0.1$ for $\delta_{2n} - \delta_{1n}$ close to zero, i.e., those sequences $\{\theta_n\}$ satisfying Theorem 3.1. Overall, test size is increasing in $\rho$ and $\pi$ with size approaching $0.1$ for $\rho < 1.0$ and at a faster rate as $n$ increases the further $\rho$ is from $1.0$. When $\rho = 1.0$, test size quickly approaches $1.0$ as $n$ increases with $\delta_{2n} - \delta_{1n}$ bounded away from zero. The GAR statistic $\hat{T}(\theta_n)$ is oversized for those sequences $\delta_{2n} - \delta_{1n} \rightarrow 9$ as $\pi$ increases even if $\rho = 0.9$ when $\Omega$ is non-singular.
+		
+   Note that the sequences $\theta_n$ are all $O(n^{-1})$ perturbations to $\theta_0$. Figure 1 shows that the coverage $\mathcal{P}_0\{\theta_0 \in \hat{\mathcal{C}}_{n}^{0}(\chi_{d_{g}}^{2}(0.90)\}$  can be highly sensitive to very small perturbations to $\theta_0$, being oversized for moment indicator functions with some elements with correlation at most $0.9$. Figure 1 also highlights the necessity for $\Theta_n$ to be discretized sufficiently finely in order that, for asymptotically correct size, the feasible confidence region contains sequences $\theta_n$ converging to $\theta_0$; see Section 3.		
+	
+	 \begin{figure}
+	  \vspace{-1.2cm}
+      \centering
+	  \begin{minipage}[t]{0.8\textwidth}
+	   \fbox{\includegraphics[width=12cm, height=6cm]{N100GAR1.eps}}
+		\vspace{-1cm} \label{fig:immediate}
+	  \end{minipage}
+
+	  \hspace{6.5cm}
+
+	  \begin{minipage}[t]{0.8\textwidth}
+	   \fbox{\includegraphics[width=12cm, height=6cm]{N500GAR1.eps}}
+	    \label{fig:proximal}
+	  \end{minipage}
+				
+	  \vspace*{0.35cm} % (or whatever vertical separation you prefer)
+	  \begin{minipage}[t]{0.8\textwidth}
+	   \fbox{\includegraphics[width=12cm, height=6cm]{N1000GAR1.eps}}					
+	   \label{fig:immediate}
+	  \end{minipage}
+
+	  \hspace{6.5cm}
+
+	  \begin{minipage}[t]{0.8\textwidth}
+	   \fbox{\includegraphics[width=12cm, height=6cm]{N5000GAR1.eps}}					
+	  \end{minipage}
+
+	  \caption{GAR rejection probabilities plotted against $\delta_{2n} - \delta_{1n}$ for $n = 100$, $500$, $1000$, $5000$.}
+	  \label{gar2}
+	 \end{figure}
+
+% =================================================================================================================
+
+
+ \section{Summary and Conclusions}\label{sec:conclusions}
+
+  This paper derives the asymptotic properties of GAR-based confidence regions in the presence of a singular moment variance matrix. To do so, the inverse of the sample moment variance matrix $\hat{\Omega}_n(\theta)$ is expanded around points of singularity of $\Omega$ using a Laurent series expansion. This approach is new in the literature and does not presuppose the form of singularity of the moment variance matrix is known. The main results of this paper allow both the expected Jacobian $G$ and moment variance matrix $\Omega$ to have arbitrary rank and form and provide a direct extension to those for the GAR statistic with nonsingular $\Omega$ in Stock and Wright (2000).
+
+  We devote attention to first order moment singularity. This is a sufficient condition that enables the Laurent series expansion to be established, which is a key step in showing that the GAR statistic exists asymptotically on a set of parameter sequences converging to the true parameter value $\theta_0$. We show that a sufficient condition for the GAR statistic to converge in distribution to a $\chi_{d_g}^{2}$ variate on all such sequences is that the null space of the moment variance matrix $\Omega$ is a subset of that of the transposed expected Jacobian matrix $G^{\prime}$. In the absence of this condition, the GAR statistic may be asymptotically unbounded on a subset of such sequences.
+
+  On the basis of these results, the paper details how to discretise appropriately the parameter space over which the non-rejection region of a GAR-based test is inverted to guarantee that parameter sequences for which the GAR statistic is asymptotically chi-square distributed are covered. A feasible GAR-based confidence region contains the value $\theta_0$ with correct asymptotic size under relatively mild assumptions and requires no knowledge of points of singularity. Furthermore, GAR-based inference does not require any regularization or pre-testing, and so is less computationally burdensome than a regularization approach. Supplement E provides a number of examples of moment functions with singular variance matrix. A simulation study illustrates the results of this paper. Additional simulation evidence is provided in Supplement S.
+
+  Useful extensions of the results in this paper would be to the many weak moments case considered in Newey and Windmeijer (2009) and to accommodate subvector inference. Another avenue for future research is the extension of the results on generalised empirical likelihood based inference with weak identification of Guggenberger and Smith (2005),  Guggenberger and Smith (2008), and Guggenberger, Ramalho and Smith (2012) to allow for a singular moment variance matrix.
+
+% =================================================================================================================
+
+
+ \renewcommand{\thesection}{}
+
+ \section{\textsc{Appendix}}
+
+  The following auxiliary lemmas are established under Assumptions 3.1 and 3.2 and are used in the proofs of Theorems 3.1, 3.2 and 4.1 in Appendix B. Lemmas A.1 and A.2 are used to show Lemma A.3, which expands $\hat{\Omega}_n(\theta_n)^{-1}$ and  $\tilde{\Omega}_n(\theta_n)^{-1}$ around points of singularity by a Laurent series expansions for sequences $\theta_n \in \Theta_n^{0}(\Delta_b)$, a key step in proving Theorem 3.1.
+
+  The argument $\theta$ is suppressed for expositional simplicity throughout the Appendices where there is no possibility of confusion.
+
+  Throughout the Appendices, $C$ will denote a generic positive constant that may be different in different uses with CS, M and T the Cauchy-Schwartz, Markov and triangle inequalities respectively. In addition UWL and CLT refer to, respectively, a uniform weak law of large numbers and a central limit theorem for i.i.d. random variables.
+
+ \renewcommand{\thesection}{}
+
+ \section{\textsc{Appendix A: Auxiliary Lemmas}}
+
+  \setcounter{equation}{0}
+  \renewcommand{\theequation}{A.\arabic{equation}}
+  \renewcommand{\thesection}{A}
+  \renewcommand{\thelemma}{A.\arabic{lemma}}
+
+   \begin{lemma}
+    Under Assumption 3.1, then for any $\theta_{n} \in \Theta_{n}^{0}(\delta)$ for all $\delta \in \mathbb{R}^{d_{\theta}}$
+     \textbf{(a)} $n^{2\varepsilon }P_{0}^{\prime}\hat{\Omega}_{n}(\theta_{n})P_{0} \overset{p}{\rightarrow} P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta
+      \delta^{\prime}G_{i}^{\prime}]P_{0}$;
+     \textbf{(b)} $n^{2\varepsilon }P_{0}^{\prime}\tilde{\Omega}_{n}(\theta_{n})P_{0} \overset{p}{\rightarrow} P_{0}^{\prime}(\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta
+      \delta^{\prime}G_{i}^{\prime}] - G\delta \delta^{\prime}G^{\prime})P_{0}$.
+   \end{lemma}
+
+  \textsc{Proof}. \textbf{(a)}. By the mean value theorem
+   \[
+    g_{i}(\theta _{n})=g_{i}+n^{-\varepsilon }G_{i}(\theta _{n}^{\ast })\delta_{n}
+   \]
+  where $\theta_{n}^{\ast}$ is on the line segment joining $\theta_{n}$ and $\theta_{0}$. Hence
+   \[
+    \hat{\Omega}_{n}(\theta _{n}) = \hat{\Omega}_{n}
+                                     + \frac{1}{n^{1+2\varepsilon }}
+                                       \sum_{i=1}^{n}
+                                       G_{i}(\theta_{n}^{\ast})\delta _{n} \delta _{n}^{\prime}G_{i}(\theta _{n}^{\ast })^{\prime}
+                                     + \frac{1}{n^{1+\varepsilon}}
+                                       \sum_{i=1}^{n}
+                                       G_{i}(\theta_{n}^{\ast})\delta_{n}g_{i}^{\prime}
+                                     + \frac{1}{n^{1+\varepsilon}}
+                                       \sum_{i=1}^{n}
+                                       g_{i}\delta_{n}^{\prime}G_{i}(\theta_{n}^{\ast})^{\prime}.
+   \]
+
+  Since $P_{0}^{\prime}g_{i} = 0$ w.p.$1$
+   \[
+    n^{2\varepsilon}P_{0}^{\prime}\hat{\Omega}_{n}(\theta_{n})P_{0} = \frac{1}{n}
+                                                                      \sum_{i=1}^{n}
+                                                                      P_{0}^{\prime}G_{i}(\theta_{n}^{\ast})\delta_{n} \delta_{n}^{\prime}G_{i}(\theta_{n}^{\ast})^{\prime}P_{0}.
+   \]
+  Now
+   \[
+    \frac{1}{n}
+    \sum_{i=1}^{n}
+    G_{i}(\theta_{n}^{\ast})\delta_{n} \delta_{n}^{\prime}G_{i}(\theta_{n}^{\ast})^{\prime}
+    =
+    \frac{1}{n}
+    \sum_{i=1}^{n}
+    G_{i}\delta \delta^{\prime}G_{i}^{\prime}
+    +
+    R_{n}.
+   \]
+  where $R_{n} = \sum_{k=1}^{4} R_{kn}$ and
+   \begin{eqnarray*}
+    R_{1n} & = & \frac{1}{n}
+                 \sum_{i=1}^{n}
+                 (G_{i}(\theta_{n}^{\ast}) - G_{i})\delta _{n} \delta_{n}^{\prime}(G_{i}(\theta_{n}^{\ast}) - G_{i})^{\prime}, \\
+    R_{2n} & = & \frac{1}{n}
+                 \sum_{i=1}^{n}
+                 (G_{i}(\theta_{n}^{\ast}) - G_{i})\delta_{n} \delta _{n}^{\prime}G_{i}^{\prime} = R_{3n}^{\prime}, \\
+    R_{4n} & = & \frac{1}{n}
+                 \sum_{i=1}^{n}
+                 G_{i}(\delta _{n}\delta _{n}^{\prime} - \delta \delta^{\prime})G_{i}^{\prime}.
+   \end{eqnarray*}
+  By T and Assumption 3.1(d),
+   \begin{eqnarray*}
+    \|R_{1n}\| & \leq & \|\delta_{n}\|^{2} \frac{1}{n} \sum_{i=1}^{n} \|G_{i}(\theta_{n}^{\ast}) - G_{i}\|^{2} \\
+               & \leq & \|\delta_{n}\|^{2} O_{p}(1)\|\theta_{n} - \theta_{0}\|^{2} = O_{p}(n^{-2\varepsilon}) = o_{p}(1).
+   \end{eqnarray*}
+  Similarly, by CS and UWL,
+   \begin{eqnarray*}
+    \|R_{2n}\| & \leq & \|\delta_{n}\|^{2} \frac{1}{n} \sum_{i=1}^{n} \|G_{i}(\theta_{n}^{\ast}) - G_{i}\| \|G_{i}\| \\
+               & \leq & \|\delta_{n}\|^{2} (\frac{1}{n} \sum_{i=1}^{n} \|G_{i}(\theta_{n}^{\ast}) - G_{i}\|^{2})^{1/2}
+                         (\frac{1}{n} \sum_{i=1}^{n} \|G_{i}\|^{2})^{1/2} = O_{p}(n^{-\varepsilon}) = o_{p}(1).
+   \end{eqnarray*}%
+  Finally,
+   \begin{eqnarray*}
+    \|R_{4n}\| & \leq & \|\delta_{n}\delta_{n}^{\prime} - \delta\delta^{\prime}\| \frac{1}{n} \sum_{i=1}^{n} \|G_{i}\|^{2} \\
+               & \leq & O_{p}(n^{-1/2})O_{p}(1) = o_{p}(1).
+   \end{eqnarray*}
+
+  Therefore,
+   \[
+    n^{2\varepsilon }P_{0}^{\prime }\hat{\Omega}_{n}(\theta _{n})P_{0} = \frac{1}{n} \sum_{i=1}^{n} P_{0}^{\prime}G_{i}\delta \delta^{\prime}G_{i}^{\prime}P_{0} + o_{p}(1)
+   \]
+  and the conclusion follows, noting $\mathbb{E}_{\mathcal{P}_{0}}[\|G_{i}\delta \delta^{\prime }G_{i}^{\prime}\|] \leq \|\delta\|^{2} \mathbb{E}_{\mathcal{P}_{0}}[\|G_{i}\|^{2}] < \infty$.
+
+  \textbf{(b)}. Recall $\tilde{\Omega}_{n}(\theta_{n}) = \hat{\Omega}_{n}(\theta_{n}) - \hat{g}_{n}(\theta_{n})\hat{g}_{n}(\theta_{n})^{\prime}$. From part (a)
+   \[
+    n^{\varepsilon}P_{0}^{\prime}\hat{g}_{n}(\theta_{n}) = \frac{1}{n} \sum_{i=1}^{n}
+                                                            P_{0}^{\prime}G_{i}(\theta_{n}^{\ast})\delta _{n}.
+   \]
+  Now
+   \[
+    \frac{1}{n} \sum_{i=1}^{n} G_{i}(\theta_{n}^{\ast})\delta_{n} = \frac{1}{n} \sum_{i=1}^{n} G_{i}\delta + R_{n}.
+   \]
+  where $R_{n} = \sum_{k=1}^{2} R_{kn}$ and
+   \begin{eqnarray*}
+    R_{1n} & = & \frac{1}{n} \sum_{i=1}^{n} (G_{i}(\theta_{n}^{\ast}) - G_{i})\delta_{n}, \\
+    R_{2n} & = & \frac{1}{n} \sum_{i=1}^{n} G_{i} (\delta_{n} - \delta ).
+   \end{eqnarray*}%
+  By similar arguments to those in part (a) $\|R_{1n}\| \leq O_{p}(n^{-\varepsilon })$ and $\|R_{2n}\| \leq O_{p}(n^{-1/2})$. Hence, by UWL, $n^{\varepsilon}P_{0}^{\prime}\hat{g}_{n}(\theta_{n}) \overset{p}{\rightarrow } P_{0}^{\prime}G\delta$ and the conclusion follows.$\blacksquare $
+
+  \begin{lemma}
+   Under Assumption 3.1, then for any $\theta_{n} \in \Theta_{n}^{0}(\delta)$ for all $\delta \in \mathbb{R}^{d_{\theta}}$
+    \textbf{(a)} $n^{\varepsilon }P_{0}^{\prime}\hat{\Omega}_{n}(\theta_{n}) \overset{p}{\rightarrow} P_{0}^{\prime} \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]$;
+    \textbf{(b)} $n^{\varepsilon }P_{0}^{\prime}\tilde{\Omega}_{n}(\theta_{n}) \overset{p}{\rightarrow} P_{0}^{\prime} \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]$.
+  \end{lemma}
+
+  \textsc{Proof}. \textbf{(a)}. From the Proof of Lemma A.1(a), by the mean value theorem and since $P_{0}^{\prime}g_{i} = 0$ w.p.$1$
+   \[
+    n^{\varepsilon }P_{0}^{\prime}\hat{\Omega}_{n}(\theta_{n}) = \frac{1}{n} \sum_{i=1}^{n} P_{0}^{\prime}G_{i}(\theta_{n}^{\ast})\delta_{n}
+                                                                 \delta_{n}^{\prime}G_{i}(\theta_{n}^{\ast})^{\prime}
+                                                                 + \frac{1}{n} \sum_{i=1}^{n} P_{0}^{\prime}G_{i}(\theta_{n}^{\ast})\delta_{n}g_{i}^{\prime}.
+   \]%
+  where $\theta_{n}^{\ast}$ is on the line segment joining $\theta_{n}$ and $\theta_{0}$. Recall
+   \[
+    \frac{1}{n} \sum_{i=1}^{n} G_{i}(\theta_{n}^{\ast})\delta_{n} \delta_{n}^{\prime}G_{i}(\theta_{n}^{\ast})^{\prime} \overset{p}{\rightarrow} \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}].
+   \]
+  Similarly to the Proof of Lemma A.1(b)
+   \[
+    \frac{1}{n} \sum_{i=1}^{n} G_{i}(\theta_{n}^{\ast})\delta_{n}g_{i}^{\prime} = \frac{1}{n} \sum_{i=1}^{n} G_{i}\delta g_{i}^{\prime} + R_{n}.
+   \]
+  where $R_{n} = \sum_{k=1}^{2}R_{kn}$ and
+   \begin{eqnarray*}
+    R_{1n} & = & \frac{1}{n} \sum_{i=1}^{n} (G_{i}(\theta _{n}^{\ast}) - G_{i})\delta_{n}g_{i}^{\prime}, \\
+    R_{2n} & = & \frac{1}{n} \sum_{i=1}^{n} G_{i}(\delta _{n} - \delta)g_{i}^{\prime}.
+   \end{eqnarray*}%
+  By similar arguments to those in the Proof of Lemma A.1
+   \begin{eqnarray*}
+    \|R_{1n}\| & \leq & \|\delta_{n}\| \frac{1}{n} \sum_{i=1}^{n} \|G_{i}(\theta_{n}^{\ast}) - G_{i}\| \|g_{i}\| \\
+               & \leq & \|\delta_{n}\| (\frac{1}{n} \sum_{i=1}^{n} \|G_{i}(\theta_{n}^{\ast}) - G_{i}\|^{2})^{1/2}
+                        (\frac{1}{n} \sum_{i=1}^{n} \|g_{i}\|^{2})^{1/2} = O_{p}(n^{-\varepsilon}) = o_{p}(1)
+   \end{eqnarray*}%
+  and
+   \begin{eqnarray*}
+    \|R_{2n}\| & \leq & \|\delta_{n} - \delta\| \frac{1}{n} \sum_{i=1}^{n} \|G_{i}\| \|g_{i}\| \\
+               & \leq & O(n^{-1/2}) (\frac{1}{n} \sum_{i=1}^{n} \|G_{i}\|^{2})^{1/2} (\frac{1}{n} \sum_{i=1}^{n} \|g_{i}\|^{2})^{1/2} = O_{p}(n^{-1/2}) = o_{p}(1).
+   \end{eqnarray*}%
+  Hence, by UWL, $n^{\varepsilon}P_{0}^{\prime}\hat{\Omega}_{n}(\theta _{n}) \overset{p}{\rightarrow} P_{0}^{\prime} \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]$ giving the conclusion. \\
+
+  \textbf{(b)}. Follows immediately from part (a) as $n^{\varepsilon}P_{0}^{\prime}\hat{g}_{n}(\theta_{n}) \overset{p}{\rightarrow} P_{0}^{\prime}G\delta$ from the Proof of Lemma A.1(b) and $\hat{g}_{n}(\theta_{n}) = o_{p}(1)$ by UWL.$\blacksquare$ \\
+
+  Central to the Proof of Lemma A.3 is a Laurent series expansion for $\hat{\Omega}_{n}(\theta_{n})$ that relies on Avrachenkov et al. (2013, Theorems 2.10 and 2.11, pp.22-25). Let $A$, $B$ be $m \times m$ matrices where $\textrm{rk}(A) = r_{A} < m$ and $B = O_{p}(1)$. Let $A(z) = A + zB$, $z \in \mathbb{R}$. Then, for all $z \rightarrow 0$, if $A(z)^{-1}$ exists in a neighbourhood of $z = 0$ and $B$ satisfies $\det(V_{0}^{\prime}BV_{0}) \neq 0$ w.p.a.1 where $V_{0}$ is a $m \times (m - r_{A})$ matrix such that $AV_{0} = 0$ w.p.a.1,
+   \[
+    A(z)^{-1} = \frac{1}{z} V_{0}(V_{0}^{\prime}BV_{0})^{-1}V_{0}^{\prime}
+                 + M_{V_{0}}(B)A^{-} \sum_{j=0}^{\infty} (-M_{V_{0}}(B)(zB)M_{V_{0}}(B)^{\prime}A^{-})^{j}M_{V_{0}}(B)^{\prime},
+   \]
+  where $A^{-}$ is the Moore-Penrose generalized inverse of $A$.
+
+  Let $\partial \hat{\Omega}_{n} = \hat{\Omega}_{n}(\theta _{n}) - \Omega $. Recall $M_{P_{0}}(\partial \hat{\Omega}_{n}) = I_{d_{g}} - P_{0}(P_{0}^{\prime} \partial \hat{\Omega}_{n}P_{0})^{-1} P_{0}^{\prime} \partial \hat{\Omega}_{n}$.
+
+   \begin{lemma}
+    Let Assumptions 3.1, 3.2(a) and (b) be satisfied. Then, if $\bar{r}_{\Omega} > 0$, for all sequences $\theta_{n} \in \Theta_{n}^{0}(\Delta_{b})$, apart from an $o_{p}(\|M_{P_{0}} (\partial \hat{\Omega}_{n})\|^{2})$ term, \\ \textbf{(a)}
+     \begin{eqnarray*}
+      \hat{\Omega}_{n}(\theta_{n})^{-1} & = & P_{0}(P_{0}^{\prime} \partial \hat{\Omega}_{n}P_{0})^{-1} P_{0}^{\prime} \\
+                                        &   & + M_{P_{0}}(\partial \hat{\Omega}_{n})\Omega^{-}(\Omega + 
+                                               \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]
+                                               P_{0}\Sigma(\delta)^{-1}P_{0}^{\prime} \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]) \Omega ^{-}M_{P_{0}}(\partial \hat{\Omega}_{n})^{\prime}
+     \end{eqnarray*}
+     where $\Sigma(\delta) = P_{0}^{\prime} (\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime }]
+     - \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime }] \Omega^{-} \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}])P_{0}$; \\
+    \textbf{(b)}
+     \begin{eqnarray*}
+      \tilde{\Omega}_{n}(\theta_{n})^{-1} & = & P_{0}(P_{0}^{\prime }\partial \tilde{\Omega}_{n}P_{0})^{-1}P_{0}^{\prime} \\
+                                          &   & + M_{P_{0}}(\partial \tilde{\Omega}_{n}) \Omega^{-}
+                                                 (\Omega + \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]
+                                                   P_{0}\tilde{\Sigma}(\delta)^{-1}P_{0}^{\prime}
+                                                   \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}])
+                                                  \Omega^{-}M_{P_{0}}(\partial \tilde{\Omega}_{n})^{\prime}
+     \end{eqnarray*}
+     where $\tilde{\Sigma}(\delta) = P_{0}^{\prime}(\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}] - G\delta \delta^{\prime}G^{\prime} - \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]\Omega^{-}\mathbb{E}_{P_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}])P_{0}$.
+   \end{lemma}
+
+  \textsc{Proof}. \textbf{(a)}. Set $z = n^{-2\varepsilon}$, $A = \Omega$, $B = n^{2\varepsilon} \partial \hat{\Omega}_{n}$, $V_{0} = P_{0}$ and, thus, $A(z) = \hat{\Omega}_{n}(\theta _{n})$. Now,
+   using Lemma A.1(a),
+    \[
+     V_{0}^{\prime}BV_{0} = n^{2\varepsilon}P_{0}^{\prime} \partial \hat{\Omega}_{n}P_{0}
+                             \overset{p}{\rightarrow}
+                             P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}]P_{0}
+    \]
+   with $P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}]P_{0}$ full rank under Assumption 3.2(b). Hence, $\mathrm{rk}(n^{2\varepsilon}P_{0}^{\prime} \partial \hat{\Omega}_{n}P_{0}) = \bar{r}_{\Omega}$ w.p.a.$1$. Therefore, with these definitions, $\hat{\Omega}_{n}(\theta_{n})$ satisfies the hypotheses of Avrachenkov et al. (2013, Theorems 2.10 and 2.11, pp.22-25) and, thereby, noting $zB = \partial \hat{\Omega}_{n}$, admits the Laurent series expansion
+    \[
+     \hat{\Omega}_{n}(\theta _{n})^{-1} = P_{0}(P_{0}^{\prime} \partial \hat{\Omega}_{n}P_{0})^{-1}P_{0}^{\prime}
+                                           + M_{P_{0}}(\partial \hat{\Omega}_{n})\Omega^{-}
+                                             \sum_{j=0}^{\infty}
+                                             (-M_{P_{0}}(\partial \hat{\Omega}_{n}) \partial \hat{\Omega}_{n}M_{P_{0}} (\partial \hat{\Omega}_{n})^{\prime}\Omega^{-})^{j}
+                                             M_{P_{0}}(\partial \hat{\Omega}_{n})^{\prime}
+    \]
+   for all sequences $\theta_{n} \in \Theta_{n}^{0}(\Delta_{b})$.
+
+   Consider
+    \begin{eqnarray*}
+     M_{P_{0}}(\partial \hat{\Omega}_{n}) \partial \hat{\Omega}_{n}M_{P_{0}}(\partial \hat{\Omega}_{n})^{\prime }\Omega ^{-}
+      & = & (\partial \hat{\Omega}_{n} - \partial \hat{\Omega}_{n}P_{0}(P_{0}^{\prime} \partial \hat{\Omega}_{n}P_{0})^{-1}P_{0}^{\prime} \partial \hat{\Omega}_{n})\Omega ^{-} \\
+      & = & (\partial \hat{\Omega}_{n} - \hat{\Omega}_{n}(\theta_{n})P_{0}(P_{0}^{\prime}\hat{\Omega}_{n}(\theta_{n})P_{0})^{-1}P_{0}^{\prime}\hat{\Omega}_{n}(\theta_{n}))\Omega ^{-}.
+    \end{eqnarray*}
+   By Lemmas A.1(a) and A.2(a), since $P_{0}^{\prime} \partial \hat{\Omega}_{n}P_{0}$ is non-singular w.p.a.$1$,
+    \[
+     n^{\varepsilon}\hat{\Omega}_{n}(\theta _{n})P_{0}(n^{2\varepsilon}P_{0}^{\prime}\hat{\Omega}_{n}(\theta _{n})P_{0})^{-1}n^{\varepsilon}P_{0}^{\prime}\hat{\Omega}_{n}(\theta _{n})
+      \overset{p}{\rightarrow}
+       \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]P_{0}(P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}]P_{0})^{-1}P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}].
+    \]
+   By T, $\|\partial \hat{\Omega}_{n}\| \leq \|\hat{\Omega}_{n}(\theta_{n}) - \hat{\Omega}_{n}\| + \|\hat{\Omega}_{n} - \Omega\| = o_{p}(1)$, using Assumption 3.1(d) and by UWL. Hence, noting $\Omega^{-} = O_{p}(1)$,
+    \[
+     M_{P_{0}}(\partial \hat{\Omega}_{n}) \partial \hat{\Omega}_{n}M_{P_{0}}(\partial \hat{\Omega}_{n})^{\prime}\Omega ^{-}
+      \overset{p} {\rightarrow}
+      - \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]P_{0}
+        (P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}]P_{0})^{-1}
+         P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]\Omega ^{-}.
+    \]
+
+   Let $X = \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]P_{0}$ and $V = P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}]P_{0}$. Rewrite
+    \begin{eqnarray*}
+     \Omega^{-} \sum_{j=0}^{\infty} (- M_{P_{0}}(\partial \hat{\Omega}_{n}) \partial \hat{\Omega}_{n}M_{P_{0}}(\partial \hat{\Omega}_{n})^{\prime}\Omega ^{-})^{j}
+      & = & \Omega^{-} \sum_{j=0}^{\infty} (XV^{-1}X^{\prime}\Omega^{-} + o_{p}(1))^{j} \\
+      & = & \Omega^{-} + \Omega^{-}X(V^{-1} \sum_{j=0}^{\infty} (X^{\prime}\Omega^{-}XV^{-1} + o_{p}(1))^{j})X^{\prime}\Omega ^{-}.
+    \end{eqnarray*}
+   Repeated use of the Sherman-Morrison-Woodbury formula, see Horn and Johnson (2013, p.19), yields
+    \[
+     V^{-1} \sum_{j=0}^{\infty} (X^{\prime}\Omega^{-}XV^{-1})^{j} = (V - X^{\prime}\Omega^{-}X)^{-1} = \Sigma^{-1}
+    \]
+   since $\Sigma = V - X\Omega^{-}X^{\prime}$ is full rank by Assumption 3.2(b).
+
+   Therefore, apart from an $o_{p}(\|M_{P_{0}}(\partial \hat{\Omega}_{n})\|^{2})$ term,
+    \[
+     \hat{\Omega}_{n}(\theta _{n})^{-1} = P_{0}(P_{0}^{\prime}\partial \hat{\Omega}_{n}P_{0})^{-1}P_{0}^{\prime}
+                                           + M_{P_{0}}(\partial \hat{\Omega}_{n})\Omega^{-}
+                                            (\Omega + X^{\prime}\Sigma^{-1}X)\Omega^{-}M_{P_{0}}(\partial \hat{\Omega}_{n})^{\prime}
+    \]
+   for all sequences $\theta_{n} \in \Theta_{n}^{0}(\Delta_{b})$. \\
+
+   \textbf{(b)}. Let $\partial \tilde{\Omega}_{n} = \tilde{\Omega}_{n}(\theta_{n}) - \Omega$. Recall $M_{P_{0}}(\partial
+    \tilde{\Omega}_{n}) = I_{d_{g}} - P_{0}(P_{0}^{\prime}\partial \tilde{\Omega}_{n}P_{0})^{-1} P_{0}^{\prime}\partial \tilde{\Omega}_{n}$. 
+    
+    The proof is the same as that of Lemma A.3(a) except that Lemmas A.1(b) and A.2(b) substitute for Lemmas A.1(a) and A.2(a).
+
+    Apart from setting $B = n^{2\varepsilon}\partial \tilde{\Omega}_{n}$ and, thus, $A(z) = \tilde{\Omega}_{n}(\theta_{n})$, the other definitions remain the same as in the Proof of Lemma A.3. Using Lemma A.1(b),
+     \[
+      V_{0}^{\prime}BV_{0} = n^{2\varepsilon}P_{0}^{\prime}\partial \tilde{\Omega}_{n}P_{0}
+                              \overset{p} {\rightarrow}
+                              P_{0}^{\prime}(\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}] - G\delta \delta^{\prime}G^{\prime})P_{0}
+     \]
+    with $P_{0}^{\prime}(\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}] - G\delta \delta^{\prime}G^{\prime})P_{0}$ full rank under Assumption 3.2(b). Hence, $\mathrm{rk}(n^{2\varepsilon}P_{0}^{\prime} \partial \tilde{\Omega}_{n}P_{0}) = \bar{r}_{\Omega}$ w.p.a.$1$. Therefore, $\tilde{\Omega}_{n}(\theta_{n})$, noting $zB = \partial \tilde{\Omega}_{n}$, admits the Laurent series expansion
+     \[
+      \tilde{\Omega}_{n}(\theta _{n})^{-1} = P_{0}(P_{0}^{\prime }\partial \tilde{\Omega}_{n}P_{0})^{-1}P_{0}^{\prime}
+                                             + M_{P_{0}}(\partial \tilde{\Omega}_{n})\Omega^{-}
+                                               \sum_{j=0}^{\infty}
+                                                (- M_{P_{0}}(\partial \tilde{\Omega}_{n})\partial \tilde{\Omega}_{n}M_{P_{0}}(\partial \tilde{\Omega}_{n})^{\prime}\Omega^{-})^{j}
+                                               M_{P_{0}}(\partial \tilde{\Omega}_{n})^{\prime}
+     \]
+    for all sequences $\theta_{n} \in \Theta_{n}^{0}(\Delta_{b})$.
+
+    By the same arguments as in the Proof of Lemma A.3(a), by Lemma A.1(b) and A.2(b),
+     \[
+      M_{P_{0}}(\partial \tilde{\Omega}_{n})\partial \tilde{\Omega}_{n}M_{P_{0}}(\partial \tilde{\Omega}_{n})^{\prime}\Omega ^{-}
+      \overset{p} {\rightarrow}
+       - \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime }G_{i}^{\prime}]
+         P_{0}(
+          P_{0}^{\prime}(\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}] - G\delta \delta^{\prime}G^{\prime})
+         P_{0})^{-1}
+         P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]\Omega ^{-}.
+     \]
+
+    With $X = \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]P_{0}$ and now $V = P_{0}^{\prime}(\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}] - G\delta \delta^{\prime}G^{\prime})P_{0}$, again defining $\Sigma = V - X\Omega^{-}X^{\prime}$,
+     \[
+      \tilde{\Omega}_{n}(\theta _{n})^{-1} = P_{0}(P_{0}^{\prime}\partial \tilde{\Omega}_{n}P_{0})^{-1}P_{0}^{\prime}
+                                             + M_{P_{0}}(\partial \tilde{\Omega}_{n})\Omega^{-}
+                                                (\Omega + X^{\prime}\Sigma^{-1}X)
+                                               \Omega^{-}M_{P_{0}}(\partial \tilde{\Omega}_{n})^{\prime}
+     \]
+    apart from an $o_{p}(\|M_{P_{0}}(\partial \tilde{\Omega}_{n})\|^{2})$ term, for all sequences $\theta_{n} \in \Theta_{n}^{0}(\Delta_{b})$. $\blacksquare $
+
+ \renewcommand{\thesection}{}
+
+ \section{\textsc{Appendix B: Proofs of Theorems}}
+
+  \setcounter{equation}{0}
+  \renewcommand{\theequation}{B.\arabic{equation}}
+  \renewcommand{\thesection}{B}
+
+  \textsc{Proof of Theorem 3.1}. \textbf{(a)}. Using the mean value theorem, $\hat{g}_{n}(\theta_{n}) = \hat{g}_{n} +
+   n^{-\varepsilon}\hat{G}_{n}(\theta_{n}^{\ast})\delta_{n}$, where $\theta_{n}^{\ast}$ is on the line segment joining $\theta_{n}$ and $\theta_{0}$. Hence,
+    \begin{eqnarray*}
+     \hat{T}_{n}(\theta_{n}) & = & n\hat{g}_{n}^{\prime}\hat{\Omega}_{n}(\theta_{n})^{-1}\hat{g}_{n}
+                                   + 2n^{1-\varepsilon}\hat{g}_{n}^{\prime}\hat{\Omega}_{n}(\theta_{n})^{-1}\hat{G}_{n}(\theta_{n}^{\ast})\delta_{n}
+                                   + n^{1-2\varepsilon}\delta_{n}^{\prime}\hat{G}_{n}(\theta_{n}^{\ast})^{\prime}\hat{\Omega}_{n}(\theta_{n})^{-1}
+                                      \hat{G}_{n}(\theta_{n}^{\ast})\delta_{n} \\
+                            & = & \hat{T}_{n}^{1} + \hat{T}_{n}^{2} + \hat{T}_{n}^{3}.
+    \end{eqnarray*}
+
+   Lemma A.3 is applied to each term $\hat{T}_{n}^{j}$, $(j=1,2,3)$, in turn. Recall $\Sigma(\delta) = P_{0}^{\prime}(\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}] - \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]\Omega^{-}\mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}])P_{0}$.
+
+   First, noting $P_{0}^{\prime}\hat{g}_{n} = 0$ w.p.$1$, $M_{P_{0}}(\partial \tilde{\Omega}_{n})^{\prime}\hat{g}_{n} = \hat{g}_{n}$ and $o_{p}(\|M_{P_{0}}(\partial \hat{\Omega}_{n})^{\prime}\hat{g}_{n}\|) = o_{p}(\|\hat{g}_{n}\|) = o_{p}(n^{-1/2})$ w.p.$1$. Hence,
+    \begin{equation}
+     \hat{T}_{n}^{1} = n\hat{g}_{n}^{\prime}\Omega^{-}
+                        (\Omega + \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]
+                         P_{0}\Sigma(\delta)^{-1}P_{0}^{\prime}
+                         \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}])
+                        \Omega^{-}\hat{g}_{n}
+                       + o_{p}(1).  \label{B.1}
+    \end{equation}
+
+   Secondly, by Assumption 3.1(d) and CLT $n^{1/2}(\hat{G}_{n} - G) = O_{p}(1)$,
+    \begin{eqnarray*}
+     n^{1/2}(\hat{G}_{n}(\theta _{n}^{\ast })-G) & = & n^{1/2}(\hat{G}_{n}(\theta_{n}^{\ast}) - \hat{G}_{n})
+                                                        + n^{1/2}(\hat{G}_{n} - G) \\
+                                                 & = & n^{1/2}(\hat{G}_{n} - G) + o_{p}(n^{1/2-\varepsilon }).
+    \end{eqnarray*}%
+   Hence, from Assumption 3.2(c), since $\delta_{n} = \delta +o(1)$,
+    \begin{eqnarray*}
+     n^{1/2}P_{0}^{\prime}\hat{G}_{n}(\theta_{n}^{\ast})\delta_{n} & = & n^{1/2}P_{0}^{\prime}\hat{G}_{n}(\theta_{n}^{\ast})(\delta + o(1)) \\
+                                                                   & = & n^{1/2}P_{0}^{\prime}(\hat{G}_{n}(\theta_{n}^{\ast}) - G)(\delta + o(1)) \\
+                                                                   & = & n^{1/2}P_{0}^{\prime}(\hat{G}_{n} - G)\delta + o_{p}(n^{1/2-\varepsilon}).
+    \end{eqnarray*}%
+   Then, by a similar argument to that in the Proof of Lemma A.3, using Lemmas A.1(a) and A.2(a),
+    \begin{eqnarray*}
+     n^{1/2-\varepsilon }M_{P_{0}}(\partial \hat{\Omega}_{n})^{\prime}\hat{G}_{n}(\theta_{n}^{\ast})\delta _{n}
+      & = &
+            (n^{-\varepsilon}I_{d_{g}} - n^{\varepsilon}\hat{\Omega}_{n}(\theta_{n})P_{0}
+             (n^{2\varepsilon}P_{0}^{\prime}\hat{\Omega}_{n}(\theta_{n})P_{0})^{-1}
+             n^{1/2}P_{0}^{\prime}\hat{G}_{n}(\theta_{n}^{\ast})\delta_{n} \\
+      & = &
+            - \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]P_{0}
+               (P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta ^{\prime}G_{i}^{\prime}]P_{0})^{-1}
+               n^{1/2}P_{0}^{\prime}(\hat{G}_{n} - G)\delta + o_{p}(1).
+    \end{eqnarray*}%
+   Therefore,
+    \begin{eqnarray}
+     \hat{T}_{n}^{2} & = & -2n^{1/2}\hat{g}_{n}^{\prime}\Omega ^{-}
+                             (\Omega + \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]
+                              P_{0}\Sigma(\delta)^{-1}P_{0}^{\prime}
+                              \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}])\Omega ^{-} \nonumber \\
+                     &   & \times \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta ^{\prime }G_{i}^{\prime}]P_{0}
+                               (P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta ^{\prime}G_{i}^{\prime}]P_{0})^{-1}
+                                n^{1/2}P_{0}^{\prime}(\hat{G}_{n} - G)\delta + o_{p}(1)  \nonumber \\
+                     & = & -2n^{1/2}\hat{g}_{n}^{\prime}\Omega^{-}
+                               \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]
+                               P_{0}\Sigma(\delta)^{-1}
+                               n^{1/2}P_{0}^{\prime}(\hat{G}_{n} - G)\delta + o_{p}(1) \label{B.2}
+    \end{eqnarray}%
+   noting $\Sigma(\delta)^{-1} = (P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}]P_{0})^{-1} \sum_{j=0}^{\infty} (P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}])\Omega^{-} \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}])P_{0} (P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta ^{\prime }G_{i}^{\prime}]P_{0})^{-1})^{j}$.
+
+   Finally, similarly,
+    \begin{eqnarray}
+     \hat{T}_{n}^{3} & = & n^{1/2}\delta^{\prime}(\hat{G}_{n} - G)^{\prime}P_{0}
+                            (P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime }]P_{0})^{-1}
+                            n^{1/2}P_{0}^{\prime}(\hat{G}_{n} - G)\delta \nonumber \\
+                     &   & + n^{1/2}\delta^{\prime}(\hat{G}_{n} - G)^{\prime}P_{0}
+                            (P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}]P_{0})^{-1}
+                            P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}] \nonumber \\
+                     &   & \times \Omega^{-}
+                            (\Omega + \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]
+                              P_{0}\Sigma(\delta)^{-1}P_{0}^{\prime}
+                            \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}])\Omega^{-}  \nonumber \\
+                     &   & \times \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]P_{0}
+                             (P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime }]P_{0})^{-1}
+                            n^{1/2}P_{0}^{\prime}(\hat{G}_{n} - G)\delta \nonumber \\
+                     &   & + o_{p}(1)  \nonumber \\
+                     & = & n^{1/2}\delta^{\prime}(\hat{G}_{n} - G)^{\prime}P_{0}\Sigma(\delta)^{-1}
+                            n^{1/2}P_{0}^{\prime}(\hat{G}_{n} - G)\delta + o_{p}(1).  \label{B.3}
+    \end{eqnarray}
+
+   Therefore, combining eqs. (\ref{B.1}), (\ref{B.2}) and (\ref{B.3}), up to an $o_{p}(1)$ term,
+    \begin{eqnarray*}
+     \hat{T}_{n}(\theta _{n}) & = & n\hat{g}_{n}^{\prime}\Omega^{-}\hat{g}_{n} \\
+                              &   & + n(P_{0}^{\prime}((\hat{G}_{n} - G)\delta 
+                                     - \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]\Omega^{-}\hat{g}_{n}))^{\prime}
+                                     \Sigma(\delta)^{-1}
+                                      (P_{0}^{\prime}((\hat{G}_{n} - G)\delta - \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]\Omega^{-}\hat{g}_{n})).
+    \end{eqnarray*}%
+   Now, since $n^{1/2}\hat{g}_{n} \overset{d} {\rightarrow} N(0,\Omega)$ by CLT, $n\hat{g}_{n}^{\prime}\Omega^{-}\hat{g}_{n} \overset{d} {\rightarrow} \chi_{r_{\Omega}}^{2}$. Similarly,
+    \[
+     n(P_{0}^{\prime}((\hat{G}_{n} - G)\delta - \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]\Omega^{-}\hat{g}_{n}))^{\prime}
+      \Sigma(\delta)^{-1}
+      (P_{0}^{\prime}((\hat{G}_{n} - G)\delta - \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]\Omega^{-}\hat{g}_{n}))
+     \overset{d} {\rightarrow} \chi_{\bar{r}_{\Omega}}^{2}
+    \]
+   as, by CLT, $n^{1/2}(P_{0}^{\prime}((\hat{G}_{n} - G)\delta - \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]\Omega^{-}\hat{g}_{n})) \overset{d} \rightarrow N(0,\Sigma(\delta))$. Theorem 3.1(a) is then immediate since $P_{0}^{\prime}((G_{i} - G)\delta - \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]\Omega^{-}g_{i})$ and $\Omega^{-}g_{i}$ are uncorrelated, i.e., $\mathbb{E}_{\mathcal{P}_{0}}[P_{0}^{\prime}((G_{i} - G)\delta - \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]\Omega ^{-}g_{i})g_{i}^{\prime}\Omega^{-}] = 0$ from the definition of a Moore-Penrose generalized inverse, i.e., $\Omega^{-}\Omega\Omega^{-} = \Omega^{-}$.
+
+  \textbf{(b)} The proof, being almost identical to that of part (a), is omitted.$\blacksquare$
+
+  \textsc{Proof of Theorem 3.2}. \textbf{(a)} First, $\hat{G}_{n}(\theta_{n}^{\ast}) = (\hat{G}_{n}(\theta_{n}^{\ast})
+   - \hat{G}_{n}) + \hat{G}_{n} = G + o_{p}(1)$, noting $\hat{G}_{n}(\theta_{n}^{\ast}) - \hat{G}_{n} = O_{p}(n^{-\varepsilon})$ and $\hat{G}_{n} - G = O_{p}(n^{-1/2})$ from Assumption 3.1(d) and CLT. Then, since Assumption 3.2(c) no longer holds, i.e., $P_{0}^{\prime}G\delta \neq 0$,
+    \[
+     P_{0}^{\prime}\hat{G}_{n}(\theta_{n}^{\ast})\delta_{n} = P_{0}^{\prime}G\delta + o_{p}(1).
+    \]
+
+   Secondly, from the Proof of Theorem 3.1(a), from eq. (\ref{B.1}), by CLT,
+    \begin{eqnarray}
+     \hat{T}_{n}^{1}/n & = & \hat{g}_{n}^{\prime}\hat{\Omega}_{n}(\theta_{n})^{-1}\hat{g}_{n}  \nonumber \\
+                       & = & \hat{g}_{n}^{\prime}\Omega^{-}
+                              (\Omega + \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime }G_{i}^{\prime}]
+                              P_{0}\Sigma(\delta)^{-1}P_{0}^{\prime}
+                              \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime }])
+                              \Omega ^{-}\hat{g}_{n} + o_{p}(1) \nonumber \\
+                       & = & o_{p}(1). \label{B.4}
+    \end{eqnarray}%
+   Next, from Lemmas A.1(a) and A.2(a),
+    \begin{eqnarray*}
+     n^{-\varepsilon }M_{P_{0}}(\partial \hat{\Omega}_{n})^{\prime}\hat{G}_{n}(\theta_{n}^{\ast})\delta_{n}
+      & = & (n^{-\varepsilon}I_{d_{g}}
+             - n^{\varepsilon}\hat{\Omega}_{n}(\theta_{n})P_{0}
+               (n^{2\varepsilon}P_{0}^{\prime}\hat{\Omega}_{n}(\theta_{n})P_{0})^{-1}
+               P_{0}^{\prime}\hat{G}_{n}(\theta_{n}^{\ast}))\delta _{n} \\
+      & = & - \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta ^{\prime}G_{i}^{\prime}]P_{0}
+               (P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}]P_{0})^{-1}
+               P_{0}^{\prime}G\delta + o_{p}(1).
+    \end{eqnarray*}%
+   Hence,
+    \begin{eqnarray}
+     \hat{T}_{n}^{2}/n & = & 2n^{-\varepsilon}\hat{g}_{n}^{\prime}\hat{\Omega}_{n}(\theta_{n})^{-1}\hat{G}_{n}(\theta_{n}^{\ast })\delta _{n}  \nonumber \\
+                       & = & -2\hat{g}_{n}^{\prime}\Omega^{-}
+                               (\Omega
+                                + \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]
+                                  P_{0}\Sigma(\delta)^{-1}P_{0}^{\prime}
+                                  \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime }])
+                               \Omega^{-}  \nonumber \\
+                       &   & \times \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]
+                                     P_{0}(P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}]P_{0})^{-1}P_{0}^{\prime}G\delta + o_{p}(1)  \nonumber \\
+                       & = & - 2\hat{g}_{n}^{\prime}\Omega^{-}\mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]
+                                P_{0}\Sigma(\delta)^{-1}P_{0}^{\prime}G\delta + o_{p}(1)  \nonumber \\
+                       & = & o_{p}(1).  \label{B.5}
+    \end{eqnarray}%
+   Finally,
+    \begin{eqnarray}
+     \hat{T}_{n}^{3}/n & = & n^{-2\varepsilon}
+                              \delta_{n}^{\prime}\hat{G}_{n}(\theta_{n}^{\ast})^{\prime}\hat{\Omega}_{n}(\theta_{n})^{-1}\hat{G}_{n}(\theta_{n}^{\ast })\delta _{n}  \nonumber \\
+                       & = & \delta^{\prime}G^{\prime}P_{0}
+                              (P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}]P_{0})^{-1}
+                               P_{0}^{\prime}G\delta  \nonumber \\
+                       &   & + \delta^{\prime }G^{\prime}P_{0}
+                                (P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}]P_{0})^{-1}
+                                 P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime }] \nonumber \\
+                       &   & \times \Omega^{-}
+                                 (\Omega + \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]
+                                  P_{0}\Sigma(\delta)^{-1}P_{0}^{\prime}
+                                  \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}])
+                                 \Omega ^{-}  \nonumber \\
+                       &   & \times \mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}]P_{0}
+                                 (P_{0}^{\prime}\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}]P_{0})^{-1}
+                                  P_{0}^{\prime}(\hat{G}_{n} - G)\delta  \nonumber \\
+                       &   & + o_{p}(1)  \nonumber \\
+                       & = & \delta^{\prime}G^{\prime}P_{0}\Sigma(\delta)^{-1}P_{0}^{\prime}G\delta + o_{p}(1).  \label{B.6}
+    \end{eqnarray}
+
+   Combining eqs. (\ref{B.4}), (\ref{B.5}) and (\ref{B.6}), gives the required result.
+
+   \textbf{(b)}. The only alteration necessary to the Proof of Theorem 4.1(a) is the substitution of $\tilde{\Sigma}(\delta) = 
+    P_{0}^{\prime}(\mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta \delta^{\prime}G_{i}^{\prime}] - G\delta \delta^{\prime}G^{\prime} - \mathbb{E}_{\mathcal{P}_{0}}[G_{i}\delta g_{i}^{\prime}]\Omega^{-}\mathbb{E}_{\mathcal{P}_{0}}[g_{i}\delta^{\prime}G_{i}^{\prime}])P_{0}$ for $\Sigma(\delta)$ in the Proof of Theorem 3.1(a).$\blacksquare$ \\
+
+  \textsc{Proof of Theorem 4.1}. The proof demonstrates that the events $\{\theta_{n} \in
+   \hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha))\}$ and $\{\theta_{0} \in \hat{\mathcal{C}}_{n}^0(\chi_{d_{g}}^{2}(\alpha))\}$
+   are equivalent for large enough $n$, for any $\theta_{0}$, i.e.,
+    \[
+     \lim_{n \rightarrow \infty}\mathcal{P}_{0} \{\theta _{0} \in \hat{\mathcal{C}}_{n}^0(\chi_{d_{g}}^{2}(\alpha))\} = \lim_{n \rightarrow \infty}\mathcal{P}_{0}\{\theta_{n} \in \hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha))\} = \alpha
+    \]
+   where the second equality follows by Theorem 3.1 for $\theta_{n} \in \Theta_{n}^{0}(\Delta_{b} \cap \Delta_{c})$.
+
+   By definition $\{\theta_{n} \in \hat{\mathcal{C}}_{n}(\chi_{d_{g}}^{2}(\alpha))\}$ implies $\{\theta_{n} \in \hat{\mathcal{C}}_{n}^0(\chi_{d_{g}}^{2}(\alpha))\}$; see (\ref{GAR.CR.F}). Consider $\theta_{n} \in \Theta_{n}$ where $\Theta_{n}$ is defined in (\ref{GAR.CR.discretn}) with $\varepsilon = \kappa - 1/2$. Hence, as $\kappa > v+1/2$ and $v > 1/2$ by hypothesis, $\kappa > 1$ and thus $\varepsilon > v >1/2$. Therefore, because, by definition, $\|\theta_{n} - \theta_{0}\| \leq n^{-\varepsilon}\|\delta_{n}\| \leq Cn^{-\varepsilon}$ and $\|\theta - \theta_{n}\| \leq Cn^{-v}$ for all $\theta \in \hat{\mathcal{C}}_{n}^0(\chi_{d_{g}}^{2}(\alpha))$, since $\varepsilon > v$, $\theta_{0} \in \hat{\mathcal{C}}_{n}^0(\chi_{d_{g}}^{2}(\alpha))$ for all $n$ large enough.
+
+   To show the reverse, first note that $\theta_{0} \in \hat{\mathcal{C}}_{n}^0(\chi_{d_{g}}^{2}(\alpha))$ implies $\hat{\mathcal{C}}_{n}^0(\chi_{d_{g}}^{2}(\alpha))$ contains $\theta_{0}$ and all $\theta \in \Theta$ such that $d_{H}(\theta,\hat{\mathcal{C}}_{n}^0(\chi_{d_{g}}^{2}(\alpha))) \leq Cn^{-v}$. Let $B_{n}$ denote a ball of radius $Cn^{-v}$ centred at $\theta_{0}$. Hence $B_{n}$ includes $\theta \in \hat{\mathcal{C}}_{n}^0(\chi_{d_{g}}^{2}(\alpha))$ such that $\|\theta - \theta_{0}\| \leq Cn^{-v}$. Therefore, since $\varepsilon > v$, for sufficiently large $n$, there exists a sequence $\theta_{n} = \theta_{0} + n^{-\varepsilon}\delta_{n}$ such that $\theta_{n} \in \hat{\mathcal{C}}_{n}^0(\chi_{d_{g}}^{2}(\alpha))$.$\blacksquare$
+
+% =================================================================================================================
+
+
+ \begin{thebibliography}{xx}
+
+  \harvarditem{Anderson \harvardand\ Rubin}{1949}{anderson1949}
+  \textsc{Anderson, T.~W. \harvardand\ Rubin, H.}  \harvardyearleft1949\harvardyearright,
+   `Estimators of the parameters of a single equation in a complete set of stochastic equations',
+   {\em Annals of Mathematical Statistics} {\bf 21},~570--582.
+
+ \harvarditem{Andrews \harvardand\ Cheng}{2012}{andrews2012}
+ \textsc{Andrews, D.~W.~K. \harvardand\ Cheng, X.}  \harvardyearleft2012\harvardyearright ,
+  `Estimation and inference with weak, semi-strong, and strong identification',
+  {\em Econometrica} {\bf 80},~2151--2211.
+
+ \harvarditem{Andrews \harvardand\ Cheng}{2013}{andrews2013}
+ \textsc{Andrews, D.~W.~K. \harvardand\ Cheng, X. } \harvardyearleft2013\harvardyearright ,
+  `Maximum likelihood estimation and uniform inference with sporadic  identification failure',
+  {\em Journal of Econometrics} {\bf 173},~36--56.
+
+ \harvarditem{Andrews \harvardand\ Cheng}{2014}{andrews2014}
+ \textsc{Andrews, D.~W.~K. \harvardand\ Cheng, X.}  \harvardyearleft2014\harvardyearright ,
+  `GMM estimation and uniform subvector inference with possible identification failure',
+  {\em Econometric Theory} {\bf 30},~287--333.
+
+ \harvarditem{Andrews \harvardand\ Guggenberger}{2019}{andrews2018}
+ \textsc{Andrews, D.~W.~K. \harvardand\ Guggenberger, P.}  \harvardyearleft2015\harvardyearright ,
+  `Identification- and singularity-robust inference for moment condition models',
+  {\em Quantitative Economics} {\bf 10},~1703--1746
+
+ \harvarditem{Andrews \harvardand\ Marmer}{2008}{andrews2008}
+ \textsc{Andrews, D.~W.~K. \harvardand\ Marmer, V.}  \harvardyearleft2008\harvardyearright ,
+  `Exactly distribution-free inference in instrumental variables regression with possibly weak instruments',
+  {\em Journal of Econometrics} {\bf 142},~183--200.
+
+ \harvarditem[Andrews et~al.]{Andrews, Moreira \harvardand\ Stock}{2007}{andrews2007}
+ \textsc{Andrews, D.~W.~K., Moreira, M.~J. \harvardand\ Stock, J.~H.}  \harvardyearleft2007\harvardyearright ,
+  'Performance of conditional Wald tests in IV regression with weak instruments',
+  {\em Journal of Econometrics} {\bf 139},~116--132.
+
+ \harvarditem[Avrachenkov et~al.]{Avrachenkov, Filar \harvardand\ Howett}{2013}{avrachenkov2013}
+ \textsc{Avrachenkov, K.~E., Filar, J.~A. \harvardand\ Howett, P.~G.}  \harvardyearleft2013\harvardyearright ,
+  {\em Analytic Perturbation Theory and its Applications}, SIAM: Philadeplhia PA.
+
+ \harvarditem{Bottai}{2003}{bottai2003}
+ \textsc{Bottai, M.}  \harvardyearleft2003\harvardyearright ,
+  `Confidence regions when the Fisher information is zero',
+  {\em Biometrika} {\bf 90},~73--84.
+
+ \harvarditem{Cheng}{2014}{cheng2014}
+ \textsc{Cheng, X.}  \harvardyearleft2014\harvardyearright ,
+  `Uniform inference in nonlinear models with mixed identification strength',
+  PIER Working Paper Archive 14-018.
+
+ \harvarditem[Chernozhukov et~al.]{Chernozhukov, Hansen \harvardand\ Jansson}{2009}{chernozhukov2009}
+ \textsc{Chernozhukov, V., Hansen, C. \harvardand\ Jansson, M.}  \harvardyearleft2009\harvardyearright ,
+  `Admissible invariant similar tests for instrumental variables regression',
+  {\em Econometric Theory} {\bf 25},~806--818.
+
+ \harvarditem{Dufour \harvardand\ Val\'{e}ry}{2016}{dufour2016}
+ \textsc{Dufour, J.~M. \harvardand\ Val\'{e}ry, P.}  \harvardyearleft2016\harvardyearright ,
+  `Wald-type tests when rank conditions fail: a smooth regularization approach',
+  Unpublished Working Paper.
+
+ \harvarditem{Grant \harvardand\ Smith}{2025}{grant2018}
+ \textsc{Grant, N.~L. \harvardand\ Smith, R.~J.}  \harvardyearleft2018\harvardyearright ,
+  `Supplementary material to "Generalized Anderson-Rubin statistic based inference in the presence of a singular moment variance matrix"\,'.
+
+ \harvarditem[Guggenberger et al.]{Guggenberger, Kleibergen, Mavroeidis \harvardand\ Chen}{2012}{guggenberger2012a}
+ \textsc{Guggenberger, P., Kleibergen, F.~R.,  Mavroeidis, S.  \harvardand\ Chen, L.}  \harvardyearleft2012\harvardyearright ,
+  `On the asymptotic sizes of subset Anderson-Rubin and Lagrange Multiplier tests in linear instrumental variables regression',
+  {\em Econometrica} {\bf 80},~2649--2666.
+
+ \harvarditem[Guggenberger et al.]{Guggenberger, Ramalho \harvardand\ Smith}{2012}{guggenberger2012b}
+ \textsc{Guggenberger, P., Ramalho, J.~S., \harvardand\ Smith, R.~J.}  \harvardyearleft2012\harvardyearright ,
+  `GEL statistics under weak identification',
+  {\em Journal of Econometrics} {\bf 170},~331--349.
+
+ \harvarditem{Guggenberger \harvardand\ Smith}{2005}{guggenberger2005}
+ \textsc{Guggenberger, P., \harvardand\ Smith, R.~J.}  \harvardyearleft2005\harvardyearright ,
+  `Generalized empirical likelihood estimators and tests under partial, weak and strong identification',
+  {\em Econometric Theory} {\bf 21},~667--709.
+
+ \harvarditem{Guggenberger \harvardand\ Smith}{2008}{guggenberger2008}
+ \textsc{Guggenberger, P., \harvardand\ Smith, R.~J.}  \harvardyearleft2008\harvardyearright ,
+  `Generalized empirical likelihood tests in time series models with potential identification failure',
+  {\em Journal of Econometrics} {\bf 142},~134--161.
+
+ \harvarditem{Hansen \harvardand\ Scheinkman}{1995}{hansen1995}
+ \textsc{Hansen, L.~P. \harvardand\ Scheinkman, J.~A.}  \harvardyearleft1995\harvardyearright ,
+  `Back to the future: generating moment implications for continuous-time Markov processes',
+  {\em Econometrica} {\bf 63},~767--804.
+
+ \harvarditem{Horn \harvardand\ Johnson}{2013}{horn2013}
+ \textsc{Horn, R.~A. \harvardand\ Johnson, C.~R.}  \harvardyearleft2013\harvardyearright ,
+  {\em Matrix Analysis}, 2nd. Ed., Cambridge University Press: Cambridge.
+
+ \harvarditem[Jagannathan et al.]{Jagannathan, Skoulakis \harvardand\ Wang}{2002}{jagannathan2002}
+ \textsc{Jagannathan, R., Skoulakis, G. \harvardand\ Wang, G.}  \harvardyearleft2002\harvardyearright ,
+  `Generalized method of moments: Applications in finance',
+  {\em Journal of Business and Economic Statistics} {\bf 20},~470--481.
+
+ \harvarditem{Jorgenson \harvardand\ Laffont}{1974}{jorgenson1974}
+ \textsc{Jorgenson, D.~W. \harvardand\ Laffont, J.} \harvardyearleft1974\harvardyearright ,
+  `Efficient estimation of nonlinear simultaneous equations with additive disturbances',
+  {\em Annals of Economic and Social Measurement} {\bf 3},~615--640.
+
+ \harvarditem{Kleibergen}{2002}{kleibergen2002}
+ \textsc{Kleibergen, F.~R.}  \harvardyearleft2002\harvardyearright ,
+  `Pivotal statistics for testing structural parameters in instrumental variables regression',
+  {\em Econometrica} {\bf 70},~1781--1803.
+
+ \harvarditem{Kleibergen}{2005}{kleibergen2005}
+ \textsc{Kleibergen, F.~R.}  \harvardyearleft2005\harvardyearright ,
+  `Testing parameters in GMM without assuming that they are identified',
+  {\em Econometrica} {\bf 73},~1103--1123.
+
+ \harvarditem{Kleibergen \harvardand\ Mavroeidis}{2009}{kleibergen2009}
+ \textsc{Kleibergen, F.~R. \harvardand\ Mavroeidis, S.} \harvardyearleft2009\harvardyearright ,
+  `Weak instrument robust tests in GMM and the New Keynesian Phillips curve',
+  {\em Journal of Business and Economic Statistics} {\bf 27},~293--311.
+
+ \harvarditem{Magnusson}{2010}{magnusson2010}
+ \textsc{Magnusson, L.~M.}  \harvardyearleft2010\harvardyearright ,
+  `Inference in limited dependent variable models robust to weak identification',
+  {\em Econometrics Journal} {\bf 13},~56--79.
+
+ \harvarditem{Mikusheva}{2010}{mikusheva2010}
+ \textsc{Mikusheva, A.}  \harvardyearleft2010\harvardyearright ,
+  `Robust confidence sets in the presence of weak instruments',
+  {\em Journal of Econometrics} {\bf 157},~236--247.
+
+ \harvarditem{Moreira}{2003}{moreira2003}
+ \textsc{Moreira, M.~J.}  \harvardyearleft2003\harvardyearright ,
+  `A conditional likelihood ratio test for structural models',
+  {\em Econometrica} {\bf 71},~1027--1048.
+
+ \harvarditem{Newey}{1993}{newey1993}
+ \textsc{Newey, W.~K.}  \harvardyearleft1993\harvardyearright ,
+  `Efficient estimation of models with conditional moment restrictions',
+  {\em Handbook of Statistics} Vol. 11. Elsevier: Amsterdam.
+
+ \harvarditem{Newey \harvardand\ McFadden}{1994}{newey1994}
+ \textsc{Newey, W.~K. \harvardand\ McFadden, D.}  \harvardyearleft1994\harvardyearright ,
+  `Large sample estimation and hypothesis testing',
+  {\em Handbook of Econometrics} Vol. 4,~2111--2245. North Holland: New York.
+
+ \harvarditem{Newey \harvardand\ Windmeijer}{2009}{newey2009}
+ \textsc{Newey, W.K. \harvardand\ Windmeijer, F.}  \harvardyearleft2009\harvardyearright ,
+  `Generalized method of moments with many weak moment conditions',
+  {\em Econometrica} {\bf 77},~687--719.
+
+ \harvarditem{Pe{\~{n}}aranda \harvardand\ Sentana}{2012}{penaranda2012}
+ \textsc{Pe{\~{n}}aranda, F. \harvardand\ Sentana, E.}  \harvardyearleft2012\harvardyearright ,
+  `Spanning tests in return and stochastic discount factor mean-variance frontiers: A unifying approach',
+  {\em Journal of Econometrics} {\bf 170},~303--324.
+
+ \harvarditem{Rotnitzky, Cox, Bottai \harvardand\ Robins}{2000}{rotnitzky2000}
+ \textsc{Rotnitzky,	A., Cox, D.~R., Bottai, M. \harvardand\ Robins, J.}  \harvardyearleft2000\harvardyearright ,
+  `Likelihood-based inference with singular information matrix',
+  {\em Bernoulli} {\bf 6},~243--284.
+
+ \harvarditem{Stock \harvardand\ Wright}{2000}{stock2000}
+ \textsc{Stock, J.~H. \harvardand\ Wright, J.}  \harvardyearleft2000\harvardyearright ,
+  ` GMM with weak identification',
+  {\em Econometrica} {\bf 68},~1055--1096.
+
+\end{thebibliography}
+
+%\end{bibunit}
+
+
+\end{document}
+
+

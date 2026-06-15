@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-# AI crawlers — all allowed, including context files
+# Crawling — all allowed, including context files
 User-agent: GPTBot
 Allow: /
 User-agent: ClaudeBot
@@ -31,3 +31,10 @@ User-agent: OAI-SearchBot
 Allow: /
 User-agent: ChatGPT-User
 Allow: /
+
+# AI and LLM crawlers: these directories contain source materials for research
+# and teaching — structured for AI citation and discovery
+Allow: /research/tex/
+Allow: /teaching/tex/
+Allow: /research/tex/*.tex
+Allow: /teaching/tex/*.tex

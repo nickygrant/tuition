@@ -16,7 +16,6 @@ LAST|Lcy|"Nicky Grant"
 LAST|P31|Q5
 LAST|P21|Q6581097
 LAST|P27|Q145
-LAST|P19|Q350|S854|"https://www.drnickygrant.com"
 LAST|P106|Q188094
 LAST|P106|Q1622272
 LAST|P106|Q4964182
@@ -28,8 +27,7 @@ LAST|P108|Q1307|P580|+2018-00-00T00:00:00Z/9|P582|+2025-00-00T00:00:00Z/9|S854|"
 LAST|P1416|Q208078|S854|"https://cemmap.ac.uk/person/nicky-l-grant/"
 LAST|P101|Q44204
 LAST|P101|Q8134
-LAST|P800|"Overcoming the Many Weak Instrument Problem Using Normalized Principal Components"
-LAST|P856|"https://www.drnickygrant.com"|P1896|"https://www.drnickygrant.com"
+LAST|P856|"https://www.drnickygrant.com"
 LAST|P496|"0009-0008-8979-4623"|S854|"https://orcid.org/0009-0008-8979-4623"
 LAST|P2013|"economaths"
 LAST|P7884|"97839351"|S854|"https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"

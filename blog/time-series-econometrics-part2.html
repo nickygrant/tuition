@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
+<meta content="Dr Nicky Grant" name="author"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Advanced Time Series Notes | ARMA Derivations, Prediction &amp; Seasonality</title>
+<meta content="Advanced time-series study notes based on TeX lecture material: MA-infinity, Wold decomposition, lag operators, AR(p) stationarity, ARMA estimation, prediction and seasonality." name="description"/>
+<link href="https://www.drnickygrant.com/blog/time-series-econometrics-part2.html" rel="canonical"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.drnickygrant.com/#website",
+      "url": "https://www.drnickygrant.com/",
+      "name": "Dr Nicky Grant | Economics, Econometrics and Maths Tutor",
+      "description": "Specialist online tuition in economics, econometrics, mathematics, statistics, finance, TMUA and Oxbridge economics applications, supported by verifiable Cambridge credentials, teaching materials and research evidence.",
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.drnickygrant.com/#person",
+      "name": "Dr Nicky Grant",
+      "alternateName": [
+        "Nicky Grant",
+        "Nicky L. Grant",
+        "Nicky Lee Grant"
+      ],
+      "honorificPrefix": "Dr",
+      "givenName": "Nicky",
+      "familyName": "Grant",
+      "url": "https://www.drnickygrant.com/",
+      "image": "https://www.drnickygrant.com/img/nicky-grant-headshot.webp",
+      "email": "nicky.L.grant@gmail.com",
+      "telephone": "+447393352331",
+      "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor",
+      "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0008-8979-4623",
+          "url": "https://orcid.org/0009-0008-8979-4623"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Semantic Scholar",
+          "value": "97839351",
+          "url": "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Cambridge",
+        "sameAs": "https://www.cam.ac.uk/"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "PhD in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "MPhil in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BA in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        }
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "CeMMAP, Centre for Microdata Methods and Practice",
+        "sameAs": "https://cemmap.ac.uk/"
+      },
+      "knowsAbout": [
+        "economics tuition",
+        "econometrics tuition",
+        "A Level Mathematics",
+        "Further Mathematics",
+        "A Level Economics",
+        "TMUA preparation",
+        "Oxbridge Economics applications",
+        "statistics",
+        "financial econometrics",
+        "time series econometrics",
+        "GMM",
+        "instrumental variables",
+        "panel data",
+        "PhD econometrics"
+      ],
+      "sameAs": [
+        "https://orcid.org/0009-0008-8979-4623",
+        "https://www.linkedin.com/in/nicky-lee-grant/",
+        "https://cemmap.ac.uk/person/nicky-l-grant/",
+        "https://research-portal.st-andrews.ac.uk/en/persons/nicky-lee-grant",
+        "https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/",
+        "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351",
+        "https://www.youtube.com/@economaths",
+        "https://independent.academia.edu/NickyGrant"
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/time-series-econometrics-part2.html#page",
+      "url": "https://www.drnickygrant.com/blog/time-series-econometrics-part2.html",
+      "name": "Advanced time series notes: derivations, prediction and seasonality",
+      "isPartOf": {
+        "@id": "https://www.drnickygrant.com/#website"
+      },
+      "about": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB",
+      "description": "Advanced time-series study notes based on TeX lecture material: MA-infinity, Wold decomposition, lag operators, AR(p) stationarity, ARMA estimation, prediction and seasonality.",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/time-series-econometrics-guide.html",
+        "https://www.drnickygrant.com/blog/reading-the-correlogram.html",
+        "https://www.drnickygrant.com/blog/ar-arma-processes-explained.html",
+        "https://www.drnickygrant.com/teaching.html#time-series-study-notes"
+      ],
+      "abstract": "Advanced notes on time-series econometrics covering MA-infinity representations, Wold decomposition, lag operators, AR(p) stationarity, ARMA estimation, prediction and seasonality.",
+      "dateModified": "2026-06-14"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.drnickygrant.com/blog/time-series-econometrics-part2.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.drnickygrant.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://www.drnickygrant.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Time Series Econometrics Part2",
+          "item": "https://www.drnickygrant.com/blog/time-series-econometrics-part2.html"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/time-series-econometrics-part2.html#article",
+      "headline": "Advanced time series notes: derivations, prediction and seasonality",
+      "url": "https://www.drnickygrant.com/blog/time-series-econometrics-part2.html",
+      "author": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.drnickygrant.com/blog/time-series-econometrics-part2.html#page"
+      },
+      "dateModified": "2026-06-14",
+      "inLanguage": "en-GB",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/time-series-econometrics-guide.html",
+        "https://www.drnickygrant.com/blog/reading-the-correlogram.html",
+        "https://www.drnickygrant.com/blog/ar-arma-processes-explained.html",
+        "https://www.drnickygrant.com/teaching.html#time-series-study-notes"
+      ],
+      "abstract": "Advanced notes on time-series econometrics covering MA-infinity representations, Wold decomposition, lag operators, AR(p) stationarity, ARMA estimation, prediction and seasonality.",
+      "description": "Advanced time-series study notes based on TeX lecture material: MA-infinity, Wold decomposition, lag operators, AR(p) stationarity, ARMA estimation, prediction and seasonality."
+    }
+  ]
+}</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../css/main.css" rel="stylesheet"/>
+<link href="../css/polish.css" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script crossorigin="anonymous" defer="" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+.art{max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) clamp(3rem,8vw,6rem)}
+.art-hero{padding:clamp(6rem,14vw,9rem) clamp(1rem,4vw,2.5rem) clamp(2rem,5vw,3.5rem);border-bottom:1px solid rgba(255,255,255,.07)}
+.eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.75rem;display:block}
+.art-hero h1{font-family:var(--fd);font-size:clamp(2.1rem,5vw,3.4rem);font-weight:500;line-height:1.02;letter-spacing:-.04em;color:var(--ivory,#F8F2E8);margin-bottom:1rem}
+.art-hero .lede{font-size:clamp(1rem,1.8vw,1.15rem);font-weight:300;color:rgba(248,242,232,.72);line-height:1.78;max-width:660px}
+.art-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.25rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(248,242,232,.38)}
+h2{font-family:var(--fd);font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:500;letter-spacing:-.03em;color:var(--ivory,#F8F2E8);margin:2.5rem 0 .75rem;line-height:1.05}
+h3{font-family:var(--fd);font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:500;letter-spacing:-.02em;color:var(--ivory,#F8F2E8);margin:2rem 0 .6rem}
+p{font-size:clamp(.93rem,1.6vw,1rem);font-weight:300;color:rgba(248,242,232,.78);line-height:1.85;margin-bottom:1.1rem}
+.def{background:linear-gradient(180deg,rgba(211,163,91,.07),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-left:3px solid var(--copper,#D3A35B);padding:1.1rem 1.4rem;margin:1.5rem 0;border-radius:0 8px 8px 0}
+.def .def-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.45rem;display:block}
+.def p{font-size:.92rem;margin:0 0 .5rem;color:rgba(248,242,232,.88)}
+.def p:last-child{margin:0}
+.thm{background:linear-gradient(180deg,rgba(211,163,91,.1),rgba(211,163,91,.04));border:1px solid rgba(211,163,91,.28);border-radius:8px;padding:1.1rem 1.4rem;margin:1.5rem 0}
+.thm .thm-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.4rem;display:block;font-weight:500}
+.thm p{font-size:.92rem;margin:0;color:rgba(248,242,232,.88)}
+.math-block{background:rgba(248,242,232,.04);border:1px solid rgba(248,242,232,.09);border-radius:8px;padding:1.1rem 1.6rem;margin:1.1rem 0;font-size:.95rem;color:var(--ivory,#F8F2E8);overflow-x:auto;line-height:1.9;text-align:center}
+.note{background:rgba(248,242,232,.03);border-left:2px solid rgba(248,242,232,.18);padding:.75rem 1.2rem;margin:1.2rem 0;border-radius:0 6px 6px 0}
+.note p{font-size:.88rem;margin:0;color:rgba(248,242,232,.58)}
+.answer-capsule{background:linear-gradient(180deg,rgba(211,163,91,.09),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.22);border-radius:10px;padding:1.2rem 1.5rem;margin:0 0 2.5rem}
+.answer-capsule p{font-size:.92rem;margin:0;color:rgba(248,242,232,.82);line-height:1.75}
+.img-block{margin:1.8rem 0;text-align:center}
+.img-block img{max-width:100%;border-radius:8px;border:1px solid rgba(248,242,232,.08)}
+.img-caption{font-size:.75rem;color:rgba(248,242,232,.4);margin-top:.5rem;font-style:italic;display:block}
+.part-nav{display:flex;gap:.75rem 1rem;flex-wrap:wrap;margin:2rem 0;padding:1rem 1.2rem;background:rgba(248,242,232,.025);border:1px solid rgba(248,242,232,.07);border-radius:8px;align-items:center}
+.part-nav a{font-size:.82rem;color:var(--copper,#D3A35B);font-weight:500;text-decoration:none}
+.part-nav a:hover{text-decoration:underline}
+.part-nav .divider{color:rgba(248,242,232,.2);font-size:.82rem}
+a.gold-link{color:var(--copper,#D3A35B);font-weight:500}
+.tuition-cta{background:linear-gradient(180deg,rgba(211,163,91,.08),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-radius:12px;padding:1.5rem 1.75rem;margin:2rem 0}
+.tuition-cta p{margin:0;font-size:.95rem;color:rgba(248,242,232,.8)}
+.tuition-cta p:first-child{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.5rem}
+hr.sd{border:none;border-top:1px solid rgba(255,255,255,.07);margin:2.5rem 0}
+</style>
+<meta content="2026-06-14" name="last-modified"/></head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a aria-label="Dr Nicky Grant home" class="nav-logo" href="../index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list">
+<li><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
+<li><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a></li>
+<li><a href="../blog.html">Resources</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../pricing.html">Pricing</a></li>
+</ul>
+<a class="nav-cta" href="../index.html#contact">Book consultation</a>
+<button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+</div>
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+</nav>
+<div class="art-hero">
+<div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
+<span class="eyebrow">Econometrics · Study notes · Time series 4</span>
+<h1>Advanced Time Series Notes:<em>derivations, prediction and seasonality</em></h1>
+<p class="lede">The technical continuation of the time-series notes: MA(∞), Wold decomposition, lag operators, stationarity roots, estimation, forecasting and seasonality.</p>
+<div class="art-meta"><span>Dr Nicky Grant · economics specialist</span><span>Time Series Study Notes</span><span>Advanced</span></div>
+</div>
+</div>
+<main class="art" id="main">
+<div aria-label="Quick answer" class="answer-capsule" data-chunk="TS2-fuller-notes" role="note">
+<p>This advanced note keeps the TeX-note structure but separates the technical points: MA(∞) representations, Wold decomposition, lag operators, AR(p) stationarity roots, ARMA estimation, model selection, prediction and seasonality. It is the more mathematical continuation of the earlier intuitive notes.</p>
+</div><div class="study-note-box" data-chunk="UXDE-study-note-cta"><h2>Working through advanced time-series derivations?</h2><p>Send the relevant notes, problem set or dissertation method question. The diagnostic can focus on lag operators, MA(∞), Wold decomposition, roots or model selection.</p><p><a class="btn btn-fill" href="../university-postgraduate-tutoring.html">View University &amp; Postgraduate support</a> <a class="btn btn-line" href="../index.html#contact">Send an enquiry</a></p></div>
+<div aria-label="Time series study notes pathway" class="part-nav">
+<span style="font-size:.78rem;color:rgba(248,242,232,.52)">Time series notes:</span>
+<a href="time-series-econometrics-guide.html">1. Core definitions</a>
+<span class="divider">|</span>
+<a href="reading-the-correlogram.html">2. Correlogram &amp; testing</a>
+<span class="divider">|</span>
+<a href="ar-arma-processes-explained.html">3. AR, MA &amp; ARMA intuition</a>
+<span class="divider">|</span>
+<a href="time-series-econometrics-part2.html">4. Derivations, prediction &amp; seasonality</a>
+</div>
+<section class="study-note-box" id="before-advanced">
+<h2>Before this note</h2>
+<p>Read the earlier notes first if you need the intuition for <a href="time-series-econometrics-guide.html#stationarity">stationarity</a>, <a href="time-series-econometrics-guide.html#acf">autocorrelation</a>, the <a href="reading-the-correlogram.html">correlogram</a>, and <a href="ar-arma-processes-explained.html">AR/MA/ARMA models</a>. This page assumes those ideas and focuses on derivations and applied modelling steps.</p>
+</section>
+<section id="ma-infinity">
+<h2>1. MA(∞): writing a process as a sum of shocks</h2>
+<p>The notes introduce the MA(∞) process because it is a powerful way to understand stationary time series. The general form is:</p>
+<div class="math-note">Y<sub>t</sub> = μ + ε<sub>t</sub> + η<sub>1</sub>ε<sub>t−1</sub> + η<sub>2</sub>ε<sub>t−2</sub> + …</div>
+<p>The intuition is that the current value can be written as a long weighted sum of current and past shocks. The weights \(η_s\) tell us how much a shock from \(s\) periods ago still matters today.</p>
+<div class="def"><span class="def-label">Key condition</span><p>For the MA(∞) representation to be well behaved, the weights must die away fast enough. This is usually expressed through absolute summability.</p></div>
+<p>This links directly to stationarity. If old shocks never die away, the process does not settle into stable behaviour. If their effects shrink sufficiently, the process can have a stable mean, variance and autocovariance structure.</p>
+</section>
+<section id="wold">
+<h2>2. Wold decomposition: why MA(∞) matters</h2>
+<p>The notes highlight the Wold decomposition because it gives the MA(∞) representation a deeper meaning. Broadly, a stationary process can be represented as a deterministic part plus an infinite moving average of white-noise shocks.</p>
+<div class="math-note">Stationary process = deterministic component + weighted history of innovations</div>
+<p>The point is not that we always estimate an infinite model directly. The point is that ARMA models can be understood as compact ways of describing how shocks propagate through time.</p>
+</section>
+<section id="arma11-infinite">
+<h2>3. ARMA(1,1) as an MA(∞)</h2>
+<p>The ARMA(1,1) model is:</p>
+<div class="math-note">Y<sub>t</sub> = α + φ<sub>1</sub>Y<sub>t−1</sub> + ε<sub>t</sub> + θ<sub>1</sub>ε<sub>t−1</sub></div>
+<p>The lecture notes show that a stationary ARMA(1,1) can be written as an MA(∞). The coefficients follow a difference equation, so after the first lag the effect of older shocks is multiplied repeatedly by \(φ_1\).</p>
+<div class="math-note">η<sub>0</sub>=1,   η<sub>1</sub>=φ<sub>1</sub>+θ<sub>1</sub>,   η<sub>s</sub>=φ<sub>1</sub>η<sub>s−1</sub> for s&gt;1</div>
+<p>So when \(|φ_1|&lt;1\), the weights shrink and the representation is stationary. This gives the same stationarity condition as the AR(1) part: the persistence parameter must not let shocks grow forever.</p>
+</section>
+<section id="lag-operator">
+<h2>4. Lag operator: compact notation for time-series models</h2>
+<p>The lag operator makes the notation cleaner. It is defined by:</p>
+<div class="math-note">L Y<sub>t</sub> = Y<sub>t−1</sub>,   L²Y<sub>t</sub> = Y<sub>t−2</sub></div>
+<div class="img-block"><img alt="Lag operator diagram from time-series notes" loading="lazy" src="../img/teaching/lag_operator.png"/><span class="img-caption">The lag operator shifts a time-indexed variable backwards.</span></div>
+<p>An AR(p) model can then be written compactly as:</p>
+<div class="math-note">φ(L)Y<sub>t</sub> = μ + ε<sub>t</sub></div>
+<p>where \(φ(L)=1-φ_1L-…-φ_pL^p\). This notation is useful because stationarity conditions can be stated in terms of the roots of a polynomial.</p>
+</section>
+<section id="arp-stationarity">
+<h2>5. AR(p) stationarity and characteristic roots</h2>
+<p>For AR(1), the condition was easy: \(|φ_1|&lt;1\). For AR(p), the idea is the same but the algebra is expressed through roots. The model is stationary if the roots of the relevant characteristic equation lie in the correct region.</p>
+<p>The lecture-note intuition is that the AR(p) also has an MA(∞) representation, but now the MA(∞) coefficients satisfy a p-th order difference equation. Stationarity requires those coefficients to die away.</p>
+<div class="def"><span class="def-label">Practical interpretation</span><p>Stationarity is still the same idea: the effect of shocks must fade rather than explode. The root condition is the general AR(p) way of checking this.</p></div>
+<div class="img-block"><img alt="AR(2) autocorrelation function shapes" loading="lazy" src="../img/teaching/ar2acf.png"/><span class="img-caption">AR(2) processes can produce richer decay and oscillation patterns than AR(1).</span></div>
+</section>
+<section id="estimation">
+<h2>6. Estimating ARMA models</h2>
+<p>The inference notes then move from theoretical processes to sample data. The central question is: given \(y_1,…,y_T\), how do we estimate the unknown model parameters?</p>
+<h3>AR(p) estimation</h3>
+<p>An AR(p) model can be viewed like a regression of \(Y_t\) on its own lags:</p>
+<div class="math-note">Y<sub>t</sub> = μ + φ<sub>1</sub>Y<sub>t−1</sub> + … + φ<sub>p</sub>Y<sub>t−p</sub> + ε<sub>t</sub></div>
+<p>Because the lagged values are observed, ordinary least squares can be used under the assumptions set out in the course. The notes then rely on familiar OLS properties: consistency, asymptotic normality and valid hypothesis testing under suitable conditions.</p>
+<h3>MA estimation</h3>
+<p>MA models are more difficult because the lagged shocks are not observed. In an MA(1), the model contains \(ε_{t-1}\), but that is not a data column we can simply put into a regression. This is why MA and ARMA models are commonly estimated by maximum likelihood or related numerical methods.</p>
+<div class="def"><span class="def-label">Intuition</span><p>AR estimation is easier because lagged values of \(Y\) are observed. MA estimation is harder because lagged shocks are hidden and must be inferred as part of the estimation procedure.</p></div>
+</section>
+<section id="model-selection">
+<h2>7. Model specification, AIC and SIC</h2>
+<p>The notes explain that the <a href="reading-the-correlogram.html">correlogram</a> is useful but not enough. It can suggest an AR or MA structure, but the estimated model still needs formal selection and checking.</p>
+<p>Information criteria compare models by balancing fit against complexity. A model with more parameters usually fits the sample better, but it may only be fitting noise.</p>
+<table class="concept-table">
+<thead><tr><th>Criterion</th><th>What it does</th><th>Typical feature</th></tr></thead>
+<tbody>
+<tr><td>AIC</td><td>Rewards fit and penalises extra parameters.</td><td>Often chooses a larger model.</td></tr>
+<tr><td>SIC/BIC</td><td>Uses a heavier penalty for extra parameters as sample size grows.</td><td>Often chooses a more parsimonious model.</td></tr>
+</tbody>
+</table>
+<p>The notes point out that AIC and SIC do not always choose the same order. The practical response is to combine theory, the correlogram, information criteria, coefficient tests and residual diagnostics.</p>
+</section>
+<section id="prediction">
+<h2>8. Prediction from an AR(1)</h2>
+<p>The prediction section uses the AR(1) model to distinguish unconditional and conditional ideas:</p>
+<div class="math-note">Y<sub>t</sub> = μ + φ<sub>1</sub>Y<sub>t−1</sub> + ε<sub>t</sub></div>
+<p>The unconditional mean is the overall long-run mean:</p>
+<div class="math-note">E[Y<sub>t</sub>] = μ / (1 − φ<sub>1</sub>)</div>
+<p>But if we know today’s value \(y_T\), and \(φ_1
+eq0\), then today’s value contains information about tomorrow. The one-step conditional forecast is:</p>
+<div class="math-note">E[Y<sub>T+1</sub> | Y<sub>T</sub>=y<sub>T</sub>] = μ + φ<sub>1</sub>y<sub>T</sub></div>
+<p>This is the core forecasting intuition: because the process is autocorrelated, conditioning on the observed past improves the forecast. Further ahead, the forecast gradually moves back towards the unconditional mean if the AR(1) is stationary.</p>
+<div class="img-block"><img alt="CPI fan chart showing prediction uncertainty" loading="lazy" src="../img/teaching/cpi.png"/><span class="img-caption">Forecast uncertainty widens as the prediction horizon increases.</span></div>
+</section>
+<section id="seasonality">
+<h2>9. Seasonality: regular time-patterns</h2>
+<p>The final part of the fuller notes introduces prediction and seasonality. Seasonality appears when a series has repeated patterns at regular intervals, such as quarterly or monthly effects.</p>
+<div class="img-block"><img alt="Seasonal sales series from time-series notes" loading="lazy" src="../img/teaching/seas.png"/><span class="img-caption">Seasonality creates regular repeating patterns through the year.</span></div>
+<p>The notes distinguish two broad approaches:</p>
+<table class="concept-table">
+<thead><tr><th>Type</th><th>Meaning</th><th>How it is modelled</th></tr></thead>
+<tbody>
+<tr><td>Deterministic seasonality</td><td>Seasonal means differ in a stable way.</td><td>Use seasonal dummy variables.</td></tr>
+<tr><td>Stochastic seasonality</td><td>Seasonal dependence is part of the dynamic process.</td><td>Use seasonal AR terms or related time-series models.</td></tr>
+</tbody>
+</table>
+<p>A seasonal correlogram often shows spikes at seasonal lags, such as 4, 8 and 12 for quarterly data. The notes then use residual correlograms to decide whether deterministic dummies have removed the seasonality or whether stochastic seasonal dependence remains.</p>
+<div class="img-block"><img alt="Seasonal annual demeaned series from time-series notes" loading="lazy" src="../img/teaching/demewan.png"/><span class="img-caption">After removing deterministic seasonal means, the remaining pattern can be checked using a residual correlogram.</span></div>
+</section>
+<section class="study-note-box" id="how-to-use">
+<h2>How to use this advanced note</h2>
+<ol>
+<li>Use <a href="ar-arma-processes-explained.html">AR, MA and ARMA processes</a> for intuition.</li>
+<li>Use this page for the algebra and modelling steps.</li>
+<li>Use <a href="reading-the-correlogram.html">the correlogram note</a> whenever you need to interpret ACF output or residual diagnostics.</li>
+</ol>
+</section>
+<div class="tuition-cta"><p>Advanced time series tuition</p><p>For help with ARMA derivations, Wold representations, lag-operator algebra, maximum likelihood, prediction or seasonality, see <a class="gold-link" href="../econometrics-tutor.html">econometrics tuition</a>, <a class="gold-link" href="../financial-econometrics-tutor.html">financial econometrics tuition</a> or <a class="gold-link" href="../phd-econometrics-tutor.html">PhD econometrics support</a>.</p></div>
+</main>
+<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../econometrics-tutor.html"><strong>Econometrics tuition</strong><span>ARMA, stationarity, lag operators and model selection.</span></a><a class="funnel-card" href="../financial-econometrics-tutor.html"><strong>Financial econometrics tuition</strong><span>ARMA/GARCH and volatility modelling for finance.</span></a><a class="funnel-card" href="../phd-econometrics-tutor.html"><strong>PhD econometrics support</strong><span>More advanced time series, asymptotics and methods chapters.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book a free consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
+<div class="foot-cols">
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
+<div class="fc"><h4>A-Level &amp; Admissions</h4><a href="../a-level-admissions-tutoring.html">Overview</a><a href="../a-level-maths-tutor.html">A-Level Maths</a><a href="../a-level-economics-tutor.html">A-Level Economics</a><a href="../tmua-preparation.html">TMUA preparation</a><a href="../oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
+<div class="fc"><h4>University &amp; Postgraduate</h4><a href="../university-postgraduate-tutoring.html">Overview</a><a href="../university-economics-tutor.html">University Economics</a><a href="../econometrics-tutor.html">Econometrics</a><a href="../statistics-tutor.html">Statistics</a><a href="../finance-tutor.html">Finance</a><a href="../phd-econometrics-tutor.html">PhD econometrics</a></div>
+<div class="fc"><h4>Resources &amp; contact</h4><a href="../blog.html">Study notes</a><a href="../questions.html">Common questions</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../how-it-works.html">How it works</a><a href="../index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
+</div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online UK-wide</span></div>
+</footer>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+nav.classList.toggle('solid',scrollY>40);
+function toggleNav(btn){const m=document.getElementById('mobNav');const o=m.classList.toggle('open');btn.setAttribute('aria-expanded',String(o));}
+document.addEventListener('click',function(e){const m=document.getElementById('mobNav');const b=document.getElementById('burgerBtn');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&b&&!b.contains(e.target)){m.classList.remove('open');b.setAttribute('aria-expanded','false');}});
+</script>
+</body>
+</html>

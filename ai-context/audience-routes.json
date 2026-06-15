@@ -1,0 +1,30 @@
+{
+  "routes": [
+    {
+      "name": "A-Level & Admissions",
+      "url": "https://www.drnickygrant.com/a-level-admissions-tutoring.html",
+      "subjects": [
+        "A-Level Maths",
+        "Further Maths",
+        "A-Level Economics",
+        "TMUA",
+        "Oxbridge Economics"
+      ]
+    },
+    {
+      "name": "University & Postgraduate",
+      "url": "https://www.drnickygrant.com/university-postgraduate-tutoring.html",
+      "subjects": [
+        "University Economics",
+        "Econometrics",
+        "Statistics",
+        "Finance",
+        "Financial Econometrics",
+        "Dissertation methods",
+        "PhD Econometrics"
+      ]
+    }
+  ],
+  "pricing": "The rate is confirmed before any paid session is booked. Sessions are per session, with no upfront commitments.",
+  "archive_note": "Some PDFs and notes are historic teaching materials written by Dr Nicky Grant for previous teaching and do not represent current courses or current course content."
+}

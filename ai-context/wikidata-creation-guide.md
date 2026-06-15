@@ -64,7 +64,7 @@ Wikidata is the structured knowledge database that feeds Wikipedia, Google's Kno
 | official website (P856) | https://www.drnickygrant.com | — |
 | ORCID iD (P496) | 0009-0008-8979-4623 | orcid.org |
 | YouTube channel ID (P2013) | economaths | youtube.com/@economaths |
-| Semantic Scholar author ID (P7884) | 97839351 | semanticscholar.org |
+| Academia.edu, IDEAS/RePEc and Semantic Scholar search fallback author ID (P7884) | 97839351 | semanticscholar.org |
 
 ### Sources to add for each claim
 For each claim, click "add reference" and use:

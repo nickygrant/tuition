@@ -1,0 +1,224 @@
+\documentclass[options]{beamer}
+\mode<presentation>
+
+\usecolortheme{whale}
+\usetheme{Antibes}
+\usefonttheme{default}
+
+\setbeamertemplate{navigation symbols}{}
+\useoutertheme{infolines}
+
+
+\usepackage{multirow}
+\usepackage{bm}
+\usepackage{threeparttable}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{indentfirst}
+
+\usepackage{multirow}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\usepackage{threeparttable}
+\usepackage{array}
+\newcommand{\highlight}[1]{\colorbox{green}{\ensuremath{#1}}}
+
+
+\usepackage{color}
+
+\usepackage{xcolor}
+
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+
+
+\title[Bias in Tax-Donation Response]{ Endogenous Non-Itemisers and the Bias in Estimating the Tax-Price Response of Charitable Donations. }
+
+\author[PB \& NG]{Peter Backus \& Nicky Grant}
+\institute{Brownbag Seminar}
+
+
+\date[   25th May 2015]{ 25th May 2015}
+
+
+\maketitle
+
+\section{Introduction}
+
+
+
+\begin{frame}
+\frametitle{Empirical Question}
+\begin{itemize}
+	
+	\item[] Charity donations tax deductible for tax-filers (\textbf{Itemisers})
+	\vspace{20pt}
+	\item[] Price of donating \$1 is a function of\textbf{ MTR (Marginal Tax Rate) }
+
+		\vspace{20pt}
+	 \item[] \[\textrm{Price} = \left\{
+	 \begin{array}{lr}
+	 1-\textrm{MTR} & : \textrm{Itemiser}\\
+	 0 & :  \textrm{Non-Itemiser}
+	 \end{array}
+	 \right.
+	 \]
+	
+	\item[] \colorbox{yellow}{\parbox{\textwidth}{ Question: What is the  elasticity of Donations w.r.t Change in Price?}}
+		\vspace{1pt}
+	\item[] \colorbox{green}{Policy Relevance}- are tax deductions `\textbf{Treasury Efficient}' (price elastic)? Steinberg (1990)
+	
+	
+\end{itemize}
+\end{frame}
+	
+	
+	\begin{frame}
+		\frametitle{Baseline Model in Literature}
+	
+	\begin{equation*}
+\log(D_{it})= \alpha_0 +\beta_0\log (1-I_{it}\tau _{it}^F) +\delta_0'X_{it}+ u_{it} 
+	\end{equation*}		
+					\begin{itemize}
+	\item[] $\highlight{D_{it}}$- (Donations+1)
+	\vspace{9pt}
+	 \item[] $\highlight{I_{it}} = \left\{
+	\begin{array}{lr}
+	1& : \textrm{Itemiser}\\
+	0 & :  \textrm{Non-Itemiser}
+	\end{array}
+	\right.
+$
+\vspace{5pt}
+
+\item[] $\highlight{\tau_{it}^F }$ MTR on first dollar of donation
+
+\vspace{5pt}
+\item[] 	$\highlight{X_{it}}$ - Vector of controls (varies depending on data variable) commonly \textbf{Income, Wealth, Gender, Education.}
+	
+	
+		\end{itemize}\end{frame}
+			
+				
+		\begin{frame}
+	\frametitle{Itemisation}
+\begin{itemize}
+\item $E_{it}$ all other tax-deductible expenses (e.g mortgage payments) (\$)
+\vspace{15pt}
+\item  Up to \$6000	tax-free allowance
+\vspace{15pt}
+\item  $\Delta_{it}=\max\{D_{it}+E_{it}-6000,0\}$ is \textbf{tax deductible }
+\vspace{15pt}
+\item  $\Delta_{it}>0$ agent may itemise (tax-file) and tax-deduct $\Delta_{it}$
+		\vspace{15pt}
+		\item[]	
+			$\Delta_{it}>0 \rightarrow  \left\{
+			\begin{array}{lr}
+			E_{it}\geq 6000& : \highlight{\textrm{Exogenous Itemiser}}\\
+			 	E_{it}<6000& : \highlight{ \textrm{Endogenous Itemiser}}
+			\end{array}
+			\right.$
+
+	\end{itemize}\end{frame}	
+	
+				
+\begin{frame}
+	\frametitle{Endogenous Itemisation Bias}
+	\begin{itemize}
+
+
+\item[]  $I_{it}$ and $u_{it}$ positively` correlated by Endogenous Itemisers
+\vspace{15pt}
+\item[] $u_{it}\uparrow$ $\Rightarrow$ $D_{it}\uparrow$ $\Rightarrow$ $I_{it} \uparrow$ (as $I_{it}=1(D_{it}+E_{it}>6000)$.
+\vspace{15pt}
+\item[] $Corr(\log(1-I_{it}\tau_{it}),u_{it})<0$ \textbf{[OLS Downward Biased]}
+\vspace{15pt}
+
+\item[]\colorbox{yellow}{Emprical Solutions}
+
+\item Omit Endogenous Itemisers
+\vspace{5pt}
+\item  Fixed Effects where Panel Data available
+
+
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Issues with Baseline Literature Model}
+
+\begin{enumerate}
+	\item Omitting Endogenous Itemisers means we cannot identify price response from this population
+	\vspace{15pt}
+	\item Agents may respond to $\tau_{it}^L$ (MTR on Last Dollar of Donation) not $\tau_{it}^F$
+	\vspace{15pt}
+	\item Including Non-Itemisers causes a severe downward bias\newline
+	 [Issue currently unknown in the literature]
+	 	
+	 \end{enumerate}
+
+
+
+\end{frame}
+	
+	
+	\begin{frame}
+		\frametitle{Main Contributions of Paper}
+			\begin{itemize}
+				
+		\item[] \textbf{Provide strong theoretical,intuitive and  empirical   support for strong downward bias in including Non-Itemisers}
+			\vspace{15pt}
+	\item[] Show how controlling for itemisation status reduces(/removes) this bias and verified empirically.
+		\vspace{15pt}
+	\item[] Also controlling for itemisation status reduces bias in tax-response of endogenous itemisers
+			\vspace{15pt}
+			\item[] Study the implications of itemisation behaviour within and across time
+		
+			\vspace{15pt}
+	\item[]	Set price based on $\log(1-I_{it}\tau_{it}^L)$ using $\log(1-I_{it}\tau_{it}^F)$ as instrument
+	
+
+ \end{itemize}
+ 
+\end{frame}
+
+
+		\begin{itemize}
+\item[] Large literature mostly using baseline model with different data sets
+	\vspace{15pt}
+\item[] Mixture of Cross Section and Panel Results
+	
+	\vspace{15pt}
+\item[] \textbf{Tax-filer data} population has $I_{it}=1$, using only exog. itemisers who are much  wealthier
+	\vspace{15pt}
+\item[] \textbf{Survey Data}measures donation in general population. Allows inclusion of non-itemisers.
+
+
+ \end{itemize}
+ 
+\end{frame}
+
+
+	\end{document}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

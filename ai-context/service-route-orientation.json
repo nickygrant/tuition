@@ -1,0 +1,29 @@
+{
+  "updated": "2026-06-15",
+  "purpose": "Map each subject-specific tutoring page to the broad audience route shown near the top of the page.",
+  "routes": {
+    "A-Level & Admissions": {
+      "overview": "a-level-admissions-tutoring.html",
+      "pages": [
+        "a-level-maths-tutor.html",
+        "a-level-economics-tutor.html",
+        "tmua-preparation.html",
+        "oxbridge-economics-tutor.html"
+      ],
+      "enquiry_prompt": "exam board, year group, current grade, target grade, exam date and difficult topics"
+    },
+    "University & Postgraduate": {
+      "overview": "university-postgraduate-tutoring.html",
+      "pages": [
+        "university-economics-tutor.html",
+        "econometrics-tutor.html",
+        "economics-statistics-tutor.html",
+        "statistics-tutor.html",
+        "finance-tutor.html",
+        "financial-econometrics-tutor.html",
+        "phd-econometrics-tutor.html"
+      ],
+      "enquiry_prompt": "module title, topic list, deadline, software/data if relevant, and the specific issue"
+    }
+  }
+}

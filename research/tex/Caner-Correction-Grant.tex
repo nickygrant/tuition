@@ -1,0 +1,809 @@
+\documentclass[11pt, fleqn]{article}
+
+\usepackage{amsfonts,amssymb,graphics,epsfig,verbatim,bm,latexsym,amsmath,url,amsbsy}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{multirow}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{threeparttable}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage[width=15.5cm, bottom=3cm, top=4cm, foot=2cm,
+a4paper]{geometry}
+\usepackage{fancyhdr}
+\setlength{\parindent}{0pt}
+\usepackage{setspace}
+\doublespacing
+\begin{document}
+
+\title{Comment on Caner (2008) `Nearly-singular design in GMM and generalized empirical likelihood estimators'}
+
+\author{Nicky Grant\let\thefootnote\relax\footnote{
+Nicky Grant, Arthur Lewis Building, Faculty of Economics, Bridgeford Street, M13 9PL, Manchester, UK. 07930861907. nicky.grant@manchester.ac.uk.}  \\
+ University of Manchester \\}
+\maketitle
+
+\begin{abstract}
+ \small
+ 
+  Caner (2008)   derives the properties of general moment type estimators with Nearly- Singular Design. It is shown that these results are incorrect due largely to a mistake in the proofs.
+   Under a slight modification to the  assumptions   a correction is provided for some of the main theorems in  Caner (2008).
+We show  the rate of convergence of the  2-Step GMM estimator with Nearly-Singular Design increases in some directions under a certain condition on the null space of the limiting moment variance and Jacobian. Examples when this condition holds in a Linear Instrument Variables setting are  provided and the main results of this paper  verified in a simulation.
+
+
+\end{abstract}
+\textsc{Keywords}: GMM, Near-Singular Design.\\
+\textsc{JEL Classification:} C10, C13.
+
+
+
+
+\section{Introduction}
+
+The Near-Singular Design (NSD) assumption was developed in Knight \& Fu (2000) to study the properties of Lasso  estimators in linear regressions models when the variance of regressors is asymptotically singular though is full rank in finite samples. This assumption was adapted in Caner (2008) to the case of general moment functions and was used to study the asymptotic properties of  2-Step GMM and  Generalised Empirical Likelihood (GEL) when moments have variance `close' to singular.
+
+
+We firstly show that the main results in Caner (2008) are incorrect largely due to  key mistakes in  crucial lemmas in the paper that underpinning  the  proofs of the main theorems.  We  also find by replicating the simulations in Caner (2008) that some of  results reported are incorrect, where correct results are provided and discussed.
+
+ A correction to the results on the  asymptotic properties of the 2-Step GMM estimator and the Lemmas required to derive these results are provided.\footnote{ A correction to the results on GEL and higher order bias considered in Caner (2008) are left for future research as  providing such  results would not be feasible in one paper. This is because Caner (2008) essentially provides these results with  adaptations from the proofs in Newey \& West (2004) where moment variance  is non-singular. When providing the correct results with NSD it is not clear that this approach is valid as  further complications arise deriving results for GEL with NSD.}
+	To derive these results we employ assumptions as close as possible to those in the original Caner (2008) paper making small modifications where necessary to derive the correct results and proofs.\\
+	Implicitly the assumptions in Caner (2008) imply the Jacobian matrix shrinks to zero at some rate where consistency is maintained. This is a special case of the many weak moment setup in Newey \& Windmeijer (2009).
+We discuss how the identification setup in Caner (2008)   are  restrictive. For example we show these assumptions rule out  Ordinary Least Squares (OLS) moment function and  hence do not contain the results in Knight \& Fu (2000) as a special case. We suggest a generalisation to the identification assumption in Caner (2008) which allow a more general set of moment functions. Under this identification assumption with NSD we find a similar result to the setup of Caner (2008) with a more general rate of convergence related to the rate of convergence of the Jacobian to zero.
+
+
+It is shown both the rate of convergence and the asymoptotic variance found in Caner (2008) are invalid and this point is discussed.
+We find that when moments have NSD under the identification setup of Caner (2008) that in some cases the rate of convergence increases in certain directions relative to the rate of convergence where moments have full rank. 
+
+An example when this condition holds is provided in a simple Linear Simultanous instrumental settings and the results of this paper verified in a simulation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Notation of Paper}
+The notation in this paper follows that  in Caner (2008), defining new notation where necessary.  Let the known moment function $m\times 1$ moment function $g(\cdot,\cdot): \mathbb{R}^l \times \mathbf{B}\mapsto\mathbb{R}$ which satisfies,
+\begin{equation} \label{moment}Eg(x_i,\beta_0)=0 \end{equation}
+where $\beta_0\in\mathbf{B} \subset \mathbb{R}^p$.  Define $g_i(\beta)=g(x_i,\beta)$
+ \begin{equation*}
+\Psi_n(\beta)=n^{-1/2}\sum_{i=1}^n(g_i(\beta)-Eg_i(\beta)) \end{equation*} \begin{equation*}
+ \hat{g}(\beta)=n^{-1} \sum_{i=1}^n g_i(\beta)  \end{equation*}
+  \begin{equation*}\hat{\Omega}(\beta)=n^{-1}\sum_{i=1}^n g_i(\beta) g_i(\beta)'\end{equation*} \begin{equation*} \Omega_n(\beta)=n^{-1}\sum_{i=1}^n Eg_i(\beta)g_i(\beta)' \end{equation*} \begin{equation*}\Omega(\beta)=\underset{n\rightarrow \infty}{ \lim} \Omega_n(\beta)\end{equation*}
+
+Finally we employ an eigenvalue decomposition of $\Omega(\beta)$ noting it is symmetric and bounded under the assumptions in Caner (2008).  Defining $\bar{m}(\beta)$ as the rank of $\Omega(\beta)$ 
+\begin{equation}\label{ed} \Omega(\beta)=P_+(\beta)\Lambda_+(\beta)P_+(\beta)'
+\end{equation}
+for every $\beta \in\mathbf{B}$ where $\Lambda_+(\beta)$ is an $\bar{m}(\beta)\times \bar{m}(\beta)$  matrix and and $P_+(\beta)$ is an $m\times \bar{m}(\beta)$ matrix such that $P_+(\beta)'P_+(\beta)=I_{\bar{m}(\beta)}$ and define $P_0(\beta)$ as the $m-\bar{m}(\beta)$ orthogonalised null space of $\Omega(\beta)$ where $P_0(\beta)'P_0(\beta)=I_{m-\bar{m}(\beta)}$ and $P_0(\beta)'P_+(\beta)=0$. For notational ease we define $P=P(\beta_0)$, $\bar{m}(\beta_0)=0$ etc.
+
+Results in this paper are derived for $n\rightarrow \infty$ where $\overset{p}{\rightarrow}$, $\overset{d}{\rightarrow}$ denote convergence in probability and distribution respectively, `w.p.a.1' denotes `with probability approaching 1' and `w.p.1' denotes `with probability 1'.  $o_p(a)$  refers to a variable that converges to zero w.p.a.1 when divided by a and similarly $O_p(a)$ a variable bounded in probability when divided by a (similar definitions holds for the deterministic counterparts $o(a),O(a)$). $a.s(z)$ refers to `almost surely' with respect to the distribution $z$.  Let $\textrm{Diag}(A)$ be a matrix with the diagonal entries from a matrix $A$ and zeroes everywhere else, where $\textrm{tr}(A)$, $\textrm{Rank}(A)$ and $\textrm{Null}(A)$  refer to the trace, rank and null space of $A$ respectively. Define the Euclidean Norm $|\!|A|\!|:=tr(A'A)^{1/2} $ and Euclidean Distance $d(x,y)=|\!|x-y|\!|$ for vectors $x,y$ of the same dimension. For any $a>0$ let $I_{a\times a}$ refer to the $a \times a$ Identity Matrix,  $0_{a \times a} $ be an $a \times a$ matrix of zeroes and $0_{a}$ an $ a \times 1$ vector of zeroes.
+
+Throughout the paper when referring to a pg. number we are referring to a page in Caner (2008) unless stated otherwise. 
+
+
+\section{Discussion of the Assumptions in Caner (2008)}
+We firstly provide a discussion on the assumptions in Caner (2008). There are some slight issues with the assumptions which we discuss and amend.  Firstly some of the conditions are not sufficient to establish the correct results and must be adapted slightly.  Secondly, and more importantly, even conditional on these adaptations the assumptions are restrictive and preclude comment moment functions.
+
+Though there are issues with the assumptions in Caner (2008) they are not the main source of the invalidity of the results  and proofs  discussed in the next section. The issues with the assumptions become more apparently when providing a correction to the results. 
+
+The following is the NSD assumption adapted from Knight \& Fu (2000) to general moment functions. \\
+
+\textbf{Assumption 1 (A1)}(Nearly-Singular Design, pg. 513)\\
+(i) Uniformly over $\beta \in \mathbf{B}$ $\hat{\Omega}(\beta)\overset{p}{\rightarrow} \Omega(\beta)$ where $\Omega(\beta)$ is singular for all $\beta \in \mathbf{B}$.\\
+(ii) However for $a_n=n^{\kappa}$ where $0<\kappa<1$, uniformly over $\beta$
+\begin{equation} \label{NSD} a_n(\hat{\Omega}(\beta)-\Omega(\beta))\overset{p}{\rightarrow}D(\beta)\end{equation}
+where $D(\beta)$ is positive definite for all $\beta$,  for u which is on the null space of $\Omega(\beta)$ (i.e. for $u\neq 0$, $u'D(\beta)u>0$, were $\Omega(\beta)u=0$ for all $\beta$) $D(\beta)$ is continuous in $\beta$. We exclude the case of instruments being linear functions of one another as the cause of nearly-singular design in Assumption 1(ii).\\
+(iii) $\underset{\beta \in \mathbf{B}}{\sup} |\!| D(\beta)|\!|<\infty$.\\
+
+
+  A1(ii) is the Nearly-Singular Design assumption  from Knight \& Fu (2000) for Lasso/OLS with fixed regressors adapted to the general over-identified moment setting. In Knight \& Fu (2000) NSD was made on $C_n=\frac{1}{n}\sum_{i=1}^nx_i x_i'$ where $x_i$ is a fixed $p\times 1$ vector of regressors and $C=\underset{n\rightarrow \infty}{\lim}C_n$. The NSD in this case is
+ \begin{equation} a_n(C_n-C)\rightarrow D\end{equation}
+where this assumption is sufficient to derive the asymptotic properties in Knight \& Fu (2000) as the regressors are fixed.
+ 
+ 
+   Caner (2008)  applies the NSD assumption on the sample variance $\hat{\Omega}(\beta)$ as opposed to the population variance $\Omega_n(\beta)$ which leads to the following  two issues in the general stochastic moment setting.
+ \begin{enumerate}
+   \item In the stochastic moment case  then NSD as written in (\ref{NSD})  not say directly anything about the properties of $Var(\sqrt{n}\hat{g}(\beta_0))=\Omega_n(\beta_0)$ which is important in applying a Central Limit theorem to $\sqrt{n}\hat{g}(\beta_0)$ and hence establishing the asymptotic properties of GMM.
+       \item  Condition (\ref{NSD}) can only hold for $\kappa<1/2$ for most cases of stochastic moments (which is also required for Assumption 5 to hold, see  discussion below).
+ \end{enumerate}
+
+The first issue is not a problem in fixed regressor in Knight \& Fu (2000) as mentioned. In the general stochastic moment case then  the properties of GMM depend on $Var(\sqrt{n}\hat{g}(\beta_0))=\Omega_n(\beta_0)$ however NSD in (\ref{NSD}) gives properties of $\hat{\Omega}(\beta)$ where $\Pr\{\hat{\Omega}(\beta)=\Omega_n(\beta)\}<1$.  As such we need to make assumptions on  the properties of $\Omega_n(\beta)$ directly. NSD as written in (\ref{NSD}) implies that $a_n(\Omega_n(\beta)-\Omega(\beta))\rightarrow D(\beta)$ for $\kappa<1/2$  under some mild assumptions. To see this re-express
+\begin{equation} \label{ns} n^{\kappa}(\hat{\Omega}(\beta)-\Omega(\beta))=n^{\kappa}(\hat{\Omega}(\beta)-\Omega_n(\beta))+n^{\kappa}(\Omega_n(\beta)-\Omega(\beta)) \end{equation}
+when $\frac{1}{n}\sum_{i=1}^n E[|\!|g_i(\beta)|\!|^4]$ is bounded  for all $\beta \in \mathbf{B}$ and by independence of $g_i(\beta)$  in Assumption 2(i) discussed below then for  $\kappa<1/2$  my the Markov Inequality  \begin{equation*}n^{\kappa}(\hat{\Omega}(\beta)-\Omega_n(\beta))=O_p(n^{\kappa-1/2}) \end{equation*} where $\kappa-1/2<0$ so by (\ref{ns})
+\begin{equation}a_n(\hat{\Omega}(\beta)-\Omega(\beta))=a_n(\Omega_n(\beta)-\Omega(\beta))+o_p(1) \end{equation}
+ so together with NSD A1(ii) imply \begin{equation} a_n(\Omega_n(\beta)-\Omega(\beta))\rightarrow D(\beta). \end{equation}
+
+
+
+Secondly the NSD condition (\ref{NSD}) can not hold for many cases where  $\kappa>1/2$  for stochastic moments. For the setting of Knight \& Fu (2000) this is possible as $C_n$ is a deterministic sequence where $C_n-C$ may converge to a bounded matrix at rate faster than $n^{1/2}$. In the stochastic moment setting then in most cases $\hat{\Omega}(\beta)-\Omega_n(\beta)=O_p(n^{-1/2})$ which prevents (\ref{NSD}) from holding for $\kappa>1/2$.
+
+
+To overcome both issues we  extend the NSD assumption of Knight \& Fu (2000) applied to  both $\Omega_n(\beta)$ and  $\hat{\Omega}(\beta)$. We re-state Assumption 1(ii) as
+
+\textbf{Assumption 1(ii)$^*$}
+ For $a_n=n^{\kappa}$ where $0<\kappa<\bar{\kappa}$ for some $1/2\leq\bar{\kappa}\leq 1$ uniformly over $\beta$
+\begin{equation} \label{NSD1} a_n(\hat{\Omega}(\beta)-\Omega(\beta))\overset{p}{\rightarrow}D(\beta)\end{equation}
+\begin{equation} \label{NSD2} a_n(\Omega_n(\beta)-\Omega(\beta))\rightarrow D(\beta)\end{equation}
+where $D(\beta)$ is positive definite for all $\beta$,  for u which is on the null space of $\Omega(\beta)$ (i.e. for $u\neq 0$, $u'D(\beta)u>0$, were $\Omega(\beta)u=0$ for all $\beta$) $D(\beta)$ is continuous in $\beta$.\\
+
+When providing a correction to the results of Caner (2008) we work with Assumption 1$^*$ which is Assumption 1 of Caner (2008) replacing A1(ii) with  A1$^*$(ii). We can see in the fixed regressor case  of Knight \& Fu (2000)  where  $\hat{\Omega}(\beta)=C_n$ satisfies (\ref{NSD1}), (\ref{NSD2}) for $\bar{\kappa}=1$ since $C_n$ is not random. In the stochastic general moment case both (\ref{NSD1})  and (\ref{NSD2}) are equivalent for $\bar{\kappa}=1/2$ when $E|\!|g_i(\beta)|\!|^4|\!|<\infty$ under A2(i) as discussed above. Both condition (\ref{NSD1}) and (\ref{NSD2}) are crucial in determining the properties of 2-Step GMM and is discussed further in Section 5.
+
+
+A sufficient condition for (\ref{NSD2}) is that the eigenvalues of $\Omega_n(\beta)$ converging to zero at rate $a_n=n^{\kappa}$ which is a special case of  Weakly Singular Variance assumption in Grant (2015) and defined below.\\
+
+ \textbf{Weakly Singular Variance (WSV)}\begin{equation}\label{WSV} \Omega_n(\beta)=P_+(\beta)\Lambda_+(\beta)P_+(\beta)'+P_0(\beta)\Lambda_{0n}(\beta)P_0(\beta)'\end{equation}
+   and $\Lambda_{0n}(\beta)=\Lambda_0(\beta)/a_n$   for a full rank  $(m-\bar{m}(\beta)\times (m-\bar{m}(\beta)$ matrix $\Lambda_0(\beta)$
+with remaining terms defined in Section 1.1.\\
+Then for $\bar{m}(\beta)>0$ for all $\beta$ (as Assumption 1(i) assumes $\Omega(\beta)$ is singular for all $\beta$) then  (\ref{WSV}) and (\ref{NSD2}) are equivalent where $\Omega(\beta)=P_+(\beta)\Lambda_+(\beta)P_+(\beta)'$ and $D(\beta)=P_0(\beta)\Lambda_{0}(\beta)P_0(\beta)'$. Though (\ref{NSD2}) is more general than (\ref{WSV}), the WSV  assumption modelling a subset of eigenvalues as shrinking to zero at some rate is a more intuitive way of modelling the case moments are close to singular.\\
+
+
+
+
+
+\textbf{Assumption 2 (A2)} (pg. 513)\\
+(i) $g_i(\beta)$ is independent.\\
+(ii) $\sup_i E\sup_{\beta \in \mathbf{B}} |\!| g_i(\beta)|\!|^\xi|\!|<\infty$ where $\xi>2/(1-\kappa).$\\
+(iii) $|g_i(\beta_1)-g_i(\beta_2)|\leq L_i |\beta_1-\beta_2|$ where for some $\delta>0$  $\lim_{n\rightarrow \infty}\frac{a_n}{n}\sum_{i=1}^n E[L_i^{2+\delta}]<\infty$ and $L_i$ does not depend on $\beta$.\\
+(iv) $\mathbf{B}$ is a compact set of $\mathbb{R}^p$, $\beta_0$ is in the interior of $\beta$.\\
+
+
+
+  A2(ii) is insufficient to show the correction to Theorem 1 below which is crucial in determining the properties of 2-Step GMM/GEL. We must take in to account under NSD that moments of $g_i(\beta)$ depend on $n$. We replace Assumption 2(ii) with the slightly stronger  A$2^*$(ii).   \\
+
+\textbf{Assumption 2(ii)$^*$} $\sup_i E\sup_{\beta \in \mathbf{B}} |\!| g_i(\beta)|\!|^\xi|\!|\leq K<\infty$ for some $K>0$ where $\xi>2$
+and   for all $x \in \mathbb{R}^m$  $ \underset{n\rightarrow \infty}{\lim} \frac{1}{n}\sum_{i=1}^n E|a_nx'P_0'g_{i}(\beta_0)|^{2+\delta}=0$ for some $\delta>0$.\\
+
+  A2$^*$ (ii)weakens the assumption on $\xi$ slightly as it turns out $\xi>2/1-\kappa$ is not required. The main alteration to Assumption $2^*$(ii) is the addition of the assumption that\\ $\underset{n\rightarrow \infty}{\lim} \frac{1}{n}\sum_{i=1}^n E|a_nx'P_0'g_{i}(\beta_0)|^{2+\delta}=0$ for some $\delta>0$ which is a sufficient condition to establish the Lyapnuov Condition  establishing that $a_nn^{1/2}P_0'\hat{g}(\beta_0)$ converges in distribution to a Gaussian limit discussed in Section 3.\footnote{ The rate of convergence is $a_nn^{1/2}$ and not $n^{1/2}$ since $P_0'\Omega=0$ so by  NSD (\ref{NSD1}) and an application of the Markov Inequaklity implies  $n^{1/2}P_0'\hat{g}(\beta_0)=O_p(a_n^{-1/2})$.}
+ .
+
+  A2(iii) implicitly requires both $g_i(\beta)$ and $\beta$ be  scalar. For the general case where $m$ and/or $p$ may not be scalar  we must replace A2(iii) with A2$^*$(iii). 
+Even in the scalar case the condition in A2(iii) $\lim_{n\rightarrow \infty}\frac{a_n}{n}\sum_{i=1}^n E[L_i^{2+\delta}]<\infty$ is an unrealistic assumption. To see this note that A2(iii) implies
+\begin{equation}
+\frac{1}{n}\sum_{i=1}^nE|g_i(\beta_1)-g_i(\beta_2)|^{2+\delta}\leq \frac{1}{n}\sum_{i=1}^n E|L_i|^{2+\delta}|\beta_1-\beta_2|^{2+\delta}
+\end{equation}
+for any $\beta_1,\beta_2 \in \mathbf{B}$ where by A2(iii) $\frac{1}{n}\sum_{i=1}^n E|L_i|^{2+\delta}=o(a_n^{-1})\rightarrow 0$ which implies that $g_i(\beta)$  is asymptotically equal to a constant and invariant to $\beta$.
+
+In light of this we replace A2(iii) with A$2^*$(iii) which deals with both issues.\\
+
+\textbf{Assumption 2$^*$}(iii)
+$|\!|g_{i}(\beta_1)-g_{i}(\beta_2)|\!|<L_{i}^{2+\delta}|\!|\beta_1-\beta_2|\!|$  for any $\beta_1,\beta_2\in \mathbf{B}$ where $\frac{1}{n}\sum_{i=1}^n EL_{i}^{2+\delta}<\infty$ for some $\delta>0$ where $L_{i}$ does not depend on $\beta$.\\
+
+Again we derive results in this paper under Assumption 2$^*$ which we define as Assumption 2 replacing 
+ replacing A2(ii), (iii) with A2$^*$(ii), (iii) respectively.\\
+
+Assumption 3 is standard in the GEL literature, e.g Newey \& Smith (2004).\\
+
+  \textbf{Assumption 4} (pg.513) Uniformly over $\beta \in \mathbf{B}$ $\lim_{n\rightarrow \infty} Ea_nn^{-1}\sum_{i=1}^n g_i(\beta)= m_1(\beta)<\infty$ where $m_1(\beta)$ is continuous in $\beta$ and $m_1(\beta)=0$ iff $\beta=\beta_0$.\\
+  
+  Assumption 4 at $\beta=\beta_0$ in this paper  is redundant noting that 
+ that it is assumed on pg. 512 that $Eg_i(\beta)=0$ at $\beta=\beta_0$. Results  in this paper can be derived under either assumption and are asymptotically equivalent.\footnote{ Assumption 4 is a special case of Assumption C in  Stock \& Wright (2000) used to study the properties of confidence regions inverting GMM-type statistics. Though this assumption is important for the results in Stock \& Wright (2000), they are not so for the properties GMM type estimators. This is because whether $ n^{-1}\sum_{i=1}^nEg_i(\beta_0)=0$ or more generally $n^{-1}\sum_{i=1}^nEg_i(\beta_0)= o(a_n^{-1})$ 	 will yield the same asymptotic properties for GMM Estimators} As such we maintain the special case assumption that $Eg_i(\beta_0)=0$ for simplicity.\\
+ 	
+Define $G_i(\beta)=\frac{\partial}{\partial \beta'}g_i(\beta)$.\\
+
+  \textbf{Assumption 5} (pg.514) Uniformly over $\beta \in \mathbf{B}$
+  \begin{equation}\label{G} \frac{a_n}{n} \sum_{i=1}^n G_i(\beta)\overset{p}{\rightarrow} G(\beta) \end{equation}
+  where $G(\beta)=\lim_{n\rightarrow \infty} \frac{a_n}{n} \sum_{i=1}^nEG_i(\beta)$, $G(\beta)$ is continuous in $\beta$ and $G(\beta_0)$ has full column rank $p$.\\
+
+Assumption 5 implicitly assume moments are not strongly identified. Under this identification setup  even in the case moments have full rank variance the rate of convergence of GMM is $\sqrt{n}/a_n$, e.g Newey \& Windmeijer (2009). This point was not mentioned in Caner (2008) and partly explains why the rate of convergence is found to be slower than root-n.
+
+Note  also that $a_n^2/n\rightarrow 0$ (i.e $\kappa<1/2$) is required for first-step GMM  to be consistent which is required in Theorem 5 to establish properties of 2-Step GMM.\\
+  
+      
+ 
+
+ 
+
+Define $\hat{G}(\beta)=\frac{1}{n} \sum_{i=1}^n G_i(\beta)$.\\
+
+  \textbf{Assumption $5^*$ (A$5^*$)} (i) Uniformly over $\beta \in \mathbf{B}$ for $a_n=n^{\kappa}$ and $0\leq \kappa <1/2$,
+  \begin{equation}\label{Gh} a_n\hat{G}(\beta)\overset{p}{\rightarrow} G(\beta) \end{equation}
+  where $G(\beta)=\lim_{n\rightarrow \infty} \frac{a_n}{n} \sum_{i=1}^nE[G_i(\beta)$], $G(\beta)$ is continuous in $\beta$ and $G(\beta_0)$ has full column rank $p$.\\
+(ii)  $\;\sup_{\beta} |\!|a_n\hat{G}(\beta)-G(\beta)|\!|=o_p(a_n^{-1/2}) $.\\
+  (iii) $\frac{a_n^3}{n}\rightarrow 0$
+  
+
+ A$5^*$ generalises A5 of Caner (2008) to include A$5^*$(ii),(iii), (iv) that  are required to derive the asymptotic limit distribution of 2-Step GMM with NSD which depends crucially on the properties of the Jacobian.  A5$^*$ provides the rate of convergence of $a_n\hat{G}(\beta)$ to $G(\beta)$ in (\ref{Gh}). In non-linear models the rate condition on $a_n$ in A$5^*$ (iv) is required  which is slightly stronger than the usual condition that $\frac{a_n^2}{n}\rightarrow 0$ so that consistency is maintained with asymptotic identification failure. 
+\subsection{Discussion of Identification Assumptions }
+
+Under the modification to the assumptions above we derive the proprieties of 2-Step GMM in Section 4.
+Though the modified assumptions could hold in theory they are highly restrictive. For example the NSD condition A1 and A5 (or the modified version) can not include OLS. Take the fixed regressor case of Knight \& Fu (2000)
+\begin{equation}
+	y_i= x_i'\beta_0 +\epsilon_i
+\end{equation}
+where $g_i(\beta)=(y_i-x_i'\beta)x_i$
+then it is straightforward to show (assuming for simplicity $Var(\epsilon_i)=\sigma^2)$ that 
+$\hat{G}=-\frac{1}{n}\sum_{i=1}^n x_ix_i'$ and $\Omega_n(\beta_0)=\sigma^2\frac{1}{n}\sum_{i=1}^n x_ix_i'$ so that $\hat{G}=-\sigma^2\Omega_n(\beta_0)$ when by A5 $\hat{G}=o(a_n^{-1})$  which requires $\Omega_n(\beta_0)=o(a_n^{-1})$. Hence only in the pathological case all regressors converge to zero do the  the assumptions in Caner (2008)  allow OLS moment functions.
+
+We provide an example where these assumptions can hold in an Instrumental Variable Simultaneous equation setting in Section 5.
+
+Finally to note the proof of the results under the identification setup in Caner (2008) can be extended easily to allow the rate of convergence of the Jacobian to zero to differ to the rate in NSD. Section 5 provides more details on this point and discusses the more general result.
+
+
+
+
+
+
+
+
+
+\section{Discussion of Main Results in Caner (2008)}
+
+
+The above section provided a discussion on the assumptions of Caner (2008) and provided  alterations to overcome them.  These  issues however are not the cause of the mistakes in Caner (2008).   We now go over the results in Caner (2008) providing corrections to those result needed in Section 4 when deriving the properties of 2-Step GMM. Proofs of some results are provided in the Appendix.\\
+
+\textbf{Theorem 1.} (pg. 513) (i) Under Assumption 1 and 2(i), (ii), on the nullspace of $\Omega(\beta_0)$, the following result holds jointly with (\ref{NSD})
+\begin{equation} \left[ a_n^{1/2}n^{-1/2}\sum_{i=1}^n g_i(\beta_0)\right] \overset{d}{\rightarrow} N(0,D). \end{equation}
+(ii) Under Assumptions 1 and 2, and on the nullspace of $\Omega(\beta)$, the following results holds jointly with (\ref{NSD})
+\begin{equation}\left[ a_n^{1/2}\Psi_n(\beta)\right] \Longrightarrow \Psi(\beta) \end{equation}
+where $\Psi(\beta)$ is a zero-mean Gaussian process with covariance $Var(\Psi(\beta))=D(\beta)$, for all $\beta \in \mathbf{B}$.\\
+
+Theorem 1 states results hold on the null space of $\Omega(\beta_0)$ however there is no restriction to any null space. This Theorem is provided without proof and stated to be a trivial assumption of the Lindberg-Feller Central Limit Theorem.  Theorem 1 is used  as stated to derive the properties of GEL/GMM, though it can only hold in the direction of $P_0$. Namely can prove the following result\newline 
+
+\textbf{Theorem $1^*$.} Under A$1^*$, A$2^*$
+\begin{equation} \label{clt}  P_0' \left[ a_n^{1/2}n^{-1/2}\sum_{i=1}^n g_i(\beta_0)\right] \overset{d}{\rightarrow} N(0,P_0'DP_0).\end{equation}
+\newline 
+where to establish this results  require the sufficient condition to establish the  Lyapunov Condition in A$2^*$(ii) which does not follow from A1,A2 in Caner (2008).\footnote{ Similarly we could establish Theorem 1(ii) in the direction of $P_0(\beta)$ generalising A2$^*$(ii) to provide a sufficient condition for the Lyapnuov Condition for all $\beta \in \mathbf{B}$. This result is not needed in deriving the asympototic properties of2-Step GMM with NSD and hence is ommited for brevity.}
+
+
+Theorem 2 in Caner (2008) provides results on the asymptotic properties of GEL  similar to  Newey \& Smith (2004) dropping the full rank variance assumption allowing NSD. Theorem 2 is established under Lemma A2-A4 in the Appendix pg. 521. Firstly these Lemmas rely on Theorem  1 as stated which does not hold. Another crucial issue is that all of these Lemmas rest crucially on the condition that
+\begin{equation}\label{gs} \max_i \sup_{\beta_n} |\!| g_i(\beta)|\!| =o_p(n^{1/2}a_n^{-1/2}) \end{equation}
+where $\beta_n$ is shorthand for $\beta_n \in \mathbf{B}_n$ where $\mathbf{B}_n \subset \mathbf{B}$. This result
+ is provided without proof where it is stated  to hold by a similar argument to the proof in Eq 2.4 in Guggenberger \& Smith (2005)[GS]. We show in the appendix that   this condition does not hold, so that Lemma A2-A4 can not hold. Since Theorem 2 and 3 (pg. 514) both are proved using  Lemma A2-A4 they too are also incorrect. Also throughout the proof of Theorem 2 and 3 and throughout the paper the results are stated to `hold on the null space of $\Omega(\beta_0)$ though no such restriction is placed.
+
+Also the results for GEL in Theorem 3  imply
+\begin{equation} \frac{n^{1/2}}{a_n^{1/2}}(\hat{\beta}-\beta_0)\overset{d}{\rightarrow} N(0, (G'D^{-1}G)^{-1}) \end{equation}
+where $\hat{\beta}$ is the GEL estimator defined in Eq(3) Caner (2008). However $D$ may  not positive definite or full rank  (only in the direction of the null space of $\Omega$ as defined in NSD) so that $G'D^{-1}G$  may  be negative definite or not exist.   For example in the case WSV holds (which for stochastic moments is equivalent to NSD in most cases as discussed in Section 2) then $D=P_0\Lambda_0P_0'$ so that if $\bar{m}<m$  then $D$ is not invertible.
+
+
+Theorem 4  provides results on the higher order properties  of GEL and Bias Corrected GEL in Section 5 which rest on Theorem 2 and Theorem 3  on the first order properties of GEL. As such these results are also incorrect.
+
+Theorem $5$ provides results for the 2-Step GMM estimator with NSD. Define
+\begin{equation} S_n(\beta)=a_n\hat{g}(\beta)'\hat{V}(\hat{\beta}_1)^{-1}\hat{g}(\beta) \end{equation}
+where $\hat{V}(\hat{\beta}_1)=\frac{1}{n}\sum_{i=1}^n(g_i(\hat{\beta}_1)-\bar{g}_1)(g_i(\hat{\beta}_1)-\bar{g}_1)'$
+and $\bar{g}_1=\frac{1}{n}\sum_{i=1}^n g_i(\hat{\beta}_1)$ where $\hat{\beta}_1$ is the first-step GMM estimator. This estimator was not defined in Caner (2008) but is assumed  to be consistent. Consistency follows under assumption in Caner (2008) where $\hat{\beta}_1$ is the GMM Estimator with generic weight matrix $W_n$ where $W_n\overset{p}{\rightarrow} W$ where $W$ is a full rank $m\times m $ matrix. Under assumptions A$1^*$, $2^*$, $5^*$ we can show
+\begin{equation} \label{first} \hat{\beta}_1=\beta_0+ O_p(a_n/n^{1/2})\end{equation}
+which will be used in proving Theorem $5^*$ below.\footnote{ The properties of GMM with  (asymptotically ) full rank weight matrix $W_n$ do not depend on NSD  and follow as a special case of results in Newey \& Windmeijer (2009).}
+
+
+Then $\hat{\beta}_{GMM}$ is defined the minimiser of $S_n(\beta)$ over $\mathbf{B}$ and the asymptotic properties of 2-Step GMM stated in Theorem 5.\newline
+
+\textbf{Theorem 5.} (pg. 517) (i) Under Assumptions 1,2,4 and 5 on the nullspace of $\Omega(\beta_0)$, the following result holds jointly with (\ref{NSD})
+\begin{equation}\label{GMM} \frac{n^{1/2}}{a_n^{1/2}}(\hat{\beta}_{GMM}-\beta_0) \overset{d}{\rightarrow} N(0, (G'D^{-1}G)^{-1}) \end{equation}
+(ii) Under Assumptions 1,2,4 and 5 on the nullspace of $\Omega(\beta_0)$ the following result holds jointly with (\ref{NSD})\begin{equation} \label{Q} nS_n(\hat{\beta}_{GMM}) \overset{d}{\rightarrow} \chi^2_{m-p}\end{equation}
+Again it is stated in the result and throughout the proof that results holds on the null space of $\Omega(\beta_0)$ where no such  restriction is placed. As noted for GEL in Theorem 3 $D$ may not be positive definite or invertible so that $(G'D^{-1}G)^{-1}$ can not be the asymptotic variance of 2-Step GMM.
+
+As shown in Theorem $5^*$ below, the rate of convergence and limiting variance are not as in (\ref{GMM}). Secondly note that by definition $S_n(\beta)=a_nQ_n(\beta)$ where $Q_n(\beta)=\hat{g}(\beta)'\hat{V}(\hat{\beta}_1)^{-1}\hat{g}(\beta)$ where in Theorem $5^*$ we show   that $nQ_n(\hat{\beta}_{GMM})\overset{d}{\rightarrow} \chi^2_{m-p}$. This result is also  verified  in a simulation so that $na_nQ_n(\hat{\beta}_{GMM})\overset{d}{\rightarrow} \infty$ violating (\ref{Q}).
+
+
+\section{Asymptotic Properties of 2-Step GMM with NSD}
+
+This section provides a correction to Theorem 5 of Caner (2005) with NSD.
+ It is found in Theorem $5^*$ below that in some directions the rate of convergence of the 2-Step GMM estimator   increases in those directions  where $P_0'G\neq 0$. Namely when the null space of $\Omega$ does not belong to the null space of $GG'$ where $G$ is defined in  A$5^*$.
+
+
+Let $B$ be  a bounded full rank $p\times p$ a matrix such that,
+\begin{equation}\label{B} G_{BP_0}=:B'G'P_0=\left(\begin{array}{c} G_{BP_0}^{\bar{p}} \\ 0_{(p-\bar{p})\times \bar{m}}\end{array}\right)\end{equation}
+where $G_{BP_0}^{\bar{p}}$ is  full rank $\bar{p}\times \bar{m}$ matrix for some $0\leq \bar{p}\leq p$. If $G'P_0=0_{p\times \bar{m}}$ then $\bar{p}=0$ and any $B$ satisfies (\ref{B}). If $G'P_0$ is full column rank  (if $\bar{p}\leq\bar{m})$ then $\bar{p}=p$ and again any full rank matrix B satisfies (\ref{B}). If $0<\bar{p}<p$ then we can perform Gauss-Jordan elimination to re-write $G'P_0$ in the form (\ref{B}).\\
+
+Define $B_n=I_nB^{-1}$, where \begin{equation}I_n:=\left(\begin{array}{cc} a_n^{1/2}I_{\bar{p}} & 0_{\bar{p}\times \bar{p}}\\ 0_{(p-\bar{p})\times (p-\bar{p})} & I_{p-\bar{p}}\end{array}\right) \end{equation}  
+\\
+Theorem $5^*$ shows that the limit distribution of $\frac{n^{1/2}}{a_n^{1/2}}B_n(\hat{\beta}_{GMM}-\beta_0)$    Gaussian limit distribution  with asymptotic variance of a similar form to the standard  case where $\Omega$ is full rank (i.e $(G'\Omega^{-1}G)^{-1}))$.  \newline
+
+Define
+  \begin{equation}
+  \Lambda_D :=\left(\begin{array}{cc} \Lambda_+ & 0\\ 0& P_0'DP_0\end{array}\right)
+  \end{equation}
+  where $P_0'DP_0$ is full rank by A$1$(ii) and $\Lambda_+ $ is full rank by definition. Hence $\Lambda_D$ is full rank.
+  \begin{equation}G_{BP}:=\left(\begin{array}{cc}   G_{BP_+}^{\bar{p}} & 0\\ 0 &  G_{BP_0}^{p-\bar{p}}   \end{array}   \right)' \end{equation} and $ G_{BP_+}^{p-\bar{p}} $ is the lower $(p-\bar{p})\times (m-\bar{m})$ sub-matrix of  $B'G'P_+:=G_{BP_+}$. Note that $G_{BP}$ will always be full rank when $G$ is full rank, given $B$ and $P$ are both full rank matrices.\\
+
+\textbf{Theorem $5^*$}  Under A$1^*$, A$2^*$, A$5^*$,\\
+(i) $ \label{limit}\frac{n^{1/2}}{a_n}B_n(\hat{\beta}_{GMM}-\beta_0)\overset{d}{\rightarrow} N(0,(G_{BP}'\Lambda_D^{-1}G_{BP})^{-1})$\\
+(ii) $nQ_n(\hat{\beta}_{GMM})\overset{d}{\rightarrow} \chi^2_{m-p}$.\\
+
+\textsc{Remarks}\\
+(i) Both the rate of convergence and limit variance differ relative to Theorem 5 (i) of Caner (2008).  When $P_0'G\neq 0$ then the first $\bar{p}$ elements of $B^{-1}(\hat{\beta}_{GMM}-\beta_0)$ converge at rate $n^{1/2}/a_n^{1/2}$. When $P_0'G=0$ (i.e $\bar{p}=0$) then $B_n=B^{-1}$ and $\frac{n^{1/2}}{a_n}(\hat{\beta}_{GMM}-\beta_0)\overset{d}{\rightarrow} N(0,(G'\Lambda_D^{-1}G)^{-1})$ where the asymptotic variance $(G'\Lambda_D^{-1}G)^{-1}$ does not equal $(G'D^{-1}G)^{-1}$ since $D$ does not equal $\Lambda_D$.\\
+(ii) The rate of convergence and asymptotic distribution the J-Statistic  in Theorem 5(ii) is not impacted by NSD unlike that found in Theorem 5 (ii).\\
+(iii) We could prove Theorem 5$^*$ generalising  A$5^*$ (i) to allow  rate of convergence $b_n$ so that q $b_n\hat{G}\overset{p}{\rightarrow}G$ when $b_n=n^{\nu}$ for $0\leq \nu <1/2$ and it follows immediately that
+\begin{equation}\label{ij}\frac{n^{1/2}}{b_n}B_n(\hat{\beta}_{GMM}-\beta_0)\overset{d}{\rightarrow} N(0,(G_{BP}'\Lambda_D^{-1}G_{BP})^{-1})\end{equation} We see that moments with near singular variance have convergence in some directions faster than $n^{1/2}/b_n$ when $P_0'G \neq 0$.  This result is verified in a simulation where $\nu=0$, i.e moments are strongly identified.
+
+
+
+
+
+
+\section{Examples of Nearly-Singular Design}
+
+This section provides an example of Near Singular Design in a Linear Simultaneous Equation model adapted from Grant (2015).
+\begin{equation} \label{eqn1} y_1=x_1\beta_{01}+\epsilon_1\end{equation}
+\begin{equation}  \label{eqn2} y_2=x_2\beta_{02}+\epsilon_2\end{equation}
+With a set of instruments $z=(z_1,z_2)'$ where $z\sim N(0,I_2)$ where $\beta_{01}$ and $\beta_{02} $ are the (scalar) true parameters and $\beta_0:=(\beta_{01},\beta_{02})'$. Then if $E[\epsilon|z]=0$ where $\epsilon=(\epsilon_1,\epsilon_2)'$ any function of the moments $z$ will serve as valid instruments when interacted with the residual functions $\epsilon_1(\beta)=y_1-x_1\beta_1$, $\epsilon_2(\beta)=y_2-x_2\beta_2$ where $\beta:=(\beta_1,\beta_2)'$, $\beta_1,\beta_2 \in \mathbb{R}$.
+\begin{equation} x_1=f_1(z)+\eta_1\end{equation}
+\begin{equation} x_2=f_2(z)+\eta_2\end{equation}
+For some measurable functions $f_1(\cdot)$, $f_2(\cdot)$ where $E[\eta_1|z]=E[\eta_2|z]=0$ and $E[\eta_1^2|z]=E[\eta_2^2|z]=1$.
+\begin{equation} g(\beta)=\left(\begin{array}{c} \epsilon_1(\beta)\phi_1(z) \\ \epsilon_2(\beta)\phi_2(z)\end{array} \right) \end{equation}
+With $\beta:=(\beta_1,\beta_2)$ where $\phi_1(\cdot)$  and $\phi_2(\cdot)$  are resp. $m_1\times 1$, $m_2 \times 1$ vector functions of the instruments $z$. Suppose the unobservable residuals in (\ref{eqn1}), (\ref{eqn2})  satisfy,
+\begin{equation}
+\epsilon_1=\upsilon_1 h_1(z) \end{equation}
+\begin{equation}
+\epsilon_1=\upsilon_2 h_2(z) \end{equation}
+for some measurable functions $h_1(\cdot)$,$h_2(\cdot)$ which allow  potentiality of  heteroscedasticity of $\epsilon_1,\epsilon_2$ in the instruments. For simplicity assume $E[\upsilon_1|z]=E[\upsilon_2|z]=0$ and $E[\upsilon_1^2|z]=E[\upsilon_2^2|z]=1$ and $E[\upsilon_1\upsilon_2|z]=\rho_n$.\\
+Take the simple case where $h_1(z)=z_2$ and $h_2(z)=z_1$ where  $\phi_1(z)=(z_1,z_2)$ and $\phi_2(z)=z_2$ , $\epsilon_1z_1=\upsilon_1z_1z_2$  and $\epsilon_2 z_2=\upsilon_2 z_1z_2$ such that by the Law of Iterated Expectations  and the assumptions above
+\begin{equation}Cov(\epsilon_1z_1,\epsilon_2z_2)=E[\upsilon_1\upsilon_2(z_1z_2)^2]=\rho_n\end{equation} 
+where it is straightforward to establish that 
+\begin{equation} \Omega_n(\beta_0)=\left(\begin{array}{ccc} 1 & 0 & \rho_n \\ 0 & 3& 0\\ \rho_n& 0 & 1 \end{array}\right) \end{equation}
+
+
+where if $\rho_n =1-a_n^{-1}$ for some $0<\delta<1$ 
+\begin{equation}\Omega_n(\beta_0)\rightarrow \Omega(\beta_0) \end{equation}
+\begin{equation} \Omega(\beta_0)=\left(\begin{array}{ccc} 1 & 0& 1 \\ 0 & 3& 0\\ 1& 0 & 1\end{array}\right) \end{equation}
+\begin{equation}a_n(\Omega_n(\beta_0)-\Omega)\rightarrow 
+\left(\begin{array}{ccc} 0 & 0& -1 \\ 0 & 0& 0\\ -1& 0 & 0\end{array}\right) \end{equation}
+which is an example  NSD assumption A1$^*$(ii)  with $a_n=n^{\kappa}$.  
+For simplicity consider the case moments are identified so that $\nu=0$.\footnote{This assumption is made for simplicity, we could consider any $b_n=n^{\nu}$ for $0 \leq \nu<1/2$. This example is used to highlight the main result of this paper in Theorem $5^*$.}
+Then  Theorem 5$^*$ shows that the  
+2-Step GMM estimator  will converge at rate faster than $n^{1/2}$ when there exist $\delta'\Omega=0$ such that $\delta'G\neq 0$. In this example $\bar{m}(\beta_0)=1$ and  $\Omega(\beta_0)=P_+\Lambda_+P_+'$ where $P_+=\left(\begin{array}{cc} 0 & \sqrt{2} \\ -1 & 0 \\ 0 & -\sqrt{2} \end{array}\right)$ and $\Lambda_+=diag(3,2)$ where $P_0=(\sqrt{2},0, -\sqrt{2})'$. In this Linear IV setup then,
+\begin{equation} G=-\left(\begin{array}{cc} E[x_1z_1] & 0\\  E[x_1 z_2] & 0\\ 0 & E[x_2z_2]\end{array} \right) \end{equation}
+so that $G'P_0=-\sqrt{2}\left(\begin{array}{c} E[x_1z_1] \\ -E[x_2 z_2]\end{array}\right)$.
+Take for example the case  $f_1(z)=2(z_1+z_2)$, $f_2(z)=2z_2$ then $E[x_1z_1]=2$ and $E[x_2z_2]=E[z_1z_2]=0$.  Hence $G'P_0$ is already in Gauss-Jordan form, so that $B=I_{2\times 2}$ will satisfy (\ref{B}). Hence $\left(\begin{array}{cc}a_n^{1/2}& 0 \\ 0 & 1 \end{array}\right)n^{1/2}(\hat{\beta}-\beta_0)$ satisfies Theorem 1 and has a Gaussian limit distribution. So that the distribution of $n^{1/2}(\hat{\beta}_1-\beta_{01})$ will be degenerate unless scaled by $a_n^{1/2}$. This example is used in the simulation in the next section to demonstrate Theorem $5^*$.
+
+
+
+\section{Simulation}
+This section demonstrates the main results of the paper using a simulation based on the example highlighted in Section 5.
+\begin{equation*} y_{1}=  x_{1} + \epsilon_{1} \qquad y_{2}=0.5 x_2+ \epsilon_{2} \end{equation*}
+\begin{equation*} x_1 = 2z_2 +\eta_1 \qquad  x_2 =2(z_1+z_2) +\eta_2 \end{equation*}
+Where $z=(z_1,z_2)'\sim N(0,I_2)$,
+\begin{equation*}\epsilon_1=\upsilon_1z_2, \quad \epsilon_2=\upsilon_2 z_1\end{equation*}
+\begin{equation*} \upsilon_{1}= \sqrt{\frac{1+\rho_n}{2}} \zeta_1 + \sqrt{\frac{1-\rho_n}{2}} \zeta_2, \quad\upsilon_2= \sqrt{\frac{1+\rho_n}{2}} \zeta_1 - \sqrt{\frac{1-\rho_n}{2}} \zeta_2\end{equation*}
+such that $Cor(\upsilon_1,\upsilon_2)=\rho_n$.
+\begin{equation*} (\zeta_1,\zeta_2,\eta_1, \eta_2)'|z \overset{i.i.d}{\sim} N(0_4, \Xi)\quad \Xi=\left(\begin{array}{cccc}  1 & 0 & 0.3 & 0 \\  0 & 1 & 0.5 & 0 \\ 0.3 & 0 &1 & 0 \\ 0 & 0.5 &0 & 1  \end{array} \right)\end{equation*}
+Let $\hat{\beta}:=(\hat{\beta}_1,\hat{\beta}_2)'$ be the 2-Step GMM estimator with  where $\tilde{\beta}_1$ is a first-step GMM estimator with $W_n=I_{2\times2 }$.\\
+Consider the different rates of convergence in the NSD assumption $a_n=n^{\kappa}$ $\kappa=\{0,0.25,0.5,0.75,0.9\}$ corresponding to varying degrees of correlation between the first and third moment for \\ $n=\{500,5000,10000,50000,100000,250000\}$.\\
+Table 1 tabulates the mean absolute deviation (MAD) of $b_1:=n^{1/2}(\hat{\beta}_1-1)$, $b_2:=n^{1/2}(\hat{\beta}_2-0.5)$.  Also the rejection probabilities the J-Statistic are also tabulated based on a $\chi^2_1$ distribution governed by Theorem $5^*$(ii).
+\begin{table}
+	\centering
+	\small
+	\caption{Simulation Results}
+	\vspace{5pt}
+	
+	\begin{tabular}{|cc|cc|cc|cc|}
+		
+		\hline
+		& & \multicolumn{2}{c|}{\textbf{Efficiency}} & \multicolumn{2}{c|}{\textbf{Wald Statistic }} & \multicolumn{2}{c|}{\textbf{J-Statistic}}  \\
+		
+		& & \multicolumn{1}{c}{MAD($b_1$)}& \multicolumn{1}{c|}{MAD($b_2$)}
+		&  \multicolumn{1}{c}{Size(90\%)}  & \multicolumn{1}{c|}{Size (95\%)}
+		&  \multicolumn{1}{c}{Size(90\%)}  & \multicolumn{1}{c|}{Size (95\%)}
+		\\ \hline
+		
+		
+		\multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering $N=500$}\end{sideways}}
+		
+		
+		
+		&\hspace{-0.6cm}$\delta=0$      & 0.399 &0.697   &0.111  &0.052 &0.098&0.0438       \\  [0.18cm]
+		&\hspace{-0.3cm}$\delta=0.25$   & 0.248 &0.695   &0.113  &0.057 &0.105&0.0488     \\ [0.18cm]
+		&\hspace{-0.35cm}$\delta=0.5$   & 0.124 &0.698   &0.112  &0.057 &0.101& 0.0486      \\  [0.18cm]
+		&\hspace{-0.20cm}$\delta=0.75$  & 0.064 &0.702   &0.086  &0.039 &0.097& 0.0476       \\ [0.18cm]
+		&\hspace{-0.4cm}$\delta=0.9$    & 0.046 &0.679   &0.062  &0.027 &0.104&0.0494        \\ [0.18cm]
+		\hline
+		
+		
+		\multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering $N=5000$}\end{sideways}}
+		
+		
+		
+		&\hspace{-0.6cm}$\delta=0$      & 0.399 &0.704   &0.112  &0.058 &0.104&0.052      \\  [0.18cm]
+		&\hspace{-0.3cm}$\delta=0.25$   &  0.191 &0.692   &0.098  &0.052 &0.099&0.050     \\ [0.18cm]
+		&\hspace{-0.35cm}$\delta=0.5$   &  0.067 &0.702   &0.094  &0.044 &0.103&0.049      \\  [0.18cm]
+		&\hspace{-0.20cm}$\delta=0.75$  &  0.025 &0.691   &0.078  &0.035 &0.096&0.047       \\ [0.18cm]
+		&\hspace{-0.4cm}$\delta=0.9$    &  0.016 &0.692   &0.055  &0.021 &0.103&0.053    \\ [0.18cm]
+		
+		\hline
+		
+		
+		\multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering $N=10000$}\end{sideways}}
+		
+		
+		
+		&\hspace{-0.6cm}$\delta=0$        & 0.399&0.693   &0.103  &0.053 &0.097&0.048       \\  [0.18cm]
+		&\hspace{-0.3cm}$\delta=0.25$     & 0.164&0.699   &0.084  &0.043 &0.093&0.049      \\ [0.18cm]
+		&\hspace{-0.35cm}$\delta=0.5$     & 0.059&0.695   &0.101  &0.048 &0.090&0.042       \\  [0.18cm]
+		&\hspace{-0.20cm}$\delta=0.75$    & 0.019&0.690   &0.097  &0.041 &0.105&0.062        \\ [0.18cm]
+		&\hspace{-0.4cm}$\delta=0.9$      & 0.012&0.699   &0.064  &0.021 &0.087&0.034        \\ [0.18cm]
+		
+		\hline
+		
+		
+		\multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering $N=50000$}\end{sideways}}
+		
+		
+		
+		&\hspace{-0.6cm}$\delta=0$       & 0.387&0.706   &0.100  &0.046 &0.113&0.049      \\  [0.18cm]
+		&\hspace{-0.3cm}$\delta=0.25$    & 0.141&0.690   &0.082  &0.050 &0.106&0.056      \\ [0.18cm]
+		&\hspace{-0.35cm}$\delta=0.5$    & 0.038&0.646   &0.089  &0.041 &0.101&0.046       \\  [0.18cm]
+		&\hspace{-0.20cm}$\delta=0.75$   & 0.010&0.685   &0.082  &0.025 &0.087&0.040        \\ [0.18cm]
+		&\hspace{-0.4cm}$\delta=0.9$     & 0.005&0.679   &0.058  &0.020 &0.109&0.052        \\ [0.18cm]
+		\hline
+		
+		
+		\multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering $N=100000$}\end{sideways}}
+		
+		
+		
+		&\hspace{-0.6cm}$\delta=0$      &  0.388 &0.682   &0.090  &0.045 &0.082&0.043       \\  [0.18cm]
+		&\hspace{-0.3cm}$\delta=0.25$   &  0.133 &0.704   &0.105  &0.048 &0.094&0.049      \\ [0.18cm]
+		&\hspace{-0.35cm}$\delta=0.5$   &  0.031 &0.652   &0.088  &0.039 &0.103&0.055       \\  [0.18cm]
+		&\hspace{-0.20cm}$\delta=0.75$  &  0.008 &0.674   &0.091  &0.044 &0.087&0.042        \\ [0.18cm]
+		&\hspace{-0.4cm}$\delta=0.9$    &  0.003 &0.697   &0.059  &0.016 &0.102&0.049       \\ [0.18cm]
+		
+		\hline
+		
+		\multirow{4}{*}{\begin{sideways}\parbox{2cm}{\centering $N=250000$}\end{sideways}}
+		
+		
+		
+		&\hspace{-0.6cm}$\delta=0$        &0.407 &0.690 &0.104  &0.052 &0.103&0.047      \\  [0.18cm]
+		&\hspace{-0.3cm}$\delta=0.25$     &0.118 &0.677 &0.095  &0.055 &0.110&0.061      \\ [0.18cm]
+		&\hspace{-0.35cm}$\delta=0.5$     &0.026 &0.700 &0.116  &0.052 &0.097&0.054      \\  [0.18cm]
+		&\hspace{-0.20cm}$\delta=0.75$    &0.005 &0.696 &0.098  &0.037 &0.101&0.054       \\ [0.18cm]
+		&\hspace{-0.4cm}$\delta=0.9$      &0.002 &0.680 & 0.072 &0.037 &0.111&0.057       \\ [0.18cm]
+		
+		\hline
+		
+	\end{tabular}
+	\label{turns}
+\end{table}
+
+As seen in Table 1 the mean absolute deviation of $b_1$  for any n and is decreasing in n, whereas $b_2$ is bounded as predicted by Theorem $5^*$ (i) in light of the discussion in Section 5 for this example.
+ Interestingly the J-Statistic is well approximated by a $\chi^2_1$ for even small values of $n$ for all values of $\delta$.  This suggests potentially the finite sample distribution of the J-Statistic may be severely by moments with variance close to singular.
+
+\section{Conclusion}
+
+This paper demonstrates the main theorems and results in Caner (2008) are invalid.
+A correction is provided to some of the results.
+When moment variance satisfies the Nearly Singular Design Assumption it is shown the 2-Step GMM Estimator converges to a Gaussian Limit Distribution with increased rate of convergence in certain directions. 
+Examples of Nearly Singular Design are provided in an Instrumental Variable Linear Simultaneous equation model and the main results in this paper verified in a simulation.
+
+
+\newpage
+\section{Appendix}
+This section formally shows the issues with the proofs of various results from Caner (2008) discussed in Section 3. Section 5.1 provides proofs of Theorem $1^*$,  $5^*$.\newline
+
+\textsc{Lemma A2-A4, pg.521}\newline
+Lemma A2-A4 in Caner (2008) all rest on the condition
+\begin{equation}\label{gs} \max_i \sup_{\beta_n} |\!| g_i(\beta)|\!| =o_p(n^{1/2}a_n^{-1/2}) \end{equation}
+which  we now show can not hold.
+Following the proof in GS eqn. 2.4, defining $f_i=\sup_{\beta_n} |\!| g_i(\beta) |\!|$  where and $K:=\sup_i Ef_i^{\xi}$ for some $\xi>2$ and for $C$ s.t $K/C<\epsilon$
+then by the Markov Inequality
+\begin{equation}\label{pll}\Pr\{\underset{1\leq i\leq n}{\max} f_i n^{-1/\varepsilon}>C^{1/\varepsilon}\}
+\leq \sum_{i=1}^n \Pr\{f_i^{\varepsilon}>nC\}\leq \frac{1}{nC}\sum_{i=1}^n Ef_i^{\varepsilon}\leq K/C<\epsilon \end{equation}
+hence $\underset{i}{\max} f_i=o_p(n^{1/2})$. In order for (\ref{gs}) to hold would require the stronger condition  $\frac{a_n}{n}\sum_{i=1}^nEf_i^{\xi}\leq K$ which can not hold unless $\Omega(\beta)=0$ for all $\beta $ otherwise $\frac{1}{n}\sum_{i=1}^nEf_i^{\xi}>0$. In order for  (\ref{gs})  to hold would require 
+\begin{equation}\label{cf1}
+\sup_{\beta_n} \frac{1}{n}\sum_{i=1}^nE|\!|g_i(\beta)|\!|^{\xi} \rightarrow 0
+\end{equation}
+which is  not assumed in Caner (2008). Nor would this assumption be realistic in a general setting as this  implies  the moments functions are asymptotically degenerate. 
+
+This condition could only hold in the pathological case  $\Omega(\beta)=0$. When $\bar{m}(\beta)>0$ for 
+ $\beta\in \mathbf{B}$, $i=\{1,..,n\}$\begin{equation}\label{bound} |\!|g_i(\beta)|\!|=|\!|P(\beta)g_i(\beta)|\!|\geq |\!|P_+(\beta)'g_i(\beta)|\!| \end{equation}
+since $P(\beta)$ is a unitary matrix 
+where $\frac{1}{n}\sum_{i=1}^n E|\!|P_+(\beta)'g_i(\beta)|\!|^{\xi}$ is bounded away from as 
+    $\lim_{n\rightarrow \infty}\frac{1}{n}\sum_{i=1}^nE|\!|P_+(\beta)'g_i(\beta)|\!|^2 \geq |\!|\Lambda_+(\beta)|\!|>0$   when $\bar{m}(\beta)>0$ which violates (\ref{cf1})
+
+
+
+
+\subsection{ Proof of Main Theorems}
+\textsc{Proof of Theorem $1^*$}
+
+
+Define   $g_{i,n}(\beta_0):=a_n^{1/2}P_0'g_i(\beta_0)$ then  $ a_n^{1/2}n^{-1/2}\sum_{i=1}^n P_0'g_i(\beta_0):=n^{1/2}\hat{g}_{n}(\beta_0)$ where  $\hat{g}_{n}(\beta_0):=\frac{1}{n}\sum_{i=1}^ng_{i,n}(\beta_0)$ 
+  \begin{equation} E[n^{1/2}\hat{g}_{n}(\beta_0)]=
+  n^{1/2}P_0'\sum_{i=1}^nEg_i(\beta_0)= 0\end{equation}
+by (\ref{moment}) and
+\begin{eqnarray} Var(n^{1/2}\hat{g}_{n}(\beta_0))
+&=&\frac{a_n}{n}P_0'\sum_{i=1}^nEg_i(\beta)g_i(\beta_0)P_0 \\
+&=&P_0'a_n\left(\Omega_n(\beta_0)-\Omega(\beta_0)\right)'P_0\label{a22} \\ &\rightarrow&P_0'DP_0 \label{a11}\end{eqnarray}  
+where (\ref{a22}) holds as $P_0'\Omega(\beta_0) P_0=0$ by definition of $P_0$ and (\ref{a22}) follows by by A$1(ii)^*$ where $a_n\left(\Omega_n(\beta_0)-\Omega(\beta_0)\right) \rightarrow D$  where $D$ is bounded by A1$^*$(iii).\\
+ Under NSD the distribution of $\{g_i(\beta_0)\}_{i=1}^n$ implicitly depends on $n$  and in order to invoke a Central Limit Theorem to prove Theorem 1$^*$ we must establish the Lyapunov Condition holds for the independent triangular array
+ \begin{equation}
+ x'g_{i,n}(\beta_0)= a_n^{1/2}x'P_0'g_{i}(\beta_0) \qquad i=\{1,..n\} \; ; \; n\geq 1 \end{equation}
+ for any $x \in \mathbb{R}^m$. The Lyapunov Condition  in this case is
+ \begin{equation}  \underset{n\rightarrow \infty}{\lim} \frac{1}{s_{x_n}^{2+\delta}} \sum_{i=1}^n E|x'g_{i,n}(\beta_0)|^{2+\delta}=0 \end{equation}
+  where $s_{x_n}:=\sqrt{\sum_{i=1}^n Var(x'g_{i,n}(\beta_0))}$  for $x \in \mathbb{R}^m$.\\
+ Under A$2^*$(i)   similar to the derive of (\ref{a11}) we can show
+ \begin{equation}\label{lp} n^{-1}\sum_{i=1}^n Var(x'g_{i,n}(\beta_0))=a_nx'P_0'\Omega_n(\beta_0)P_0x\rightarrow x'P_0'DP_0x \end{equation} where  $x'P_0'DP_0x>0$ since $P_0'DP_0$ is full rank by NSD (A2$^*$(ii)) so by the Continuous Mapping Theorem applied to (\ref{lp})
+  \begin{equation}(n^{-1/2}s_{x_n})^{2+\delta}= (x'P_0'DP_0x)^{1+\delta/2}+o_p(1).\end{equation}
+   \begin{equation}\frac{1}{s_{x_n}^{2+\delta}} \sum_{i=1}^n E|x'g_{i,n}(\beta_0)|^{2+\delta}=
+   \left((x'P_0'DP_0x+o_p(1))
+  n\right)^{-(1+\frac{\delta}{2})}\sum_{i=1}^n E|x'g_{i,n}(\beta_0)|^{2+\delta} \end{equation} so that the Lyapunov Condition is equivalent to \begin{equation}\lim_{n\rightarrow \infty} \frac{1}{n} \sum_{i=1}^n E|x'g_{i,n}(\beta_0)|^{2+\delta}=0 \end{equation}
+  
+  which holds by A2$^*$ (ii). Hence under A$1^*$, A$2^*$ then the Lindberg-Levy Central Limit Theorem
+  applies  to mean zero variable  $n^{1/2}x'\hat{g}_n(\beta_0)$ with variance $P_0'DP_0$   where \begin{equation} n^{1/2}x'\hat{g}_{n}(\beta_0)\overset{d}{\rightarrow} N(0, x'P_0'DP_0x) \end{equation} so by an application of the Cramer-Wold device $n^{1/2}\hat{g}_{n}(\beta_0)\overset{d}{\rightarrow} N(0, P_0'DP_0)$ establishing Theorem $1^*$. \newline
+
+In order to prove Theorem $5^*$ we prove some intermediary lemmas.\\
+Define $P_n=(P_+,a_n^{1/2}P_0)$.\\
+
+
+
+
+\textsc{Lemma 2} Under A$1^*$, A2$^*$, A$5^*$\\
+\begin{equation}
+P_n'\hat{\Omega}(\hat{\beta}_1)P_n \overset{p}{\rightarrow} \Lambda_D
+\end{equation}
+
+Firstly we show 
+\begin{equation}
+\hat{V}(\hat{\beta}_1)=
+\hat{\Omega}(\hat{\beta}_1)+O_p(n^{-1}).\end{equation}\\
+
+
+ \begin{eqnarray}\hat{V}(\hat{\beta}_1)&=&\frac{1}{n}\sum_{i=1}^n(g_i(\hat{\beta}_1)-\bar{g}_1)(g_i(\hat{\beta}_1)-\bar{g}_1)'\\&=&\frac{1}{n}\sum_{i=1}^ng_i(\hat{\beta}_1)g_i(\hat{\beta}_1)'-\bar{g}_1\bar{g}_1' 
+ \end{eqnarray}
+ 
+
+
+
+
+By a Taylor Expansion of $\bar{g}_1=\hat{g}(\hat{\beta}_1)$ around $\beta_0$
+\begin{eqnarray} \hat{g}(\hat{\beta}_1)&=&\hat{g}(\beta_0)+\hat{G}(\bar{\beta}_1)(\hat{\beta}_1-\beta_0) \\
+&=& O_p(n^{-1/2}) \label{okk}\end{eqnarray}
+where $\bar{\beta}_1$ lies on the plane between $\beta_0$ and $\hat{\beta}_1$ where  (\ref{okk}) holds since  $\hat{g}(\beta_0)=O_p(n^{-1/2})$ by A$2^*$(i), (ii), and $\hat{\beta}_1-\beta_0=O_p(a_n/n^{-1/2})$ by (\ref{first}) where $\hat{G}(\hat{\beta}_1)=O_p(a_n^{-1})$ by A$^*$5. 
+Hence  $\bar{g}_1=O_p(n^{-1/2})$ establishes  $\bar{g}_1\bar{g}_1'=O_p(n^{-1})$ which establishes the result.\\
+
+Then since $|\!|P_n|\!|=O(a_n)$ 
+\begin{eqnarray}
+P_n'\hat{V}(\hat{\beta}_1)P_n&=&P_n'\hat{\Omega}(\hat{\beta}_1)P_n +o_p(1) \\
+&=&  \label{wa}\left(\begin{array}{cc} P_+'\hat{\Omega}(\hat{\beta}_1)P_+ & a_n^{1/2}P_0'\hat{\Omega}(\hat{\beta}_1)P_+ \\
+a_n^{1/2}P_+'\hat{\Omega}(\hat{\beta}_1)P_0 & 
+a_nP_0'\hat{\Omega}(\hat{\beta}_1)P_0\end{array} \right)+O_p(a_n^2/n)
+\end{eqnarray}
+where $a_n^2/n\rightarrow 0$ by A5$^*$(iii).
+Under A$2^*$(ii),(iii) it is straightforward to show for any $\beta_1,\beta_2 \in \mathbf{B}$ that
+\begin{equation}
+|\!|\hat{\Omega}(\beta_1)-\hat{\Omega}(\beta_2)|\!|\leq \hat{C}|\!|\beta_1-\beta_2|\!| \end{equation}
+for some $\hat{C}=O_p(1)$. Using this result then
+\begin{equation}\label{var} \hat{\Omega}(\hat{\beta}_1)=\hat{\Omega}(\beta_0)+ O_p(a_n^{1/2}/n^{1/2}) \end{equation}
+since $|\!|\hat{\beta}_1-\beta_0|\!| =O_p(a_n^{1/2}/n^{1/2})$ by (\ref{first}).\\
+
+
+\begin{eqnarray}
+P_+'\hat{\Omega}(\hat{\beta}_1)P_+&=&P_+'\hat{\Omega}(\beta_0)P_+ +O_p(a_n^{1/2}/n^{1/2}) \label{aa1} \\
+&\overset{p}{\rightarrow}& P_+\Omega P_+ \label{aa2} \\
+&=&\Lambda_+ \end{eqnarray}
+where (\ref{aa1}) follows by  (\ref{var}) noting that $|\!|P_+|\!|=\bar{m}<\infty$ and (\ref{aa2}) follows as $\hat{\Omega}(\beta_0)\overset{p}{\rightarrow} \Omega(\beta_0)$ by A1(i) and finally $P_+'\Omega P_+ = \Lambda_+$ by definition.
+
+
+
+\begin{eqnarray} 
+a_n^{1/2}P_0'\hat{\Omega}(\hat{\beta}_1)P_+
+&=&a_n^{1/2}P_0'\hat{\Omega}(\beta_0)P_+ +O_p(a_n/n^{1/2}) 
+\label{bb1}  \\
+&=&a_n^{1/2}P_0'(\hat{\Omega}(\beta_0)-\Omega)P_+ +O_p(a_n/n^{1/2})\label{bb1} \\
+ &\overset{p}{\rightarrow}& 0 \label{bb2} 
+ \end{eqnarray}
+ where (\ref{bb1} ) follows since $P_0'\Omega=0$ and 
+ $a_n^{1/2}(\hat{\Omega}(\beta_0)-\Omega(\beta_0))=O_p(a_n^{-1/2})$ by NSD (\ref{NSD1}) and finally since $a_n/n^{1/2}\rightarrow 0$ by A$5^*$ (iv).
+Where since $a_n^{1/2}P_+'\hat{\Omega}(\hat{\beta}_1)P_0=(a_n^{1/2}P_0'\hat{\Omega}(\hat{\beta}_1)P_+)'$ then $a_n^{1/2}P_+'\hat{\Omega}(\hat{\beta}_1)P_0 \overset{p}{\rightarrow} 0$.
+
+
+By a similar argument we can show
+\begin{eqnarray} 
+a_nP_0'\hat{\Omega}(\hat{\beta}_1)P_0
+&=&a_n P_0'\hat{\Omega}(\beta_0)P_0 +O_p(a_n/n^{1/2}) \\ &=& P_0'(\hat{\Omega}(\beta_0)-\Omega(\beta_0))P_0 +O_p(a_n/n^{1/2}) 
+\label{cc1} \\
+ &\overset{p}{\rightarrow}& P_0'DP_0 \label{bb2} 
+ \end{eqnarray}
+ 
+ so the  results above plugged in to (\ref{wa}) imply
+\begin{equation}
+P_n'\hat{\Omega}(\hat{\beta}_1)P_n \overset{p}{\rightarrow}  \left(\begin{array}{cc} \Lambda_+ & 0 \\ 0 & P_0'DP_0 \end{array} \right):=\Lambda_D. \end{equation}
+
+In the following we will use the result  $P_n^{-1}=(P_+,a_n^{-1/2}P_0)'$  since $P_nP_n^{-1}=P_+P_+'+P_0P_0'=I_m$ since $P'P=I$ and
+$P_n^{-1}P_n=\left(\begin{array}{cc} P_+'P_+ & 0 \\ 0 & P_0'P_0 \end{array} \right)$ where $P_+'P_+=I_{m-\bar{m}}$, $P_0'P_0=I_{\bar{m}}$.\\
+
+\textsc{Lemma 2} Under A$1^*$, A2$^*$, A$5^*$ \begin{equation}\hat{\beta}_{GMM}-\beta_0=O_p(a_n/n^{1/2}) \end{equation}
+\textsc{Proof of Lemma 2}\\
+
+
+
+
+
+By definition of $\hat{\beta}_{GMM}$,
+\begin{equation} nQ_{n}(\hat{\beta}_{GMM})\leq  nQ_{n}(\beta_0)\end{equation}
+Firstly we show that $nQ_{n}(\beta_0)=O_p(1)$. For any square positive definite matrix $A$ define $\lambda_{\min}(A)$, $\lambda_{\max}(A)$ as the minimum and maximum eigenvalue of $A$ respectively.
+\begin{eqnarray}
+nQ_n(\beta_0)&=&n\hat{g}(\beta_0)'P_n[P_n'\hat{V}(\hat{\beta}_1)P_n]^{-1}P_n'\hat{g}(\beta_0)  \label{ok}\\
+&\leq & \lambda_{\max}\left([P_n'\hat{V}(\hat{\beta}_1)P_n]^{-1}\right)|\!|n^{1/2}P_n'\hat{g}(\beta_0)|\!|^2 \\
+&\leq &(C+o_p(1))|\!|n^{1/2}P_n'\hat{g}(\beta_0)|\!|^2 \label{eig}\\
+&\leq  &(C+o_p(1))\left(|\!|n^{1/2}P_+'\hat{g}(\beta_0)|\!|^2 +|\!|a_nn^{1/2}P_0\hat{g}(\beta_0)|\!|^2\right)\label{cs}
+\end{eqnarray} 
+where (\ref{eig}) follows since  $P_n'\hat{\Omega}(\hat{\beta})_1P_n\overset{p}{\rightarrow} \Lambda_D$  by Lemma 1 where $\Lambda_D$ is full rank and by CMT $[P_n'\hat{\Omega}(\hat{\beta})_1P_n]^{-1}\overset{p}{\rightarrow} \Lambda_D^{-1}$ where $\lambda_{\max}(\Lambda_D^{-1})\leq C$ for some finite $C>0$ and so by Lemma A0 of Newey \& Windmeijer (2009) w.p.a.1
+\begin{equation}\lambda_{\max}([P_n'\hat{V}(\hat{\beta})_1P_n]^{-1})\leq 2C. \end{equation}
+The final inequality (\ref{cs}) follows by the Cauchy Schwartz Inequality (CS) where\\
+$ |\!|a_nn^{1/2}P_0'\hat{g}(\beta_0)|\!| =O_p(1)$ by Theorem $1^*$ and $
+ |\!|n^{1/2}P_+'\hat{g}(\beta_0)|\!|\leq |\!|P_+|\!| |\!|n^{1/2}\hat{g}(\beta_0)|\!|$ where $|\!|n^{1/2}\hat{g}(\beta_0)|\!|=O_p(1)$ by A2$^*$(i), (ii) and $|\!|P_+|\!|=\bar{m}<\infty$ so that $|\!|n^{1/2}P_+'\hat{g}(\beta_0|\!|+|\!|a_nn^{1/2}P_0\hat{g}(\beta_0)|\!|=O_p(1)$ establishing $nQ_n(\beta_0)=O_p(1)$.
+ 
+
+  \begin{eqnarray}
+ nQ_n(\hat{\beta}_{GMM})
+ &=&n\hat{g}(\hat{\beta}_{GMM})'P_n[P_n'\hat{V}(\hat{\beta}_1)P_n]^{-1}P_n'\hat{g}(\hat{\beta}_{GMM}) \\
+ &\geq&\lambda_{\min}\left([P_n'\hat{V}(\hat{\beta}_1)P_n]^{-1}\right) |\!|n^{1/2}P_n'\hat{g}(\hat{\beta}_{GMM})|\!|^2\\
+  &\geq& (C/2+o_p(1))|\!|P_n|\!||\!|n^{1/2}\hat{g}(\hat{\beta}_{GMM})|\!|^2 \label{kj}\\
+    &\geq&(C/2+o_p(1))|\!|n^{1/2}\hat{g}(\hat{\beta}_{GMM})|\!|^2 \label{pl}
+  \end{eqnarray}
+ 
+where (\ref{kj}) follows since   $[P_n'\hat{\Omega}(\hat{\beta})_1P_n]^{-1}\overset{p}{\rightarrow} \Lambda_D^{-1}$  by Lemma 1 where $\lambda_{\min}(\Lambda_D^{-1})\geq C$ for some finite $C>0$ and so by
+By Lemma A0 of Newey \& Windmeijer (2009) w.p.a.1
+\begin{equation}\lambda_{\min}([P_n'\hat{V}(\hat{\beta})_1P_n]^{-1})\geq C/2. \end{equation}
+Finally (\ref{pl}) follows by CS and nothing that $|\!|P_n|\!|\geq 1$.\\
+
+Under A$5^*$ and performing a Taylor Expansion of $\hat{g}(\hat{\beta}_{GMM})$ around $\beta_0$ it is straightforward to show  w.p.a.1 that
+ \begin{equation}
+ |\!|n^{1/2}\hat{g}(\hat{\beta}_{GMM})|\!|^2\geq 
+   C |\!|n^{1/2}/a_n(\hat{\beta}_{GMM}-\beta_0)|\!|^2
+ \end{equation}
+ for some $C>0$.
+ So together implies $(\hat{\beta}_{GMM}-\beta_0)=O_p(a_n/n^{1/2})$.\\
+
+
+
+
+
+
+
+
+
+
+
+
+\textsc{Proof of Theorem 5$^*$}\\
+
+To simplify notation in the proof let $\hat{\beta}=\hat{\beta}_{GMM}$.
+ By definition $\hat{\beta}$ solves,
+\begin{equation} \hat{G}(\hat{\beta})'\hat \Omega(\tilde{\beta})^{-1}\hat{g}(\hat{\beta})=0\end{equation}
+performing a Mean Value Expansion around $\beta_0$,
+\begin{equation} \label{bexpan}(\hat{\beta}-\beta_0)=-(\hat{G}(\hat{\beta})'\Omega(\tilde{\beta})^{-1}\hat{G}(\bar{\beta}))^{-1}
+\hat{G}(\hat{\beta})'\Omega(\tilde{\beta})^{-1}\hat{g}(\beta_0)\end{equation}
+where $\bar{\beta}=\alpha \hat{\beta}+(1-\alpha)\beta_0$ for some potentially data dependent $\alpha\in [0,1]$.\\
+
+
+
+
+ Define $\hat{A}_1=-(\hat{G}(\hat{\beta})'\hat{V}(\hat{\beta}_1)^{-1}\hat{G}(\bar{\beta}))$ and $\hat{A}_2= \hat{G}(\hat{\beta})'\hat{V}(\hat{\beta}_1)^{-1}n^{1/2}\hat{g}(\beta_0)$ hence $n^{1/2}(\hat{\beta}-\beta_0)=\hat{A}_1^{-1}\hat{A}_2$. We can rewrite   $\hat{A}_1^{-1}\hat{A}_2=B_n^{-1}(B_n^{'-1}\hat{A}_1 B_n^{-1})^{-1}
+ B_n^{'-1}\hat{A}_2$ where 
+ \begin{equation}B_n \frac{n^{1/2}}{a_n}(\hat{\beta}-\beta_0) =\underset{\mathcal{A}}{\underbrace{(a_n^2B_n^{'-1}\hat{A}_1 B_n^{-1})^{-1}}}\;\underset{\mathcal{B}}{\underbrace{a_nB_n^{'-1}\hat{A}_2}}
+ \end{equation}
+We firstly derive the probability limit of $\mathcal{A}$.
+\begin{eqnarray}B_n^{'-1}\hat{A}_1 B_n^{-1} &=&B_n^{'-1}\hat{G}(\hat{\beta})'P_n\left[P_n'\hat{V}(\hat{\beta}_1)P_n\right]^{-1}P_n'\hat{G}(\bar{\beta})B_n^{-1} 
+ \end{eqnarray}
+
+Re-define from Section 4 $B_n=I_nB$ and 
+\begin{eqnarray}
+a_nB_n^{'-1}\hat{G}(\hat{\beta})'P_n
+&=& I_n^{-1}B'a_n\hat{G}(\hat{\beta})'P_n\\
+&=&I_n^{-1}B'\left(a_n\hat{G}(\hat{\beta})-G(\hat{\beta}) +(G(\hat{\beta})-G(\beta_0))+G\right)'P_n \label{lp}
+\end{eqnarray}
+
+Where $a_n\hat{G}(\hat{\beta})-G(\hat{\beta})\leq \sup_{\beta}|\!|a_n\hat{G}(\beta)-G(\beta)|\!|=o_p(a_n^{-1/2})$ by A$5^*$(ii) and $G(\hat{\beta})-G(\beta_0)=O_p(|\!|\hat{\beta}-\beta_0|\!|)=O_p(a_n/n^{1/2})$ since $G(\beta)$ is continuous by A$5^*$(ii) and $|\!|\hat{\beta}-\beta_0|\!|=O_p(a_n/n^{1/2})$ by Lemma 2. Noting that $|\!|P_n|\!|=O(a_n)$, $|\!|B|\!|=O(1),$ $|\!|I_n^{-1}|\!|=O(1)$ together these results substituted in to (\ref{lp})
+\begin{equation}
+I_n^{-1}B'\left(a_n\hat{G}(\hat{\beta})-G(\hat{\beta}) +(G(\hat{\beta})-G(\beta_0))\right)'P_n=o_p(1)+O_p(a_n^{3/2}/n^{1/2})
+\end{equation}
+$a_n^{3/2}/n^{1/2}\rightarrow 0$ by A$5^*$ (iii) and noting $\left[P_n'\hat{V}(\hat{\beta}_1)P_n\right]^{-1/2}=O_p(1)$ by Lemma 
+\begin{equation}
+I_n^{-1}B'a_n\hat{G}(\hat{\beta})'P_n\left[P_n'\hat{V}(\hat{\beta}_1)P_n\right]^{-1/2}=I_n^{-1}B'G'P_n\left[P_n'\hat{V}(\hat{\beta}_1)P_n\right]^{-1/2} +o_p(1)
+\end{equation}
+
+
+
+
+where   $I_n^{-1}B'G'P_n=O(1)$ as
+
+
+
+where  so
+\begin{eqnarray}
+I_n^{-1}B'G'P_n 
+&=&\left(\begin{array}{cc} a_n^{-1/2}I_{\bar{p}} & 0\\ 0 & I_{p-\bar{p}}\end{array}\right)\left(B'G'P_+, a_n^{1/2}B'G'P_0\right) \\
+&=&\left(\begin{array}{cc} a_n^{-1/2}I_{\bar{p}} & 0\\ 0 & I_{p-\bar{p}}\end{array}\right) \left( \begin{array}{cc} G_{BP_+}^{\bar{p}}& a_n^{1/2} G_{BP_0}^{\bar{p}}\\
+G_{BP_+}^{p-\bar{p}} & 0
+ \end{array} \right) \\
+ &=&  \left(\begin{array}{cc} a_n^{-1/2}G_{BP_+}^{\bar{p}} &  G_{BP_0}^{\bar{p}}\\
+  G_{BP_+}^{p-\bar{p}}& 0
+ \end{array} \right)\\ 
+  &\overset{p}{\rightarrow}&
+  \left(\begin{array}{cc} 0 &  G_{BP_0}^{\bar{p}}\\
+  G_{BP_+}^{p-\bar{p}}& 0
+  \end{array} \right)  
+\end{eqnarray}
+
+ By Lemma 1 and CMT
+ \begin{equation}
+ \left[P_n'\hat{V}(\hat{\beta}_1)P_n\right]^{-1} \overset{p}{\rightarrow}\Lambda_D^{-1}
+ \end{equation}
+ So togehter impl
+ \begin{eqnarray}B_n^{'-1}\hat{A}_1 B_n^{-1}
+ &\overset{p}{\rightarrow}&
+   \left(\begin{array}{cc} 0 &  G_{BP_0}^{\bar{p}}\\
+   G_{BP_+}^{p-\bar{p}}& 0
+   \end{array} \right)\Lambda_D^{-1}   \left(\begin{array}{cc} 0 &  G_{BP_0}^{\bar{p}}\\
+   G_{BP_+}^{p-\bar{p}}& 0
+   \end{array} \right)'\\
+   &=& \left(\begin{array}{cc}  G_{BP_+}^{p-\bar{p}} &  0\\
+  0& G_{BP_0}^{\bar{p}}
+   \end{array} \right)\Lambda_D^{-1}   \left(\begin{array}{cc}  G_{BP_+}^{p-\bar{p}} &  0\\
+   0& G_{BP_0}^{\bar{p}}
+   \end{array} \right)'
+   \end{eqnarray}
+   
+  Since $\Lambda_D^{-1}$ is block diagonal.\\
+  
+  We now derive the limit distributiong in $\mathcal{B}$.
+  
+\begin{eqnarray}  a_nB_n^{'-1}\hat{A}_2&=&a_na_n\hat{G}(\hat{\beta})'\hat{V}(\hat{\beta}_1)^{-1}n^{1/2}\hat{g}(\beta_0)\hat{G}(\hat{\beta})'\hat{V}(\hat{\beta}_1)^{-1}n^{1/2}\hat{g}(\beta_0)\\
+&=&a_nB_n^{-1}\hat{G}(\hat{\beta})'P_n\left[P_n'\hat{V}(\hat{\beta}_1)^{-1}P_n\right]^{-1}n^{1/2}P_n'\hat{g}(\beta_0)
+\end{eqnarray}
+Where 
+\begin{eqnarray} 
+n^{1/2}P_n'\hat{g}(\beta_0)
+&=&\left(\begin{array}{c} n^{1/2}P_+'\hat{g}{\beta_0} \\ a_n^{1/2}n^{1/2}P_0'\hat{g}(\beta_0) \end{array} \right) \end{eqnarray}
+Where $a_n^{1/2}n^{1/2}P_0'\hat{g}(\beta_0) \overset{d}{\rightarrow} N(0,[P_0'DP_0]^{-1})$ by Theorem $1^*$ and $n^{1/2}P_+'\hat{g}(\beta_0) \overset{d}{\rightarrow} N(0,\Lambda_+)$ under A$2^*$(i),(ii) by the Lindberg-Feller Central Limit Theorem.\\
+Finall since
+ \begin{eqnarray}
+ Cov(a_n^{1/2}n^{1/2}P_0'\hat{g}(\beta_0),n^{1/2}P_+'\hat{g}{\beta_0})&=& a_n^{1/2}P_0\Omega_n(\beta_0)P_+\\
+&=& a_n^{1/2}P_0'(\Omega_n(\beta_0)-\Omega(\beta_0))P_+\\
+&\overset{p}{\rightarrow} 0
+\end{eqnarray}
+Togerther results imply
+\begin{equation}
+n^{1/2}P_n'\hat{g}(\beta_0)\overset{d}{\rightarrow} N(0,\Lambda_D)
+\end{equation}
+Then by Lemma 
+\begin{eqnarray} a_nB_n^{'-1}\hat{A}_2 &\overset{d}{\rightarrow} & \left(\begin{array}{cc} 0 &  G_{BP_0}^{\bar{p}}\\
+G_{BP_+}^{p-\bar{p}}& 0
+\end{array} \right) \Lambda_D^{-1} N(0,\Lambda_D)\\
+&\overset{d}{\sim}& N(0,G_{BP}'\Lambda_D^{-1}G_{BP})
+\end{eqnarray}
+ 
+Together $\mathcal{A}, \mathcal{B}$ by Slutskys Theorem imply 
+\begin{equation}
+\frac{n^{1/2}}{a_n}B_n(\hat{\beta}-\beta_0)\overset{d}{\rightarrow} N(0,(G_{BP}'\Lambda_D^{-1}G_{BP})^{-1})
+\end{equation}
+
+(ii)
+
+The proof of Theorem $5^*$ (ii) follows a similar method to the proof for the distribution of the J-Statistic in the strongly identified setting (e.g Hansen (1982)). For a sq
+\begin{eqnarray} \hat{Q}_{opt}(\hat{\beta})&=&n\hat{g}(\hat{\beta})'\hat{V}(\hat{\beta}_1)^{-1}\hat{g}(\hat{\beta})\\
+&=& (n^{1/2}\hat{V}(\hat{\beta}_1)^{-1/2}\hat{g}(\hat{\beta}))'(n^{1/2}\hat{V}(\hat{\beta}_1)^{-1/2}\hat{g}(\hat{\beta}))
+\end{eqnarray}
+
+By a mean value expansion  in () $\hat{g}(\hat{\beta})$,
+\begin{equation} \label{gexpan} \hat{V}(\hat{\beta}_1)^{-1/2} n^{1/2}\hat{g}(\hat{\beta})=\hat{V}(\hat{\beta}_1)^{-1/2}n^{1/2}\hat{g}(\beta_0)+\hat{V}(\hat{\beta}_1)^{-1/2} \hat{G}(\bar{\beta})n^{1/2}(\hat{\beta}-\beta_0)  \end{equation}
+where $\bar{\beta}$ lies between $\hat{\beta}$ and $\beta_0$.\\
+Plugging in the expansion of $\hat{\beta}-\beta_0$ from(\ref{bexpan}) in to (\ref{gexpan}) and defining $\hat{F}:=\hat{V}(\hat{\beta}_1)^{-1/2}\hat{G}(\hat{\beta})$ noting that $\hat{V}(\hat{\beta}_1)^{-1/2}\hat{G}(\bar{\beta})=\hat{F}+o_p(1)$
+\begin{equation} \hat{V}(\hat{\beta}_1)^{-1/2} n^{1/2}\hat{g}(\hat{\beta})=(I_m-\hat{F}(\hat{F}'\hat{F})^{-1}\hat{F}')n^{1/2} \hat{V}(\hat{\beta}_1)^{-1/2} \hat{g}(\beta_0) +o_p(1)\end{equation}
+
+Then $\hat{F}B_n^{-1}\overset{p}{\rightarrow}\Lambda_D^{-1/2}G_{BP}$ similarly to $\hat{A}_5$ in (\ref{left}).
+Since $\hat{\Omega}(\tilde{\beta})^{-1/2} n^{1/2}\hat{g}(\beta_0)=O_p(1)$ as shown in (\ref{clt2}) defining $F=\Lambda^{-1/2}G_{BP}$
+\begin{equation}\hat{V}(\hat{\beta}_1)^{-1/2} n^{1/2}\hat{g}(\hat{\beta})= (I-F(F'F)^{-1}F')\hat{\Omega}(\tilde{\beta})^{-1/2} n^{1/2}\hat{g}(\beta_0)+o_p(1)\end{equation}
+and using the result from (\ref{clt2}) $\hat{V}(\hat{\beta}_1)^{-1/2} n^{1/2}\hat{g}(\hat{\beta})\overset{d}{\rightarrow} N(0,I_m)$ then since $I-F(F'F)^{-1}F'$ is idempotent of rank $m-p$ the result follows.\\
+
+
+
+
+ \end{document}

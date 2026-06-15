@@ -1,29 +1,215 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<link rel="icon" type="image/svg+xml" href="../favicon.svg"/><link rel="icon" href="../favicon.svg"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>How to Read a Correlogram. Sample ACF, Ljung-Box and Model Selection | Dr Nicky Grant</title>
-<meta name="description" content="A practical guide to reading the correlogram in time series analysis. Covers the sample ACF, 95% confidence bands, Ljung-Box portmanteau test, AIC, BIC, and model selection, with a worked GDP example. By Dr Nicky Grant, Cambridge PhD."/>
-<link rel="canonical" href="https://www.drnickygrant.com/blog/reading-the-correlogram.html"/>
-<meta property="og:type" content="article"/>
-<meta name="last-modified" content="2026-06-14"/>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
-  {"@type":"Article","headline":"How to Read a Correlogram. Sample ACF, Ljung-Box and Model Selection","url":"https://www.drnickygrant.com/blog/reading-the-correlogram.html","datePublished":"2026-06-14","dateModified":"2026-06-14","author":{"@id":"https://www.drnickygrant.com/#person"},"publisher":{"@type":"Person","name":"Dr Nicky Grant","url":"https://www.drnickygrant.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.drnickygrant.com/blog/reading-the-correlogram.html"},"description":"A practical guide to the correlogram, sample ACF, Ljung-Box portmanteau test, and information criteria for ARMA model selection.","keywords":["correlogram","sample ACF","Ljung-Box test","AIC","BIC","model selection","ARMA","time series econometrics"],"wordCount":2400,"articleSection":"Time Series Econometrics"},
-  {"@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.drnickygrant.com/"},
-    {"@type":"ListItem","position":2,"name":"Resources","item":"https://www.drnickygrant.com/blog.html"},
-    {"@type":"ListItem","position":3,"name":"Reading the Correlogram","item":"https://www.drnickygrant.com/blog/reading-the-correlogram.html"}
-  ]}
-]}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap"/>
-<link rel="stylesheet" href="../css/main.css"/>
-<link rel="stylesheet" href="../css/polish.css"/>
+<meta charset="utf-8"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/><link href="../favicon.svg" rel="icon"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
+<meta content="Dr Nicky Grant" name="author"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>How to Read a Correlogram | Sample ACF, Q-Test &amp; Diagnostics</title>
+<meta content="Detailed study notes on correlograms from time-series lecture material: sample autocorrelation, confidence bands, Q-tests, GDP growth examples and residual serial-correlation diagnostics." name="description"/>
+<link href="https://www.drnickygrant.com/blog/reading-the-correlogram.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="2026-06-14" name="last-modified"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.drnickygrant.com/#website",
+      "url": "https://www.drnickygrant.com/",
+      "name": "Dr Nicky Grant | Economics, Econometrics and Maths Tutor",
+      "description": "Specialist online tuition in economics, econometrics, mathematics, statistics, finance, TMUA and Oxbridge economics applications, supported by verifiable Cambridge credentials, teaching materials and research evidence.",
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.drnickygrant.com/#person",
+      "name": "Dr Nicky Grant",
+      "alternateName": [
+        "Nicky Grant",
+        "Nicky L. Grant",
+        "Nicky Lee Grant"
+      ],
+      "honorificPrefix": "Dr",
+      "givenName": "Nicky",
+      "familyName": "Grant",
+      "url": "https://www.drnickygrant.com/",
+      "image": "https://www.drnickygrant.com/img/nicky-grant-headshot.webp",
+      "email": "nicky.L.grant@gmail.com",
+      "telephone": "+447393352331",
+      "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor",
+      "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0008-8979-4623",
+          "url": "https://orcid.org/0009-0008-8979-4623"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Semantic Scholar",
+          "value": "97839351",
+          "url": "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Cambridge",
+        "sameAs": "https://www.cam.ac.uk/"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "PhD in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "MPhil in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BA in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        }
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "CeMMAP, Centre for Microdata Methods and Practice",
+        "sameAs": "https://cemmap.ac.uk/"
+      },
+      "knowsAbout": [
+        "economics tuition",
+        "econometrics tuition",
+        "A Level Mathematics",
+        "Further Mathematics",
+        "A Level Economics",
+        "TMUA preparation",
+        "Oxbridge Economics applications",
+        "statistics",
+        "financial econometrics",
+        "time series econometrics",
+        "GMM",
+        "instrumental variables",
+        "panel data",
+        "PhD econometrics"
+      ],
+      "sameAs": [
+        "https://orcid.org/0009-0008-8979-4623",
+        "https://www.linkedin.com/in/nicky-lee-grant/",
+        "https://cemmap.ac.uk/person/nicky-l-grant/",
+        "https://research-portal.st-andrews.ac.uk/en/persons/nicky-lee-grant",
+        "https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/",
+        "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351",
+        "https://www.youtube.com/@economaths",
+        "https://independent.academia.edu/NickyGrant"
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/reading-the-correlogram.html#page",
+      "url": "https://www.drnickygrant.com/blog/reading-the-correlogram.html",
+      "name": "How to read a correlogram: sample ACF, Q-tests and diagnostics",
+      "isPartOf": {
+        "@id": "https://www.drnickygrant.com/#website"
+      },
+      "about": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB",
+      "description": "Detailed study notes on correlograms from time-series lecture material: sample autocorrelation, confidence bands, Q-tests, GDP growth examples and residual serial-correlation diagnostics.",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/time-series-econometrics-guide.html#autocovariance-acf",
+        "https://www.drnickygrant.com/blog/ar-arma-processes-explained.html",
+        "https://www.drnickygrant.com/blog/time-series-econometrics-part2.html#estimation"
+      ],
+      "abstract": "Study notes on correlograms: sample autocorrelation, hypothesis testing, Q-tests, EViews-style output, GDP growth interpretation and residual serial-correlation diagnostics.",
+      "dateModified": "2026-06-14"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.drnickygrant.com/blog/reading-the-correlogram.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.drnickygrant.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://www.drnickygrant.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Reading The Correlogram",
+          "item": "https://www.drnickygrant.com/blog/reading-the-correlogram.html"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/reading-the-correlogram.html#article",
+      "headline": "How to read a correlogram: sample ACF, Q-tests and diagnostics",
+      "url": "https://www.drnickygrant.com/blog/reading-the-correlogram.html",
+      "author": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.drnickygrant.com/blog/reading-the-correlogram.html#page"
+      },
+      "dateModified": "2026-06-14",
+      "inLanguage": "en-GB",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/time-series-econometrics-guide.html#autocovariance-acf",
+        "https://www.drnickygrant.com/blog/ar-arma-processes-explained.html",
+        "https://www.drnickygrant.com/blog/time-series-econometrics-part2.html#estimation"
+      ],
+      "abstract": "Study notes on correlograms: sample autocorrelation, hypothesis testing, Q-tests, EViews-style output, GDP growth interpretation and residual serial-correlation diagnostics.",
+      "description": "Detailed study notes on correlograms from time-series lecture material: sample autocorrelation, confidence bands, Q-tests, GDP growth examples and residual serial-correlation diagnostics."
+    }
+  ]
+}</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../css/main.css" rel="stylesheet"/>
+<link href="../css/polish.css" rel="stylesheet"/>
 <style>
 .art{max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) clamp(3rem,8vw,6rem)}
 .art-hero{padding:clamp(6rem,14vw,9rem) clamp(1rem,4vw,2.5rem) clamp(2rem,5vw,3.5rem);border-bottom:1px solid rgba(248,242,232,.085)}
@@ -52,214 +238,142 @@ p{font-size:clamp(.93rem,1.6vw,1rem);font-weight:300;color:rgba(248,242,232,.78)
 .math-block{font-family:'Georgia','Times New Roman',serif;font-size:.91rem;letter-spacing:.01em;}
 code{font-family:'KaTeX_Math','STIX Two Math','Latin Modern Math',Georgia,serif;}
 </style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"/>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
 </head>
 <body>
-<a href="#main" class="skip-link">Skip to main content</a>
-<nav id="nav" aria-label="Main navigation">
-  <div class="nav-inner">
-    <a href="../index.html" class="nav-logo">Dr Nicky <span>Grant</span></a>
-    <ul class="nav-links" role="list">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../services.html">Subjects</a></li>
-      <li><a href="../oxbridge-economics-tutor.html">Applications</a></li>
-      <li><a href="../blog.html" class="on" aria-current="page">Resources</a></li>
-      <li><a href="../credentials.html">Credentials</a></li>
-      <li><a href="../pricing.html">Pricing</a></li>
-    </ul>
-    <a href="../index.html#contact" class="nav-cta">Book consultation</a>
-    <button class="nav-burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobNav" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
-  </div>
-  <div class="mob-nav" id="mobNav"><a href="../index.html">Home</a><a href="../services.html">Subjects</a><a href="../oxbridge-economics-tutor.html">Applications</a><a href="../blog.html" class="on">Resources</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
-</nav>
-
-<div class="art-hero">
-  <div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
-    <span class="eyebrow">Time series · Estimation and model selection</span>
-    <h1>How to read a correlogram:<br/><em>sample ACF, Ljung-Box and AIC</em></h1>
-    <p class="lede">Once you understand what AR and ARMA processes are in theory, the practical question is: given real data, how do you identify which model applies? The correlogram, the plot of the sample ACF, is the starting point. This article explains what to look for and how to use it.</p>
-    <div class="art-meta"><span>Dr Nicky Grant · Cambridge PhD</span><span>Time Series Econometrics</span><span>ECON30401, Manchester</span><span>~2,400 words</span></div>
-  </div>
-</div>
-
-<main id="main" class="art">
-
-<div class="answer-capsule" role="note"><p>The correlogram is a plot of the sample autocorrelation function (sample ACF) against lag. Each bar shows the estimated correlation between Y_t and Y_{t-k}. Bars outside the 95% confidence bands (±1.96/√T) are statistically significant. The shape of the correlogram identifies the model: a cut-off suggests MA, exponential decay suggests AR, neither cutting off suggests ARMA. The Ljung-Box Q statistic tests all correlations up to lag m jointly. AIC and BIC then select the final model order.</p></div>
-
-<h2>From theory to data</h2>
-
-<p>The previous article established what AR and ARMA processes look like in theory, their mean, variance, and autocorrelation function (ACF). The bridge from theory to data is the <em>sample</em> ACF: the estimated autocorrelations computed from an observed time series {y₁, y₂, …, y<sub>T</sub>}.</p>
-
-<p>The process generating the data is unknown. What we observe is one realisation. Our aim is to use that realisation, through the correlogram and tests, to infer which ARMA model describes the process.</p>
-
-<h2>The sample autocorrelation function</h2>
-
-<div class="def">
-  <span class="def-label">Definition. Sample ACF</span>
-  <p>ρ̂(k) = [ Σₜ₌ₖ₊₁ᵀ (yₜ − ȳ)(yₜ₋ₖ − ȳ) ] / [ Σₜ₌₁ᵀ (yₜ − ȳ)² ]</p>
-</div>
-
-<p>This is the sample analogue of the population autocorrelation ρ(k) = γ(k)/γ(0). It measures how strongly the series at time t co-moves with itself k periods earlier, estimated from the data. The correlogram plots ρ̂(k) for k = 1, 2, 3, … against k.</p>
-
-<h3>Are the sample autocorrelations statistically significant?</h3>
-
-<p>Under the null hypothesis that the true ρ(k) = 0 (no autocorrelation at lag k), the sample autocorrelation ρ̂(k) is approximately normally distributed with mean 0 and standard deviation 1/√T:</p>
-
-<div class="math-block">√T · ρ̂(k)  →  N(0, 1)  as T → ∞,  under H₀: ρ(k) = 0</div>
-
-<p>This gives 95% confidence bands at ±1.96/√T. Any bar in the correlogram that lies outside these bands is statistically significantly different from zero at the 5% level. In EViews, these bands are drawn automatically as horizontal dashed lines. For T = 100, the bands are ±0.196. For T = 250, they are ±0.124, narrower because a larger sample detects weaker dependence.</p>
-
-<div class="note"><p><strong>Important:</strong> These bands are only valid for testing one specific ρ(k) at a time. When looking at the full correlogram and checking 20 lags simultaneously, we expect approximately 20 × 0.05 = 1 bar to lie outside the bands by chance even if the process is truly white noise. This is why we also use a joint test, the Ljung-Box statistic.</p></div>
-
-<!-- Simulated correlogram of AR(1) with φ=0.6 -->
-<div class="fig-wrap">
-  <span class="fig-label">Sample correlogram. AR(1) process, φ₁ = 0.6, T = 200</span>
-  <svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sample correlogram of AR(1) process with phi=0.6">
-    <rect width="600" height="160" fill="none"/>
-    <line x1="46" y1="15" x2="46" y2="120" stroke="rgba(248,242,232,.2)" stroke-width="0.8"/>
-    <line x1="46" y1="68" x2="590" y2="68" stroke="rgba(248,242,232,.2)" stroke-width="0.8"/>
-    <!-- 95% bands: ±1.96/√200 = ±0.139, scale: 50px per unit, so ±7px -->
-    <line x1="46" y1="61" x2="590" y2="61" stroke="rgba(211,163,91,.4)" stroke-width="0.8" stroke-dasharray="4,3"/>
-    <line x1="46" y1="75" x2="590" y2="75" stroke="rgba(211,163,91,.4)" stroke-width="0.8" stroke-dasharray="4,3"/>
-    <!-- Y labels -->
-    <text x="42" y="17" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">1.0</text>
-    <text x="42" y="70" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">0.0</text>
-    <text x="42" y="121" text-anchor="end" fill="rgba(248,242,232,.35)" font-size="7" font-family="Courier New">-1.0</text>
-    <!-- ACF bars: ρ̂(k) ≈ 0.6^k with small random noise, y = 68 - ρ*52 -->
-    <!-- k=1: 0.6→y=37 | k=2: 0.36→y=49 | k=3: 0.22→y=57 | k=4: 0.13→y=61 | k=5: 0.08→y=64 | k=6-20: near zero with noise -->
-    <line x1="68" y1="68" x2="68" y2="37" stroke="rgba(211,163,91,.9)" stroke-width="5.5"/><circle cx="68" cy="37" r="2.5" fill="#D3A35B"/>
-    <line x1="94" y1="68" x2="94" y2="49" stroke="rgba(211,163,91,.85)" stroke-width="5.5"/><circle cx="94" cy="49" r="2.5" fill="#D3A35B"/>
-    <line x1="120" y1="68" x2="120" y2="57" stroke="rgba(211,163,91,.8)" stroke-width="5.5"/><circle cx="120" cy="57" r="2.5" fill="#D3A35B"/>
-    <line x1="146" y1="68" x2="146" y2="62" stroke="rgba(211,163,91,.7)" stroke-width="5.5"/><circle cx="146" cy="62" r="2.5" fill="#D3A35B"/>
-    <line x1="172" y1="68" x2="172" y2="65" stroke="rgba(211,163,91,.55)" stroke-width="5.5"/>
-    <line x1="198" y1="68" x2="198" y2="66" stroke="rgba(211,163,91,.4)" stroke-width="5"/>
-    <!-- Remaining bars: small, within or near bands, some noise -->
-    <line x1="224" y1="68" x2="224" y2="67" stroke="rgba(248,242,232,.35)" stroke-width="4"/>
-    <line x1="250" y1="68" x2="250" y2="70" stroke="rgba(248,242,232,.3)" stroke-width="4"/>
-    <line x1="276" y1="68" x2="276" y2="66" stroke="rgba(248,242,232,.28)" stroke-width="4"/>
-    <line x1="302" y1="68" x2="302" y2="69" stroke="rgba(248,242,232,.26)" stroke-width="4"/>
-    <line x1="328" y1="68" x2="328" y2="67" stroke="rgba(248,242,232,.24)" stroke-width="4"/>
-    <line x1="354" y1="68" x2="354" y2="70" stroke="rgba(248,242,232,.22)" stroke-width="4"/>
-    <line x1="380" y1="68" x2="380" y2="67" stroke="rgba(248,242,232,.20)" stroke-width="4"/>
-    <line x1="406" y1="68" x2="406" y2="68" stroke="rgba(248,242,232,.18)" stroke-width="4"/>
-    <line x1="432" y1="68" x2="432" y2="69" stroke="rgba(248,242,232,.16)" stroke-width="4"/>
-    <line x1="458" y1="68" x2="458" y2="67" stroke="rgba(248,242,232,.14)" stroke-width="4"/>
-    <line x1="484" y1="68" x2="484" y2="68" stroke="rgba(248,242,232,.12)" stroke-width="4"/>
-    <line x1="510" y1="68" x2="510" y2="70" stroke="rgba(248,242,232,.11)" stroke-width="4"/>
-    <line x1="536" y1="68" x2="536" y2="67" stroke="rgba(248,242,232,.10)" stroke-width="4"/>
-    <line x1="562" y1="68" x2="562" y2="68" stroke="rgba(248,242,232,.09)" stroke-width="4"/>
-    <!-- X axis labels -->
-    <text x="68" y="133" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="7" font-family="Courier New">1</text>
-    <text x="94" y="133" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="7" font-family="Courier New">2</text>
-    <text x="120" y="133" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="7" font-family="Courier New">3</text>
-    <text x="146" y="133" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="7" font-family="Courier New">4</text>
-    <text x="172" y="133" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="7" font-family="Courier New">5</text>
-    <text x="302" y="133" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="7" font-family="Courier New">10</text>
-    <text x="562" y="133" text-anchor="middle" fill="rgba(248,242,232,.3)" font-size="7" font-family="Courier New">20</text>
-    <text x="315" y="148" text-anchor="middle" fill="rgba(248,242,232,.2)" font-size="7" font-family="sans-serif">lag k</text>
-    <!-- Annotation -->
-    <text x="68" y="30" fill="rgba(211,163,91,.75)" font-size="7.5" font-family="sans-serif">Significant bars</text>
-    <text x="68" y="40" fill="rgba(211,163,91,.6)" font-size="7" font-family="sans-serif">at lags 1–4</text>
-    <text x="230" y="57" fill="rgba(248,242,232,.4)" font-size="7" font-family="sans-serif">All within bands</text>
-    <text x="62" y="58" fill="rgba(211,163,91,.5)" font-size="6.5" font-family="Courier New">+0.139</text>
-    <text x="62" y="78" fill="rgba(211,163,91,.5)" font-size="6.5" font-family="Courier New">−0.139</text>
-  </svg>
-  <div class="fig-caption">Simulated sample correlogram from an AR(1) with φ₁ = 0.6 and T = 200. Bars at lags 1–4 exceed the 95% confidence bands (dashed). Bars at lags 5+ are within the bands, consistent with AR(1) structure. The pattern of significant early lags with exponential decay is the AR(1) signature.</div>
-</div>
-
-<h2>Reading the shape: what are you looking for?</h2>
-
-<p>Three patterns matter when reading a correlogram:</p>
-
-<p><strong>Significant bars that cut off sharply.</strong> If bars are significant up to lag q and then all bars at higher lags lie within the confidence bands, this is consistent with an MA(q) process. The cut-off is the diagnostic, it is the defining theoretical property of the MA ACF.</p>
-
-<p><strong>Bars that decay gradually.</strong> Significant bars at low lags that decrease in size with each successive lag, eventually falling within the bands, is consistent with an AR process. The rate of decay reflects the AR coefficient: fast decay means a small |φ<sub>1</sub>|, slow decay means |φ<sub>1</sub>| close to 1.</p>
-
-<p><strong>Neither cuts off nor decays simply.</strong> Both the ACF and PACF tail off without a clean cut-off, this is the ARMA signature. You need both tools to identify an ARMA model, and often also information criteria.</p>
-
-<h2>The Ljung-Box portmanteau test</h2>
-
-<p>Rather than testing each lag individually, the Ljung-Box test asks whether the first m autocorrelations are jointly zero:</p>
-
-<div class="def">
-  <span class="def-label">Ljung-Box Q statistic</span>
-  <p>Q(m) = T(T+2) · Σₖ₌₁ᵐ ρ̂(k)² / (T−k)</p>
-</div>
-
-<p>Under H₀: ρ(1) = ρ(2) = … = ρ(m) = 0, the Q(m) statistic follows a chi-squared distribution with m degrees of freedom. We reject H₀ at significance level α if Q(m) &gt; χ²<sub>m,α</sub>.</p>
-
-<p>In practice: run the test for several values of m (m = 5, 10, 15 are common). If Q(m) is significant at all values of m, there is strong evidence of serial dependence in the data. If Q(m) applied to the <em>residuals</em> of an estimated ARMA model is not significant, the model has adequately captured the serial correlation in the data.</p>
-
-<div class="note"><p><strong>Common misuse:</strong> the Ljung-Box test is valid for testing the raw series for white noise, but when applied to residuals of an estimated ARMA(p,q) model, the degrees of freedom must be adjusted to m − p − q. Failure to do this leads to undersized tests, you reject white noise less often than you should.</p></div>
-
-<h2>Estimating ARMA models</h2>
-
-<p>Once the correlogram has suggested candidate model orders, we need to estimate the parameters.</p>
-
-<p><strong>AR models</strong> can be estimated by OLS, an AR(p) is just a linear regression of Y<sub>t</sub> on its own p lagged values. OLS is consistent and asymptotically normal under stationarity. This is why AR models are computationally straightforward to estimate and to understand.</p>
-
-<p><strong>MA and ARMA models</strong> require maximum likelihood estimation (MLE) because the lagged error terms ε<sub>t-1</sub>, ε<sub>t-2</sub>, … are not directly observed. EViews, Stata and R all implement this. The log-likelihood for the Gaussian case is:</p>
-
-<div class="math-block">ℓ(θ) = −(T/2)·log(2πσ²) − (1/2σ²)·Σₜ εₜ²</div>
-
-<p>where the ε<sub>t</sub> are the model residuals, computed recursively from the data and estimated parameters. In practice, software handles this for you, but it is important to know that ARMA estimation is iterative and can sometimes converge to local maxima, so starting values matter.</p>
-
-<h2>Model selection: AIC and BIC</h2>
-
-<p>Having estimated several candidate ARMA models, we need a principled way to choose between them. Adding more AR or MA terms always improves fit (in-sample), but a more complex model may simply be fitting noise, not genuine structure. Information criteria penalise complexity.</p>
-
-<div class="def">
-  <span class="def-label">Information Criteria</span>
-  <p>AIC = −2·log L̂ + 2K</p>
-  <p style="margin-top:.5rem">BIC = −2·log L̂ + K·log(T)</p>
-  <p style="margin-top:.5rem;font-size:.82rem;color:rgba(248,242,232,.65)">where L̂ is the maximised likelihood and K = p + q + 1 is the number of estimated parameters.</p>
-</div>
-
-<p>Both criteria reward a better fit (smaller −2 log L̂) and penalise complexity (larger K). The BIC penalty (K·log T) grows with the sample size, making it more conservative, it selects simpler models in large samples. The AIC penalty (2K) is fixed regardless of T, so it tends to select slightly larger models.</p>
-
-<p>The rule: estimate all ARMA(p,q) models for p = 0, 1, …, p<sub>max</sub> and q = 0, 1, …, q<sub>max</sub>. Pick the model with the lowest AIC (or BIC). If the two criteria disagree, the preferred model depends on whether parsimony or predictive fit is the primary goal. BIC for parsimony, AIC for prediction.</p>
-
-<h3>Worked example: UK quarterly real GDP growth</h3>
-
-<p>UK quarterly real GDP growth from 1955Q1 to 2013Q2 (T = 234) provides a canonical example used in the ECON30401 PC Lab. The correlogram of GDP growth shows:</p>
-
-<ul style="color:rgba(248,242,232,.72);font-weight:300;font-size:.94rem;line-height:2;padding-left:1.5rem;margin-bottom:1rem">
-  <li>A significant bar at lag 1 (ρ̂(1) ≈ 0.3, above the band ≈ ±0.13)</li>
-  <li>A bar at lag 2 that is marginal (close to the band)</li>
-  <li>All bars at lags 3+ within the confidence bands</li>
-  <li>The Ljung-Box Q(5) statistic is significant (the first few autocorrelations are jointly non-zero)</li>
+<a class="skip-link" href="#main">Skip to main content</a>
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a aria-label="Dr Nicky Grant home" class="nav-logo" href="../index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list">
+<li><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
+<li><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a></li>
+<li><a href="../blog.html">Resources</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../pricing.html">Pricing</a></li>
 </ul>
-
-<p>This pattern is consistent with AR(1) or AR(2). Estimating both and comparing AIC values typically selects AR(1), the lag 2 bar is not significant enough to justify the extra parameter.</p>
-
-<p>The estimated AR(1) model for UK GDP growth: ŷ<sub>t</sub> = 0.48 + 0.31·y<sub>t-1</sub>. The coefficient 0.31 is statistically significant (t-statistic around 5). Applied to the residuals, Q(10) is not significant, the AR(1) has adequately removed the serial correlation.</p>
-
-<h2>The step-by-step procedure</h2>
-
-<ol class="step-list">
-  <li><strong>Plot the data.</strong> Look for obvious non-stationarity (trending mean or variance), seasonality, or structural breaks. If non-stationary, difference or detrend before proceeding.</li>
-  <li><strong>Plot the correlogram.</strong> Note which lags are significant. Does the ACF cut off (MA) or decay (AR)? Also plot the PACF, does it cut off (AR) or decay (MA)?</li>
-  <li><strong>Run the Ljung-Box test</strong> for several values of m. If Q(m) is not significant, the series may be white noise.</li>
-  <li><strong>Estimate candidate ARMA(p,q) models.</strong> Try p = 0, 1, 2 and q = 0, 1, 2. Use MLE for MA or ARMA components.</li>
-  <li><strong>Compare AIC and BIC.</strong> Select the model with the lowest information criterion. Prefer smaller models when AIC and BIC disagree.</li>
-  <li><strong>Check the residuals.</strong> Apply the Ljung-Box test to the residuals of the selected model. If significant serial correlation remains, increase p or q.</li>
-</ol>
-
-<hr style="border:none;border-top:1px solid rgba(248,242,232,.08);margin:2.5rem 0"/>
-
-<div style="background:linear-gradient(180deg,rgba(211,163,91,.07),rgba(211,163,91,.025));border:1px solid rgba(211,163,91,.18);border-radius:12px;padding:1.5rem 1.75rem;margin:2rem 0">
-  <p style="font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#D3A35B;margin-bottom:.5rem">Related articles</p>
-  <p style="margin:0 0 .5rem;font-size:.95rem;color:rgba(248,242,232,.8)"><a href="ar-arma-processes-explained.html" style="color:#D3A35B">← AR and ARMA processes explained</a>, the theoretical background this article builds on.</p>
-  <p style="margin:0 0 .5rem;font-size:.95rem;color:rgba(248,242,232,.8)"><a href="time-series-forecasting-ar-models.html" style="color:#D3A35B">Time series forecasting with AR models →</a>, what to do with an estimated model.</p>
+<a class="nav-cta" href="../index.html#contact">Book consultation</a>
+<button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
 </div>
-
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+</nav>
+<div class="art-hero">
+<div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
+<span class="eyebrow">Econometrics · Study notes · Time series 2</span>
+<h1>How to Read a Correlogram:<em>sample ACF, Q-tests and diagnostics</em></h1>
+<p class="lede">A practical note explaining how the sample autocorrelation function becomes a correlogram, how to test white noise, and how to use residual diagnostics.</p>
+<div class="art-meta"><span>Dr Nicky Grant · economics specialist</span><span>Time Series Study Notes</span><span>Applied diagnostic</span></div>
+</div>
+</div>
+<main class="art" id="main">
+<div aria-label="Quick answer" class="answer-capsule" data-chunk="TS2-fuller-notes" role="note">
+<p>A correlogram plots sample autocorrelations against the lag. It is the practical tool used to move from the definitions of <a href="time-series-econometrics-guide.html#acf">autocorrelation</a> and <a href="time-series-econometrics-guide.html#white-noise">white noise</a> to real data analysis: we use it to see dependence, test whether a series is white noise, and guide ARMA model choice.</p>
+</div><div class="study-note-box" data-chunk="UXDE-study-note-cta"><h2>Using correlograms in a module or dissertation?</h2><p>Send the output, module topic list and the question you are trying to answer. The diagnostic can focus on ACF, Ljung-Box tests and model checking.</p><p><a class="btn btn-fill" href="../university-postgraduate-tutoring.html">View University &amp; Postgraduate support</a> <a class="btn btn-line" href="../index.html#contact">Send an enquiry</a></p></div>
+<div aria-label="Time series study notes pathway" class="part-nav">
+<span style="font-size:.78rem;color:rgba(248,242,232,.52)">Time series notes:</span>
+<a href="time-series-econometrics-guide.html">1. Core definitions</a>
+<span class="divider">|</span>
+<a href="reading-the-correlogram.html">2. Correlogram &amp; testing</a>
+<span class="divider">|</span>
+<a href="ar-arma-processes-explained.html">3. AR, MA &amp; ARMA intuition</a>
+<span class="divider">|</span>
+<a href="time-series-econometrics-part2.html">4. Derivations, prediction &amp; seasonality</a>
+</div>
+<section class="study-note-box" id="what-this-page-does">
+<h2>Where the correlogram fits</h2>
+<p>The first note defined the population autocorrelation \(ρ(k)\). In real data we do not observe the population process directly, so we estimate autocorrelations from the sample. The correlogram collects these sample autocorrelations in one table and graph.</p>
+<p>The TeX notes emphasise two roles. First, the correlogram is visual: it shows the pattern of dependence. Second, it is inferential: it gives test statistics and p-values for whether autocorrelations are statistically different from zero.</p>
+</section>
+<section id="population-sample">
+<h2>1. Population ACF versus sample ACF</h2>
+<p>The <strong>population ACF</strong> is a property of the true process. It tells us the true correlation between \(Y_t\) and \(Y_{t-k}\). The <strong>sample ACF</strong> is computed from observed data and is only an estimate.</p>
+<div class="def"><span class="def-label">Core definition</span><p><strong>Sample autocorrelation:</strong> the sample estimate of \(ρ(k)\), usually written \(r(k)\), computed using the observed data at lag \(k\).</p></div>
+<p>The notes make the same point as in ordinary statistics. A sample mean estimates a population mean, but it is not exactly equal to it. In the same way, \(r(k)\) estimates \(ρ(k)\), but differs because of sampling variation.</p>
+<p>Intuitively, the larger the sample, the closer the sample autocorrelation should be to the true autocorrelation. But they need not be identical, just as a sample variance need not exactly equal a population variance.</p>
+</section>
+<section id="what-is-a-correlogram">
+<h2>2. What a correlogram shows</h2>
+<p>A <strong>correlogram</strong> is the sample ACF plotted against the lag. In EViews-style output it usually also includes standard errors, Q-statistics and p-values.</p>
+<div class="img-block"><img alt="GDP growth correlogram with sample autocorrelations and Q statistics" loading="lazy" src="../img/teaching/corrgdp.png"/><span class="img-caption">A correlogram displays sample autocorrelations by lag and often includes formal white-noise tests.</span></div>
+<table class="concept-table">
+<thead><tr><th>Part of output</th><th>What it means</th><th>How to use it</th></tr></thead>
+<tbody>
+<tr><td>Lag</td><td>How far back the comparison goes.</td><td>Lag 1 compares adjacent observations; lag 4 compares observations four periods apart.</td></tr>
+<tr><td>AC</td><td>Sample autocorrelation at that lag.</td><td>Large positive or negative values suggest dependence.</td></tr>
+<tr><td>PAC</td><td>Partial autocorrelation.</td><td>Useful for AR order choice, though the notes focus mainly on ACF and diagnostics.</td></tr>
+<tr><td>Q-statistic</td><td>A joint test up to that lag.</td><td>Tests whether autocorrelations up to lag \(k\) are jointly zero.</td></tr>
+<tr><td>Probability</td><td>p-value for the Q-test.</td><td>Small values indicate evidence against white noise.</td></tr>
+</tbody>
+</table>
+</section>
+<section id="hypothesis-testing">
+<h2>3. Testing individual autocorrelations</h2>
+<p>The notes use a large-sample result for the sample autocorrelation under white noise. If the true process is white noise, then the true autocorrelations are zero at all positive lags. For a large sample, the sample autocorrelation should therefore be close to zero.</p>
+<div class="math-note">If \(Y_t\) is white noise, then \(ρ(k)=0\) for all \(k&gt;0\).</div>
+<p>This leads to a simple test:</p>
+<div class="math-note">H<sub>0</sub>: ρ(k)=0    against    H<sub>1</sub>: ρ(k)≠0</div>
+<p>The correlogram often draws approximate confidence bands around zero. If a sample autocorrelation lies outside the band, that lag is treated as individually statistically significant.</p>
+<div class="def"><span class="def-label">Intuition</span><p>If the process truly has no memory, sample autocorrelations should bounce around zero. A large spike suggests that the observed data contain more dependence than white noise would normally generate.</p></div>
+</section>
+<section id="q-test">
+<h2>4. The Q-test: testing several lags at once</h2>
+<p>Looking at one lag at a time is useful, but we often want to test whether the process is white noise up to a whole group of lags. That is the role of the Q-test.</p>
+<div class="math-note">H<sub>0</sub>: ρ(1)=ρ(2)=…=ρ(k)=0</div>
+<p>Under the null, the Q-statistic is compared with a chi-squared critical value. If the Q-statistic is too large, or the p-value is small, we reject the claim that the series is white noise up to that lag.</p>
+<div class="img-block"><img alt="Chi-squared distribution used for Q-test intuition" loading="lazy" src="../img/teaching/chi.png"/><span class="img-caption">The Q-test compares the statistic to a chi-squared reference distribution.</span></div>
+<p>In applied work you normally do not calculate this by hand. EViews, R, Python or Stata reports the statistic. The important skill is to interpret it correctly.</p>
+</section>
+<section id="gdp-example">
+<h2>5. Example: GDP growth correlogram</h2>
+<p>The notes use UK GDP growth as an example. The correlogram shows clear evidence of positive serial correlation at the early lags. The pattern declines rather than cutting off immediately.</p>
+<p>The interpretation is:</p>
+<ul>
+<li>GDP growth is not behaving like white noise.</li>
+<li>There is dependence through time.</li>
+<li>The declining pattern is more suggestive of an autoregressive structure than a pure short-memory MA process.</li>
+<li>The correlogram suggests possible models, but does not itself estimate the final model.</li>
+</ul>
+<div class="img-block"><img alt="EViews-style correlogram output for GDP growth" loading="lazy" src="../img/teaching/rkgdp.png"/><span class="img-caption">The notes use the correlogram to connect sample autocorrelation evidence to model choice.</span></div>
+</section>
+<section id="residual-diagnostics">
+<h2>6. Correlograms after estimation: checking residual serial correlation</h2>
+<p>The same logic is used after estimating a model. If the model has captured the time dependence properly, the residuals should behave like white noise. If the residual correlogram still shows significant autocorrelation, the model has left dependence unexplained.</p>
+<p>This is why residual serial correlation matters. In a regression or ARMA model, serially correlated residuals indicate that the assumed error process is wrong. The notes then introduce diagnostic tests that are essentially asking whether the residuals still contain AR-type dependence.</p>
+<div class="img-block"><img alt="Residual diagnostic output for an MA model" loading="lazy" src="../img/teaching/lmma2.png"/><span class="img-caption">Residual diagnostics ask whether dependence remains after fitting a model.</span></div>
+<div class="img-block"><img alt="Residual diagnostic output for an AR model" loading="lazy" src="../img/teaching/lmarr1.png"/><span class="img-caption">If residuals are still serially correlated, the model specification may need to change.</span></div>
+</section>
+<section id="from-correlogram-to-model">
+<h2>7. From correlogram to model choice</h2>
+<p>The notes stress that the correlogram is a guide, not the whole model-selection procedure. Historically, ARMA specification often began by matching the sample correlogram to theoretical ACF patterns:</p>
+<table class="concept-table">
+<thead><tr><th>Pattern in correlogram</th><th>Possible interpretation</th><th>Next note</th></tr></thead>
+<tbody>
+<tr><td>ACF cuts off quickly after lag \(q\)</td><td>Possible MA(q) process.</td><td><a href="ar-arma-processes-explained.html#maq">MA(q)</a></td></tr>
+<tr><td>ACF declines gradually</td><td>Possible AR process.</td><td><a href="ar-arma-processes-explained.html#ar1">AR(1)</a></td></tr>
+<tr><td>ACF declines but with more complicated shape</td><td>Possible ARMA process.</td><td><a href="ar-arma-processes-explained.html#arma11">ARMA(1,1)</a></td></tr>
+<tr><td>Seasonal spikes</td><td>Possible seasonal structure.</td><td><a href="time-series-econometrics-part2.html#seasonality">seasonality</a></td></tr>
+</tbody>
+</table>
+<p>The next step is estimation, diagnostic testing and information criteria such as AIC and SIC, discussed in the advanced note.</p>
+</section>
+<section class="study-note-box" id="next-study-notes">
+<h2>Next notes in this pathway</h2>
+<ol>
+<li><a href="ar-arma-processes-explained.html">AR, MA and ARMA processes</a>: the theoretical patterns behind correlogram interpretation.</li>
+<li><a href="time-series-econometrics-part2.html#estimation">Estimation and model selection</a>: AR estimation, MA intuition, AIC and SIC.</li>
+<li><a href="time-series-econometrics-part2.html#seasonality">Seasonality</a>: when the correlogram shows regular seasonal spikes.</li>
+</ol>
+</section>
+<div class="tuition-cta"><p>Correlogram help</p><p>For help interpreting correlograms, Q-tests, ARMA diagnostics or applied EViews/R/Python output, see <a class="gold-link" href="../econometrics-tutor.html">econometrics tuition</a> or <a class="gold-link" href="../financial-econometrics-tutor.html">financial econometrics tuition</a>.</p></div>
 </main>
-
-<footer role="contentinfo" style="border-top:1px solid rgba(248,242,232,.08);padding:2.5rem clamp(1rem,4vw,2.5rem);background:linear-gradient(180deg,rgba(248,242,232,.02),rgba(0,0,0,.18))">
-  <div style="max-width:740px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.72rem;color:rgba(248,242,232,.4);font-weight:300">
-    <span>© <span id="yr"></span> Dr Nicky Grant · <a href="../index.html" style="color:rgba(248,242,232,.4)">drnickygrant.com</a></span>
-    <span><a href="../blog.html" style="color:rgba(248,242,232,.4)">← All resources</a></span>
-  </div>
+<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../econometrics-tutor.html"><strong>Econometrics tuition</strong><span>Correlograms, ACF, Ljung-Box and model diagnostics.</span></a><a class="funnel-card" href="../financial-econometrics-tutor.html"><strong>Financial econometrics tuition</strong><span>Model selection for financial return series.</span></a><a class="funnel-card" href="garch-volatility-explained.html"><strong>GARCH guide</strong><span>Next step after ARMA diagnostics: conditional volatility.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book a free consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
+<div class="foot-cols">
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
+<div class="fc"><h4>A-Level &amp; Admissions</h4><a href="../a-level-admissions-tutoring.html">Overview</a><a href="../a-level-maths-tutor.html">A-Level Maths</a><a href="../a-level-economics-tutor.html">A-Level Economics</a><a href="../tmua-preparation.html">TMUA preparation</a><a href="../oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
+<div class="fc"><h4>University &amp; Postgraduate</h4><a href="../university-postgraduate-tutoring.html">Overview</a><a href="../university-economics-tutor.html">University Economics</a><a href="../econometrics-tutor.html">Econometrics</a><a href="../statistics-tutor.html">Statistics</a><a href="../finance-tutor.html">Finance</a><a href="../phd-econometrics-tutor.html">PhD econometrics</a></div>
+<div class="fc"><h4>Resources &amp; contact</h4><a href="../blog.html">Study notes</a><a href="../questions.html">Common questions</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../how-it-works.html">How it works</a><a href="../index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
+</div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online UK-wide</span></div>
 </footer>
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();

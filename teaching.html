@@ -3,60 +3,229 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<link rel="icon" type="image/svg+xml" href="favicon.svg"/><link rel="icon" href="favicon.svg"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/><link href="favicon.svg" rel="icon"/>
 <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
-<title>Free Econometrics Notes. ECON30401 EC5221 EC5609 | Dr Nicky Grant</title>
-<meta content="Free lecture notes, exercises and solutions from four econometrics courses by Dr Nicky Grant (Cambridge PhD): ECON30401 time series, ECON61001 linear models, EC5221 time series analysis, EC5609 financial econometrics." name="description"/>
+<title>Free Econometrics Notes &amp; Teaching PDFs | Dr Nicky Grant</title>
+<meta content="Free econometrics lecture notes, exercises, solutions and slides by Dr Nicky Grant: OLS, time series, ARMA, GARCH, financial econometrics and hypothesis testing." name="description"/>
+<meta content="Teaching Materials | Dr Nicky Grant" property="og:title"/>
+<meta content="https://www.drnickygrant.com/teaching.html" property="og:url"/>
+<meta content="University lecture notes and worked exercises in econometrics and economics." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" property="og:image"/>
 <link href="https://www.drnickygrant.com/teaching.html" rel="canonical"/>
-<meta content="2026-06-14" name="last-modified"/>
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@graph":[
-    {
-      "@type":"CollectionPage",
-      "name":"Free Econometrics Teaching Materials. Dr Nicky Grant",
-      "url":"https://www.drnickygrant.com/teaching.html",
-      "description":"Lecture slides, written notes, problem sets and full worked solutions from four econometrics courses taught by Dr Nicky Grant at the University of Manchester and University of St Andrews. Freely available to download.",
-      "author":{"@id":"https://www.drnickygrant.com/#person"},
-      "hasPart":[
-        {"@type":"LearningResource","name":"ECON30401 Lecture 1: Introduction to Time Series Econometrics (2019)","url":"https://www.drnickygrant.com/teaching/ts-lect1-intro-2019.pdf","educationalLevel":"Undergraduate","learningResourceType":"Lecture slides","keywords":["time series","stationarity","white noise","MA process"]},
-        {"@type":"LearningResource","name":"ECON30401 Lecture 2: ARMA(p,q) Processes and Stationarity","url":"https://www.drnickygrant.com/teaching/ts-lect2-arma-stationarity.pdf","educationalLevel":"Undergraduate","learningResourceType":"Lecture slides","keywords":["ARMA","stationarity","Wold decomposition","lag operator"]},
-        {"@type":"LearningResource","name":"ECON30401 Lecture 3: Estimation, Hypothesis Testing and Model Selection","url":"https://www.drnickygrant.com/teaching/ts-lect3-estimation-model-selection.pdf","educationalLevel":"Undergraduate","learningResourceType":"Lecture slides","keywords":["sample ACF","Ljung-Box","AIC","BIC","ARMA estimation","model selection"]},
-        {"@type":"LearningResource","name":"ECON30401 Lecture 4: Prediction and Seasonality","url":"https://www.drnickygrant.com/teaching/ts-lect4-prediction-seasonality.pdf","educationalLevel":"Undergraduate","learningResourceType":"Lecture slides","keywords":["time series forecasting","prediction","seasonality","seasonal adjustment"]},
-        {"@type":"LearningResource","name":"ECON61001 Lecture 5: Diagnostic Testing and Robust Inference","url":"https://www.drnickygrant.com/teaching/ec-lect5-diagnostic-testing.pdf","educationalLevel":"Postgraduate","learningResourceType":"Lecture slides","keywords":["heteroskedasticity","White test","Breusch-Godfrey","HAC standard errors","diagnostic testing"]},
-        {"@type":"LearningResource","name":"ECON61001 Lecture 6: Endogeneity and Instrumental Variables","url":"https://www.drnickygrant.com/teaching/ec-lect6-instrumental-variables.pdf","educationalLevel":"Postgraduate","learningResourceType":"Lecture slides","keywords":["instrumental variables","2SLS","endogeneity","IV estimation","exclusion restriction"]},
-        {"@type":"LearningResource","name":"ECON61001 Lecture 7: Weak and Unidentified Instruments","url":"https://www.drnickygrant.com/teaching/ec-lect7-weak-instruments.pdf","educationalLevel":"Postgraduate","learningResourceType":"Lecture slides","keywords":["weak instruments","Stock-Yogo","Anderson-Rubin","LIML","identification-robust inference"]},
-        {"@type":"LearningResource","name":"EC5221 Week 1: Stationary Univariate Time Series (2021)","url":"https://www.drnickygrant.com/teaching/ec5221-lect1-arma-stationarity-2021.pdf","educationalLevel":"Postgraduate","learningResourceType":"Lecture slides","keywords":["ARMA","stationarity","ACF","Wold decomposition","time series postgraduate"]},
-        {"@type":"LearningResource","name":"EC5221 Week 2: Estimation and Inference (2021)","url":"https://www.drnickygrant.com/teaching/ec5221-lect2-estimation-inference-2021.pdf","educationalLevel":"Postgraduate","learningResourceType":"Lecture slides","keywords":["sample ACF","MLE","ARMA estimation","model selection","time series inference"]},
-        {"@type":"LearningResource","name":"EC5609 Lecture 1: Distribution Theory and Stock Price Returns (2021)","url":"https://www.drnickygrant.com/teaching/ec5609-lect1-distribution-stock-returns.pdf","educationalLevel":"Postgraduate","learningResourceType":"Lecture slides","keywords":["financial econometrics","distribution theory","skewness","kurtosis","stock returns","fat tails"]},
-        {"@type":"LearningResource","name":"EC5609 Lecture 7: Advanced Volatility Modelling. GARCH (2021)","url":"https://www.drnickygrant.com/teaching/ec5609-lect7-garch-volatility.pdf","educationalLevel":"Postgraduate","learningResourceType":"Lecture slides","keywords":["GARCH","ARCH","volatility modelling","conditional heteroskedasticity","EGARCH","TARCH","volatility clustering"]}
-      ]
-    },
-    {
-      "@type":"FAQPage",
-      "mainEntity":[
-        {"@type":"Question","name":"Are these econometrics lecture notes free?","acceptedAnswer":{"@type":"Answer","text":"Yes. All materials on this page are free to download. They are the original lecture slides, notes, exercises and solutions from four courses taught by Dr Nicky Grant at the University of Manchester (ECON30401 and ECON61001) and the University of St Andrews (EC5221 and EC5609). No registration required."}},
-        {"@type":"Question","name":"What is EC5221 Econometric Time Series Analysis?","acceptedAnswer":{"@type":"Answer","text":"EC5221 is a postgraduate MSc course in Econometric Time Series Analysis taught by Dr Nicky Grant at the University of St Andrews. The course covers stationary univariate time series (ARMA processes, stationarity conditions, Wold decomposition), estimation and inference (sample ACF, maximum likelihood, information criteria, model selection), and extends to VAR systems and time series applications."}},
-        {"@type":"Question","name":"What is EC5609 Financial Econometrics?","acceptedAnswer":{"@type":"Answer","text":"EC5609 is a postgraduate MSc course in Financial Econometrics taught by Dr Nicky Grant at the University of St Andrews. The course covers the statistical properties of financial returns (distribution theory, skewness, kurtosis, fat tails), ARMA modelling of returns, maximum likelihood estimation, and advanced volatility modelling including ARCH and GARCH(1,1), EGARCH, TARCH, and GARCH-in-mean models."}},
-        {"@type":"Question","name":"What does GARCH stand for and how does it work?","acceptedAnswer":{"@type":"Answer","text":"GARCH stands for Generalised Autoregressive Conditional Heteroskedasticity. The GARCH(1,1) model specifies the conditional variance as: h_t = omega + alpha * e_{t-1}^2 + beta * h_{t-1}, where h_t is the conditional variance at time t, e_{t-1} is the lagged residual (ARCH term), and h_{t-1} is the lagged conditional variance (GARCH term). Stationarity requires alpha + beta < 1. GARCH captures volatility clustering, the tendency of large price movements to follow large movements, observed in financial return data."}},
-        {"@type":"Question","name":"What is the Ljung-Box test?","acceptedAnswer":{"@type":"Answer","text":"The Ljung-Box portmanteau test tests the null hypothesis that a time series exhibits no autocorrelation up to a specified lag m. The test statistic is Q(m) = T(T+2) * sum_{k=1}^{m} rho_hat(k)^2 / (T-k), which follows a chi-squared distribution with m degrees of freedom under the null. It is used in ARMA model selection to check whether residuals from an estimated model are white noise."}}
-      ]
-    },
-    {
-      "@type":"BreadcrumbList",
-      "itemListElement":[
-        {"@type":"ListItem","position":1,"name":"Home","item":"https://www.drnickygrant.com/"},
-        {"@type":"ListItem","position":2,"name":"Resources","item":"https://www.drnickygrant.com/blog.html"},
-        {"@type":"ListItem","position":3,"name":"Teaching Materials","item":"https://www.drnickygrant.com/teaching.html"}
-      ]
-    }
-  ]
-}
-</script>
+<meta content="2026-06-15" name="last-modified"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.drnickygrant.com/#website",
+      "url": "https://www.drnickygrant.com/",
+      "name": "Dr Nicky Grant | Economics, Econometrics and Maths Tutor",
+      "description": "Specialist online tuition in economics, econometrics, mathematics, statistics, finance, TMUA and Oxbridge economics applications, supported by verifiable Cambridge credentials, teaching materials and research evidence.",
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.drnickygrant.com/#person",
+      "name": "Dr Nicky Grant",
+      "alternateName": [
+        "Nicky Grant",
+        "Nicky L. Grant",
+        "Nicky Lee Grant"
+      ],
+      "honorificPrefix": "Dr",
+      "givenName": "Nicky",
+      "familyName": "Grant",
+      "url": "https://www.drnickygrant.com/",
+      "image": "https://www.drnickygrant.com/img/nicky-grant-headshot.webp",
+      "email": "nicky.L.grant@gmail.com",
+      "telephone": "+447393352331",
+      "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor",
+      "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0008-8979-4623",
+          "url": "https://orcid.org/0009-0008-8979-4623"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Semantic Scholar",
+          "value": "97839351",
+          "url": "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Cambridge",
+        "sameAs": "https://www.cam.ac.uk/"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "PhD in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "MPhil in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BA in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        }
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "CeMMAP, Centre for Microdata Methods and Practice",
+        "sameAs": "https://cemmap.ac.uk/"
+      },
+      "knowsAbout": [
+        "economics tuition",
+        "econometrics tuition",
+        "A Level Mathematics",
+        "Further Mathematics",
+        "A Level Economics",
+        "TMUA preparation",
+        "Oxbridge Economics applications",
+        "statistics",
+        "financial econometrics",
+        "time series econometrics",
+        "GMM",
+        "instrumental variables",
+        "panel data",
+        "PhD econometrics"
+      ],
+      "sameAs": [
+        "https://orcid.org/0009-0008-8979-4623",
+        "https://www.linkedin.com/in/nicky-lee-grant/",
+        "https://cemmap.ac.uk/person/nicky-l-grant/",
+        "https://research-portal.st-andrews.ac.uk/en/persons/nicky-lee-grant",
+        "https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/",
+        "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351",
+        "https://www.youtube.com/@economaths",
+        "https://independent.academia.edu/NickyGrant"
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://www.drnickygrant.com/teaching.html#page",
+      "url": "https://www.drnickygrant.com/teaching.html",
+      "name": "Econometrics lecture notes, exercises & solutions",
+      "isPartOf": {
+        "@id": "https://www.drnickygrant.com/#website"
+      },
+      "about": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB",
+      "description": "Free lecture notes, exercises and solutions in time series, econometric methods, financial econometrics and applied statistics by Dr Nicky Grant.",
+      "relatedLink": [
+        "https://www.drnickygrant.com/econometrics-tutor.html",
+        "https://www.drnickygrant.com/financial-econometrics-tutor.html",
+        "https://www.drnickygrant.com/phd-econometrics-tutor.html"
+      ],
+      "abstract": "Free notes, exercises and videos for students working through econometrics, statistics, time series and applied methods."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.drnickygrant.com/teaching.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.drnickygrant.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Teaching",
+          "item": "https://www.drnickygrant.com/teaching.html"
+        }
+      ]
+    },
+    {
+      "@type": "LearningResource",
+      "@id": "https://www.drnickygrant.com/teaching.html#teaching-resources",
+      "name": "Free economics, econometrics and statistics teaching resources",
+      "url": "https://www.drnickygrant.com/teaching.html",
+      "author": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "about": [
+        "econometrics",
+        "time series analysis",
+        "financial econometrics",
+        "statistics",
+        "hypothesis testing"
+      ],
+      "educationalLevel": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/time-series-econometrics-guide.html",
+        "https://www.drnickygrant.com/blog/reading-the-correlogram.html",
+        "https://www.drnickygrant.com/blog/ar-arma-processes-explained.html",
+        "https://www.drnickygrant.com/blog/time-series-econometrics-part2.html"
+      ],
+      "abstract": "Free notes, exercises and videos for students working through econometrics, statistics, time series and applied methods.",
+      "dateModified": "2026-06-14"
+    },
+    {
+      "@type": "VideoObject",
+      "@id": "https://www.drnickygrant.com/teaching.html#economaths-video-course",
+      "name": "Applied Econometrics teaching videos by Dr Nicky Grant",
+      "description": "Public @economaths teaching videos covering applied econometrics, OLS, instrumental variables, time series, heteroskedasticity, autocorrelation, ARIMA and cointegration.",
+      "url": "https://www.youtube.com/@economaths",
+      "embedUrl": "https://www.youtube.com/embed/videoseries?list=PLdlEREV7OXveBEfmeZeXOBV9oEh9gR20F",
+      "inLanguage": "en-GB",
+      "about": [
+        "econometrics teaching videos",
+        "time series econometrics",
+        "OLS",
+        "instrumental variables"
+      ],
+      "creator": {
+        "@id": "https://www.drnickygrant.com/#person"
+      },
+      "isPartOf": {
+        "@id": "https://www.drnickygrant.com/teaching.html#page"
+      }
+    }
+  ]
+}</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
 <link href="css/main.css" rel="stylesheet"/>
 <style>
 .course-hdr { display:flex; align-items:baseline; gap:1rem; flex-wrap:wrap; padding:clamp(1.25rem,3vw,1.75rem) 0 clamp(0.75rem,2vw,1rem); border-bottom:2px solid var(--gold); margin-bottom:clamp(0.75rem,2vw,1.25rem); }
@@ -86,52 +255,99 @@
 .toc-link { font-size:var(--t-sm); color:var(--t2); border:1px solid var(--hr); padding:0.35rem 0.8rem; border-radius:2px; transition:background 0.2s, color 0.2s; text-decoration:none; font-weight:300; }
 .toc-link:hover { background:var(--s2); color:var(--gold); border-color:var(--hr2); }
 </style>
-<link href="css/polish.css" rel="stylesheet"/></head>
+<link href="css/polish.css" rel="stylesheet"/><style data-chunk="UXFG">
+.route-cred-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem;margin-top:1.25rem}
+.route-cred-card{border:1px solid var(--hr);background:var(--paper);padding:1.25rem}
+.route-cred-card small,.evidence-note small{display:block;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;margin-bottom:.35rem}
+.route-cred-card h3{margin:.15rem 0 .55rem}
+.route-cred-card ul{margin:.7rem 0 0 1.1rem;padding:0}
+.route-cred-card li{margin:.35rem 0}
+.evidence-note{border:1px solid var(--hr);background:var(--s2);padding:1rem 1.15rem;margin:1.25rem 0}
+.research-route-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.25rem 0}
+.research-route-card{border:1px solid var(--hr);padding:1rem;background:var(--paper)}
+.research-route-card h3{margin:.1rem 0 .45rem}
+.research-route-card p{margin:.3rem 0}
+.qa-note{font-size:.92rem;color:var(--muted);border-top:1px solid var(--hr);margin-top:1.5rem;padding-top:1rem}
+@media(max-width:760px){.route-cred-grid,.research-route-grid{grid-template-columns:1fr}}
+</style><script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Teaching Materials", "about": "University lecture notes and worked exercises in econometrics and economics", "author": {"@id": "https://www.drnickygrant.com/#person"}, "url": "https://www.drnickygrant.com/teaching.html"}
+</script>
+</head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
 <nav aria-label="Main navigation" id="nav">
 <div class="nav-inner">
-<a class="nav-logo" href="index.html">Dr Nicky <span>Grant</span></a>
-<ul class="nav-links" role="list"><li><a href="index.html">Home</a></li><li><a href="services.html">Subjects</a></li><li><a href="oxbridge-economics-tutor.html">Applications</a></li><li><a aria-current="page" class="on" href="blog.html">Resources</a></li><li><a href="credentials.html">Credentials</a></li><li><a href="pricing.html">Pricing</a></li></ul>
+<a aria-label="Dr Nicky Grant home" class="nav-logo" href="index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list">
+<li><a href="a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
+<li><a href="university-postgraduate-tutoring.html">University &amp; Postgraduate</a></li>
+<li><a href="blog.html">Resources</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="pricing.html">Pricing</a></li>
+</ul>
 <a class="nav-cta" href="index.html#contact">Book consultation</a>
 <button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
 </div>
-<div class="mob-nav" id="mobNav"><a href="index.html">Home</a><a href="services.html">Subjects</a><a href="oxbridge-economics-tutor.html">Applications</a><a aria-current="page" class="on" href="blog.html">Resources</a><a href="credentials.html">Credentials</a><a href="pricing.html">Pricing</a><a href="index.html#contact">Book consultation</a></div>
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="index.html">Home</a><a href="a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="university-postgraduate-tutoring.html">University &amp; Postgraduate</a><a href="blog.html">Resources</a><a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="index.html#contact">Book consultation</a></div>
 </nav>
 <main id="main">
+<div class="wrap" style="padding-top:7rem"><nav aria-label="Breadcrumb" class="route-breadcrumb"><a href="index.html">Home</a> <span class="bc-sep">›</span> <a href="blog.html">Resources</a> <span class="bc-sep">›</span> <span class="bc-current">Econometrics notes</span></nav></div>
 <header class="page-hero">
 <div class="wrap">
-<p class="s-eye gsap-up">Free materials · Manchester &amp; St Andrews</p>
-<h1 class="h2 gsap-up" style="font-size:var(--t-4xl);margin-bottom:var(--sp-sm)">Econometrics lecture notes,<br/><em>exercises &amp; solutions</em></h1>
-<div class="answer-capsule gsap-up" role="note">
-<p>Free lecture slides, written notes, problem sets and fully worked solutions from four university econometrics courses taught by Dr Nicky Grant. All materials are the actual files used in the courses, not simplified summaries. No registration required.</p>
-</div>
+<p class="s-eye gsap-up">Free archived materials</p>
+<h1 class="h2 gsap-up" style="font-size:var(--t-4xl);margin-bottom:var(--sp-sm)">Econometrics notes, exercises<br/><em>&amp; solutions</em></h1>
+
 <nav aria-label="Jump to course" class="toc gsap-up">
-<a class="toc-link" href="#econ30401">ECON30401. Time Series (Manchester, UG)</a>
-<a class="toc-link" href="#econ61001">ECON61001. Econometric Methods (Manchester, PG)</a>
+<a class="toc-link" href="#econ30401">Time Series Econometrics notes</a>
+<a class="toc-link" href="#econ61001">Econometric Methods notes</a>
 <a class="toc-link" href="#ec5221">EC5221. Time Series Analysis (St Andrews, PG)</a>
 <a class="toc-link" href="#ec5609">EC5609. Financial Econometrics (St Andrews, PG)</a>
 </nav>
 </div>
 </header>
 <!-- ═══ ECON30401 ═══ -->
-<section aria-labelledby="h-30401" class="section course-section" id="econ30401">
+<section class="section alt" id="resources-by-route"><div class="wrap">
+<p class="s-eye gsap-up">Resources by level</p>
+<h2 class="h2 gsap-up">Choose resources<br/><em>by student level</em></h2>
+<div class="route-page-grid">
+<div class="route-panel">
+<h3>A-Level &amp; Admissions resources</h3>
+<p>Use these for admissions preparation, mathematical problem-solving and economics application work.</p>
+<ul>
+<li><a href="blog/hardest-further-maths-topics.html">Further Maths topic guide</a></li>
+<li><a href="blog/cambridge-economics-interview-guide.html">Cambridge Economics interview guide</a></li>
+<li><a href="blog/oxbridge-economics-interview-questions-worked.html">Oxbridge Economics worked questions</a></li>
+</ul>
+</div>
+<div class="route-panel">
+<h3>University &amp; Postgraduate study notes</h3>
+<p>Use these for econometrics, statistics, time series, finance and dissertation-methods support.</p>
+<ul>
+<li><a href="#econ30401">Time series econometrics materials</a></li>
+<li><a href="#econ61001">Econometric methods materials</a></li>
+<li><a href="#ec5221">Postgraduate time-series materials</a></li>
+<li><a href="#ec5609">Financial econometrics materials</a></li>
+</ul>
+</div>
+</div>
+<p class="enquiry-direct" style="margin-top:1rem"><strong>Archive note:</strong> some downloadable materials are historic notes written for previous teaching and do not represent any current course or current course content.</p>
+</div></section><section aria-labelledby="h-30401" class="section course-section" id="econ30401">
 <div class="wrap">
 <div class="course-hdr gsap-up">
 <span class="course-code" id="h-30401">ECON30401</span>
 <div>
 <div class="course-meta">Time Series Econometrics</div>
-<span class="course-uni">University of Manchester · 3rd year undergraduate · Dr Grant taught Lectures 1–4</span>
+<span class="course-uni">Historic teaching archive · 3rd year undergraduate time-series materials Lectures 1-4</span>
 </div>
 </div>
-<p class="s-lead gsap-up">Univariate time series modelling from first principles. Nicky taught the first half of this course; Lectures 5–8 (VAR systems, unit roots, cointegration) were taught by Prof. Alastair R. Hall and are not included here.</p>
+<p class="s-lead gsap-up">Univariate time series modelling from first principles. These archived materials cover the first part of the time-series material. Later topics such as VAR systems, unit roots and cointegration are not included here.</p>
 <div class="mat-group gsap-up">
 <span class="mat-group-lbl">Lecture slides</span>
 <div class="mat-row">
 <div>
 <div class="mat-topic">Lecture 1 · 2019 version (latest)</div>
 <div class="mat-title">Introduction to Time Series Econometrics</div>
-<div class="mat-desc">Time series process vs. realisation. Strict and covariance stationarity formally defined. White noise. MA(q) process, definition, mean, variance, autocovariance function. Sample realisations of AR, MA and ARMA processes. Sets up all notation used in subsequent lectures.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Time series process vs. realisation. Strict and covariance stationarity formally defined. White noise. MA(q) process, definition, mean, variance, autocovariance function. Sample realisations of AR, MA and ARMA processes. Sets up all notation used in subsequent lectures.</div></details>
 <div class="mat-tags"><span class="mat-tag">Stationarity</span><span class="mat-tag">White noise</span><span class="mat-tag">MA(q)</span><span class="mat-tag">ACF</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ts-lect1-intro-2019.pdf">PDF</a>
@@ -140,7 +356,7 @@
 <div>
 <div class="mat-topic">Lecture 2 · 2016 version (latest)</div>
 <div class="mat-title">ARMA(p,q) Processes &amp; Stationarity</div>
-<div class="mat-desc">MA(∞) process and squared/absolute summability. Wold Decomposition Theorem. AR(1) as MA(∞), mean α/(1−φ₁), variance σ²/(1−φ₁²), ACF ρ(k)=φ₁ᵏ. ARMA(1,1) properties. Lag operator introduced. General ARMA(p,q). Stationarity via characteristic polynomial, roots of 1−φ₁L−…−φₚLᵖ must lie outside the unit circle.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">MA(∞) process and squared/absolute summability. Wold Decomposition Theorem. AR(1) as MA(∞), mean α/(1−φ₁), variance σ²/(1−φ₁²), ACF ρ(k)=φ₁ᵏ. ARMA(1,1) properties. Lag operator introduced. General ARMA(p,q). Stationarity via characteristic polynomial, roots of 1−φ₁L−…−φₚLᵖ must lie outside the unit circle.</div></details>
 <div class="mat-tags"><span class="mat-tag">MA(∞)</span><span class="mat-tag">Wold decomposition</span><span class="mat-tag">AR(1)</span><span class="mat-tag">Lag operator</span><span class="mat-tag">ARMA(p,q)</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ts-lect2-arma-stationarity.pdf">PDF</a>
@@ -149,7 +365,7 @@
 <div>
 <div class="mat-topic">Lecture 3 · 2015 version</div>
 <div class="mat-title">Estimation, Hypothesis Testing &amp; Model Selection</div>
-<div class="mat-desc">Sample ACF: ρ̂(k) = Σ(Yₜ−Ȳ)(Yₜ₋ₖ−Ȳ)/Σ(Yₜ−Ȳ)². Under H₀: ρ(k)=0, √T·ρ̂(k) →ᵈ N(0,1). Correlogram and 95% bands ±1.96/√T. Ljung-Box portmanteau test Q(m)~χ²(m). AR estimation by OLS; MA and ARMA by MLE. AIC = −2·log(L̂)+2K; BIC = −2·log(L̂)+K·log(T). Applied to UK GDP growth data.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Sample ACF: ρ̂(k) = Σ(Yₜ−Ȳ)(Yₜ₋ₖ−Ȳ)/Σ(Yₜ−Ȳ)². Under H₀: ρ(k)=0, √T·ρ̂(k) →ᵈ N(0,1). Correlogram and 95% bands ±1.96/√T. Ljung-Box portmanteau test Q(m)~χ²(m). AR estimation by OLS; MA and ARMA by MLE. AIC = −2·log(L̂)+2K; BIC = −2·log(L̂)+K·log(T). Applied to UK GDP growth data.</div></details>
 <div class="mat-tags"><span class="mat-tag">Sample ACF</span><span class="mat-tag">Ljung-Box</span><span class="mat-tag">AIC</span><span class="mat-tag">BIC</span><span class="mat-tag">MLE</span><span class="mat-tag">UK GDP</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ts-lect3-estimation-model-selection.pdf">PDF</a>
@@ -158,7 +374,7 @@
 <div>
 <div class="mat-topic">Lecture 4 · 2015 version</div>
 <div class="mat-title">Prediction &amp; Seasonality</div>
-<div class="mat-desc">AR(1) one-step predictor Ŷₜ₊₁=µ+φ₁yₜ. J-step ahead prediction and forecast error variance σ²·Σφ₁²⁽ᴶ⁻ʲ⁾. Long-horizon convergence to unconditional mean. Deterministic seasonality: seasonal dummies, dummy variable trap, seasonal adjustment by OLS residuals. Stochastic seasonality: SAR(1), its MA(∞) form, ACF. Combined model with dummies and AR dynamics. UK retail sales application.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">AR(1) one-step predictor Ŷₜ₊₁=µ+φ₁yₜ. J-step ahead prediction and forecast error variance σ²·Σφ₁²⁽ᴶ⁻ʲ⁾. Long-horizon convergence to unconditional mean. Deterministic seasonality: seasonal dummies, dummy variable trap, seasonal adjustment by OLS residuals. Stochastic seasonality: SAR(1), its MA(∞) form, ACF. Combined model with dummies and AR dynamics. UK retail sales application.</div></details>
 <div class="mat-tags"><span class="mat-tag">AR forecasting</span><span class="mat-tag">Forecast error</span><span class="mat-tag">Seasonal dummies</span><span class="mat-tag">SAR(1)</span><span class="mat-tag">Retail sales</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ts-lect4-prediction-seasonality.pdf">PDF</a>
@@ -168,9 +384,9 @@
 <span class="mat-group-lbl">Written notes</span>
 <div class="mat-row">
 <div>
-<div class="mat-topic">Weeks 1–2 · Comprehensive notes (final version)</div>
+<div class="mat-topic">Weeks 1-2 · Comprehensive notes (final version)</div>
 <div class="mat-title">Time Series Econometrics. Lecture Notes Weeks 1 &amp; 2</div>
-<div class="mat-desc">Written prose notes (not slides) covering the full material from Lectures 1–3. Full derivations of MA(q) and AR(1) properties, Wold decomposition proof, ACF and PACF theory, sample ACF distribution under the null, model estimation rationale, information criteria derivation. Suitable for reading alongside or instead of slides. Best reference for exam revision.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Written prose notes (not slides) covering the full material from Lectures 1-3. Full derivations of MA(q) and AR(1) properties, Wold decomposition proof, ACF and PACF theory, sample ACF distribution under the null, model estimation rationale, information criteria derivation. Suitable for reading alongside or instead of slides. Best reference for exam revision.</div></details>
 <div class="mat-tags"><span class="mat-tag">Full derivations</span><span class="mat-tag">Proofs</span><span class="mat-tag">Exam revision</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ts-notes-weeks1-2.pdf">PDF</a>
@@ -178,11 +394,11 @@
 <div class="mat-row">
 <div>
 <div class="mat-topic">Foundation · OLS and linear models</div>
-<div class="mat-title">OLS Notes (University of Manchester, hosted externally)</div>
-<div class="mat-desc">The linear model assumed throughout both ECON30401 and ECON61001. Covers OLS estimator, Gauss-Markov theorem, large-sample properties, and inference. Hosted publicly by the University of Manchester.</div>
+<div class="mat-title">OLS Notes</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">The linear model used throughout econometrics: OLS estimator, Gauss-Markov theorem, large-sample properties and inference.</div></details>
 <div class="mat-tags"><span class="mat-tag">OLS</span><span class="mat-tag">Gauss-Markov</span><span class="mat-tag">Foundation</span></div>
 </div>
-<a class="mat-dl mat-dl-ext" href="https://hummedia.manchester.ac.uk/schools/soss/economics/pg/psmaths/OLS%20Notes.pdf" rel="noopener" target="_blank">Manchester</a>
+<a class="mat-dl mat-dl-ext" href="https://hummedia.manchester.ac.uk/schools/soss/economics/pg/psmaths/OLS%20Notes.pdf" rel="noopener" target="_blank">PDF</a>
 </div>
 </div>
 <div class="mat-group gsap-up">
@@ -191,7 +407,7 @@
 <div>
 <div class="mat-topic">Exercise 1 · ARMA properties</div>
 <div class="mat-title">Problem Set 1: ARMA Properties &amp; Wold Decomposition</div>
-<div class="mat-desc">Deriving MA(∞) representations, showing AR(1) properties from MA(∞) form, ARMA(1,1) properties, stationarity conditions. Video solutions provided separately.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Deriving MA(∞) representations, showing AR(1) properties from MA(∞) form, ARMA(1,1) properties, stationarity conditions. Video solutions provided separately.</div></details>
 <div class="mat-tags"><span class="mat-tag">MA(∞)</span><span class="mat-tag">AR(1)</span><span class="mat-tag">ARMA(1,1)</span></div>
 </div>
 <div class="mat-dl-pair">
@@ -203,7 +419,7 @@
 <div>
 <div class="mat-topic">Video Exercise 2 · AR(2) and ARMA(1,1)</div>
 <div class="mat-title">Video Exercise 2: AR(2) Prediction &amp; ARMA(1,1) Moments</div>
-<div class="mat-desc">Deriving 1, 2 and 3-step ahead forecasts and forecast error variances for AR(2). Deriving mean, variance and ACF for ARMA(1,1) via the MA(∞) route. Supported by video recordings.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Deriving 1, 2 and 3-step ahead forecasts and forecast error variances for AR(2). Deriving mean, variance and ACF for ARMA(1,1) via the MA(∞) route. Supported by video recordings.</div></details>
 <div class="mat-tags"><span class="mat-tag">AR(2) forecasting</span><span class="mat-tag">ARMA(1,1)</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ts-video-exercise2.pdf">PDF</a>
@@ -212,7 +428,7 @@
 <div>
 <div class="mat-topic">Class Exercise 2 · IBM stock returns</div>
 <div class="mat-title">Applied Exercise: ARMA Modelling of IBM Monthly Returns</div>
-<div class="mat-desc">IBM monthly stock returns 1991–2013 (T=276). Correlogram examination, white noise testing, model identification, estimation, diagnostics. Requires interpreting EViews output.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">IBM monthly stock returns 1991-2013 (T=276). Correlogram examination, white noise testing, model identification, estimation, diagnostics. Requires interpreting EViews output.</div></details>
 <div class="mat-tags"><span class="mat-tag">Applied</span><span class="mat-tag">EViews</span><span class="mat-tag">IBM data</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ts-class-exercise2.pdf">PDF</a>
@@ -220,14 +436,14 @@
 <div class="mat-row">
 <div>
 <div class="mat-topic">PC Lab 1 · EViews, UK real GDP</div>
-<div class="mat-title">PC Lab 1: Time Series in EViews. UK Real GDP 1955–2013</div>
-<div class="mat-desc">Hands-on EViews exercise. UK quarterly real GDP (seasonally adjusted). Plot, growth rates, ACF/PACF, ARMA estimation, information criteria for model selection, forecasting, residual diagnostics.</div>
+<div class="mat-title">PC Lab 1: Time Series in EViews. UK Real GDP 1955-2013</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Hands-on EViews exercise. UK quarterly real GDP (seasonally adjusted). Plot, growth rates, ACF/PACF, ARMA estimation, information criteria for model selection, forecasting, residual diagnostics.</div></details>
 <div class="mat-tags"><span class="mat-tag">EViews</span><span class="mat-tag">UK GDP</span><span class="mat-tag">ARMA estimation</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ts-pclab1-eviews-gdp.pdf">PDF</a>
 </div>
 </div>
-<div class="mat-note gsap-up">Lectures 5–8 of ECON30401 (VAR systems, unit roots, cointegration) were taught by Prof. Alastair R. Hall and are not available here.</div>
+<div class="mat-note gsap-up">Later ECON30401 topics such as VAR systems, unit roots and cointegration are not included here.</div>
 </div>
 </section>
 <!-- ═══ ECON61001 ═══ -->
@@ -237,7 +453,7 @@
 <span class="course-code" id="h-61001">ECON61001</span>
 <div>
 <div class="course-meta">Econometric Methods</div>
-<span class="course-uni">University of Manchester · Postgraduate MSc · Dr Grant taught Lectures 5–7</span>
+<span class="course-uni">Historic teaching archive · postgraduate econometric-methods materials Lectures 5-7</span>
 </div>
 </div>
 <p class="s-lead gsap-up">Diagnostic testing, endogeneity and instrumental variables, the three topics most relevant to applied econometric research. These lectures cover material central to any serious empirical economics paper.</p>
@@ -247,7 +463,7 @@
 <div>
 <div class="mat-topic">Lecture 5 · Diagnostic testing</div>
 <div class="mat-title">Diagnostic Testing &amp; Robust Inference</div>
-<div class="mat-desc">Testing OLS assumptions in practice. Heteroskedasticity: White test (T·R² ~χ²), Breusch-Pagan; heteroskedasticity-consistent (HC) standard errors. Serial correlation: Durbin-Watson, Breusch-Godfrey LM test; HAC (Newey-West) standard errors. Simulation evidence on test size across sample sizes. 2016 version.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Testing OLS assumptions in practice. Heteroskedasticity: White test (T·R² ~χ²), Breusch-Pagan; heteroskedasticity-consistent (HC) standard errors. Serial correlation: Durbin-Watson, Breusch-Godfrey LM test; HAC (Newey-West) standard errors. Simulation evidence on test size across sample sizes. 2016 version.</div></details>
 <div class="mat-tags"><span class="mat-tag">White test</span><span class="mat-tag">Breusch-Godfrey</span><span class="mat-tag">HC standard errors</span><span class="mat-tag">HAC/Newey-West</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ec-lect5-diagnostic-testing.pdf">PDF</a>
@@ -256,7 +472,7 @@
 <div>
 <div class="mat-topic">Lecture 6 · Instrumental variables</div>
 <div class="mat-title">Endogeneity &amp; Instrumental Variables (2SLS)</div>
-<div class="mat-desc">When E[uᵢxᵢ]≠0. OLS biased and inconsistent. Sources: simultaneity, omitted variables, measurement error. IV estimator. 2SLS: first stage regresses xᵢ on zᵢ; second stage uses x̂ᵢ. Validity conditions: relevance (Cov(zᵢ,xᵢ)≠0) and exclusion restriction (Cov(zᵢ,uᵢ)=0). First-stage F&gt;10 rule of thumb. Acemoglu-Johnson-Robinson settler mortality example. 2016 version.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">When E[uᵢxᵢ]≠0. OLS biased and inconsistent. Sources: simultaneity, omitted variables, measurement error. IV estimator. 2SLS: first stage regresses xᵢ on zᵢ; second stage uses x̂ᵢ. Validity conditions: relevance (Cov(zᵢ,xᵢ)≠0) and exclusion restriction (Cov(zᵢ,uᵢ)=0). First-stage F&gt;10 rule of thumb. Acemoglu-Johnson-Robinson settler mortality example. 2016 version.</div></details>
 <div class="mat-tags"><span class="mat-tag">2SLS</span><span class="mat-tag">Endogeneity</span><span class="mat-tag">IV</span><span class="mat-tag">Exclusion restriction</span><span class="mat-tag">AJR</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ec-lect6-instrumental-variables.pdf">PDF</a>
@@ -265,7 +481,7 @@
 <div>
 <div class="mat-topic">Lecture 7 · Weak instruments</div>
 <div class="mat-title">Instrumental Variables with Weak / Unidentified Instruments</div>
-<div class="mat-desc">Weak instrument problem: 2SLS severely biased toward OLS; standard Wald confidence intervals have severe size distortions. Concentration parameter. Stock-Yogo (2005) critical values (F&gt;16.38 for 5% maximal size distortion with one instrument). Anderson-Rubin identification-robust test. LIML as less biased alternative to 2SLS. Conditional likelihood ratio (CLR) test. Directly connected to Dr Grant's CeMMAP research on singular moment variance.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Weak instrument problem: 2SLS severely biased toward OLS; standard Wald confidence intervals have severe size distortions. Concentration parameter. Stock-Yogo (2005) critical values (F&gt;16.38 for 5% maximal size distortion with one instrument). Anderson-Rubin identification-robust test. LIML as less biased alternative to 2SLS. Conditional likelihood ratio (CLR) test. Directly connected to Dr Grant's CeMMAP research on singular moment variance.</div></details>
 <div class="mat-tags"><span class="mat-tag">Weak instruments</span><span class="mat-tag">Stock-Yogo</span><span class="mat-tag">Anderson-Rubin</span><span class="mat-tag">LIML</span><span class="mat-tag">CLR test</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ec-lect7-weak-instruments.pdf">PDF</a>
@@ -275,9 +491,9 @@
 <span class="mat-group-lbl">Tutorial problem sets &amp; solutions</span>
 <div class="mat-row">
 <div>
-<div class="mat-topic">Tutorial 3–4 · WLS and GLS</div>
+<div class="mat-topic">Tutorial 3-4 · WLS and GLS</div>
 <div class="mat-title">Tutorials 3 &amp; 4: Weighted Least Squares &amp; Generalised Least Squares</div>
-<div class="mat-desc">Deriving the WLS estimator, properties under heteroskedasticity, GLS as efficient estimator when errors are non-spherical. Problems and full worked solutions included.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Deriving the WLS estimator, properties under heteroskedasticity, GLS as efficient estimator when errors are non-spherical. Problems and full worked solutions included.</div></details>
 <div class="mat-tags"><span class="mat-tag">WLS</span><span class="mat-tag">GLS</span><span class="mat-tag">Non-spherical errors</span></div>
 </div>
 <div class="mat-dl-pair">
@@ -289,7 +505,7 @@
 <div>
 <div class="mat-topic">Tutorial 5 · Robust inference</div>
 <div class="mat-title">Tutorial 5: Heteroskedasticity &amp; Serial Correlation. Applied Problems</div>
-<div class="mat-desc">White test for heteroskedasticity, linear-form test, HC standard errors in practice. Serial correlation testing, Newey-West HAC standard errors. Interpretation of regression output with diagnostics. Full solutions included.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">White test for heteroskedasticity, linear-form test, HC standard errors in practice. Serial correlation testing, Newey-West HAC standard errors. Interpretation of regression output with diagnostics. Full solutions included.</div></details>
 <div class="mat-tags"><span class="mat-tag">White test</span><span class="mat-tag">HC errors</span><span class="mat-tag">Newey-West</span><span class="mat-tag">Applied</span></div>
 </div>
 <div class="mat-dl-pair">
@@ -298,7 +514,7 @@
 </div>
 </div>
 </div>
-<div class="mat-note gsap-up">Lectures 1–4 of ECON61001 (OLS foundations, large-sample theory, hypothesis testing) were taught by other faculty. The OLS Notes linked above cover that material.</div>
+<div class="mat-note gsap-up">The OLS notes linked above cover the foundations needed before the diagnostic testing and instrumental variables material.</div>
 </div>
 </section>
 <!-- ═══ EC5221 ═══ -->
@@ -308,7 +524,7 @@
 <span class="course-code" id="h-ec5221">EC5221</span>
 <div>
 <div class="course-meta">Econometric Time Series Analysis</div>
-<span class="course-uni">University of St Andrews · Postgraduate MSc · Semester 2 · Full course</span>
+<span class="course-uni">Historic teaching archive · postgraduate time-series materials</span>
 </div>
 </div>
 <p class="s-lead gsap-up">Postgraduate-level time series covering the same core theory as ECON30401 but with greater mathematical rigour, formal asymptotic arguments, and extension to VAR systems. Latest versions are from 2020/2021.</p>
@@ -318,7 +534,7 @@
 <div>
 <div class="mat-topic">Week 1 · 2021 version (latest)</div>
 <div class="mat-title">Stationary Univariate Time Series. ARMA Processes &amp; Stationarity</div>
-<div class="mat-desc">Covers the full formal treatment: time series process vs. realisation, strict and covariance stationarity, bivariate moments and the autocovariance function, white noise, ARMA(p,q), moments and stationarity conditions via the lag operator, MA(∞) and Wold decomposition, AR(1) as MA(∞). More formal and complete than the ECON30401 version of the same material.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Covers the full formal treatment: time series process vs. realisation, strict and covariance stationarity, bivariate moments and the autocovariance function, white noise, ARMA(p,q), moments and stationarity conditions via the lag operator, MA(∞) and Wold decomposition, AR(1) as MA(∞). More formal and complete than the ECON30401 version of the same material.</div></details>
 <div class="mat-tags"><span class="mat-tag">Stationarity</span><span class="mat-tag">ACF/PACF</span><span class="mat-tag">ARMA(p,q)</span><span class="mat-tag">Wold</span><span class="mat-tag">Postgraduate</span></div>
 </div>
 <div>
@@ -330,7 +546,7 @@
 <div>
 <div class="mat-topic">Week 2 · 2021 version (latest)</div>
 <div class="mat-title">Stationary Univariate Time Series. Estimation &amp; Inference</div>
-<div class="mat-desc">Sample moments: sample mean, sample ACF and their asymptotic distributions. Statistical properties of sample ACF under H₀ and H₁. Portmanteau tests. Maximum likelihood estimation of ARMA processes: Gaussian log-likelihood, conditional vs. exact MLE, Newton-Raphson. AIC and BIC for order selection. Reading list and applications.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Sample moments: sample mean, sample ACF and their asymptotic distributions. Statistical properties of sample ACF under H₀ and H₁. Portmanteau tests. Maximum likelihood estimation of ARMA processes: Gaussian log-likelihood, conditional vs. exact MLE, Newton-Raphson. AIC and BIC for order selection. Reading list and applications.</div></details>
 <div class="mat-tags"><span class="mat-tag">Sample ACF</span><span class="mat-tag">MLE</span><span class="mat-tag">Asymptotic theory</span><span class="mat-tag">AIC/BIC</span></div>
 </div>
 <div>
@@ -345,7 +561,7 @@
 <div>
 <div class="mat-topic">Problem Set 2 · VAR systems · 2021 version (latest)</div>
 <div class="mat-title">Problem Set 2: Bivariate VAR(1) Systems</div>
-<div class="mat-desc">Bivariate VAR(1): Yₜ = α + Φ₁Yₜ₋₁ + εₜ. Stationarity condition via eigenvalues of Φ₁. Mean, variance and autocovariance of stationary VAR(1). Impulse response functions. Granger causality testing. With specific parameter values (φ₁₁=0.6, φ₁₂=0.1, φ₂₁=−0.6, φ₂₂=1.1).</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Bivariate VAR(1): Yₜ = α + Φ₁Yₜ₋₁ + εₜ. Stationarity condition via eigenvalues of Φ₁. Mean, variance and autocovariance of stationary VAR(1). Impulse response functions. Granger causality testing. With specific parameter values (φ₁₁=0.6, φ₁₂=0.1, φ₂₁=−0.6, φ₂₂=1.1).</div></details>
 <div class="mat-tags"><span class="mat-tag">VAR(1)</span><span class="mat-tag">Impulse response</span><span class="mat-tag">Granger causality</span></div>
 </div>
 <div class="mat-dl-pair">
@@ -357,7 +573,7 @@
 <div>
 <div class="mat-topic">Video Problem Set 1 · Solutions · 2021 version (latest)</div>
 <div class="mat-title">Video Exercise Sheet 1 Solutions: MA(∞) and ARMA(1,1)</div>
-<div class="mat-desc">Full worked solutions to the first video problem set. Deriving that a given MA(∞) process with recursively defined coefficients (η₀=1, η₁=φ₁+θ₁, ηₛ=φ₁ηₛ₋₁ for s≥2) is an ARMA(1,1). Mean, variance, and ACF derivation. Stationarity and invertibility discussion.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Full worked solutions to the first video problem set. Deriving that a given MA(∞) process with recursively defined coefficients (η₀=1, η₁=φ₁+θ₁, ηₛ=φ₁ηₛ₋₁ for s≥2) is an ARMA(1,1). Mean, variance, and ACF derivation. Stationarity and invertibility discussion.</div></details>
 <div class="mat-tags"><span class="mat-tag">MA(∞)</span><span class="mat-tag">ARMA(1,1)</span><span class="mat-tag">Full solutions</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ec5221-video-ps1-solutions.pdf">Solutions</a>
@@ -372,7 +588,7 @@
 <span class="course-code" id="h-ec5609">EC5609</span>
 <div>
 <div class="course-meta">Financial Econometrics</div>
-<span class="course-uni">University of St Andrews · Postgraduate MSc · Semester 1 · Full course</span>
+<span class="course-uni">Historic teaching archive · postgraduate financial-econometrics materials</span>
 </div>
 </div>
 <p class="s-lead gsap-up">The statistical properties of financial data, ARMA modelling of returns, maximum likelihood, and advanced volatility modelling with GARCH. Applied throughout with stock return data.</p>
@@ -382,7 +598,7 @@
 <div>
 <div class="mat-topic">Lecture 1 · 2021/22 version (latest)</div>
 <div class="mat-title">Distribution Theory &amp; Properties of Stock Price Returns</div>
-<div class="mat-desc">Financial econometric data. Log returns rₜ=log(Pₜ)−log(Pₜ₋₁). Statistical distribution theory: PDF, CDF, moments. Sample mean, variance, skewness (third standardised central moment), kurtosis (fourth). Leptokurtosis in returns: excess kurtosis&gt;0, fat tails. Normal vs. Student-t. Central Limit Theorem and asymptotic normality of sample moments. Sampling distributions. Motivation for ARMA and GARCH modelling of returns.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Financial econometric data. Log returns rₜ=log(Pₜ)−log(Pₜ₋₁). Statistical distribution theory: PDF, CDF, moments. Sample mean, variance, skewness (third standardised central moment), kurtosis (fourth). Leptokurtosis in returns: excess kurtosis&gt;0, fat tails. Normal vs. Student-t. Central Limit Theorem and asymptotic normality of sample moments. Sampling distributions. Motivation for ARMA and GARCH modelling of returns.</div></details>
 <div class="mat-tags"><span class="mat-tag">Distribution theory</span><span class="mat-tag">Log returns</span><span class="mat-tag">Kurtosis</span><span class="mat-tag">Fat tails</span><span class="mat-tag">Skewness</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ec5609-lect1-distribution-stock-returns.pdf">PDF</a>
@@ -391,7 +607,7 @@
 <div>
 <div class="mat-topic">Lecture 7 · 2021/22 version (latest)</div>
 <div class="mat-title">Advanced Volatility Modelling. ARCH &amp; GARCH</div>
-<div class="mat-desc">Conditional heteroskedasticity in financial returns. ARCH(q): hₜ=ω+Σαᵢεₜ₋ᵢ². GARCH(1,1): hₜ=ω+α·εₜ₋₁²+β·hₜ₋₁; stationarity requires α+β&lt;1. Volatility clustering. Asymmetric effects (leverage): EGARCH (Nelson) log(hₜ)=ω+α·|εₜ₋₁/√hₜ₋₁|+γ·εₜ₋₁/√hₜ₋₁+β·log(hₜ₋₁). TARCH/GJR-GARCH. GARCH-in-mean. Generalised error distribution for fat tails. MLE of GARCH models. Empirical examples.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Conditional heteroskedasticity in financial returns. ARCH(q): hₜ=ω+Σαᵢεₜ₋ᵢ². GARCH(1,1): hₜ=ω+α·εₜ₋₁²+β·hₜ₋₁; stationarity requires α+β&lt;1. Volatility clustering. Asymmetric effects (leverage): EGARCH (Nelson) log(hₜ)=ω+α·|εₜ₋₁/√hₜ₋₁|+γ·εₜ₋₁/√hₜ₋₁+β·log(hₜ₋₁). TARCH/GJR-GARCH. GARCH-in-mean. Generalised error distribution for fat tails. MLE of GARCH models. Empirical examples.</div></details>
 <div class="mat-tags"><span class="mat-tag">GARCH(1,1)</span><span class="mat-tag">ARCH</span><span class="mat-tag">EGARCH</span><span class="mat-tag">TARCH</span><span class="mat-tag">Volatility clustering</span><span class="mat-tag">Leverage effect</span></div>
 </div>
 <div>
@@ -403,7 +619,7 @@
 <div>
 <div class="mat-topic">Maximum likelihood · supplementary notes</div>
 <div class="mat-title">Maximum Likelihood Estimation in Financial Econometrics</div>
-<div class="mat-desc">MLE as a general estimator for non-linear models. Requires assumption about the distribution of data. Log-likelihood for normal returns: L=−T/2·log(2πσ²)−Σ(yᵢ−µ)²/(2σ²). Conditional log-likelihood for GARCH with time-varying hₜ. Broad conceptual treatment for MSc level.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">MLE as a general estimator for non-linear models. Requires assumption about the distribution of data. Log-likelihood for normal returns: L=−T/2·log(2πσ²)−Σ(yᵢ−µ)²/(2σ²). Conditional log-likelihood for GARCH with time-varying hₜ. Broad conceptual treatment for MSc level.</div></details>
 <div class="mat-tags"><span class="mat-tag">MLE</span><span class="mat-tag">Log-likelihood</span><span class="mat-tag">GARCH estimation</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ec5609-ml-maximum-likelihood.pdf">PDF</a>
@@ -415,7 +631,7 @@
 <div>
 <div class="mat-topic">Problem Set 1 · 2023/24 version (latest)</div>
 <div class="mat-title">Problem Set 1: Applied. US Stock Market Returns (MktRF)</div>
-<div class="mat-desc">Applied problems using Stata output for MktRF, weekly excess US stock market returns (%) March 2000–May 2021 (T=255). Statistical properties, ARMA modelling, diagnostics. Most recent version of the course problem set.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Applied problems using Stata output for MktRF, weekly excess US stock market returns (%) March 2000–May 2021 (T=255). Statistical properties, ARMA modelling, diagnostics. Most recent version of the course problem set.</div></details>
 <div class="mat-tags"><span class="mat-tag">Applied</span><span class="mat-tag">Stata</span><span class="mat-tag">US returns</span><span class="mat-tag">2023/24</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ec5609-ps1-stock-returns-2023.pdf">PDF</a>
@@ -424,7 +640,7 @@
 <div>
 <div class="mat-topic">Problem Set 1 · 2021/22 version + solutions</div>
 <div class="mat-title">Problem Set 1: Distribution Theory. Uniform, Normal, Student-t</div>
-<div class="mat-desc">Theoretical problems. Uniform X~Unif[0,1]: mean, variance, skewness, kurtosis. AR(1) and MA(1) properties review. Moment estimation from financial data. Full worked solutions available.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">Theoretical problems. Uniform X~Unif[0,1]: mean, variance, skewness, kurtosis. AR(1) and MA(1) properties review. Moment estimation from financial data. Full worked solutions available.</div></details>
 <div class="mat-tags"><span class="mat-tag">Distribution theory</span><span class="mat-tag">Moments</span><span class="mat-tag">Theoretical</span></div>
 </div>
 <div class="mat-dl-pair">
@@ -436,12 +652,83 @@
 <div>
 <div class="mat-topic">Problem Set 2 · ARMA processes review</div>
 <div class="mat-title">Problem Set 2: MA(1), AR(1) Processes &amp; Moment Derivation</div>
-<div class="mat-desc">MA(1) process definition, mean, variance, ACF. AR(1) process, mean, variance, ACF, stationarity. Bridges between the time series and financial econometrics material.</div>
+<details class="mat-desc-toggle"><summary>Topics covered</summary><div class="mat-desc">MA(1) process definition, mean, variance, ACF. AR(1) process, mean, variance, ACF, stationarity. Bridges between the time series and financial econometrics material.</div></details>
 <div class="mat-tags"><span class="mat-tag">MA(1)</span><span class="mat-tag">AR(1)</span><span class="mat-tag">Moments</span></div>
 </div>
 <a class="mat-dl" download="" href="teaching/ec5609-ps2-arma-processes.pdf">PDF</a>
 </div>
 </div>
+</div>
+</section>
+<!-- ═══ TEACHING VIDEOS / YOUTUBE ═══ -->
+<section class="section alt" id="time-series-study-notes"><div class="wrap"><p class="s-eye">Study notes from the time-series material</p><h2 class="h2">Time series notes<br/><em>broken into linked explanations</em></h2><p class="s-lead">The study notes below separate the concepts into clearer linked explanations: process and realisation, stationarity, white noise, autocorrelation, correlograms, ARMA models, lag-operator derivations and estimation.</p><div class="ts-study-path"><a class="ts-step" href="blog/time-series-econometrics-guide.html"><strong>Core concepts</strong><span>Process, realisation, stationarity, white noise and ACF</span><em>Best starting point for students new to time series.</em></a><a class="ts-step" href="blog/reading-the-correlogram.html"><strong>Correlogram</strong><span>Sample ACF, Q-tests and residual serial correlation</span><em>The practical diagnostic page linked from the other notes.</em></a><a class="ts-step" href="blog/ar-arma-processes-explained.html"><strong>ARMA models</strong><span>MA(q), AR(1), AR(p), ARMA(p,q)</span><em>Intermediate model interpretation.</em></a><a class="ts-step" href="blog/time-series-econometrics-part2.html"><strong>Advanced derivations</strong><span>Lag operators, roots, Wold decomposition and ML</span><em>Closest to the advanced TeX derivations.</em></a></div><div class="study-note-box"><h3>Studying one of these topics?</h3><p>For university or postgraduate support, send the module title, topic list, deadline and the specific problem area. For school or admissions support, use the <a href="a-level-admissions-tutoring.html">A-Level &amp; Admissions</a>.</p></div></div></section><section class="section" id="teaching-videos" style="border-bottom:1px solid var(--hr)">
+<div style="max-width:var(--max);margin:0 auto">
+<p style="display:inline-flex;align-items:center;gap:0.6rem;font-size:0.65rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem">
+<span style="display:block;width:18px;height:1px;background:var(--gold)"></span>Teaching videos · YouTube @economaths
+    </p>
+<h2 style="font-family:var(--fd);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:300;color:var(--t1);margin-bottom:0.75rem">Teaching videos and worked econometrics lectures</h2>
+<p style="font-size:0.93rem;color:var(--t2);line-height:1.85;max-width:580px;font-weight:300;margin-bottom:2.5rem">
+      The <a href="https://www.youtube.com/@economaths" rel="noopener" style="color:var(--gold)" target="_blank">@economaths YouTube channel</a> contains free worked videos in econometrics and time series. Use them to preview the style of explanation before sending a university or postgraduate enquiry.
+    </p>
+<div class="playlist-grid" style="margin-bottom:2rem">
+<a class="playlist-card" href="https://www.youtube.com/playlist?list=PLdlEREV7OXveBEfmeZeXOBV9oEh9gR20F" rel="noopener" target="_blank"><small>Playlist</small><strong>Time Series Econometrics</strong><span>Stationarity, unit roots, ARIMA, autocorrelation, Newey-West and cointegration.</span></a>
+<a class="playlist-card" href="https://www.youtube.com/@economaths/playlists" rel="noopener" target="_blank"><small>Channel playlists</small><strong>Applied Econometrics Videos</strong><span>Regression, inference, IV, heteroskedasticity, autocorrelation and worked examples.</span></a>
+</div>
+<!-- Time Series playlist embed -->
+<div style="margin-bottom:3.5rem">
+<p style="font-size:0.78rem;font-weight:500;color:var(--t1);letter-spacing:0.04em;margin-bottom:0.75rem">Time Series Econometrics · 5 videos</p>
+<div class="video-embed">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/videoseries?list=PLdlEREV7OXveBEfmeZeXOBV9oEh9gR20F&amp;rel=0&amp;modestbranding=1" title="Time Series Econometrics, economaths"></iframe>
+</div>
+<p style="font-size:0.78rem;color:var(--t3);font-weight:300;margin-top:0.6rem">
+        Covers: stationarity, unit roots, ADF tests, spurious regression, ARIMA models, autocorrelation, Newey-West standard errors, cointegration.
+        <a href="blog/time-series-econometrics-guide.html" style="color:var(--gold);margin-left:0.5rem">Read companion article →</a>
+</p>
+</div>
+<!-- Applied econometrics video list -->
+<p style="font-size:0.78rem;font-weight:500;color:var(--t1);letter-spacing:0.04em;margin-bottom:0.75rem">Applied econometrics video topics</p>
+<p style="font-size:0.88rem;color:var(--t2);font-weight:300;line-height:1.75;margin-bottom:1.25rem">
+      Short worked videos covering regression theory, matrix methods, asymptotics, time series and applied techniques. The list below is collapsed so you can scan the main themes without losing the page flow.
+    </p>
+<details class="video-topic-details">
+<summary>View topics covered</summary>
+<div class="video-topic-list">
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Gauss-Markov Theorem, sketch of a proof</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Two-tailed regression t-test</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Regression coefficient confidence intervals</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Multicollinearity</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>p-values</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>F-test for linear restrictions</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>IV notation and motivation</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Matrix algebra: addition, multiplication, inverse</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>The regression model in matrix form</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Estimator consistency and laws of large numbers</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Asymptotic normality of OLS estimators</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Random regressors and OLS properties</span></div>
+<div class="vtl-item"><span class="vtl-num">∂</span><span>Regression assumptions for time series data</span></div>
+<div class="vtl-item"><span class="vtl-num">∂</span><span>Spurious regression</span></div>
+<div class="vtl-item"><span class="vtl-num">∂</span><span>ARIMA estimation in R</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Introduction to heteroskedasticity</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Generalised least squares (GLS) theory</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Detecting heteroskedasticity</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Heteroskedasticity detection in EViews</span></div>
+<div class="vtl-item"><span class="vtl-num">∂</span><span>Introduction to autocorrelation</span></div>
+<div class="vtl-item"><span class="vtl-num">∂</span><span>Newey-West standard errors</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Ramsey RESET test</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Using dummy variables to model structural change</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Measurement error</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Two stage least squares to IV estimator</span></div>
+<div class="vtl-item"><span class="vtl-num">∂</span><span>Testing for autocorrelation</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Structural change example</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>IV and proxy variables</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Maximum likelihood, a Poisson example</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Introduction to Bayesian econometrics</span></div>
+<div class="vtl-item"><span class="vtl-num">∑</span><span>Exam questions and worked solutions (multiple)</span></div>
+</div>
+</details>
+<p style="margin-top:1.5rem;font-size:0.83rem;color:var(--t2);font-weight:300">
+<a href="https://www.youtube.com/@economaths" rel="noopener" style="color:var(--gold)" target="_blank">Visit the @economaths YouTube channel</a> or open the <a href="https://www.youtube.com/@economaths/playlists" rel="noopener" style="color:var(--gold)" target="_blank">playlist page</a>.
+    </p>
 </div>
 </section>
 <!-- ═══ RELATED ═══ -->
@@ -452,7 +739,7 @@
 <div class="svc-list">
 <a class="svc-row gsap-up" href="blog/time-series-econometrics-guide.html">
 <span class="svc-num">→</span>
-<div><div class="svc-h">Time series guide, unit roots, cointegration, ARIMA</div><div class="svc-p">Plain-English guide to the topics in Lectures 5–8 of ECON30401 (not included above). Unit root tests, ARIMA, GARCH, cointegration.</div></div>
+<div><div class="svc-h">Time series guide, unit roots, cointegration, ARIMA</div><div class="svc-p">Plain-English guide to the topics in Lectures 5-8 of ECON30401 (not included above). Unit root tests, ARIMA, GARCH, cointegration.</div></div>
 <div class="svc-arr">→</div>
 </a>
 <a class="svc-row gsap-up" href="blog/what-is-ols-ordinary-least-squares.html">
@@ -460,9 +747,9 @@
 <div><div class="svc-h">What is OLS? The foundation for all material above</div><div class="svc-p">All four courses assume knowledge of OLS. This guide explains the estimator, Gauss-Markov theorem, and inference from first principles.</div></div>
 <div class="svc-arr">→</div>
 </a>
-<a class="svc-row gsap-up" href="research.html">
+<a class="svc-row gsap-up" href="#teaching-videos">
 <span class="svc-num">→</span>
-<div><div class="svc-h">YouTube lectures, 30+ applied econometrics videos</div><div class="svc-p">The @economaths channel covers applied econometrics across all levels. Free to watch. Complements the lecture notes above.</div></div>
+<div><div class="svc-h">Teaching videos, 30+ applied econometrics lectures</div><div class="svc-p">The @economaths channel covers applied econometrics across all levels. Free to watch. Complements the lecture notes above.</div></div>
 <div class="svc-arr">→</div>
 </a>
 <a class="svc-row gsap-up" href="community.html">
@@ -476,7 +763,7 @@
 <section class="section" style="text-align:center">
 <div class="wrap" style="max-width:480px">
 <h2 class="h2 gsap-up">Need tuition on<br/><em>any of these topics?</em></h2>
-<p class="gsap-up" style="font-size:var(--t-base);color:var(--t2);line-height:1.85;font-weight:300;margin:var(--sp-sm) 0 var(--sp-md)">Free 30–45 minute initial consultation. All topics in the notes above, and beyond, undergraduate through PhD.</p>
+<p class="gsap-up" style="font-size:var(--t-base);color:var(--t2);line-height:1.85;font-weight:300;margin:var(--sp-sm) 0 var(--sp-md)">Free 30-45 minute initial consultation. All topics in the notes above, and beyond, undergraduate through PhD.</p>
 <div class="gsap-up" style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center">
 <a class="btn btn-fill" href="index.html#contact">Book the free consultation</a>
 <a class="btn btn-line" href="econometrics-tutor.html">Econometrics tutor page</a>
@@ -484,15 +771,15 @@
 </div>
 </section>
 </main>
-<div class="trust"><div class="trust-inner"><span class="ti">ECON30401 Manchester</span><span class="ti">ECON61001 Manchester</span><span class="ti">EC5221 St Andrews</span><span class="ti">EC5609 St Andrews</span><span class="ti">29 files · Free download</span></div></div>
-<footer role="contentinfo">
+<div class="trust"><div class="trust-inner"><span class="ti">Time series</span><span class="ti">Econometric methods</span><span class="ti">Financial econometrics</span><span class="ti">Worked exercises</span><span class="ti">29 files · Free download</span></div></div>
+<footer>
 <div class="foot-cols">
-<div class="fc"><h4>Dr Nicky Grant</h4><p>Cambridge PhD. Free teaching materials from four university econometrics courses. Expert 1-1 online tuition, all levels.</p></div>
-<div class="fc"><h4>Courses</h4><a href="#econ30401">ECON30401. Time Series (UG)</a><a href="#econ61001">ECON61001. Methods (PG)</a><a href="#ec5221">EC5221. Time Series (PG)</a><a href="#ec5609">EC5609. Financial Econ (PG)</a></div>
-<div class="fc"><h4>More resources</h4><a href="blog.html">Articles &amp; guides</a><a href="research.html">YouTube lectures</a><a href="community.html">Ask a question</a><a href="econometrics-tutor.html">1-1 tuition</a></div>
-<div class="fc"><h4>Contact</h4><a href="mailto:nicky.l.grant@gmail.com">nicky.l.grant@gmail.com</a><a href="tel:+447393352331">+44 7393 352 331</a><a href="index.html#contact">Book a consultation</a></div>
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
+<div class="fc"><h4>A-Level &amp; Admissions</h4><a href="a-level-admissions-tutoring.html">Overview</a><a href="a-level-maths-tutor.html">A-Level Maths</a><a href="a-level-economics-tutor.html">A-Level Economics</a><a href="tmua-preparation.html">TMUA preparation</a><a href="oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
+<div class="fc"><h4>University &amp; Postgraduate</h4><a href="university-postgraduate-tutoring.html">Overview</a><a href="university-economics-tutor.html">University Economics</a><a href="econometrics-tutor.html">Econometrics</a><a href="statistics-tutor.html">Statistics</a><a href="finance-tutor.html">Finance</a><a href="phd-econometrics-tutor.html">PhD econometrics</a></div>
+<div class="fc"><h4>Resources &amp; contact</h4><a href="blog.html">Study notes</a><a href="questions.html">Common questions</a><a href="credentials.html">Credentials</a><a href="pricing.html">Pricing</a><a href="how-it-works.html">How it works</a><a href="index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
 </div>
-<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>Manchester &amp; St Andrews teaching materials · Free download</span></div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online UK-wide</span></div>
 </footer>
 <script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
