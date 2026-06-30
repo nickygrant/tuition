@@ -11,6 +11,10 @@
 <meta content="article" property="og:type"/>
 <meta content="What is OLS? Ordinary Least Squares Explained | Econometrics Guide" property="og:title"/>
 <meta content="OLS regression explained clearly by a Cambridge PhD economist: line of best fit, assumptions, coefficients, residuals, standard errors and when OLS breaks down." property="og:description"/>
+<meta content="https://www.drnickygrant.com/blog/what-is-ols-ordinary-least-squares.html" property="og:url"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" name="twitter:image"/>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
@@ -216,7 +220,7 @@
 <a aria-label="Dr Nicky Grant home" class="nav-logo" href="../index.html">Dr Nicky <span>Grant</span></a>
 <ul class="nav-links" role="list">
 <li><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
-<li><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a></li>
+<li><a href="../university-postgraduate-tutoring.html">University</a></li>
 <li><a href="../blog.html">Resources</a></li>
 <li><a href="../about.html">About</a></li>
 <li><a href="../pricing.html">Pricing</a></li>
@@ -224,7 +228,7 @@
 <a class="nav-cta" href="../index.html#contact">Book consultation</a>
 <button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
 </div>
-<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
 </nav>
 <div class="page-hero">
 <div class="page-hero-inner">
@@ -253,7 +257,7 @@
 <li><strong>Zero conditional mean:</strong> The expected value of the error term, given X, is zero. This is the crucial one.</li>
 <li><strong>Homoskedasticity:</strong> The variance of the error term is constant across all values of X.</li>
 </ul>
-<p>When these hold, the Gauss-Markov theorem says OLS is <em>BLUE</em>, the Best Linear Unbiased Estimator. In plain English: among all linear estimators that don't systematically over- or underestimate, OLS has the smallest variance. That's a powerful guarantee.</p>
+<p>When these hold, the Gauss-Markov theorem says OLS is <em>BLUE</em>, the Best Linear Unbiased Estimator. In plain English: among all linear estimators that don't systematically over- or underestimate, OLS has the smallest variance. That's a powerful guarantee. For a fuller treatment, see the dedicated note on <a href="gauss-markov-theorem-blue.html">the Gauss-Markov theorem and BLUE</a>.</p>
 <h2>When does OLS break down?</h2>
 <p>The zero conditional mean assumption. E(u|X) = 0, is the one that causes the most problems in practice. It fails when:</p>
 <ul>
@@ -261,7 +265,7 @@
 <li><strong>Reverse causality:</strong> Y also causes X, creating a circular relationship.</li>
 <li><strong>Measurement error:</strong> X is measured with error that's correlated with the true value.</li>
 </ul>
-<p>When this assumption fails, OLS estimates are biased, they systematically get the wrong answer. This is why econometrics spends so much time on identification strategies: instrumental variables, difference-in-differences, regression discontinuity, all designed to make E(u|X) = 0 plausible.</p>
+<p>When this assumption fails, OLS estimates are biased, they systematically get the wrong answer. This is why econometrics spends so much time on identification strategies: <a href="instrumental-variables-weak-instruments.html">instrumental variables</a>, difference-in-differences, regression discontinuity, all designed to make E(u|X) = 0 plausible.</p>
 <h2>Heteroskedasticity: a common problem, an easy fix</h2>
 <p>If the variance of the errors isn't constant (heteroskedasticity), OLS is still unbiased but no longer efficient, and standard errors are wrong. The fix is simple: use heteroskedasticity-robust standard errors (sometimes called "White standard errors"). Most software does this with a single option.</p>
 <div class="blog-faq">
@@ -270,24 +274,25 @@
       </div>
 <div class="blog-faq">
 <strong>FAQ: What's the difference between OLS and MLE?</strong>
-        OLS minimises the sum of squared residuals. Maximum likelihood estimation (MLE) maximises the probability of observing the data given the model's parameters. For linear models with normally distributed errors, they give identical estimates. They differ for non-linear models (logit, probit, Poisson regression).
+        OLS minimises the sum of squared residuals. <a href="maximum-likelihood-estimation-explained.html">Maximum likelihood estimation (MLE)</a> maximises the probability of observing the data given the model's parameters. For linear models with normally distributed errors, they give identical estimates. They differ for non-linear models (logit, probit, Poisson regression).
       </div>
 <h2>A note on interpretation</h2>
 <p>The OLS slope coefficient tells you the average change in Y associated with a one-unit increase in X, <em>holding all other variables constant</em>. The "holding constant" part is crucial and often misunderstood. It means you're comparing people/observations that are identical in all other included variables.</p>
 <p>OLS gives you association, not causation, unless you have a credible identification strategy that rules out confounding.</p>
 <h2>Want to understand this more deeply?</h2>
 <p>If you're studying econometrics at university and finding it difficult, or preparing for an exam. I offer 1-1 online tuition that goes from the basics through to advanced topics. <a href="../index.html#contact" style="color:var(--amber);font-weight:600">Get in touch for a free consultation.</a></p>
+<p>You can also watch free worked videos on the <a href="https://www.youtube.com/@economaths" rel="noopener" target="_blank" style="color:var(--amber);font-weight:600">@economaths YouTube channel</a> (regression, the Gauss-Markov theorem, t-tests and more) or download <a href="../teaching.html" style="color:var(--amber);font-weight:600">free econometrics lecture notes</a>.</p>
 </div>
 </div>
 </section>
-<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../econometrics-tutor.html"><strong>Econometrics tuition</strong><span>OLS, regression assumptions, inference, diagnostics and coursework help.</span></a><a class="funnel-card" href="../statistics-tutor.html"><strong>Statistics tuition</strong><span>Regression, p-values, confidence intervals and data interpretation.</span></a><a class="funnel-card" href="../teaching.html"><strong>Free econometrics notes</strong><span>Lecture notes and exercises covering OLS and applied econometrics.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book a free consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
+<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../econometrics-tutor.html"><strong>Econometrics tuition</strong><span>OLS, regression assumptions, inference, diagnostics and coursework help.</span></a><a class="funnel-card" href="../statistics-tutor.html"><strong>Statistics tuition</strong><span>Regression, p-values, confidence intervals and data interpretation.</span></a><a class="funnel-card" href="../teaching.html"><strong>Free econometrics notes</strong><span>Lecture notes and exercises covering OLS and applied econometrics.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
 <div class="foot-cols">
 <div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
 <div class="fc"><h4>A-Level &amp; Admissions</h4><a href="../a-level-admissions-tutoring.html">Overview</a><a href="../a-level-maths-tutor.html">A-Level Maths</a><a href="../a-level-economics-tutor.html">A-Level Economics</a><a href="../tmua-preparation.html">TMUA preparation</a><a href="../oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
 <div class="fc"><h4>University &amp; Postgraduate</h4><a href="../university-postgraduate-tutoring.html">Overview</a><a href="../university-economics-tutor.html">University Economics</a><a href="../econometrics-tutor.html">Econometrics</a><a href="../statistics-tutor.html">Statistics</a><a href="../finance-tutor.html">Finance</a><a href="../phd-econometrics-tutor.html">PhD econometrics</a></div>
 <div class="fc"><h4>Resources &amp; contact</h4><a href="../blog.html">Study notes</a><a href="../questions.html">Common questions</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../how-it-works.html">How it works</a><a href="../index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
 </div>
-<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online UK-wide</span></div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online International and UK-wide</span></div>
 </footer>
 <script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script>
@@ -298,5 +303,6 @@ window.addEventListener('scroll',solidify,{passive:true});solidify();
 function toggleNav(btn){const mob=document.getElementById('mobNav');const open=mob.classList.toggle('open');btn.setAttribute('aria-expanded',String(open));}
 document.addEventListener('click',function(e){const mob=document.getElementById('mobNav');const btn=document.getElementById('burgerBtn');if(mob&&mob.classList.contains('open')&&!mob.contains(e.target)&&btn&&!btn.contains(e.target)){mob.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
 </script>
-</main></body>
+</main><script defer src="../js/chat.js"></script>
+</body>
 </html>

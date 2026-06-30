@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
+<meta content="Dr Nicky Grant" name="author"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Autocorrelation and Serial Correlation Explained | Time Series Notes</title>
+<meta content="Serial correlation explained: what autocorrelated errors are, why they matter in time-series regression, the Breusch-Godfrey LM test and the Durbin-Watson test." name="description"/>
+<link href="https://www.drnickygrant.com/blog/autocorrelation-serial-correlation.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="Autocorrelation and Serial Correlation Explained | Time Series Notes" property="og:title"/>
+<meta content="What autocorrelated errors are, why they matter, the link to misspecification, and the Breusch-Godfrey LM test, explained from scratch." property="og:description"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" property="og:image"/>
+<meta content="https://www.drnickygrant.com/blog/autocorrelation-serial-correlation.html" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" name="twitter:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.drnickygrant.com/#website",
+      "url": "https://www.drnickygrant.com/",
+      "name": "Dr Nicky Grant | Economics, Econometrics and Maths Tutor",
+      "description": "Specialist online tuition in economics, econometrics, mathematics, statistics, finance, TMUA and Oxbridge economics applications, supported by verifiable Cambridge credentials, teaching materials and research evidence.",
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.drnickygrant.com/#person",
+      "name": "Dr Nicky Grant",
+      "alternateName": [
+        "Nicky Grant",
+        "Nicky L. Grant",
+        "Nicky Lee Grant"
+      ],
+      "honorificPrefix": "Dr",
+      "givenName": "Nicky",
+      "familyName": "Grant",
+      "url": "https://www.drnickygrant.com/",
+      "image": "https://www.drnickygrant.com/img/nicky-grant-headshot.webp",
+      "email": "nicky.L.grant@gmail.com",
+      "telephone": "+447393352331",
+      "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor",
+      "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0008-8979-4623",
+          "url": "https://orcid.org/0009-0008-8979-4623"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Semantic Scholar",
+          "value": "97839351",
+          "url": "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Cambridge",
+        "sameAs": "https://www.cam.ac.uk/"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "PhD in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "MPhil in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BA in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        }
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "CeMMAP, Centre for Microdata Methods and Practice",
+        "sameAs": "https://cemmap.ac.uk/"
+      },
+      "knowsAbout": [
+        "economics tuition",
+        "econometrics tuition",
+        "A Level Mathematics",
+        "Further Mathematics",
+        "A Level Economics",
+        "TMUA preparation",
+        "Oxbridge Economics applications",
+        "statistics",
+        "financial econometrics",
+        "time series econometrics",
+        "GMM",
+        "instrumental variables",
+        "panel data",
+        "PhD econometrics"
+      ],
+      "sameAs": [
+        "https://orcid.org/0009-0008-8979-4623",
+        "https://www.linkedin.com/in/nicky-lee-grant/",
+        "https://cemmap.ac.uk/person/nicky-l-grant/",
+        "https://research-portal.st-andrews.ac.uk/en/persons/nicky-lee-grant",
+        "https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/",
+        "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351",
+        "https://www.youtube.com/@economaths",
+        "https://independent.academia.edu/NickyGrant"
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/autocorrelation-serial-correlation.html#page",
+      "url": "https://www.drnickygrant.com/blog/autocorrelation-serial-correlation.html",
+      "name": "Autocorrelation and serial correlation explained",
+      "isPartOf": {
+        "@id": "https://www.drnickygrant.com/#website"
+      },
+      "about": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB",
+      "description": "Serial correlation explained from scratch: autocorrelated errors, the link to model misspecification, the Breusch-Godfrey LM test and the limits of Durbin-Watson.",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/reading-the-correlogram.html",
+        "https://www.drnickygrant.com/blog/ar-arma-processes-explained.html",
+        "https://www.drnickygrant.com/econometrics-tutor.html"
+      ],
+      "abstract": "Serial correlation means the error terms of a time-series model are correlated across time. It signals that the model has not captured all the dynamics, and it is tested with the Breusch-Godfrey Lagrange multiplier test.",
+      "datePublished": "2026-06-16",
+      "dateModified": "2026-06-16"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.drnickygrant.com/blog/autocorrelation-serial-correlation.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.drnickygrant.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://www.drnickygrant.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Autocorrelation and Serial Correlation",
+          "item": "https://www.drnickygrant.com/blog/autocorrelation-serial-correlation.html"
+        }
+      ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://www.drnickygrant.com/blog/autocorrelation-serial-correlation.html#article",
+      "headline": "Autocorrelation and serial correlation explained",
+      "url": "https://www.drnickygrant.com/blog/autocorrelation-serial-correlation.html",
+      "author": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.drnickygrant.com/blog/autocorrelation-serial-correlation.html#page"
+      },
+      "datePublished": "2026-06-16",
+      "dateModified": "2026-06-16",
+      "inLanguage": "en-GB",
+      "image": "https://www.drnickygrant.com/img/og-image.jpg",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/reading-the-correlogram.html",
+        "https://www.drnickygrant.com/blog/ar-arma-processes-explained.html",
+        "https://www.drnickygrant.com/econometrics-tutor.html"
+      ],
+      "abstract": "Serial correlation means the error terms of a time-series model are correlated across time. It signals that the model has not captured all the dynamics, and it is tested with the Breusch-Godfrey Lagrange multiplier test.",
+      "description": "Serial correlation explained from scratch: autocorrelated errors, the link to model misspecification, the Breusch-Godfrey LM test and the limits of Durbin-Watson."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.drnickygrant.com/blog/autocorrelation-serial-correlation.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is serial correlation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Serial correlation, also called autocorrelation, means the error terms of a time-series model are correlated across time rather than being white noise. It usually indicates that the model has not captured all the dynamics in the data, so the residuals still contain predictable structure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you test for serial correlation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The standard test is the Breusch-Godfrey Lagrange multiplier (LM) test. You estimate the model, take the residuals, regress them on the original regressors plus several lagged residuals, and test the joint null that all the lagged-residual coefficients are zero. It is a general test that detects both AR and MA forms of serial correlation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why should the Durbin-Watson test not be used for ARMA models?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Durbin-Watson test only checks first-order autocorrelation and does not account for the relationship between regressors and lagged disturbances that arises when lagged dependent variables are included, as in ARMA models. In that setting it is effectively useless and should not be used; the Breusch-Godfrey LM test is the correct tool."
+          }
+        }
+      ]
+    }
+  ]
+}</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../css/main.css" rel="stylesheet"/>
+<link href="../css/polish.css" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script crossorigin="anonymous" defer="" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+.art{max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) clamp(3rem,8vw,6rem)}
+.art-hero{padding:clamp(6rem,14vw,9rem) clamp(1rem,4vw,2.5rem) clamp(2rem,5vw,3.5rem);border-bottom:1px solid rgba(255,255,255,.07)}
+.eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.75rem;display:block}
+.art-hero h1{font-family:var(--fd);font-size:clamp(2.1rem,5vw,3.6rem);font-weight:500;line-height:1.02;letter-spacing:-.04em;color:var(--ivory,#F8F2E8);margin-bottom:1rem}
+.art-hero .lede{font-size:clamp(1rem,1.8vw,1.15rem);font-weight:300;color:rgba(248,242,232,.72);line-height:1.78;max-width:660px}
+.art-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.25rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(248,242,232,.38)}
+h2{font-family:var(--fd);font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:500;letter-spacing:-.03em;color:var(--ivory,#F8F2E8);margin:2.5rem 0 .75rem;line-height:1.05}
+h3{font-family:var(--fd);font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:500;letter-spacing:-.02em;color:var(--ivory,#F8F2E8);margin:2rem 0 .6rem}
+p{font-size:clamp(.93rem,1.6vw,1rem);font-weight:300;color:rgba(248,242,232,.78);line-height:1.85;margin-bottom:1.1rem}
+.def{background:linear-gradient(180deg,rgba(211,163,91,.07),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-left:3px solid var(--copper,#D3A35B);padding:1.1rem 1.4rem;margin:1.5rem 0;border-radius:0 8px 8px 0}
+.def .def-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.45rem;display:block}
+.def p{font-size:.92rem;margin:0;color:rgba(248,242,232,.88)}
+.math-block{background:rgba(248,242,232,.04);border:1px solid rgba(248,242,232,.09);border-radius:8px;padding:1.1rem 1.6rem;margin:1.1rem 0;font-size:.95rem;color:var(--ivory,#F8F2E8);overflow-x:auto;line-height:1.9;text-align:center}
+.note{background:rgba(248,242,232,.03);border-left:2px solid rgba(248,242,232,.18);padding:.75rem 1.2rem;margin:1.2rem 0;border-radius:0 6px 6px 0}
+.note p{font-size:.88rem;margin:0;color:rgba(248,242,232,.58)}
+.answer-capsule{background:linear-gradient(180deg,rgba(211,163,91,.09),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.22);border-radius:10px;padding:1.2rem 1.5rem;margin:0 0 2.5rem}
+.answer-capsule p{font-size:.92rem;margin:0;color:rgba(248,242,232,.82);line-height:1.75}
+.img-block{margin:1.8rem 0;text-align:center}
+.img-block img{max-width:100%;border-radius:8px;border:1px solid rgba(248,242,232,.08)}
+.img-caption{font-size:.75rem;color:rgba(248,242,232,.4);margin-top:.5rem;font-style:italic;display:block}
+.part-nav{display:flex;gap:.75rem 1rem;flex-wrap:wrap;margin:2rem 0;padding:1rem 1.2rem;background:rgba(248,242,232,.025);border:1px solid rgba(248,242,232,.07);border-radius:8px;align-items:center}
+.part-nav a{font-size:.82rem;color:var(--copper,#D3A35B);font-weight:500;text-decoration:none}
+.part-nav a:hover{text-decoration:underline}
+.part-nav .divider{color:rgba(248,242,232,.2);font-size:.82rem}
+a.gold-link{color:var(--copper,#D3A35B);font-weight:500}
+.tuition-cta{background:linear-gradient(180deg,rgba(211,163,91,.08),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-radius:12px;padding:1.5rem 1.75rem;margin:2rem 0}
+.tuition-cta p{margin:0;font-size:.95rem;color:rgba(248,242,232,.8)}
+.tuition-cta p:first-child{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.5rem}
+hr.sd{border:none;border-top:1px solid rgba(255,255,255,.07);margin:2.5rem 0}
+</style>
+<meta content="2026-06-16" name="last-modified"/></head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a aria-label="Dr Nicky Grant home" class="nav-logo" href="../index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list">
+<li><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
+<li><a href="../university-postgraduate-tutoring.html">University</a></li>
+<li><a href="../blog.html">Resources</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../pricing.html">Pricing</a></li>
+</ul>
+<a class="nav-cta" href="../index.html#contact">Book consultation</a>
+<button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+</div>
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+</nav>
+<div class="art-hero">
+<div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
+<span class="eyebrow">Time series · Study notes · Diagnostics</span>
+<h1>Autocorrelation and <em>serial correlation</em></h1>
+<p class="lede">When the errors of a time-series regression are correlated over time, the model is leaving structure on the table. These notes explain what serial correlation is, why it usually signals a misspecified model, and how to detect it properly with the Breusch-Godfrey LM test — including why you should never report the Durbin-Watson statistic for an ARMA model.</p>
+<div class="art-meta"><span>Dr Nicky Grant · econometrics specialist</span><span>Time Series Study Notes</span><span>Undergraduate</span></div>
+</div>
+</div>
+<main class="art" id="main">
+<div aria-label="Quick answer" class="answer-capsule" data-chunk="LM-answer-capsule" role="note"><p>Serial correlation (autocorrelation) means the error terms of a model are correlated across time instead of being white noise. In a time-series model it usually means the dynamics are misspecified and a higher-order model is needed. It is tested with the Breusch-Godfrey Lagrange multiplier test, which detects both AR and MA forms of residual correlation; the Durbin-Watson test should not be used once lagged dependent variables are present.</p></div>
+<section class="study-note-box" id="how-to-read-this-note">
+<h2>How to read these notes</h2>
+<p>These notes follow the serial-correlation section of a time-series econometrics course. They assume you have met <a class="gold-link" href="what-is-ols-ordinary-least-squares.html">OLS</a> and the idea of <a class="gold-link" href="ar-arma-processes-explained.html">AR and MA models</a>, and that you know what white noise is. The aim is to explain why residual serial correlation is the central diagnostic in time-series modelling and how the standard test works in practice.</p>
+</section>
+<section id="what-is-it">
+<h2>1. What serial correlation is</h2>
+<p>A regression model has the form \(y_t = x_t'\beta + u_t\), where the disturbance \(u_t\) collects everything not explained by the regressors. The standard assumption is that these disturbances are <strong>white noise</strong>: zero mean, constant variance, and — crucially — uncorrelated across time. When that last condition fails, so that \(\operatorname{Cov}(u_t, u_{t-k}) \neq 0\) for some lag \(k\), the disturbances are <strong>serially correlated</strong> (equivalently, autocorrelated).</p>
+<div class="def"><span class="def-label">Definition</span><p>The disturbances of a time-series model are <strong>serially correlated</strong> if they are correlated with their own past values, and hence are not white noise. Positive first-order serial correlation, where \(u_t\) tends to have the same sign as \(u_{t-1}\), is the most common case in economic data.</p></div>
+<p>Intuitively, serial correlation means the model's mistakes are predictable: if it under-predicts this period, it tends to under-predict next period too. A correctly specified model should leave only unpredictable, white-noise residuals behind.</p>
+</section>
+<section id="why-it-matters">
+<h2>2. Why it matters: misspecified dynamics</h2>
+<p>In a time-series setting, the most important reason to care about serial correlation is what it reveals about the model. If the model does not account for all the dependence in the data, that leftover dependence shows up as serial correlation in the residuals — and the correct response is to use a richer model.</p>
+<p>The point is sharp for autoregressive models. Suppose you fit an \(AR(p)\) but the true disturbances are themselves autocorrelated, following an \(AR(m)\) process rather than white noise:</p>
+<div class="math-block">$$ \phi(L)\,Y_t = \alpha + u_t, \qquad \psi(L)\,u_t = \varepsilon_t $$</div>
+<p>where \(\varepsilon_t\) is white noise and \(L\) is the lag operator. Substituting the second equation into the first shows that the correct process for \(Y_t\) is actually an \(AR(p+m)\), not an \(AR(p)\). In other words, residual serial correlation is a signal that your specified model is too small — the dynamics are misspecified and a higher-order model is required.</p>
+<div class="note"><p>This is why a serial-correlation test is treated as the headline diagnostic in time-series work: it directly answers the question "has my model captured all the dynamics, or is there predictable structure left over?"</p></div>
+<p>There is also the inference cost familiar from cross-sectional work: even when the coefficients remain consistent, serially correlated errors make the usual standard errors wrong, so \(t\) and \(F\) tests are unreliable until the problem is addressed.</p>
+</section>
+<section id="good-practice">
+<h2>3. Good practice: always test after estimation</h2>
+<p>Because serial correlation carries this much information, it is good practice to apply a test for it after estimating any time-series model. A model that passes — leaving residuals with no significant serial correlation — is said to be <em>dynamically complete</em>: it has captured the systematic dynamics, and what remains is genuine random variation. A model that fails needs more lags.</p>
+</section>
+<section id="lm-test">
+<h2>4. The Breusch-Godfrey LM test</h2>
+<p>The standard tool is the <strong>Breusch-Godfrey</strong> test, a Lagrange multiplier (LM) test for residual autocorrelation. The recipe is an auxiliary regression. Having estimated the model and obtained residuals \(e_t\), regress those residuals on the original regressors plus \(m\) lags of the residuals:</p>
+<div class="math-block">$$ e_t = \alpha + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + \psi_1 e_{t-1} + \dots + \psi_m e_{t-m} + \varepsilon_t $$</div>
+<p>The null hypothesis of no serial correlation is that the coefficients on all the lagged residuals are zero:</p>
+<div class="math-block">$$ H_0:\ \psi_1 = \dots = \psi_m = 0 \quad\text{vs}\quad H_A:\ \text{at least one } \psi_j \neq 0 $$</div>
+<div class="def"><span class="def-label">Reading the test</span><p>If the lagged residuals help predict the current residual, there is leftover serial correlation and we reject \(H_0\). The test statistic is asymptotically \(\chi^2_m\) under the null, although in practice an \(F\)-test of the same joint restriction is often preferred because it performs better in finite samples.</p></div>
+<p>A valuable feature of the Breusch-Godfrey test is that it does not commit to a specific alternative: it has power against both \(AR(m)\) and \(MA(m)\) forms of residual correlation. It is a general test for the presence of serial correlation rather than a test of one particular model against another.</p>
+<p>The usual guideline for choosing \(m\): use \(m=4\) for quarterly data and \(m=12\) for monthly data (to pick up any remaining seasonality), and \(m=1\) or \(2\) for annual data.</p>
+</section>
+<section id="durbin-watson">
+<h2>5. Why not the Durbin-Watson test?</h2>
+<p>Many software packages still report the <strong>Durbin-Watson</strong> statistic automatically, and many textbooks introduce it first. But it has a serious limitation: it only tests for first-order autocorrelation, and it does not account for the relationship between the regressors and lagged disturbances that arises whenever a lagged dependent variable is included — which is exactly the situation in any autoregressive or ARMA model.</p>
+<div class="note"><p>In the context of an ARMA model the Durbin-Watson test is effectively useless and should not be used, nor its value reported, despite being printed by default. The Breusch-Godfrey LM test, by including the AR terms alongside the lagged residuals, does take proper account of this and is the correct choice.</p></div>
+</section>
+<section id="example">
+<h2>6. A worked example: UK GDP growth</h2>
+<p>The logic comes alive on real data. For quarterly UK GDP growth, suppose an analyst first fits an \(MA(2)\) model. The estimated coefficients all look highly significant — but a Breusch-Godfrey test to lag \(m=4\) finds significant residual serial correlation at the 5% level. The \(MA(2)\) has not captured all the dynamics.</p>
+<p>The shape of the correlogram (sample autocorrelations declining quickly from a positive first lag) instead suggests an \(AR(1)\). Re-estimating as an \(AR(1)\) gives a highly significant constant and AR coefficient, and this time the serial-correlation test finds <em>no</em> evidence of residual autocorrelation. The \(AR(1)\) is preferred: it is dynamically complete, whereas the \(MA(2)\) left predictable structure behind.</p>
+<div class="img-block"><img alt="Sample autocorrelation function of UK GDP growth, declining quickly from a positive first lag" loading="lazy" src="../img/teaching/rkgdp.png"/><span class="img-caption">The correlogram of UK GDP growth suggests an AR(1); the serial-correlation test then confirms the AR(1) residuals are white noise while the MA(2) residuals are not.</span></div>
+<p>The moral is that significance of the coefficients is not enough. A model is only adequate once its residuals pass the serial-correlation test — which is why, alongside information criteria such as <a class="gold-link" href="arma-estimation-model-selection.html">AIC and BIC</a>, the Breusch-Godfrey test is part of the standard model-checking routine.</p>
+</section>
+<section class="study-note-box" id="related-notes">
+<h2>Related study notes</h2>
+<ol>
+<li><a href="reading-the-correlogram.html">Reading the correlogram</a> — using the sample ACF to detect dependence and check residuals.</li>
+<li><a href="ar-arma-processes-explained.html">AR, MA and ARMA models</a> — the processes whose dynamics serial correlation diagnoses.</li>
+<li><a href="arma-estimation-model-selection.html">ARMA estimation and model selection</a> — combining the LM test with AIC and BIC to choose a model.</li>
+</ol>
+</section>
+<div class="tuition-cta"><p>Econometrics &amp; time-series tuition</p><p>Serial-correlation testing trips up many students because the "obvious" test (Durbin-Watson) is the wrong one. For 1-1 help with the Breusch-Godfrey test, residual diagnostics or time-series model building, see <a class="gold-link" href="../econometrics-tutor.html">econometrics tuition</a>, <a class="gold-link" href="../statistics-tutor.html">statistics tuition</a> or <a class="gold-link" href="../university-economics-tutor.html">university economics tuition</a>.</p><p>Free videos: the <a class="gold-link" href="https://www.youtube.com/@economaths" rel="noopener" target="_blank">@economaths channel</a> covers autocorrelation, testing for it and Newey-West standard errors.</p></div>
+</main>
+<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../econometrics-tutor.html"><strong>Econometrics tuition</strong><span>Time-series regression, residual diagnostics and serial-correlation testing.</span></a><a class="funnel-card" href="../statistics-tutor.html"><strong>Statistics tuition</strong><span>Hypothesis tests, LM and F tests, and data interpretation.</span></a><a class="funnel-card" href="../teaching.html"><strong>Free econometrics notes</strong><span>Lecture notes and exercises on time-series methods.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
+<div class="foot-cols">
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
+<div class="fc"><h4>A-Level &amp; Admissions</h4><a href="../a-level-admissions-tutoring.html">Overview</a><a href="../a-level-maths-tutor.html">A-Level Maths</a><a href="../a-level-economics-tutor.html">A-Level Economics</a><a href="../tmua-preparation.html">TMUA preparation</a><a href="../oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
+<div class="fc"><h4>University &amp; Postgraduate</h4><a href="../university-postgraduate-tutoring.html">Overview</a><a href="../university-economics-tutor.html">University Economics</a><a href="../econometrics-tutor.html">Econometrics</a><a href="../statistics-tutor.html">Statistics</a><a href="../finance-tutor.html">Finance</a><a href="../phd-econometrics-tutor.html">PhD econometrics</a></div>
+<div class="fc"><h4>Resources &amp; contact</h4><a href="../blog.html">Study notes</a><a href="../questions.html">Common questions</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../how-it-works.html">How it works</a><a href="../index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
+</div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online International and UK-wide</span></div>
+</footer>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+nav.classList.toggle('solid',scrollY>40);
+function toggleNav(btn){const m=document.getElementById('mobNav');const o=m.classList.toggle('open');btn.setAttribute('aria-expanded',String(o));}
+document.addEventListener('click',function(e){const m=document.getElementById('mobNav');const b=document.getElementById('burgerBtn');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&b&&!b.contains(e.target)){m.classList.remove('open');b.setAttribute('aria-expanded','false');}});
+</script>
+<script defer src="../js/chat.js"></script>
+</body>
+</html>

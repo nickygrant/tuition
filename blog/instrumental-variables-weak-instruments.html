@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
+<meta content="Dr Nicky Grant" name="author"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Instrumental Variables &amp; Weak Instruments | Econometrics</title>
+<meta content="Notes on instrumental variables and the weak instrument problem: endogeneity, the IV and 2SLS estimators, why OLS is inconsistent, and the first-stage F-test." name="description"/>
+<link href="https://www.drnickygrant.com/blog/instrumental-variables-weak-instruments.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="Instrumental Variables &amp; Weak Instruments | Econometrics" property="og:title"/>
+<meta content="From endogeneity to the IV/2SLS estimator, weak-instrument bias and the first-stage F-test, with the Angrist-Krueger quarter-of-birth example, based on lecture notes." property="og:description"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" property="og:image"/>
+<meta content="https://www.drnickygrant.com/blog/instrumental-variables-weak-instruments.html" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" name="twitter:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.drnickygrant.com/#website",
+      "url": "https://www.drnickygrant.com/",
+      "name": "Dr Nicky Grant | Economics, Econometrics and Maths Tutor",
+      "description": "Specialist online tuition in economics, econometrics, mathematics, statistics, finance, TMUA and Oxbridge economics applications, supported by verifiable Cambridge credentials, teaching materials and research evidence.",
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.drnickygrant.com/#person",
+      "name": "Dr Nicky Grant",
+      "alternateName": [
+        "Nicky Grant",
+        "Nicky L. Grant",
+        "Nicky Lee Grant"
+      ],
+      "honorificPrefix": "Dr",
+      "givenName": "Nicky",
+      "familyName": "Grant",
+      "url": "https://www.drnickygrant.com/",
+      "image": "https://www.drnickygrant.com/img/nicky-grant-headshot.webp",
+      "email": "nicky.L.grant@gmail.com",
+      "telephone": "+447393352331",
+      "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor",
+      "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0008-8979-4623",
+          "url": "https://orcid.org/0009-0008-8979-4623"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Semantic Scholar",
+          "value": "97839351",
+          "url": "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Cambridge",
+        "sameAs": "https://www.cam.ac.uk/"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "PhD in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "MPhil in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BA in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        }
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "CeMMAP, Centre for Microdata Methods and Practice",
+        "sameAs": "https://cemmap.ac.uk/"
+      },
+      "knowsAbout": [
+        "economics tuition",
+        "econometrics tuition",
+        "A Level Mathematics",
+        "Further Mathematics",
+        "A Level Economics",
+        "TMUA preparation",
+        "Oxbridge Economics applications",
+        "statistics",
+        "financial econometrics",
+        "time series econometrics",
+        "GMM",
+        "instrumental variables",
+        "panel data",
+        "PhD econometrics"
+      ],
+      "sameAs": [
+        "https://orcid.org/0009-0008-8979-4623",
+        "https://www.linkedin.com/in/nicky-lee-grant/",
+        "https://cemmap.ac.uk/person/nicky-l-grant/",
+        "https://research-portal.st-andrews.ac.uk/en/persons/nicky-lee-grant",
+        "https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/",
+        "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351",
+        "https://www.youtube.com/@economaths",
+        "https://independent.academia.edu/NickyGrant"
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/instrumental-variables-weak-instruments.html#page",
+      "url": "https://www.drnickygrant.com/blog/instrumental-variables-weak-instruments.html",
+      "name": "Instrumental variables and the weak instrument problem",
+      "isPartOf": {
+        "@id": "https://www.drnickygrant.com/#website"
+      },
+      "about": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB",
+      "description": "Study notes on instrumental variables and the weak instrument problem, based on lecture material: endogeneity, the IV and 2SLS estimators, weak-instrument bias, the first-stage F-test and the Angrist-Krueger quarter-of-birth example.",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/what-is-ols-ordinary-least-squares.html",
+        "https://www.drnickygrant.com/blog/generalized-method-of-moments-gmm.html",
+        "https://www.drnickygrant.com/econometrics-tutor.html"
+      ],
+      "abstract": "When a regressor is correlated with the error term, OLS is biased and inconsistent. Instrumental variables and two-stage least squares offer a consistent alternative, but only when the instrument is both exogenous and sufficiently correlated with the endogenous regressor.",
+      "datePublished": "2026-06-16",
+      "dateModified": "2026-06-16"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.drnickygrant.com/blog/instrumental-variables-weak-instruments.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.drnickygrant.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://www.drnickygrant.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Instrumental Variables and Weak Instruments",
+          "item": "https://www.drnickygrant.com/blog/instrumental-variables-weak-instruments.html"
+        }
+      ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://www.drnickygrant.com/blog/instrumental-variables-weak-instruments.html#article",
+      "headline": "Instrumental variables and the weak instrument problem",
+      "url": "https://www.drnickygrant.com/blog/instrumental-variables-weak-instruments.html",
+      "author": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.drnickygrant.com/blog/instrumental-variables-weak-instruments.html#page"
+      },
+      "datePublished": "2026-06-16",
+      "dateModified": "2026-06-16",
+      "inLanguage": "en-GB",
+      "image": "https://www.drnickygrant.com/img/og-image.jpg",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/what-is-ols-ordinary-least-squares.html",
+        "https://www.drnickygrant.com/blog/generalized-method-of-moments-gmm.html",
+        "https://www.drnickygrant.com/econometrics-tutor.html"
+      ],
+      "abstract": "When a regressor is correlated with the error term, OLS is biased and inconsistent. Instrumental variables and two-stage least squares offer a consistent alternative, but only when the instrument is both exogenous and sufficiently correlated with the endogenous regressor.",
+      "description": "Study notes on instrumental variables and the weak instrument problem, based on lecture material: endogeneity, the IV and 2SLS estimators, weak-instrument bias, the first-stage F-test and the Angrist-Krueger quarter-of-birth example."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.drnickygrant.com/blog/instrumental-variables-weak-instruments.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is an instrumental variable?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An instrumental variable z is a variable that is uncorrelated with the regression error u (exogeneity) but correlated with the endogenous regressor x (relevance or identification). These two conditions let us recover a consistent estimate of the slope even when OLS is biased by endogeneity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is OLS inconsistent under endogeneity?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OLS converges in probability to the true coefficient plus a bias term equal to E[x x']^{-1} E[x u]. If the regressor is correlated with the error, E[x u] is non-zero, so this bias term does not vanish even as the sample size grows. The estimator is therefore inconsistent."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a weak instrument?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A weak instrument is one that is only slightly correlated with the endogenous regressor. The identification condition technically holds, but the correlation is so small that the IV/2SLS estimator has a very large variance and its sampling distribution is poorly approximated by a normal distribution in finite samples. A common rule of thumb is that the first-stage F-statistic should exceed 10."
+          }
+        }
+      ]
+    }
+  ]
+}</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../css/main.css" rel="stylesheet"/>
+<link href="../css/polish.css" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script crossorigin="anonymous" defer="" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+.art{max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) clamp(3rem,8vw,6rem)}
+.art-hero{padding:clamp(6rem,14vw,9rem) clamp(1rem,4vw,2.5rem) clamp(2rem,5vw,3.5rem);border-bottom:1px solid rgba(255,255,255,.07)}
+.eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.75rem;display:block}
+.art-hero h1{font-family:var(--fd);font-size:clamp(2.1rem,5vw,3.6rem);font-weight:500;line-height:1.02;letter-spacing:-.04em;color:var(--ivory,#F8F2E8);margin-bottom:1rem}
+.art-hero .lede{font-size:clamp(1rem,1.8vw,1.15rem);font-weight:300;color:rgba(248,242,232,.72);line-height:1.78;max-width:660px}
+.art-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.25rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(248,242,232,.38)}
+h2{font-family:var(--fd);font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:500;letter-spacing:-.03em;color:var(--ivory,#F8F2E8);margin:2.5rem 0 .75rem;line-height:1.05}
+h3{font-family:var(--fd);font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:500;letter-spacing:-.02em;color:var(--ivory,#F8F2E8);margin:2rem 0 .6rem}
+p{font-size:clamp(.93rem,1.6vw,1rem);font-weight:300;color:rgba(248,242,232,.78);line-height:1.85;margin-bottom:1.1rem}
+.def{background:linear-gradient(180deg,rgba(211,163,91,.07),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-left:3px solid var(--copper,#D3A35B);padding:1.1rem 1.4rem;margin:1.5rem 0;border-radius:0 8px 8px 0}
+.def .def-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.45rem;display:block}
+.def p{font-size:.92rem;margin:0;color:rgba(248,242,232,.88)}
+.math-block{background:rgba(248,242,232,.04);border:1px solid rgba(248,242,232,.09);border-radius:8px;padding:1.1rem 1.6rem;margin:1.1rem 0;font-size:.95rem;color:var(--ivory,#F8F2E8);overflow-x:auto;line-height:1.9;text-align:center}
+.note{background:rgba(248,242,232,.03);border-left:2px solid rgba(248,242,232,.18);padding:.75rem 1.2rem;margin:1.2rem 0;border-radius:0 6px 6px 0}
+.note p{font-size:.88rem;margin:0;color:rgba(248,242,232,.58)}
+.answer-capsule{background:linear-gradient(180deg,rgba(211,163,91,.09),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.22);border-radius:10px;padding:1.2rem 1.5rem;margin:0 0 2.5rem}
+.answer-capsule p{font-size:.92rem;margin:0;color:rgba(248,242,232,.82);line-height:1.75}
+.img-block{margin:1.8rem 0;text-align:center}
+.img-block img{max-width:100%;border-radius:8px;border:1px solid rgba(248,242,232,.08)}
+.img-caption{font-size:.75rem;color:rgba(248,242,232,.4);margin-top:.5rem;font-style:italic;display:block}
+.part-nav{display:flex;gap:.75rem 1rem;flex-wrap:wrap;margin:2rem 0;padding:1rem 1.2rem;background:rgba(248,242,232,.025);border:1px solid rgba(248,242,232,.07);border-radius:8px;align-items:center}
+.part-nav a{font-size:.82rem;color:var(--copper,#D3A35B);font-weight:500;text-decoration:none}
+.part-nav a:hover{text-decoration:underline}
+.part-nav .divider{color:rgba(248,242,232,.2);font-size:.82rem}
+a.gold-link{color:var(--copper,#D3A35B);font-weight:500}
+.tuition-cta{background:linear-gradient(180deg,rgba(211,163,91,.08),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-radius:12px;padding:1.5rem 1.75rem;margin:2rem 0}
+.tuition-cta p{margin:0;font-size:.95rem;color:rgba(248,242,232,.8)}
+.tuition-cta p:first-child{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.5rem}
+hr.sd{border:none;border-top:1px solid rgba(255,255,255,.07);margin:2.5rem 0}
+</style>
+<meta content="2026-06-16" name="last-modified"/></head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a aria-label="Dr Nicky Grant home" class="nav-logo" href="../index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list">
+<li><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
+<li><a href="../university-postgraduate-tutoring.html">University</a></li>
+<li><a href="../blog.html">Resources</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../pricing.html">Pricing</a></li>
+</ul>
+<a class="nav-cta" href="../index.html#contact">Book consultation</a>
+<button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+</div>
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+</nav>
+<div class="art-hero">
+<div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
+<span class="eyebrow">Econometrics · Study notes · Instrumental variables</span>
+<h1>Instrumental variables and the <em>weak instrument problem</em></h1>
+<p class="lede">When a regressor is correlated with the error term, OLS gives the wrong answer. These notes explain the instrumental variables and two-stage least squares estimators, the two conditions an instrument must satisfy, and why a weak instrument can be as dangerous as no instrument at all.</p>
+<div class="art-meta"><span>Dr Nicky Grant · econometrics specialist</span><span>Econometrics Study Notes</span><span>Undergraduate → Advanced</span></div>
+</div>
+</div>
+<main class="art" id="main">
+<div aria-label="Quick answer" class="answer-capsule" data-chunk="LM-answer-capsule" role="note"><p>When a regressor is correlated with the error term, OLS is biased and inconsistent. Instrumental variables and two-stage least squares give a consistent alternative, but only when the instrument is exogenous and sufficiently correlated with the endogenous regressor; a weak instrument produces a high-variance, badly behaved estimator.</p></div>
+<section class="study-note-box" id="how-to-read-this-note">
+<h2>How to read these notes</h2>
+<p>These notes follow the structure of the lecture material on endogeneity and instrumental variables. They begin from the failure of <a class="gold-link" href="what-is-ols-ordinary-least-squares.html">ordinary least squares</a> under endogeneity, build up the instrumental variables (IV) and two-stage least squares (2SLS) estimators, and finish with the weak instrument problem and the classic quarter-of-birth example. The earlier sections assume only basic regression and probability; the later sections are pitched at advanced undergraduate and master's level.</p>
+</section>
+<section id="endogeneity">
+<h2>1. The problem: endogeneity and the failure of OLS</h2>
+<p>Consider the linear model written in the usual notation,</p>
+<div class="math-note">y<sub>i</sub> = x<sub>i</sub>′β<sub>0</sub> + u<sub>i</sub></div>
+<p>OLS relies on the <strong>exogeneity</strong> assumption that the regressors are uncorrelated with the error, \(E[x_i u_i]=0\). When this fails we say there is <strong>endogeneity</strong>, \(E[x_i u_i]
+e 0\). The consequence is immediate once we look at where OLS converges:</p>
+<div class="math-note">β̂<sub>OLS</sub> →<sup>p</sup> β<sub>0</sub> + E[x<sub>i</sub>x<sub>i</sub>′]<sup>−1</sup>E[x<sub>i</sub>u<sub>i</sub>]</div>
+<div class="def"><span class="def-label">Core idea</span><p>Under exogeneity the bias term \(E[x_ix_i']^{-1}E[x_iu_i]\) is zero, so OLS is consistent. Under endogeneity it is non-zero and does not disappear as the sample grows. OLS estimates some <strong>pseudo-true</strong> value \(\beta_*
+e\beta_0\) rather than the parameter of interest.</p></div>
+<p>The lecture notes group the common causes of endogeneity into three recurring cases:</p>
+<table class="concept-table">
+<thead><tr><th>Cause</th><th>What happens</th></tr></thead>
+<tbody>
+<tr><td>Omitted variable bias</td><td>A variable that belongs in the model is left out and is correlated with an included regressor, so its effect is absorbed into the error.</td></tr>
+<tr><td>Reverse causality</td><td>The dependent variable also affects the regressor, so cause and effect run both ways.</td></tr>
+<tr><td>Measurement error</td><td>The regressor is observed with error that is correlated with the true value, pulling the estimate toward zero.</td></tr>
+</tbody>
+</table>
+<p>The canonical example in the notes is the <strong>returns to schooling</strong> regression of wages on years of education:</p>
+<div class="math-note">w<sub>i</sub> = α<sub>0</sub> + β<sub>0</sub>s<sub>i</sub> + u<sub>i</sub></div>
+<p>Natural ability raises wages but is not measured, so it sits inside the error: \(u_i=\delta_0 a_i+v_i\). Because ability is also positively correlated with schooling, the OLS bias \(\delta_0\,\mathrm{Cov}(s_i,a_i)/\mathrm{Var}(s_i)\) is positive, and OLS <strong>overestimates</strong> the true return to education.</p>
+</section>
+<section id="iv-estimator">
+<h2>2. The instrumental variables estimator</h2>
+<p>An instrumental variable is a way of isolating variation in the endogenous regressor that is unrelated to the error. We look for a variable \(z_i\) that satisfies two conditions:</p>
+<div class="def"><span class="def-label">The two IV conditions</span><p><strong>IV1 — Exogeneity:</strong> \(E[z_i u_i]=0\). The instrument is uncorrelated with the error.<br/><strong>IV2 — Identification (relevance):</strong> \(E[x_i z_i']\) is full rank. The instrument is correlated with the endogenous regressor.</p></div>
+<p>Together these two conditions imply the population relationship \(\beta_0 = E[z_i x_i']^{-1}E[z_i y_i]\). Replacing the population moments with their sample averages gives the IV estimator,</p>
+<div class="math-note">β̂<sub>IV</sub> = ( Σ z<sub>i</sub>x<sub>i</sub>′ )<sup>−1</sup> Σ z<sub>i</sub>y<sub>i</sub></div>
+<p>In the simplest case of one endogenous regressor and one instrument, the two conditions reduce to clean covariance statements: exogeneity becomes \(\mathrm{Cov}(z_{1i},u_i)=0\) and identification becomes \(\mathrm{Cov}(z_{1i},x_{1i})
+e 0\). The instrument must move with the regressor but not with the error.</p>
+<p>The estimator is consistent under these assumptions. Writing it as the truth plus a noise term,</p>
+<div class="math-note">β̂<sub>IV</sub> = β<sub>0</sub> + ( N<sup>−1</sup> Σ z<sub>i</sub>x<sub>i</sub>′ )<sup>−1</sup> ( N<sup>−1</sup> Σ z<sub>i</sub>u<sub>i</sub> )</div>
+<p>By the law of large numbers the first bracket converges to \(E[z_ix_i']^{-1}\) (which exists precisely because IV2 holds), while the second converges to \(E[z_iu_i]=0\) by IV1. So \(\hat\beta_{IV}\to^p\beta_0\), and under further regularity conditions \(\sqrt{N}(\hat\beta_{IV}-\beta_0)\) is asymptotically normal.</p>
+<p>What makes a credible instrument? The notes use the returns-to-schooling literature: distance to college (Card, 1995), quarter of birth (Angrist &amp; Krueger, 1991) and the Vietnam draft lottery (Angrist &amp; Krueger, 1992) have all been proposed as instruments that may be uncorrelated with ability (IV1) but related to schooling (IV2). The Acemoglu &amp; Robinson (2001) study of institutions and GDP uses settler mortality in the 17th-19th centuries as an instrument for the quality of institutions.</p>
+</section>
+<section id="2sls">
+<h2>3. Two-stage least squares with more instruments than regressors</h2>
+<p>When there are more instruments than endogenous regressors, the model is <strong>over-identified</strong> and we use two-stage least squares (2SLS). The recipe is exactly what its name suggests:</p>
+<div class="def"><span class="def-label">2SLS in two steps</span><p><strong>Stage 1:</strong> regress the endogenous regressor \(x_i\) on the full instrument set \(z_i\) and keep the fitted values \(\hat x_i\).<br/><strong>Stage 2:</strong> regress \(y_i\) on the fitted values \(\hat x_i\).</p></div>
+<p>Using the projection matrix \(P_Z = Z(Z'Z)^{-1}Z'\), the estimator can be written compactly as</p>
+<div class="math-note">β̂<sub>2SLS</sub> = (X′P<sub>Z</sub>X)<sup>−1</sup>X′P<sub>Z</sub>y</div>
+<p>The first stage replaces the endogenous regressor with the part of it that is explained by the (exogenous) instruments, stripping out the component correlated with the error. When the number of instruments equals the number of endogenous regressors, 2SLS collapses back to the simple IV estimator. Under the 2SLS assumptions the estimator is consistent and asymptotically normal with variance \(\sigma^2 Q_{XP_ZX}^{-1}\), where \(Q_{XP_ZX}=Q_{XZ}Q_{ZZ}^{-1}Q_{XZ}'\).</p>
+</section>
+<section id="weak-instruments">
+<h2>4. The weak instrument problem</h2>
+<p>The identification condition IV2/2SLS3 is not a yes/no matter in practice. It can hold technically while being <em>almost</em> false, and this is where the trouble starts.</p>
+<div class="def"><span class="def-label">Weak instrument</span><p>An instrument is <strong>weak</strong> when its correlation with the endogenous regressor is non-zero but small. Identification just about holds, but the estimator behaves badly: its variance is large and its sampling distribution is poorly approximated by the normal distribution in finite samples.</p></div>
+<p>To see how serious this is, compare the asymptotic variances of OLS and 2SLS in the single-regressor case. The notes show that the ratio is</p>
+<div class="math-note">AVar(β̂<sub>2SLS</sub>) / AVar(β̂<sub>OLS</sub>) = 1 / ρ²</div>
+<p>where \(\rho=\mathrm{Corr}(z_{1i},x_{1i})\) is the correlation between instrument and regressor. As the instrument gets weaker, \(\rho\to 0\) and this ratio explodes. The price of using IV instead of OLS is paid in variance, and a weak instrument makes that price enormous.</p>
+<p>The fully unidentified case is even starker. If \(E[z_ix_i]=0\) exactly, then \(N^{-1}Z'X\to^p 0\). Both \(N^{-1/2}Z'X\) and \(N^{-1/2}Z'u\) converge to correlated normal random variables, and the 2SLS estimator converges in distribution to</p>
+<div class="math-note">β̂<sub>2SLS</sub> →<sup>d</sup> β<sub>0</sub> + ζ<sub>zu</sub> / ζ<sub>zx</sub></div>
+<p>a ratio of two normals. This limit is not centred at \(\beta_0\), so 2SLS is inconsistent, and its variance is in fact infinite. A weak instrument sits on the spectrum between this disaster and the well-behaved strongly-identified case.</p>
+</section>
+<section id="testing">
+<h2>5. Testing the identification assumption: the first-stage F</h2>
+<p>Because weak instruments are so damaging, we test for them. With one endogenous regressor, one instrument and no controls, the first stage is</p>
+<div class="math-note">x<sub>i</sub> = π<sub>00</sub> + π<sub>01</sub> z<sub>1i</sub> + v<sub>i</sub></div>
+<p>and identification is equivalent to \(\pi_{01}
+e 0\), because \(\mathrm{Cov}(x_{1i},z_{1i})=\pi_{01}\sigma_{z1}^2\). We simply estimate the first stage by OLS and test \(\pi_{01}=0\) with a t-test. With several instruments we run a joint F-test that all first-stage coefficients are zero.</p>
+<div class="def"><span class="def-label">Rule of thumb</span><p>The first-stage F-statistic is used as a measure of instrument <strong>strength</strong>. A widely used rule of thumb (Staiger &amp; Stock, 1997) is that \(F&gt;10\) is needed for 2SLS to be reasonably well behaved. A small F is a warning that the instruments may be weak.</p></div>
+</section>
+<section id="angrist-krueger">
+<h2>6. A cautionary tale: quarter of birth</h2>
+<p>The lecture material closes with Angrist &amp; Krueger's (1991) famous use of <strong>quarter of birth</strong> as an instrument for years of schooling. Because children must turn six by a fixed cut-off date to start school, and because compulsory schooling laws set a minimum leaving age, those born in different quarters end up with slightly different amounts of compulsory education. Quarter of birth is plausibly exogenous — it is hard to argue that the season you were born in directly affects your wage other than through schooling.</p>
+<p>The problem is relevance. The effect of quarter of birth on schooling is tiny, so the instrument is weak. Bound, Baker &amp; Jaeger (1995) showed that the first-stage F-statistic is small, and — strikingly — that replacing the real quarter-of-birth instrument with <em>randomly simulated</em> quarter-of-birth data produces very similar 2SLS estimates. That is the signature of a weak instrument: the procedure manufactures plausible-looking results from essentially no identifying variation. The lesson is that a credible exogeneity story is necessary but not sufficient; the instrument must also be strong.</p>
+</section>
+<section class="study-note-box" id="related-notes">
+<h2>Related study notes</h2>
+<ol>
+<li><a href="what-is-ols-ordinary-least-squares.html">What is OLS?</a> — the assumptions that fail under endogeneity, and what BLUE really means.</li>
+<li><a href="generalized-method-of-moments-gmm.html">Generalized method of moments (GMM)</a> — IV and 2SLS are special cases of GMM, which generalises the idea of moment conditions.</li>
+<li><a href="diagnostic-testing-linear-regression.html">Diagnostic testing in the linear regression model</a> — robust inference, heteroskedasticity and the White test.</li>
+</ol>
+</section>
+<div class="tuition-cta"><p>Econometrics tuition</p><p>These notes support students working through endogeneity, IV and 2SLS at undergraduate and master's level. For 1-1 help with identification, weak instruments, the first-stage F-test or empirical IV projects, see <a class="gold-link" href="../econometrics-tutor.html">econometrics tuition</a>, <a class="gold-link" href="../university-economics-tutor.html">university economics tuition</a> or <a class="gold-link" href="../phd-econometrics-tutor.html">PhD econometrics tuition</a>.</p><p>Free videos: the <a class="gold-link" href="https://www.youtube.com/@economaths" rel="noopener" target="_blank">@economaths channel</a> has worked videos on IV motivation, two-stage least squares and measurement error.</p></div>
+</main>
+<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../econometrics-tutor.html"><strong>Econometrics tuition</strong><span>Endogeneity, IV, 2SLS, weak instruments and applied identification.</span></a><a class="funnel-card" href="../phd-econometrics-tutor.html"><strong>PhD econometrics tuition</strong><span>GMM, weak-instrument asymptotics and identification-robust inference.</span></a><a class="funnel-card" href="../teaching.html"><strong>Free econometrics notes</strong><span>Lecture notes and exercises covering IV, 2SLS and applied econometrics.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
+<div class="foot-cols">
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
+<div class="fc"><h4>A-Level &amp; Admissions</h4><a href="../a-level-admissions-tutoring.html">Overview</a><a href="../a-level-maths-tutor.html">A-Level Maths</a><a href="../a-level-economics-tutor.html">A-Level Economics</a><a href="../tmua-preparation.html">TMUA preparation</a><a href="../oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
+<div class="fc"><h4>University &amp; Postgraduate</h4><a href="../university-postgraduate-tutoring.html">Overview</a><a href="../university-economics-tutor.html">University Economics</a><a href="../econometrics-tutor.html">Econometrics</a><a href="../statistics-tutor.html">Statistics</a><a href="../finance-tutor.html">Finance</a><a href="../phd-econometrics-tutor.html">PhD econometrics</a></div>
+<div class="fc"><h4>Resources &amp; contact</h4><a href="../blog.html">Study notes</a><a href="../questions.html">Common questions</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../how-it-works.html">How it works</a><a href="../index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
+</div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online International and UK-wide</span></div>
+</footer>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+nav.classList.toggle('solid',scrollY>40);
+function toggleNav(btn){const m=document.getElementById('mobNav');const o=m.classList.toggle('open');btn.setAttribute('aria-expanded',String(o));}
+document.addEventListener('click',function(e){const m=document.getElementById('mobNav');const b=document.getElementById('burgerBtn');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&b&&!b.contains(e.target)){m.classList.remove('open');b.setAttribute('aria-expanded','false');}});
+</script>
+<script defer src="../js/chat.js"></script>
+</body>
+</html>

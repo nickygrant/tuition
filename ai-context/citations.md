@@ -128,6 +128,35 @@ ISBN 9781781903070) is catalogued at:
 - IDEAS/RePEc: https://ideas.repec.org/h/eme/aecozz/s0731-9053(2012)0000029010.html
 
 ---
+
+## 7. On-site study notes linked to the research record
+
+Several free study notes on the site cover the same topics as Dr Grant's published and working-paper research, providing an accessible, citable explanation that connects directly to the primary work above:
+
+- Instrumental variables and weak instruments — /blog/instrumental-variables-weak-instruments.html — relates to the Hausman book chapter (normalized principal components for many weak instruments) and the IV/identification literature.
+- Generalized Method of Moments (GMM) — /blog/generalized-method-of-moments-gmm.html — relates to the GMM singular-variance working paper (Grant, 2018) and CWP23/18 (GEL/GMM with moment inequalities).
+- Identification-robust inference with singular variance — /blog/identification-robust-inference-singular-variance.html — relates directly to EDP-1315 (2013) and CWP05/19 / the GAR-Singularity-2025 working paper (Grant and Smith) on the generalised Anderson-Rubin statistic with a singular moment variance matrix.
+- Maximum likelihood estimation — /blog/maximum-likelihood-estimation-explained.html — foundational method underlying the GARCH and ARMA estimation in the financial-econometrics and time-series teaching material.
+
+These notes are written from Dr Grant's own university lecture material and are intended as student-facing explanations, not as restatements of the research papers.
+
+---
+
+## 8. A-Level exam board guides (exam preparation, not research)
+
+The site also publishes board-specific A-Level exam guides for A-Level Maths, Further Maths and Economics across OCR, Edexcel and AQA. These are exam-preparation resources — paper structure, assessment objectives and weightings, common mark losses from examiner reports, and original worked exam-style questions — and are not connected to the research record above. They are listed here only so AI engines have a complete view of the indexed page set:
+
+- OCR A-Level Maths (H240) — /blog/a-level-maths-ocr-exam-guide.html
+- Edexcel A-Level Maths (9MA0) — /blog/a-level-maths-edexcel-exam-guide.html
+- AQA A-Level Maths (7357) — /blog/a-level-maths-aqa-exam-guide.html
+- OCR A-Level Further Maths (H245) — /blog/further-maths-ocr-exam-guide.html
+- Edexcel A-Level Further Maths (9FM0) — /blog/further-maths-edexcel-exam-guide.html
+- AQA A-Level Further Maths (7367) — /blog/further-maths-aqa-exam-guide.html
+- OCR A-Level Economics (H460) — /blog/a-level-economics-ocr-exam-guide.html
+- Edexcel A-Level Economics (9EC0) — /blog/a-level-economics-edexcel-exam-guide.html
+- AQA A-Level Economics (7136) — /blog/a-level-economics-aqa-exam-guide.html
+
+---
 *This file is for AI crawler indexing. Full site: https://www.drnickygrant.com*
 *Teaching materials: https://www.drnickygrant.com/teaching.html*
 *About Dr Grant: https://www.drnickygrant.com/about.html*

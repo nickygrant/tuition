@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
+<meta content="Dr Nicky Grant" name="author"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Identification-Robust Inference &amp; Singular Variance | Notes</title>
+<meta content="Advanced notes on identification-robust inference and singular moment variance: weak identification, the generalized Anderson-Rubin statistic and two-step GMM." name="description"/>
+<link href="https://www.drnickygrant.com/blog/identification-robust-inference-singular-variance.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="Identification-Robust Inference &amp; Singular Variance | Notes" property="og:title"/>
+<meta content="Weak identification, the generalized Anderson-Rubin statistic, singular moment variance and the consequences for two-step GMM, based on the author's research." property="og:description"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" property="og:image"/>
+<meta content="https://www.drnickygrant.com/blog/identification-robust-inference-singular-variance.html" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" name="twitter:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.drnickygrant.com/#website",
+      "url": "https://www.drnickygrant.com/",
+      "name": "Dr Nicky Grant | Economics, Econometrics and Maths Tutor",
+      "description": "Specialist online tuition in economics, econometrics, mathematics, statistics, finance, TMUA and Oxbridge economics applications, supported by verifiable Cambridge credentials, teaching materials and research evidence.",
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.drnickygrant.com/#person",
+      "name": "Dr Nicky Grant",
+      "alternateName": [
+        "Nicky Grant",
+        "Nicky L. Grant",
+        "Nicky Lee Grant"
+      ],
+      "honorificPrefix": "Dr",
+      "givenName": "Nicky",
+      "familyName": "Grant",
+      "url": "https://www.drnickygrant.com/",
+      "image": "https://www.drnickygrant.com/img/nicky-grant-headshot.webp",
+      "email": "nicky.L.grant@gmail.com",
+      "telephone": "+447393352331",
+      "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor",
+      "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0008-8979-4623",
+          "url": "https://orcid.org/0009-0008-8979-4623"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Semantic Scholar",
+          "value": "97839351",
+          "url": "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Cambridge",
+        "sameAs": "https://www.cam.ac.uk/"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "PhD in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "MPhil in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BA in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        }
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "CeMMAP, Centre for Microdata Methods and Practice",
+        "sameAs": "https://cemmap.ac.uk/"
+      },
+      "knowsAbout": [
+        "economics tuition",
+        "econometrics tuition",
+        "A Level Mathematics",
+        "Further Mathematics",
+        "A Level Economics",
+        "TMUA preparation",
+        "Oxbridge Economics applications",
+        "statistics",
+        "financial econometrics",
+        "time series econometrics",
+        "GMM",
+        "instrumental variables",
+        "panel data",
+        "PhD econometrics"
+      ],
+      "sameAs": [
+        "https://orcid.org/0009-0008-8979-4623",
+        "https://www.linkedin.com/in/nicky-lee-grant/",
+        "https://cemmap.ac.uk/person/nicky-l-grant/",
+        "https://research-portal.st-andrews.ac.uk/en/persons/nicky-lee-grant",
+        "https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/",
+        "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351",
+        "https://www.youtube.com/@economaths",
+        "https://independent.academia.edu/NickyGrant"
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/identification-robust-inference-singular-variance.html#page",
+      "url": "https://www.drnickygrant.com/blog/identification-robust-inference-singular-variance.html",
+      "name": "Identification-robust inference and singular moment variance",
+      "isPartOf": {
+        "@id": "https://www.drnickygrant.com/#website"
+      },
+      "about": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB",
+      "description": "An advanced study note on identification-robust inference and singular moment variance: weak identification, the generalized Anderson-Rubin statistic, what goes wrong when the moment variance matrix is singular, and the consequences for two-step GMM.",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/generalized-method-of-moments-gmm.html",
+        "https://www.drnickygrant.com/blog/instrumental-variables-weak-instruments.html",
+        "https://www.drnickygrant.com/phd-econometrics-tutor.html"
+      ],
+      "abstract": "Identification-robust inference, such as the generalized Anderson-Rubin statistic, gives valid confidence regions even under weak identification. When the moment variance matrix is singular, however, the standard chi-square result can break down, the topic of the author's research.",
+      "datePublished": "2026-06-16",
+      "dateModified": "2026-06-16"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.drnickygrant.com/blog/identification-robust-inference-singular-variance.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.drnickygrant.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://www.drnickygrant.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Identification-Robust Inference and Singular Moment Variance",
+          "item": "https://www.drnickygrant.com/blog/identification-robust-inference-singular-variance.html"
+        }
+      ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://www.drnickygrant.com/blog/identification-robust-inference-singular-variance.html#article",
+      "headline": "Identification-robust inference and singular moment variance",
+      "url": "https://www.drnickygrant.com/blog/identification-robust-inference-singular-variance.html",
+      "author": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.drnickygrant.com/blog/identification-robust-inference-singular-variance.html#page"
+      },
+      "datePublished": "2026-06-16",
+      "dateModified": "2026-06-16",
+      "inLanguage": "en-GB",
+      "image": "https://www.drnickygrant.com/img/og-image.jpg",
+      "citation": [
+        "Grant, N. & Smith, R. J. (2025). Generalised Anderson-Rubin statistic based inference in the presence of a singular moment variance matrix.",
+        "Grant, N. (2018). GMM estimation and inference with (asymptotically) singular moment variance."
+      ],
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/generalized-method-of-moments-gmm.html",
+        "https://www.drnickygrant.com/blog/instrumental-variables-weak-instruments.html",
+        "https://www.drnickygrant.com/phd-econometrics-tutor.html"
+      ],
+      "abstract": "Identification-robust inference, such as the generalized Anderson-Rubin statistic, gives valid confidence regions even under weak identification. When the moment variance matrix is singular, however, the standard chi-square result can break down, the topic of the author's research.",
+      "description": "An advanced study note on identification-robust inference and singular moment variance: weak identification, the generalized Anderson-Rubin statistic, what goes wrong when the moment variance matrix is singular, and the consequences for two-step GMM."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.drnickygrant.com/blog/identification-robust-inference-singular-variance.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is identification-robust inference?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Identification-robust inference produces confidence regions and tests that remain valid whether identification is strong, weak or absent. The generalized Anderson-Rubin (GAR) statistic is a leading example: it tests a hypothesised parameter value directly through the moment conditions, without relying on a well-behaved point estimate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a singular moment variance matrix?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The moment variance matrix is the asymptotic variance of the sample moments. It is singular when it has a zero eigenvalue, meaning some linear combination of the moments has zero variance at the true parameter. This arises in simultaneous-equation and dynamic-panel models, in parameter-restriction tests under the null, and from identification failure in non-linear models."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does singular moment variance matter for inference?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Standard inference inverts the moment variance matrix, which is impossible when it is singular. Applied work often removes the singularity by regularisation or by changing the instrument set, but the author's research shows this can increase the asymptotic variance and slow the rate of convergence of two-step GMM, and that GAR-based inference must be modified to remain valid."
+          }
+        }
+      ]
+    }
+  ]
+}</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../css/main.css" rel="stylesheet"/>
+<link href="../css/polish.css" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script crossorigin="anonymous" defer="" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+.art{max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) clamp(3rem,8vw,6rem)}
+.art-hero{padding:clamp(6rem,14vw,9rem) clamp(1rem,4vw,2.5rem) clamp(2rem,5vw,3.5rem);border-bottom:1px solid rgba(255,255,255,.07)}
+.eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.75rem;display:block}
+.art-hero h1{font-family:var(--fd);font-size:clamp(2.1rem,5vw,3.6rem);font-weight:500;line-height:1.02;letter-spacing:-.04em;color:var(--ivory,#F8F2E8);margin-bottom:1rem}
+.art-hero .lede{font-size:clamp(1rem,1.8vw,1.15rem);font-weight:300;color:rgba(248,242,232,.72);line-height:1.78;max-width:660px}
+.art-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.25rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(248,242,232,.38)}
+h2{font-family:var(--fd);font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:500;letter-spacing:-.03em;color:var(--ivory,#F8F2E8);margin:2.5rem 0 .75rem;line-height:1.05}
+h3{font-family:var(--fd);font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:500;letter-spacing:-.02em;color:var(--ivory,#F8F2E8);margin:2rem 0 .6rem}
+p{font-size:clamp(.93rem,1.6vw,1rem);font-weight:300;color:rgba(248,242,232,.78);line-height:1.85;margin-bottom:1.1rem}
+.def{background:linear-gradient(180deg,rgba(211,163,91,.07),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-left:3px solid var(--copper,#D3A35B);padding:1.1rem 1.4rem;margin:1.5rem 0;border-radius:0 8px 8px 0}
+.def .def-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.45rem;display:block}
+.def p{font-size:.92rem;margin:0;color:rgba(248,242,232,.88)}
+.math-block{background:rgba(248,242,232,.04);border:1px solid rgba(248,242,232,.09);border-radius:8px;padding:1.1rem 1.6rem;margin:1.1rem 0;font-size:.95rem;color:var(--ivory,#F8F2E8);overflow-x:auto;line-height:1.9;text-align:center}
+.note{background:rgba(248,242,232,.03);border-left:2px solid rgba(248,242,232,.18);padding:.75rem 1.2rem;margin:1.2rem 0;border-radius:0 6px 6px 0}
+.note p{font-size:.88rem;margin:0;color:rgba(248,242,232,.58)}
+.answer-capsule{background:linear-gradient(180deg,rgba(211,163,91,.09),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.22);border-radius:10px;padding:1.2rem 1.5rem;margin:0 0 2.5rem}
+.answer-capsule p{font-size:.92rem;margin:0;color:rgba(248,242,232,.82);line-height:1.75}
+.img-block{margin:1.8rem 0;text-align:center}
+.img-block img{max-width:100%;border-radius:8px;border:1px solid rgba(248,242,232,.08)}
+.img-caption{font-size:.75rem;color:rgba(248,242,232,.4);margin-top:.5rem;font-style:italic;display:block}
+.part-nav{display:flex;gap:.75rem 1rem;flex-wrap:wrap;margin:2rem 0;padding:1rem 1.2rem;background:rgba(248,242,232,.025);border:1px solid rgba(248,242,232,.07);border-radius:8px;align-items:center}
+.part-nav a{font-size:.82rem;color:var(--copper,#D3A35B);font-weight:500;text-decoration:none}
+.part-nav a:hover{text-decoration:underline}
+.part-nav .divider{color:rgba(248,242,232,.2);font-size:.82rem}
+a.gold-link{color:var(--copper,#D3A35B);font-weight:500}
+.tuition-cta{background:linear-gradient(180deg,rgba(211,163,91,.08),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-radius:12px;padding:1.5rem 1.75rem;margin:2rem 0}
+.tuition-cta p{margin:0;font-size:.95rem;color:rgba(248,242,232,.8)}
+.tuition-cta p:first-child{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.5rem}
+hr.sd{border:none;border-top:1px solid rgba(255,255,255,.07);margin:2.5rem 0}
+</style>
+<meta content="2026-06-16" name="last-modified"/></head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a aria-label="Dr Nicky Grant home" class="nav-logo" href="../index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list">
+<li><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
+<li><a href="../university-postgraduate-tutoring.html">University</a></li>
+<li><a href="../blog.html">Resources</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../pricing.html">Pricing</a></li>
+</ul>
+<a class="nav-cta" href="../index.html#contact">Book consultation</a>
+<button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+</div>
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+</nav>
+<div class="art-hero">
+<div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
+<span class="eyebrow">Econometrics · Research notes · Advanced</span>
+<h1>Identification-robust inference &amp; <em>singular moment variance</em></h1>
+<p class="lede">A graduate-and-beyond note on what happens to GMM inference at the edges: when instruments are weak, and when the moment variance matrix becomes singular. It connects identification-robust statistics such as the generalized Anderson-Rubin statistic to the author's own research on singular variance.</p>
+<div class="art-meta"><span>Dr Nicky Grant · econometrics specialist</span><span>Research-level Study Notes</span><span>Advanced / PhD</span></div>
+</div>
+</div>
+<main class="art" id="main">
+<div aria-label="Quick answer" class="answer-capsule" data-chunk="LM-answer-capsule" role="note"><p>Identification-robust inference, such as the generalized Anderson-Rubin (GAR) statistic, gives valid confidence regions even under weak identification. When the moment variance matrix is singular, however, the standard chi-square result can break down, and removing the singularity can make two-step GMM less efficient, the topic of the author's research.</p></div>
+<div aria-label="Related notes" class="part-nav">
+<span style="font-size:.78rem;color:rgba(248,242,232,.52)">Prerequisites:</span>
+<a href="instrumental-variables-weak-instruments.html">Weak instruments</a>
+<span class="divider">|</span>
+<a href="generalized-method-of-moments-gmm.html">GMM</a>
+<span class="divider">|</span>
+<a href="identification-robust-inference-singular-variance.html">This note</a>
+</div>
+<section class="study-note-box" id="how-to-read-this-note">
+<h2>How to read these notes</h2>
+<p>This is an advanced note aimed at strong master's and PhD students, and anyone wanting an accessible route into the author's research. It assumes you are comfortable with <a class="gold-link" href="generalized-method-of-moments-gmm.html">GMM</a> and the <a class="gold-link" href="instrumental-variables-weak-instruments.html">weak-instrument problem</a>. The aim is to explain, in words and a little notation, two related research themes: identification-robust inference, and the complications that arise when the moment variance matrix is (almost) singular. It is a guided overview of ideas developed in Grant (2018) and Grant &amp; Smith (2025), not a substitute for those papers.</p>
+</section>
+<section id="recap">
+<h2>1. Recap: why weak identification breaks standard inference</h2>
+<p>Standard GMM and 2SLS inference rests on a point estimate that is consistent and asymptotically normal at the root-\(T\) rate. As the <a class="gold-link" href="instrumental-variables-weak-instruments.html">weak-instrument note</a> showed, that picture collapses under weak identification: the estimator can have a non-normal distribution, large or even infinite variance, and t-statistics built on it can be badly size-distorted. Confidence intervals of the form "estimate plus or minus two standard errors" are then untrustworthy, because both the centring and the scaling are unreliable.</p>
+<p>The natural response is to stop relying on the point estimate altogether and test a hypothesised parameter value <em>directly</em> through the moment conditions. This is the idea behind identification-robust inference.</p>
+</section>
+<section id="gar">
+<h2>2. The generalized Anderson-Rubin statistic</h2>
+<p>The Anderson-Rubin (AR) statistic, generalised to the GMM setting, tests a candidate value \(\theta_0\) of the parameter by asking whether the sample moments evaluated at \(\theta_0\) are jointly close enough to zero. In the GMM notation, with sample moments \(\hat g_T(\theta)\) and moment variance \(\Omega\), the statistic is essentially the efficient criterion function evaluated at the hypothesised value,</p>
+<div class="math-note">GAR(θ<sub>0</sub>) = T · ĝ<sub>T</sub>(θ<sub>0</sub>)′ Ω̂<sup>−1</sup> ĝ<sub>T</sub>(θ<sub>0</sub>)</div>
+<div class="def"><span class="def-label">Why it is robust</span><p>Crucially, GAR is evaluated at the <em>hypothesised</em> value \(\theta_0\), not at an estimate. It therefore never has to trust a point estimate that weak identification may have corrupted. Under the null, and under standard regularity conditions, the statistic has a chi-square limiting distribution, so a confidence region is formed by collecting all values \(\theta_0\) that the GAR test does not reject — inverting the test rather than inverting a variance matrix around an estimate.</p></div>
+<p>This gives a confidence region with correct coverage whether identification is strong, weak or absent. The work of Grant &amp; Smith (2025) studies the construction of exactly such a region — one with pointwise asymptotically correct size for the true parameter — built on the GAR statistic. The subtlety they confront is what happens when the moment variance matrix \(\Omega\), which sits inside the statistic as \(\Omega^{-1}\), is singular.</p>
+</section>
+<section id="singular-variance">
+<h2>3. What "singular moment variance" means</h2>
+<p>The moment variance matrix \(\Omega\) is the asymptotic variance of the (scaled) sample moments. Standard theory assumes it is positive definite, so that \(\Omega^{-1}\) exists and the moments carry information in every direction. <strong>Singularity</strong> means \(\Omega\) has a zero eigenvalue: some linear combination of the moment conditions has zero variance at the true parameter.</p>
+<div class="def"><span class="def-label">Almost singular variance</span><p>In the author's research, the variance is written through its eigenvalue decomposition, separating the eigenvalues bounded away from zero from those that converge to (or equal) zero. The "almost singular" case allows some eigenvalues to shrink toward zero at a rate \(T^{-\delta}\) as the sample grows, capturing variance matrices that are near-singular in finite samples even if technically full rank.</p></div>
+<p>Why would the variance of a moment be zero? Grant (2018) catalogues several routine sources, so this is not a pathological curiosity:</p>
+<table class="concept-table">
+<thead><tr><th>Source of singularity</th><th>Where it arises</th></tr></thead>
+<tbody>
+<tr><td>Identification failure in non-linear models</td><td>The moment loses sensitivity to the parameter, collapsing its variance.</td></tr>
+<tr><td>Simultaneous-equation and dynamic panel models</td><td>Arellano-Bond style moment sets can produce (near-)singular variance.</td></tr>
+<tr><td>Parameter-restriction tests under the null</td><td>The variance of certain moments degenerates exactly on the null hypothesis.</td></tr>
+<tr><td>Common shocks interacted with instruments</td><td>In linear simultaneous IV models, shared unobservables can make moment combinations perfectly correlated.</td></tr>
+</tbody>
+</table>
+</section>
+<section id="consequences">
+<h2>4. The consequences for the GAR statistic and two-step GMM</h2>
+<p>Singularity has sharp consequences for both inference and estimation. Two results from the research are worth stating in words.</p>
+<h3>The GAR statistic</h3>
+<p>Grant &amp; Smith (2025) analyse the GAR statistic near points of singularity using a Laurent series expansion of the variance matrix. They identify a condition — termed <strong>first-order moment singularity</strong> — under which the GAR statistic retains its usual chi-square limiting distribution along parameter sequences approaching the truth. When that condition is <em>violated</em>, however, the GAR statistic becomes asymptotically unbounded: the \(\Omega^{-1}\) inside it magnifies the near-zero-variance direction without limit. The paper then shows how to discretise the parameter space appropriately to implement a feasible GAR-based confidence region that still attains correct size.</p>
+<h3>Two-step GMM</h3>
+<p>Grant (2018) studies the efficient two-step GMM estimator when \(\Omega\) is (asymptotically) singular at the true parameter but non-singular for small perturbations away from it. The estimator is shown to have a highly non-standard limiting distribution. Strikingly, it can converge at the faster rate \(T\) in certain directions — rather than the usual \(\sqrt{T}\) — when the null space of the moment variance is not contained in that of the expected moment derivative.</p>
+<div class="def"><span class="def-label">The practical warning</span><p>Applied researchers routinely remove singularities — by regularising the weight matrix, by adding or deleting instruments, or by adding noise (Ruge-Murcia's "stochastic singularity"). Grant (2018) shows that doing so generally <strong>increases</strong> the asymptotic variance and can <strong>slow</strong> the rate of convergence of two-step GMM. The convenience of removing the singularity to validate standard normal inference is therefore paid for in efficiency; using the singularity-robust distribution can give both valid inference and a more efficient estimator.</p></div>
+</section>
+<section id="takeaways">
+<h2>5. The takeaways</h2>
+<p>Two threads tie this material together. First, when identification is in doubt, shift from estimate-based inference to <strong>identification-robust</strong> inference, of which the GAR statistic is the canonical example: it tests parameter values directly and inverts to a confidence region. Second, the building block that all of this relies on — the moment variance matrix — cannot always be assumed well behaved. Singular and near-singular moment variance arises in mainstream models, and naively inverting it, or mechanically removing it, can invalidate inference or sacrifice efficiency.</p>
+<p>For a research student, this is the frontier where GMM, weak identification and matrix asymptotics meet. The eigenvalue and Laurent-series tools used to handle it — drawing on perturbation-theory results for matrices — are exactly the technical machinery developed in the papers referenced here.</p>
+</section>
+<section class="study-note-box" id="related-notes">
+<h2>Related study notes</h2>
+<ol>
+<li><a href="generalized-method-of-moments-gmm.html">Generalized method of moments (GMM)</a> — the criterion function, the moment variance matrix and the efficient two-step estimator.</li>
+<li><a href="instrumental-variables-weak-instruments.html">Instrumental variables and weak instruments</a> — where weak identification first bites.</li>
+<li><a href="../research.html">Research &amp; publications</a> — the full working papers behind these ideas.</li>
+</ol>
+</section>
+<div class="tuition-cta"><p>PhD econometrics tuition</p><p>This is research-level material. For 1-1 help with GMM asymptotics, weak identification, identification-robust inference or a dissertation on these topics, see <a class="gold-link" href="../phd-econometrics-tutor.html">PhD econometrics tuition</a> or <a class="gold-link" href="../econometrics-tutor.html">econometrics tuition</a>.</p></div>
+</main>
+<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../phd-econometrics-tutor.html"><strong>PhD econometrics tuition</strong><span>GMM asymptotics, weak identification and identification-robust inference.</span></a><a class="funnel-card" href="../econometrics-tutor.html"><strong>Econometrics tuition</strong><span>IV, GMM and graduate estimation and inference.</span></a><a class="funnel-card" href="../research.html"><strong>Research &amp; publications</strong><span>Working papers on singular variance and GAR-based inference.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
+<div class="foot-cols">
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
+<div class="fc"><h4>A-Level &amp; Admissions</h4><a href="../a-level-admissions-tutoring.html">Overview</a><a href="../a-level-maths-tutor.html">A-Level Maths</a><a href="../a-level-economics-tutor.html">A-Level Economics</a><a href="../tmua-preparation.html">TMUA preparation</a><a href="../oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
+<div class="fc"><h4>University &amp; Postgraduate</h4><a href="../university-postgraduate-tutoring.html">Overview</a><a href="../university-economics-tutor.html">University Economics</a><a href="../econometrics-tutor.html">Econometrics</a><a href="../statistics-tutor.html">Statistics</a><a href="../finance-tutor.html">Finance</a><a href="../phd-econometrics-tutor.html">PhD econometrics</a></div>
+<div class="fc"><h4>Resources &amp; contact</h4><a href="../blog.html">Study notes</a><a href="../questions.html">Common questions</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../how-it-works.html">How it works</a><a href="../index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
+</div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online International and UK-wide</span></div>
+</footer>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+nav.classList.toggle('solid',scrollY>40);
+function toggleNav(btn){const m=document.getElementById('mobNav');const o=m.classList.toggle('open');btn.setAttribute('aria-expanded',String(o));}
+document.addEventListener('click',function(e){const m=document.getElementById('mobNav');const b=document.getElementById('burgerBtn');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&b&&!b.contains(e.target)){m.classList.remove('open');b.setAttribute('aria-expanded','false');}});
+</script>
+<script defer src="../js/chat.js"></script>
+</body>
+</html>
+                                

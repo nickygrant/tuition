@@ -32,7 +32,7 @@
 <a aria-label="Dr Nicky Grant home" class="nav-logo" href="index.html">Dr Nicky <span>Grant</span></a>
 <ul class="nav-links" role="list">
 <li><a href="a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
-<li><a href="university-postgraduate-tutoring.html">University &amp; Postgraduate</a></li>
+<li><a href="university-postgraduate-tutoring.html">University</a></li>
 <li><a href="blog.html">Resources</a></li>
 <li><a href="about.html">About</a></li>
 <li><a href="pricing.html">Pricing</a></li>
@@ -40,7 +40,7 @@
 <a class="nav-cta" href="index.html#contact">Book consultation</a>
 <button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
 </div>
-<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="index.html">Home</a><a href="a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="university-postgraduate-tutoring.html">University &amp; Postgraduate</a><a href="blog.html">Resources</a><a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="index.html#contact">Book consultation</a></div>
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="index.html">Home</a><a href="a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="university-postgraduate-tutoring.html">University</a><a href="blog.html">Resources</a><a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="index.html#contact">Book consultation</a></div>
 </nav>
 <main id="main">
 <header class="page-hero">
@@ -84,12 +84,13 @@
 <div class="fc"><h4>University &amp; Postgraduate</h4><a href="university-postgraduate-tutoring.html">Overview</a><a href="university-economics-tutor.html">University Economics</a><a href="econometrics-tutor.html">Econometrics</a><a href="statistics-tutor.html">Statistics</a><a href="finance-tutor.html">Finance</a><a href="phd-econometrics-tutor.html">PhD econometrics</a></div>
 <div class="fc"><h4>Resources &amp; contact</h4><a href="blog.html">Study notes</a><a href="questions.html">Common questions</a><a href="credentials.html">Credentials</a><a href="pricing.html">Pricing</a><a href="privacy.html">Privacy notice</a><a href="index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
 </div>
-<div class="foot-bottom"><span>&copy; <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions | University &amp; Postgraduate | Online UK-wide</span></div>
+<div class="foot-bottom"><span>&copy; <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions | University &amp; Postgraduate | Online International and UK-wide</span></div>
 </footer>
 <script>
 document.getElementById('yr').textContent = new Date().getFullYear();
 function toggleNav(btn){const mob=document.getElementById('mobNav');const open=mob.classList.toggle('open');btn.setAttribute('aria-expanded',open);}
 const nav=document.getElementById('nav');window.addEventListener('scroll',()=>{nav.classList.toggle('solid',window.scrollY>40)},{passive:true});
 </script>
+<script defer src="js/chat.js"></script>
 </body>
 </html>

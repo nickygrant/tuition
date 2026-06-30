@@ -1,0 +1,109 @@
+/* Interactive practice widget + board tab-bar.
+   Loaded only on the *-practice-*.html pages, after polish.css.
+   Problem cards are explicit-colour (white + dark ink) so they read
+   crisply on the teal band regardless of scope. */
+
+/* ---- bold board / subject tab bar ---- */
+.board-tabs{display:flex;flex-direction:column;gap:.7rem;margin:1.6rem 0 .5rem}
+.bt-group{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.bt-label{font-family:var(--fd);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--on-faint);min-width:4.6rem}
+.bt-link{font-family:var(--fd);font-weight:700;font-size:1rem;letter-spacing:.01em;text-decoration:none;
+  padding:.62rem 1.3rem;border-radius:999px;border:1.5px solid rgba(245,242,236,.28);
+  color:var(--on-mut);background:rgba(245,242,236,.05);transition:color .15s,border-color .15s,background .15s,box-shadow .15s,transform .15s}
+.bt-link:hover{color:var(--on-ink);border-color:rgba(245,242,236,.55);transform:translateY(-1px)}
+.bt-link.on{background:linear-gradient(135deg,#EDCB8B,#D89F49);color:#16302B;border-color:transparent;box-shadow:0 8px 22px rgba(216,159,73,.28)}
+
+/* ---- "how it works" strip ---- */
+.pr-howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.9rem;margin:1.6rem 0 .4rem}
+.pr-howto-card{background:rgba(245,242,236,.05);border:1px solid rgba(245,242,236,.16);border-radius:14px;padding:1.05rem 1.15rem}
+.pr-howto-card b{display:block;font-family:var(--fd);font-weight:700;color:var(--on-ink);font-size:.96rem;margin-bottom:.25rem}
+.pr-howto-card span{font-size:.9rem;line-height:1.6;color:var(--on-mut)}
+
+/* ---- problem cards ---- */
+#practice{margin-top:1.4rem}
+.pr-topic-h{font-family:var(--fd);font-weight:700;font-size:1.25rem;letter-spacing:-.01em;color:var(--on-ink);margin:2.4rem 0 .2rem;padding-top:1rem;border-top:1px solid rgba(245,242,236,.16)}
+.pr-card{background:#FFFFFF;border:1px solid rgba(22,48,47,.12);border-radius:18px;
+  padding:clamp(1.3rem,3vw,2rem);margin:1.3rem 0;box-shadow:0 14px 40px rgba(6,28,33,.18);color:#163331}
+.pr-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.6rem}
+.pr-tag{font-family:var(--fd);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  color:#8a5a1e;background:rgba(216,159,73,.13);border:1px solid rgba(216,159,73,.32);border-radius:999px;padding:.22rem .62rem}
+.pr-title{font-family:var(--fd);font-weight:700;font-size:1.16rem;line-height:1.3;margin:.1rem 0 .7rem;color:#163331}
+.pr-stem{font-size:1.03rem;line-height:1.72;color:#243431;background:#FBF8F2;border:1px solid rgba(22,48,47,.1);
+  border-left:3px solid #D89F49;border-radius:0 10px 10px 0;padding:.85rem 1.1rem;margin:0 0 1.15rem}
+.pr-stem p{margin:.4rem 0}
+.pr-step{margin:1.15rem 0 0;padding-top:1.05rem;border-top:1px dashed rgba(22,48,47,.16)}
+.pr-step:first-child{border-top:0;padding-top:0}
+.pr-prompt{font-family:var(--fd);font-weight:700;font-size:.96rem;color:#163331;margin:0 0 .65rem}
+.pr-opts{display:grid;gap:.5rem}
+.pr-opt{display:flex;align-items:flex-start;gap:.7rem;width:100%;text-align:left;cursor:pointer;
+  background:#FFFFFF;border:1.5px solid rgba(22,48,47,.18);border-radius:12px;padding:.72rem .9rem;
+  font-size:1.02rem;line-height:1.5;color:#1f2e2c;font-family:inherit;transition:border-color .15s,background .15s,box-shadow .15s}
+.pr-opt:hover{border-color:#b07a2e;background:#FBF8F2}
+.pr-opt-mark{flex:none;width:1.3rem;height:1.3rem;border-radius:50%;border:2px solid rgba(22,48,47,.28);
+  margin-top:.05rem;display:grid;place-items:center;font-size:.72rem;font-weight:700;color:#fff}
+.pr-opt-body{flex:1}
+.pr-opt.sel{border-color:#825720;background:rgba(216,159,73,.10);box-shadow:0 0 0 1px #825720 inset}
+.pr-opt.sel .pr-opt-mark{border-color:#825720;background:#825720}
+.pr-opt.sel .pr-opt-mark::after{content:"\2022"}
+.marked .pr-opt{cursor:default}
+.marked .pr-opt:hover{background:#FFFFFF;border-color:rgba(22,48,47,.18)}
+.pr-opt.is-correct{border-color:#1f7a4d;background:rgba(31,122,77,.10)}
+.pr-opt.is-correct .pr-opt-mark{border-color:#1f7a4d;background:#1f7a4d}
+.pr-opt.is-correct .pr-opt-mark::after{content:"\2713"}
+.pr-opt.is-wrong{border-color:#c0392b;background:rgba(192,57,43,.09)}
+.pr-opt.is-wrong .pr-opt-mark{border-color:#c0392b;background:#c0392b}
+.pr-opt.is-wrong .pr-opt-mark::after{content:"\2717"}
+.pr-fb{display:none;font-size:.92rem;line-height:1.62;color:#33423f;margin:.55rem 0 0;padding:.62rem .85rem;background:#F2EEE4;border-radius:9px}
+.pr-fb.show{display:block}
+.pr-fb .ok{color:#1f7a4d;font-weight:700}
+.pr-fb .no{color:#c0392b;font-weight:700}
+.pr-actions{display:flex;align-items:center;gap:.75rem;margin-top:1.15rem;flex-wrap:wrap}
+.pr-btn{font-family:var(--fd);font-weight:700;border-radius:999px;padding:.58rem 1.3rem;cursor:pointer;font-size:.94rem;border:1px solid transparent}
+.pr-mark{background:linear-gradient(135deg,#EDCB8B,#D89F49);color:#16302B}
+.pr-mark:hover{filter:brightness(1.05)}
+.pr-reset{background:transparent;border:1px solid rgba(22,48,47,.25);color:#4C5E5B}
+.pr-reset:hover{border-color:#825720;color:#825720}
+.pr-score{font-family:var(--fd);font-weight:700;font-size:.92rem;margin-left:.2rem}
+.pr-score.all{color:#1f7a4d}
+.pr-score.some{color:#825720}
+.pr-sol{margin-top:1.05rem;border-top:1px solid rgba(22,48,47,.12);padding-top:.75rem}
+.pr-sol>summary{cursor:pointer;font-family:var(--fd);font-weight:700;color:#825720;font-size:.9rem;list-style:none}
+.pr-sol>summary::-webkit-details-marker{display:none}
+.pr-sol>summary::before{content:"\25B8 ";color:#b07a2e}
+.pr-sol[open]>summary::before{content:"\25BE "}
+.pr-sol-body{margin-top:.75rem;font-size:.97rem;line-height:1.72;color:#243431}
+.pr-sol-body p{margin:.55rem 0}
+.pr-sol-body strong{color:#163331}
+@media(max-width:560px){.bt-label{min-width:100%}.pr-card{border-radius:14px}}
+
+/* ---- marks + exam-style flow ---- */
+.pr-topline{display:flex;justify-content:space-between;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.55rem}
+.pr-marks-badge{font-family:var(--fd);font-weight:700;font-size:.78rem;color:#8a5a1e;background:rgba(216,159,73,.14);border:1px solid rgba(216,159,73,.34);border-radius:999px;padding:.22rem .7rem;white-space:nowrap}
+.pr-paper{font-size:.76rem;color:#5c6c69;margin:.1rem 0 .7rem;font-family:var(--fd);letter-spacing:.02em}
+.pr-prompt-row{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem 1rem;flex-wrap:wrap}
+.pr-prompt-row .pr-prompt{margin:0 0 .55rem}
+.pr-scheme{font-family:var(--fd);font-weight:700;font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:#5c6c69;background:#F2EEE4;border:1px solid rgba(22,48,47,.14);border-radius:999px;padding:.2rem .58rem;white-space:nowrap;flex:none}
+.pr-scheme.earned{color:#1a6e43;background:rgba(31,122,77,.12);border-color:rgba(31,122,77,.4)}
+.pr-scheme.lost{color:#a82a1a;background:rgba(192,57,43,.10);border-color:rgba(192,57,43,.36)}
+.pr-exam .pr-step.pr-locked{display:none}
+.pr-exam .pr-step{animation:prReveal .25s ease}
+@keyframes prReveal{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.pr-score.none{color:#c0392b}
+.pr-legend{font-size:.86rem;line-height:1.6;color:var(--on-mut);background:rgba(245,242,236,.05);border:1px solid rgba(245,242,236,.16);border-radius:12px;padding:.8rem 1rem;margin:1rem 0 .2rem}
+.pr-legend b{color:var(--on-ink)}
+@media(prefers-reduced-motion:reduce){.pr-exam .pr-step{animation:none}}
+
+/* ---- dropdown (collapsible) question cards: the model ---- */
+details.pr-card{padding:0;overflow:hidden}
+details.pr-card>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:.85rem;padding:1.05rem 1.25rem}
+details.pr-card>summary::-webkit-details-marker{display:none}
+details.pr-card>summary:hover{background:#FBF8F2}
+details.pr-card>summary:focus-visible{outline:2px solid #825720;outline-offset:-2px}
+details.pr-card[open]>summary{border-bottom:1px solid rgba(22,48,47,.10)}
+.pr-sum-main{display:flex;flex-direction:column;gap:.45rem;min-width:0}
+.pr-sum-title{font-family:var(--fd);font-weight:700;font-size:1.06rem;line-height:1.3;color:#163331}
+.pr-sum-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem}
+.pr-caret{flex:none;width:.66rem;height:.66rem;border-right:2px solid #8a5a1e;border-bottom:2px solid #8a5a1e;transform:rotate(45deg);transition:transform .2s ease}
+details.pr-card[open]>summary .pr-caret{transform:rotate(-135deg)}
+.pr-body{padding:clamp(1rem,3vw,1.6rem) clamp(1.25rem,3vw,1.9rem) clamp(1.3rem,3vw,1.9rem)}
+.pr-body .pr-stem{margin-top:.2rem}

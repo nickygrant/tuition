@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
+<meta content="Dr Nicky Grant" name="author"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Generalized Method of Moments (GMM) Explained | Econometrics</title>
+<meta content="An introduction to the generalized method of moments (GMM): moment conditions, the criterion function, identification, the efficient two-step estimator and weight matrix." name="description"/>
+<link href="https://www.drnickygrant.com/blog/generalized-method-of-moments-gmm.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="Generalized Method of Moments (GMM) Explained | Econometrics" property="og:title"/>
+<meta content="Moment conditions, the GMM criterion, identification, the efficient two-step estimator and the optimal weight matrix, with OLS, IV and 2SLS as special cases." property="og:description"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" property="og:image"/>
+<meta content="https://www.drnickygrant.com/blog/generalized-method-of-moments-gmm.html" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" name="twitter:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.drnickygrant.com/#website",
+      "url": "https://www.drnickygrant.com/",
+      "name": "Dr Nicky Grant | Economics, Econometrics and Maths Tutor",
+      "description": "Specialist online tuition in economics, econometrics, mathematics, statistics, finance, TMUA and Oxbridge economics applications, supported by verifiable Cambridge credentials, teaching materials and research evidence.",
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.drnickygrant.com/#person",
+      "name": "Dr Nicky Grant",
+      "alternateName": [
+        "Nicky Grant",
+        "Nicky L. Grant",
+        "Nicky Lee Grant"
+      ],
+      "honorificPrefix": "Dr",
+      "givenName": "Nicky",
+      "familyName": "Grant",
+      "url": "https://www.drnickygrant.com/",
+      "image": "https://www.drnickygrant.com/img/nicky-grant-headshot.webp",
+      "email": "nicky.L.grant@gmail.com",
+      "telephone": "+447393352331",
+      "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor",
+      "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0008-8979-4623",
+          "url": "https://orcid.org/0009-0008-8979-4623"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Semantic Scholar",
+          "value": "97839351",
+          "url": "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Cambridge",
+        "sameAs": "https://www.cam.ac.uk/"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "PhD in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "MPhil in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BA in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        }
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "CeMMAP, Centre for Microdata Methods and Practice",
+        "sameAs": "https://cemmap.ac.uk/"
+      },
+      "knowsAbout": [
+        "economics tuition",
+        "econometrics tuition",
+        "A Level Mathematics",
+        "Further Mathematics",
+        "A Level Economics",
+        "TMUA preparation",
+        "Oxbridge Economics applications",
+        "statistics",
+        "financial econometrics",
+        "time series econometrics",
+        "GMM",
+        "instrumental variables",
+        "panel data",
+        "PhD econometrics"
+      ],
+      "sameAs": [
+        "https://orcid.org/0009-0008-8979-4623",
+        "https://www.linkedin.com/in/nicky-lee-grant/",
+        "https://cemmap.ac.uk/person/nicky-l-grant/",
+        "https://research-portal.st-andrews.ac.uk/en/persons/nicky-lee-grant",
+        "https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/",
+        "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351",
+        "https://www.youtube.com/@economaths",
+        "https://independent.academia.edu/NickyGrant"
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/generalized-method-of-moments-gmm.html#page",
+      "url": "https://www.drnickygrant.com/blog/generalized-method-of-moments-gmm.html",
+      "name": "Generalized method of moments (GMM): an introduction",
+      "isPartOf": {
+        "@id": "https://www.drnickygrant.com/#website"
+      },
+      "about": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB",
+      "description": "An introduction to the generalized method of moments (GMM): moment conditions, the criterion function, identification, the efficient two-step estimator, the optimal weight matrix and OLS/IV/2SLS as special cases.",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/instrumental-variables-weak-instruments.html",
+        "https://www.drnickygrant.com/blog/identification-robust-inference-singular-variance.html",
+        "https://www.drnickygrant.com/phd-econometrics-tutor.html"
+      ],
+      "abstract": "GMM estimates parameters by choosing them so that a set of sample moment conditions is as close to zero as possible. It nests OLS, IV and 2SLS, and the efficient two-step estimator weights the moments by the inverse of their variance.",
+      "datePublished": "2026-06-16",
+      "dateModified": "2026-06-16"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.drnickygrant.com/blog/generalized-method-of-moments-gmm.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.drnickygrant.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://www.drnickygrant.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Generalized Method of Moments",
+          "item": "https://www.drnickygrant.com/blog/generalized-method-of-moments-gmm.html"
+        }
+      ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://www.drnickygrant.com/blog/generalized-method-of-moments-gmm.html#article",
+      "headline": "Generalized method of moments (GMM): an introduction",
+      "url": "https://www.drnickygrant.com/blog/generalized-method-of-moments-gmm.html",
+      "author": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.drnickygrant.com/blog/generalized-method-of-moments-gmm.html#page"
+      },
+      "datePublished": "2026-06-16",
+      "dateModified": "2026-06-16",
+      "inLanguage": "en-GB",
+      "image": "https://www.drnickygrant.com/img/og-image.jpg",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/instrumental-variables-weak-instruments.html",
+        "https://www.drnickygrant.com/blog/identification-robust-inference-singular-variance.html",
+        "https://www.drnickygrant.com/phd-econometrics-tutor.html"
+      ],
+      "abstract": "GMM estimates parameters by choosing them so that a set of sample moment conditions is as close to zero as possible. It nests OLS, IV and 2SLS, and the efficient two-step estimator weights the moments by the inverse of their variance.",
+      "description": "An introduction to the generalized method of moments (GMM): moment conditions, the criterion function, identification, the efficient two-step estimator, the optimal weight matrix and OLS/IV/2SLS as special cases."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.drnickygrant.com/blog/generalized-method-of-moments-gmm.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the generalized method of moments?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GMM is an estimation method that starts from a set of population moment conditions of the form E[g(x, beta_0)] = 0. The estimator chooses the parameter that makes the corresponding sample moments as close to zero as possible, measured by a quadratic criterion function with a weight matrix."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How are OLS and IV special cases of GMM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OLS corresponds to the moment condition E[x u] = 0 and IV/2SLS to the moment condition E[z u] = 0. When the number of moments equals the number of parameters the model is just-identified and GMM solves the sample moments exactly, reproducing the OLS or IV estimator."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the efficient two-step GMM estimator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Efficient two-step GMM uses the inverse of the estimated moment variance matrix as the weight matrix. A first-step consistent estimate is used to form residuals and estimate the moment variance, and the second step re-estimates the parameters with that optimal weight matrix, achieving the smallest asymptotic variance in the class of GMM estimators."
+          }
+        }
+      ]
+    }
+  ]
+}</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../css/main.css" rel="stylesheet"/>
+<link href="../css/polish.css" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script crossorigin="anonymous" defer="" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+.art{max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) clamp(3rem,8vw,6rem)}
+.art-hero{padding:clamp(6rem,14vw,9rem) clamp(1rem,4vw,2.5rem) clamp(2rem,5vw,3.5rem);border-bottom:1px solid rgba(255,255,255,.07)}
+.eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.75rem;display:block}
+.art-hero h1{font-family:var(--fd);font-size:clamp(2.1rem,5vw,3.6rem);font-weight:500;line-height:1.02;letter-spacing:-.04em;color:var(--ivory,#F8F2E8);margin-bottom:1rem}
+.art-hero .lede{font-size:clamp(1rem,1.8vw,1.15rem);font-weight:300;color:rgba(248,242,232,.72);line-height:1.78;max-width:660px}
+.art-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.25rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(248,242,232,.38)}
+h2{font-family:var(--fd);font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:500;letter-spacing:-.03em;color:var(--ivory,#F8F2E8);margin:2.5rem 0 .75rem;line-height:1.05}
+h3{font-family:var(--fd);font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:500;letter-spacing:-.02em;color:var(--ivory,#F8F2E8);margin:2rem 0 .6rem}
+p{font-size:clamp(.93rem,1.6vw,1rem);font-weight:300;color:rgba(248,242,232,.78);line-height:1.85;margin-bottom:1.1rem}
+.def{background:linear-gradient(180deg,rgba(211,163,91,.07),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-left:3px solid var(--copper,#D3A35B);padding:1.1rem 1.4rem;margin:1.5rem 0;border-radius:0 8px 8px 0}
+.def .def-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.45rem;display:block}
+.def p{font-size:.92rem;margin:0;color:rgba(248,242,232,.88)}
+.math-block{background:rgba(248,242,232,.04);border:1px solid rgba(248,242,232,.09);border-radius:8px;padding:1.1rem 1.6rem;margin:1.1rem 0;font-size:.95rem;color:var(--ivory,#F8F2E8);overflow-x:auto;line-height:1.9;text-align:center}
+.note{background:rgba(248,242,232,.03);border-left:2px solid rgba(248,242,232,.18);padding:.75rem 1.2rem;margin:1.2rem 0;border-radius:0 6px 6px 0}
+.note p{font-size:.88rem;margin:0;color:rgba(248,242,232,.58)}
+.answer-capsule{background:linear-gradient(180deg,rgba(211,163,91,.09),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.22);border-radius:10px;padding:1.2rem 1.5rem;margin:0 0 2.5rem}
+.answer-capsule p{font-size:.92rem;margin:0;color:rgba(248,242,232,.82);line-height:1.75}
+.img-block{margin:1.8rem 0;text-align:center}
+.img-block img{max-width:100%;border-radius:8px;border:1px solid rgba(248,242,232,.08)}
+.img-caption{font-size:.75rem;color:rgba(248,242,232,.4);margin-top:.5rem;font-style:italic;display:block}
+.part-nav{display:flex;gap:.75rem 1rem;flex-wrap:wrap;margin:2rem 0;padding:1rem 1.2rem;background:rgba(248,242,232,.025);border:1px solid rgba(248,242,232,.07);border-radius:8px;align-items:center}
+.part-nav a{font-size:.82rem;color:var(--copper,#D3A35B);font-weight:500;text-decoration:none}
+.part-nav a:hover{text-decoration:underline}
+.part-nav .divider{color:rgba(248,242,232,.2);font-size:.82rem}
+a.gold-link{color:var(--copper,#D3A35B);font-weight:500}
+.tuition-cta{background:linear-gradient(180deg,rgba(211,163,91,.08),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-radius:12px;padding:1.5rem 1.75rem;margin:2rem 0}
+.tuition-cta p{margin:0;font-size:.95rem;color:rgba(248,242,232,.8)}
+.tuition-cta p:first-child{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.5rem}
+hr.sd{border:none;border-top:1px solid rgba(255,255,255,.07);margin:2.5rem 0}
+</style>
+<meta content="2026-06-16" name="last-modified"/></head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a aria-label="Dr Nicky Grant home" class="nav-logo" href="../index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list">
+<li><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
+<li><a href="../university-postgraduate-tutoring.html">University</a></li>
+<li><a href="../blog.html">Resources</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../pricing.html">Pricing</a></li>
+</ul>
+<a class="nav-cta" href="../index.html#contact">Book consultation</a>
+<button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+</div>
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+</nav>
+<div class="art-hero">
+<div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
+<span class="eyebrow">Econometrics · Study notes · GMM</span>
+<h1>Generalized method of moments <em>(GMM): an introduction</em></h1>
+<p class="lede">GMM is the framework that sits underneath OLS, instrumental variables and much of modern econometrics. These notes build it up from moment conditions, the criterion function and identification, through to the efficient two-step estimator and the optimal weight matrix.</p>
+<div class="art-meta"><span>Dr Nicky Grant · econometrics specialist</span><span>Econometrics Study Notes</span><span>Intermediate → Advanced</span></div>
+</div>
+</div>
+<main class="art" id="main">
+<div aria-label="Quick answer" class="answer-capsule" data-chunk="LM-answer-capsule" role="note"><p>GMM estimates parameters by choosing them so that a set of sample moment conditions is as close to zero as possible. It nests OLS, IV and 2SLS as special cases, and the efficient two-step estimator weights the moments by the inverse of their variance to achieve the smallest asymptotic variance.</p></div>
+<div aria-label="Related notes" class="part-nav">
+<span style="font-size:.78rem;color:rgba(248,242,232,.52)">Econometrics notes:</span>
+<a href="what-is-ols-ordinary-least-squares.html">OLS</a>
+<span class="divider">|</span>
+<a href="instrumental-variables-weak-instruments.html">Instrumental variables</a>
+<span class="divider">|</span>
+<a href="generalized-method-of-moments-gmm.html">GMM</a>
+<span class="divider">|</span>
+<a href="identification-robust-inference-singular-variance.html">Identification-robust inference</a>
+</div>
+<section class="study-note-box" id="how-to-read-this-note">
+<h2>How to read these notes</h2>
+<p>The generalized method of moments (GMM), introduced by Hansen (1982), is one of the unifying ideas of modern econometrics. It is best approached after <a class="gold-link" href="what-is-ols-ordinary-least-squares.html">OLS</a> and <a class="gold-link" href="instrumental-variables-weak-instruments.html">instrumental variables</a>, because both turn out to be special cases. These notes draw on the setup used in the author's research on GMM with singular moment variance, but keep the treatment at an intermediate-to-advanced level rather than the full research generality.</p>
+</section>
+<section id="moment-conditions">
+<h2>1. The starting point: moment conditions</h2>
+<p>Almost every estimator you have met can be written as the solution to a <strong>moment condition</strong> — a statement that the expectation of some function of the data and the parameter is zero at the true value. Formally, suppose we have data \(\{x_t\}_{t=1}^T\) and a known \(m\times 1\) <strong>moment function</strong> \(g(\cdot,\cdot)\) satisfying</p>
+<div class="math-note">E[ g(x<sub>t</sub>, β<sub>0</sub>) ] = 0</div>
+<p>at the true parameter \(\beta_0\). This single equation is the engine of GMM. The moment function packages our economic and statistical assumptions into a set of expectations that should hold exactly at the truth.</p>
+<div class="def"><span class="def-label">Core idea</span><p>A <strong>moment condition</strong> says that, on average in the population, the moment function evaluated at the true parameter is zero. GMM estimates \(\beta_0\) by finding the value that makes the corresponding <em>sample</em> averages as close to zero as the data allow.</p></div>
+<p>The sample counterpart of the population moment is the sample average</p>
+<div class="math-note">ĝ<sub>T</sub>(β) = (1/T) Σ g(x<sub>t</sub>, β)</div>
+<p>If we could set this exactly to zero we would, but in general there are more moments than parameters, so no value of \(\beta\) zeroes all of them simultaneously. GMM resolves this by minimising a weighted measure of how far the sample moments are from zero.</p>
+</section>
+<section id="examples">
+<h2>2. OLS, IV and 2SLS as moment conditions</h2>
+<p>The power of the framework comes from how many familiar estimators fit into it. Each corresponds to a particular choice of moment function.</p>
+<table class="concept-table">
+<thead><tr><th>Estimator</th><th>Moment condition</th><th>Interpretation</th></tr></thead>
+<tbody>
+<tr><td>OLS</td><td>E[x<sub>i</sub> u<sub>i</sub>] = 0</td><td>Regressors uncorrelated with the error (exogeneity).</td></tr>
+<tr><td>IV / 2SLS</td><td>E[z<sub>i</sub> u<sub>i</sub>] = 0</td><td>Instruments uncorrelated with the error.</td></tr>
+<tr><td>Maximum likelihood</td><td>E[∂ log f / ∂β] = 0</td><td>The score has mean zero at the truth.</td></tr>
+</tbody>
+</table>
+<p>In the regression model \(u_i=y_i-x_i'\beta\), so the OLS moment becomes \(E[x_i(y_i-x_i'\beta_0)]=0\) and the IV moment becomes \(E[z_i(y_i-x_i'\beta_0)]=0\). GMM treats all of these in one stroke: choose \(\beta\) to bring the sample version of the chosen moment as close to zero as possible.</p>
+</section>
+<section id="criterion">
+<h2>3. The GMM criterion function</h2>
+<p>When there are more moments than parameters we cannot zero them all, so we measure their distance from zero with a quadratic form. The GMM estimator solves</p>
+<div class="math-note">β̂<sub>GMM</sub> = argmin<sub>β</sub>  ĝ<sub>T</sub>(β)′ W<sub>T</sub> ĝ<sub>T</sub>(β)</div>
+<p>where \(W_T\) is an \(m\times m\) positive definite <strong>weight matrix</strong>. The criterion is a weighted sum of squared sample moments. Different weight matrices give different estimators, and a central question of GMM is which weight matrix to use.</p>
+<div class="def"><span class="def-label">Identification</span><p>The model is <strong>just-identified</strong> when the number of moments equals the number of parameters (\(m=p\)); then GMM can set the sample moments exactly to zero and the weight matrix is irrelevant. It is <strong>over-identified</strong> when there are more moments than parameters (\(m&gt;p\)); then the choice of weight matrix matters, and the leftover moments provide a specification check.</p></div>
+<p>This is exactly why IV and 2SLS appear as special cases. With one instrument per endogenous regressor the model is just-identified and GMM reproduces the IV estimator. With more instruments than regressors it is over-identified, and efficient GMM generalises 2SLS.</p>
+</section>
+<section id="two-step">
+<h2>4. The efficient two-step estimator and the optimal weight matrix</h2>
+<p>The weight matrix is not innocuous: it determines the efficiency of the estimator. The key result (Hansen, 1982) is that the asymptotically efficient choice is the inverse of the variance of the moments,</p>
+<div class="math-note">W<sub>T</sub> = Ω<sup>−1</sup>,   Ω = lim<sub>T→∞</sub> Var( T<sup>−1/2</sup> Σ g(x<sub>t</sub>, β<sub>0</sub>) )</div>
+<p>Intuitively, moments that are noisy (high variance) should be trusted less, and moments that are precise should be weighted more heavily. Weighting by \(\Omega^{-1}\) does exactly this and delivers the smallest asymptotic variance in the class of GMM estimators.</p>
+<p>The catch is that \(\Omega\) depends on the unknown \(\beta_0\). The standard solution is the <strong>two-step estimator</strong>, used throughout applied work:</p>
+<div class="def"><span class="def-label">Two-step GMM</span><p><strong>Step 1:</strong> estimate \(\beta\) with a simple (sub-optimal but consistent) weight matrix such as the identity, and use it to form residuals.<br/><strong>Step 2:</strong> use those residuals to estimate the moment variance, \(\hat\Omega_T(\beta)=(1/T)\sum_t g_t(\beta)g_t(\beta)'\), and re-estimate \(\beta\) using \(\hat\Omega_T^{-1}\) as the weight matrix.</p></div>
+<p>Under the identification condition and standard regularity assumptions, two-step GMM is consistent and \(\sqrt{T}(\hat\beta-\beta_0)\) is asymptotically normal at the usual root-\(T\) rate, with the smallest possible variance. The estimated moment variance is exactly the object \(\hat\Omega_T(\beta)\) and its expected first derivative \(\hat G_T\) that appear in the author's GMM research; in standard problems they behave well, but the research studies what happens when this variance matrix becomes (almost) singular.</p>
+</section>
+<section id="testing">
+<h2>5. The over-identification (J) test</h2>
+<p>When the model is over-identified, the leftover moment conditions give a free specification test. If the model and its moment conditions are correct, the minimised value of the efficient criterion function, scaled by the sample size, has a known limiting distribution:</p>
+<div class="math-note">J = T · ĝ<sub>T</sub>(β̂)′ Ω̂<sub>T</sub><sup>−1</sup> ĝ<sub>T</sub>(β̂) →<sup>d</sup> χ²<sub>(m−p)</sub></div>
+<p>The degrees of freedom equal the number of over-identifying restrictions, \(m-p\). A large J-statistic is evidence that at least one moment condition is invalid — in an IV context, that some instrument is not exogenous. This is the GMM generalisation of the idea that surplus moments should still hold at the truth.</p>
+</section>
+<section id="why-it-matters">
+<h2>6. Why GMM matters</h2>
+<p>GMM is valuable precisely because it asks so little. It does not require the full distribution of the data, unlike <a class="gold-link" href="maximum-likelihood-estimation-explained.html">maximum likelihood</a>; it only requires a credible set of moment conditions. That makes it the natural tool for models that are easy to specify in terms of moments but hard to specify in terms of a likelihood — dynamic panel models, rational-expectations and Euler-equation models in macro and finance, and over-identified IV systems.</p>
+<p>It also exposes a deep unity: OLS, IV, 2SLS and many other estimators are not separate tricks but instances of one principle. Understanding GMM is therefore a turning point in a graduate econometrics course, and the entry point to research-level topics such as weak identification and — the subject of the author's own work — <a class="gold-link" href="identification-robust-inference-singular-variance.html">inference when the moment variance matrix is singular</a>.</p>
+</section>
+<section class="study-note-box" id="related-notes">
+<h2>Related study notes</h2>
+<ol>
+<li><a href="instrumental-variables-weak-instruments.html">Instrumental variables and weak instruments</a> — the just-identified and over-identified IV cases that GMM generalises.</li>
+<li><a href="maximum-likelihood-estimation-explained.html">Maximum likelihood estimation explained</a> — the alternative when you are willing to assume a full distribution.</li>
+<li><a href="identification-robust-inference-singular-variance.html">Identification-robust inference and singular moment variance</a> — what happens to GMM when the moment variance is (almost) singular.</li>
+</ol>
+</section>
+<div class="tuition-cta"><p>Econometrics tuition</p><p>GMM is one of the hardest topics in a graduate econometrics course. For 1-1 help with moment conditions, the efficient two-step estimator, the J-test or GMM coursework, see <a class="gold-link" href="../econometrics-tutor.html">econometrics tuition</a> or <a class="gold-link" href="../phd-econometrics-tutor.html">PhD econometrics tuition</a>.</p><p>Free videos: the <a class="gold-link" href="https://www.youtube.com/@economaths" rel="noopener" target="_blank">@economaths channel</a> has worked videos on IV, the regression model in matrix form and asymptotics.</p></div>
+</main>
+<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../phd-econometrics-tutor.html"><strong>PhD econometrics tuition</strong><span>GMM, efficient estimation, weak identification and asymptotics.</span></a><a class="funnel-card" href="../econometrics-tutor.html"><strong>Econometrics tuition</strong><span>Moment conditions, IV/2SLS, GMM and applied estimation.</span></a><a class="funnel-card" href="../teaching.html"><strong>Free econometrics notes</strong><span>Lecture notes and exercises on estimation and inference.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
+<div class="foot-cols">
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
+<div class="fc"><h4>A-Level &amp; Admissions</h4><a href="../a-level-admissions-tutoring.html">Overview</a><a href="../a-level-maths-tutor.html">A-Level Maths</a><a href="../a-level-economics-tutor.html">A-Level Economics</a><a href="../tmua-preparation.html">TMUA preparation</a><a href="../oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
+<div class="fc"><h4>University &amp; Postgraduate</h4><a href="../university-postgraduate-tutoring.html">Overview</a><a href="../university-economics-tutor.html">University Economics</a><a href="../econometrics-tutor.html">Econometrics</a><a href="../statistics-tutor.html">Statistics</a><a href="../finance-tutor.html">Finance</a><a href="../phd-econometrics-tutor.html">PhD econometrics</a></div>
+<div class="fc"><h4>Resources &amp; contact</h4><a href="../blog.html">Study notes</a><a href="../questions.html">Common questions</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../how-it-works.html">How it works</a><a href="../index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
+</div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online International and UK-wide</span></div>
+</footer>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+nav.classList.toggle('solid',scrollY>40);
+function toggleNav(btn){const m=document.getElementById('mobNav');const o=m.classList.toggle('open');btn.setAttribute('aria-expanded',String(o));}
+document.addEventListener('click',function(e){const m=document.getElementById('mobNav');const b=document.getElementById('burgerBtn');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&b&&!b.contains(e.target)){m.classList.remove('open');b.setAttribute('aria-expanded','false');}});
+</script>
+<script defer src="../js/chat.js"></script>
+</body>
+</html>

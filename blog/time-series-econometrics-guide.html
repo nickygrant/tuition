@@ -10,6 +10,13 @@
 <title>Time Series Econometrics Notes | Process, Stationarity, White Noise</title>
 <meta content="Accessible time-series econometrics notes based on lecture TeX: process vs realisation, white noise, stationarity, autocovariance, autocorrelation and the first intuition for AR/MA models." name="description"/>
 <link href="https://www.drnickygrant.com/blog/time-series-econometrics-guide.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="Time Series Econometrics Notes | Process, Stationarity, White Noise" property="og:title"/>
+<meta content="Accessible time-series econometrics notes: process vs realisation, white noise, stationarity, autocovariance, autocorrelation and the first intuition for AR/MA models." property="og:description"/>
+<meta content="https://www.drnickygrant.com/blog/time-series-econometrics-guide.html" property="og:url"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" name="twitter:image"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <script type="application/ld+json">{
@@ -203,6 +210,17 @@
       ],
       "abstract": "Accessible notes on the core definitions of time-series econometrics: process, realisation, white noise, stationarity, autocovariance, autocorrelation and the first intuition for AR and MA models.",
       "description": "Accessible time-series econometrics notes based on lecture TeX: process vs realisation, white noise, stationarity, autocovariance, autocorrelation and the first intuition for AR/MA models."
+    },
+    {
+      "@type": "VideoObject",
+      "@id": "https://www.drnickygrant.com/blog/time-series-econometrics-guide.html#economaths-videos",
+      "name": "Time Series Econometrics video lectures by Dr Nicky Grant",
+      "description": "Companion @economaths video playlist covering stationarity, white noise, the autocorrelation function, AR, MA and ARMA processes, ARIMA and forecasting.",
+      "url": "https://www.youtube.com/playlist?list=PLdlEREV7OXveBEfmeZeXOBV9oEh9gR20F",
+      "embedUrl": "https://www.youtube.com/embed/videoseries?list=PLdlEREV7OXveBEfmeZeXOBV9oEh9gR20F",
+      "inLanguage": "en-GB",
+      "creator": {"@id": "https://www.drnickygrant.com/#person"},
+      "isPartOf": {"@id": "https://www.drnickygrant.com/blog/time-series-econometrics-guide.html#page"}
     }
   ]
 }</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
@@ -250,7 +268,7 @@ hr.sd{border:none;border-top:1px solid rgba(255,255,255,.07);margin:2.5rem 0}
 <a aria-label="Dr Nicky Grant home" class="nav-logo" href="../index.html">Dr Nicky <span>Grant</span></a>
 <ul class="nav-links" role="list">
 <li><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
-<li><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a></li>
+<li><a href="../university-postgraduate-tutoring.html">University</a></li>
 <li><a href="../blog.html">Resources</a></li>
 <li><a href="../about.html">About</a></li>
 <li><a href="../pricing.html">Pricing</a></li>
@@ -258,7 +276,7 @@ hr.sd{border:none;border-top:1px solid rgba(255,255,255,.07);margin:2.5rem 0}
 <a class="nav-cta" href="../index.html#contact">Book consultation</a>
 <button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
 </div>
-<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
 </nav>
 <div class="art-hero">
 <div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
@@ -278,6 +296,11 @@ hr.sd{border:none;border-top:1px solid rgba(255,255,255,.07);margin:2.5rem 0}
 <a href="ar-arma-processes-explained.html">3. AR, MA &amp; ARMA intuition</a>
 <span class="divider">|</span>
 <a href="time-series-econometrics-part2.html">4. Derivations, prediction &amp; seasonality</a>
+</div>
+<p class="eyebrow" style="margin-top:1.8rem">Companion videos · @economaths</p>
+<div class="playlist-grid" aria-label="Companion time series videos" style="margin-bottom:1.5rem">
+<a class="playlist-card" href="https://www.youtube.com/playlist?list=PLdlEREV7OXveBEfmeZeXOBV9oEh9gR20F" target="_blank" rel="noopener"><small>Playlist</small><strong>Time Series Econometrics</strong><span>Process, stationarity, white noise, the ACF and correlogram, AR/MA/ARMA processes.</span></a>
+<a class="playlist-card" href="https://www.youtube.com/@economaths" target="_blank" rel="noopener"><small>YouTube channel</small><strong>@economaths</strong><span>The full channel of worked econometrics and time-series videos.</span></a>
 </div>
 <section class="study-note-box" id="how-to-read-this-note">
 <h2>How to read these notes</h2>
@@ -372,14 +395,14 @@ e s\): past observations have no linear predictive power for future observations
 </section>
 <div class="tuition-cta"><p>Time series tuition</p><p>These notes support students working through university time-series econometrics. For 1-1 help with stationarity, autocorrelation, ARMA models, correlograms or exam questions, see <a class="gold-link" href="../econometrics-tutor.html">econometrics tuition</a> or <a class="gold-link" href="../financial-econometrics-tutor.html">financial econometrics tuition</a>.</p></div>
 </main>
-<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../econometrics-tutor.html"><strong>Econometrics tuition</strong><span>Stationarity, ARMA models, forecasting and applied time series.</span></a><a class="funnel-card" href="../financial-econometrics-tutor.html"><strong>Financial econometrics tuition</strong><span>Returns, volatility, ARMA/GARCH and empirical finance.</span></a><a class="funnel-card" href="../teaching.html"><strong>Free time series notes</strong><span>Downloadable time-series econometrics notes and problem sets.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book a free consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
+<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../econometrics-tutor.html"><strong>Econometrics tuition</strong><span>Stationarity, ARMA models, forecasting and applied time series.</span></a><a class="funnel-card" href="../financial-econometrics-tutor.html"><strong>Financial econometrics tuition</strong><span>Returns, volatility, ARMA/GARCH and empirical finance.</span></a><a class="funnel-card" href="../teaching.html"><strong>Free time series notes</strong><span>Downloadable time-series econometrics notes and problem sets.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
 <div class="foot-cols">
 <div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
 <div class="fc"><h4>A-Level &amp; Admissions</h4><a href="../a-level-admissions-tutoring.html">Overview</a><a href="../a-level-maths-tutor.html">A-Level Maths</a><a href="../a-level-economics-tutor.html">A-Level Economics</a><a href="../tmua-preparation.html">TMUA preparation</a><a href="../oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
 <div class="fc"><h4>University &amp; Postgraduate</h4><a href="../university-postgraduate-tutoring.html">Overview</a><a href="../university-economics-tutor.html">University Economics</a><a href="../econometrics-tutor.html">Econometrics</a><a href="../statistics-tutor.html">Statistics</a><a href="../finance-tutor.html">Finance</a><a href="../phd-econometrics-tutor.html">PhD econometrics</a></div>
 <div class="fc"><h4>Resources &amp; contact</h4><a href="../blog.html">Study notes</a><a href="../questions.html">Common questions</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../how-it-works.html">How it works</a><a href="../index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
 </div>
-<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online UK-wide</span></div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online International and UK-wide</span></div>
 </footer>
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();
@@ -389,5 +412,6 @@ nav.classList.toggle('solid',scrollY>40);
 function toggleNav(btn){const m=document.getElementById('mobNav');const o=m.classList.toggle('open');btn.setAttribute('aria-expanded',String(o));}
 document.addEventListener('click',function(e){const m=document.getElementById('mobNav');const b=document.getElementById('burgerBtn');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&b&&!b.contains(e.target)){m.classList.remove('open');b.setAttribute('aria-expanded','false');}});
 </script>
+<script defer src="../js/chat.js"></script>
 </body>
 </html>

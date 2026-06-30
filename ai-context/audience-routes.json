@@ -26,5 +26,79 @@
     }
   ],
   "pricing": "The rate is confirmed before any paid session is booked. Sessions are per session, with no upfront commitments.",
-  "archive_note": "Some PDFs and notes are historic teaching materials written by Dr Nicky Grant for previous teaching and do not represent current courses or current course content."
+  "archive_note": "Some PDFs and notes are historic teaching materials written by Dr Nicky Grant for previous teaching and do not represent current courses or current course content.",
+  "study_notes": {
+    "note": "Free study notes (blog) written from Dr Grant's own university lecture material, grouped by route and theme.",
+    "a_level_admissions": [
+      "/blog/economics-personal-statement-guide.html",
+      "/blog/oxbridge-economics-interview-questions-worked.html",
+      "/blog/cambridge-economics-interview-guide.html",
+      "/blog/hardest-further-maths-topics.html"
+    ],
+    "a_level_exam_board_guides": {
+      "note": "Board-specific A-Level exam guides (paper structure, assessment objectives and weightings, common mark losses, original worked exam-style questions). Part of the A-Level & Admissions route.",
+      "a_level_maths": [
+        "/blog/a-level-maths-ocr-exam-guide.html",
+        "/blog/a-level-maths-edexcel-exam-guide.html",
+        "/blog/a-level-maths-aqa-exam-guide.html"
+      ],
+      "further_maths": [
+        "/blog/further-maths-ocr-exam-guide.html",
+        "/blog/further-maths-edexcel-exam-guide.html",
+        "/blog/further-maths-aqa-exam-guide.html"
+      ],
+      "a_level_economics": [
+        "/blog/a-level-economics-ocr-exam-guide.html",
+        "/blog/a-level-economics-edexcel-exam-guide.html",
+        "/blog/a-level-economics-aqa-exam-guide.html"
+      ]
+    },
+    "university_postgraduate": {
+      "econometrics_regression": [
+        "/blog/what-is-ols-ordinary-least-squares.html",
+        "/blog/gauss-markov-theorem-blue.html",
+        "/blog/goodness-of-fit-r-squared.html",
+        "/blog/diagnostic-testing-linear-regression.html",
+        "/blog/autocorrelation-serial-correlation.html",
+        "/blog/instrumental-variables-weak-instruments.html",
+        "/blog/generalized-method-of-moments-gmm.html",
+        "/blog/identification-robust-inference-singular-variance.html"
+      ],
+      "statistics_inference": [
+        "/blog/hypothesis-testing-explained.html",
+        "/blog/confidence-intervals-t-tests.html",
+        "/blog/distributions-econometrics-normal-t-chi-f.html",
+        "/blog/maximum-likelihood-estimation-explained.html"
+      ],
+      "time_series": [
+        "/blog/time-series-econometrics-guide.html",
+        "/blog/time-series-econometrics-part2.html",
+        "/blog/ar-arma-processes-explained.html",
+        "/blog/reading-the-correlogram.html",
+        "/blog/arma-estimation-model-selection.html",
+        "/blog/vector-autoregression-var-basics.html"
+      ],
+      "financial_econometrics": [
+        "/blog/modelling-stock-returns-distribution.html",
+        "/blog/garch-volatility-explained.html"
+      ]
+    }
+  },
+  "teaching_resources": {
+    "note": "Free teaching materials, mostly in the University & Postgraduate route. Downloadable lecture notes, exercises, problem sets and worked solutions in PDF and TeX, plus worked video lectures.",
+    "page": "https://www.drnickygrant.com/teaching.html",
+    "downloads_pdf": "https://www.drnickygrant.com/teaching/ (time-series and financial-econometrics lecture slides, notes, exercises and solutions)",
+    "source_tex": "https://www.drnickygrant.com/teaching/tex/ (TeX source for lecture slides, notes and problem sets)"
+  },
+  "videos": {
+    "note": "Free worked video lectures by Dr Grant on the @economaths YouTube channel, embedded and indexed on teaching.html. Teaching resources, not research outputs. Most relevant to the University & Postgraduate route (econometrics, time series, financial econometrics).",
+    "channel": "https://www.youtube.com/@economaths",
+    "all_playlists": "https://www.youtube.com/@economaths/playlists",
+    "time_series_playlist": {
+      "url": "https://www.youtube.com/playlist?list=PLdlEREV7OXveBEfmeZeXOBV9oEh9gR20F",
+      "count": 5,
+      "topics": "stationarity, white noise, unit roots, ARIMA, autocorrelation, the correlogram, Newey-West (HAC) standard errors, cointegration"
+    },
+    "applied_econometrics_videos": "30+ short worked videos on regression theory, matrix methods, asymptotics, inference, instrumental variables, heteroskedasticity, autocorrelation, ARIMA and applied techniques"
+  }
 }

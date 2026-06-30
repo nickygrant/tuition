@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
+<meta content="Dr Nicky Grant" name="author"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Diagnostic Testing in the Linear Regression Model | Econometrics Notes</title>
+<meta content="Diagnostic testing and robust inference in linear regression: heteroskedasticity, serial correlation, White and Newey-West standard errors and the White test." name="description"/>
+<link href="https://www.drnickygrant.com/blog/diagnostic-testing-linear-regression.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="Diagnostic Testing in the Linear Regression Model | Econometrics Notes" property="og:title"/>
+<meta content="Heteroskedasticity and serial correlation, White and Newey-West standard errors, the White test, the LM test and weighted least squares, explained with worked detail." property="og:description"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" property="og:image"/>
+<meta content="https://www.drnickygrant.com/blog/diagnostic-testing-linear-regression.html" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" name="twitter:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.drnickygrant.com/#website",
+      "url": "https://www.drnickygrant.com/",
+      "name": "Dr Nicky Grant | Economics, Econometrics and Maths Tutor",
+      "description": "Specialist online tuition in economics, econometrics, mathematics, statistics, finance, TMUA and Oxbridge economics applications, supported by verifiable Cambridge credentials, teaching materials and research evidence.",
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.drnickygrant.com/#person",
+      "name": "Dr Nicky Grant",
+      "alternateName": [
+        "Nicky Grant",
+        "Nicky L. Grant",
+        "Nicky Lee Grant"
+      ],
+      "honorificPrefix": "Dr",
+      "givenName": "Nicky",
+      "familyName": "Grant",
+      "url": "https://www.drnickygrant.com/",
+      "image": "https://www.drnickygrant.com/img/nicky-grant-headshot.webp",
+      "email": "nicky.L.grant@gmail.com",
+      "telephone": "+447393352331",
+      "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor",
+      "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0008-8979-4623",
+          "url": "https://orcid.org/0009-0008-8979-4623"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Semantic Scholar",
+          "value": "97839351",
+          "url": "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Cambridge",
+        "sameAs": "https://www.cam.ac.uk/"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "PhD in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "MPhil in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BA in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        }
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "CeMMAP, Centre for Microdata Methods and Practice",
+        "sameAs": "https://cemmap.ac.uk/"
+      },
+      "knowsAbout": [
+        "economics tuition",
+        "econometrics tuition",
+        "A Level Mathematics",
+        "Further Mathematics",
+        "A Level Economics",
+        "TMUA preparation",
+        "Oxbridge Economics applications",
+        "statistics",
+        "financial econometrics",
+        "time series econometrics",
+        "GMM",
+        "instrumental variables",
+        "panel data",
+        "PhD econometrics"
+      ],
+      "sameAs": [
+        "https://orcid.org/0009-0008-8979-4623",
+        "https://www.linkedin.com/in/nicky-lee-grant/",
+        "https://cemmap.ac.uk/person/nicky-l-grant/",
+        "https://research-portal.st-andrews.ac.uk/en/persons/nicky-lee-grant",
+        "https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/",
+        "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351",
+        "https://www.youtube.com/@economaths",
+        "https://independent.academia.edu/NickyGrant"
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/diagnostic-testing-linear-regression.html#page",
+      "url": "https://www.drnickygrant.com/blog/diagnostic-testing-linear-regression.html",
+      "name": "Diagnostic testing in the linear regression model",
+      "isPartOf": {
+        "@id": "https://www.drnickygrant.com/#website"
+      },
+      "about": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB",
+      "description": "Diagnostic testing and robust inference in the linear regression model: heteroskedasticity and serial correlation, White and Newey-West standard errors, the White test, the LM test for serial correlation and weighted least squares.",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/what-is-ols-ordinary-least-squares.html",
+        "https://www.drnickygrant.com/blog/hypothesis-testing-explained.html",
+        "https://www.drnickygrant.com/econometrics-tutor.html"
+      ],
+      "abstract": "When the homoskedasticity or no-serial-correlation assumptions fail, OLS stays unbiased but its standard errors are wrong. Diagnostic tests detect these problems and robust standard errors fix the inference.",
+      "datePublished": "2026-06-16",
+      "dateModified": "2026-06-16"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.drnickygrant.com/blog/diagnostic-testing-linear-regression.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.drnickygrant.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://www.drnickygrant.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Diagnostic Testing in the Linear Regression Model",
+          "item": "https://www.drnickygrant.com/blog/diagnostic-testing-linear-regression.html"
+        }
+      ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://www.drnickygrant.com/blog/diagnostic-testing-linear-regression.html#article",
+      "headline": "Diagnostic testing in the linear regression model",
+      "url": "https://www.drnickygrant.com/blog/diagnostic-testing-linear-regression.html",
+      "author": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.drnickygrant.com/blog/diagnostic-testing-linear-regression.html#page"
+      },
+      "datePublished": "2026-06-16",
+      "dateModified": "2026-06-16",
+      "inLanguage": "en-GB",
+      "image": "https://www.drnickygrant.com/img/og-image.jpg",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/what-is-ols-ordinary-least-squares.html",
+        "https://www.drnickygrant.com/blog/hypothesis-testing-explained.html",
+        "https://www.drnickygrant.com/econometrics-tutor.html"
+      ],
+      "abstract": "When the homoskedasticity or no-serial-correlation assumptions fail, OLS stays unbiased but its standard errors are wrong. Diagnostic tests detect these problems and robust standard errors fix the inference.",
+      "description": "Diagnostic testing and robust inference in the linear regression model: heteroskedasticity and serial correlation, White and Newey-West standard errors, the White test, the LM test for serial correlation and weighted least squares."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.drnickygrant.com/blog/diagnostic-testing-linear-regression.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is heteroskedasticity and why does it matter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Heteroskedasticity means the variance of the regression error changes across observations rather than being constant. OLS remains unbiased, but its usual standard errors are biased, so t-tests and confidence intervals are no longer valid. The fix is to use heteroskedasticity-robust (White) standard errors."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the White test for heteroskedasticity?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The White test regresses the squared OLS residuals on the regressors, their squares and cross-products. Under the null of homoskedasticity, the sample size times the R-squared of that auxiliary regression has a chi-squared distribution, with degrees of freedom equal to the number of slope terms. A large value rejects homoskedasticity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should you use Newey-West standard errors?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use Newey-West (HAC) standard errors when the errors may be serially correlated, which is common in time-series regressions. They are robust to both serial correlation and heteroskedasticity. If there is no serial correlation, White standard errors are preferable because they are more precise."
+          }
+        }
+      ]
+    }
+  ]
+}</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../css/main.css" rel="stylesheet"/>
+<link href="../css/polish.css" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script crossorigin="anonymous" defer="" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+.art{max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) clamp(3rem,8vw,6rem)}
+.art-hero{padding:clamp(6rem,14vw,9rem) clamp(1rem,4vw,2.5rem) clamp(2rem,5vw,3.5rem);border-bottom:1px solid rgba(255,255,255,.07)}
+.eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.75rem;display:block}
+.art-hero h1{font-family:var(--fd);font-size:clamp(2.1rem,5vw,3.6rem);font-weight:500;line-height:1.02;letter-spacing:-.04em;color:var(--ivory,#F8F2E8);margin-bottom:1rem}
+.art-hero .lede{font-size:clamp(1rem,1.8vw,1.15rem);font-weight:300;color:rgba(248,242,232,.72);line-height:1.78;max-width:660px}
+.art-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.25rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(248,242,232,.38)}
+h2{font-family:var(--fd);font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:500;letter-spacing:-.03em;color:var(--ivory,#F8F2E8);margin:2.5rem 0 .75rem;line-height:1.05}
+h3{font-family:var(--fd);font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:500;letter-spacing:-.02em;color:var(--ivory,#F8F2E8);margin:2rem 0 .6rem}
+p{font-size:clamp(.93rem,1.6vw,1rem);font-weight:300;color:rgba(248,242,232,.78);line-height:1.85;margin-bottom:1.1rem}
+.def{background:linear-gradient(180deg,rgba(211,163,91,.07),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-left:3px solid var(--copper,#D3A35B);padding:1.1rem 1.4rem;margin:1.5rem 0;border-radius:0 8px 8px 0}
+.def .def-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.45rem;display:block}
+.def p{font-size:.92rem;margin:0;color:rgba(248,242,232,.88)}
+.math-block{background:rgba(248,242,232,.04);border:1px solid rgba(248,242,232,.09);border-radius:8px;padding:1.1rem 1.6rem;margin:1.1rem 0;font-size:.95rem;color:var(--ivory,#F8F2E8);overflow-x:auto;line-height:1.9;text-align:center}
+.note{background:rgba(248,242,232,.03);border-left:2px solid rgba(248,242,232,.18);padding:.75rem 1.2rem;margin:1.2rem 0;border-radius:0 6px 6px 0}
+.note p{font-size:.88rem;margin:0;color:rgba(248,242,232,.58)}
+.answer-capsule{background:linear-gradient(180deg,rgba(211,163,91,.09),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.22);border-radius:10px;padding:1.2rem 1.5rem;margin:0 0 2.5rem}
+.answer-capsule p{font-size:.92rem;margin:0;color:rgba(248,242,232,.82);line-height:1.75}
+.img-block{margin:1.8rem 0;text-align:center}
+.img-block img{max-width:100%;border-radius:8px;border:1px solid rgba(248,242,232,.08)}
+.img-caption{font-size:.75rem;color:rgba(248,242,232,.4);margin-top:.5rem;font-style:italic;display:block}
+.part-nav{display:flex;gap:.75rem 1rem;flex-wrap:wrap;margin:2rem 0;padding:1rem 1.2rem;background:rgba(248,242,232,.025);border:1px solid rgba(248,242,232,.07);border-radius:8px;align-items:center}
+.part-nav a{font-size:.82rem;color:var(--copper,#D3A35B);font-weight:500;text-decoration:none}
+.part-nav a:hover{text-decoration:underline}
+.part-nav .divider{color:rgba(248,242,232,.2);font-size:.82rem}
+a.gold-link{color:var(--copper,#D3A35B);font-weight:500}
+.tuition-cta{background:linear-gradient(180deg,rgba(211,163,91,.08),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-radius:12px;padding:1.5rem 1.75rem;margin:2rem 0}
+.tuition-cta p{margin:0;font-size:.95rem;color:rgba(248,242,232,.8)}
+.tuition-cta p:first-child{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.5rem}
+hr.sd{border:none;border-top:1px solid rgba(255,255,255,.07);margin:2.5rem 0}
+</style>
+<meta content="2026-06-16" name="last-modified"/></head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a aria-label="Dr Nicky Grant home" class="nav-logo" href="../index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list">
+<li><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
+<li><a href="../university-postgraduate-tutoring.html">University</a></li>
+<li><a href="../blog.html">Resources</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../pricing.html">Pricing</a></li>
+</ul>
+<a class="nav-cta" href="../index.html#contact">Book consultation</a>
+<button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+</div>
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+</nav>
+<div class="art-hero">
+<div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
+<span class="eyebrow">Econometrics · Study notes · Diagnostics</span>
+<h1>Diagnostic testing in the <em>linear regression model</em></h1>
+<p class="lede">OLS can be unbiased and still give completely wrong standard errors. These notes explain the two assumptions that cause the trouble — homoskedasticity and no serial correlation — and the diagnostic tests and robust standard errors used to detect and repair the damage.</p>
+<div class="art-meta"><span>Dr Nicky Grant · econometrics specialist</span><span>Econometrics Study Notes</span><span>Undergraduate → Intermediate</span></div>
+</div>
+</div>
+<main class="art" id="main">
+<div aria-label="Quick answer" class="answer-capsule" data-chunk="LM-answer-capsule" role="note"><p>When the homoskedasticity or no-serial-correlation assumptions fail, OLS stays unbiased but its usual standard errors are wrong. Diagnostic tests such as the White test and the LM test detect these problems, and robust (White or Newey-West) standard errors restore valid inference.</p></div>
+<section class="study-note-box" id="how-to-read-this-note">
+<h2>How to read these notes</h2>
+<p>These notes follow the lecture on diagnostic testing and robust inference. They assume you already know the basics of <a class="gold-link" href="what-is-ols-ordinary-least-squares.html">OLS</a> and <a class="gold-link" href="hypothesis-testing-explained.html">hypothesis testing</a>. The focus is on what goes wrong when two of the classical assumptions break, how to test for the breakage, and how to fix the standard errors so that t-tests remain valid.</p>
+</section>
+<section id="assumptions">
+<h2>1. Which assumptions are at stake</h2>
+<p>The large-sample analysis of OLS rests on a set of assumptions. Two of them concern the structure of the error variance:</p>
+<div class="def"><span class="def-label">The two assumptions under test</span><p><strong>LS3 — Homoskedasticity:</strong> \(E[u_t^2\,|\,X]=\sigma_0^2\). The error variance is constant.<br/><strong>LS4 — No serial correlation:</strong> \(E[u_t u_s\,|\,X]=0\) for all \(t
+e s\). Errors at different times are uncorrelated.</p></div>
+<p>The key fact to fix in your mind is that violations of LS3 and LS4 do <strong>not</strong> bias OLS. Unbiasedness comes from linearity (LS1) and exogeneity, \(E[u\,|\,X]=0\) (LS2). Since \(\hat\beta=\beta_0+(X'X)^{-1}X'u\) and the exogeneity assumption makes the second term mean-zero, OLS is unbiased regardless of the error variance structure. What LS3 and LS4 affect is the <strong>variance</strong> of OLS, and therefore the validity of standard errors, t-tests and confidence intervals.</p>
+</section>
+<section id="heteroskedasticity">
+<h2>2. Heteroskedasticity: the variance is not constant</h2>
+<p><strong>Heteroskedasticity</strong> means the conditional variance of the error changes across observations: \(E[u_t^2\,|\,X]=\sigma_t^2(x)\). A simple example in the notes is \(u_t=v_t x_{1t}\) with \(E[v_t^2\,|\,X]=\sigma^2\), which gives \(E[u_t^2\,|\,X]=\sigma^2 x_{1t}^2\) — the error variance grows with a regressor, producing a tell-tale U-shaped pattern when residuals are plotted. A classic empirical case is a regression of credit-card spending on income, where the spread of the residuals widens as income rises.</p>
+<p>The damage shows up in the asymptotic variance of OLS, which in general is the "sandwich" form</p>
+<div class="math-note">√T(β̂ − β<sub>0</sub>) →<sup>d</sup> N( 0, Q<sup>−1</sup>ΩQ<sup>−1</sup> )</div>
+<p>where \(Q=E[x_tx_t']\) and \(\Omega=\lim \mathrm{Var}(T^{-1/2}\sum_t x_t u_t)\). Under homoskedasticity \(\Omega=\sigma_0^2 Q\), so the sandwich collapses to the familiar \(\sigma_0^2 Q^{-1}\) and the usual OLS standard errors are correct. Under heteroskedasticity \(\Omega
+e\sigma_0^2 Q\), the usual formula is biased, and the t-statistic is no longer asymptotically standard normal.</p>
+<div class="def"><span class="def-label">The fix: White (robust) standard errors</span><p>White (1980) showed that \(\Omega\) can be estimated directly from the squared residuals, \(\hat\Omega^{W}=T^{-1}\sum_t \hat u_t^2 x_t x_t'\). Plugging this into the sandwich gives the <strong>heteroskedasticity-robust</strong> variance estimator \(\hat Q^{-1}\hat\Omega^{W}\hat Q^{-1}\), and the resulting t-statistics are asymptotically standard normal whether or not heteroskedasticity is present. Most software produces these with one option.</p></div>
+</section>
+<section id="white-test">
+<h2>3. Testing for heteroskedasticity: the White test</h2>
+<p>To decide whether robust standard errors are needed, we test the null of homoskedasticity directly. The <strong>White test</strong> works as follows:</p>
+<ol>
+<li>Run the original regression by OLS and obtain the residuals \(\hat u_t\).</li>
+<li>Regress the squared residuals \(\hat u_t^2\) on the regressors, their squares and their cross-products. For example, with \(x_t=(1,x_{1t})'\), regress \(\hat u_t^2\) on \(x_{1t}\) and \(x_{1t}^2\).</li>
+<li>Under the null of homoskedasticity, \(T R^2\) from this auxiliary regression has a \(\chi^2_q\) distribution, where \(q\) is the number of slope coefficients in the auxiliary regression.</li>
+<li>Reject homoskedasticity if \(T R^2\) exceeds the critical value.</li>
+</ol>
+<p>The intuition is that if the error variance is genuinely constant, nothing about the regressors should help predict the squared residuals, so the auxiliary \(R^2\) should be near zero. A large \(R^2\) indicates the variance depends on the regressors.</p>
+</section>
+<section id="wls">
+<h2>4. Weighted least squares: regaining efficiency</h2>
+<p>Robust standard errors fix inference but leave OLS inefficient — under heteroskedasticity OLS is no longer the best linear unbiased estimator. If we actually know the form of the heteroskedasticity, we can do better with <strong>weighted least squares (WLS)</strong>.</p>
+<p>Suppose we know \(\sigma_t(x)\), for example \(\sigma_t=\sigma x_{1t}\) (quadratic heteroskedasticity). Dividing the whole regression through by \(x_{1t}\),</p>
+<div class="math-note">y<sub>t</sub>/x<sub>1t</sub> = (x<sub>t</sub>/x<sub>1t</sub>)′β<sub>0</sub> + u<sub>t</sub>/x<sub>1t</sub></div>
+<p>produces a transformed model whose error \(u_t/x_{1t}\) has constant variance \(\sigma^2\). Running OLS on the transformed variables is WLS, and it is efficient and unbiased. The idea is that WLS gives more weight to the low-variance observations, which carry more reliable information, instead of weighting every point equally as OLS does. When the variance is known only up to parameters, such as \(\sigma_t^2(x)=\exp(\alpha_0'x_t)\), those parameters can be estimated (often by maximum likelihood) and used to construct feasible weights.</p>
+</section>
+<section id="serial-correlation">
+<h2>5. Serial correlation: errors that move together over time</h2>
+<p>In time-series regressions the no-serial-correlation assumption LS4 often fails: the error in one period is correlated with the error in the next, so the variance matrix \(E[uu'\,|\,X]\) has non-zero off-diagonal terms. Like heteroskedasticity, serial correlation does not bias OLS but it does bias the usual standard errors, so t-tests are invalid without a robust correction.</p>
+<p>A natural idea would be to estimate the off-diagonal terms with products of residuals, but this fails: the cross-product \(\sum_s\sum_t \hat u_s \hat u_t x_s x_t'\) collapses because \(X'\hat u=0\) by construction of OLS. The solution is the <strong>Newey-West</strong> estimator, which adds weighted residual cross-products at increasing lags:</p>
+<div class="math-note">Ω̂<sup>NW</sup> = Ω̂<sup>W</sup> + T<sup>−1</sup> Σ<sub>h</sub> w<sub>h</sub> ( cross-products at lag h )</div>
+<div class="def"><span class="def-label">The fix: Newey-West (HAC) standard errors</span><p>Newey-West standard errors are robust to both serial correlation and heteroskedasticity (they are "HAC": heteroskedasticity- and autocorrelation-consistent). The weights \(w_h\) — typically Bartlett weights \(w_h=1-h/B\) — decline with the lag distance, and the bandwidth \(B\) must grow slowly with the sample size for consistency.</p></div>
+</section>
+<section id="lm-test">
+<h2>6. Testing for serial correlation: the LM test</h2>
+<p>To test whether the error is serially correlated, we use a Lagrange Multiplier (LM) test, mirroring the structure of the White test:</p>
+<ol>
+<li>Run the original regression by OLS and obtain the residuals \(\hat u_t\).</li>
+<li>Run the auxiliary regression of \(\hat u_t\) on the original regressors <em>and</em> lagged residuals \(\hat u_{t-1},\dots,\hat u_{t-q}\).</li>
+<li>Under the null of no serial correlation, \(T R^2\) from this regression has a \(\chi^2_q\) distribution, with \(q\) equal to the number of lagged residual terms.</li>
+</ol>
+<p>Including the original regressors in the auxiliary regression matters: it ensures the test is valid even if the regressors are correlated with the lagged errors.</p>
+</section>
+<section id="which-se">
+<h2>7. Which standard errors should you use?</h2>
+<p>The choice is a precision-versus-robustness trade-off. The most robust option is not always the best, because robustness costs precision.</p>
+<table class="concept-table">
+<thead><tr><th>Situation</th><th>Preferred standard errors</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>No heteroskedasticity, no serial correlation</td><td>Ordinary OLS</td><td>Most precise; the classical formula is correct.</td></tr>
+<tr><td>Heteroskedasticity, no serial correlation</td><td>White</td><td>Robust to heteroskedasticity and more precise than Newey-West.</td></tr>
+<tr><td>Serial correlation (with or without heteroskedasticity)</td><td>Newey-West</td><td>The only option that is consistent under serial correlation.</td></tr>
+</tbody>
+</table>
+<p>The practical rule that comes out of the tutorials: do not reach for Newey-West standard errors when there is no evidence of serial correlation. If the LM test finds no serial correlation, White standard errors are preferable because they are more precise. Always test before you choose.</p>
+</section>
+<section class="study-note-box" id="related-notes">
+<h2>Related study notes</h2>
+<ol>
+<li><a href="what-is-ols-ordinary-least-squares.html">What is OLS?</a> — the assumptions and the meaning of BLUE.</li>
+<li><a href="hypothesis-testing-explained.html">Hypothesis testing from first principles</a> — the t-tests and chi-squared tests these diagnostics rely on.</li>
+<li><a href="reading-the-correlogram.html">Reading the correlogram</a> — checking for serial correlation in residuals in a time-series context.</li>
+</ol>
+</section>
+<div class="tuition-cta"><p>Econometrics tuition</p><p>Diagnostic testing and robust inference are core exam topics and constant sources of confusion in empirical projects. For 1-1 help with heteroskedasticity, serial correlation, White/Newey-West standard errors or WLS, see <a class="gold-link" href="../econometrics-tutor.html">econometrics tuition</a> or <a class="gold-link" href="../statistics-tutor.html">statistics tuition</a>.</p><p>Free videos: the <a class="gold-link" href="https://www.youtube.com/@economaths" rel="noopener" target="_blank">@economaths channel</a> has worked videos on heteroskedasticity, GLS, autocorrelation and Newey-West standard errors.</p></div>
+</main>
+<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../econometrics-tutor.html"><strong>Econometrics tuition</strong><span>Diagnostics, robust inference, heteroskedasticity and serial correlation.</span></a><a class="funnel-card" href="../statistics-tutor.html"><strong>Statistics tuition</strong><span>Regression, hypothesis tests, p-values and data interpretation.</span></a><a class="funnel-card" href="../teaching.html"><strong>Free econometrics notes</strong><span>Lecture notes and exercises on regression diagnostics.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
+<div class="foot-cols">
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
+<div class="fc"><h4>A-Level &amp; Admissions</h4><a href="../a-level-admissions-tutoring.html">Overview</a><a href="../a-level-maths-tutor.html">A-Level Maths</a><a href="../a-level-economics-tutor.html">A-Level Economics</a><a href="../tmua-preparation.html">TMUA preparation</a><a href="../oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
+<div class="fc"><h4>University &amp; Postgraduate</h4><a href="../university-postgraduate-tutoring.html">Overview</a><a href="../university-economics-tutor.html">University Economics</a><a href="../econometrics-tutor.html">Econometrics</a><a href="../statistics-tutor.html">Statistics</a><a href="../finance-tutor.html">Finance</a><a href="../phd-econometrics-tutor.html">PhD econometrics</a></div>
+<div class="fc"><h4>Resources &amp; contact</h4><a href="../blog.html">Study notes</a><a href="../questions.html">Common questions</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../how-it-works.html">How it works</a><a href="../index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
+</div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online International and UK-wide</span></div>
+</footer>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+nav.classList.toggle('solid',scrollY>40);
+function toggleNav(btn){const m=document.getElementById('mobNav');const o=m.classList.toggle('open');btn.setAttribute('aria-expanded',String(o));}
+document.addEventListener('click',function(e){const m=document.getElementById('mobNav');const b=document.getElementById('burgerBtn');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&b&&!b.contains(e.target)){m.classList.remove('open');b.setAttribute('aria-expanded','false');}});
+</script>
+<script defer src="../js/chat.js"></script>
+</body>
+</html>

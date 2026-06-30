@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
+<meta content="Dr Nicky Grant" name="author"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Maximum Likelihood Estimation Explained | Econometrics</title>
+<meta content="Maximum likelihood estimation explained clearly: the likelihood and log-likelihood, the information matrix, the asymptotic distribution and the likelihood-ratio test." name="description"/>
+<link href="https://www.drnickygrant.com/blog/maximum-likelihood-estimation-explained.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="Maximum Likelihood Estimation Explained | Econometrics" property="og:title"/>
+<meta content="The idea behind ML, the likelihood and log-likelihood, the information matrix, the asymptotic distribution and the likelihood-ratio test, explained from scratch." property="og:description"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" property="og:image"/>
+<meta content="https://www.drnickygrant.com/blog/maximum-likelihood-estimation-explained.html" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" name="twitter:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.drnickygrant.com/#website",
+      "url": "https://www.drnickygrant.com/",
+      "name": "Dr Nicky Grant | Economics, Econometrics and Maths Tutor",
+      "description": "Specialist online tuition in economics, econometrics, mathematics, statistics, finance, TMUA and Oxbridge economics applications, supported by verifiable Cambridge credentials, teaching materials and research evidence.",
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.drnickygrant.com/#person",
+      "name": "Dr Nicky Grant",
+      "alternateName": [
+        "Nicky Grant",
+        "Nicky L. Grant",
+        "Nicky Lee Grant"
+      ],
+      "honorificPrefix": "Dr",
+      "givenName": "Nicky",
+      "familyName": "Grant",
+      "url": "https://www.drnickygrant.com/",
+      "image": "https://www.drnickygrant.com/img/nicky-grant-headshot.webp",
+      "email": "nicky.L.grant@gmail.com",
+      "telephone": "+447393352331",
+      "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor",
+      "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0008-8979-4623",
+          "url": "https://orcid.org/0009-0008-8979-4623"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Semantic Scholar",
+          "value": "97839351",
+          "url": "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Cambridge",
+        "sameAs": "https://www.cam.ac.uk/"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "PhD in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "MPhil in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BA in Economics",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Cambridge",
+            "sameAs": "https://www.cam.ac.uk/"
+          }
+        }
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "CeMMAP, Centre for Microdata Methods and Practice",
+        "sameAs": "https://cemmap.ac.uk/"
+      },
+      "knowsAbout": [
+        "economics tuition",
+        "econometrics tuition",
+        "A Level Mathematics",
+        "Further Mathematics",
+        "A Level Economics",
+        "TMUA preparation",
+        "Oxbridge Economics applications",
+        "statistics",
+        "financial econometrics",
+        "time series econometrics",
+        "GMM",
+        "instrumental variables",
+        "panel data",
+        "PhD econometrics"
+      ],
+      "sameAs": [
+        "https://orcid.org/0009-0008-8979-4623",
+        "https://www.linkedin.com/in/nicky-lee-grant/",
+        "https://cemmap.ac.uk/person/nicky-l-grant/",
+        "https://research-portal.st-andrews.ac.uk/en/persons/nicky-lee-grant",
+        "https://www.st-andrews.ac.uk/business-school/people/economics/nlg1/",
+        "https://www.semanticscholar.org/author/Nicky-L.-Grant/97839351",
+        "https://www.youtube.com/@economaths",
+        "https://independent.academia.edu/NickyGrant"
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.drnickygrant.com/blog/maximum-likelihood-estimation-explained.html#page",
+      "url": "https://www.drnickygrant.com/blog/maximum-likelihood-estimation-explained.html",
+      "name": "Maximum likelihood estimation explained",
+      "isPartOf": {
+        "@id": "https://www.drnickygrant.com/#website"
+      },
+      "about": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "inLanguage": "en-GB",
+      "description": "Maximum likelihood estimation explained from scratch: the idea, the likelihood and log-likelihood, the Kullback-Leibler criterion, the information matrix, the asymptotic distribution and the likelihood-ratio test.",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/what-is-ols-ordinary-least-squares.html",
+        "https://www.drnickygrant.com/blog/modelling-stock-returns-distribution.html",
+        "https://www.drnickygrant.com/statistics-tutor.html"
+      ],
+      "abstract": "Maximum likelihood chooses the parameter values that make the observed data most probable under an assumed distribution. It is the workhorse of estimation for non-linear and distributional models, with a known asymptotic distribution based on the information matrix.",
+      "datePublished": "2026-06-16",
+      "dateModified": "2026-06-16"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.drnickygrant.com/blog/maximum-likelihood-estimation-explained.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.drnickygrant.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://www.drnickygrant.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Maximum Likelihood Estimation",
+          "item": "https://www.drnickygrant.com/blog/maximum-likelihood-estimation-explained.html"
+        }
+      ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://www.drnickygrant.com/blog/maximum-likelihood-estimation-explained.html#article",
+      "headline": "Maximum likelihood estimation explained",
+      "url": "https://www.drnickygrant.com/blog/maximum-likelihood-estimation-explained.html",
+      "author": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "publisher": {
+        "@id": "https://www.drnickygrant.com/#person",
+        "description": "Cambridge PhD economist offering online tuition in economics, econometrics, maths, statistics, finance, TMUA and Oxbridge Economics.",
+        "jobTitle": "Economics, Econometrics, Mathematics and Statistics Tutor"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://www.drnickygrant.com/blog/maximum-likelihood-estimation-explained.html#page"
+      },
+      "datePublished": "2026-06-16",
+      "dateModified": "2026-06-16",
+      "inLanguage": "en-GB",
+      "image": "https://www.drnickygrant.com/img/og-image.jpg",
+      "relatedLink": [
+        "https://www.drnickygrant.com/blog/what-is-ols-ordinary-least-squares.html",
+        "https://www.drnickygrant.com/blog/modelling-stock-returns-distribution.html",
+        "https://www.drnickygrant.com/statistics-tutor.html"
+      ],
+      "abstract": "Maximum likelihood chooses the parameter values that make the observed data most probable under an assumed distribution. It is the workhorse of estimation for non-linear and distributional models, with a known asymptotic distribution based on the information matrix.",
+      "description": "Maximum likelihood estimation explained from scratch: the idea, the likelihood and log-likelihood, the Kullback-Leibler criterion, the information matrix, the asymptotic distribution and the likelihood-ratio test."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.drnickygrant.com/blog/maximum-likelihood-estimation-explained.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is maximum likelihood estimation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Maximum likelihood estimation (ML) assumes the data are drawn from a known family of distributions f(y, beta) and chooses the parameter value that makes the observed sample most probable. In practice we maximise the log-likelihood, which is the sum of the log densities evaluated at each observation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between OLS and maximum likelihood?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OLS minimises the sum of squared residuals and needs no distributional assumption to be defined. Maximum likelihood requires an assumption about the full distribution of the data and is more general, covering non-linear models such as logit, probit and GARCH. For a linear model with normal errors the two give identical estimates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you test restrictions after maximum likelihood?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Single restrictions can be tested with a t-statistic using the standard error from the inverse information matrix. Multiple restrictions are tested with the likelihood-ratio statistic LR = 2[log L(unrestricted) - log L(restricted)], which is asymptotically chi-squared with degrees of freedom equal to the number of restrictions."
+          }
+        }
+      ]
+    }
+  ]
+}</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../css/main.css" rel="stylesheet"/>
+<link href="../css/polish.css" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script crossorigin="anonymous" defer="" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+.art{max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) clamp(3rem,8vw,6rem)}
+.art-hero{padding:clamp(6rem,14vw,9rem) clamp(1rem,4vw,2.5rem) clamp(2rem,5vw,3.5rem);border-bottom:1px solid rgba(255,255,255,.07)}
+.eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.75rem;display:block}
+.art-hero h1{font-family:var(--fd);font-size:clamp(2.1rem,5vw,3.6rem);font-weight:500;line-height:1.02;letter-spacing:-.04em;color:var(--ivory,#F8F2E8);margin-bottom:1rem}
+.art-hero .lede{font-size:clamp(1rem,1.8vw,1.15rem);font-weight:300;color:rgba(248,242,232,.72);line-height:1.78;max-width:660px}
+.art-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.25rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(248,242,232,.38)}
+h2{font-family:var(--fd);font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:500;letter-spacing:-.03em;color:var(--ivory,#F8F2E8);margin:2.5rem 0 .75rem;line-height:1.05}
+h3{font-family:var(--fd);font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:500;letter-spacing:-.02em;color:var(--ivory,#F8F2E8);margin:2rem 0 .6rem}
+p{font-size:clamp(.93rem,1.6vw,1rem);font-weight:300;color:rgba(248,242,232,.78);line-height:1.85;margin-bottom:1.1rem}
+.def{background:linear-gradient(180deg,rgba(211,163,91,.07),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-left:3px solid var(--copper,#D3A35B);padding:1.1rem 1.4rem;margin:1.5rem 0;border-radius:0 8px 8px 0}
+.def .def-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.45rem;display:block}
+.def p{font-size:.92rem;margin:0;color:rgba(248,242,232,.88)}
+.math-block{background:rgba(248,242,232,.04);border:1px solid rgba(248,242,232,.09);border-radius:8px;padding:1.1rem 1.6rem;margin:1.1rem 0;font-size:.95rem;color:var(--ivory,#F8F2E8);overflow-x:auto;line-height:1.9;text-align:center}
+.note{background:rgba(248,242,232,.03);border-left:2px solid rgba(248,242,232,.18);padding:.75rem 1.2rem;margin:1.2rem 0;border-radius:0 6px 6px 0}
+.note p{font-size:.88rem;margin:0;color:rgba(248,242,232,.58)}
+.answer-capsule{background:linear-gradient(180deg,rgba(211,163,91,.09),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.22);border-radius:10px;padding:1.2rem 1.5rem;margin:0 0 2.5rem}
+.answer-capsule p{font-size:.92rem;margin:0;color:rgba(248,242,232,.82);line-height:1.75}
+.img-block{margin:1.8rem 0;text-align:center}
+.img-block img{max-width:100%;border-radius:8px;border:1px solid rgba(248,242,232,.08)}
+.img-caption{font-size:.75rem;color:rgba(248,242,232,.4);margin-top:.5rem;font-style:italic;display:block}
+.part-nav{display:flex;gap:.75rem 1rem;flex-wrap:wrap;margin:2rem 0;padding:1rem 1.2rem;background:rgba(248,242,232,.025);border:1px solid rgba(248,242,232,.07);border-radius:8px;align-items:center}
+.part-nav a{font-size:.82rem;color:var(--copper,#D3A35B);font-weight:500;text-decoration:none}
+.part-nav a:hover{text-decoration:underline}
+.part-nav .divider{color:rgba(248,242,232,.2);font-size:.82rem}
+a.gold-link{color:var(--copper,#D3A35B);font-weight:500}
+.tuition-cta{background:linear-gradient(180deg,rgba(211,163,91,.08),rgba(211,163,91,.03));border:1px solid rgba(211,163,91,.2);border-radius:12px;padding:1.5rem 1.75rem;margin:2rem 0}
+.tuition-cta p{margin:0;font-size:.95rem;color:rgba(248,242,232,.8)}
+.tuition-cta p:first-child{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper,#D3A35B);margin-bottom:.5rem}
+hr.sd{border:none;border-top:1px solid rgba(255,255,255,.07);margin:2.5rem 0}
+</style>
+<meta content="2026-06-16" name="last-modified"/></head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<nav aria-label="Main navigation" id="nav">
+<div class="nav-inner">
+<a aria-label="Dr Nicky Grant home" class="nav-logo" href="../index.html">Dr Nicky <span>Grant</span></a>
+<ul class="nav-links" role="list">
+<li><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
+<li><a href="../university-postgraduate-tutoring.html">University</a></li>
+<li><a href="../blog.html">Resources</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../pricing.html">Pricing</a></li>
+</ul>
+<a class="nav-cta" href="../index.html#contact">Book consultation</a>
+<button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+</div>
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+</nav>
+<div class="art-hero">
+<div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
+<span class="eyebrow">Statistics · Study notes · Estimation</span>
+<h1>Maximum likelihood estimation <em>explained</em></h1>
+<p class="lede">Maximum likelihood is the most general estimation method in statistics and econometrics. These notes explain the idea behind it, the likelihood and log-likelihood, why it works, its asymptotic distribution and how to test restrictions, with no prior knowledge assumed beyond basic probability.</p>
+<div class="art-meta"><span>Dr Nicky Grant · econometrics specialist</span><span>Statistics Study Notes</span><span>Undergraduate</span></div>
+</div>
+</div>
+<main class="art" id="main">
+<div aria-label="Quick answer" class="answer-capsule" data-chunk="LM-answer-capsule" role="note"><p>Maximum likelihood chooses the parameter values that make the observed data most probable under an assumed distribution. We maximise the log-likelihood, the estimator has a known asymptotic normal distribution based on the information matrix, and restrictions are tested with the likelihood-ratio test.</p></div>
+<section class="study-note-box" id="how-to-read-this-note">
+<h2>How to read these notes</h2>
+<p>These notes follow the maximum likelihood lecture from a financial econometrics course. They are written for a student who has met <a class="gold-link" href="what-is-ols-ordinary-least-squares.html">OLS</a> and basic probability — random variables, probability density functions and expectations — but has not seen likelihood methods before. The aim is to give the broad idea and enough structure to interpret estimated coefficients and tests, which is exactly what most applied courses ask for.</p>
+</section>
+<section id="why-ml">
+<h2>1. Why we need maximum likelihood</h2>
+<p>Linear models can be estimated by OLS. But many models in economics and finance are not linear and cannot be handled by least squares: moving-average (MA) models, logit and probit models for binary outcomes, and GARCH models for volatility are all examples. Maximum likelihood (ML) is a more general estimator that covers all of these.</p>
+<p>The price for this generality is that ML requires us to know, or assume, the <strong>distribution</strong> the data are drawn from — for example, that stock returns are normal or Student-\(t\) distributed. With that assumption in hand, ML gives a single recipe for estimating the unknown parameters of almost any model.</p>
+<div class="def"><span class="def-label">Core idea</span><p>Maximum likelihood assumes the data are generated by a known family of distributions \(f(y_i,\beta)\) indexed by a parameter \(\beta\). Once we know \(\beta_0\) we know the whole distribution of \(y_i\). ML is a method for estimating that \(\beta_0\) with good statistical properties.</p></div>
+</section>
+<section id="the-idea">
+<h2>2. The idea: match the assumed density to the data</h2>
+<p>Suppose we have a data set \(\{y_i\}_{i=1}^N\) and we want to estimate the unknown density \(g(y_i)\) that generated it. ML assumes this true density is a member of a known family: \(g(y_i)=f(y_i,\beta_0)\) for some parameter \(\beta_0\). For example, if \(y_i\) is a coin flip then \(g(y_i)=\beta_0^{y_i}(1-\beta_0)^{1-y_i}\) is a Bernoulli density, and the unknown \(\beta_0\) is the probability of heads.</p>
+<p>The goal, then, is to choose \(\beta\) so that the assumed density \(f(y_i,\beta)\) is as close as possible to the true density \(g(y_i)\). The lecture measures "closeness" using the <strong>Kullback-Leibler information criterion</strong>:</p>
+<div class="math-note">K(β) = E[ log( g(y<sub>i</sub>) / f(y<sub>i</sub>, β) ) ]</div>
+<p>This object has two crucial properties: \(K(\beta)\ge 0\) always, and \(K(\beta)=0\) exactly when \(f(y_i,\beta)=g(y_i)\). So if there is a unique \(\beta_0\) at which the assumed density matches the truth, then \(\beta_0\) is the unique minimiser of \(K(\beta)\). This is the population target that ML aims at — directly analogous to how the OLS coefficient \(\beta_0\) minimises \(E[(y_i-x_i'\beta)^2]\).</p>
+</section>
+<section id="likelihood">
+<h2>3. From Kullback-Leibler to the likelihood</h2>
+<p>Splitting the criterion apart shows where the name "maximum likelihood" comes from. Because \(E[\log g(y_i)]\) does not depend on \(\beta\),</p>
+<div class="math-note">K(β) = E[log g(y<sub>i</sub>)] − E[log f(y<sub>i</sub>, β)]</div>
+<p>minimising \(K(\beta)\) is the same as minimising \(-E[\log f(y_i,\beta)]\), which is the same as <strong>maximising</strong> \(E[\log f(y_i,\beta)]\). This last quantity is called the (population) <strong>likelihood function</strong>, and maximising it gives the method its name.</p>
+<p>In practice we replace the population expectation with its sample average. The feasible objective is the <strong>log-likelihood</strong>:</p>
+<div class="math-note">(1/N) Σ log f(y<sub>i</sub>, β)</div>
+<div class="def"><span class="def-label">The maximum likelihood estimator</span><p>\(\hat\beta_{ML}\) is the value of \(\beta\) that maximises the log-likelihood \(\sum_i \log f(y_i,\beta)\). For independent data this is the log of the joint density of the whole sample, so the intuition often given is that ML picks the parameter that makes the observed sample \((y_1,\dots,y_N)\) as probable as possible.</p></div>
+<p>Notice the parallel with OLS, which chooses \(\beta\) to minimise the sum of squared residuals. ML simply minimises the sample version of the Kullback-Leibler criterion instead. Both are examples of estimators defined as the optimiser of some objective function.</p>
+</section>
+<section id="distribution">
+<h2>4. The asymptotic distribution and the information matrix</h2>
+<p>To do inference — t-tests, confidence intervals — we need a sampling distribution for the estimator. The ML estimator has a clean asymptotic distribution centred on the true value:</p>
+<div class="math-note">β̂<sub>ML</sub> ≈ N( β<sub>0</sub>, I<sub>n</sub>(β<sub>0</sub>)<sup>−1</sup> )</div>
+<p>where \(I_n(\beta_0)\) is the <strong>information matrix</strong>, defined as the negative expected second derivative of the log-likelihood,</p>
+<div class="math-note">I<sub>n</sub>(β<sub>0</sub>) = −E[ ∂²ℓ(β<sub>0</sub>) / ∂β∂β′ ]</div>
+<div class="def"><span class="def-label">Reading the information matrix</span><p>The information matrix measures how sharply curved the log-likelihood is at its peak. A sharply peaked likelihood means the data are very informative about \(\beta\), so the variance \(I_n^{-1}\) is small and the estimate is precise. A flat likelihood means little information and a large variance.</p></div>
+<p>The information matrix is unobserved because it depends on \(\beta_0\), so in practice we use the estimated version \(I_n(\hat\beta_{ML})^{-1}\), evaluating the second derivatives of the log-likelihood at the ML estimate. The square roots of its diagonal entries are the standard errors used for t-tests, which are asymptotically standard normal.</p>
+<div class="img-block"><img alt="Bell-shaped normal density used to illustrate the asymptotic distribution of the ML estimator" loading="lazy" src="../img/teaching/normal.png"/><span class="img-caption">The ML estimator is asymptotically normal, centred on the true parameter with variance equal to the inverse information matrix.</span></div>
+</section>
+<section id="lr-test">
+<h2>5. Testing restrictions: the likelihood-ratio test</h2>
+<p>Single restrictions, such as "this coefficient is zero", are tested with a t-statistic using the standard errors from the inverse information matrix. Multiple restrictions are tested with the <strong>likelihood-ratio (LR) test</strong>, which compares the log-likelihood with and without the restrictions imposed:</p>
+<div class="math-note">LR = 2[ log L(β̂<sub>u</sub>) − log L(β̂<sub>r</sub>) ]</div>
+<p>Here \(\hat\beta_u\) is the unrestricted estimate and \(\hat\beta_r\) is the estimate with the restrictions imposed (for example, excluding some variables). The logic is intuitive: if the restrictions are genuinely valid, imposing them should cost very little in terms of fit, so the two log-likelihoods should be close and LR should be small. Under the null that the restrictions hold,</p>
+<div class="math-note">LR →<sup>d</sup> χ²<sub>p</sub></div>
+<p>where \(p\) is the number of restrictions. A large LR statistic is evidence against the restrictions.</p>
+<div class="img-block"><img alt="Chi-squared density used as the reference distribution for the likelihood-ratio test" loading="lazy" src="../img/teaching/chi.png"/><span class="img-caption">The likelihood-ratio statistic is compared against a chi-squared distribution with degrees of freedom equal to the number of restrictions.</span></div>
+</section>
+<section id="how-computed">
+<h2>6. How ML estimates are actually computed</h2>
+<p>For a linear model with normal errors, the ML estimates can be written down in closed form and coincide exactly with OLS. For most non-linear models, though, there is no formula and the log-likelihood must be maximised numerically. The procedure is, in essence, a sophisticated trial-and-error search:</p>
+<ol>
+<li>Start from an initial guess \(\hat\beta_0\) and compute the log-likelihood there.</li>
+<li>Try a nearby value \(\hat\beta_0+d\); if its log-likelihood is higher, move there, otherwise try a different step \(d\).</li>
+<li>Stop when no nearby value improves the log-likelihood, and declare that point the ML estimate.</li>
+</ol>
+<p>Real algorithms differ in how they choose the step direction and when to stop, but the principle is to climb the likelihood surface until you reach its peak. This is why ML estimation occasionally fails to converge or finds a local rather than global maximum — issues that come up constantly when estimating GARCH and other non-linear financial models.</p>
+</section>
+<section class="study-note-box" id="related-notes">
+<h2>Related study notes</h2>
+<ol>
+<li><a href="what-is-ols-ordinary-least-squares.html">What is OLS?</a> — the special case where ML and least squares coincide.</li>
+<li><a href="modelling-stock-returns-distribution.html">Modelling the distribution of stock returns</a> — the distributions (normal, Student-\(t\)) that ML is used to fit in finance.</li>
+<li><a href="garch-volatility-explained.html">GARCH and volatility modelling</a> — a leading non-linear model estimated by maximum likelihood.</li>
+</ol>
+</section>
+<div class="tuition-cta"><p>Statistics &amp; econometrics tuition</p><p>Maximum likelihood is a turning point in many statistics and econometrics courses. For 1-1 help with the likelihood, the information matrix, LR tests or estimating non-linear models, see <a class="gold-link" href="../statistics-tutor.html">statistics tuition</a>, <a class="gold-link" href="../econometrics-tutor.html">econometrics tuition</a> or <a class="gold-link" href="../financial-econometrics-tutor.html">financial econometrics tuition</a>.</p><p>Free videos: the <a class="gold-link" href="https://www.youtube.com/@economaths" rel="noopener" target="_blank">@economaths channel</a> has a worked maximum likelihood example (Poisson) and related estimation videos.</p></div>
+</main>
+<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../statistics-tutor.html"><strong>Statistics tuition</strong><span>Estimation, likelihood, distributions, inference and data interpretation.</span></a><a class="funnel-card" href="../econometrics-tutor.html"><strong>Econometrics tuition</strong><span>ML estimation, non-linear models, logit/probit and applied methods.</span></a><a class="funnel-card" href="../teaching.html"><strong>Free econometrics notes</strong><span>Lecture notes and exercises on estimation and inference.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
+<div class="foot-cols">
+<div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
+<div class="fc"><h4>A-Level &amp; Admissions</h4><a href="../a-level-admissions-tutoring.html">Overview</a><a href="../a-level-maths-tutor.html">A-Level Maths</a><a href="../a-level-economics-tutor.html">A-Level Economics</a><a href="../tmua-preparation.html">TMUA preparation</a><a href="../oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
+<div class="fc"><h4>University &amp; Postgraduate</h4><a href="../university-postgraduate-tutoring.html">Overview</a><a href="../university-economics-tutor.html">University Economics</a><a href="../econometrics-tutor.html">Econometrics</a><a href="../statistics-tutor.html">Statistics</a><a href="../finance-tutor.html">Finance</a><a href="../phd-econometrics-tutor.html">PhD econometrics</a></div>
+<div class="fc"><h4>Resources &amp; contact</h4><a href="../blog.html">Study notes</a><a href="../questions.html">Common questions</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../how-it-works.html">How it works</a><a href="../index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
+</div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online International and UK-wide</span></div>
+</footer>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+nav.classList.toggle('solid',scrollY>40);
+function toggleNav(btn){const m=document.getElementById('mobNav');const o=m.classList.toggle('open');btn.setAttribute('aria-expanded',String(o));}
+document.addEventListener('click',function(e){const m=document.getElementById('mobNav');const b=document.getElementById('burgerBtn');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&b&&!b.contains(e.target)){m.classList.remove('open');b.setAttribute('aria-expanded','false');}});
+</script>
+<script defer src="../js/chat.js"></script>
+</body>
+</html>

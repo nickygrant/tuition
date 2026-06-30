@@ -166,16 +166,34 @@
 }</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
 <link href="css/main.css" rel="stylesheet"/>
 <link href="css/polish.css" rel="stylesheet"/><title>Study Notes &amp; Articles | Economics, Econometrics, Maths</title><meta content="Free study notes and articles in economics, econometrics, maths, statistics and admissions, including linked time-series econometrics notes and worked explanations." name="description"/><link href="https://www.drnickygrant.com/blog.html" rel="canonical"/><meta content="Study Notes &amp; Articles | Economics, Econometrics, Maths" property="og:title"/>
-<meta content="https://www.drnickygrant.com/blog.html" property="og:url"/><meta content="Free study notes and articles in economics, econometrics, maths, statistics and admissions, including linked time-series econometrics notes adapted from archived teaching materials." property="og:description"/><meta content="https://www.drnickygrant.com/img/og-image.jpg" property="og:image"/><meta content="2026-06-14" name="last-modified"/><script type="application/ld+json">
+<meta content="https://www.drnickygrant.com/blog.html" property="og:url"/><meta content="Free study notes and articles in economics, econometrics, maths, statistics and admissions, including linked time-series econometrics notes adapted from archived teaching materials." property="og:description"/><meta content="https://www.drnickygrant.com/img/og-image.jpg" property="og:image"/><meta content="website" property="og:type"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://www.drnickygrant.com/img/og-image.jpg" name="twitter:image"/><meta content="2026-06-14" name="last-modified"/><script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "Blog", "name": "Dr Nicky Grant Study Notes", "description": "Free econometrics, statistics, economics and admissions study notes.", "author": {"@id": "https://www.drnickygrant.com/#person"}, "url": "https://www.drnickygrant.com/blog.html"}
 </script>
+<style>
+.notes-cats{max-width:880px;margin:1.5rem auto 0}
+.note-cat{border:1px solid var(--hr);border-radius:12px;margin:0 0 .85rem;background:#FFFFFF;overflow:hidden;box-shadow:var(--sh-card)}
+.note-cat>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:.85rem;padding:1.05rem 1.3rem;font-family:var(--fd);font-size:clamp(1.05rem,2.2vw,1.3rem);font-weight:500;color:var(--ivory,#F8F2E8);letter-spacing:-.01em}
+.note-cat>summary::-webkit-details-marker{display:none}
+.note-cat>summary .cat-ico{flex:none;width:1.9rem;height:1.9rem;display:grid;place-items:center;border-radius:8px;background:rgba(211,163,91,.12);color:var(--copper,#D3A35B);font-size:1rem}
+.note-cat>summary .cat-count{margin-left:auto;font-family:var(--ff,inherit);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);font-weight:400}
+.note-cat>summary .cat-chev{flex:none;color:var(--t3);transition:transform .2s ease;font-size:.8rem}
+.note-cat[open]>summary .cat-chev{transform:rotate(90deg)}
+.note-cat>summary:hover{background:rgba(211,163,91,.05)}
+.note-cat .cat-body{padding:.2rem 1.3rem 1.1rem}
+.note-cat .cat-body ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.3rem .9rem}
+.note-cat .cat-body li{margin:0}
+.note-cat .cat-body a{display:block;padding:.5rem .55rem;border-radius:7px;color:var(--t2);text-decoration:none;font-size:.92rem;font-weight:400;line-height:1.4;border:1px solid transparent;transition:background .15s ease,border-color .15s ease}
+.note-cat .cat-body a:hover{background:rgba(211,163,91,.07);border-color:rgba(211,163,91,.2);color:var(--ivory,#F8F2E8)}
+.note-cat .cat-body a .tag-new{color:var(--copper,#D3A35B);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-left:.4rem;vertical-align:middle}
+.notes-routebtns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin:1.6rem auto 0;max-width:880px}
+</style>
 </head><body><a class="skip-link" href="#main">Skip to main content</a>
 <nav aria-label="Main navigation" id="nav">
 <div class="nav-inner">
 <a aria-label="Dr Nicky Grant home" class="nav-logo" href="index.html">Dr Nicky <span>Grant</span></a>
 <ul class="nav-links" role="list">
 <li><a href="a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
-<li><a href="university-postgraduate-tutoring.html">University &amp; Postgraduate</a></li>
+<li><a href="university-postgraduate-tutoring.html">University</a></li>
 <li><a href="blog.html">Resources</a></li>
 <li><a href="about.html">About</a></li>
 <li><a href="pricing.html">Pricing</a></li>
@@ -183,49 +201,90 @@
 <a class="nav-cta" href="index.html#contact">Book consultation</a>
 <button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
 </div>
-<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="index.html">Home</a><a href="a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="university-postgraduate-tutoring.html">University &amp; Postgraduate</a><a href="blog.html">Resources</a><a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="index.html#contact">Book consultation</a></div>
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="index.html">Home</a><a href="a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="university-postgraduate-tutoring.html">University</a><a href="blog.html">Resources</a><a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="index.html#contact">Book consultation</a></div>
 </nav>
-<main id="main"><header class="page-hero"><div class="wrap"><p class="s-eye">Free resources</p><h1 class="h2">Study guides<br/><em>&amp; articles</em></h1><p class="lp-intro">Short, practical explanations of difficult topics in economics, maths, statistics, econometrics and admissions preparation.</p><div class="lp-actions"><a class="btn btn-fill" href="index.html#contact">Book a free consultation</a><a class="btn btn-line" href="teaching.html">Teaching materials</a></div></div></header>
+<main id="main"><header class="page-hero"><div class="wrap"><p class="s-eye">Free resources</p><h1 class="h2">Study guides<br/><em>&amp; articles</em></h1><p class="lp-intro">Short, practical explanations of difficult topics in economics, maths, statistics, econometrics and admissions preparation.</p><div class="lp-actions"><a class="btn btn-fill" href="index.html#contact">Book consultation</a><a class="btn btn-line" href="teaching.html">Teaching materials</a></div></div></header>
 <section class="section alt" id="resources-by-route"><div class="wrap">
 <p class="s-eye gsap-up">Browse study notes</p>
-<h2 class="h2 gsap-up">Study notes organised<br/><em>by student level</em></h2>
-<p class="s-lead gsap-up">Start with the area that fits your situation. School and admissions resources focus on exams, applications and problem-solving. University and postgraduate notes focus on econometrics, statistics, finance and applied methods.</p>
-<div class="route-page-grid">
-<div class="route-panel" id="alevel-resources">
-<h3>A-Level &amp; Admissions resources</h3>
-<p>For Maths, Further Maths, Economics, TMUA and Oxbridge Economics preparation.</p>
+<h2 class="h2 gsap-up">Study notes<br/><em>by topic</em></h2>
+<p class="s-lead gsap-up">Tap a category to expand it. Admissions and A-Level notes focus on exams, applications and problem-solving; the econometrics, time-series, financial-econometrics and statistics notes are university and postgraduate level, written close to real lecture material.</p>
+<div class="route-card-list" style="margin:1.7rem 0 0.5rem">
+<a class="route-subject-card" href="#alevel-resources"><small>School exams</small><strong>A-Level Notes</strong><span>Exam-board guides for Maths, Further Maths and Economics, plus the hardest topics and problem-solving.</span></a>
+<a class="route-subject-card" href="#oxbridge-resources"><small>Admissions</small><strong>Oxbridge Admission Material</strong><span>Cambridge interview preparation, fully worked Oxbridge economics questions and the personal statement guide.</span></a>
+<a class="route-subject-card" href="#university-resources"><small>University &amp; postgraduate</small><strong>University &amp; Postgraduate</strong><span>Econometrics, time series, financial econometrics and statistics notes, written close to lecture material.</span></a>
+</div>
+<div class="notes-cats">
+<details class="note-cat" id="alevel-resources">
+<summary><span class="cat-ico">✎</span> A-Level notes &amp; exam guides <span class="cat-count">10 notes</span><span class="cat-chev">▶</span></summary>
+<div class="cat-body">
 <ul>
-<li><a href="blog/hardest-further-maths-topics.html">Harder Further Maths topics</a></li>
-<li><a href="blog/cambridge-economics-interview-guide.html">Cambridge Economics interview preparation</a></li>
-<li><a href="blog/oxbridge-economics-interview-questions-worked.html">Oxbridge Economics worked questions</a></li>
-<li><a href="blog/economics-personal-statement-guide.html">Economics personal statement guide</a></li>
+<li><a href="blog/hardest-further-maths-topics.html">The hardest Further Maths topics</a></li>
+<li><a href="blog/a-level-maths-ocr-exam-guide.html">A-Level Maths — OCR (H240)<span class="tag-new">New</span></a></li>
+<li><a href="blog/a-level-maths-edexcel-exam-guide.html">A-Level Maths — Edexcel (9MA0)<span class="tag-new">New</span></a></li>
+<li><a href="blog/a-level-maths-aqa-exam-guide.html">A-Level Maths — AQA (7357)<span class="tag-new">New</span></a></li>
+<li><a href="blog/further-maths-ocr-exam-guide.html">Further Maths — OCR (H245)<span class="tag-new">New</span></a></li>
+<li><a href="blog/further-maths-edexcel-exam-guide.html">Further Maths — Edexcel (9FM0)<span class="tag-new">New</span></a></li>
+<li><a href="blog/further-maths-aqa-exam-guide.html">Further Maths — AQA (7367)<span class="tag-new">New</span></a></li>
+<li><a href="blog/a-level-economics-ocr-exam-guide.html">A-Level Economics — OCR (H460)<span class="tag-new">New</span></a></li>
+<li><a href="blog/a-level-economics-edexcel-exam-guide.html">A-Level Economics — Edexcel (9EC0)<span class="tag-new">New</span></a></li>
+<li><a href="blog/a-level-economics-aqa-exam-guide.html">A-Level Economics — AQA (7136)<span class="tag-new">New</span></a></li>
 </ul>
-<p><a class="btn btn-line" href="a-level-admissions-tutoring.html">View A-Level &amp; Admissions support</a></p>
 </div>
-<div class="route-panel" id="university-resources">
-<h3>University &amp; Postgraduate study notes</h3>
-<p>For econometrics, statistics, time series, finance and dissertation-methods support.</p>
+</details>
+<details class="note-cat" id="university-resources">
+<summary><span class="cat-ico">∑</span> Econometrics — foundations <span class="cat-count">7 notes</span><span class="cat-chev">▶</span></summary>
+<div class="cat-body">
 <ul>
-<li><a href="blog/what-is-ols-ordinary-least-squares.html">OLS and regression intuition</a></li>
-<li><a href="blog/hypothesis-testing-explained.html">Hypothesis testing</a></li>
-<li><a href="blog/time-series-econometrics-guide.html">Time series, stationarity and ACF</a></li>
-<li><a href="blog/reading-the-correlogram.html">Correlograms and model checking</a></li>
-<li><a href="blog/ar-arma-processes-explained.html">AR, MA and ARMA models</a></li>
-<li><a href="blog/garch-volatility-explained.html">GARCH and volatility</a></li>
+<li><a href="blog/what-is-ols-ordinary-least-squares.html">What is OLS? Ordinary least squares</a></li>
+<li><a href="blog/gauss-markov-theorem-blue.html">The Gauss-Markov theorem &amp; BLUE<span class="tag-new">New</span></a></li>
+<li><a href="blog/goodness-of-fit-r-squared.html">Goodness of fit: R² and adjusted R²<span class="tag-new">New</span></a></li>
+<li><a href="blog/diagnostic-testing-linear-regression.html">Diagnostic testing &amp; robust inference</a></li>
+<li><a href="blog/instrumental-variables-weak-instruments.html">Instrumental variables &amp; weak instruments</a></li>
+<li><a href="blog/generalized-method-of-moments-gmm.html">Generalized method of moments (GMM)</a></li>
+<li><a href="blog/identification-robust-inference-singular-variance.html">Identification-robust inference (advanced)</a></li>
 </ul>
-<p><a class="btn btn-line" href="university-postgraduate-tutoring.html">View University &amp; Postgraduate support</a></p>
 </div>
+</details>
+<details class="note-cat">
+<summary><span class="cat-ico">∂</span> Time series <span class="cat-count">7 notes</span><span class="cat-chev">▶</span></summary>
+<div class="cat-body">
+<ul>
+<li><a href="blog/time-series-econometrics-guide.html">Time series Part 1: a clear introduction</a></li>
+<li><a href="blog/time-series-econometrics-part2.html">Time series Part 2: ARMA &amp; the Wold decomposition</a></li>
+<li><a href="blog/ar-arma-processes-explained.html">AR, MA and ARMA models explained</a></li>
+<li><a href="blog/reading-the-correlogram.html">Reading the correlogram</a></li>
+<li><a href="blog/autocorrelation-serial-correlation.html">Autocorrelation &amp; serial correlation<span class="tag-new">New</span></a></li>
+<li><a href="blog/arma-estimation-model-selection.html">ARMA estimation &amp; model selection (AIC/BIC)<span class="tag-new">New</span></a></li>
+<li><a href="blog/vector-autoregression-var-basics.html">Vector autoregressions (VAR) basics<span class="tag-new">New</span></a></li>
+</ul>
 </div>
-</div></section><section class="section"><div class="wrap"><p class="s-eye">Featured articles</p><h2 class="h2">Clear explanations<br/><em>by area</em></h2><div class="blog-grid">
-<article class="blog-card"><span class="blog-glyph">∑</span><p class="blog-cat">Econometrics</p><h3>What is OLS? A plain-English guide to ordinary least squares</h3><p>The most common method in econometrics, explained from intuition through to assumptions and common failures.</p><a class="blog-link" href="blog/what-is-ols-ordinary-least-squares.html">Read article</a></article>
-<article class="blog-card"><span class="blog-glyph">∂</span><p class="blog-cat">Time series</p><h3>Time series econometrics: Part 1, a clear introduction</h3><p>Process vs realisation, white noise, stationarity, MA(1) and AR(1) explained from scratch with real economic examples and charts.</p><a class="blog-link" href="blog/time-series-econometrics-guide.html">Read article</a></article>
-<article class="blog-card"><span class="blog-glyph">∩</span><p class="blog-cat">Admissions</p><h3>Cambridge economics interview preparation</h3><p>How to prepare for mathematically probing economics interviews without memorising artificial answers.</p><a class="blog-link" href="blog/cambridge-economics-interview-guide.html">Read article</a></article>
-<article class="blog-card"><span class="blog-glyph">📊</span><p class="blog-cat" style="color:var(--copper,#D3A35B)">Admissions · New</p><h3>Oxbridge economics interview questions: 5 types fully worked</h3><p>Price discrimination, game theory Nash equilibria, conditional probability, the gambler's ruin, and open-ended economic reasoning, all with complete solutions.</p><a class="blog-link" href="blog/oxbridge-economics-interview-questions-worked.html">Read article</a></article>
-<article class="blog-card"><span class="blog-glyph">✍</span><p class="blog-cat" style="color:var(--copper,#D3A35B)">Admissions · New</p><h3>How to write a strong economics personal statement</h3><p>Real anonymised before-and-after examples with specialist commentary on what admissions tutors actually look for, and the mistakes that sink most applications.</p><a class="blog-link" href="blog/economics-personal-statement-guide.html">Read article</a></article>
-<article class="blog-card"><span class="blog-glyph">σ</span><p class="blog-cat">GARCH</p><h3>GARCH and volatility modelling explained</h3><p>Conditional heteroskedasticity, GARCH(1,1), EGARCH and asymmetric volatility, from first principles to estimation.</p><a class="blog-link" href="blog/garch-volatility-explained.html">Read article</a></article>
-<article class="blog-card"><span class="blog-glyph">∂</span><p class="blog-cat" style="color:var(--copper,#D3A35B)">Time Series · New</p><h3>Time series Part 2: ARMA, stationarity and the Wold decomposition</h3><p>MA(q) and AR(p) properties derived rigorously, the lag operator, characteristic root conditions, and the Wold decomposition theorem. Graduate level.</p><a class="blog-link" href="blog/time-series-econometrics-part2.html">Read article</a></article>
-<article class="blog-card"><span class="blog-glyph">H</span><p class="blog-cat" style="color:var(--copper,#D3A35B)">Statistics · New</p><h3>Hypothesis testing from first principles</h3><p>What a p-value actually measures, Type I errors, critical values, the z-test and t-test, with worked examples from university lecture notes.</p><a class="blog-link" href="blog/hypothesis-testing-explained.html">Read article</a></article>
-</div></div></section>
+</details>
+<details class="note-cat">
+<summary><span class="cat-ico">σ</span> Financial econometrics <span class="cat-count">2 notes</span><span class="cat-chev">▶</span></summary>
+<div class="cat-body">
+<ul>
+<li><a href="blog/modelling-stock-returns-distribution.html">Modelling the distribution of stock returns</a></li>
+<li><a href="blog/garch-volatility-explained.html">GARCH and volatility modelling</a></li>
+</ul>
+</div>
+</details>
+<details class="note-cat">
+<summary><span class="cat-ico">H</span> Statistics &amp; inference <span class="cat-count">4 notes</span><span class="cat-chev">▶</span></summary>
+<div class="cat-body">
+<ul>
+<li><a href="blog/hypothesis-testing-explained.html">Hypothesis testing from first principles</a></li>
+<li><a href="blog/confidence-intervals-t-tests.html">Confidence intervals &amp; t-tests<span class="tag-new">New</span></a></li>
+<li><a href="blog/distributions-econometrics-normal-t-chi-f.html">The normal, t, chi-square &amp; F distributions<span class="tag-new">New</span></a></li>
+<li><a href="blog/maximum-likelihood-estimation-explained.html">Maximum likelihood estimation</a></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="notes-routebtns">
+<a class="btn btn-line" href="a-level-admissions-tutoring.html">A-Level &amp; Admissions support</a>
+<a class="btn btn-line" href="university-postgraduate-tutoring.html">University &amp; Postgraduate support</a>
+</div>
+</div></section>
 <section aria-labelledby="acad-h" class="section">
 <div class="wrap" style="text-align:center">
 <p class="s-eye">Go deeper</p>
@@ -238,7 +297,7 @@
 <a class="rv-card" href="research.html" style="text-decoration:none"><h3>Research &amp; publications</h3><p>Published econometrics research, CeMMAP working papers, and conference presentations, including joint work with Cambridge.</p></a>
 </div>
 </section>
-</main><div aria-label="Trust signals" class="trust" role="contentinfo"><div class="trust-inner"><span class="ti">Qualifications verified</span><span class="ti">Free initial consultation</span><span class="ti">Online UK-wide</span><span class="ti">Econometrics specialist</span></div></div>
+</main><div aria-label="Trust signals" class="trust" role="contentinfo"><div class="trust-inner"><span class="ti">Cambridge BA · MPhil · PhD</span><span class="ti">Free initial consultation</span><span class="ti">Online International and UK-wide</span><span class="ti">Econometrics specialist</span></div></div>
 <footer>
 <div class="foot-cols">
 <div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
@@ -246,6 +305,8 @@
 <div class="fc"><h4>University &amp; Postgraduate</h4><a href="university-postgraduate-tutoring.html">Overview</a><a href="university-economics-tutor.html">University Economics</a><a href="econometrics-tutor.html">Econometrics</a><a href="statistics-tutor.html">Statistics</a><a href="finance-tutor.html">Finance</a><a href="phd-econometrics-tutor.html">PhD econometrics</a></div>
 <div class="fc"><h4>Resources &amp; contact</h4><a href="blog.html">Study notes</a><a href="questions.html">Common questions</a><a href="credentials.html">Credentials</a><a href="pricing.html">Pricing</a><a href="how-it-works.html">How it works</a><a href="index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
 </div>
-<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online UK-wide</span></div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online International and UK-wide</span></div>
 </footer>
-<script>document.getElementById('yr').textContent = new Date().getFullYear(); function toggleNav(btn){const mob=document.getElementById('mobNav'); const open=mob.classList.toggle('open'); btn.setAttribute('aria-expanded', open);} const nav=document.getElementById('nav'); window.addEventListener('scroll',()=>nav.classList.toggle('solid',window.scrollY>40),{passive:true});</script></body></html>
+<script>document.getElementById('yr').textContent = new Date().getFullYear(); function toggleNav(btn){const mob=document.getElementById('mobNav'); const open=mob.classList.toggle('open'); btn.setAttribute('aria-expanded', open);} const nav=document.getElementById('nav'); window.addEventListener('scroll',()=>nav.classList.toggle('solid',window.scrollY>40),{passive:true});function openHash(){var h=location.hash;if(h){try{var el=document.querySelector(h);if(el&&el.tagName==='DETAILS'){el.open=true;el.scrollIntoView({block:'start'});}}catch(e){}}}window.addEventListener('hashchange',openHash);window.addEventListener('load',openHash);</script>
+<script defer src="js/chat.js"></script>
+</body></html>

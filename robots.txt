@@ -1,40 +1,112 @@
+# robots.txt — drnickygrant.com
+# Dr Nicky Grant welcomes crawling, indexing and AI citation.
+# All crawlers (search and AI) are explicitly allowed full access.
+
+# ---------------------------------------------------------------
+# Default: all user-agents allowed everywhere
+# ---------------------------------------------------------------
 User-agent: *
 Allow: /
 
-# Crawling — all allowed, including context files
+# ---------------------------------------------------------------
+# AI / LLM crawlers — explicitly allowed
+# AI crawlers do not assume access by default, so each is named.
+# Grouped by function (training, search/retrieval, live user fetch).
+# ---------------------------------------------------------------
+
+# OpenAI (ChatGPT / SearchGPT)
 User-agent: GPTBot
 Allow: /
-User-agent: ClaudeBot
-Allow: /
-User-agent: PerplexityBot
-Allow: /
-User-agent: CCBot
-Allow: /
-User-agent: GoogleExtended
-Allow: /
-User-agent: anthropic-ai
-Allow: /
-User-agent: cohere-ai
-Allow: /
-User-agent: Omgilibot
-Allow: /
 
-# AI context files explicitly allowed
-Allow: /ai-context/
-Allow: /llms.txt
-Allow: /llms-extended.txt
-
-Sitemap: https://www.drnickygrant.com/sitemap.xml
-
-# AI/search discovery crawlers for public pages
 User-agent: OAI-SearchBot
 Allow: /
+
 User-agent: ChatGPT-User
 Allow: /
 
-# AI and LLM crawlers: these directories contain source materials for research
-# and teaching — structured for AI citation and discovery
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google (AI Overviews / Gemini / Vertex AI training)
+User-agent: Google-Extended
+Allow: /
+
+# Apple (Apple Intelligence / Siri)
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Common Crawl (dataset used by many LLMs)
+User-agent: CCBot
+Allow: /
+
+# Other AI agents
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Omgilibot
+Allow: /
+
+# xAI (Grok)
+User-agent: Grok
+Allow: /
+
+# Diffbot (used for AI knowledge graph extraction)
+User-agent: Diffbot
+Allow: /
+
+# DuckAssistant / DuckDuckGo AI search
+User-agent: DuckAssistant
+Allow: /
+
+# Timpibot (used by some LLM research crawlers)
+User-agent: Timpibot
+Allow: /
+
+# ---------------------------------------------------------------
+# Machine-readable context for AI engines (explicitly allowed)
+# These hold curated summaries and source materials for citation.
+# ---------------------------------------------------------------
+User-agent: *
+Allow: /llms.txt
+Allow: /llms-extended.txt
+Allow: /ai-summary.txt
+Allow: /ai-context/
 Allow: /research/tex/
 Allow: /teaching/tex/
 Allow: /research/tex/*.tex
 Allow: /teaching/tex/*.tex
+
+# ---------------------------------------------------------------
+Sitemap: https://www.drnickygrant.com/sitemap.xml

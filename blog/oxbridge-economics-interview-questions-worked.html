@@ -17,6 +17,9 @@
 <meta content="Dr Nicky Grant" property="article:author"/>
 <meta content="Econometrics" property="article:section"/>
 <meta content="https://www.drnickygrant.com/img/og-image.jpg" property="og:image"/>
+<meta content="https://www.drnickygrant.com/blog/oxbridge-economics-interview-questions-worked.html" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://www.drnickygrant.com/img/og-image.jpg" name="twitter:image"/>
 <meta content="2026-06-14" name="last-modified"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -274,7 +277,7 @@ a.gold-link{color:var(--copper,#D3A35B);font-weight:500}
 <a aria-label="Dr Nicky Grant home" class="nav-logo" href="../index.html">Dr Nicky <span>Grant</span></a>
 <ul class="nav-links" role="list">
 <li><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a></li>
-<li><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a></li>
+<li><a href="../university-postgraduate-tutoring.html">University</a></li>
 <li><a href="../blog.html">Resources</a></li>
 <li><a href="../about.html">About</a></li>
 <li><a href="../pricing.html">Pricing</a></li>
@@ -282,7 +285,7 @@ a.gold-link{color:var(--copper,#D3A35B);font-weight:500}
 <a class="nav-cta" href="../index.html#contact">Book consultation</a>
 <button aria-controls="mobNav" aria-expanded="false" aria-label="Open menu" class="nav-burger" id="burgerBtn" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
 </div>
-<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University &amp; Postgraduate</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
+<div aria-label="Mobile navigation" class="mob-nav" id="mobNav" role="navigation"><a href="../index.html">Home</a><a href="../a-level-admissions-tutoring.html">A-Level &amp; Admissions</a><a href="../university-postgraduate-tutoring.html">University</a><a href="../blog.html">Resources</a><a href="../about.html">About</a><a href="../pricing.html">Pricing</a><a href="../index.html#contact">Book consultation</a></div>
 </nav>
 <div class="art-hero">
 <div style="max-width:740px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)">
@@ -350,11 +353,31 @@ Every transaction where $\text{WTP} \geq MC$ takes place. The outcome is efficie
 <p>The efficiency result is striking: perfect price discrimination produces the same output as perfect competition, because the firm is now willing to sell to every consumer whose willingness to pay exceeds marginal cost. There is no deadweight loss. All the surplus has simply been redistributed from consumers to the firm.</p>
 <p>The practical problem is information: the firm must know every individual's reservation price. This is largely infeasible. In practice, first-degree approximations emerge through negotiation (car dealerships), personalised algorithmic pricing (some airline and hotel platforms), or when consumer history provides rich data about individual valuations.</p>
 <p><strong>Third-degree price discrimination</strong> involves charging different prices to different <em>groups</em> of consumers, segmented by an observable characteristic: student status, age, geography, time of purchase.</p>
-<div class="math-block">Third-degree PD: different prices for groups with $|\varepsilon_1| \neq |\varepsilon_2|$.
-
-Profit-maximising condition $MR_1 = MR_2 = MC$, using $MR_i = p_i\!\left(1-\tfrac{1}{|\varepsilon_i|}\right)$:
-$$p_1\!\left(1 - \frac{1}{|\varepsilon_1|}\right) = p_2\!\left(1 - \frac{1}{|\varepsilon_2|}\right) = MC$$
-Result: lower elasticity group pays the higher price: $|\varepsilon_1| &lt; |\varepsilon_2| \Rightarrow p_1 &gt; p_2$.</div>
+<p>The firm splits its customers into groups it can tell apart, treats each group as its own small market, and sets a <strong>higher price for the group that is less sensitive to price</strong> and a <strong>lower price for the group that is more sensitive</strong>. The intuition is simple: if a group keeps buying even when the price rises, you can charge them more; if a group walks away quickly, you keep their price low so you don't lose them.</p>
+<div style="overflow-x:auto;margin:1.4rem 0">
+<svg viewBox="0 0 620 250" width="100%" style="max-width:620px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two markets side by side: the less price-sensitive group faces a steep demand curve and a higher price; the more price-sensitive group faces a flatter demand curve and a lower price.">
+<text x="160" y="20" text-anchor="middle" fill="#F2EDE4" font-size="13" font-family="sans-serif">Less price-sensitive group</text>
+<text x="160" y="37" text-anchor="middle" fill="rgba(242,237,228,.55)" font-size="11" font-family="sans-serif">inelastic — steep demand</text>
+<line x1="55" y1="55" x2="55" y2="205" stroke="rgba(242,237,228,.45)" stroke-width="1.5"/>
+<line x1="55" y1="205" x2="275" y2="205" stroke="rgba(242,237,228,.45)" stroke-width="1.5"/>
+<line x1="95" y1="55" x2="205" y2="205" stroke="#E9C68C" stroke-width="2.5"/>
+<text x="210" y="200" fill="#E9C68C" font-size="11" font-family="sans-serif">D</text>
+<line x1="55" y1="92" x2="178" y2="92" stroke="rgba(242,237,228,.55)" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="47" y="96" text-anchor="end" fill="#F2EDE4" font-size="13" font-family="sans-serif">P₁</text>
+<text x="160" y="232" text-anchor="middle" fill="rgba(242,237,228,.6)" font-size="11.5" font-family="sans-serif">Higher price</text>
+<text x="470" y="20" text-anchor="middle" fill="#F2EDE4" font-size="13" font-family="sans-serif">More price-sensitive group</text>
+<text x="470" y="37" text-anchor="middle" fill="rgba(242,237,228,.55)" font-size="11" font-family="sans-serif">elastic — flat demand</text>
+<line x1="365" y1="55" x2="365" y2="205" stroke="rgba(242,237,228,.45)" stroke-width="1.5"/>
+<line x1="365" y1="205" x2="585" y2="205" stroke="rgba(242,237,228,.45)" stroke-width="1.5"/>
+<line x1="375" y1="120" x2="575" y2="205" stroke="#E9C68C" stroke-width="2.5"/>
+<text x="578" y="200" fill="#E9C68C" font-size="11" font-family="sans-serif">D</text>
+<line x1="365" y1="150" x2="520" y2="150" stroke="rgba(242,237,228,.55)" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="357" y="154" text-anchor="end" fill="#F2EDE4" font-size="13" font-family="sans-serif">P₂</text>
+<text x="470" y="232" text-anchor="middle" fill="rgba(242,237,228,.6)" font-size="11.5" font-family="sans-serif">Lower price</text>
+</svg>
+</div>
+<p style="text-align:center;font-size:.8rem;color:rgba(242,237,228,.55);margin-top:-.3rem">Same firm, two groups: the one less willing to walk away (P₁) is charged more than the price-sensitive one (P₂).</p>
+<p><strong>What "price elasticity" means here, in plain terms:</strong> elasticity is just how strongly demand reacts when the price changes. Demand is <em>inelastic</em> when people barely change what they buy as the price rises (a commuter who has to travel at peak time), and <em>elastic</em> when demand drops sharply (a leisure traveller who can change plans, or simply not go). The firm leans on this difference — charging the inelastic group more — and it only works if it can keep the groups apart and stop the cheaper group reselling to the dearer one.</p>
 <p>Examples are everywhere: student discounts on software and streaming services (students have lower incomes and more price-sensitive demand); peak vs off-peak rail fares (business travellers have inelastic demand, leisure travellers have elastic demand); pharmaceutical companies charging different prices in different countries.</p>
 <h3>Key differences</h3>
 <div style="overflow-x:auto;margin:1.3rem 0">
@@ -392,27 +415,22 @@ Result: lower elasticity group pays the higher price: $|\varepsilon_1| &lt; |\va
 </table>
 <p style="font-size:.72rem;color:rgba(242,237,228,.35);margin-top:.5rem">Payoffs shown as (A, B). Highlighted cells are Nash Equilibria.</p>
 </div>
-<h3>Worked solution: Pure strategy Nash Equilibria</h3>
-<p>A Nash Equilibrium is a strategy profile from which no player can unilaterally deviate and improve their payoff. Check each cell:</p>
+<h3>Worked solution: finding the Nash equilibria</h3>
+<p>A Nash equilibrium is just an outcome where <em>neither player wishes they had chosen differently, given what the other did</em>. Nobody can do better by changing their own mind alone, so the outcome is stable. The quick test: look at each cell and ask, for each player in turn, "given the other's choice, would I want to switch?" If the answer is no for both, that cell is a Nash equilibrium.</p>
 <ol class="step-list">
-<li><strong>(O, O):</strong> Player A gets 2. If A switches to F, A gets 0, so A does not deviate. Player B gets 1. If B switches to F, B gets 0, so B does not deviate. <strong>(O, O) is a Nash Equilibrium.</strong></li>
-<li><strong>(O, F):</strong> Player A gets 0. If A switches to F, A gets 1, so A would deviate. Not a NE.</li>
-<li><strong>(F, O):</strong> Player B gets 0. If B switches to F, B gets 2, so B would deviate. Not a NE.</li>
-<li><strong>(F, F):</strong> Player A gets 1. If A switches to O, A gets 0, so A does not deviate. Player B gets 2. If B switches to O, B gets 1, so B does not deviate. <strong>(F, F) is a Nash Equilibrium.</strong></li>
+<li><strong>(O, O):</strong> A gets 2; switching to F would give 0, so A stays. B gets 1; switching to F would give 0, so B stays. Neither wants to move — <strong>(O, O) is a Nash equilibrium.</strong></li>
+<li><strong>(O, F):</strong> A gets 0 but could get 1 by switching to F, so A moves. Not an equilibrium.</li>
+<li><strong>(F, O):</strong> B gets 0 but could get 2 by switching to F, so B moves. Not an equilibrium.</li>
+<li><strong>(F, F):</strong> A gets 1; switching to O would give 0, so A stays. B gets 2; switching to O would give 1, so B stays. <strong>(F, F) is a Nash equilibrium.</strong></li>
 </ol>
-<p>There are <strong>two pure strategy Nash Equilibria</strong>: (O, O) and (F, F). Both are coordination equilibria, each player prefers to coordinate on the same activity as the other, but they disagree about which activity to coordinate on.</p>
-<h3>The mixed strategy Nash Equilibrium</h3>
-<p>With multiple pure NE, there is typically also a mixed strategy NE. Let p = probability A plays Opera, and q = probability B plays Opera.</p>
-<p>For B to be indifferent between O and F, A's mixing must leave B with equal expected payoffs from each pure strategy:</p>
-<div class="math-block">For B indifferent: $U_B(O) = p$ and $U_B(F) = 2(1-p)$.
-$$p = 2(1-p) \;\Rightarrow\; p^* = \tfrac{2}{3}$$
-For A indifferent: $U_A(O) = 2q$ and $U_A(F) = 1-q$.
-$$2q = 1-q \;\Rightarrow\; q^* = \tfrac{1}{3}$$</div>
-<p>The mixed strategy NE has A playing Opera with probability 2/3 and B playing Opera with probability 1/3. The expected payoff for both players in this equilibrium is <strong>2/3</strong>, far less than they would earn by coordinating on either pure NE (payoffs of 2 and 1 at (O,O), or 1 and 2 at (F,F)).</p>
+<p>So there are <strong>two Nash equilibria</strong>: both go to the opera, or both go to the football. In each one the players have successfully coordinated — they end up together — but they disagree about <em>which</em> outcome they would prefer: A would rather it be (O, O); B would rather it be (F, F).</p>
 <h3>What it illustrates</h3>
-<p>The Battle of the Sexes is the canonical <strong>coordination problem</strong>. Both players prefer any coordination equilibrium over no coordination, but they have conflicting preferences about <em>which</em> equilibrium. This creates a genuine strategic dilemma that equilibrium analysis alone cannot resolve, some form of communication, convention, or commitment device is needed.</p>
-<p>Real-world analogies the interviewer may ask about: technology standards (VHS vs Betamax, where manufacturers needed to coordinate but had different preferences over the outcome); international treaty adoption (countries prefer some shared standard over chaos but disagree about specifics); platform competition (buyers and sellers both want to use the same platform, but developers may prefer different platforms).</p>
-<div class="note"><p>Likely follow-up: "How might the players coordinate?" Good answers include: focal points (Schelling, 1960, players may converge on an outcome that seems 'natural' or salient, even without communication); repeated games (past play can establish conventions); binding commitments; or a mediator. The key insight is that equilibrium analysis identifies what is stable but not how coordination is achieved.</p></div>
+<p>This game (the "Battle of the Sexes") is the classic <strong>coordination problem</strong>. Both players would rather be together than apart, so both equilibria beat the mismatched outcomes — but they pull in different directions about which one to land on. Equilibrium analysis tells you which outcomes are stable; it does <em>not</em> tell you which one will actually happen. That gap is the interesting bit, and it is where strong candidates add insight: real coordination usually relies on something <em>outside</em> the payoff matrix — a convention, prior communication, a habit, or who commits first.</p>
+<p>Real-world analogies an interviewer might welcome: competing technology standards (VHS vs Betamax), countries trying to agree a shared treaty or standard, or buyers and sellers converging on the same marketplace.</p>
+<h3>Follow-up questions you might get</h3>
+<div class="note"><p><strong>"Can you explain, in your own words, what is going on in this game?"</strong><br/>Suggested answer: "Two people want to spend the evening together but like different things. Each cares more about being with the other than about the activity itself. If they pick the same place, both are reasonably happy; if they pick differently, both lose out. The tension is that there are two equally sensible 'together' outcomes, and each person prefers a different one."</p></div>
+<div class="note"><p><strong>"What do you think will actually happen in this game?"</strong><br/>Suggested answer: "The maths alone can't pick a winner, so I'd reason about what breaks the tie in practice — a focal point (perhaps one option is the obvious default, like the thing they did last time), talking beforehand, or whoever commits first, say by buying a ticket and telling the other. With none of that, there's a real chance they miscoordinate and both end up worse off, which is exactly why conventions and communication matter."</p></div>
+<div class="note"><p><strong>"How could they reliably coordinate in future?"</strong><br/>Suggested answer: focal points (Schelling), a simple shared rule or convention ("we alternate"), repeated play that lets a habit form, or a binding commitment. The key idea is that something beyond the one-shot payoffs is needed to select between the two equilibria.</p></div>
 <hr style="border:none;border-top:1px solid rgba(255,255,255,.07);margin:2.5rem 0"/>
 <h2>Type 4: Mathematics and probability</h2>
 <div class="q-type-tag">Maths / statistics</div>
@@ -514,14 +532,14 @@ $$P(\text{wealth} \geq \text{¥}10{,}000) = P(WWW) + P(WWL) + P(WLW) = \frac{1}{
 <a class="gold-link" href="../oxbridge-economics-tutor.html" style="font-size:.85rem">Oxbridge preparation services →</a>
 </div>
 </main>
-<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../oxbridge-economics-tutor.html"><strong>Oxbridge Economics preparation</strong><span>Mock interviews, worked questions and admissions strategy.</span></a><a class="funnel-card" href="../tmua-preparation.html"><strong>TMUA preparation</strong><span>Mathematical reasoning for economics applicants.</span></a><a class="funnel-card" href="../a-level-economics-tutor.html"><strong>A Level Economics tuition</strong><span>Subject depth beyond the syllabus.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book a free consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
+<section class="funnel-section" data-chunk="JK-internal-link-funnel"><div class="funnel-wrap"><p class="funnel-kicker">Related tuition</p><h2 class="funnel-title">Need help with this topic?</h2><p class="funnel-lead">For one-to-one help, choose the closest subject below or send a short enquiry with your level, topic and deadline.</p><div class="funnel-grid"><a class="funnel-card" href="../oxbridge-economics-tutor.html"><strong>Oxbridge Economics preparation</strong><span>Mock interviews, worked questions and admissions strategy.</span></a><a class="funnel-card" href="../tmua-preparation.html"><strong>TMUA preparation</strong><span>Mathematical reasoning for economics applicants.</span></a><a class="funnel-card" href="../a-level-economics-tutor.html"><strong>A Level Economics tuition</strong><span>Subject depth beyond the syllabus.</span></a></div><p class="funnel-cta"><a class="btn btn-fill" href="../index.html#contact">Book consultation</a> <a class="btn btn-line" href="../services.html">View all tutoring subjects</a></p></div></section><footer>
 <div class="foot-cols">
 <div class="fc"><h4>Dr Nicky Grant</h4><p>Specialist online tuition across A-Level, admissions, university and postgraduate study.</p></div>
 <div class="fc"><h4>A-Level &amp; Admissions</h4><a href="../a-level-admissions-tutoring.html">Overview</a><a href="../a-level-maths-tutor.html">A-Level Maths</a><a href="../a-level-economics-tutor.html">A-Level Economics</a><a href="../tmua-preparation.html">TMUA preparation</a><a href="../oxbridge-economics-tutor.html">Oxbridge Economics</a></div>
 <div class="fc"><h4>University &amp; Postgraduate</h4><a href="../university-postgraduate-tutoring.html">Overview</a><a href="../university-economics-tutor.html">University Economics</a><a href="../econometrics-tutor.html">Econometrics</a><a href="../statistics-tutor.html">Statistics</a><a href="../finance-tutor.html">Finance</a><a href="../phd-econometrics-tutor.html">PhD econometrics</a></div>
 <div class="fc"><h4>Resources &amp; contact</h4><a href="../blog.html">Study notes</a><a href="../questions.html">Common questions</a><a href="../credentials.html">Credentials</a><a href="../pricing.html">Pricing</a><a href="../how-it-works.html">How it works</a><a href="../index.html#contact">Book a consultation</a><a href="mailto:nicky.L.grant@gmail.com">nicky.L.grant@gmail.com</a></div>
 </div>
-<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online UK-wide</span></div>
+<div class="foot-bottom"><span>© <span id="yr"></span> Dr Nicky Grant</span><span>A-Level &amp; Admissions · University &amp; Postgraduate · Online International and UK-wide</span></div>
 </footer>
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();
@@ -531,5 +549,24 @@ nav.classList.toggle('solid',scrollY>40);
 function toggleNav(btn){const m=document.getElementById('mobNav');const o=m.classList.toggle('open');btn.setAttribute('aria-expanded',String(o));}
 document.addEventListener('click',function(e){const m=document.getElementById('mobNav');const b=document.getElementById('burgerBtn');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&b&&!b.contains(e.target)){m.classList.remove('open');b.setAttribute('aria-expanded','false');}});
 </script>
+<script>
+(function(){
+  var art=document.querySelector('main.art'); if(!art) return;
+  var kids=[].slice.call(art.childNodes), cur=null;
+  kids.forEach(function(n){
+    if(n.nodeType===1 && n.tagName==='H2'){
+      cur=document.createElement('details'); cur.className='sec-acc';
+      var s=document.createElement('summary');
+      art.insertBefore(cur,n); cur.appendChild(s); s.appendChild(n);
+    } else if(cur){
+      if(n.nodeType===1 && n.tagName==='HR'){ if(n.parentNode) n.parentNode.removeChild(n); }
+      else cur.appendChild(n);
+    }
+  });
+  var a=art.querySelectorAll('details.sec-acc');
+  if(a.length){ a[0].open=true; a[a.length-1].open=true; }
+})();
+</script>
+<script defer src="../js/chat.js"></script>
 </body>
 </html>

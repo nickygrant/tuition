@@ -4,7 +4,9 @@
     "blog/time-series-econometrics-guide.html",
     "blog/reading-the-correlogram.html",
     "blog/ar-arma-processes-explained.html",
-    "blog/time-series-econometrics-part2.html"
+    "blog/time-series-econometrics-part2.html",
+    "blog/arma-estimation-model-selection.html",
+    "blog/vector-autoregression-var-basics.html"
   ],
   "source_material": [
     "ECON30401_2016_notes(1).tex",

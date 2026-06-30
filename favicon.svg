@@ -1,4 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#07111F"/>
-  <text x="16" y="22" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#D3A35B" text-anchor="middle" letter-spacing="-0.5">NG</text>
+  <rect width="32" height="32" rx="7" fill="#15495A"/>
+  <text x="16" y="22" font-family="'Segoe UI',Roboto,Helvetica,Arial,system-ui,sans-serif" font-size="16" font-weight="800" fill="#F5F2EC" text-anchor="middle" letter-spacing="-1.2">NG</text>
 </svg>
