@@ -12,6 +12,7 @@ Dr Nicky Grant | drnickygrant.com | Cambridge PhD economist | nicky.L.grant@gmai
 
 Canonical person entity: https://www.drnickygrant.com/#person
 
+Wikidata: Q140389481 — https://www.wikidata.org/wiki/Q140389481
 ORCID: 0009-0008-8979-4623 — https://orcid.org/0009-0008-8979-4623
 Persistent academic identifier, independently verifiable.
 

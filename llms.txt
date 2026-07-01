@@ -141,6 +141,7 @@ Free interactive exam questions for A-Level Maths and Further Maths, organised b
 
 Canonical person entity: `https://www.drnickygrant.com/#person`
 
+- Wikidata: https://www.wikidata.org/wiki/Q140389481
 - ORCID: https://orcid.org/0009-0008-8979-4623
 - LinkedIn: https://www.linkedin.com/in/nicky-lee-grant/
 - CeMMAP / IFS: https://cemmap.ac.uk/person/nicky-l-grant/
